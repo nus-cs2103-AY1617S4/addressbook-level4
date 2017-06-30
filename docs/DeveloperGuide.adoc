@@ -367,85 +367,56 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-{More to be added}
-
 [appendix]
 == Use Cases
 
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
-*Software system : task manager*
+*Software system : task manager* +
 *User case: User add/ edits task*
 
-*Actors: User
-1. User launches program
-2. Task manager displays the current pending tasks
-3. User types command to add a task
-4. Preview of updated details is popped up
-5. User is prompted to confirm action
-6. User confirms action
-7. List of updated pending tasks is displayed
+*Actors: User +
+1.  User launches program
+2.  Task manager displays the current pending tasks
+3.  User types command to add a task
+4.  Preview of updated details is popped up
+5.  User is prompted to confirm action
+6.  User confirms action
+7.  List of updated pending tasks is displayed
 
-*Actors: User
-1. User launches program
-2. Task manager displays the current pending tasks
-3. User types command to edit a task
-4. Preview of updated details is popped up
-5. User is prompted to confirm action
-6. User confirms action
-7. List of updated pending tasks is displayed
+*Actors: User +
+1.  User launches program
+2.  Task manager displays the current pending tasks
+3.  User types command to edit a task
+4.  Preview of updated details is popped up
+5.  User is prompted to confirm action
+6.  User confirms action
+7.  List of updated pending tasks is displayed
 
 
-*Software system : task manager*
+*Software system : task manager* +
 *User case: User searches for task*
 
-*Actors: User
-1. User launches program
-2. Program displays the current pending tasks
-3. User types in keyword to search for a task
-4. List of tasks matching the keyword is displayed 
-5. User selects the task they desire 
-6. Task details are displayed
+*Actors: User +
+1.  User launches program
+2.  Program displays the current pending tasks
+3.  User types in keyword to search for a task
+4.  List of tasks matching the keyword is displayed 
+5.  User selects the task they desire 
+6.  Task details are displayed
 
 
-*Software system : task manager*
+*Software system : task manager* +
 *User case: User specifies storage folder*
 
-*Actors: User
-1. User launches program
-2. Program displays the current pending tasks
-3. User inputs command to specify storage folder
-4. User is prompted to confirm the new storage path
-5. User confirms action
-6. Confirmation is displayed
+*Actors: User +
+1.  User launches program
+2.  Program displays the current pending tasks
+3.  User inputs command to specify storage folder
+4.  User is prompted to confirm the new storage path
+5.  User confirms action
+6.  Confirmation is displayed
 
-
-[discrete]
-=== Use case: Delete person
-
-*MSS*
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person Use case ends.
-
-*Extensions*
-
-2a. The list is empty
-
-____
-Use case ends
-____
-
-3a. The given index is invalid
-
-____
-3a1. AddressBook shows an error message +
-Use case resumes at step 2
-____
-
-{More to be added}
 
 [appendix]
 == Non Functional Requirements
@@ -454,25 +425,10 @@ ____
 .  Software’s data should be able to be ported over to other devices without conflicts.
 .  Software should be able to keep track of 1000 task without any observable delay in performance.
 
-{More to be added}
-
 [appendix]
 == Glossary
 Conventional OS: Mac OS X, Windows, Linux
 
-[[mainstream-os]]
-Mainstream OS
-
-____
-Windows, Linux, Unix, OS-X
-____
-
-[[private-contact-detail]]
-Private contact detail
-
-_____
-A contact detail that is not meant to be shared with others
-_____
 
 [appendix]
 == Product Survey
@@ -484,45 +440,45 @@ _____
 
 |Google Calendar
 | 
-1. Quick add in natural language
-2. Can search through the calendar using keywords
-3. View day, week, month
-4. Can add other calendars 
+1.  Quick add in natural language
+2.  Can search through the calendar using keywords
+3.  View day, week, month
+4.  Can add other calendars 
 |
-1. Does not support performing actions using keyboard shortcuts. 
-2. Needs to be accessed online - which implies additional step for Jim. 
-3. Tasks cannot be easily categorized into different priorities such as “cannot do”
+1.  Does not support performing actions using keyboard shortcuts. 
+2.  Needs to be accessed online - which implies additional step for Jim. 
+3.  Tasks cannot be easily categorized into different priorities such as “cannot do”
 
 
 |HiTask
 |
-1. Jim would find the  calendar view at the left-hand side & a team window on the right to be helpful.
-2. Jim would find the synchronization with google calender help.
-3. Jim would find the sorting/filtering function to search for his task helpful.
+1.  Jim would find the  calendar view at the left-hand side & a team window on the right to be helpful.
+2.  Jim would find the synchronization with google calender help.
+3.  Jim would find the sorting/filtering function to search for his task helpful.
 |
-1. Jim will find that there are too many tabs to setup a todo-item  vs a ‘one-shot’ approach
-2. Jim will not require the drag and drop features for events delegation .. 
+1.  Jim will find that there are too many tabs to setup a todo-item  vs a ‘one-shot’ approach
+2.  Jim will not require the drag and drop features for events delegation .. 
   
 |Calender
 |
-1. Has a calendar view
-2. Has a quick add feature to create new events/ tasks
-3. UI allows for color coding
-4. Synchronization across Apple devices
+1.  Has a calendar view
+2.  Has a quick add feature to create new events/ tasks
+3.  UI allows for color coding
+4.  Synchronization across Apple devices
 |
-1. Does not offer an option to display current tasks
-2. Tasks cannot be added/ edited/ deleted by command line. 
-3. Tasks cannot be prioritized according to categories such as “cannot do”, etc. 
+1.  Does not offer an option to display current tasks
+2.  Tasks cannot be added/ edited/ deleted by command line. 
+3.  Tasks cannot be prioritized according to categories such as “cannot do”, etc. 
 
 |Trello
 |
-1. UI makes it so all tasks can be viewed simultaneously. 
-2. Tasks can be labelled - will be useful for categorisation/ prioritisation. 
-3. Calendar view is available.
-4. Tasks can be shared with other trello members - could be helpful for Jim in the workplace
+1.  UI makes it so all tasks can be viewed simultaneously. 
+2.  Tasks can be labelled - will be useful for categorisation/ prioritisation. 
+3.  Calendar view is available.
+4.  Tasks can be shared with other trello members - could be helpful for Jim in the workplace
 |
-1. Too much dependency on UI to create/ add/ edit/ delete tasks.Will affect Jim’s ability to add tasks quickly.  
-2. Needs to be access online. Will affect Jim’s speed. 
-3. Does not offer natural language processing.
-4. Too many features - will just serve as clutter for Jim. 
+1.  Too much dependency on UI to create/ add/ edit/ delete tasks.Will affect Jim’s ability to add tasks quickly.  
+2.  Needs to be access online. Will affect Jim’s speed. 
+3.  Does not offer natural language processing.
+4.  Too many features - will just serve as clutter for Jim. 
 |=======================================================================
