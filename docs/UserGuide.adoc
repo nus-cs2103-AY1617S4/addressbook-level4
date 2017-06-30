@@ -21,7 +21,31 @@ Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
 
+2. Download the latest `ticktask.jar` from the releases tab. +
+3. Copy the file to the folder you want to use as the home folder for your Address Book. +
+4. Double-click the file to start the app. The GUI should appear in a few seconds.
+
+
+image::UI_Sample.jpg[width="790"]
+
+5. Type the command in the command box and press Enter to execute it.
+
+
+e.g. typing help and pressing Enter will open the help window.
+Some example commands you can try:
+
+`list` : lists all tasks
+
+`add complete tutorial 22/08 0530-6000`: adds a task named complete tutorial to the task manager
+
+`Delete` complete tutorial : deletes the  complete tutorial task previously added
+
+exit : exits the app
+
+
+Refer to the Features section below for details of each command.
 == Features
+
 
 === Viewing help : `help`
 Displays the list of commands available.
