@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= TickTask - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -11,7 +11,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Setting up
 
@@ -313,20 +313,58 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="59%",cols="30%,<30%,<30%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Must Have |Nice to Have |Not Useful
 
-|`* * *` |user |add a new person |
+|As a user, I can add a task by writing the description, time, date and duration.  
+|As a user, I can choose to filter the tasks I want to be viewable based on some attribute (e.g. I only want to view tasks in “work category” or I only want to view tasks due on 25th July). 
+|As a user, I can sync my calendar across devices. 
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|As a user, I can edit the time, date and duration of the task that has been created previously.
+|As a user, I can set a reminder for a task when the due date arrives. Even in advance of the task deadline.  
+|As a user, I can import a set of events into my own calendar.  
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|As a user, I can delete a task by specifying the task name or index
+|As a user, I can group my tasks into different categories, such as “school”, “work”, “personal”, etc.
+|As a user, I can customise my graphical interface to my own liking. 
 
-|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+|As a user, I can mark/unmark a task as being complete.
+|As a user, I can display the calendar in daily, weekly, monthly, yearly view. 
+|As a user, I can customise the notification method I wish to use (e.g. could be email, SMS, noise, etc.). 
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|As a user, I can list out all the tasks I have ever added (including those that I have already completed).  
+|As a user, I can view task that has been automatically set to higher priority according to the deadline of the task
+|As a user, I can toggle to rank my tasks in either alphabetical order, due date etc.
+
+|As a user, I can list out all the task that I have added.
+|As a user, I can use shortcuts to perform certain functions in the calendar. 
+|As a user, I can add comments, pictures and files to each task (within a specific file limit). 
+
+|As a user, I can undo and redo the tasks that i have added or modified
+|As a user, I can view colour coded tasks which is according to the priority level 
+|As a user, I can add my own shortcuts to use. 
+
+|As a user, I can search out any tasks that I added using keywords. 
+|As a user, I can add an appoint kind of task that blocks out the time slot so that no other tasks can be added at the time slot.
+|As a user, I can auto complete task name.
+
+|As a user, I can specify the folder and file I wish to use for data storage. 
+|As a user, I can push back all the tasks I have added by a certain amount of time. 
+| 
+
+|As a user, I should be able to use commands that are in natural language.
+|As a user, I can quick add tasks such that the program determines the suitable time slot for me. 
+|
+
+|As a user, I can set a task so that it repeats over a specified duration at a specified frequency. 
+|As a user, I can add priorities to the task.
+|
+
+|As a user, I can view task that are still due.
+|
+|
+
 |=======================================================================
 
 {More to be added}
