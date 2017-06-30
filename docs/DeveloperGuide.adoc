@@ -311,11 +311,11 @@ b. Require developers to download those libraries manually (this creates extra w
 [appendix]
 == User Stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="30%,<30%,<30%",options="header",]
 |=======================================================================
-|Must Have `* * \*` |Nice to Have `* \*` |Not Useful `*`
+|Must Have `* * *` |Nice to Have `* *` |Not Useful `*`
 
 |As a user, I can add a task by writing the description, time, date and duration.  
 |As a user, I can choose to filter the tasks I want to be viewable based on some attribute (e.g. I only want to view tasks in “work category” or I only want to view tasks due on 25th July). 
