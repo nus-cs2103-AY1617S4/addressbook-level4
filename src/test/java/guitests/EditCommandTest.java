@@ -113,7 +113,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_ADDRESS.getPrefix());
-        assertResultMessage(Date.MESSAGE_ADDRESS_CONSTRAINTS);
+        assertResultMessage(Date.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TAG + "*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);

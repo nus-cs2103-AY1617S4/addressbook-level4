@@ -11,14 +11,14 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Date {
 
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
-            "Date should be in format DD/MM/YYYY";
+    public static final String MESSAGE_DATE_CONSTRAINTS =
+            "Date should be in format DD/MM/YY";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String ADDRESS_VALIDATION_REGEX = "[^\\s].*";
+    public static final String DATE_VALIDATION_REGEX = "(\\d{2}+)(/)(\\d{2}+)(/)(\\d{2}+)";
 
     public final String value;
 
@@ -30,7 +30,7 @@ public class Date {
     public Date(String address) throws IllegalValueException {
         requireNonNull(address);
         if (!isValidAddress(address)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
         this.value = address;
     }
@@ -39,7 +39,7 @@ public class Date {
      * Returns true if a given string is a valid person email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+        return test.matches(DATE_VALIDATION_REGEX);
     }
 
     @Override
