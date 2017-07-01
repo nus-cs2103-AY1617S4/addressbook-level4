@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -10,11 +12,14 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Time {
 
-
+    private int _hours;
+    private int _minutes;
+    
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Time should be in a 24 hours format HHMM";
     public static final String PHONE_VALIDATION_REGEX = "(\\d{2}+)(\\d{2}+)";
-    public final String value;
+    
+    public String value;
 
     /**
      * Validates given time.
@@ -27,7 +32,14 @@ public class Time {
         if (!isValidTime(trimmedTime)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
-        this.value = trimmedTime;
+        Pattern pattern = Pattern.compile(PHONE_VALIDATION_REGEX);
+        Matcher matcher = pattern.matcher(trimmedTime);
+        if (matcher.matches()){
+            _hours = Integer.parseInt(matcher.group(1));
+            _minutes = Integer.parseInt(matcher.group(2));
+            this.value = "" + _hours + _minutes;
+        }
+
     }
 
     /**
