@@ -19,14 +19,14 @@ public class Person implements ReadOnlyPerson {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Date address;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Date address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -70,12 +70,12 @@ public class Person implements ReadOnlyPerson {
         return email;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Date address) {
         this.address = requireNonNull(address);
     }
 
     @Override
-    public Address getAddress() {
+    public Date getAddress() {
         return address;
     }
 

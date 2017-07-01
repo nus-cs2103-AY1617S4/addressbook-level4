@@ -53,7 +53,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -466,7 +466,7 @@ public class LogicManagerTest {
             Name name = new Name("Adam Brown");
             Phone privatePhone = new Phone("111111");
             Email email = new Email("adam@example.com");
-            Address privateAddress = new Address("111, alpha street");
+            Date privateAddress = new Date("111, alpha street");
 
             return new Person(name, privatePhone, email, privateAddress,
                     getTagSet("tag1", "longertag2"));
@@ -487,7 +487,7 @@ public class LogicManagerTest {
                     new Name("Person " + seed),
                     new Phone(phoneNumber),
                     new Email(seed + "@email"),
-                    new Address("House of " + seed),
+                    new Date("House of " + seed),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
 
