@@ -11,9 +11,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.Time;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.ReadOnlyTask;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,7 +45,7 @@ public class XmlAdaptedPerson {
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
-    public XmlAdaptedPerson(ReadOnlyPerson source) {
+    public XmlAdaptedPerson(ReadOnlyTask source) {
         name = source.getName().fullName;
         phone = source.getTime().value;
         email = source.getEmail().value;
@@ -61,7 +61,7 @@ public class XmlAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Person toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -71,6 +71,6 @@ public class XmlAdaptedPerson {
         final Email email = new Email(this.email);
         final Date address = new Date(this.address);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, time, email, address, tags);
+        return new Task(name, time, email, address, tags);
     }
 }

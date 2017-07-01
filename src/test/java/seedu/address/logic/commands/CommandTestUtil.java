@@ -9,7 +9,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.ReadOnlyTask;
 
 /**
  * Contains helper methods for testing commands.
@@ -38,7 +38,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<ReadOnlyPerson> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<ReadOnlyTask> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         try {
             command.execute();

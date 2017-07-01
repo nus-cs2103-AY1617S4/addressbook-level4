@@ -21,7 +21,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -31,7 +31,7 @@ public class EditCommandTest extends AddressBookGuiTest {
 
     // The list of persons in the person list panel is expected to match this list.
     // This list is updated with every successful call to assertEditSuccess().
-    private Person[] expectedPersonsList = td.getTypicalPersons();
+    private Task[] expectedPersonsList = td.getTypicalPersons();
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
@@ -41,10 +41,10 @@ public class EditCommandTest extends AddressBookGuiTest {
                 + PREFIX_TAG + "husband";
         Index addressBookIndex = INDEX_FIRST_PERSON;
 
-        Person editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
+        Task editedTask = new PersonBuilder().withName("Bobby").withPhone("91234567")
                 .withEmail("bobby@example.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -53,10 +53,10 @@ public class EditCommandTest extends AddressBookGuiTest {
                 + PREFIX_TAG + "bestie";
         Index addressBookIndex = INDEX_SECOND_PERSON;
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withTags("sweetie", "bestie").build();
+        Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
+        Task editedTask = new PersonBuilder(taskToEdit).withTags("sweetie", "bestie").build();
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -64,10 +64,10 @@ public class EditCommandTest extends AddressBookGuiTest {
         String detailsToEdit = PREFIX_TAG.getPrefix();
         Index addressBookIndex = INDEX_SECOND_PERSON;
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withTags().build();
+        Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
+        Task editedTask = new PersonBuilder(taskToEdit).withTags().build();
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -77,10 +77,10 @@ public class EditCommandTest extends AddressBookGuiTest {
         String detailsToEdit = PREFIX_NAME + "Carrle";
         Index addressBookIndex = INDEX_THIRD_PERSON;
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withName("Carrle").build();
+        Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
+        Task editedTask = new PersonBuilder(taskToEdit).withName("Carrle").build();
 
-        assertEditSuccess(INDEX_FIRST_PERSON, addressBookIndex, detailsToEdit, editedPerson);
+        assertEditSuccess(INDEX_FIRST_PERSON, addressBookIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -137,20 +137,20 @@ public class EditCommandTest extends AddressBookGuiTest {
      * @param addressBookIndex index of person to edit in the address book.
      *      Must refer to the same person as {@code filteredPersonListIndex}
      * @param detailsToEdit details to edit the person with as input to the edit command
-     * @param editedPerson the expected person after editing the person's details
+     * @param editedTask the expected person after editing the person's details
      */
     private void assertEditSuccess(Index filteredPersonListIndex, Index addressBookIndex,
-                                    String detailsToEdit, Person editedPerson) {
+                                    String detailsToEdit, Task editedTask) {
         commandBox.runCommand(EditCommand.COMMAND_WORD + " "
                 + filteredPersonListIndex.getOneBased() + " " + detailsToEdit);
 
         // confirm the new card contains the right data
-        PersonCardHandle editedCard = personListPanel.navigateToPerson(editedPerson.getName().fullName);
-        assertMatching(editedPerson, editedCard);
+        PersonCardHandle editedCard = personListPanel.navigateToPerson(editedTask.getName().fullName);
+        assertMatching(editedTask, editedCard);
 
         // confirm the list now contains all previous persons plus the person with updated details
-        expectedPersonsList[addressBookIndex.getZeroBased()] = editedPerson;
+        expectedPersonsList[addressBookIndex.getZeroBased()] = editedTask;
         assertTrue(personListPanel.isListMatching(expectedPersonsList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask));
     }
 }
