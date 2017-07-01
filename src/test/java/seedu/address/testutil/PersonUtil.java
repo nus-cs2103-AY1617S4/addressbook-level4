@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.AddCommand;
@@ -27,9 +27,11 @@ public class PersonUtil {
     private static String getPersonDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + task.getTime().value + " ");
+        sb.append(PREFIX_TIME + task.getTime().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
+
         sb.append(PREFIX_ADDRESS + task.getDate().value + " ");
+
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
