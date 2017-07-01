@@ -52,7 +52,7 @@ public class PersonBuilder {
     }
 
     public PersonBuilder withAddress(String address) throws IllegalValueException {
-        this.task.setAddress(new Date(address));
+        this.task.setDate(new Date(address));
         return this;
     }
 
