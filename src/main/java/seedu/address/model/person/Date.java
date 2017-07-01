@@ -27,12 +27,12 @@ public class Date {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Date(String address) throws IllegalValueException {
-        requireNonNull(address);
-        if (!isValidDate(address)) {
+    public Date(String date) throws IllegalValueException {
+        requireNonNull(date);
+        if (!isValidDate(date)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
-        this.value = address;
+        this.value = date;
     }
 
     /**
