@@ -30,7 +30,7 @@ public class PersonUtil {
         sb.append(PREFIX_TIME + task.getTime().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
 
-        sb.append(PREFIX_ADDRESS + task.getDate().value + " ");
+        sb.append(PREFIX_DATE + task.getDate().value + " ");
 
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
