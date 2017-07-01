@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Person's date in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
 
@@ -29,7 +29,7 @@ public class Date {
      */
     public Date(String address) throws IllegalValueException {
         requireNonNull(address);
-        if (!isValidAddress(address)) {
+        if (!isValidDate(address)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
         this.value = address;
@@ -38,7 +38,7 @@ public class Date {
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidDate(String test) {
         return test.matches(DATE_VALIDATION_REGEX);
     }
 
