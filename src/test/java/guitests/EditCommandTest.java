@@ -2,10 +2,10 @@ package guitests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
@@ -35,9 +35,9 @@ public class EditCommandTest extends AddressBookGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_PHONE + "91234567 "
+        String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_TIME + "91234567 "
                 + PREFIX_EMAIL + "bobby@example.com "
-                + PREFIX_ADDRESS + "Block 123, Bobby Street 3 "
+                + PREFIX_DATE + "Block 123, Bobby Street 3 "
                 + PREFIX_TAG + "husband";
         Index addressBookIndex = INDEX_FIRST_PERSON;
 
@@ -106,13 +106,13 @@ public class EditCommandTest extends AddressBookGuiTest {
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_NAME + "*&");
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_PHONE + "abcd");
+        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TIME + "abcd");
         assertResultMessage(Time.MESSAGE_TIME_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_EMAIL + "yahoo!!!");
         assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
 
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_ADDRESS.getPrefix());
+        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_DATE.getPrefix());
         assertResultMessage(Date.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TAG + "*&");
@@ -122,10 +122,10 @@ public class EditCommandTest extends AddressBookGuiTest {
     @Test
     public void edit_duplicatePerson_failure() {
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 3 "
-                + PREFIX_PHONE + "85355255 "
+                + PREFIX_TIME + "85355255 "
                 + PREFIX_EMAIL + "alice@example.com "
                 + PREFIX_NAME + "Alice Pauline "
-                + PREFIX_ADDRESS + "123, Jurong West Ave 6, #08-111 "
+                + PREFIX_DATE + "123, Jurong West Ave 6, #08-111 "
                 + PREFIX_TAG + "friends");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
