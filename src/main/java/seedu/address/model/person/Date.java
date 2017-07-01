@@ -44,11 +44,12 @@ public class Date {
         }
         
         else {
-            this.value = date;
+   
             dateNum = Integer.parseInt(m.group(1));
             month = Integer.parseInt(m.group(3));
             year = Integer.parseInt(m.group(5));
-        	
+            
+            value = dateNum + "/" + month + "/" + year;
         }    
     }
     
