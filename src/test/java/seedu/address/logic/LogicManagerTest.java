@@ -6,10 +6,10 @@ import static org.junit.Assert.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.util.SampleDataUtil.getTagSet;
 import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
@@ -206,12 +206,12 @@ public class LogicManagerTest {
         assertParseException(AddCommand.COMMAND_WORD + " wrong args wrong args", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name 12345 "
                 + PREFIX_EMAIL + "valid@email.butNoPhonePrefix "
-                + PREFIX_ADDRESS + "valid,address", expectedMessage);
+                + PREFIX_DATE + "valid,address", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-                + PREFIX_PHONE + "12345 valid@email.butNoPrefix "
-                + PREFIX_ADDRESS + "valid, address", expectedMessage);
+                + PREFIX_TIME + "12345 valid@email.butNoPrefix "
+                + PREFIX_DATE + "valid, address", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-                + PREFIX_PHONE + "12345 "
+                + PREFIX_TIME + "12345 "
                 + PREFIX_EMAIL + "valid@email.butNoAddressPrefix valid, address",
                 expectedMessage);
     }
@@ -220,27 +220,27 @@ public class LogicManagerTest {
     public void execute_add_invalidPersonData() {
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "[]\\[;] "
-                + PREFIX_PHONE + "12345 "
+                + PREFIX_TIME + "12345 "
                 + PREFIX_EMAIL + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address",
+                + PREFIX_DATE + "valid, address",
                 Name.MESSAGE_NAME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
-                + PREFIX_PHONE + "not_numbers "
+                + PREFIX_TIME + "not_numbers "
                 + PREFIX_EMAIL + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address",
+                + PREFIX_DATE + "valid, address",
                 Time.MESSAGE_TIME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
-                + PREFIX_PHONE + "12345 "
+                + PREFIX_TIME + "12345 "
                 + PREFIX_EMAIL + "notAnEmail "
-                + PREFIX_ADDRESS + "valid, address",
+                + PREFIX_DATE + "valid, address",
                 Email.MESSAGE_EMAIL_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
-                + PREFIX_PHONE + "12345 "
+                + PREFIX_TIME + "12345 "
                 + PREFIX_EMAIL + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address "
+                + PREFIX_DATE + "valid, address "
                 + PREFIX_TAG + "invalid_-[.tag",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
     }
@@ -499,8 +499,8 @@ public class LogicManagerTest {
 
             cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
             cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
-            cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getTime());
-            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getAddress());
+            cmd.append(" " + PREFIX_TIME.getPrefix()).append(p.getTime());
+            cmd.append(" " + PREFIX_DATE.getPrefix()).append(p.getAddress());
 
             Set<Tag> tags = p.getTags();
             for (Tag t: tags) {
