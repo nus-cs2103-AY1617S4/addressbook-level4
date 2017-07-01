@@ -6,15 +6,15 @@ import seedu.address.model.person.ReadOnlyTask;
 import seedu.address.model.tag.Tag;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a TickTask client
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTickTask {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the task list.
+     * This list will not contain any duplicate task.
      */
-    ObservableList<ReadOnlyTask> getPersonList();
+    ObservableList<ReadOnlyTask> getTaskList();
 
     /**
      * Returns an unmodifiable view of the tags list.

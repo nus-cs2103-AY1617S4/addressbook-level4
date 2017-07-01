@@ -42,7 +42,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        Task taskInList = new Task(model.getAddressBook().getPersonList().get(0));
+        Task taskInList = new Task(model.getAddressBook().getTaskList().get(0));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 

@@ -12,10 +12,10 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
  */
 public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    void resetData(ReadOnlyTickTask newData);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTickTask getAddressBook();
 
     /** Deletes the given person. */
     void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;

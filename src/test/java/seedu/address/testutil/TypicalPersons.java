@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TickTask;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
 
@@ -47,7 +47,7 @@ public class TypicalPersons {
         }
     }
 
-    public static void loadAddressBookWithSampleData(AddressBook ab) {
+    public static void loadAddressBookWithSampleData(TickTask ab) {
         for (Task task : new TypicalPersons().getTypicalPersons()) {
             try {
                 ab.addPerson(new Task(task));
@@ -61,8 +61,8 @@ public class TypicalPersons {
         return new Task[]{alice, benson, carl, daniel, elle, fiona, george};
     }
 
-    public AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public TickTask getTypicalAddressBook() {
+        TickTask ab = new TickTask();
         loadAddressBookWithSampleData(ab);
         return ab;
     }
