@@ -28,7 +28,7 @@ public class Person implements ReadOnlyPerson {
      */
 
     public Person(Name name, Time time, Email email, Date address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, time, email, address, tags);
 
         this.name = name;
         this.time = time;
