@@ -21,7 +21,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -107,10 +107,10 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValue_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Optional<Phone> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
+        Time expectedTime = new Time(VALID_PHONE);
+        Optional<Time> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
 
-        assertEquals(expectedPhone, actualPhone.get());
+        assertEquals(expectedTime, actualPhone.get());
     }
 
     @Test

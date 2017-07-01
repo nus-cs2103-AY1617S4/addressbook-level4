@@ -29,7 +29,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(ReadOnlyPerson person) throws IllegalValueException {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
+        descriptor.setTime(person.getTime());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     public EditPersonDescriptorBuilder withPhone(String phone) throws IllegalValueException {
-        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setPhone);
+        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setTime);
         return this;
     }
 

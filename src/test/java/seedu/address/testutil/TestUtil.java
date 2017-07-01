@@ -21,7 +21,7 @@ import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Time;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -55,15 +55,17 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Person[]{
-                new Person(new Name("Ali Muster"), new Phone("9482424"), new Email("hans@example.com"), new Date("4th street"), getTagSet()),
-                new Person(new Name("Boris Mueller"), new Phone("87249245"), new Email("ruth@example.com"), new Date("81th street"), getTagSet()),
-                new Person(new Name("Carl Kurz"), new Phone("95352563"), new Email("heinz@example.com"), new Date("wall street"), getTagSet()),
-                new Person(new Name("Daniel Meier"), new Phone("87652533"), new Email("cornelia@example.com"), new Date("10th street"), getTagSet()),
-                new Person(new Name("Elle Meyer"), new Phone("9482224"), new Email("werner@example.com"), new Date("michegan ave"), getTagSet()),
-                new Person(new Name("Fiona Kunz"), new Phone("9482427"), new Email("lydia@example.com"), new Date("little tokyo"), getTagSet()),
-                new Person(new Name("George Best"), new Phone("9482442"), new Email("anna@example.com"), new Date("4th street"), getTagSet()),
-                new Person(new Name("Hoon Meier"), new Phone("8482424"), new Email("stefan@example.com"), new Date("little india"), getTagSet()),
-                new Person(new Name("Ida Mueller"), new Phone("8482131"), new Email("hans@example.com"), new Date("chicago ave"), getTagSet())
+              
+                new Person(new Name("Ali Muster"), new Time("9482424"), new Email("hans@example.com"), new Date("4th street"), getTagSet()),
+                new Person(new Name("Boris Mueller"), new Time("87249245"), new Email("ruth@example.com"), new Date("81th street"), getTagSet()),
+                new Person(new Name("Carl Kurz"), new Time("95352563"), new Email("heinz@example.com"), new Date("wall street"), getTagSet()),
+                new Person(new Name("Daniel Meier"), new Time("87652533"), new Email("cornelia@example.com"), new Date("10th street"), getTagSet()),
+                new Person(new Name("Elle Meyer"), new Time("9482224"), new Email("werner@example.com"), new Date("michegan ave"), getTagSet()),
+                new Person(new Name("Fiona Kunz"), new Time("9482427"), new Email("lydia@example.com"), new Date("little tokyo"), getTagSet()),
+                new Person(new Name("George Best"), new Time("9482442"), new Email("anna@example.com"), new Date("4th street"), getTagSet()),
+                new Person(new Name("Hoon Meier"), new Time("8482424"), new Email("stefan@example.com"), new Date("little india"), getTagSet()),
+                new Person(new Name("Ida Mueller"), new Time("8482131"), new Email("hans@example.com"), new Date("chicago ave"), getTagSet())
+
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
