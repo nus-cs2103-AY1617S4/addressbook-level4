@@ -3,6 +3,9 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -19,8 +22,12 @@ public class Date {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String DATE_VALIDATION_REGEX = "(\\d{2}+)(/)(\\d{2}+)(/)(\\d{2}+)";
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(DATE_VALIDATION_REGEX);
 
-    public final String value;
+    public String value;
+    private int dateNum;
+    private int month;
+    private int year;
 
     /**
      * Validates given address.
@@ -29,12 +36,36 @@ public class Date {
      */
     public Date(String date) throws IllegalValueException {
         requireNonNull(date);
-        if (!isValidDate(date)) {
-            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+        
+        Matcher m = BASIC_COMMAND_FORMAT.matcher(date);
+        
+        if (!isValidDate(date) || !m.matches()) {
+        	throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
-        this.value = date;
+        
+        else {
+   
+            dateNum = Integer.parseInt(m.group(1));
+            month = Integer.parseInt(m.group(3));
+            year = Integer.parseInt(m.group(5));
+            
+            value = dateNum + "/" + month + "/" + year;
+        }    
     }
-
+    
+    public int getDate() {
+    	return dateNum;
+    }
+    
+    public int getMonth() {
+    	return month;
+    }
+    
+    public int getYear() {
+    	return year;
+    }
+    
+    
     /**
      * Returns true if a given string is a valid person email.
      */
