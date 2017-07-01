@@ -29,7 +29,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
         sb.append(PREFIX_PHONE + task.getTime().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
+        sb.append(PREFIX_ADDRESS + task.getDate().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

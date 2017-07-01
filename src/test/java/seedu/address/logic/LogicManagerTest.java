@@ -500,7 +500,7 @@ public class LogicManagerTest {
             cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
             cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
             cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getTime());
-            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getAddress());
+            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getDate());
 
             Set<Tag> tags = p.getTags();
             for (Tag t: tags) {
