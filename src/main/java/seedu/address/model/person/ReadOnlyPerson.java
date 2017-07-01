@@ -13,7 +13,7 @@ public interface ReadOnlyPerson {
     Name getName();
     Phone getPhone();
     Email getEmail();
-    Address getAddress();
+    Date getAddress();
     Set<Tag> getTags();
 
     /**

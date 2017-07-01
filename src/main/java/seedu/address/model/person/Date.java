@@ -9,10 +9,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Date {
 
     public static final String MESSAGE_ADDRESS_CONSTRAINTS =
-            "Person addresses can take any values, and it should not be blank";
+            "Date should be in format DD/MM/YYYY";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -27,7 +27,7 @@ public class Address {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address) throws IllegalValueException {
+    public Date(String address) throws IllegalValueException {
         requireNonNull(address);
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
@@ -50,8 +50,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && this.value.equals(((Date) other).value)); // state check
     }
 
     @Override
