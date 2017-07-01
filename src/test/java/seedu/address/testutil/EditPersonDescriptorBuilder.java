@@ -6,7 +6,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.ReadOnlyTask;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -26,12 +26,12 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(ReadOnlyPerson person) throws IllegalValueException {
+    public EditPersonDescriptorBuilder(ReadOnlyTask person) throws IllegalValueException {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
+        descriptor.setTime(person.getTime());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setDate(person.getDate());
         descriptor.setTags(person.getTags());
     }
 
@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     public EditPersonDescriptorBuilder withPhone(String phone) throws IllegalValueException {
-        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setPhone);
+        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setTime);
         return this;
     }
 
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     public EditPersonDescriptorBuilder withAddress(String address) throws IllegalValueException {
-        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setAddress);
+        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setDate);
         return this;
     }
 

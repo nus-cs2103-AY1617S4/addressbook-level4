@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.Task;
+import seedu.address.model.person.exceptions.DuplicateTaskException;
 
 /**
  *
@@ -15,7 +15,7 @@ public class TypicalPersons {
     public static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
 
-    public final Person alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
+    public final Task alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
 
     public TypicalPersons() {
         try {
@@ -48,17 +48,17 @@ public class TypicalPersons {
     }
 
     public static void loadAddressBookWithSampleData(AddressBook ab) {
-        for (Person person : new TypicalPersons().getTypicalPersons()) {
+        for (Task task : new TypicalPersons().getTypicalPersons()) {
             try {
-                ab.addPerson(new Person(person));
-            } catch (DuplicatePersonException e) {
+                ab.addPerson(new Task(task));
+            } catch (DuplicateTaskException e) {
                 assert false : "not possible";
             }
         }
     }
 
-    public Person[] getTypicalPersons() {
-        return new Person[]{alice, benson, carl, daniel, elle, fiona, george};
+    public Task[] getTypicalPersons() {
+        return new Task[]{alice, benson, carl, daniel, elle, fiona, george};
     }
 
     public AddressBook getTypicalAddressBook() {

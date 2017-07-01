@@ -11,25 +11,27 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Phone phone;
+    private Time time;
     private Email email;
-    private Address address;
+    private Date address;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Task(Name name, Time time, Email email, Date address, Set<Tag> tags) {
+        requireAllNonNull(name, time, email, address, tags);
+
         this.name = name;
-        this.phone = phone;
+        this.time = time;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -38,8 +40,8 @@ public class Person implements ReadOnlyPerson {
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
-    public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),
+    public Task(ReadOnlyTask source) {
+        this(source.getName(), source.getTime(), source.getEmail(), source.getDate(),
                 source.getTags());
     }
 
@@ -52,13 +54,12 @@ public class Person implements ReadOnlyPerson {
         return name;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = requireNonNull(phone);
+    public void setTime(Time time) {
+        this.time = requireNonNull(time);
     }
 
-    @Override
-    public Phone getPhone() {
-        return phone;
+    public Time getTime() {
+        return time;
     }
 
     public void setEmail(Email email) {
@@ -70,12 +71,12 @@ public class Person implements ReadOnlyPerson {
         return email;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Date address) {
         this.address = requireNonNull(address);
     }
 
     @Override
-    public Address getAddress() {
+    public Date getDate() {
         return address;
     }
 
@@ -98,27 +99,27 @@ public class Person implements ReadOnlyPerson {
     /**
      * Updates this person with the details of {@code replacement}.
      */
-    public void resetData(ReadOnlyPerson replacement) {
+    public void resetData(ReadOnlyTask replacement) {
         requireNonNull(replacement);
 
         this.setName(replacement.getName());
-        this.setPhone(replacement.getPhone());
+        this.setTime(replacement.getTime());
         this.setEmail(replacement.getEmail());
-        this.setAddress(replacement.getAddress());
+        this.setAddress(replacement.getDate());
         this.setTags(replacement.getTags());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
+                || (other instanceof ReadOnlyTask // instanceof handles nulls
+                && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, time, email, address, tags);
     }
 
     @Override

@@ -18,10 +18,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -107,10 +107,10 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValue_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Optional<Phone> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
+        Time expectedTime = new Time(VALID_PHONE);
+        Optional<Time> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
 
-        assertEquals(expectedPhone, actualPhone.get());
+        assertEquals(expectedTime, actualPhone.get());
     }
 
     @Test
@@ -132,8 +132,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValue_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        Optional<Address> actualAddress = ParserUtil.parseAddress(Optional.of(VALID_ADDRESS));
+        Date expectedAddress = new Date(VALID_ADDRESS);
+        Optional<Date> actualAddress = ParserUtil.parseAddress(Optional.of(VALID_ADDRESS));
 
         assertEquals(expectedAddress, actualAddress.get());
     }
