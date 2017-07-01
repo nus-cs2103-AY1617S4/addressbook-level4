@@ -25,7 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.ReadOnlyTask;
 import seedu.address.testutil.TypicalPersons;
 
 /**
@@ -86,7 +86,7 @@ public class SelectCommandTest {
      * Updates {@code model}'s filtered list to show only the first person from the address book.
      */
     private void showFirstPersonOnly(Model model) {
-        ReadOnlyPerson person = model.getAddressBook().getPersonList().get(0);
+        ReadOnlyTask person = model.getAddressBook().getPersonList().get(0);
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new HashSet<>(Arrays.asList(splitName)));
 

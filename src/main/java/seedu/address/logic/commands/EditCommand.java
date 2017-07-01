@@ -18,11 +18,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.Time;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.ReadOnlyTask;
+import seedu.address.model.person.exceptions.DuplicateTaskException;
+import seedu.address.model.person.exceptions.TaskNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,20 +66,20 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
+        List<ReadOnlyTask> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        ReadOnlyTask personToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
-            model.updatePerson(personToEdit, editedPerson);
-        } catch (DuplicatePersonException dpe) {
+            model.updatePerson(personToEdit, editedTask);
+        } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } catch (PersonNotFoundException pnfe) {
+        } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target person cannot be missing");
         }
         model.updateFilteredListToShowAll();
@@ -90,8 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(ReadOnlyPerson personToEdit,
-                                             EditPersonDescriptor editPersonDescriptor) {
+    private static Task createEditedPerson(ReadOnlyTask personToEdit,
+                                           EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         Date updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedTime, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedName, updatedTime, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
