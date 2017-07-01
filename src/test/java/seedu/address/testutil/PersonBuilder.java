@@ -7,7 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Time;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -27,11 +27,11 @@ public class PersonBuilder {
 
     public PersonBuilder() throws IllegalValueException {
         Name defaultName = new Name(DEFAULT_NAME);
-        Phone defaultPhone = new Phone(DEFAULT_PHONE);
+        Time defaultTime = new Time(DEFAULT_PHONE);
         Email defaultEmail = new Email(DEFAULT_EMAIL);
         Address defaultAddress = new Address(DEFAULT_ADDRESS);
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultAddress, defaultTags);
+        this.person = new Person(defaultName, defaultTime, defaultEmail, defaultAddress, defaultTags);
     }
 
     /**
@@ -57,7 +57,7 @@ public class PersonBuilder {
     }
 
     public PersonBuilder withPhone(String phone) throws IllegalValueException {
-        this.person.setPhone(new Phone(phone));
+        this.person.setTime(new Time(phone));
         return this;
     }
 

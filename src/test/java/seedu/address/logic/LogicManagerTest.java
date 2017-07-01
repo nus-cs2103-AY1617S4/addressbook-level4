@@ -57,7 +57,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -229,7 +229,7 @@ public class LogicManagerTest {
                 + PREFIX_PHONE + "not_numbers "
                 + PREFIX_EMAIL + "valid@e.mail "
                 + PREFIX_ADDRESS + "valid, address",
-                Phone.MESSAGE_PHONE_CONSTRAINTS);
+                Time.MESSAGE_TIME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
                 + PREFIX_PHONE + "12345 "
@@ -464,11 +464,11 @@ public class LogicManagerTest {
 
         Person adam() throws Exception {
             Name name = new Name("Adam Brown");
-            Phone privatePhone = new Phone("111111");
+            Time privateTime = new Time("111111");
             Email email = new Email("adam@example.com");
             Address privateAddress = new Address("111, alpha street");
 
-            return new Person(name, privatePhone, email, privateAddress,
+            return new Person(name, privateTime, email, privateAddress,
                     getTagSet("tag1", "longertag2"));
         }
 
@@ -485,7 +485,7 @@ public class LogicManagerTest {
 
             return new Person(
                     new Name("Person " + seed),
-                    new Phone(phoneNumber),
+                    new Time(phoneNumber),
                     new Email(seed + "@email"),
                     new Address("House of " + seed),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
@@ -499,7 +499,7 @@ public class LogicManagerTest {
 
             cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
             cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
-            cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getPhone());
+            cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getTime());
             cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getAddress());
 
             Set<Tag> tags = p.getTags();

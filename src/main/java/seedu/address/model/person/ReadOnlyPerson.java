@@ -10,8 +10,9 @@ import seedu.address.model.tag.Tag;
  */
 public interface ReadOnlyPerson {
 
+    //These are methods
     Name getName();
-    Phone getPhone();
+    Time getTime();
     Email getEmail();
     Address getAddress();
     Set<Tag> getTags();
@@ -23,7 +24,7 @@ public interface ReadOnlyPerson {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
-                && other.getPhone().equals(this.getPhone())
+                && other.getTime().equals(this.getTime())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress()));
     }
@@ -35,7 +36,7 @@ public interface ReadOnlyPerson {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Phone: ")
-                .append(getPhone())
+                .append(getTime())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
