@@ -14,7 +14,7 @@ public interface ReadOnlyPerson {
     Name getName();
     Time getTime();
     Email getEmail();
-    Address getAddress();
+    Date getAddress();
     Set<Tag> getTags();
 
     /**

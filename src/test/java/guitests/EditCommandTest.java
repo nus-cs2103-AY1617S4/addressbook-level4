@@ -18,7 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -113,7 +113,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_ADDRESS.getPrefix());
-        assertResultMessage(Address.MESSAGE_ADDRESS_CONSTRAINTS);
+        assertResultMessage(Date.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TAG + "*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
