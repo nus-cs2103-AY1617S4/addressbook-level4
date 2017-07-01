@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setTime(person.getTime());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setDate(person.getDate());
         descriptor.setTags(person.getTags());
     }
 
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     public EditPersonDescriptorBuilder withAddress(String address) throws IllegalValueException {
-        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setAddress);
+        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setDate);
         return this;
     }
 

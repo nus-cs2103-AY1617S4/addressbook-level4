@@ -14,7 +14,7 @@ public interface ReadOnlyTask {
     Name getName();
     Time getTime();
     Email getEmail();
-    Date getAddress();
+    Date getDate();
     Set<Tag> getTags();
 
     /**
@@ -26,7 +26,7 @@ public interface ReadOnlyTask {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getTime().equals(this.getTime())
                 && other.getEmail().equals(this.getEmail())
-                && other.getAddress().equals(this.getAddress()));
+                && other.getDate().equals(this.getDate()));
     }
 
     /**
@@ -40,7 +40,7 @@ public interface ReadOnlyTask {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
+                .append(getDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -97,10 +97,10 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Time updatedTime = editPersonDescriptor.getTime().orElse(personToEdit.getTime());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Date updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Task(updatedName, updatedTime, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedName, updatedTime, updatedEmail, updatedDate, updatedTags);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Time time;
         private Email email;
-        private Date address;
+        private Date date;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
             this.name = toCopy.name;
             this.time = toCopy.time;
             this.email = toCopy.email;
-            this.address = toCopy.address;
+            this.date = toCopy.date;
             this.tags = toCopy.tags;
         }
 
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.time, this.email, this.address, this.tags);
+            return CollectionUtil.isAnyNonNull(this.name, this.time, this.email, this.date, this.tags);
         }
 
         public void setName(Name name) {
@@ -173,12 +173,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Date address) {
-            this.address = address;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Date> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setTags(Set<Tag> tags) {
@@ -207,7 +207,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getTime().equals(e.getTime())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getDate().equals(e.getDate())
                     && getTags().equals(e.getTags());
         }
     }

@@ -41,7 +41,7 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getTime(), source.getEmail(), source.getAddress(),
+        this(source.getName(), source.getTime(), source.getEmail(), source.getDate(),
                 source.getTags());
     }
 
@@ -76,7 +76,7 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public Date getAddress() {
+    public Date getDate() {
         return address;
     }
 
@@ -105,7 +105,7 @@ public class Task implements ReadOnlyTask {
         this.setName(replacement.getName());
         this.setTime(replacement.getTime());
         this.setEmail(replacement.getEmail());
-        this.setAddress(replacement.getAddress());
+        this.setAddress(replacement.getDate());
         this.setTags(replacement.getTags());
     }
 
