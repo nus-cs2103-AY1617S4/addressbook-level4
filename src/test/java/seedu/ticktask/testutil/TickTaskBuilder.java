@@ -24,7 +24,7 @@ public class TickTaskBuilder {
     }
 
     public TickTaskBuilder withPerson(Task task) throws DuplicateTaskException {
-        addressBook.addPerson(task);
+        addressBook.addTask(task);
         return this;
     }
 

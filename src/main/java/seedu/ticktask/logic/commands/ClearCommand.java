@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.ticktask.model.TickTask;
 
 /**
- * Clears the address book.
+ * Clears the TickTask.
  */
 public class ClearCommand extends Command {
 

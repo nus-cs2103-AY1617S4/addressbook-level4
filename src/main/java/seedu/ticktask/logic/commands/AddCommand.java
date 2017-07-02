@@ -28,9 +28,9 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Meeting "
-            + PREFIX_TIME + "10:00 "
+            + PREFIX_TIME + "1000 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_DATE + "July_2_2017 "
+            + PREFIX_DATE + "12/12/17 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -40,7 +40,7 @@ public class AddCommand extends Command {
     private final Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
+     * Creates an AddCommand to add the specified {@code ReadOnlyTask}
      */
     public AddCommand(ReadOnlyTask task) {
         toAdd = new Task(task);
@@ -50,7 +50,7 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
         try {
-            model.addPerson(toAdd);
+            model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

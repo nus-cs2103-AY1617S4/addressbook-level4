@@ -3,7 +3,7 @@ package seedu.ticktask.commons.events.model;
 import seedu.ticktask.commons.events.BaseEvent;
 import seedu.ticktask.model.ReadOnlyTickTask;
 
-/** Indicates the AddressBook in the model has changed*/
+/** Indicates the TickTask in the model has changed*/
 public class TickTaskChangedEvent extends BaseEvent {
 
     public final ReadOnlyTickTask data;
@@ -14,6 +14,6 @@ public class TickTaskChangedEvent extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of persons " + data.getTaskList().size() + ", number of tags " + data.getTagList().size();
+        return "number of Tasks " + data.getTaskList().size() + ", number of tags " + data.getTagList().size();
     }
 }

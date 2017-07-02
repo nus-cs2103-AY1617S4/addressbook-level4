@@ -4,7 +4,7 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of persons
+ * Indicates a request to jump to the list of tasks
  */
 public class JumpToListRequestEvent extends BaseEvent {
 

@@ -21,7 +21,7 @@ public interface Model {
     void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;
 
     /** Adds the given task */
-    void addPerson(ReadOnlyTask person) throws DuplicateTaskException;
+    void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -30,16 +30,16 @@ public interface Model {
      *      another existing person in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
-    void updatePerson(ReadOnlyTask target, ReadOnlyTask editedPerson)
+    void updateTask(ReadOnlyTask target, ReadOnlyTask editedPerson)
             throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
-    UnmodifiableObservableList<ReadOnlyTask> getFilteredPersonList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /** Updates the filter of the filtered person list to show all persons */
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered person list to filter by the given keywords*/
-    void updateFilteredPersonList(Set<String> keywords);
+    void updateFilteredTaskList(Set<String> keywords);
 
 }

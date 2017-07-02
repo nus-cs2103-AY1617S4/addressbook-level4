@@ -79,13 +79,13 @@ public class TickTask implements ReadOnlyTickTask {
     //// person-level operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
+     * Adds a task to the TickTask.
+     * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #tags}.
      *
      * @throws DuplicateTaskException if an equivalent person already exists.
      */
-    public void addPerson(ReadOnlyTask p) throws DuplicateTaskException {
+    public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
         Task newTask = new Task(p);
         syncMasterTagListWith(newTask);
         tasks.add(newTask);
@@ -101,7 +101,7 @@ public class TickTask implements ReadOnlyTickTask {
      *
      * @see #syncMasterTagListWith(Task)
      */
-    public void updatePerson(ReadOnlyTask target, ReadOnlyTask editedReadOnlyTask)
+    public void updateTask(ReadOnlyTask target, ReadOnlyTask editedReadOnlyTask)
             throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedReadOnlyTask);
 
@@ -119,8 +119,8 @@ public class TickTask implements ReadOnlyTickTask {
      *  - points to a Tag object in the master list
      */
     private void syncMasterTagListWith(Task task) {
-        final UniqueTagList personTags = new UniqueTagList(task.getTags());
-        tags.mergeFrom(personTags);
+        final UniqueTagList taskTags = new UniqueTagList(task.getTags());
+        tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
         // used for checking person tag references
@@ -129,7 +129,7 @@ public class TickTask implements ReadOnlyTickTask {
 
         // Rebuild the list of person tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
-        personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
+        taskTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         task.setTags(correctTagReferences);
     }
 

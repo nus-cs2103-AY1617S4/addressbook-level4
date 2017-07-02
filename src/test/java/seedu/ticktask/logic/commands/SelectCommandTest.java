@@ -52,7 +52,7 @@ public class SelectCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Index lastPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+        Index lastPersonIndex = Index.fromOneBased(model.getFilteredTaskList().size());
 
         assertExecutionSuccess(INDEX_FIRST_PERSON);
         assertExecutionSuccess(INDEX_THIRD_PERSON);
@@ -61,7 +61,7 @@ public class SelectCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
-        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -90,9 +90,9 @@ public class SelectCommandTest {
     private void showFirstPersonOnly(Model model) {
         ReadOnlyTask person = model.getTickTask().getTaskList().get(0);
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new HashSet<>(Arrays.asList(splitName)));
+        model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
-        assertTrue(model.getFilteredPersonList().size() == 1);
+        assertTrue(model.getFilteredTaskList().size() == 1);
     }
 
     /**
@@ -105,7 +105,7 @@ public class SelectCommandTest {
         SelectCommand selectCommand = prepareCommand(index);
         CommandResult commandResult = selectCommand.execute();
 
-        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, index.getOneBased()),
+        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, index.getOneBased()),
                 commandResult.feedbackToUser);
         assertEquals(index, eventTargetedJumpIndex);
     }

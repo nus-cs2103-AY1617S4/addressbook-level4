@@ -46,9 +46,9 @@ public class AddCommandParser {
             Date address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_DATE)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            ReadOnlyTask person = new Task(name, time, email, address, tagList);
+            ReadOnlyTask task = new Task(name, time, email, address, tagList);
 
-            return new AddCommand(person);
+            return new AddCommand(task);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }

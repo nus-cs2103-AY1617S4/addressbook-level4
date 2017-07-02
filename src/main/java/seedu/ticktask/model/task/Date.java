@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's date in the address book.
+ * Represents a Task's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {

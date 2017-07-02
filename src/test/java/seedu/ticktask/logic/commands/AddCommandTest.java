@@ -72,7 +72,7 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void addPerson(ReadOnlyTask person) throws DuplicateTaskException {
+        public void addTask(ReadOnlyTask person) throws DuplicateTaskException {
             fail("This method should not be called.");
         }
 
@@ -93,13 +93,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updatePerson(ReadOnlyTask target, ReadOnlyTask editedPerson)
+        public void updateTask(ReadOnlyTask target, ReadOnlyTask editedPerson)
                 throws DuplicateTaskException {
             fail("This method should not be called.");
         }
 
         @Override
-        public UnmodifiableObservableList<ReadOnlyTask> getFilteredPersonList() {
+        public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
             fail("This method should not be called.");
             return null;
         }
@@ -110,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Set<String> keywords) {
+        public void updateFilteredTaskList(Set<String> keywords) {
             fail("This method should not be called.");
         }
     }
@@ -120,7 +120,7 @@ public class AddCommandTest {
      */
     private class ModelStubThrowingDuplicatePersonException extends ModelStub {
         @Override
-        public void addPerson(ReadOnlyTask person) throws DuplicateTaskException {
+        public void addTask(ReadOnlyTask person) throws DuplicateTaskException {
             throw new DuplicateTaskException();
         }
     }
@@ -132,7 +132,7 @@ public class AddCommandTest {
         final ArrayList<Task> personsAdded = new ArrayList<>();
 
         @Override
-        public void addPerson(ReadOnlyTask person) throws DuplicateTaskException {
+        public void addTask(ReadOnlyTask person) throws DuplicateTaskException {
             personsAdded.add(new Task(person));
         }
     }

@@ -47,7 +47,7 @@ public class SampleDataUtil {
         try {
             TickTask sampleAb = new TickTask();
             for (Task sampleTask : getSamplePersons()) {
-                sampleAb.addPerson(sampleTask);
+                sampleAb.addTask(sampleTask);
             }
             return sampleAb;
         } catch (DuplicateTaskException e) {

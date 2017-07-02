@@ -34,7 +34,7 @@ public class AddCommandIntegrationTest {
         Task validTask = new TaskBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
-        expectedModel.addPerson(validTask);
+        expectedModel.addTask(validTask);
 
         CommandResult commandResult = prepareCommand(validTask, model).execute();
 

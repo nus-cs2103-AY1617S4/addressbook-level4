@@ -194,9 +194,9 @@ public class LogicManagerTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        model.addPerson(helper.generatePerson(1));
-        model.addPerson(helper.generatePerson(2));
-        model.addPerson(helper.generatePerson(3));
+        model.addTask(helper.generatePerson(1));
+        model.addTask(helper.generatePerson(2));
+        model.addTask(helper.generatePerson(3));
 
         assertCommandSuccess(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_SUCCESS, new ModelManager());
     }
@@ -253,7 +253,7 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
         Model expectedModel = new ModelManager();
-        expectedModel.addPerson(toBeAdded);
+        expectedModel.addTask(toBeAdded);
 
         // execute command and verify result
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
@@ -268,7 +268,7 @@ public class LogicManagerTest {
         Task toBeAdded = helper.adam();
 
         // setup starting state
-        model.addPerson(toBeAdded); // person already in internal address book
+        model.addTask(toBeAdded); // person already in internal address book
 
         // execute command and verify result
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -318,7 +318,7 @@ public class LogicManagerTest {
         // set AB state to 2 persons
         model.resetData(new TickTask());
         for (Task p : taskList) {
-            model.addPerson(p);
+            model.addTask(p);
         }
 
         assertCommandException(commandWord + " " + INDEX_THIRD_PERSON.getOneBased(), expectedMessage);
@@ -344,9 +344,9 @@ public class LogicManagerTest {
         helper.addToModel(model, threeTasks);
 
         assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
-                String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2), expectedModel);
+                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
         assertEquals(INDEX_SECOND_PERSON, targetedJumpIndex);
-        assertEquals(model.getFilteredPersonList().get(1), threeTasks.get(1));
+        assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
     }
 
 
@@ -391,10 +391,10 @@ public class LogicManagerTest {
 
         List<Task> fourTasks = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
         Model expectedModel = new ModelManager(helper.generateAddressBook(fourTasks), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new HashSet<>(Collections.singletonList("KEY")));
+        expectedModel.updateFilteredTaskList(new HashSet<>(Collections.singletonList("KEY")));
         helper.addToModel(model, fourTasks);
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
@@ -411,7 +411,7 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
@@ -425,11 +425,11 @@ public class LogicManagerTest {
 
         List<Task> fourTasks = helper.generatePersonList(pTarget1, p1, pTarget2, pTarget3);
         Model expectedModel = new ModelManager(helper.generateAddressBook(fourTasks), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
+        expectedModel.updateFilteredTaskList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " key rAnDoM",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
@@ -543,7 +543,7 @@ public class LogicManagerTest {
          */
         void addToAddressBook(TickTask addressBook, List<Task> personsToAdd) throws Exception {
             for (Task p: personsToAdd) {
-                addressBook.addPerson(p);
+                addressBook.addTask(p);
             }
         }
 
@@ -560,7 +560,7 @@ public class LogicManagerTest {
          */
         void addToModel(Model model, List<Task> personsToAdd) throws Exception {
             for (Task p: personsToAdd) {
-                model.addPerson(p);
+                model.addTask(p);
             }
         }
 
