@@ -1,30 +1,30 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 
 import org.junit.Test;
 
 import guitests.guihandles.PersonCardHandle;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Task;
-import seedu.address.model.person.Time;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.ticktask.commons.core.Messages;
+import seedu.ticktask.commons.core.index.Index;
+import seedu.ticktask.logic.commands.EditCommand;
+import seedu.ticktask.logic.commands.FindCommand;
+import seedu.ticktask.model.person.Date;
+import seedu.ticktask.model.person.Email;
+import seedu.ticktask.model.person.Name;
+import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.person.Time;
+import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.testutil.PersonBuilder;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends AddressBookGuiTest {

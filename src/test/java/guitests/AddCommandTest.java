@@ -5,12 +5,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import guitests.guihandles.PersonCardHandle;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.person.Task;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TestUtil;
+import seedu.ticktask.commons.core.Messages;
+import seedu.ticktask.logic.commands.AddCommand;
+import seedu.ticktask.logic.commands.ClearCommand;
+import seedu.ticktask.model.person.Task;
+import seedu.ticktask.testutil.PersonUtil;
+import seedu.ticktask.testutil.TestUtil;
 
 public class AddCommandTest extends AddressBookGuiTest {
 

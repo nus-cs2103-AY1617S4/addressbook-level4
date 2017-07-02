@@ -4,11 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.Task;
+import seedu.ticktask.commons.core.Messages;
+import seedu.ticktask.logic.commands.ClearCommand;
+import seedu.ticktask.logic.commands.DeleteCommand;
+import seedu.ticktask.logic.commands.FindCommand;
+import seedu.ticktask.model.person.Task;
 
 public class FindCommandTest extends AddressBookGuiTest {
 

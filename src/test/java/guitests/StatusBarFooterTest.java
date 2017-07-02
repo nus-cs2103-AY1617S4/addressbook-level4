@@ -3,9 +3,8 @@ package guitests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
-import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
+import static seedu.ticktask.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
+import static seedu.ticktask.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -16,9 +15,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.ui.StatusBarFooter;
+import seedu.ticktask.logic.commands.ListCommand;
+import seedu.ticktask.testutil.PersonUtil;
+import seedu.ticktask.ui.StatusBarFooter;
 
 public class StatusBarFooterTest extends AddressBookGuiTest {
 
