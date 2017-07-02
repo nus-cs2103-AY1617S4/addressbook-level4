@@ -19,10 +19,10 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ReadOnlyTickTask;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 import seedu.ticktask.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -82,7 +82,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTickTask getAddressBook() {
+        public ReadOnlyTickTask getTickTask() {
             fail("This method should not be called.");
             return null;
         }

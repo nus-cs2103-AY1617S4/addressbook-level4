@@ -7,7 +7,7 @@ import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.ticktask.logic.commands.AddCommand;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 
 /**
  * A utility class for Person.

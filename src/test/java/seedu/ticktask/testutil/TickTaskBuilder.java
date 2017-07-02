@@ -2,9 +2,9 @@ package seedu.ticktask.testutil;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 
 /**
  * A utility class to help with building Addressbook objects.

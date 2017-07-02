@@ -26,7 +26,7 @@ import seedu.ticktask.TestApp;
 import seedu.ticktask.commons.core.EventsCenter;
 import seedu.ticktask.commons.events.BaseEvent;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TestUtil;
 import seedu.ticktask.testutil.TypicalPersons;
 

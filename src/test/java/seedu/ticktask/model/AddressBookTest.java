@@ -16,9 +16,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TypicalPersons;
 
 public class AddressBookTest {

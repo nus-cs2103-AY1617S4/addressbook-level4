@@ -8,7 +8,7 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.FindCommand;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 
 public class FindCommandTest extends AddressBookGuiTest {
 

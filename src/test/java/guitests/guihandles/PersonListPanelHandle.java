@@ -13,8 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.ticktask.TestApp;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TestUtil;
 
 /**

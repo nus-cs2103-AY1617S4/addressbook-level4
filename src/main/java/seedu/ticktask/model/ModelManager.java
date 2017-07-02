@@ -9,11 +9,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.ComponentManager;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,11 +22,11 @@ import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TickTask addressBook;
-    private final FilteredList<ReadOnlyTask> filteredPersons;
+    private final TickTask tickTask;
+    private final FilteredList<ReadOnlyTask> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given tickTask and userPrefs.
      */
     public ModelManager(ReadOnlyTickTask addressBook, UserPrefs userPrefs) {
         super();
@@ -34,8 +34,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new TickTask(addressBook);
-        filteredPersons = new FilteredList<>(this.addressBook.getTaskList());
+        this.tickTask = new TickTask(addressBook);
+        filteredTasks = new FilteredList<>(this.tickTask.getTaskList());
     }
 
     public ModelManager() {
@@ -44,29 +44,29 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void resetData(ReadOnlyTickTask newData) {
-        addressBook.resetData(newData);
+        tickTask.resetData(newData);
         indicateAddressBookChanged();
     }
 
     @Override
-    public ReadOnlyTickTask getAddressBook() {
-        return addressBook;
+    public ReadOnlyTickTask getTickTask() {
+        return tickTask;
     }
 
     /** Raises an event to indicate the model has changed */
     private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(addressBook));
+        raise(new TickTaskChangedEvent(tickTask));
     }
 
     @Override
     public synchronized void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
-        addressBook.removePerson(target);
+        tickTask.removePerson(target);
         indicateAddressBookChanged();
     }
 
     @Override
     public synchronized void addPerson(ReadOnlyTask person) throws DuplicateTaskException {
-        addressBook.addPerson(person);
+        tickTask.addPerson(person);
         updateFilteredListToShowAll();
         indicateAddressBookChanged();
     }
@@ -76,7 +76,7 @@ public class ModelManager extends ComponentManager implements Model {
             throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.updatePerson(target, editedPerson);
+        tickTask.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
     }
 
@@ -87,12 +87,12 @@ public class ModelManager extends ComponentManager implements Model {
      */
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredPersonList() {
-        return new UnmodifiableObservableList<>(filteredPersons);
+        return new UnmodifiableObservableList<>(filteredTasks);
     }
 
     @Override
     public void updateFilteredListToShowAll() {
-        filteredPersons.setPredicate(null);
+        filteredTasks.setPredicate(null);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private void updateFilteredPersonList(Expression expression) {
-        filteredPersons.setPredicate(expression::satisfies);
+        filteredTasks.setPredicate(expression::satisfies);
     }
 
     @Override
@@ -118,8 +118,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && filteredPersons.equals(other.filteredPersons);
+        return tickTask.equals(other.tickTask)
+                && filteredTasks.equals(other.filteredTasks);
     }
 
     //========== Inner classes/interfaces used for filtering =================================================

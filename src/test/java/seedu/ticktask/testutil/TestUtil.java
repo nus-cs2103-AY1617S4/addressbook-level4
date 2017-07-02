@@ -17,12 +17,12 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.commons.util.XmlUtil;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.Time;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.Time;
 
 /**
  * A utility class for test cases.

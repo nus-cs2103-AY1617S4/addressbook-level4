@@ -8,7 +8,7 @@ import guitests.guihandles.PersonCardHandle;
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.PersonUtil;
 import seedu.ticktask.testutil.TestUtil;
 

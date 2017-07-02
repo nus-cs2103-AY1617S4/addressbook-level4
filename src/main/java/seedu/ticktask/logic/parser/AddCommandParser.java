@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.Time;
 
 /**
  * Parses input arguments and creates a new AddCommand object

@@ -17,7 +17,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TypicalPersons;
 
 /**
@@ -32,7 +32,7 @@ public class ListCommandTest {
     @Before
     public void setUp() {
         model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         listCommand = new ListCommand();
         listCommand.setData(model, new CommandHistory());
@@ -53,7 +53,7 @@ public class ListCommandTest {
      * Updates the filtered list to show only the first person in the {@code model}'s address book.
      */
     private void showFirstPersonOnly(Model model) {
-        ReadOnlyTask person = model.getAddressBook().getTaskList().get(0);
+        ReadOnlyTask person = model.getTickTask().getTaskList().get(0);
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new HashSet<>(Arrays.asList(splitName)));
 

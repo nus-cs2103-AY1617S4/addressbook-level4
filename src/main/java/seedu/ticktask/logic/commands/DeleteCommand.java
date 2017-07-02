@@ -4,8 +4,8 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.

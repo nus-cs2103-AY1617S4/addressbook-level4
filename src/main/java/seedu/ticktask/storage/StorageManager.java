@@ -8,7 +8,7 @@ import com.google.common.eventbus.Subscribe;
 
 import seedu.ticktask.commons.core.ComponentManager;
 import seedu.ticktask.commons.core.LogsCenter;
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.events.storage.DataSavingExceptionEvent;
 import seedu.ticktask.commons.exceptions.DataConversionException;
 import seedu.ticktask.model.ReadOnlyTickTask;
@@ -80,7 +80,7 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     @Subscribe
-    public void handleAddressBookChangedEvent(AddressBookChangedEvent event) {
+    public void handleAddressBookChangedEvent(TickTaskChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
         try {
             saveAddressBook(event.data);

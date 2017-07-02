@@ -15,7 +15,7 @@ import seedu.ticktask.commons.exceptions.DataConversionException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.storage.XmlAddressBookStorage;
 import seedu.ticktask.testutil.TypicalPersons;
 

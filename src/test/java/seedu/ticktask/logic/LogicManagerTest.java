@@ -32,7 +32,7 @@ import com.google.common.eventbus.Subscribe;
 
 import seedu.ticktask.commons.core.EventsCenter;
 import seedu.ticktask.commons.core.index.Index;
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.events.ui.JumpToListRequestEvent;
 import seedu.ticktask.commons.events.ui.ShowHelpRequestEvent;
 import seedu.ticktask.logic.Logic;
@@ -55,12 +55,12 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.Time;
 import seedu.ticktask.testutil.PersonBuilder;
 
 
@@ -81,7 +81,7 @@ public class LogicManagerTest {
     private Index targetedJumpIndex;
 
     @Subscribe
-    private void handleLocalModelChangedEvent(AddressBookChangedEvent abce) {
+    private void handleLocalModelChangedEvent(TickTaskChangedEvent abce) {
         latestSavedAddressBook = new TickTask(abce.data);
     }
 
@@ -101,7 +101,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model);
         EventsCenter.getInstance().registerHandler(this);
 
-        latestSavedAddressBook = new TickTask(model.getAddressBook()); // last saved assumed to be up to date
+        latestSavedAddressBook = new TickTask(model.getTickTask()); // last saved assumed to be up to date
         helpShown = false;
         targetedJumpIndex = null;
     }
@@ -148,7 +148,7 @@ public class LogicManagerTest {
      * @see #assertCommandBehavior(Class, String, String, Model)
      */
     private <T> void assertCommandFailure(String inputCommand, Class<T> expectedException, String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         assertCommandBehavior(expectedException, inputCommand, expectedMessage, expectedModel);
     }
 
@@ -171,7 +171,7 @@ public class LogicManagerTest {
         }
 
         assertEquals(expectedModel, model);
-        assertEquals(expectedModel.getAddressBook(), latestSavedAddressBook);
+        assertEquals(expectedModel.getTickTask(), latestSavedAddressBook);
     }
 
     @Test

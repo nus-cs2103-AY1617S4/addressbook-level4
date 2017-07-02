@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.ui.PersonPanelSelectionChangedEvent;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Panel containing the list of persons.

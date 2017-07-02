@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.ticktask.model.person.Date;
+import seedu.ticktask.model.task.Date;
 
 public class AddressTest {
 

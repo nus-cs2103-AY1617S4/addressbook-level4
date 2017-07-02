@@ -1,4 +1,4 @@
-package seedu.ticktask.model.person.exceptions;
+package seedu.ticktask.model.task.exceptions;
 
 import seedu.ticktask.commons.exceptions.DuplicateDataException;
 
@@ -7,6 +7,6 @@ import seedu.ticktask.commons.exceptions.DuplicateDataException;
  */
 public class DuplicateTaskException extends DuplicateDataException {
     public DuplicateTaskException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate tasks");
     }
 }

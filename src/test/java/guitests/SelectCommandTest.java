@@ -8,7 +8,7 @@ import org.junit.Test;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 public class SelectCommandTest extends AddressBookGuiTest {
 

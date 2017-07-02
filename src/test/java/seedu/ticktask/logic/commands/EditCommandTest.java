@@ -25,8 +25,8 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.EditPersonDescriptorBuilder;
 import seedu.ticktask.testutil.PersonBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
@@ -46,7 +46,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TickTask(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TickTask(model.getTickTask()), new UserPrefs());
         expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TickTask(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TickTask(model.getTickTask()), new UserPrefs());
         expectedModel.updatePerson(lastPerson, editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -80,7 +80,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new TickTask(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TickTask(model.getTickTask()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -96,7 +96,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TickTask(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TickTask(model.getTickTask()), new UserPrefs());
         expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -116,7 +116,7 @@ public class EditCommandTest {
         showFirstPersonOnly();
 
         // edit person in filtered list into a duplicate in address book
-        ReadOnlyTask personInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_PERSON.getZeroBased());
+        ReadOnlyTask personInList = model.getTickTask().getTaskList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
@@ -141,7 +141,7 @@ public class EditCommandTest {
         showFirstPersonOnly();
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTickTask().getTaskList().size());
 
         EditCommand editCommand = prepareCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -187,7 +187,7 @@ public class EditCommandTest {
      * Updates the filtered list to show only the first person in the {@code model}'s address book.
      */
     private void showFirstPersonOnly() {
-        ReadOnlyTask person = model.getAddressBook().getTaskList().get(0);
+        ReadOnlyTask person = model.getTickTask().getTaskList().get(0);
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new HashSet<>(Arrays.asList(splitName)));
 

@@ -3,7 +3,7 @@ package seedu.ticktask.storage;
 import java.io.IOException;
 import java.util.Optional;
 
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.events.storage.DataSavingExceptionEvent;
 import seedu.ticktask.commons.exceptions.DataConversionException;
 import seedu.ticktask.model.ReadOnlyTickTask;
@@ -34,5 +34,5 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
-    void handleAddressBookChangedEvent(AddressBookChangedEvent abce);
+    void handleAddressBookChangedEvent(TickTaskChangedEvent abce);
 }

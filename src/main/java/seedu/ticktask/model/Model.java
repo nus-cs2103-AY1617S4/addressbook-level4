@@ -3,9 +3,9 @@ package seedu.ticktask.model;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * The API of the Model component.
@@ -14,13 +14,13 @@ public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyTickTask newData);
 
-    /** Returns the AddressBook */
-    ReadOnlyTickTask getAddressBook();
+    /** Returns the TickTask */
+    ReadOnlyTickTask getTickTask();
 
-    /** Deletes the given person. */
+    /** Deletes the given task. */
     void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;
 
-    /** Adds the given person */
+    /** Adds the given task */
     void addPerson(ReadOnlyTask person) throws DuplicateTaskException;
 
     /**

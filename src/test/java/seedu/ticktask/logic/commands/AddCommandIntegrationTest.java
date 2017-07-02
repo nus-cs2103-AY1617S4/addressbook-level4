@@ -13,7 +13,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.PersonBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
 
@@ -33,7 +33,7 @@ public class AddCommandIntegrationTest {
     public void execute_newPerson_success() throws Exception {
         Task validTask = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.addPerson(validTask);
 
         CommandResult commandResult = prepareCommand(validTask, model).execute();
@@ -44,9 +44,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        Task taskInList = new Task(model.getAddressBook().getTaskList().get(0));
+        Task taskInList = new Task(model.getTickTask().getTaskList().get(0));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         try {
             prepareCommand(taskInList, model).execute();
