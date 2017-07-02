@@ -13,37 +13,37 @@ import seedu.ticktask.model.person.Task;
 import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the TickTask.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TickTask. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_TIME + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_DATE + "ADDRESS "
+            + PREFIX_NAME + "TASK "
+            + PREFIX_TIME + "TIME "
+            + PREFIX_EMAIL + "EMAIL" 
+            + PREFIX_DATE + "DATE "            
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_TIME + "98765432 "
+            + PREFIX_NAME + "Meeting "
+            + PREFIX_TIME + "10:00 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_DATE + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_DATE + "July_2_2017 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
      */
-    public AddCommand(ReadOnlyTask person) {
-        toAdd = new Task(person);
+    public AddCommand(ReadOnlyTask task) {
+        toAdd = new Task(task);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class AddCommand extends Command {
             model.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
     }

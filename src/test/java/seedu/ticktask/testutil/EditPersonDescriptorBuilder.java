@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.ticktask.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.ticktask.logic.parser.ParserUtil;
 import seedu.ticktask.model.person.ReadOnlyTask;
 
@@ -13,21 +13,21 @@ import seedu.ticktask.model.person.ReadOnlyTask;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditTaskDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditTaskDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditTaskDescriptor descriptor) {
+        this.descriptor = new EditTaskDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(ReadOnlyTask person) throws IllegalValueException {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditTaskDescriptor();
         descriptor.setName(person.getName());
         descriptor.setTime(person.getTime());
         descriptor.setEmail(person.getEmail());
@@ -60,7 +60,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditTaskDescriptor build() {
         return descriptor;
     }
 }

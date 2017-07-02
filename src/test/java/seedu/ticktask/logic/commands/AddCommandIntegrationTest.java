@@ -52,7 +52,7 @@ public class AddCommandIntegrationTest {
             prepareCommand(taskInList, model).execute();
             fail("The expected CommandException was not thrown.");
         } catch (CommandException ce) {
-            assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON, ce.getMessage());
+            assertEquals(AddCommand.MESSAGE_DUPLICATE_TASK, ce.getMessage());
             assertEquals(expectedModel, model);
         }
     }

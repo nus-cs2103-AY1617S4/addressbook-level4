@@ -16,7 +16,7 @@ import java.util.Set;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.EditCommand;
-import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.ticktask.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 
@@ -43,7 +43,7 @@ public class EditCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditTaskDescriptor editPersonDescriptor = new EditTaskDescriptor();
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editPersonDescriptor::setName);
             ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TIME)).ifPresent(editPersonDescriptor::setTime);

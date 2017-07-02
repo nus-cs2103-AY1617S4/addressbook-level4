@@ -53,7 +53,7 @@ public class AddCommandTest {
         Task validTask = new PersonBuilder().build();
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
+        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 
         getAddCommandForPerson(validTask, modelStub).execute();
     }

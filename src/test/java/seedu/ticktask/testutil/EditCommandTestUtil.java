@@ -1,7 +1,7 @@
 package seedu.ticktask.testutil;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.ticktask.logic.commands.EditCommand.EditTaskDescriptor;
 
 /**
  * Utility class containing the constants required for tests related to EditCommand
@@ -18,8 +18,8 @@ public class EditCommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final EditPersonDescriptor DESC_AMY;
-    public static final EditPersonDescriptor DESC_BOB;
+    public static final EditTaskDescriptor DESC_AMY;
+    public static final EditTaskDescriptor DESC_BOB;
 
     static {
         try {

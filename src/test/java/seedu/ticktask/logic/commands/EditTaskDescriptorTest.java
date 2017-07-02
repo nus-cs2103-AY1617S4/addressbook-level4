@@ -12,7 +12,7 @@ import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.Test;
 
-import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.ticktask.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.ticktask.testutil.EditPersonDescriptorBuilder;
 
 public class EditTaskDescriptorTest {
@@ -20,7 +20,7 @@ public class EditTaskDescriptorTest {
     @Test
     public void equals() throws Exception {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +36,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditTaskDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
