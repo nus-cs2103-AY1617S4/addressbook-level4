@@ -12,13 +12,13 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.tag.UniqueTagList;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.UniqueTaskList;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Wraps all data at the TickTask level
@@ -53,7 +53,7 @@ public class TickTask implements ReadOnlyTickTask {
 
     //// list overwrite operations
 
-    public void setPersons(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
     }
 
@@ -64,7 +64,7 @@ public class TickTask implements ReadOnlyTickTask {
     public void resetData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
-            setPersons(newData.getTaskList());
+            setTasks(newData.getTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "AddressBooks should not have duplicate persons";
         }

@@ -9,8 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.util.CollectionUtil;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.

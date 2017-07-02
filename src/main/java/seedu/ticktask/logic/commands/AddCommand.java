@@ -8,9 +8,9 @@ import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Adds a person to the address book.

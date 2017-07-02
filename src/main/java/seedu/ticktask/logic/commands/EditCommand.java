@@ -15,8 +15,6 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.Date;
 import seedu.ticktask.model.task.Email;
@@ -24,6 +22,8 @@ import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Edits the details of an existing person in the address book.

@@ -33,7 +33,7 @@ public class AddCommandIntegrationTest {
     public void execute_newPerson_success() throws Exception {
         Task validTask = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.addPerson(validTask);
 
         CommandResult commandResult = prepareCommand(validTask, model).execute();
@@ -44,9 +44,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        Task taskInList = new Task(model.getAddressBook().getTaskList().get(0));
+        Task taskInList = new Task(model.getTickTask().getTaskList().get(0));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         try {
             prepareCommand(taskInList, model).execute();

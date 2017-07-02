@@ -34,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -70,7 +70,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTickTask().getTaskList().size());
 
         DeleteCommand deleteCommand = prepareCommand(outOfBoundIndex);
 
@@ -90,7 +90,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show only the first person from the address book.
      */
     private void showFirstPersonOnly(Model model) {
-        ReadOnlyTask person = model.getAddressBook().getTaskList().get(0);
+        ReadOnlyTask person = model.getTickTask().getTaskList().get(0);
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new HashSet<>(Arrays.asList(splitName)));
 
