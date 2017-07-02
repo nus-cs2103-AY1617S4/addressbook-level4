@@ -11,6 +11,7 @@ image::inspiredalpaca.png[width="150", align="left"]
 
 Role: Team lead (Developer +)
 Responsibilities: UI
+
 '''
 
 === https://github.com/cherrygoh[Cherry Goh]
