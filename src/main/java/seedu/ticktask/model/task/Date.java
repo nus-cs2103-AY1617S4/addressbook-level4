@@ -39,18 +39,25 @@ public class Date {
         
         Matcher m = BASIC_COMMAND_FORMAT.matcher(date);
         
-        if (!isValidDate(date) || !m.matches()) {
-        	throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+        if (!date.equals(" ")) {
+            if (!isValidDate(date) || !m.matches()) {
+                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+            }
         }
+        
+        else if(date.equals(" ")) {
+            value = date;
+        }
+        
         
         else {
    
             dateNum = Integer.parseInt(m.group(1));
             month = Integer.parseInt(m.group(3));
             year = Integer.parseInt(m.group(5));
-            
-            value = date;
-        }    
+        }
+    
+        value = date;
     }
     
     public int getDate() {

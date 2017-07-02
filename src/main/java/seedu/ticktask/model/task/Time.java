@@ -29,17 +29,21 @@ public class Time {
     public Time(String phone) throws IllegalValueException {
         requireNonNull(phone);
         String trimmedTime = phone.trim();
-        if (!isValidTime(trimmedTime)) {
-            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-        }
-        Pattern pattern = Pattern.compile(PHONE_VALIDATION_REGEX);
-        Matcher matcher = pattern.matcher(trimmedTime);
-        if (matcher.matches()){
-            _hours = Integer.parseInt(matcher.group(1));
-            _minutes = Integer.parseInt(matcher.group(2));
-            this.value = "" + _hours + _minutes;
+        if (!trimmedTime.equals("")) {
+            if (!isValidTime(trimmedTime)) {
+                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+            }
         }
 
+        Pattern pattern = Pattern.compile(PHONE_VALIDATION_REGEX);
+        Matcher matcher = pattern.matcher(trimmedTime);
+        if (matcher.matches()) {
+            _hours = Integer.parseInt(matcher.group(1));
+            _minutes = Integer.parseInt(matcher.group(2));
+        }
+    
+        this.value = trimmedTime;
+        
     }
 
     /**

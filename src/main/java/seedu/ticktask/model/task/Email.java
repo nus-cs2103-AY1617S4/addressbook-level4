@@ -24,9 +24,12 @@ public class Email {
     public Email(String email) throws IllegalValueException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!isValidEmail(trimmedEmail)) {
-            throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
+        if (!trimmedEmail.equals("")) {
+            if (!isValidEmail(trimmedEmail)) {
+                throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
+            }
         }
+        
         this.value = trimmedEmail;
     }
 

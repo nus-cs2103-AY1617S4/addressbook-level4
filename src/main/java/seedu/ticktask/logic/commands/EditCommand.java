@@ -158,7 +158,10 @@ public class EditCommand extends Command {
         }
 
         public void setTime(Time time) {
-            this.time = time;
+            if(time.toString().equals("")){
+                this.time = null;
+            }
+           else this.time = time;
         }
 
         public Optional<Time> getTime() {
@@ -166,7 +169,10 @@ public class EditCommand extends Command {
         }
 
         public void setEmail(Email email) {
-            this.email = email;
+            if(email.toString().equals("")) {
+                this.email = null;
+            }
+            else this.email = email;
         }
 
         public Optional<Email> getEmail() {
@@ -174,7 +180,10 @@ public class EditCommand extends Command {
         }
 
         public void setDate(Date date) {
-            this.date = date;
+            if(date.toString().equals(" ")) {
+                this.date = null;
+            }
+            else this.date = date;
         }
 
         public Optional<Date> getDate() {
