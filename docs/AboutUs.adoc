@@ -10,7 +10,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 image::inspiredalpaca.png[width="150", align="left"]
 
 Role: Team lead +
-Responsibilities: UI
+Responsibilities: Integration
 
 '''
 
@@ -41,7 +41,7 @@ Responsibilities: Code quality
 === https://github.com/QIGEMINGZIZHENNANA[Li JiaWei]
 image::qigemingzizhennana.png[width="150", align="left"]
 Role: Developer +
-Responsibilities: Integration 
+Responsibilities: Scheduling and tracking
 
 '''
 
