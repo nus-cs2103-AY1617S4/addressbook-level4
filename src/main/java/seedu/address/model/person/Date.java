@@ -49,7 +49,7 @@ public class Date {
             month = Integer.parseInt(m.group(3));
             year = Integer.parseInt(m.group(5));
             
-            value = dateNum + "/" + month + "/" + year;
+            value = date;
         }    
     }
     
