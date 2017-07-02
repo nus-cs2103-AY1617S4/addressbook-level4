@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.TickTask;
+import seedu.address.model.ReadOnlyTickTask;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -43,9 +43,9 @@ public class SampleDataUtil {
         }
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyTickTask getSampleAddressBook() {
         try {
-            AddressBook sampleAb = new AddressBook();
+            TickTask sampleAb = new TickTask();
             for (Task sampleTask : getSamplePersons()) {
                 sampleAb.addPerson(sampleTask);
             }

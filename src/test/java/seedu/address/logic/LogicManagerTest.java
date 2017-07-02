@@ -48,10 +48,10 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TickTask;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTickTask;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
@@ -74,13 +74,13 @@ public class LogicManagerTest {
     private Logic logic;
 
     //These are for checking the correctness of the events raised
-    private ReadOnlyAddressBook latestSavedAddressBook;
+    private ReadOnlyTickTask latestSavedAddressBook;
     private boolean helpShown;
     private Index targetedJumpIndex;
 
     @Subscribe
     private void handleLocalModelChangedEvent(AddressBookChangedEvent abce) {
-        latestSavedAddressBook = new AddressBook(abce.data);
+        latestSavedAddressBook = new TickTask(abce.data);
     }
 
     @Subscribe
@@ -99,7 +99,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model);
         EventsCenter.getInstance().registerHandler(this);
 
-        latestSavedAddressBook = new AddressBook(model.getAddressBook()); // last saved assumed to be up to date
+        latestSavedAddressBook = new TickTask(model.getAddressBook()); // last saved assumed to be up to date
         helpShown = false;
         targetedJumpIndex = null;
     }
@@ -314,7 +314,7 @@ public class LogicManagerTest {
         List<Task> taskList = helper.generatePersonList(2);
 
         // set AB state to 2 persons
-        model.resetData(new AddressBook());
+        model.resetData(new TickTask());
         for (Task p : taskList) {
             model.addPerson(p);
         }
@@ -499,8 +499,8 @@ public class LogicManagerTest {
 
             cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
             cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
-            cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getTime());
-            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getDate());
+            cmd.append(" " + PREFIX_TIME.getPrefix()).append(p.getTime());
+            cmd.append(" " + PREFIX_DATE.getPrefix()).append(p.getDate());
 
             Set<Tag> tags = p.getTags();
             for (Tag t: tags) {
@@ -513,8 +513,8 @@ public class LogicManagerTest {
         /**
          * Generates an AddressBook with auto-generated persons.
          */
-        AddressBook generateAddressBook(int numGenerated) throws Exception {
-            AddressBook addressBook = new AddressBook();
+        TickTask generateAddressBook(int numGenerated) throws Exception {
+            TickTask addressBook = new TickTask();
             addToAddressBook(addressBook, numGenerated);
             return addressBook;
         }
@@ -522,8 +522,8 @@ public class LogicManagerTest {
         /**
          * Generates an AddressBook based on the list of Persons given.
          */
-        AddressBook generateAddressBook(List<Task> tasks) throws Exception {
-            AddressBook addressBook = new AddressBook();
+        TickTask generateAddressBook(List<Task> tasks) throws Exception {
+            TickTask addressBook = new TickTask();
             addToAddressBook(addressBook, tasks);
             return addressBook;
         }
@@ -532,14 +532,14 @@ public class LogicManagerTest {
          * Adds auto-generated Person objects to the given AddressBook
          * @param addressBook The AddressBook to which the Persons will be added
          */
-        void addToAddressBook(AddressBook addressBook, int numGenerated) throws Exception {
+        void addToAddressBook(TickTask addressBook, int numGenerated) throws Exception {
             addToAddressBook(addressBook, generatePersonList(numGenerated));
         }
 
         /**
          * Adds the given list of Persons to the given AddressBook
          */
-        void addToAddressBook(AddressBook addressBook, List<Task> personsToAdd) throws Exception {
+        void addToAddressBook(TickTask addressBook, List<Task> personsToAdd) throws Exception {
             for (Task p: personsToAdd) {
                 addressBook.addPerson(p);
             }

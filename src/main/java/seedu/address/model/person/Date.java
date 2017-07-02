@@ -18,7 +18,7 @@ public class Date {
             "Date should be in format DD/MM/YY";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the date must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String DATE_VALIDATION_REGEX = "(\\d{2}+)(/)(\\d{2}+)(/)(\\d{2}+)";
@@ -30,9 +30,9 @@ public class Date {
     private int year;
 
     /**
-     * Validates given address.
+     * Validates given date.
      *
-     * @throws IllegalValueException if given address string is invalid.
+     * @throws IllegalValueException if given date string is invalid.
      */
     public Date(String date) throws IllegalValueException {
         requireNonNull(date);

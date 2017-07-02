@@ -5,7 +5,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * A read-only immutable interface for a Person in the addressbook.
+ * A read-only immutable interface for a Task in  TickTask.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyTask {
@@ -35,11 +35,11 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append(" Time: ")
                 .append(getTime())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
+                .append(" Date: ")
                 .append(getDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

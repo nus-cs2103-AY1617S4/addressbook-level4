@@ -17,9 +17,9 @@ public class ModelManagerTest {
 
     @Test
     public void equals() throws Exception {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(typicalPersons.alice)
+        TickTask addressBook = new AddressBookBuilder().withPerson(typicalPersons.alice)
                 .withPerson(typicalPersons.benson).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TickTask differentAddressBook = new TickTask();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

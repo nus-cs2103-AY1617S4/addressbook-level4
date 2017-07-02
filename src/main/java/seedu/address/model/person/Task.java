@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the TickTask program.
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Task implements ReadOnlyTask {
@@ -19,7 +19,7 @@ public class Task implements ReadOnlyTask {
     private Name name;
     private Time time;
     private Email email;
-    private Date address;
+    private Date date;
 
     private UniqueTagList tags;
 
@@ -27,13 +27,13 @@ public class Task implements ReadOnlyTask {
      * Every field must be present and not null.
      */
 
-    public Task(Name name, Time time, Email email, Date address, Set<Tag> tags) {
-        requireAllNonNull(name, time, email, address, tags);
+    public Task(Name name, Time time, Email email, Date date, Set<Tag> tags) {
+        requireAllNonNull(name, time, email, date, tags);
 
         this.name = name;
         this.time = time;
         this.email = email;
-        this.address = address;
+        this.date = date;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -71,13 +71,13 @@ public class Task implements ReadOnlyTask {
         return email;
     }
 
-    public void setAddress(Date address) {
-        this.address = requireNonNull(address);
+    public void setDate(Date date) {
+        this.date = requireNonNull(date);
     }
 
     @Override
     public Date getDate() {
-        return address;
+        return date;
     }
 
     /**
@@ -105,7 +105,7 @@ public class Task implements ReadOnlyTask {
         this.setName(replacement.getName());
         this.setTime(replacement.getTime());
         this.setEmail(replacement.getEmail());
-        this.setAddress(replacement.getDate());
+        this.setDate(replacement.getDate());
         this.setTags(replacement.getTags());
     }
 
@@ -119,7 +119,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, time, email, address, tags);
+        return Objects.hash(name, time, email, date, tags);
     }
 
     @Override
