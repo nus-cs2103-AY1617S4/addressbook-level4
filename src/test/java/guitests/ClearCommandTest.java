@@ -4,9 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.testutil.PersonUtil;
+import seedu.ticktask.logic.commands.ClearCommand;
+import seedu.ticktask.logic.commands.DeleteCommand;
+import seedu.ticktask.testutil.PersonUtil;
 
 public class ClearCommandTest extends AddressBookGuiTest {
 
