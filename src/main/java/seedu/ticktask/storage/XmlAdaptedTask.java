@@ -19,7 +19,7 @@ import seedu.ticktask.model.task.Time;
 /**
  * JAXB-friendly version of the Person.
  */
-public class XmlAdaptedPerson {
+public class XmlAdaptedTask {
 
     @XmlElement(required = true)
     private String name;
@@ -37,7 +37,7 @@ public class XmlAdaptedPerson {
      * Constructs an XmlAdaptedPerson.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedPerson() {}
+    public XmlAdaptedTask() {}
 
 
     /**
@@ -45,7 +45,7 @@ public class XmlAdaptedPerson {
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
-    public XmlAdaptedPerson(ReadOnlyTask source) {
+    public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
         phone = source.getTime().value;
         email = source.getEmail().value;

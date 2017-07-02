@@ -11,22 +11,22 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditTaskDescriptorBuilder {
 
     private EditTaskDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditTaskDescriptorBuilder() {
         descriptor = new EditTaskDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditTaskDescriptor descriptor) {
+    public EditTaskDescriptorBuilder(EditTaskDescriptor descriptor) {
         this.descriptor = new EditTaskDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(ReadOnlyTask person) throws IllegalValueException {
+    public EditTaskDescriptorBuilder(ReadOnlyTask person) throws IllegalValueException {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(person.getName());
         descriptor.setTime(person.getTime());
@@ -35,27 +35,27 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
     }
 
-    public EditPersonDescriptorBuilder withName(String name) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withName(String name) throws IllegalValueException {
         ParserUtil.parseName(Optional.of(name)).ifPresent(descriptor::setName);
         return this;
     }
 
-    public EditPersonDescriptorBuilder withPhone(String phone) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withPhone(String phone) throws IllegalValueException {
         ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setTime);
         return this;
     }
 
-    public EditPersonDescriptorBuilder withEmail(String email) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withEmail(String email) throws IllegalValueException {
         ParserUtil.parseEmail(Optional.of(email)).ifPresent(descriptor::setEmail);
         return this;
     }
 
-    public EditPersonDescriptorBuilder withAddress(String address) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withAddress(String address) throws IllegalValueException {
         ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setDate);
         return this;
     }
 
-    public EditPersonDescriptorBuilder withTags(String... tags) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withTags(String... tags) throws IllegalValueException {
         descriptor.setTags(ParserUtil.parseTags(Arrays.asList(tags)));
         return this;
     }

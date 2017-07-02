@@ -24,7 +24,7 @@ import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.Time;
-import seedu.ticktask.testutil.PersonBuilder;
+import seedu.ticktask.testutil.TaskBuilder;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends AddressBookGuiTest {
@@ -41,7 +41,7 @@ public class EditCommandTest extends AddressBookGuiTest {
                 + PREFIX_TAG + "husband";
         Index addressBookIndex = INDEX_FIRST_PERSON;
 
-        Task editedTask = new PersonBuilder().withName("Bobby").withPhone("91234567")
+        Task editedTask = new TaskBuilder().withName("Bobby").withPhone("91234567")
                 .withEmail("bobby@example.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
 
         assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
@@ -54,7 +54,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         Index addressBookIndex = INDEX_SECOND_PERSON;
 
         Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Task editedTask = new PersonBuilder(taskToEdit).withTags("sweetie", "bestie").build();
+        Task editedTask = new TaskBuilder(taskToEdit).withTags("sweetie", "bestie").build();
 
         assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
     }
@@ -65,7 +65,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         Index addressBookIndex = INDEX_SECOND_PERSON;
 
         Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Task editedTask = new PersonBuilder(taskToEdit).withTags().build();
+        Task editedTask = new TaskBuilder(taskToEdit).withTags().build();
 
         assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedTask);
     }
@@ -78,7 +78,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         Index addressBookIndex = INDEX_THIRD_PERSON;
 
         Task taskToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Task editedTask = new PersonBuilder(taskToEdit).withName("Carrle").build();
+        Task editedTask = new TaskBuilder(taskToEdit).withName("Carrle").build();
 
         assertEditSuccess(INDEX_FIRST_PERSON, addressBookIndex, detailsToEdit, editedTask);
     }

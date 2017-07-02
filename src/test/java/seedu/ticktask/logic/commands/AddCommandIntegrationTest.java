@@ -14,7 +14,7 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.testutil.PersonBuilder;
+import seedu.ticktask.testutil.TaskBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
 
 /**
@@ -31,7 +31,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() throws Exception {
-        Task validTask = new PersonBuilder().build();
+        Task validTask = new TaskBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.addPerson(validTask);

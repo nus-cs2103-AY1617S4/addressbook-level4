@@ -9,7 +9,7 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 /**
  * Represents a storage for {@link seedu.ticktask.model.TickTask}.
  */
-public interface AddressBookStorage {
+public interface TickTaskStorage {
 
     /**
      * Returns the file path of the data file.

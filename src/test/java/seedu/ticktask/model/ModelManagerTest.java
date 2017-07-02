@@ -11,7 +11,7 @@ import org.junit.Test;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.testutil.AddressBookBuilder;
+import seedu.ticktask.testutil.TickTaskBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
 
 public class ModelManagerTest {
@@ -20,7 +20,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() throws Exception {
-        TickTask addressBook = new AddressBookBuilder().withPerson(typicalPersons.alice)
+        TickTask addressBook = new TickTaskBuilder().withPerson(typicalPersons.alice)
                 .withPerson(typicalPersons.benson).build();
         TickTask differentAddressBook = new TickTask();
         UserPrefs userPrefs = new UserPrefs();

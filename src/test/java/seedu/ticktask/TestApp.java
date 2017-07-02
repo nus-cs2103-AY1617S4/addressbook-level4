@@ -10,7 +10,7 @@ import seedu.ticktask.commons.core.GuiSettings;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.storage.UserPrefsStorage;
-import seedu.ticktask.storage.XmlSerializableAddressBook;
+import seedu.ticktask.storage.XmlSerializableTickTask;
 import seedu.ticktask.testutil.TestUtil;
 
 /**
@@ -39,7 +39,7 @@ public class TestApp extends MainApp {
         // If some initial local data has been provided, write those to the file
         if (initialDataSupplier.get() != null) {
             TestUtil.createDataFileWithData(
-                    new XmlSerializableAddressBook(this.initialDataSupplier.get()),
+                    new XmlSerializableTickTask(this.initialDataSupplier.get()),
                     this.saveFileLocation);
         }
     }

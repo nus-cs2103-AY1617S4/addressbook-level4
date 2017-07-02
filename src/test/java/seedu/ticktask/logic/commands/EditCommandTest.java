@@ -27,8 +27,8 @@ import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.testutil.EditPersonDescriptorBuilder;
-import seedu.ticktask.testutil.PersonBuilder;
+import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
+import seedu.ticktask.testutil.TaskBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
 
 /**
@@ -40,8 +40,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
-        Task editedTask = new PersonBuilder().build();
-        EditTaskDescriptor descriptor = new EditPersonDescriptorBuilder(editedTask).build();
+        Task editedTask = new TaskBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -57,11 +57,11 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         ReadOnlyTask lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
+        TaskBuilder personInList = new TaskBuilder(lastPerson);
         Task editedTask = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditTaskDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = prepareCommand(indexLastPerson, descriptor);
 
@@ -90,9 +90,9 @@ public class EditCommandTest {
         showFirstPersonOnly();
 
         ReadOnlyTask personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Task editedTask = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Task editedTask = new TaskBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -105,7 +105,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() throws Exception {
         Task firstTask = new Task(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        EditTaskDescriptor descriptor = new EditPersonDescriptorBuilder(firstTask).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
         EditCommand editCommand = prepareCommand(INDEX_SECOND_PERSON, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
@@ -118,7 +118,7 @@ public class EditCommandTest {
         // edit person in filtered list into a duplicate in address book
         ReadOnlyTask personInList = model.getTickTask().getTaskList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
+                new EditTaskDescriptorBuilder(personInList).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }
@@ -126,7 +126,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditTaskDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = prepareCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -144,7 +144,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTickTask().getTaskList().size());
 
         EditCommand editCommand = prepareCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }

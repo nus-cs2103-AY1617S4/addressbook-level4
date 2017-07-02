@@ -20,7 +20,7 @@ import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.storage.JsonUserPrefsStorage;
 import seedu.ticktask.storage.Storage;
 import seedu.ticktask.storage.StorageManager;
-import seedu.ticktask.storage.XmlAddressBookStorage;
+import seedu.ticktask.storage.XmlTickTaskStorage;
 import seedu.ticktask.testutil.EventsCollector;
 import seedu.ticktask.testutil.TypicalPersons;
 
@@ -33,7 +33,7 @@ public class StorageManagerTest {
 
     @Before
     public void setUp() {
-        XmlAddressBookStorage addressBookStorage = new XmlAddressBookStorage(getTempFilePath("ab"));
+        XmlTickTaskStorage addressBookStorage = new XmlTickTaskStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -90,7 +90,7 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlAddressBookStorageExceptionThrowingStub extends XmlAddressBookStorage {
+    class XmlAddressBookStorageExceptionThrowingStub extends XmlTickTaskStorage {
 
         public XmlAddressBookStorageExceptionThrowingStub(String filePath) {
             super(filePath);

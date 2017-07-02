@@ -26,12 +26,12 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.util.SampleDataUtil;
-import seedu.ticktask.storage.AddressBookStorage;
+import seedu.ticktask.storage.TickTaskStorage;
 import seedu.ticktask.storage.JsonUserPrefsStorage;
 import seedu.ticktask.storage.Storage;
 import seedu.ticktask.storage.StorageManager;
 import seedu.ticktask.storage.UserPrefsStorage;
-import seedu.ticktask.storage.XmlAddressBookStorage;
+import seedu.ticktask.storage.XmlTickTaskStorage;
 import seedu.ticktask.ui.Ui;
 import seedu.ticktask.ui.UiManager;
 
@@ -61,7 +61,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getTickTaskFilePath());
+        TickTaskStorage addressBookStorage = new XmlTickTaskStorage(userPrefs.getTickTaskFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);

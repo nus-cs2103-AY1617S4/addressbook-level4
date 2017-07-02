@@ -11,24 +11,24 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").withTag("Friend").build();}
  */
-public class AddressBookBuilder {
+public class TickTaskBuilder {
 
     private TickTask addressBook;
 
-    public AddressBookBuilder() {
+    public TickTaskBuilder() {
         addressBook = new TickTask();
     }
 
-    public AddressBookBuilder(TickTask addressBook) {
+    public TickTaskBuilder(TickTask addressBook) {
         this.addressBook = addressBook;
     }
 
-    public AddressBookBuilder withPerson(Task task) throws DuplicateTaskException {
+    public TickTaskBuilder withPerson(Task task) throws DuplicateTaskException {
         addressBook.addPerson(task);
         return this;
     }
 
-    public AddressBookBuilder withTag(String tagName) throws IllegalValueException {
+    public TickTaskBuilder withTag(String tagName) throws IllegalValueException {
         addressBook.addTag(new Tag(tagName));
         return this;
     }

@@ -14,8 +14,8 @@ import org.junit.rules.ExpectedException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.commons.util.XmlUtil;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.storage.XmlSerializableAddressBook;
-import seedu.ticktask.testutil.AddressBookBuilder;
+import seedu.ticktask.storage.XmlSerializableTickTask;
+import seedu.ticktask.testutil.TickTaskBuilder;
 import seedu.ticktask.testutil.TestUtil;
 
 public class XmlUtilTest {
@@ -55,7 +55,7 @@ public class XmlUtilTest {
 
     @Test
     public void getDataFromFile_validFile_validResult() throws Exception {
-        XmlSerializableAddressBook dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableAddressBook.class);
+        XmlSerializableTickTask dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableTickTask.class);
         assertEquals(9, dataFromFile.getTaskList().size());
         assertEquals(0, dataFromFile.getTagList().size());
     }
@@ -81,18 +81,18 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFile_validFile_dataSaved() throws Exception {
         TEMP_FILE.createNewFile();
-        XmlSerializableAddressBook dataToWrite = new XmlSerializableAddressBook(new TickTask());
+        XmlSerializableTickTask dataToWrite = new XmlSerializableTickTask(new TickTask());
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-        XmlSerializableAddressBook dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableAddressBook.class);
+        XmlSerializableTickTask dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTickTask.class);
         assertEquals((new TickTask(dataToWrite)).toString(), (new TickTask(dataFromFile)).toString());
         //TODO: use equality instead of string comparisons
 
-        AddressBookBuilder builder = new AddressBookBuilder(new TickTask());
-        dataToWrite = new XmlSerializableAddressBook(
+        TickTaskBuilder builder = new TickTaskBuilder(new TickTask());
+        dataToWrite = new XmlSerializableTickTask(
                 builder.withPerson(TestUtil.generateSamplePersonData().get(0)).withTag("Friends").build());
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-        dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableAddressBook.class);
+        dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTickTask.class);
         assertEquals((new TickTask(dataToWrite)).toString(), (new TickTask(dataFromFile)).toString());
     }
 }

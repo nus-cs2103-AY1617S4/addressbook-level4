@@ -15,7 +15,7 @@ import seedu.ticktask.commons.core.Config;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.storage.DataSavingExceptionEvent;
 import seedu.ticktask.commons.events.ui.JumpToListRequestEvent;
-import seedu.ticktask.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.ticktask.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.ticktask.commons.events.ui.ShowHelpRequestEvent;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.logic.Logic;
@@ -122,7 +122,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+    private void handlePersonPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.loadPersonPage(event.getNewSelection());
     }

@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.ticktask.logic.commands.ListCommand;
-import seedu.ticktask.testutil.PersonUtil;
+import seedu.ticktask.testutil.TaskUtil;
 import seedu.ticktask.ui.StatusBarFooter;
 
 public class StatusBarFooterTest extends AddressBookGuiTest {
@@ -45,7 +45,7 @@ public class StatusBarFooterTest extends AddressBookGuiTest {
     public void syncStatus_mutatingCommandSucceeds_syncStatusUpdated() {
         String timestamp = new Date(injectedClock.millis()).toString();
         String expected = String.format(SYNC_STATUS_UPDATED, timestamp);
-        assertTrue(commandBox.runCommand(PersonUtil.getAddCommand(td.hoon))); // mutating command succeeds
+        assertTrue(commandBox.runCommand(TaskUtil.getAddCommand(td.hoon))); // mutating command succeeds
         assertEquals(expected, statusBarFooter.getSyncStatus());
     }
 

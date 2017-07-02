@@ -6,12 +6,12 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 /**
  * Represents a selection change in the Person List Panel
  */
-public class PersonPanelSelectionChangedEvent extends BaseEvent {
+public class TaskPanelSelectionChangedEvent extends BaseEvent {
 
 
     private final ReadOnlyTask newSelection;
 
-    public PersonPanelSelectionChangedEvent(ReadOnlyTask newSelection) {
+    public TaskPanelSelectionChangedEvent(ReadOnlyTask newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -20,7 +20,7 @@ public class PersonPanelSelectionChangedEvent extends BaseEvent {
         return this.getClass().getSimpleName();
     }
 
-    public ReadOnlyTask getNewSelection() {
+    public ReadOnlyTask getNewSelection() { 
         return newSelection;
     }
 }

@@ -9,7 +9,7 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.testutil.PersonUtil;
+import seedu.ticktask.testutil.TaskUtil;
 import seedu.ticktask.testutil.TestUtil;
 
 public class AddCommandTest extends AddressBookGuiTest {
@@ -28,7 +28,7 @@ public class AddCommandTest extends AddressBookGuiTest {
         currentList = TestUtil.addPersonsToList(currentList, taskToAdd);
 
         //add duplicate person
-        commandBox.runCommand(PersonUtil.getAddCommand(td.hoon));
+        commandBox.runCommand(TaskUtil.getAddCommand(td.hoon));
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         assertTrue(personListPanel.isListMatching(currentList));
 
@@ -42,7 +42,7 @@ public class AddCommandTest extends AddressBookGuiTest {
     }
 
     private void assertAddSuccess(Task taskToAdd, Task... currentList) {
-        commandBox.runCommand(PersonUtil.getAddCommand(taskToAdd));
+        commandBox.runCommand(TaskUtil.getAddCommand(taskToAdd));
 
         //confirm the new card contains the right data
         PersonCardHandle addedCard = personListPanel.navigateToPerson(taskToAdd.getName().fullName);
