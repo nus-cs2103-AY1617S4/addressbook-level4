@@ -6,7 +6,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 == Project Team
 
-=== http://www.comp.nus.edu.sg/~damithch[Damith C. Rajapakse]
+=== http://www.comp.nus.edu.sg/~damithch[Wong Kai Min herman]
 image::DamithRajapakse.jpg[width="150", align="left"]
 
 Role: Project Advisor
