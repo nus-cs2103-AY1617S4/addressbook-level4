@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= TickTask - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -11,7 +11,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Setting up
 
@@ -313,95 +313,172 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="59%",cols="30%,<30%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Must Have `* * *` |Nice to Have `* *` |Not Useful `*`
 
-|`* * *` |user |add a new person |
+|As a user, I can add a task by writing the description, time, date and duration.  
+|As a user, I can choose to filter the tasks I want to be viewable based on some attribute (e.g. I only want to view tasks in “work category” or I only want to view tasks due on 25th July). 
+|As a user, I can sync my calendar across devices. 
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|As a user, I can edit the time, date and duration of the task that has been created previously.
+|As a user, I can set a reminder for a task when the due date arrives. Even in advance of the task deadline.  
+|As a user, I can import a set of events into my own calendar.  
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|As a user, I can delete a task by specifying the task name or index
+|As a user, I can group my tasks into different categories, such as “school”, “work”, “personal”, etc.
+|As a user, I can customise my graphical interface to my own liking. 
 
-|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+|As a user, I can mark/unmark a task as being complete.
+|As a user, I can display the calendar in daily, weekly, monthly, yearly view. 
+|As a user, I can customise the notification method I wish to use (e.g. could be email, SMS, noise, etc.). 
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|As a user, I can list out all the tasks I have ever added (including those that I have already completed).  
+|As a user, I can view task that has been automatically set to higher priority according to the deadline of the task
+|As a user, I can toggle to rank my tasks in either alphabetical order, due date etc.
+
+|As a user, I can list out all the task that I have added.
+|As a user, I can use shortcuts to perform certain functions in the calendar. 
+|As a user, I can add comments, pictures and files to each task (within a specific file limit). 
+
+|As a user, I can undo and redo the tasks that i have added or modified
+|As a user, I can view colour coded tasks which is according to the priority level 
+|As a user, I can add my own shortcuts to use. 
+
+|As a user, I can search out any tasks that I added using keywords. 
+|As a user, I can add an appoint kind of task that blocks out the time slot so that no other tasks can be added at the time slot.
+|As a user, I can auto complete task name.
+
+|As a user, I can specify the folder and file I wish to use for data storage. 
+|As a user, I can push back all the tasks I have added by a certain amount of time. 
+| 
+
+|As a user, I should be able to use commands that are in natural language.
+|As a user, I can quick add tasks such that the program determines the suitable time slot for me. 
+|
+
+|As a user, I can set a task so that it repeats over a specified duration at a specified frequency. 
+|As a user, I can add priorities to the task.
+|
+
+|As a user, I can view task that are still due.
+|
+|
+
 |=======================================================================
-
-{More to be added}
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `TickTask` and the *Actor* is the `user`, unless specified otherwise)
 
-[discrete]
-=== Use case: Delete person
+*Software system : task manager* +
+*User case: User add/ edits task*
 
-*MSS*
+Actors: User +
+1.  User launches program +
+2.  Task manager displays the current pending tasks +
+3.  User types command to add a task +
+4.  Preview of updated details is popped up +
+5.  User is prompted to confirm action +
+6.  User confirms action +
+7.  List of updated pending tasks is displayed
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person Use case ends.
+Actors: User +
+1.  User launches program +
+2.  Task manager displays the current pending tasks +
+3.  User types command to edit a task +
+4.  Preview of updated details is popped up +
+5.  User is prompted to confirm action +
+6.  User confirms action +
+7.  List of updated pending tasks is displayed
 
-*Extensions*
 
-2a. The list is empty
+*Software system : task manager* +
+*User case: User searches for task*
 
-____
-Use case ends
-____
+Actors: User +
+1.  User launches program +
+2.  Program displays the current pending tasks +
+3.  User types in keyword to search for a task +
+4.  List of tasks matching the keyword is displayed +
+5.  User selects the task they desire +
+6.  Task details are displayed 
 
-3a. The given index is invalid
 
-____
-3a1. AddressBook shows an error message +
-Use case resumes at step 2
-____
+*Software system : task manager* +
+*User case: User specifies storage folder*
 
-{More to be added}
+Actors: User +
+1.  User launches program +
+2.  Program displays the current pending tasks +
+3.  User inputs command to specify storage folder +
+4.  User is prompted to confirm the new storage path +
+5.  User confirms action +
+6.  Confirmation is displayed
+
 
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-{More to be added}
+.  Software should be operational if Java 1.8.0_60 is installed in conventional OS
+.  Software’s data should be able to be ported over to other devices without conflicts.
+.  Software should be able to keep track of 1000 task without any observable delay in performance.
 
 [appendix]
 == Glossary
+Conventional OS: Mac OS X, Windows, Linux
 
-[[mainstream-os]]
-Mainstream OS
-
-____
-Windows, Linux, Unix, OS-X
-____
-
-[[private-contact-detail]]
-Private contact detail
-
-_____
-A contact detail that is not meant to be shared with others
-_____
 
 [appendix]
 == Product Survey
 
-*Product Name*
 
-Author: ...
+[width="59%",cols="30%,<30%,<30%",options="header",]
+|=======================================================================
+|Product |Strengths |Weaknesses
 
-Pros:
+|Google Calendar
+| 
+1.  Quick add in natural language +
+2.  Can search through the calendar using keywords +
+3.  View day, week, month +
+4.  Can add other calendars 
+|
+1.  Does not support performing actions using keyboard shortcuts. +
+2.  Needs to be accessed online - which implies additional step for Jim. +
+3.  Tasks cannot be easily categorized into different priorities such as “cannot do”
 
-* ...
-* ...
 
-Cons:
+|HiTask
+|
+1.  Jim would find the  calendar view at the left-hand side & a team window on the right to be helpful. +
+2.  Jim would find the synchronization with google calender help. +
+3.  Jim would find the sorting/filtering function to search for his task helpful.
+|
+1.  Jim will find that there are too many tabs to setup a todo-item  vs a ‘one-shot’ approach +
+2.  Jim will not require the drag and drop features for events delegation .. 
+  
+|Calender
+|
+1.  Has a calendar view +
+2.  Has a quick add feature to create new events/ tasks +
+3.  UI allows for color coding +
+4.  Synchronization across Apple devices
+|
+1.  Does not offer an option to display current tasks +
+2.  Tasks cannot be added/ edited/ deleted by command line. +
+3.  Tasks cannot be prioritized according to categories such as “cannot do”, etc. 
 
-* ...
-* ...
+|Trello
+|
+1.  UI makes it so all tasks can be viewed simultaneously. +
+2.  Tasks can be labelled - will be useful for categorisation/ prioritisation. +
+3.  Calendar view is available. +
+4.  Tasks can be shared with other trello members - could be helpful for Jim in the workplace
+|
+1.  Too much dependency on UI to create/ add/ edit/ delete tasks.Will affect Jim’s ability to add tasks quickly.  +
+2.  Needs to be access online. Will affect Jim’s speed. +
+3.  Does not offer natural language processing. +
+4.  Too many features - will just serve as clutter for Jim. 
+|=======================================================================
