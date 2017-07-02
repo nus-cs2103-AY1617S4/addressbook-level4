@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.ticktask.model.person.Time;
+import seedu.ticktask.model.task.Time;
 
 public class TimeTest {
 

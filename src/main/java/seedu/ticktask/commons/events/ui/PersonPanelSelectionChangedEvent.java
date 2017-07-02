@@ -1,7 +1,7 @@
 package seedu.ticktask.commons.events.ui;
 
 import seedu.ticktask.commons.events.BaseEvent;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Represents a selection change in the Person List Panel

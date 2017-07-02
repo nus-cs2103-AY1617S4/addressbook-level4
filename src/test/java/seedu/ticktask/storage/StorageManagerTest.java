@@ -12,7 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.events.storage.DataSavingExceptionEvent;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
@@ -82,7 +82,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlAddressBookStorageExceptionThrowingStub("dummy"),
                                              new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleAddressBookChangedEvent(new AddressBookChangedEvent(new TickTask()));
+        storage.handleAddressBookChangedEvent(new TickTaskChangedEvent(new TickTask()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 

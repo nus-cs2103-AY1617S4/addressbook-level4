@@ -29,11 +29,11 @@ import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.ticktask.logic.parser.EditCommandParser;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.Time;
 import seedu.ticktask.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {

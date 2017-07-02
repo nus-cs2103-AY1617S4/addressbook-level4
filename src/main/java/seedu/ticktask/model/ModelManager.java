@@ -9,11 +9,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.ComponentManager;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.commons.events.model.AddressBookChangedEvent;
+import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
-import seedu.ticktask.model.person.ReadOnlyTask;
 import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -55,7 +55,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(addressBook));
+        raise(new TickTaskChangedEvent(addressBook));
     }
 
     @Override

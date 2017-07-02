@@ -18,11 +18,11 @@ import org.junit.rules.ExpectedException;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.parser.ParserUtil;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.Time;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

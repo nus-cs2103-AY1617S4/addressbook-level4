@@ -10,11 +10,11 @@ import java.util.Set;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.StringUtil;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.Time;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes

@@ -18,12 +18,12 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.FindCommand;
-import seedu.ticktask.model.person.Date;
-import seedu.ticktask.model.person.Email;
-import seedu.ticktask.model.person.Name;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.Time;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.Time;
 import seedu.ticktask.testutil.PersonBuilder;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.

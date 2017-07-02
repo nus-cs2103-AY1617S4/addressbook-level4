@@ -1,4 +1,4 @@
-package seedu.ticktask.model.person;
+package seedu.ticktask.model.task;
 
 import java.util.Set;
 

@@ -2,8 +2,8 @@ package seedu.ticktask.model;
 
 
 import javafx.collections.ObservableList;
-import seedu.ticktask.model.person.ReadOnlyTask;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Unmodifiable view of a TickTask client

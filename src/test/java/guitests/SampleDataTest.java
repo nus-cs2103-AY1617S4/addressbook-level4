@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.util.SampleDataUtil;
 import seedu.ticktask.testutil.TestUtil;
 

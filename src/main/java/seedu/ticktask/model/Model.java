@@ -3,9 +3,9 @@ package seedu.ticktask.model;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.model.person.ReadOnlyTask;
 import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * The API of the Model component.

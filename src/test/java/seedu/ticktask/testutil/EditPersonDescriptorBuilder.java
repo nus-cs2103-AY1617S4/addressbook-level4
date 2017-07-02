@@ -6,7 +6,7 @@ import java.util.Optional;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.ticktask.logic.parser.ParserUtil;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

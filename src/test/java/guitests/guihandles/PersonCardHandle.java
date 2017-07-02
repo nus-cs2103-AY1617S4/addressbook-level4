@@ -9,8 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.ticktask.model.person.ReadOnlyTask;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Provides a handle to a person card in the person list panel.

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.DeleteCommand;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TestUtil;
 
 public class DeleteCommandTest extends AddressBookGuiTest {

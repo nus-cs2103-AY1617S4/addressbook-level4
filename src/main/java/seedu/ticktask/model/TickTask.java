@@ -12,13 +12,13 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
-import seedu.ticktask.model.person.UniqueTaskList;
 import seedu.ticktask.model.person.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.person.exceptions.TaskNotFoundException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.tag.UniqueTagList;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
+import seedu.ticktask.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the TickTask level

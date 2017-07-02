@@ -11,7 +11,7 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Contains helper methods for testing commands.

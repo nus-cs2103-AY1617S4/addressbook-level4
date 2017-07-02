@@ -27,7 +27,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TypicalPersons;
 
 /**

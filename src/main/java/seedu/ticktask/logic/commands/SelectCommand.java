@@ -6,7 +6,7 @@ import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.events.ui.JumpToListRequestEvent;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * Selects a person identified using it's last displayed index from the address book.

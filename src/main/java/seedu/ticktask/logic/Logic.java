@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
-import seedu.ticktask.model.person.ReadOnlyTask;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
  * API of the Logic component

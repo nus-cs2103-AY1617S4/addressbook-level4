@@ -4,11 +4,11 @@ import seedu.ticktask.commons.events.BaseEvent;
 import seedu.ticktask.model.ReadOnlyTickTask;
 
 /** Indicates the AddressBook in the model has changed*/
-public class AddressBookChangedEvent extends BaseEvent {
+public class TickTaskChangedEvent extends BaseEvent {
 
     public final ReadOnlyTickTask data;
 
-    public AddressBookChangedEvent(ReadOnlyTickTask data) {
+    public TickTaskChangedEvent(ReadOnlyTickTask data) {
         this.data = data;
     }
 

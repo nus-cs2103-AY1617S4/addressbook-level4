@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.ReadOnlyTickTask;
-import seedu.ticktask.model.person.ReadOnlyTask;
-import seedu.ticktask.model.person.Task;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to XML format

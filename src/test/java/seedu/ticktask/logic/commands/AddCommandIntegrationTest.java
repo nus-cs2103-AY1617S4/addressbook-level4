@@ -13,7 +13,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.person.Task;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.PersonBuilder;
 import seedu.ticktask.testutil.TypicalPersons;
 
