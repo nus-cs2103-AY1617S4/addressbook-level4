@@ -54,7 +54,7 @@ Displays the list of commands available.
 Format: `help`
 
 === Adding a task: `add`
-Adds a person to the address book. +
+Adds a task to the task manager. +
 
 Format: 
 `add n/[task name] s/[time] d/[date] t/[tags]`
@@ -77,7 +77,7 @@ Examples:
 ****
 
 === Editing a Task : `edit`
-Edits an existing person in the address book. +
+Edits an existing task in the address book. +
 
 Format: `edit [index] [prefix][new value]`
 
@@ -93,6 +93,21 @@ Edits the task name to tutorial.
 Edits the task's time to 2200.
 * `edit 0 s/2200 d/21/03/17` +
 Edits the task's time to 2200 and the date to 21/03/17.
+****
+
+=== Finding a Task : `find`
+Finds an existing task in the address book. +
+
+Format: `find [keyword]`
+
+****
+* There can be more than one keyword
+****
+
+Examples:
+****
+* `find tutorial` 
+* `find wash dog`
 ****
 
 === Deleting a Task: `delete`
