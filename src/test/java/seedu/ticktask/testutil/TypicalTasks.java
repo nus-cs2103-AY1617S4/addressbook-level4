@@ -9,7 +9,7 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 /**
  *
  */
-public class TypicalPersons {
+public class TypicalTasks {
 
     public static final Index INDEX_FIRST_PERSON = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
@@ -17,7 +17,7 @@ public class TypicalPersons {
 
     public final Task alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
 
-    public TypicalPersons() {
+    public TypicalTasks() {
         try {
             alice = new TaskBuilder().withName("Alice Pauline")
                     .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -48,7 +48,7 @@ public class TypicalPersons {
     }
 
     public static void loadAddressBookWithSampleData(TickTask ab) {
-        for (Task task : new TypicalPersons().getTypicalPersons()) {
+        for (Task task : new TypicalTasks().getTypicalTasks()) {
             try {
                 ab.addTask(new Task(task));
             } catch (DuplicateTaskException e) {
@@ -57,7 +57,7 @@ public class TypicalPersons {
         }
     }
 
-    public Task[] getTypicalPersons() {
+    public Task[] getTypicalTasks() {
         return new Task[]{alice, benson, carl, daniel, elle, fiona, george};
     }
 

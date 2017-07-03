@@ -18,7 +18,7 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -31,7 +31,7 @@ public class ListCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         listCommand = new ListCommand();

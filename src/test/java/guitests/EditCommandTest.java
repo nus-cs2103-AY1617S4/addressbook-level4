@@ -7,9 +7,9 @@ import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 
 import org.junit.Test;
 
@@ -27,11 +27,11 @@ import seedu.ticktask.model.task.Time;
 import seedu.ticktask.testutil.TaskBuilder;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
-public class EditCommandTest extends AddressBookGuiTest {
+public class EditCommandTest extends TickTaskGuiTest {
 
     // The list of persons in the person list panel is expected to match this list.
     // This list is updated with every successful call to assertEditSuccess().
-    private Task[] expectedPersonsList = td.getTypicalPersons();
+    private Task[] expectedPersonsList = td.getTypicalTasks();
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {

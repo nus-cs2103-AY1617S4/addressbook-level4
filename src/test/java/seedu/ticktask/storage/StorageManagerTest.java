@@ -22,7 +22,7 @@ import seedu.ticktask.storage.Storage;
 import seedu.ticktask.storage.StorageManager;
 import seedu.ticktask.storage.XmlTickTaskStorage;
 import seedu.ticktask.testutil.EventsCollector;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 public class StorageManagerTest {
 
@@ -65,7 +65,7 @@ public class StorageManagerTest {
          * {@link XmlAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link XmlAddressBookStorageTest} class.
          */
-        TickTask original = new TypicalPersons().getTypicalAddressBook();
+        TickTask original = new TypicalTasks().getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyTickTask retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new TickTask(retrieved));

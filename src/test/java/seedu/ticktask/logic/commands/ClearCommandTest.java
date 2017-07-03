@@ -10,7 +10,7 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 public class ClearCommandTest {
 
@@ -22,7 +22,7 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
         assertCommandSuccess(model);
     }
 

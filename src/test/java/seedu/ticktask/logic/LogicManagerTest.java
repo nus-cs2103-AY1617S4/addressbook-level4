@@ -12,8 +12,8 @@ import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.ticktask.model.util.SampleDataUtil.getTagSet;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
