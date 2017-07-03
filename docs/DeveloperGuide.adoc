@@ -356,44 +356,31 @@ Actors: User +
 1.  User launches program +
 2.  Task manager displays the current pending tasks +
 3.  User types command to add a task +
-4.  Preview of updated details is popped up +
-5.  User is prompted to confirm action +
-6.  User confirms action +
-7.  List of updated pending tasks is displayed
-
-Actors: User +
-1.  User launches program +
-2.  Task manager displays the current pending tasks +
-3.  User types command to edit a task +
-4.  Preview of updated details is popped up +
-5.  User is prompted to confirm action +
-6.  User confirms action +
-7.  List of updated pending tasks is displayed
-
+4.  Task manager previews updated details and displays prompt to confirm action +
+5.  User confirms action +
+6.  Task manager displays list of updated pending tasks +
 
 *Software system : task manager* +
 *User case: User searches for task*
 
 Actors: User +
 1.  User launches program +
-2.  Program displays the current pending tasks +
+2.  Task manager displays the current pending tasks +
 3.  User types in keyword to search for a task +
-4.  List of tasks matching the keyword is displayed +
+4.  Task manager displays list of tasks matching the keyword +
 5.  User selects the task they desire +
-6.  Task details are displayed 
-
+6.  Task manager displays details of the task 
 
 *Software system : task manager* +
 *User case: User specifies storage folder*
 
 Actors: User +
 1.  User launches program +
-2.  Program displays the current pending tasks +
+2.  Task manager displays the current pending tasks +
 3.  User inputs command to specify storage folder +
-4.  User is prompted to confirm the new storage path +
+4.  Task manager displays a prompt for user to confirm the new storage path +
 5.  User confirms action +
-6.  Confirmation is displayed
-
+6.  Task manager displays confirmation message
 
 [appendix]
 == Non Functional Requirements
