@@ -315,32 +315,32 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="100%",cols="25%,<25%,<25%,<25%",options="header",]
 |=======================================================================
-Priority |As a |I would like to |So that
+Priority |As a |I want to... |So that I can...
 
-|`* * *` |user |add a task without any time or date |I can keep track of floating tasks
-|`* * *` |user |add a task with a start and end time |I can keep track of events
-|`* * *` |user |add a task with an end date and time |I can keep track of deadlines
-|`* * *` |user |delete a task |I can remove tasks that are no longer relevant
-|`* * *` |user |mark a task as being complete/ incomplete |I can keep track of which tasks I still need to do
-|`* * *` |user |list out all the tasks I have added |I can view all my tasks simultaneously
-|`* * *` |user |undo and redo my actions |I can easily correct an incorrect action
-|`* * *` |user |search for a task using keywords |I can easily locate the details of a particular task
-|`* * *` |user |specify the folder and file to use for storage |I can determine the optimal location to store my data
-|`* * *` |user |set a task to repeat in the future |I can easily manage recurring tasks
+|`* * *` |user |add a task without any time or date |keep track of floating tasks
+|`* * *` |user |add a task with a start and end time |keep track of events
+|`* * *` |user |add a task with an end date and time |keep track of deadlines
+|`* * *` |user |delete a task |remove tasks that are no longer relevant
+|`* * *` |user |mark a task as being complete/ incomplete |keep track of which tasks I still need to do
+|`* * *` |user |list out all the tasks I have added |view all my tasks simultaneously
+|`* * *` |user |undo and redo my actions |easily correct an incorrect action
+|`* * *` |user |search for a task using keywords |easily locate the details of a particular task
+|`* * *` |user |specify the folder and file to use for storage |determine the optimal location to store my data
+|`* * *` |user |set a task to repeat in the future |easily manage recurring tasks
 
-|`* *` |user |filter tasks based on tags |I can organise my tasks into categories
-|`* *` |user |set reminders for tasks |I will remember to complete it before the deadline
-|`* *` |user |display my task in calendar |I can view my tasks in a chronological format
-|`* *` |user |use shortcuts to perform certain functions |I can navigate the program with ease and speed
-|`* *` |user |colour code my tasks according to tag |I can view my task categories more easily
-|`* *` |user |add priorities to the task |I can determine which task to complete first
+|`* *` |user |filter tasks based on tags |organise my tasks into categories
+|`* *` |user |set reminders for tasks |remember to complete it before the deadline
+|`* *` |user |display my task in calendar |view my tasks in a chronological format
+|`* *` |user |use shortcuts to perform certain functions |navigate the program with ease and speed
+|`* *` |user |colour code my tasks according to tag |view my task categories more easily
+|`* *` |user |add priorities to the task |determine which task to complete first
 
-|`*` |user |sync my task manager across devices |I can manage my tasks from anywhere
-|`*` |user |customise my GUI |I can optimise the GUI for my own needs
-|`*` |user |select my notification method (e.g. SMS, email, etc.) |I can select the most effective method
-|`*` |user |add comments, pictures and files to each task |I can attach relevant details to my tasks
-|`*` |user |add my own shortcuts to use |I can customise my shortcuts based on my own preferences
-|`*` |user |import a set of tasks into my manager |I can easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
+|`*` |user |sync my task manager across devices |manage my tasks from anywhere
+|`*` |user |customise my GUI |optimise the GUI for my own needs
+|`*` |user |select my notification method (e.g. SMS, email, etc.) |select the most effective method
+|`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
+|`*` |user |add my own shortcuts to use |customise my shortcuts based on my own preferences
+|`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
 
 |=======================================================================
 
