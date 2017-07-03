@@ -26,52 +26,52 @@ public class XmlTickTaskStorage implements TickTaskStorage {
         this.filePath = filePath;
     }
 
-    public String getAddressBookFilePath() {
+    public String getTickTaskFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTickTask> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
+        return readTickTask(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}
+     * Similar to {@link #readTickTask()}
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTickTask> readAddressBook(String filePath) throws DataConversionException,
+    public Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException,
                                                                                  FileNotFoundException {
         requireNonNull(filePath);
 
-        File addressBookFile = new File(filePath);
+        File tickTaskFile = new File(filePath);
 
-        if (!addressBookFile.exists()) {
-            logger.info("AddressBook file "  + addressBookFile + " not found");
+        if (!tickTaskFile.exists()) {
+            logger.info("TickTask file "  + tickTaskFile + " not found");
             return Optional.empty();
         }
 
-        ReadOnlyTickTask addressBookOptional = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
+        ReadOnlyTickTask tickTaskOptional = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
 
-        return Optional.of(addressBookOptional);
+        return Optional.of(tickTaskOptional);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyTickTask ticktask) throws IOException {
+        saveTickTask(ticktask, filePath);
     }
 
     /**
      * Similar to {@link #saveAddressBook(ReadOnlyTickTask)}
      * @param filePath location of the data. Cannot be null
      */
-    public void saveAddressBook(ReadOnlyTickTask addressBook, String filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTickTask(ReadOnlyTickTask ticktask, String filePath) throws IOException {
+        requireNonNull(ticktask);
         requireNonNull(filePath);
 
         File file = new File(filePath);
         FileUtil.createIfMissing(file);
-        XmlFileStorage.saveDataToFile(file, new XmlSerializableTickTask(addressBook));
+        XmlFileStorage.saveDataToFile(file, new XmlSerializableTickTask(ticktask));
     }
 
 }

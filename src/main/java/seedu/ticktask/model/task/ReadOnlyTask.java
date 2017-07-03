@@ -5,7 +5,7 @@ import java.util.Set;
 import seedu.ticktask.model.tag.Tag;
 
 /**
- * A read-only immutable interface for a Task in  TickTask.
+ * A read-only immutable interface for a task in TickTask.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyTask {
@@ -30,7 +30,7 @@ public interface ReadOnlyTask {
     }
 
     /**
-     * Formats the person as text, showing all contact details.
+     * Formats the task as text, showing all contact details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();

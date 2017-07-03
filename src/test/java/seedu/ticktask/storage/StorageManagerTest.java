@@ -67,13 +67,13 @@ public class StorageManagerTest {
          */
         TickTask original = new TypicalTasks().getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyTickTask retrieved = storageManager.readAddressBook().get();
+        ReadOnlyTickTask retrieved = storageManager.readTickTask().get();
         assertEquals(original, new TickTask(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getTickTaskFilePath());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class StorageManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyTickTask addressBook, String filePath) throws IOException {
+        public void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException {
             throw new IOException("dummy exception");
         }
     }
