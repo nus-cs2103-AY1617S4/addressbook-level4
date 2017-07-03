@@ -318,9 +318,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |=======================================================================
 Priority |As a |I want to... |So that I can...
 
+|`* * *` |new user |view help  |find the appropriate commands to use
 |`* * *` |user |add a task without any time or date |keep track of floating tasks
 |`* * *` |user |add a task with a start and end time |keep track of events
 |`* * *` |user |add a task with an end date and time |keep track of deadlines
+|`* * *` |user |edit a task |update the task if the task details change
 |`* * *` |user |delete a task |remove tasks that are no longer relevant
 |`* * *` |user |mark a task as being complete/ incomplete |keep track of which tasks I still need to do
 |`* * *` |user |list out all the tasks I have added |view all my tasks simultaneously
@@ -335,6 +337,10 @@ Priority |As a |I want to... |So that I can...
 |`* *` |user |use shortcuts to perform certain functions |navigate the program with ease and speed
 |`* *` |user |colour code my tasks according to tag |view my task categories more easily
 |`* *` |user |add priorities to the task |determine which task to complete first
+|`* *` |user |block out more than one time slot for a task |reserve time slots if the task details are not yet final
+|`* *` |user |push back all my tasks for the day by a certain amount of time |edit my tasks if unexpected events disrupt my day
+|`* *` |user |view my tasks within a specified duration |manage my tasks within different time frames
+|`* *` |user |input commands using natural language |perform commands easily and intuitively
 
 |`*` |user |sync my task manager across devices |manage my tasks from anywhere
 |`*` |user |customise my GUI |optimise the GUI for my own needs
@@ -342,6 +348,9 @@ Priority |As a |I want to... |So that I can...
 |`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
 |`*` |user |add my own shortcuts to use |customise my shortcuts based on my own preferences
 |`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
+|`*` |user |have my commands be auto-completed for me |insert commands more quickly
+|`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
+|`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
 
 |=======================================================================
 
