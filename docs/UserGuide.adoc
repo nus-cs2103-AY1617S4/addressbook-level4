@@ -53,7 +53,7 @@ Displays the list of commands available.
 
 Format: `help`
 
-=== Adding a person: `add`
+=== Adding a task: `add`
 Adds a person to the address book. +
 
 Format: `add [task name] [date due] [start - end]`
