@@ -41,7 +41,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     public EditTaskDescriptorBuilder withPhone(String phone) throws IllegalValueException {
-        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setTime);
+        ParserUtil.parseTime(Optional.of(phone)).ifPresent(descriptor::setTime);
         return this;
     }
 
@@ -51,7 +51,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     public EditTaskDescriptorBuilder withAddress(String address) throws IllegalValueException {
-        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setDate);
+        ParserUtil.parseDate(Optional.of(address)).ifPresent(descriptor::setDate);
         return this;
     }
 

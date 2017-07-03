@@ -41,12 +41,12 @@ public class AddCommandParser {
 
         try {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
-            Time time = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TIME)).get();
+            Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).get();
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
-            Date address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_DATE)).get();
+            Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            ReadOnlyTask task = new Task(name, time, email, address, tagList);
+            ReadOnlyTask task = new Task(name, time, email, date, tagList);
 
             return new AddCommand(task);
         } catch (IllegalValueException ive) {

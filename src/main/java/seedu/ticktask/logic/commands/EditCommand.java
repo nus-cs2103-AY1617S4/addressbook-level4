@@ -26,7 +26,7 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing task in the TickTask.
  */
 public class EditCommand extends Command {
 
@@ -50,18 +50,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
     private final Index index;
-    private final EditTaskDescriptor editPersonDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the task in the filtered task list to edit
+     * @param editTaskDescriptor details to edit the task with
      */
-    public EditCommand(Index index, EditTaskDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTaskDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditTaskDescriptor(editPersonDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
@@ -72,33 +72,33 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyTask personToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedPerson(personToEdit, editPersonDescriptor);
+        ReadOnlyTask taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
-            model.updateTask(personToEdit, editedTask);
+            model.updateTask(taskToEdit, editedTask);
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
-            throw new AssertionError("The target person cannot be missing");
+            throw new AssertionError("The target task cannot be missing");
         }
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedPerson(ReadOnlyTask taskToEdit,
-                                           EditTaskDescriptor editPersonDescriptor) {
+    private static Task createEditedTask(ReadOnlyTask taskToEdit,
+                                           EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(taskToEdit.getName());
-        Time updatedTime = editPersonDescriptor.getTime().orElse(taskToEdit.getTime());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(taskToEdit.getEmail());
-        Date updatedDate = editPersonDescriptor.getDate().orElse(taskToEdit.getDate());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(taskToEdit.getTags());
+        Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        Time updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
+        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
+        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
+        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedName, updatedTime, updatedEmail, updatedDate, updatedTags);
     }
@@ -118,12 +118,12 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Name name;

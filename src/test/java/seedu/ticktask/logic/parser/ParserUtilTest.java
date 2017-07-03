@@ -91,24 +91,24 @@ public class ParserUtilTest {
     @Test
     public void parsePhone_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parsePhone(null);
+        ParserUtil.parseTime(null);
     }
 
     @Test
     public void parsePhone_invalidValue_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parsePhone(Optional.of(INVALID_PHONE));
+        ParserUtil.parseTime(Optional.of(INVALID_PHONE));
     }
 
     @Test
     public void parsePhone_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parsePhone(Optional.empty()).isPresent());
+        assertFalse(ParserUtil.parseTime(Optional.empty()).isPresent());
     }
 
     @Test
     public void parsePhone_validValue_returnsPhone() throws Exception {
         Time expectedTime = new Time(VALID_PHONE);
-        Optional<Time> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
+        Optional<Time> actualPhone = ParserUtil.parseTime(Optional.of(VALID_PHONE));
 
         assertEquals(expectedTime, actualPhone.get());
     }
@@ -116,24 +116,24 @@ public class ParserUtilTest {
     @Test
     public void parseAddress_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parseAddress(null);
+        ParserUtil.parseDate(null);
     }
 
     @Test
     public void parseAddress_invalidValue_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parseAddress(Optional.of(INVALID_ADDRESS));
+        ParserUtil.parseDate(Optional.of(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parseAddress(Optional.empty()).isPresent());
+        assertFalse(ParserUtil.parseDate(Optional.empty()).isPresent());
     }
 
     @Test
     public void parseAddress_validValue_returnsAddress() throws Exception {
         Date expectedAddress = new Date(VALID_ADDRESS);
-        Optional<Date> actualAddress = ParserUtil.parseAddress(Optional.of(VALID_ADDRESS));
+        Optional<Date> actualAddress = ParserUtil.parseDate(Optional.of(VALID_ADDRESS));
 
         assertEquals(expectedAddress, actualAddress.get());
     }

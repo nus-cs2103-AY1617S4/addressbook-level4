@@ -13,7 +13,7 @@ import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 
 /**
- * Adds a person to the TickTask.
+ * Adds a Task to the TickTask.
  */
 public class AddCommand extends Command {
 

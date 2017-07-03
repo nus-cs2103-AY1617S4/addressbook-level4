@@ -46,9 +46,9 @@ public class EditCommandParser {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editTaskDescriptor::setName);
-            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TIME)).ifPresent(editTaskDescriptor::setTime);
+            ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).ifPresent(editTaskDescriptor::setTime);
             ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).ifPresent(editTaskDescriptor::setEmail);
-            ParserUtil.parseAddress(argMultimap.getValue(PREFIX_DATE)).ifPresent(editTaskDescriptor::setDate);
+            ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).ifPresent(editTaskDescriptor::setDate);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
         } catch (IllegalValueException ive) {

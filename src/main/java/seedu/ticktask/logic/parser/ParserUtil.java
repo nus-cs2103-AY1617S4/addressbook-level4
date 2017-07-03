@@ -46,19 +46,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> phone} into an {@code Optional<Phone>} if {@code phone} is present.
+     * Parses a {@code Optional<String> time} into an {@code Optional<time>} if {@code time} is present.
      */
-    public static Optional<Time> parsePhone(Optional<String> phone) throws IllegalValueException {
-        phone = setNullToString(phone);
-        return phone.isPresent() ? Optional.of(new Time(phone.get())) : Optional.empty();
+    public static Optional<Time> parseTime(Optional<String> time) throws IllegalValueException {
+        time = setNullToString(time);
+        return time.isPresent() ? Optional.of(new Time(time.get())) : Optional.empty();
     }
 
     /**
-     * Parses a {@code Optional<String> address} into an {@code Optional<Address>} if {@code address} is present.
+     * Parses a {@code Optional<String> date} into an {@code Optional<Date>} if {@code date} is present.
      */
-    public static Optional<Date> parseAddress(Optional<String> address) throws IllegalValueException {
-        address = setNullToString(address);
-        return address.isPresent() ? Optional.of(new Date(address.get())) : Optional.empty();
+    public static Optional<Date> parseDate(Optional<String> date) throws IllegalValueException {
+        date = setNullToString(date);
+        return date.isPresent() ? Optional.of(new Date(date.get())) : Optional.empty();
     }
 
     /**
