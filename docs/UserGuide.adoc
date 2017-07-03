@@ -56,38 +56,49 @@ Format: `help`
 === Adding a task: `add`
 Adds a person to the address book. +
 
-Format: `add [task name] [date due] [start - end]`
-        (Note: arguments for add can be inserted in any order)
+Format: 
+`add n/[task name] s/[time] d/[date] t/[tags]`
+`add n/[task name] s/[time]`
+`add n/[task name] d/[date]`
+`add n/[task name]`
+
+****
+* Only task name is mandatory when using the add command
+* Time must be inputted in 24 hour format: HHMM 
+* Date must be inputted in format: DD/MM/YY
+****
 
 Examples:
-* `add complete tutorial 22/08 5.30 - 6`
-* `add 22/08/2017 complete tutorial 5.30`
-* `add 22/08/17 5.30 - 6 complete tutorial
+* `add n/complete tutorial s/2200 d/22/03/16 t/school`
+* `add n/complete tutorial s/2200 d/22/03/16`
+* `add n/complete tutorial`
+* `add n/complete tutorial s/2100`
 
 === Editing a Task : `edit`
 Edits an existing person in the address book. +
 
-Format: `edit [task name] [new value]`
-        (Note: [new value] can be either be 'name', 'date', 'time')
+Format: `edit [index] [prefix][new value]`
+
+****
+* The possible prefixes are: 's/' for time, 'd/' for date, '/n' for name, '/t' for tags
+****
 
 Examples:
-* `edit tutorial tut` +
-Edits the task named tutorial to tut.
-* `edit tutorial 22/09` +
-Edits the task's date to 22/09.
-* `edit tutorial 5 - 6` +
-Edits the task's start timr and end time to 0500 and 0600
-* `edit tutorial 5` +
-Edits the task's start time to 0500.
+* `edit 1 n/tutorial` +
+Edits the task name to tutorial.
+* `edit 0 s/2200` +
+Edits the task's time to 2200.
+* `edit 0 s/2200 d/21/03/17` +
+Edits the task's time to 2200 and the date to 21/03/17.
 
 === Deleting a Task: `delete`
 Deletes a task from the task manager. +
 
-Format: `delete [task name]`
+Format: `delete [index]`
 
 Examples:
-* `delete tutorial` +
-Deletes the task named tutorial`
+* `delete 1` +
+Deletes the task at index 1`
 
 === Completing a Task : `complete`
 Marks a task as complete in the task manager. +
