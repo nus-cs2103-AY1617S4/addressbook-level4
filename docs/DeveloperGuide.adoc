@@ -313,7 +313,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="30%,<30%,<30%",options="header",]
+[width="59%",cols="25%,<25%,<25%,<25%",options="header",]
 |=======================================================================
 Priority |As a |I would like to |So that
 
