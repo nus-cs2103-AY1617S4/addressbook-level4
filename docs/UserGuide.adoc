@@ -162,8 +162,7 @@ Keyword can be either 'date', 'title', or 'duration'
 
 === View help
 
-Example: +
-`help`
+Format: `help`
 
 === Adding a task
 
