@@ -387,11 +387,13 @@ Actors: User +
 [appendix]
 == Non Functional Requirements
 
-.  Software should be operational if Java 1.8.0_60 is installed in conventional OS
+.  Software should be operational if Java 1.8.0_60 is installed in conventional OS.
 .  Software’s data should be able to be ported over to other devices without conflicts.
 .  Software should be able to keep track of 1000 tasks without any observable delay in performance.
-.  Software should be able to perform each command without any observable delay
-.  Software should run without any crash or error >98% of the time
+.  Software should be able to perform each command without any observable delay.
+.  Software should run without any crash or error >98% of the time.
+.  Software should run without an installer
+.  Software should be able to sustain stored data without any loss or corruption.
 
 [appendix]
 == Glossary
