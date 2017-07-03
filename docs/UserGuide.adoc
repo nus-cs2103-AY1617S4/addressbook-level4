@@ -28,7 +28,7 @@ This app will not work with earlier versions of Java 8.
 
 image::UI_Sample.jpg[width="790"]
 
-5. Type the command in the command box and press Enter to execute it.
+. Type the command in the command box and press Enter to execute it.
 
 
 e.g. typing help and pressing Enter will open the help window.
@@ -38,7 +38,7 @@ Some example commands you can try:
 
 `add n/complete tutorial s/2200 d/22/03/14`: adds a task named complete tutorial to the task manager
 
-`Delete` 1 : deletes the task at index 1
+`delete 1` : deletes the task at index 1
 
 
 Refer to the Features section below for details of each command. +
