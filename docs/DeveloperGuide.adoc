@@ -48,7 +48,8 @@ This app will not work with earlier versions of Java 8.
 
 .  Click `Project` -> `Properties` -> `Checkstyle` -> `Local Check Configurations` -> `New...`
 .  Choose `External Configuration File` under `Type`
-.  Enter an arbitrary configuration name e.g. addressbook
+.  Enter an arbitrary configuration name e.g. TickTask
+
 .  Import checkstyle configuration file found at `config/checkstyle/checkstyle.xml`
 .  Click OK once, go to the `Main` tab, use the newly imported check configuration.
 .  Tick and select `files from packages`, click `Change...`, and select the `resources` package
@@ -125,7 +126,7 @@ image::SDforDeletePerson.png[width="800"]
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 [NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+Note how the `Model` simply raises a `TickTaskChangedEvent` when the Tick Task data is changed, instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
@@ -168,7 +169,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `Parser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
+.  The command execution can affect the `Model` (e.g. adding a task) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -188,8 +189,8 @@ _Figure 2.4.1 : Structure of the Model Component_
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes a `UnmodifiableObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Tick Task data.
+* exposes a `UnmodifiableObservableList<ReadOnlyTask>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 === Storage component
@@ -204,11 +205,11 @@ _Figure 2.5.1 : Structure of the Storage Component_
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in xml format and read it back.
+* can save the Tick Task data in xml format and read it back.
 
 === Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.TickTask.commons` package.
 
 == Implementation
 
@@ -249,11 +250,11 @@ We have two types of tests:
 .  *GUI Tests* - These are _System Tests_ that test the entire App by simulating user actions on the GUI. These are in the `guitests` package.
 .  *Non-GUI Tests* - These are tests not involving the GUI. They include,
 ..  _Unit tests_ targeting the lowest level methods/classes. +
-e.g. `seedu.address.commons.StringUtilTest`
+e.g. `seedu.task.commons.StringUtilTest`
 ..  _Integration tests_ that are checking the integration of multiple code units (those code units are assumed to be working). +
-e.g. `seedu.address.storage.StorageManagerTest`
+e.g. `seedu.task.storage.StorageManagerTest`
 ..  Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together. +
-e.g. `seedu.address.logic.LogicManagerTest`
+e.g. `seedu.task.logic.LogicManagerTest`
 
 === Headless GUI Testing
 
@@ -304,7 +305,7 @@ _Figure 5.4.1 : Saving documentation as PDF files in Chrome_
 
 === Managing Dependencies
 
-A project often depends on third-party libraries. For example, Address Book depends on the http://wiki.fasterxml.com/JacksonHome[Jackson library] for XML parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives. +
+A project often depends on third-party libraries. For example, Tick Task depends on the http://wiki.fasterxml.com/JacksonHome[Jackson library] for XML parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives. +
 a. Include those libraries in the repo (this bloats the repo size) +
 b. Require developers to download those libraries manually (this creates extra work for developers)
 
@@ -315,32 +316,42 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="100%",cols="25%,<25%,<25%,<25%",options="header",]
 |=======================================================================
-Priority |As a |I would like to |So that
 
-|`* * \*` |user |add a task without any time or date |I can keep track of floating tasks
-|`* * \*` |user |add a task with a start and end time |I can keep track of events
-|`* * \*` |user |add a task with an end date and time |I can keep track of deadlines
-|`* * \*` |user |delete a task |I can remove tasks that are no longer relevant
-|`* * \*` |user |mark a task as being complete/ incomplete |I can keep track of which tasks I still need to do
-|`* * \*` |user |list out all the tasks I have added |I can view all my tasks simultaneously
-|`* * \*` |user |undo and redo my actions |I can easily correct an incorrect action
-|`* * \*` |user |search for a task using keywords |I can easily locate the details of a particular task
-|`* * \*` |user |specify the folder and file to use for storage |I can determine the optimal location to store my data
-|`* * \*` |user |set a task to repeat in the future |I can easily manage recurring tasks
+Priority |As a |I want to... |So that I can...
 
-|`* \*` |user |filter tasks based on tags |I can organise my tasks into categories
-|`* \*` |user |set reminders for tasks |I will remember to complete it before the deadline
-|`* \*` |user |display my task in calendar |I can view my tasks in a chronological format
-|`* \*` |user |use shortcuts to perform certain functions |I can navigate the program with ease and speed
-|`* \*` |user |colour code my tasks according to tag |I can view my task categories more easily
-|`* \*` |user |add priorities to the task |I can determine which task to complete first
+|`* * *` |new user |view help  |find the appropriate commands to use
+|`* * *` |user |add a task without any time or date |keep track of floating tasks
+|`* * *` |user |add a task with a start and end time |keep track of events
+|`* * *` |user |add a task with an end date and time |keep track of deadlines
+|`* * *` |user |edit a task |update the task if the task details change
+|`* * *` |user |delete a task |remove tasks that are no longer relevant
+|`* * *` |user |mark a task as being complete/ incomplete |keep track of which tasks I still need to do
+|`* * *` |user |list out all the tasks I have added |view all my tasks simultaneously
+|`* * *` |user |undo and redo my actions |easily correct an incorrect action
+|`* * *` |user |search for a task using keywords |easily locate the details of a particular task
+|`* * *` |user |specify the folder and file to use for storage |determine the optimal location to store my data
+|`* * *` |user |set a task to repeat in the future |easily manage recurring tasks
 
-|`*` |user |sync my task manager across devices |I can manage my tasks from anywhere
-|`*` |user |customise my GUI |I can optimise the GUI for my own needs
-|`*` |user |select my notification method (e.g. SMS, email, etc.) |I can select the most effective method
-|`*` |user |add comments, pictures and files to each task |I can attach relevant details to my tasks
-|`*` |user |add my own shortcuts to use |I can customise my shortcuts based on my own preferences
-|`*` |user |import a set of tasks into my manager |I can easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
+|`* *` |user |filter tasks based on tags |organise my tasks into categories
+|`* *` |user |set reminders for tasks |remember to complete it before the deadline
+|`* *` |user |display my task in calendar |view my tasks in a chronological format
+|`* *` |user |use shortcuts to perform certain functions |navigate the program with ease and speed
+|`* *` |user |colour code my tasks according to tag |view my task categories more easily
+|`* *` |user |add priorities to the task |determine which task to complete first
+|`* *` |user |block out more than one time slot for a task |reserve time slots if the task details are not yet final
+|`* *` |user |push back all my tasks for the day by a certain amount of time |edit my tasks if unexpected events disrupt my day
+|`* *` |user |view my tasks within a specified duration |manage my tasks within different time frames
+|`* *` |user |input commands using natural language |perform commands easily and intuitively
+
+|`*` |user |sync my task manager across devices |manage my tasks from anywhere
+|`*` |user |customise my GUI |optimise the GUI for my own needs
+|`*` |user |select my notification method (e.g. SMS, email, etc.) |select the most effective method
+|`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
+|`*` |user |add my own shortcuts to use |customise my shortcuts based on my own preferences
+|`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
+|`*` |user |have my commands be auto-completed for me |insert commands more quickly
+|`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
+|`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
 
 |=======================================================================
 
@@ -356,19 +367,9 @@ Actors: User +
 1.  User launches program +
 2.  Task manager displays the current pending tasks +
 3.  User types command to add a task +
-4.  Preview of updated details is popped up +
-5.  User is prompted to confirm action +
-6.  User confirms action +
-7.  List of updated pending tasks is displayed
-
-Actors: User +
-1.  User launches program +
-2.  Task manager displays the current pending tasks +
-3.  User types command to edit a task +
-4.  Preview of updated details is popped up +
-5.  User is prompted to confirm action +
-6.  User confirms action +
-7.  List of updated pending tasks is displayed
+4.  Task manager previews updated details and displays prompt to confirm action +
+5.  User confirms action +
+6.  Task manager displays list of updated pending tasks
 
 
 *Software system : task manager* +
@@ -376,11 +377,11 @@ Actors: User +
 
 Actors: User +
 1.  User launches program +
-2.  Program displays the current pending tasks +
+2.  Task manager displays the current pending tasks +
 3.  User types in keyword to search for a task +
-4.  List of tasks matching the keyword is displayed +
+4.  Task manager displays list of tasks matching the keyword +
 5.  User selects the task they desire +
-6.  Task details are displayed 
+6.  Task manager displays details of the task 
 
 
 *Software system : task manager* +
@@ -388,19 +389,22 @@ Actors: User +
 
 Actors: User +
 1.  User launches program +
-2.  Program displays the current pending tasks +
+2.  Task manager displays the current pending tasks +
 3.  User inputs command to specify storage folder +
-4.  User is prompted to confirm the new storage path +
+4.  Task manager displays a prompt for user to confirm the new storage path +
 5.  User confirms action +
-6.  Confirmation is displayed
-
+6.  Task manager displays confirmation message
 
 [appendix]
 == Non Functional Requirements
 
-.  Software should be operational if Java 1.8.0_60 is installed in conventional OS
+.  Software should be operational if Java 1.8.0_60 is installed in conventional OS.
 .  Software’s data should be able to be ported over to other devices without conflicts.
-.  Software should be able to keep track of 1000 task without any observable delay in performance.
+.  Software should be able to keep track of 1000 tasks without any observable delay in performance.
+.  Software should be able to perform each command without any observable delay.
+.  Software should run without any crash or error >98% of the time.
+.  Software should run without an installer
+.  Software should be able to sustain stored data without any loss or corruption.
 
 [appendix]
 == Glossary
