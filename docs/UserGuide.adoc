@@ -158,6 +158,9 @@ Keyword can be either 'date', 'title', or 'duration'
 
 == FAQ
 
+*Q*: How do I transfer my data to another Computer? +
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+
 == Command Summary
 
 === View help
@@ -184,9 +187,9 @@ Examples:
 ****
 * `edit 1 n/tutorial` +
 Edits the task name to tutorial.
-* `edit 0 s/2200` +
+* `edit 2 s/2200` +
 Edits the task's time to 2200.
-* `edit 0 s/2200 d/21/03/17` +
+* `edit 2 s/2200 d/21/03/17` +
 Edits the task's time to 2200 and the date to 21/03/17.
 ****
 
