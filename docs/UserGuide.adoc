@@ -98,7 +98,7 @@ Edits the task's time to 2200 and the date to 21/03/17.
 === Finding a Task : `find`
 Finds an existing task in the address book. +
 
-Format: `find [keyword]`
+Format: `find [keyword(s)]`
 
 ****
 * There can be more than one keyword
