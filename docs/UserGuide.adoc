@@ -36,11 +36,9 @@ Some example commands you can try:
 
 `list` : lists all tasks
 
-`add complete tutorial 22/08 0530-6000`: adds a task named complete tutorial to the task manager
+`add n/complete tutorial s/2200 d/22/03/14`: adds a task named complete tutorial to the task manager
 
-`Delete` complete tutorial : deletes the  complete tutorial task previously added
-
-exit : exits the app
+`Delete` 1 : deletes the task at index 1
 
 
 Refer to the Features section below for details of each command. +
