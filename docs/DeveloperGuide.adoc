@@ -316,6 +316,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="100%",cols="25%,<25%,<25%,<25%",options="header",]
 |=======================================================================
+
 Priority |As a |I want to... |So that I can...
 
 |`* * *` |new user |view help  |find the appropriate commands to use
