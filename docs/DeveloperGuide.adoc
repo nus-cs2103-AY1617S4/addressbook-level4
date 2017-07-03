@@ -358,7 +358,8 @@ Actors: User +
 3.  User types command to add a task +
 4.  Task manager previews updated details and displays prompt to confirm action +
 5.  User confirms action +
-6.  Task manager displays list of updated pending tasks +
+6.  Task manager displays list of updated pending tasks
+
 
 *Software system : task manager* +
 *User case: User searches for task*
@@ -370,6 +371,7 @@ Actors: User +
 4.  Task manager displays list of tasks matching the keyword +
 5.  User selects the task they desire +
 6.  Task manager displays details of the task 
+
 
 *Software system : task manager* +
 *User case: User specifies storage folder*
@@ -387,7 +389,9 @@ Actors: User +
 
 .  Software should be operational if Java 1.8.0_60 is installed in conventional OS
 .  Software’s data should be able to be ported over to other devices without conflicts.
-.  Software should be able to keep track of 1000 task without any observable delay in performance.
+.  Software should be able to keep track of 1000 tasks without any observable delay in performance.
+.  Software should be able to perform each command without any observable delay
+.  Software should run without any crash or error >98% of the time
 
 [appendix]
 == Glossary
