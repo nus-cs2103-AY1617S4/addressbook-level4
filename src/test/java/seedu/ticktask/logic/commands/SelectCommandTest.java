@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,7 +28,7 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SelectCommand}.
@@ -47,7 +47,7 @@ public class SelectCommandTest {
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
-        model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test

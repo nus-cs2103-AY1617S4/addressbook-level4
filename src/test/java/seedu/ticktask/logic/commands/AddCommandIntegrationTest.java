@@ -15,7 +15,7 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TaskBuilder;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test

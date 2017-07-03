@@ -28,18 +28,18 @@ import seedu.ticktask.commons.events.BaseEvent;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TestUtil;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 /**
  * A GUI Test class for AddressBook.
  */
-public abstract class AddressBookGuiTest {
+public abstract class TickTaskGuiTest {
 
     /* The TestName Rule makes the current test name available inside test methods */
     @Rule
     public TestName name = new TestName();
 
-    protected TypicalPersons td = new TypicalPersons();
+    protected TypicalTasks td = new TypicalTasks();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance
@@ -90,7 +90,7 @@ public abstract class AddressBookGuiTest {
      */
     protected TickTask getInitialData() {
         TickTask ab = new TickTask();
-        TypicalPersons.loadAddressBookWithSampleData(ab);
+        TypicalTasks.loadAddressBookWithSampleData(ab);
         return ab;
     }
 

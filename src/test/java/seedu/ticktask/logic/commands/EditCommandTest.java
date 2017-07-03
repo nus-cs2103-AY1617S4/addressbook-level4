@@ -7,8 +7,8 @@ import static seedu.ticktask.testutil.EditCommandTestUtil.DESC_BOB;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_NAME_BOB;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,14 +29,14 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
 import seedu.ticktask.testutil.TaskBuilder;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {

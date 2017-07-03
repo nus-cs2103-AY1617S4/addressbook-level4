@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.ticktask.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;

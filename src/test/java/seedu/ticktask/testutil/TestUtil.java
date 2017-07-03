@@ -146,7 +146,7 @@ public class TestUtil {
      * @param personsToAdd The persons that are to be appended behind the original array.
      * @return The modified array of persons.
      */
-    public static Task[] addPersonsToList(final Task[] tasks, Task... personsToAdd) {
+    public static Task[] addTasksToList(final Task[] tasks, Task... personsToAdd) {
         List<Task> listOfTasks = asList(tasks);
         listOfTasks.addAll(asList(personsToAdd));
         return listOfTasks.toArray(new Task[listOfTasks.size()]);

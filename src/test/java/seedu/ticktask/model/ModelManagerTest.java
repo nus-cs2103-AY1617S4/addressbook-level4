@@ -12,11 +12,11 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.testutil.TickTaskBuilder;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 public class ModelManagerTest {
 
-    private TypicalPersons typicalPersons = new TypicalPersons();
+    private TypicalTasks typicalPersons = new TypicalTasks();
 
     @Test
     public void equals() throws Exception {

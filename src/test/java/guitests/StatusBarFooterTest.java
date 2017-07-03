@@ -19,7 +19,7 @@ import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.testutil.TaskUtil;
 import seedu.ticktask.ui.StatusBarFooter;
 
-public class StatusBarFooterTest extends AddressBookGuiTest {
+public class StatusBarFooterTest extends TickTaskGuiTest {
 
     private Clock originalClock;
     private Clock injectedClock;

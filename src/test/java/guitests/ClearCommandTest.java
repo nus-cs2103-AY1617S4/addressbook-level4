@@ -8,13 +8,13 @@ import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.testutil.TaskUtil;
 
-public class ClearCommandTest extends AddressBookGuiTest {
+public class ClearCommandTest extends TickTaskGuiTest {
 
     @Test
     public void clear() {
 
         //verify a non-empty list can be cleared
-        assertTrue(personListPanel.isListMatching(td.getTypicalPersons()));
+        assertTrue(personListPanel.isListMatching(td.getTypicalTasks()));
         assertClearCommandSuccess();
 
         //verify other commands can work after a clear command

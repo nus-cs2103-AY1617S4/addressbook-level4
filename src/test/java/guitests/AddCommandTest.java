@@ -12,22 +12,22 @@ import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TaskUtil;
 import seedu.ticktask.testutil.TestUtil;
 
-public class AddCommandTest extends AddressBookGuiTest {
+public class AddCommandTest extends TickTaskGuiTest {
 
     @Test
     public void add() {
-        //add one person
-        Task[] currentList = td.getTypicalPersons();
+        //add one task
+        Task[] currentList = td.getTypicalTasks();
         Task taskToAdd = td.hoon;
         assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addPersonsToList(currentList, taskToAdd);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add another person
+        //add another task
         taskToAdd = td.ida;
         assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addPersonsToList(currentList, taskToAdd);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add duplicate person
+        //add duplicate task
         commandBox.runCommand(TaskUtil.getAddCommand(td.hoon));
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         assertTrue(personListPanel.isListMatching(currentList));
@@ -49,7 +49,7 @@ public class AddCommandTest extends AddressBookGuiTest {
         assertMatching(taskToAdd, addedCard);
 
         //confirm the list now contains all previous persons plus the new person
-        Task[] expectedList = TestUtil.addPersonsToList(currentList, taskToAdd);
+        Task[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(personListPanel.isListMatching(expectedList));
     }
 

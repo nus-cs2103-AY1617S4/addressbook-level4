@@ -9,7 +9,7 @@ import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.util.SampleDataUtil;
 import seedu.ticktask.testutil.TestUtil;
 
-public class SampleDataTest extends AddressBookGuiTest {
+public class SampleDataTest extends TickTaskGuiTest {
     @Override
     protected TickTask getInitialData() {
         // return null to force test app to load data from file only

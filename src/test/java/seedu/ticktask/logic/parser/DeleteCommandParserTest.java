@@ -2,7 +2,7 @@ package seedu.ticktask.logic.parser;
 
 import static org.junit.Assert.assertEquals;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 
 import org.junit.Rule;
 import org.junit.Test;

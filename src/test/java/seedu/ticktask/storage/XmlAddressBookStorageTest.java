@@ -17,7 +17,7 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.storage.XmlTickTaskStorage;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 public class XmlAddressBookStorageTest {
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlAddressBookStorageTest/");
@@ -63,7 +63,7 @@ public class XmlAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
-        TypicalPersons td = new TypicalPersons();
+        TypicalTasks td = new TypicalTasks();
         TickTask original = td.getTypicalAddressBook();
         XmlTickTaskStorage xmlAddressBookStorage = new XmlTickTaskStorage(filePath);
 

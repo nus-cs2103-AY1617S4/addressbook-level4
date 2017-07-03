@@ -2,7 +2,7 @@ package guitests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.ticktask.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 
 import org.junit.Test;
 
@@ -11,13 +11,13 @@ import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TestUtil;
 
-public class DeleteCommandTest extends AddressBookGuiTest {
+public class DeleteCommandTest extends TickTaskGuiTest {
 
     @Test
     public void delete() {
 
         //delete the first in the list
-        Task[] currentList = td.getTypicalPersons();
+        Task[] currentList = td.getTypicalTasks();
         Index targetIndex = INDEX_FIRST_PERSON;
         assertDeleteSuccess(targetIndex, currentList);
 

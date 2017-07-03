@@ -10,7 +10,7 @@ import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.model.task.Task;
 
-public class FindCommandTest extends AddressBookGuiTest {
+public class FindCommandTest extends TickTaskGuiTest {
 
     @Test
     public void find_nonEmptyList() {

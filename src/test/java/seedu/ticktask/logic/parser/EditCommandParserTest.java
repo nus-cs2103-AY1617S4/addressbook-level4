@@ -17,9 +17,9 @@ import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.ticktask.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 
 import org.junit.Test;
 

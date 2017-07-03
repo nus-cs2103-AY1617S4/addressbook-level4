@@ -19,7 +19,7 @@ import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.testutil.TypicalPersons;
+import seedu.ticktask.testutil.TypicalTasks;
 
 public class AddressBookTest {
 
@@ -42,14 +42,14 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        TickTask newData = new TypicalPersons().getTypicalAddressBook();
+        TickTask newData = new TypicalTasks().getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
 
     @Test
     public void resetData_withDuplicatePersons_throwsAssertionError() {
-        TypicalPersons td = new TypicalPersons();
+        TypicalTasks td = new TypicalTasks();
         // Repeat td.alice twice
         List<Task> newTasks = Arrays.asList(new Task(td.alice), new Task(td.alice));
         List<Tag> newTags = new ArrayList<>(td.alice.getTags());
@@ -61,7 +61,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateTags_throwsAssertionError() {
-        TickTask typicalAddressBook = new TypicalPersons().getTypicalAddressBook();
+        TickTask typicalAddressBook = new TypicalTasks().getTypicalAddressBook();
         List<ReadOnlyTask> newPersons = typicalAddressBook.getTaskList();
         List<Tag> newTags = new ArrayList<>(typicalAddressBook.getTagList());
         // Repeat the first tag twice
