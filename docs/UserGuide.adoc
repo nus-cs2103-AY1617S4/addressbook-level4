@@ -103,7 +103,7 @@ Format: `delete [index]`
 Examples:
 ****
 * `delete 1` +
-Deletes the task at index 1`
+Deletes the task at index 1
 ****
 
 === Completing a Task : `complete`
@@ -167,23 +167,39 @@ Example: +
 
 === Adding a task
 
+Format: `add n/[task name] s/[time] d/[date] t/[tags]`
+
 Examples:
-*`add complete tutorial 22/08 5.30-6`
-*`add 22/08/2017 complete tutorial 5.30` 
-*`add 22/08/17 5.30-6 complete tutorial` 
+****
+* `add n/complete tutorial s/2200 d/22/03/16 t/school`
+* `add n/complete tutorial s/2200 d/22/03/16`
+* `add n/complete tutorial`
+* `add n/complete tutorial s/2100`
+****
 
 === Editing a Task
 
-Example: +
-`edit tutorial name tut` +
-`edit tutorial date 22/09` +
-`edit tutorial time 5-6` +
-`edit tutorial time 5`
+Format: `edit [index] [prefix][new value]`
+
+Examples:
+****
+* `edit 1 n/tutorial` +
+Edits the task name to tutorial.
+* `edit 0 s/2200` +
+Edits the task's time to 2200.
+* `edit 0 s/2200 d/21/03/17` +
+Edits the task's time to 2200 and the date to 21/03/17.
+****
 
 === Deleting a Task
 
-Example: +
-`delete a tutorial`
+Format: `delete [index]`
+
+Examples:
+****
+* `delete 1` +
+Deletes the task at index 1
+****
 
 === Completing a Task
 
