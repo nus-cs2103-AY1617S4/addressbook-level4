@@ -1,8 +1,20 @@
-# whatsNext(Task Manager Application) - Developer Guide
+# WhatsNext(Task Manager Application) - Developer Guide
 
-By: T01-T4		Since: Jun 2017		License: MIT
+By: T01-T4	&nbsp;&nbsp;&nbsp;&nbsp;	Since: Jun 2017	&nbsp;&nbsp;&nbsp;&nbsp;	License: MIT
 
 ---
+
+1. [Setting Up](#1-setting-up)
+2. [Design](#2-design)
+3. [Implementation](#3-implementation)
+4. [Testing](#4-testing)
+5. [Dev Ops](#5-dev-ops)
+
+* [Appendix A: User Stories](#appendix-a--user-stories)
+* [Appendix B: Use Cases](#appendix-b--use-cases)
+* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d--glossary)
+* [Appendix E: Product Survey](#appendix-e--product-survey)
 
 ## 1. Setting up
 
@@ -375,8 +387,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests the task list.
-2.	System shows the task list.
+1.	User requests the whole task list or request to find tasks by names or tags.
+2.	System shows the whole task list or shows the relevant task lists.
 3.	User specifies the task to be deleted.
 4.	System deletes the task.<br>
 Use case ends.
@@ -387,12 +399,16 @@ Use case ends.
 
 > Use case ends
 
+2b. There is no task with the given names or tags
+
+> Use case ends
+
 3a. The given index is invalid
 
 > 3a1. System shows an error message <br>
   Use case resumes at step 2
 
-#### Use case: Search task
+#### Use case: Find task
 
 **MSS**
 
