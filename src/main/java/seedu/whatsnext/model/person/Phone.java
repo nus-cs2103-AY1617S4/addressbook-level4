@@ -11,9 +11,9 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 public class Phone {
 
 
-    public static final String MESSAGE_PHONE_CONSTRAINTS =
+    public static final String MESSAGE_DATE_CONSTRAINTS =
             "Phone numbers can only contain numbers, and should be at least 3 digits long";
-    public static final String PHONE_VALIDATION_REGEX = "\\d{3,}";
+    public static final String DATE_VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
     /**
@@ -25,7 +25,7 @@ public class Phone {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!isValidPhone(trimmedPhone)) {
-            throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
         this.value = trimmedPhone;
     }
@@ -34,7 +34,7 @@ public class Phone {
      * Returns true if a given string is a valid person phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(PHONE_VALIDATION_REGEX);
+        return test.matches(DATE_VALIDATION_REGEX);
     }
 
     @Override

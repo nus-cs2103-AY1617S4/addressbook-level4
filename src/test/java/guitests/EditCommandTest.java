@@ -3,9 +3,9 @@
 //import static org.junit.Assert.assertTrue;
 //import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
@@ -35,8 +35,8 @@
 //
 //    @Test
 //    public void edit_allFieldsSpecified_success() throws Exception {
-//        String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_PHONE + "91234567 "
-//                + PREFIX_EMAIL + "bobby@example.com "
+//        String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_DATE + "91234567 "
+//                + PREFIX_TIME + "bobby@example.com "
 //                + PREFIX_ADDRESS + "Block 123, Bobby Street 3 "
 //                + PREFIX_TAG + "husband";
 //        Index addressBookIndex = INDEX_FIRST_PERSON;
@@ -92,7 +92,7 @@
 //    @Test
 //    public void edit_invalidPersonIndex_failure() {
 //        commandBox.runCommand(EditCommand.COMMAND_WORD + " 8 " + PREFIX_NAME + "Bobby");
-//        assertResultMessage(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertResultMessage(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
@@ -106,11 +106,11 @@
 //        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_NAME + "*&");
 //        assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 //
-//        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_PHONE + "abcd");
-//        assertResultMessage(Phone.MESSAGE_PHONE_CONSTRAINTS);
+//        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_DATE + "abcd");
+//        assertResultMessage(Phone.MESSAGE_DATE_CONSTRAINTS);
 //
-//        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_EMAIL + "yahoo!!!");
-//        assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
+//        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TIME + "yahoo!!!");
+//        assertResultMessage(Email.MESSAGE_TIME_CONSTRAINTS);
 //
 //        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_ADDRESS.getPrefix());
 //        assertResultMessage(Address.MESSAGE_ADDRESS_CONSTRAINTS);
@@ -122,12 +122,12 @@
 //    @Test
 //    public void edit_duplicatePerson_failure() {
 //        commandBox.runCommand(EditCommand.COMMAND_WORD + " 3 "
-//                + PREFIX_PHONE + "85355255 "
-//                + PREFIX_EMAIL + "alice@example.com "
+//                + PREFIX_DATE + "85355255 "
+//                + PREFIX_TIME + "alice@example.com "
 //                + PREFIX_NAME + "Alice Pauline "
 //                + PREFIX_ADDRESS + "123, Jurong West Ave 6, #08-111 "
 //                + PREFIX_TAG + "friends");
-//        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_PERSON);
+//        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
 //    }
 //
 //    /**
@@ -151,6 +151,6 @@
 //        // confirm the list now contains all previous persons plus the person with updated details
 //        expectedPersonsList[addressBookIndex.getZeroBased()] = editedPerson;
 //        assertTrue(personListPanel.isListMatching(expectedPersonsList));
-//        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+//        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson));
 //    }
 //}

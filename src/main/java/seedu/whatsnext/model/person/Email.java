@@ -10,9 +10,9 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
  */
 public class Email {
 
-    public static final String MESSAGE_EMAIL_CONSTRAINTS =
+    public static final String MESSAGE_TIME_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
-    public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
+    public static final String TIME_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
     public final String value;
 
@@ -25,7 +25,7 @@ public class Email {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!isValidEmail(trimmedEmail)) {
-            throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         this.value = trimmedEmail;
     }
@@ -34,7 +34,7 @@ public class Email {
      * Returns if a given string is a valid person email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(EMAIL_VALIDATION_REGEX);
+        return test.matches(TIME_VALIDATION_REGEX);
     }
 
     @Override

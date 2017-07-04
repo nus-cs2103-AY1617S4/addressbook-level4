@@ -7,7 +7,7 @@
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_BOB;
-//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DATE_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
 //
 //import org.junit.Test;
@@ -40,7 +40,7 @@
 //        assertFalse(DESC_AMY.equals(editedAmy));
 //
 //        // different phone -> returns false
-//        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+//        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_DATE_BOB).build();
 //        assertFalse(DESC_AMY.equals(editedAmy));
 //
 //        // different email -> returns false
