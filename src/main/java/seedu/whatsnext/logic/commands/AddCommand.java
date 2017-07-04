@@ -8,7 +8,7 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.person.Person;
+import seedu.whatsnext.model.person.Floating;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
 
@@ -37,13 +37,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Floating toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
      */
     public AddCommand(ReadOnlyPerson person) {
-        toAdd = new Person(person);
+        toAdd = new Floating(person);
     }
 
     @Override

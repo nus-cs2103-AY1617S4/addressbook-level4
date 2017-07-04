@@ -18,7 +18,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
 import seedu.whatsnext.model.person.TaskName;
-import seedu.whatsnext.model.person.Person;
+import seedu.whatsnext.model.person.Floating;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Floating editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
             model.updatePerson(personToEdit, editedPerson);
@@ -90,7 +90,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(ReadOnlyPerson personToEdit,
+    private static Floating createEditedPerson(ReadOnlyPerson personToEdit,
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Floating(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
