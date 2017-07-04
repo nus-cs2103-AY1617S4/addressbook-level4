@@ -5,12 +5,12 @@
 //import org.junit.Test;
 //
 //import guitests.guihandles.PersonCardHandle;
-//import seedu.address.commons.core.Messages;
-//import seedu.address.logic.commands.AddCommand;
-//import seedu.address.logic.commands.ClearCommand;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.PersonUtil;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.logic.commands.AddCommand;
+//import seedu.whatsnext.logic.commands.ClearCommand;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.testutil.PersonUtil;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 //public class AddCommandTest extends AddressBookGuiTest {
 //

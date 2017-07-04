@@ -1,12 +1,12 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNull;
 //import static org.junit.Assert.assertTrue;
 //import static org.junit.Assert.fail;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.HashSet;
@@ -16,17 +16,17 @@
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.commons.events.ui.JumpToListRequestEvent;
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.logic.commands.exceptions.CommandException;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**
 // * Contains integration tests (interaction with the Model) for {@code SelectCommand}.

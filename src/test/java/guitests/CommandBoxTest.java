@@ -9,8 +9,8 @@
 //import org.junit.Before;
 //import org.junit.Test;
 //
-//import seedu.address.logic.commands.SelectCommand;
-//import seedu.address.ui.CommandBox;
+//import seedu.whatsnext.logic.commands.SelectCommand;
+//import seedu.whatsnext.ui.CommandBox;
 //
 //public class CommandBoxTest extends AddressBookGuiTest {
 //

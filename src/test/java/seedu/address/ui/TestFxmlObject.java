@@ -1,4 +1,4 @@
-//package seedu.address.ui;
+//package seedu.whatsnext.ui;
 //
 //import javafx.beans.DefaultProperty;
 //

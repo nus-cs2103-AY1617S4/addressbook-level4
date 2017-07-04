@@ -1,4 +1,4 @@
-//package seedu.address.model;
+//package seedu.whatsnext.model;
 //
 //import static org.junit.Assert.assertEquals;
 //
@@ -14,10 +14,10 @@
 //
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.tag.Tag;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 //public class AddressBookTest {
 //

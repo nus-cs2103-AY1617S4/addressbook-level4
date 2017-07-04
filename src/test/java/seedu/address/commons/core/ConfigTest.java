@@ -1,4 +1,4 @@
-//package seedu.address.commons.core;
+//package seedu.whatsnext.commons.core;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNotNull;

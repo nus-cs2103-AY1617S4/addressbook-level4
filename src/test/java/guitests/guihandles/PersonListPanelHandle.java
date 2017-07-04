@@ -11,10 +11,10 @@
 //import javafx.scene.Node;
 //import javafx.scene.control.ListView;
 //import javafx.stage.Stage;
-//import seedu.address.TestApp;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.TestApp;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 ///**
 // * Provides a handle for the panel containing the person list.

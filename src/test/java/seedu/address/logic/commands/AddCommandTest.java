@@ -1,4 +1,4 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
@@ -11,17 +11,17 @@
 //import org.junit.Test;
 //import org.junit.rules.ExpectedException;
 //
-//import seedu.address.commons.core.UnmodifiableObservableList;
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.Model;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.model.person.exceptions.DuplicatePersonException;
-//import seedu.address.model.person.exceptions.PersonNotFoundException;
-//import seedu.address.testutil.PersonBuilder;
+//import seedu.whatsnext.commons.core.UnmodifiableObservableList;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.logic.commands.exceptions.CommandException;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ReadOnlyAddressBook;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
+//import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
+//import seedu.whatsnext.testutil.PersonBuilder;
 //
 //public class AddCommandTest {
 //

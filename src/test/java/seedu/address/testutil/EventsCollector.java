@@ -1,12 +1,12 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
 //import java.util.ArrayList;
 //import java.util.List;
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.events.BaseEvent;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.events.BaseEvent;
 //
 ///**
 // * A class that collects events raised by other classes.

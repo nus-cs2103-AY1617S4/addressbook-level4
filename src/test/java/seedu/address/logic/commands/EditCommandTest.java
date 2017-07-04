@@ -1,33 +1,33 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.testutil.EditCommandTestUtil.DESC_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.DESC_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.HashSet;
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
-//import seedu.address.testutil.PersonBuilder;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.testutil.EditPersonDescriptorBuilder;
+//import seedu.whatsnext.testutil.PersonBuilder;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

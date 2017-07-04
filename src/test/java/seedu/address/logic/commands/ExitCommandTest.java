@@ -1,16 +1,16 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+//import static seedu.whatsnext.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 //
 //import org.junit.Before;
 //import org.junit.Test;
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.events.ui.ExitAppRequestEvent;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.events.ui.ExitAppRequestEvent;
 //
 //public class ExitCommandTest {
 //    private boolean isEventCaught = false;

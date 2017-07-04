@@ -1,14 +1,14 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //
 //import org.junit.Test;
 //
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 //public class ClearCommandTest {
 //

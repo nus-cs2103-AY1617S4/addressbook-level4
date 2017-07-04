@@ -22,13 +22,13 @@
 //import guitests.guihandles.StatusBarFooterHandle;
 //import javafx.application.Platform;
 //import javafx.stage.Stage;
-//import seedu.address.TestApp;
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.events.BaseEvent;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.testutil.TestUtil;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.TestApp;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.events.BaseEvent;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.testutil.TestUtil;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**
 // * A GUI Test class for AddressBook.

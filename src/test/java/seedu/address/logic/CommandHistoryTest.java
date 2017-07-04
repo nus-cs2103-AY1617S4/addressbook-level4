@@ -1,4 +1,4 @@
-//package seedu.address.logic;
+//package seedu.whatsnext.logic;
 //
 //import static org.junit.Assert.assertEquals;
 //

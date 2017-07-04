@@ -9,8 +9,8 @@
 //import javafx.scene.control.Labeled;
 //import javafx.scene.layout.Region;
 //import javafx.stage.Stage;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.model.tag.Tag;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.tag.Tag;
 //
 ///**
 // * Provides a handle to a person card in the person list panel.

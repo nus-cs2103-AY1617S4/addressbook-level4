@@ -1,11 +1,11 @@
-//package seedu.address.logic.parser;
+//package seedu.whatsnext.logic.parser;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertTrue;
 //
-//import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.Collections;
@@ -17,12 +17,12 @@
 //import org.junit.Test;
 //import org.junit.rules.ExpectedException;
 //
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.tag.Tag;
 //
 //public class ParserUtilTest {
 //    private static final String INVALID_NAME = "R@chel";

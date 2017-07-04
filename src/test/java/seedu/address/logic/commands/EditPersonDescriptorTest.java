@@ -1,19 +1,19 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.testutil.EditCommandTestUtil.DESC_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.DESC_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
 //
 //import org.junit.Test;
 //
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.whatsnext.testutil.EditPersonDescriptorBuilder;
 //
 //public class EditPersonDescriptorTest {
 //

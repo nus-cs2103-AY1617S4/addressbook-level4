@@ -1,4 +1,4 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
@@ -6,14 +6,14 @@
 //import org.junit.Before;
 //import org.junit.Test;
 //
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.PersonBuilder;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.logic.commands.exceptions.CommandException;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.testutil.PersonBuilder;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**
 // * Contains integration tests (interaction with the Model) for {@code AddCommand}.

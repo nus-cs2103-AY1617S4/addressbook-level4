@@ -4,7 +4,7 @@
 //
 //import guitests.GuiRobot;
 //import javafx.stage.Stage;
-//import seedu.address.TestApp;
+//import seedu.whatsnext.TestApp;
 //
 ///**
 // * A handle for the status bar at the footer of the application.

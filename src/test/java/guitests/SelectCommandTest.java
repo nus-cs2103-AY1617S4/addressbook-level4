@@ -1,14 +1,14 @@
 //package guitests;
 //
 //import static org.junit.Assert.assertEquals;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.ClearCommand;
-//import seedu.address.logic.commands.SelectCommand;
-//import seedu.address.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.commands.ClearCommand;
+//import seedu.whatsnext.logic.commands.SelectCommand;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
 //
 //public class SelectCommandTest extends AddressBookGuiTest {
 //

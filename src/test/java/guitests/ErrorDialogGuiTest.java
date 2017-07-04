@@ -7,7 +7,7 @@
 //import org.junit.Test;
 //
 //import guitests.guihandles.AlertDialogHandle;
-//import seedu.address.commons.events.storage.DataSavingExceptionEvent;
+//import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 //
 //public class ErrorDialogGuiTest extends AddressBookGuiTest {
 //

@@ -1,16 +1,16 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
 //import java.util.Set;
 //
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.model.util.SampleDataUtil;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.tag.Tag;
+//import seedu.whatsnext.model.util.SampleDataUtil;
 //
 ///**
 // * A utility class to help with building Person objects.

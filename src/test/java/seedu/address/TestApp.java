@@ -1,16 +1,16 @@
-//package seedu.address;
+//package seedu.whatsnext;
 //
 //import java.util.function.Supplier;
 //
 //import javafx.stage.Screen;
 //import javafx.stage.Stage;
-//import seedu.address.commons.core.Config;
-//import seedu.address.commons.core.GuiSettings;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.storage.UserPrefsStorage;
-//import seedu.address.storage.XmlSerializableAddressBook;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.commons.core.Config;
+//import seedu.whatsnext.commons.core.GuiSettings;
+//import seedu.whatsnext.model.ReadOnlyAddressBook;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.storage.UserPrefsStorage;
+//import seedu.whatsnext.storage.XmlSerializableAddressBook;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 ///**
 // * This class is meant to override some properties of MainApp so that it will be suited for
