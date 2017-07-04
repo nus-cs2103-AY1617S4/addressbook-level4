@@ -1,0 +1,77 @@
+package seedu.ticktask.storage;
+
+import static java.util.Objects.requireNonNull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import seedu.ticktask.commons.core.LogsCenter;
+import seedu.ticktask.commons.exceptions.DataConversionException;
+import seedu.ticktask.commons.util.FileUtil;
+import seedu.ticktask.model.ReadOnlyTickTask;
+
+/**
+ * A class to access AddressBook data stored as an xml file on the hard disk.
+ */
+public class XmlTickTaskStorage implements TickTaskStorage {
+
+    private static final Logger logger = LogsCenter.getLogger(XmlTickTaskStorage.class);
+
+    private String filePath;
+
+    public XmlTickTaskStorage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getTickTaskFilePath() {
+        return filePath;
+    }
+
+    @Override
+    public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
+        return readTickTask(filePath);
+    }
+
+    /**
+     * Similar to {@link #readTickTask()}
+     * @param filePath location of the data. Cannot be null
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException,
+                                                                                 FileNotFoundException {
+        requireNonNull(filePath);
+
+        File tickTaskFile = new File(filePath);
+
+        if (!tickTaskFile.exists()) {
+            logger.info("TickTask file "  + tickTaskFile + " not found");
+            return Optional.empty();
+        }
+
+        ReadOnlyTickTask tickTaskOptional = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
+
+        return Optional.of(tickTaskOptional);
+    }
+
+    @Override
+    public void saveAddressBook(ReadOnlyTickTask ticktask) throws IOException {
+        saveTickTask(ticktask, filePath);
+    }
+
+    /**
+     * Similar to {@link #saveAddressBook(ReadOnlyTickTask)}
+     * @param filePath location of the data. Cannot be null
+     */
+    public void saveTickTask(ReadOnlyTickTask ticktask, String filePath) throws IOException {
+        requireNonNull(ticktask);
+        requireNonNull(filePath);
+
+        File file = new File(filePath);
+        FileUtil.createIfMissing(file);
+        XmlFileStorage.saveDataToFile(file, new XmlSerializableTickTask(ticktask));
+    }
+
+}

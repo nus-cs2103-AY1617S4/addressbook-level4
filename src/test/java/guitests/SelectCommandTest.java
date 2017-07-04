@@ -1,16 +1,16 @@
 package guitests;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.ticktask.commons.core.index.Index;
+import seedu.ticktask.logic.commands.ClearCommand;
+import seedu.ticktask.logic.commands.SelectCommand;
+import seedu.ticktask.model.task.ReadOnlyTask;
 
-public class SelectCommandTest extends AddressBookGuiTest {
+public class SelectCommandTest extends TickTaskGuiTest {
 
 
     @Test
@@ -20,7 +20,7 @@ public class SelectCommandTest extends AddressBookGuiTest {
         assertNoPersonSelected();
 
         assertSelectionSuccess(INDEX_FIRST_PERSON); // first person in the list
-        Index personCount = Index.fromOneBased(td.getTypicalPersons().length);
+        Index personCount = Index.fromOneBased(td.getTypicalTasks().length);
         assertSelectionSuccess(personCount); // last person in the list
         Index middleIndex = Index.fromOneBased(personCount.getOneBased() / 2);
         assertSelectionSuccess(middleIndex); // a person in the middle of the list
@@ -51,7 +51,7 @@ public class SelectCommandTest extends AddressBookGuiTest {
 
     private void assertPersonSelected(Index index) {
         assertEquals(personListPanel.getSelectedPersons().size(), 1);
-        ReadOnlyPerson selectedPerson = personListPanel.getSelectedPersons().get(0);
+        ReadOnlyTask selectedPerson = personListPanel.getSelectedPersons().get(0);
         assertEquals(personListPanel.getPerson(index.getZeroBased()), selectedPerson);
         //TODO: confirm the correct page is loaded in the Browser Panel
     }
