@@ -90,14 +90,14 @@ public class Task implements ReadOnlyTask {
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag set.
+     * Replaces this task's tags with the tags in the argument tag set.
      */
     public void setTags(Set<Tag> replacement) {
         tags.setTags(new UniqueTagList(replacement));
     }
 
     /**
-     * Updates this person with the details of {@code replacement}.
+     * Updates this task with the details of {@code replacement}.
      */
     public void resetData(ReadOnlyTask replacement) {
         requireNonNull(replacement);

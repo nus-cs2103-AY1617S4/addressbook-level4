@@ -21,10 +21,10 @@ public interface Storage extends TickTaskStorage, UserPrefsStorage {
     void saveUserPrefs(UserPrefs userPrefs) throws IOException;
 
     @Override
-    String getAddressBookFilePath();
+    String getTickTaskFilePath();
 
     @Override
-    Optional<ReadOnlyTickTask> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException;
 
     @Override
     void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException;

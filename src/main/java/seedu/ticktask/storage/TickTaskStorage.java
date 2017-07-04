@@ -14,7 +14,7 @@ public interface TickTaskStorage {
     /**
      * Returns the file path of the data file.
      */
-    String getAddressBookFilePath();
+    String getTickTaskFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyTickTask}.
@@ -22,12 +22,12 @@ public interface TickTaskStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTickTask> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTickTaskFilePath()
      */
-    Optional<ReadOnlyTickTask> readAddressBook(String filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTickTask} to the storage.
@@ -39,6 +39,6 @@ public interface TickTaskStorage {
     /**
      * @see #saveAddressBook(ReadOnlyTickTask)
      */
-    void saveAddressBook(ReadOnlyTickTask addressBook, String filePath) throws IOException;
+    void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException;
 
 }
