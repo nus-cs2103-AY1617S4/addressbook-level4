@@ -30,7 +30,6 @@ By : `Team 4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
    * **`exit`** : exits the app
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
-
 ## 2. Features
 
 > **Command Format**
@@ -56,7 +55,7 @@ Format: `help`
 ### 2.2. Adding a task: `add`
 
 Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
-Format: <br> 
+Format: <br>
 >`(1) add d/DATE t/TIME n/TASK_NAME [h/TAG]...` <br>
 >`(2) add d/DATE n/TASK_NAME [h/TAG]...` <br>
 >`(3) add n/TASK_NAME [h/TAG]...` <br>
@@ -64,8 +63,7 @@ Format: <br>
 Smart Add: <br>
 >`(1) add TASK_TYPE TASK_PARAMETERS` <br>
 > TASK_TYPE **must match task type** (1) event, (2) deadline or (3) floating <br>
-> TASK_PARAMETERS **must match task parameters of task type** 
-
+> TASK_PARAMETERS **must match task parameters of task type**
 Examples:
 
 * `add d/July 10 t/5-6 e/project meeting`
@@ -78,7 +76,7 @@ Examples:
 ### 2.3. Listing tasks : `list`
 
 Shows a list of (1) incomplete, (2) complete, (3)all tasks in the task manager.<br>
-Format:  <br> 
+Format:  <br>
 >`(1) list `  or <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`list /i`<br>
 >`(2) list /c` <br>
@@ -96,7 +94,7 @@ Format: `edit INDEX [d/DATE] [t/TIME] [n/TASK_NAME] [h/TAG]...`
 > * Option fields **must match task type** (1) event, (2) deadline or (3) floating
 > * Existing values will be updated to the input values.
 > * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-> * You can remove all task's tags by typing `t/` without specifying any tags after it. 
+> * You can remove all task's tags by typing `t/` without specifying any tags after it.
 
 Examples:
 * `edit 1 d/July 10 t/5-10`<br>
@@ -171,7 +169,7 @@ Examples:
 * `find CS2103`<br>
   `mark 1`<br>
   Marks the 1st task in the results of the `find` command.
-  
+
 ### 2.10. Marking tasks : `unmark`
 Unmark the task at the specified `INDEX`. <br>
 Format: `unmark INDEX`
@@ -186,12 +184,12 @@ Examples:
 * `find CS2103`<br>
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
-  
+
 ### 2.11. Sorting tasks : `sort`
 Sort the tasks on the task manager<br>
 Format: `sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]`
 > sort the task of the specified `TASK_TYPE`. <br>
-> The TASK_TYPE **must be a valid task type** `events`, `deadline`, `floating` .
+> The TASK_TYPE **must be a valid task type** `events`, `deadline`, `floating`.
 
 * `sort events important`<br>
   Sorts the events task in the task manager by importance.
@@ -205,16 +203,15 @@ Format: `sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]`
 ### 2.11. View current data file path : `viewPath`
 
 View data file directory path. <br>
-Format: `viewPath` 
+Format: `viewPath`
 > View the directory where the data file is saved <br>
 
 ### 2.11. Updating data file
 
 Updates data file directory. : `updatePath`<br>
-Format: `updatePath [Path Directory]` 
+Format: `updatePath [Path Directory]`
 > Updates the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
-
 
 ### 2.12. Saving the data
 
@@ -236,10 +233,10 @@ Format: `exit`
 
 * **Add**  `add d/DATE t/TIME n/TASK_NAME [h/TAG]...` ` <br>
   e.g. `add d/July 10 t/5-6 e/project meeting`
-  
+
 * **List**  `list` <br>
   e.g.
-  
+
 * **Clear** : `clear`
 
 * **Edit** : `edit INDEX` <br>
@@ -253,26 +250,24 @@ Format: `exit`
 
 * **Undo** : `undo` <br>
   e.g.
-  
+
 * **Mark** : `mark INDEX` <br>
   e.g. mark 1
-  
+
 * **Mark** : `unmark INDEX` <br>
   e.g. unmark 1
-  
+
 * **Sort** : `sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]` <br>
   e.g. sort floating alpha
 
 * **View Data File Path** : `viewPath` <br>
   e.g.
-  
+
 * **Update Data File Path** : `updatePath [Path Directory]` <br>
   e.g.
-  
+
 * **Exit** : `exit` <br>
-  e.g.  
-  
-* **Help** : `help` <br>
   e.g.
 
-
+* **Help** : `help` <br>
+  e.g.
