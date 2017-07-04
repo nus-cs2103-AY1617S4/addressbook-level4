@@ -8,9 +8,9 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
+import seedu.whatsnext.model.person.BaseTask;
 import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
+import seedu.whatsnext.model.person.Floating;
 
 /**
  * Adds a person to the address book.
@@ -42,15 +42,20 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
      */
-    public AddCommand(ReadOnlyPerson person) {
-        toAdd = new Floating(person);
+    public AddCommand(BaseTask task) {
+        if(task.getType().equals("floating"))
+            toAdd = new Floating(task);
+        else if (task.getType().equals("deadline"))
+            toAdd = new Deadline(task);
+        else if (task.getType().equals("event"))
+            toAdd = new Event(task);
     }
-
+s
     @Override
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
         try {
-            model.addPerson(toAdd);
+            model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicatePersonException e) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
