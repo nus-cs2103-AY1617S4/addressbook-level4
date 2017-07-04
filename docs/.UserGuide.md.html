@@ -1,0 +1,828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>/Users/luishengjie/Documents/cs2103/cs2103_project/main/docs/.UserGuide.md.html</title>
+
+
+<style type="text/css">
+body {
+	color: #333;
+	font: 13px/1.4 "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	background: transparent;
+	color: #4183c4;
+	text-decoration: none;
+}
+
+a:active,
+a:hover {
+	outline: 0 none;
+	text-decoration: underline;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0 none;
+}
+svg:not(:root) {
+	overflow: hidden;
+}
+figure {
+	margin: 1em 40px;
+}
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace,monospace;
+	font-size: 1em;
+}
+
+pre {
+	overflow: auto;
+	font: 12px Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.markdown-body {
+	padding: 30px;
+	font-size: 16px;
+	line-height: 1.6;
+	word-wrap: break-word;
+}
+
+.markdown-body>*:first-child {
+	margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+.markdown-body .absent {
+	color: #c00;
+}
+
+.markdown-body .anchor {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	padding-right: 6px;
+	padding-left: 30px;
+	margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+	outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	position: relative;
+	margin-top: 1em;
+	margin-bottom: 16px;
+	font-weight: bold;
+	line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+	display: none;
+	color: #000;
+	vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+	padding-left: 8px;
+	margin-left: -30px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+	display: inline-block;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+	font-size: inherit;
+}
+
+.markdown-body h1 {
+	padding-bottom: 0.3em;
+	font-size: 2.25em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+	padding-bottom: 0.3em;
+	font-size: 1.75em;
+	line-height: 1.225;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+	font-size: 1.5em;
+	line-height: 1.43;
+}
+
+.markdown-body h4 {
+	font-size: 1.25em;
+}
+
+.markdown-body h5 {
+	font-size: 1em;
+}
+
+.markdown-body h6 {
+	font-size: 1em;
+	color: #777;
+}
+
+.markdown-body p,.markdown-body blockquote,
+.markdown-body ul,.markdown-body ol,
+.markdown-body dl,.markdown-body table,
+.markdown-body pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.markdown-body hr {
+	height: 4px;
+	padding: 0;
+	margin: 16px 0;
+	background-color: #e7e7e7;
+	border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+	padding-left: 2em;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.markdown-body li>p {
+	margin-top: 16px;
+}
+
+.markdown-body dl {
+	padding: 0;
+}
+
+.markdown-body dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.markdown-body dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+	padding: 0 15px;
+	color: #777;
+	border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+	margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body table {
+	display: block;
+	width: 100%;
+	overflow: auto;
+	word-break: normal;
+	word-break: keep-all;
+}
+
+.markdown-body table th {
+	font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.markdown-body img {
+	max-width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.markdown-body span.frame {
+	display: block;
+	overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+	display: block;
+	float: left;
+	width: auto;
+	padding: 7px;
+	margin: 13px 0 0;
+	overflow: hidden;
+	border: 1px solid #ddd;
+}
+
+.markdown-body span.frame span img {
+	display: block;
+	float: left;
+}
+
+.markdown-body span.frame span span {
+	display: block;
+	padding: 5px 0 0;
+	clear: both;
+	color: #333;
+}
+
+.markdown-body span.align-center {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-center>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.markdown-body span.align-center span img {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.markdown-body span.align-right {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-right>span {
+	display: block;
+	margin: 13px 0 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body span.align-right span img {
+	margin: 0;
+	text-align: right;
+}
+
+.markdown-body span.float-left {
+	display: block;
+	float: left;
+	margin-right: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+	margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+	display: block;
+	float: right;
+	margin-left: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body code,.markdown-body tt {
+	padding: 0;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	margin: 0;
+	font-size: 85%;
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after,
+.markdown-body tt:before,
+.markdown-body tt:after {
+	letter-spacing: -0.2em;
+	content: "\00a0";
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+	display: none;
+}
+
+.markdown-body del code {
+	text-decoration: inherit;
+}
+
+.markdown-body pre>code {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	word-break: normal;
+	white-space: pre;
+	background: transparent;
+	border: 0;
+}
+
+.markdown-body .highlight {
+	margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+	margin-bottom: 0;
+	word-break: normal;
+}
+
+.markdown-body pre {
+	word-wrap: normal;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+	display: inline;
+	max-width: initial;
+	padding: 0;
+	margin: 0;
+	overflow: initial;
+	line-height: inherit;
+	word-wrap: normal;
+	background-color: transparent;
+	border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after,
+.markdown-body pre tt:before,
+.markdown-body pre tt:after {
+	content: normal;
+}
+
+.highlight .pl-coc,
+.highlight .pl-entl,
+.highlight .pl-entm,
+.highlight .pl-eoa,
+.highlight .pl-mai .pl-sf,
+.highlight .pl-mm,
+.highlight .pl-pdv,
+.highlight .pl-sc,
+.highlight .pl-som,
+.highlight .pl-sr,
+.highlight .pl-v,
+.highlight .pl-vpf {
+	color: #0086b3;
+}
+.highlight .pl-eoac,
+.highlight .pl-mdht,
+.highlight .pl-mi1,
+.highlight .pl-mri,
+.highlight .pl-va,
+.highlight .pl-vpu {
+	color: #008080;
+}
+.highlight .pl-c,
+.highlight .pl-pdc {
+	color: #b4b7b4;
+	font-style: italic;
+}
+.highlight .pl-k,
+.highlight .pl-ko,
+.highlight .pl-kolp,
+.highlight .pl-mc,
+.highlight .pl-mr,
+.highlight .pl-ms,
+.highlight .pl-s,
+.highlight .pl-sok,
+.highlight .pl-st {
+	color: #6e5494;
+}
+.highlight .pl-ef,
+.highlight .pl-enf,
+.highlight .pl-enm,
+.highlight .pl-entc,
+.highlight .pl-eoi,
+.highlight .pl-sf,
+.highlight .pl-smc {
+	color: #d12089;
+}
+.highlight .pl-ens,
+.highlight .pl-eoai,
+.highlight .pl-kos,
+.highlight .pl-mh .pl-pdh,
+.highlight .pl-mp,
+.highlight .pl-pde,
+.highlight .pl-stp {
+	color: #458;
+}
+.highlight .pl-enti {
+	color: #d12089;
+	font-weight: bold;
+}
+.highlight .pl-cce,
+.highlight .pl-enc,
+.highlight .pl-kou,
+.highlight .pl-mq {
+	color: #f93;
+}
+.highlight .pl-mp1 .pl-sf {
+	color: #458;
+	font-weight: bold;
+}
+.highlight .pl-cos,
+.highlight .pl-ent,
+.highlight .pl-md,
+.highlight .pl-mdhf,
+.highlight .pl-ml,
+.highlight .pl-pdc1,
+.highlight .pl-pds,
+.highlight .pl-s1,
+.highlight .pl-scp,
+.highlight .pl-sol {
+	color: #df5000;
+}
+.highlight .pl-c1,
+.highlight .pl-cn,
+.highlight .pl-pse,
+.highlight .pl-pse .pl-s2,
+.highlight .pl-vi {
+	color: #a31515;
+}
+.highlight .pl-mb,
+.highlight .pl-pdb {
+	color: #df5000;
+	font-weight: bold;
+}
+.highlight .pl-mi,
+.highlight .pl-pdi {
+	color: #6e5494;
+	font-style: italic;
+}
+.highlight .pl-ms1 {
+	background-color: #f5f5f5;
+}
+.highlight .pl-mdh,
+.highlight .pl-mdi {
+	font-weight: bold;
+}
+.highlight .pl-mdr {
+	color: #0086b3;
+	font-weight: bold;
+}
+.highlight .pl-s2 {
+	color: #333;
+}
+.highlight .pl-ii {
+	background-color: #df5000;
+	color: #fff;
+}
+.highlight .pl-ib {
+	background-color: #f93;
+}
+.highlight .pl-id {
+	background-color: #a31515;
+	color: #fff;
+}
+.highlight .pl-iu {
+	background-color: #b4b7b4;
+}
+.highlight .pl-mo {
+	color: #969896;
+}
+
+</style>
+
+
+<script type="text/javascript">
+
+function getDocumentScrollTop() 
+{
+   var res = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+   // alert(res);
+   return res;
+}
+
+function setDocumentScrollTop(ypos) 
+{
+	window.scrollTo(0, ypos);
+}
+
+</script>
+
+
+</head>
+<body class="markdown-body">
+<h1> <a id="whatsnext---user-guide" class="anchor" href="#whatsnext---user-guide" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WhatsNext - User Guide</h1> 
+<p>By : <code>Team 4</code> &nbsp;&nbsp;&nbsp;&nbsp; Since: <code>Jun 2017</code> &nbsp;&nbsp;&nbsp;&nbsp; Licence: <code>MIT</code></p> 
+<hr /> 
+<ol> 
+ <li><a href="#quick-start">Quick Start</a></li> 
+ <li><a href="#features">Features</a></li> 
+ <li><a href="#faq">FAQ</a></li> 
+ <li><a href="#command-summary">Command Summary</a></li> 
+</ol> 
+<h2> <a id="1-quick-start" class="anchor" href="#1-quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Quick Start</h2> 
+<ol start="0"> 
+ <li> <p>Ensure you have Java version <code>1.8.0_60</code> or later installed in your Computer.<br /></p> 
+  <blockquote> 
+   <p>Having any Java 8 version is not enough. <br /> This app will not work with earlier versions of Java 8.</p> 
+  </blockquote> </li> 
+ <li> <p>Download the latest <code>whatsNext.jar</code> from the <a href="../../../.releases.md.html">releases</a> tab.</p> </li> 
+ <li> <p>Copy the file to the folder you want to use as the home folder for your Task Manager.</p> </li> 
+ <li> <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p> 
+  <blockquote> 
+   <a href="images/Ui.png" target="_blank"><img src="images/Ui.png" width="600" style="max-width:100%;" /></a> 
+  </blockquote> </li> 
+ <li> <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br /> e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p> </li> 
+ <li> <p>Some example commands you can try:</p> 
+  <ul> 
+   <li> <strong><code>list</code></strong> : lists all tasks</li> 
+   <li> <strong><code>add d/July 10 t/5-6 e/project meeting</code></strong> adds an <code>Event</code> task to your task manager.</li> 
+   <li> <strong><code>delete</code></strong><code>1</code> : deletes the 1st task shown in your current list</li> 
+   <li> <strong><code>exit</code></strong> : exits the app</li> 
+  </ul> </li> 
+ <li> <p>Refer to the <a href="#features">Features</a> section below for details of each command.<br /></p> </li> 
+</ol> 
+<h2> <a id="2-features" class="anchor" href="#2-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Features</h2> 
+<blockquote> 
+ <p><strong>Command Format</strong></p> 
+ <ul> 
+  <li>Words in <code>UPPER_CASE</code> are the parameters.</li> 
+  <li>Items in <code>SQUARE_BRACKETS</code> are optional.</li> 
+  <li>Items with <code>...</code> after them can have multiple instances.</li> 
+  <li>Parameters can be in any order.</li> 
+ </ul> 
+</blockquote> 
+<blockquote> 
+ <p><strong>Reserved Tags</strong></p> 
+ <ul> 
+  <li>Reserved tag <code>HIGH</code>, <code>MEDIUM</code>, <code>LOW</code> names are used to denote the importance of a certain task</li> 
+  <li>Tagged task will be highlighted <code>RED</code>, <code>BLUE</code>, <code>GREEN</code> </li> 
+  <li>Items with <code>...</code> after them can have multiple instances.</li> 
+  <li>Parameters can be in any order.</li> 
+ </ul> 
+</blockquote> 
+<h3> <a id="21-viewing-help--help" class="anchor" href="#21-viewing-help--help" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1. Viewing help : <code>help</code> </h3> 
+<p>Format: <code>help</code></p> 
+<blockquote> 
+ <p>Help is also shown if you enter an incorrect command e.g. <code>abcd</code> or the keyword <code>help</code></p> 
+</blockquote> 
+<h3> <a id="22-adding-a-task-add" class="anchor" href="#22-adding-a-task-add" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.2. Adding a task: <code>add</code> </h3> 
+<p>Adds an (1) event, (2) deadline or (3) floating to the task manager<br /> Format: <br /></p> 
+<blockquote> 
+ <p><code>(1) add d/DATE t/TIME n/TASK_NAME [h/TAG]...</code> <br /> <code>(2) add d/DATE n/TASK_NAME [h/TAG]...</code> <br /> <code>(3) add n/TASK_NAME [h/TAG]...</code> <br /> Tasks can have any number of tags (including 0) Smart Add: <br /> <code>(1) add TASK_TYPE TASK_PARAMETERS</code> <br /> TASK_TYPE <strong>must match task type</strong> (1) event, (2) deadline or (3) floating <br /> TASK_PARAMETERS <strong>must match task parameters of task type</strong></p> 
+</blockquote> 
+<p>Examples:</p> 
+<ul> 
+ <li><code>add d/July 10 t/5-6 e/project meeting</code></li> 
+ <li><code>add d/July 10 n/project meeting</code></li> 
+ <li><code>add n/project meeting h/CS2103</code></li> 
+ <li><code>add n/project meeting h/CS2103 h/SPECIAL_TERM</code></li> 
+</ul> 
+<br /> * `add event July 10, 5-6, project meeting` 
+<h3> <a id="23-listing-tasks--list" class="anchor" href="#23-listing-tasks--list" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.3. Listing tasks : <code>list</code> </h3> 
+<p>Shows a list of (1) incomplete, (2) complete, (3)all tasks in the task manager.<br /> Format: <br /></p> 
+<blockquote> 
+ <p><code>(1) list</code> or <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>list /i</code><br /> <code>(2) list /c</code> <br /> <code>(3) list /a</code> <br /></p> 
+</blockquote> 
+<h3> <a id="24-editing-a-task--edit" class="anchor" href="#24-editing-a-task--edit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.4. Editing a task : <code>edit</code> </h3> 
+<p>Edits an existing task in the task manager.<br /> Format: <code>edit INDEX [d/DATE] [t/TIME] [n/TASK_NAME] [h/TAG]...</code></p> 
+<blockquote> 
+ <ul> 
+  <li>Edits a task at the specified <code>INDEX</code>. The index refers to the index number shown in the last task listing.<br /> The index <strong>must be a positive integer</strong> 1, 2, 3, ...</li> 
+  <li>At least one of the optional fields must be provided.</li> 
+  <li>Option fields <strong>must match task type</strong> (1) event, (2) deadline or (3) floating</li> 
+  <li>Existing values will be updated to the input values.</li> 
+  <li>When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.</li> 
+  <li>You can remove all task's tags by typing <code>t/</code> without specifying any tags after it.</li> 
+ </ul> 
+</blockquote> 
+<p>Examples:</p> 
+<ul> 
+ <li> <p><code>edit 1 d/July 10 t/5-10</code><br /> Edits the date and time of the 1st task (event) to be <code>July 10</code> and <code>5-10</code> respectively.</p> </li> 
+ <li> <p><code>edit 2 n/cs2103 submission meeting t/</code><br /> Edits the task name of the 2nd task (deadline) to be <code>cs2103 submission</code> and clears all existing tags.</p> </li> 
+</ul> 
+<h3> <a id="25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find" class="anchor" href="#25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.5. Finding all tasks containing any keyword in their name or tags: <code>find</code> </h3> 
+<p>Finds tasks whose names or tags contain any of the given keywords.<br /> Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p> 
+<blockquote> 
+ <ul> 
+  <li>The search is case insensitive. e.g <code>meeting</code> will match <code>Meeting</code> </li> 
+  <li>The order of the keywords does not matter. e.g. <code>submission meeting</code> will match <code>submission meeting</code> </li> 
+  <li>Only the name and tags are searched.</li> 
+  <li>Only full words will be matched e.g. <code>meeting</code> will not match <code>meetings</code> </li> 
+  <li>Tasks matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>meeting</code> will match <code>submission meeting</code> </li> 
+ </ul> 
+</blockquote> 
+<p>Examples:</p> 
+<ul> 
+ <li> <code>find submission</code><br /> Returns <code>submission meeting</code> but not <code>submission</code> </li> 
+ <li> <code>find CS2103</code><br /> Returns Any person having tags <code>CS2103</code> </li> 
+</ul> 
+<h3> <a id="26-deleting-a-task--delete" class="anchor" href="#26-deleting-a-task--delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.6. Deleting a task : <code>delete</code> </h3> 
+<p>Deletes the specified task from the task manager. Irreversible.<br /> Format: <code>delete INDEX</code></p> 
+<blockquote> 
+ <p>Deletes the task at the specified <code>INDEX</code>. <br /> The index refers to the index number shown in the most recent listing.<br /> The index <strong>must be a positive integer</strong> 1, 2, 3, ...</p> 
+</blockquote> 
+<p>Examples:</p> 
+<ul> 
+ <li> <code>list</code><br /> <code>delete 2</code><br /> Deletes the 2nd task in the task manager.</li> 
+ <li> <code>find CS2103</code><br /> <code>delete 1</code><br /> Deletes the 1st task in the results of the <code>find</code> command.</li> 
+</ul> 
+<h3> <a id="27-undo-last-action--undo" class="anchor" href="#27-undo-last-action--undo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.7. Undo last action : <code>undo</code> </h3> 
+<p>Undo the last action performed by the user.<br /> Format: <code>undo</code></p> 
+<h3> <a id="28-clearing-tasks--clear" class="anchor" href="#28-clearing-tasks--clear" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.8. Clearing tasks : <code>clear</code> </h3> 
+<p>Clears (1) incomplete, (2) complete, (3)all tasks in the task manager.<br /> Clears all entries from the task manager.<br /> Format: <code>clear</code></p> 
+<blockquote> 
+ <p><code>(1) clear /i</code> <br /> <code>(2) clear</code> or <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>clear /c</code><br /> <code>(3) clear /a</code> <br /></p> 
+</blockquote> 
+<h3> <a id="29-marking-tasks--mark" class="anchor" href="#29-marking-tasks--mark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.9. Marking tasks : <code>mark</code> </h3> 
+<p>Mark the task at the specified <code>INDEX</code> to complete the task. <br /> Format: <code>mark INDEX</code></p> 
+<blockquote> 
+ <p>mark the task at the specified <code>INDEX</code>. <br /> The index refers to the index number shown in the most recent listing.<br /> The index <strong>must be a positive integer</strong> 1, 2, 3, ... Examples:</p> 
+</blockquote> 
+<ul> 
+ <li> <code>list</code><br /> <code>mark 2</code><br /> Marks the 2nd task in the task manager.</li> 
+ <li> <code>find CS2103</code><br /> <code>mark 1</code><br /> Marks the 1st task in the results of the <code>find</code> command.</li> 
+</ul> 
+<h3> <a id="210-marking-tasks--unmark" class="anchor" href="#210-marking-tasks--unmark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.10. Marking tasks : <code>unmark</code> </h3> 
+<p>Unmark the task at the specified <code>INDEX</code>. <br /> Format: <code>unmark INDEX</code></p> 
+<blockquote> 
+ <p>Unmark the task at the specified <code>INDEX</code>. <br /> The index refers to the index number shown in the most recent listing.<br /> The index <strong>must be a positive integer</strong> 1, 2, 3, ... Examples:</p> 
+</blockquote> 
+<ul> 
+ <li> <code>list</code><br /> <code>unmark 2</code><br /> Unmarks the 2nd task in the task manager.</li> 
+ <li> <code>find CS2103</code><br /> <code>unmark 1</code><br /> Unmarks the 1st task in the results of the <code>find</code> command.</li> 
+</ul> 
+<h3> <a id="211-sorting-tasks--sort" class="anchor" href="#211-sorting-tasks--sort" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.11. Sorting tasks : <code>sort</code> </h3> 
+<p>Sort the tasks on the task manager<br /> Format: <code>sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]</code></p> 
+<blockquote> 
+ <p>sort the task of the specified <code>TASK_TYPE</code>. <br /> The TASK_TYPE <strong>must be a valid task type</strong> <code>events</code>, <code>deadline</code>, <code>floating</code> .</p> 
+</blockquote> 
+<ul> 
+ <li> <code>sort events important</code><br /> Sorts the events task in the task manager by importance.</li> 
+ <li> <code>sort events date</code><br /> Sorts the events task in the task manager by date and time.</li> 
+ <li> <code>sort deadline date</code><br /> Sorts the deadline task in the task manager by date.</li> 
+ <li> <code>sort floating alpha</code><br /> Sorts the floating task in the task manager alphabetically.</li> 
+</ul> 
+<h3> <a id="211-view-current-data-file-path--viewpath" class="anchor" href="#211-view-current-data-file-path--viewpath" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.11. View current data file path : <code>viewPath</code> </h3> 
+<p>View data file directory path. <br /> Format: <code>viewPath</code></p> 
+<blockquote> 
+ <p>View the directory where the data file is saved <br /></p> 
+</blockquote> 
+<h3> <a id="211-updating-data-file" class="anchor" href="#211-updating-data-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.11. Updating data file</h3> 
+<p>Updates data file directory. : <code>updatePath</code><br /> Format: <code>updatePath [Path Directory]</code></p> 
+<blockquote> 
+ <p>Updates the directory where the data file is saved <br /> Task Manager data are saved in the specified path directory.<br /></p> 
+</blockquote> 
+<h3> <a id="212-saving-the-data" class="anchor" href="#212-saving-the-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.12. Saving the data</h3> 
+<p>Task Manager data are saved in the hard disk automatically after any command that changes the data.<br /> There is no need to save manually.</p> 
+<h3> <a id="213-exiting-the-program--exit" class="anchor" href="#213-exiting-the-program--exit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.13. Exiting the program : <code>exit</code> </h3> 
+<p>Exits the program.<br /> Format: <code>exit</code></p> 
+<h2> <a id="3-faq" class="anchor" href="#3-faq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. FAQ</h2> 
+<p><strong>Q</strong>: How do I transfer my data to another Computer?<br /> <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Task Manger folder.</p> 
+<h2> <a id="4-command-summary" class="anchor" href="#4-command-summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Command Summary</h2> 
+<ul> 
+ <li> <p><strong>Add</strong> <code>add d/DATE t/TIME n/TASK_NAME [h/TAG]...</code> <code>&lt;br&gt; e.g.</code>add d/July 10 t/5-6 e/project meeting`</p> </li> 
+ <li> <p><strong>List</strong> <code>list</code> <br /> e.g.</p> </li> 
+ <li> <p><strong>Clear</strong> : <code>clear</code></p> </li> 
+ <li> <p><strong>Edit</strong> : <code>edit INDEX</code> <br /> e.g. <code>edit 3</code></p> </li> 
+ <li> <p><strong>Delete</strong> : <code>delete INDEX</code> <br /> e.g. <code>delete 3</code></p> </li> 
+ <li> <p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code> <br /> e.g. <code>find CS2103 Exams</code></p> </li> 
+ <li> <p><strong>Undo</strong> : <code>undo</code> <br /> e.g.</p> </li> 
+ <li> <p><strong>Mark</strong> : <code>mark INDEX</code> <br /> e.g. mark 1</p> </li> 
+ <li> <p><strong>Mark</strong> : <code>unmark INDEX</code> <br /> e.g. unmark 1</p> </li> 
+ <li> <p><strong>Sort</strong> : <code>sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]</code> <br /> e.g. sort floating alpha</p> </li> 
+ <li> <p><strong>View Data File Path</strong> : <code>viewPath</code> <br /> e.g.</p> </li> 
+ <li> <p><strong>Update Data File Path</strong> : <code>updatePath [Path Directory]</code> <br /> e.g.</p> </li> 
+ <li> <p><strong>Exit</strong> : <code>exit</code> <br /> e.g.</p> </li> 
+ <li> <p><strong>Help</strong> : <code>help</code> <br /> e.g.</p> </li> 
+</ul>
+</body>
+</html>
