@@ -4,12 +4,12 @@
 //import static org.junit.Assert.assertTrue;
 //import static org.junit.Assert.fail;
 //import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 //import static seedu.whatsnext.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
@@ -205,14 +205,14 @@
 //        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 //        assertParseException(AddCommand.COMMAND_WORD + " wrong args wrong args", expectedMessage);
 //        assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name 12345 "
-//                + PREFIX_EMAIL + "valid@email.butNoPhonePrefix "
+//                + PREFIX_TIME + "valid@email.butNoPhonePrefix "
 //                + PREFIX_ADDRESS + "valid,address", expectedMessage);
 //        assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-//                + PREFIX_PHONE + "12345 valid@email.butNoPrefix "
+//                + PREFIX_DATE + "12345 valid@email.butNoPrefix "
 //                + PREFIX_ADDRESS + "valid, address", expectedMessage);
 //        assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-//                + PREFIX_PHONE + "12345 "
-//                + PREFIX_EMAIL + "valid@email.butNoAddressPrefix valid, address",
+//                + PREFIX_DATE + "12345 "
+//                + PREFIX_TIME + "valid@email.butNoAddressPrefix valid, address",
 //                expectedMessage);
 //    }
 //
@@ -220,26 +220,26 @@
 //    public void execute_add_invalidPersonData() {
 //        assertParseException(AddCommand.COMMAND_WORD + " "
 //                + PREFIX_NAME + "[]\\[;] "
-//                + PREFIX_PHONE + "12345 "
-//                + PREFIX_EMAIL + "valid@e.mail "
+//                + PREFIX_DATE + "12345 "
+//                + PREFIX_TIME + "valid@e.mail "
 //                + PREFIX_ADDRESS + "valid, address",
 //                Name.MESSAGE_NAME_CONSTRAINTS);
 //        assertParseException(AddCommand.COMMAND_WORD + " "
 //                + PREFIX_NAME + "Valid Name "
-//                + PREFIX_PHONE + "not_numbers "
-//                + PREFIX_EMAIL + "valid@e.mail "
+//                + PREFIX_DATE + "not_numbers "
+//                + PREFIX_TIME + "valid@e.mail "
 //                + PREFIX_ADDRESS + "valid, address",
-//                Phone.MESSAGE_PHONE_CONSTRAINTS);
+//                Phone.MESSAGE_DATE_CONSTRAINTS);
 //        assertParseException(AddCommand.COMMAND_WORD + " "
 //                + PREFIX_NAME + "Valid Name "
-//                + PREFIX_PHONE + "12345 "
-//                + PREFIX_EMAIL + "notAnEmail "
+//                + PREFIX_DATE + "12345 "
+//                + PREFIX_TIME + "notAnEmail "
 //                + PREFIX_ADDRESS + "valid, address",
-//                Email.MESSAGE_EMAIL_CONSTRAINTS);
+//                Email.MESSAGE_TIME_CONSTRAINTS);
 //        assertParseException(AddCommand.COMMAND_WORD + " "
 //                + PREFIX_NAME + "Valid Name "
-//                + PREFIX_PHONE + "12345 "
-//                + PREFIX_EMAIL + "valid@e.mail "
+//                + PREFIX_DATE + "12345 "
+//                + PREFIX_TIME + "valid@e.mail "
 //                + PREFIX_ADDRESS + "valid, address "
 //                + PREFIX_TAG + "invalid_-[.tag",
 //                Tag.MESSAGE_TAG_CONSTRAINTS);
@@ -269,7 +269,7 @@
 //        model.addPerson(toBeAdded); // person already in internal address book
 //
 //        // execute command and verify result
-//        assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_PERSON);
+//        assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 //
 //    }
 //
@@ -309,7 +309,7 @@
 //     *                    based on visible index.
 //     */
 //    private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
-//        String expectedMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+//        String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 //        TestDataHelper helper = new TestDataHelper();
 //        List<Person> personList = helper.generatePersonList(2);
 //
@@ -342,7 +342,7 @@
 //        helper.addToModel(model, threePersons);
 //
 //        assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
-//                String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2), expectedModel);
+//                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
 //        assertEquals(INDEX_SECOND_PERSON, targetedJumpIndex);
 //        assertEquals(model.getFilteredPersonList().get(1), threePersons.get(1));
 //    }
@@ -369,7 +369,7 @@
 //        helper.addToModel(model, threePersons);
 //
 //        assertCommandSuccess(DeleteCommand.COMMAND_WORD + " 2",
-//                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, threePersons.get(1)), expectedModel);
+//                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threePersons.get(1)), expectedModel);
 //    }
 //
 //
@@ -449,7 +449,7 @@
 //            logic.execute(invalidCommandExecute);
 //            fail("The expected CommandException was not thrown.");
 //        } catch (CommandException ce) {
-//            assertEquals(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ce.getMessage());
+//            assertEquals(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ce.getMessage());
 //        }
 //
 //        String expectedMessage = String.format(HistoryCommand.MESSAGE_SUCCESS,
@@ -499,8 +499,8 @@
 //            cmd.append(AddCommand.COMMAND_WORD);
 //
 //            cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
-//            cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
-//            cmd.append(" " + PREFIX_PHONE.getPrefix()).append(p.getPhone());
+//            cmd.append(" " + PREFIX_TIME.getPrefix()).append(p.getEmail());
+//            cmd.append(" " + PREFIX_DATE.getPrefix()).append(p.getPhone());
 //            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getAddress());
 //
 //            Set<Tag> tags = p.getTags();

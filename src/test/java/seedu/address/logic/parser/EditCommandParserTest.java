@@ -4,17 +4,17 @@
 //import static org.junit.Assert.fail;
 //import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_AMY;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_AMY;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_AMY;
-//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_AMY;
-//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DATE_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DATE_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_FRIEND;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
@@ -38,10 +38,10 @@
 //public class EditCommandParserTest {
 //
 //    private static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-//    private static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-//    private static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-//    private static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-//    private static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+//    private static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
+//    private static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
+//    private static final String EMAIL_DESC_AMY = " " + PREFIX_TIME + VALID_EMAIL_AMY;
+//    private static final String EMAIL_DESC_BOB = " " + PREFIX_TIME + VALID_EMAIL_BOB;
 //    private static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
 //    private static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 //    private static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -49,8 +49,8 @@
 //    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 //
 //    private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-//    private static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-//    private static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+//    private static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "911a"; // 'a' not allowed in phones
+//    private static final String INVALID_EMAIL_DESC = " " + PREFIX_TIME + "bob!yahoo"; // missing '@' symbol
 //    private static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
 //    private static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 //
@@ -89,17 +89,17 @@
 //    @Test
 //    public void parse_invalidValue_failure() {
 //        assertParseFailure("1" + INVALID_NAME_DESC, Name.MESSAGE_NAME_CONSTRAINTS); // invalid name
-//        assertParseFailure("1" + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS); // invalid phone
-//        assertParseFailure("1" + INVALID_EMAIL_DESC, Email.MESSAGE_EMAIL_CONSTRAINTS); // invalid email
+//        assertParseFailure("1" + INVALID_DATE_DESC, Phone.MESSAGE_DATE_CONSTRAINTS); // invalid phone
+//        assertParseFailure("1" + INVALID_EMAIL_DESC, Email.MESSAGE_TIME_CONSTRAINTS); // invalid email
 //        assertParseFailure("1" + INVALID_ADDRESS_DESC, Address.MESSAGE_ADDRESS_CONSTRAINTS); // invalid address
 //        assertParseFailure("1" + INVALID_TAG_DESC, Tag.MESSAGE_TAG_CONSTRAINTS); // invalid tag
 //
 //        // invalid phone followed by valid email
-//        assertParseFailure("1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_PHONE_CONSTRAINTS);
+//        assertParseFailure("1" + INVALID_DATE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_DATE_CONSTRAINTS);
 //
 //        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
 //        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-//        assertParseFailure("1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS);
+//        assertParseFailure("1" + DATE_DESC_BOB + INVALID_DATE_DESC, Phone.MESSAGE_DATE_CONSTRAINTS);
 //
 //        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
 //        // parsing it together with a valid tag results in error
@@ -108,18 +108,18 @@
 //        assertParseFailure("1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_TAG_CONSTRAINTS);
 //
 //        // multiple invalid values, but only the first invalid value is captured
-//        assertParseFailure("1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+//        assertParseFailure("1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_DATE_AMY,
 //                Name.MESSAGE_NAME_CONSTRAINTS);
 //    }
 //
 //    @Test
 //    public void parse_allFieldsSpecified_success() throws Exception {
 //        Index targetIndex = INDEX_SECOND_PERSON;
-//        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
+//        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TAG_DESC_HUSBAND
 //                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-//                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+//                .withPhone(VALID_DATE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
 //                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 //
@@ -129,9 +129,9 @@
 //    @Test
 //    public void parse_someFieldsSpecified_success() throws Exception {
 //        Index targetIndex = INDEX_FIRST_PERSON;
-//        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+//        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + EMAIL_DESC_AMY;
 //
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_DATE_BOB)
 //                .withEmail(VALID_EMAIL_AMY).build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 //
@@ -148,8 +148,8 @@
 //        assertParseSuccess(userInput, expectedCommand);
 //
 //        // phone
-//        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-//        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+//        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
+//        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_DATE_AMY).build();
 //        expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(userInput, expectedCommand);
 //
@@ -175,11 +175,11 @@
 //    @Test
 //    public void parse_multipleRepeatedFields_acceptsLast() throws Exception {
 //        Index targetIndex = INDEX_FIRST_PERSON;
-//        String userInput = targetIndex.getOneBased()  + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-//                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-//                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+//        String userInput = targetIndex.getOneBased()  + DATE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+//                + TAG_DESC_FRIEND + DATE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+//                + DATE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 //
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_DATE_BOB)
 //                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
 //                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
 //                .build();
@@ -192,15 +192,15 @@
 //    public void parse_invalidValueFollowedByValidValue_success() throws Exception {
 //        // no other valid values specified
 //        Index targetIndex = INDEX_FIRST_PERSON;
-//        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+//        String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_BOB;
+//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_DATE_BOB).build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(userInput, expectedCommand);
 //
 //        // other valid values specified
-//        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-//                + PHONE_DESC_BOB;
-//        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+//        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_DATE_DESC + ADDRESS_DESC_BOB
+//                + DATE_DESC_BOB;
+//        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_DATE_BOB).withEmail(VALID_EMAIL_BOB)
 //                .withAddress(VALID_ADDRESS_BOB).build();
 //        expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(userInput, expectedCommand);

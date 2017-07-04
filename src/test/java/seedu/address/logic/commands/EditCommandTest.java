@@ -5,7 +5,7 @@
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_AMY;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_BOB;
-//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DATE_BOB;
 //import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
@@ -42,7 +42,7 @@
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
 //        EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON, descriptor);
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -56,14 +56,14 @@
 //        ReadOnlyPerson lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 //
 //        PersonBuilder personInList = new PersonBuilder(lastPerson);
-//        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+//        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_DATE_BOB)
 //                .withTags(VALID_TAG_HUSBAND).build();
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+//                .withPhone(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
 //        EditCommand editCommand = prepareCommand(indexLastPerson, descriptor);
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.updatePerson(lastPerson, editedPerson);
@@ -76,7 +76,7 @@
 //        EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
 //        ReadOnlyPerson editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //
@@ -92,7 +92,7 @@
 //        EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -106,7 +106,7 @@
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
 //        EditCommand editCommand = prepareCommand(INDEX_SECOND_PERSON, descriptor);
 //
-//        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+//        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
 //    }
 //
 //    @Test
@@ -118,7 +118,7 @@
 //        EditCommand editCommand = prepareCommand(INDEX_FIRST_PERSON,
 //                new EditPersonDescriptorBuilder(personInList).build());
 //
-//        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+//        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
 //    }
 //
 //    @Test
@@ -127,7 +127,7 @@
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
 //        EditCommand editCommand = prepareCommand(outOfBoundIndex, descriptor);
 //
-//        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 //    }
 //
 //    /**
@@ -144,7 +144,7 @@
 //        EditCommand editCommand = prepareCommand(outOfBoundIndex,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 //
-//        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
