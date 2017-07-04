@@ -17,12 +17,12 @@ import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#equals(Object)
+ * @see Floating#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniquePersonList implements Iterable<Floating> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Floating> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -42,7 +42,7 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(new Person(toAdd));
+        internalList.add(new Floating(toAdd));
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
 
-        Person personToUpdate = internalList.get(index);
+        Floating personToUpdate = internalList.get(index);
         if (!personToUpdate.equals(editedPerson) && internalList.contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
@@ -94,17 +94,17 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersons(List<? extends ReadOnlyPerson> persons) throws DuplicatePersonException {
         final UniquePersonList replacement = new UniquePersonList();
         for (final ReadOnlyPerson person : persons) {
-            replacement.add(new Person(person));
+            replacement.add(new Floating(person));
         }
         setPersons(replacement);
     }
 
-    public UnmodifiableObservableList<Person> asObservableList() {
+    public UnmodifiableObservableList<Floating> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Floating> iterator() {
         return internalList.iterator();
     }
 

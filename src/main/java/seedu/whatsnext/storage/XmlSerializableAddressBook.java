@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.ReadOnlyAddressBook;
-import seedu.whatsnext.model.person.Person;
+import seedu.whatsnext.model.person.Floating;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.tag.Tag;
 
@@ -47,7 +47,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<ReadOnlyPerson> getPersonList() {
-        final ObservableList<Person> persons = this.persons.stream().map(p -> {
+        final ObservableList<Floating> persons = this.persons.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {

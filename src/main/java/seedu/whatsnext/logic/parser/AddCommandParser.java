@@ -14,11 +14,11 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.person.Address;
+import seedu.whatsnext.model.person.BaseTask;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
-import seedu.whatsnext.model.person.Person;
+import seedu.whatsnext.model.person.Floating;
+import seedu.whatsnext.model.person.TaskName;
 import seedu.whatsnext.model.person.Phone;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.tag.Tag;
 
 /**
@@ -40,15 +40,15 @@ public class AddCommandParser {
         }
 
         try {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+
+            TaskName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_DATE)).get();
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_TIME)).get();
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            ReadOnlyPerson person = new Person(name, phone, email, address, tagList);
+            BaseTask task = new Floating(name, tagList);
 
-            return new AddCommand(person);
+            return new AddCommand(task);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }

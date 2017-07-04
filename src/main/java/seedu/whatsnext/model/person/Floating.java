@@ -11,72 +11,40 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Task in the WhatsNext application.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Floating implements BaseTask {
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private TaskName name;
+    private boolean isCompleted;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Floating(TaskName name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        isCompleted = false;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
     /**
-     * Creates a copy of the given ReadOnlyPerson.
+     * Creates a copy of the given BasicTask.
      */
-    public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),
-                source.getTags());
+    public Floating(BaseTask source) {
+        this(source.getName(), source.getTags());
     }
 
-    public void setName(Name name) {
+    public void setName(TaskName name) {
         this.name = requireNonNull(name);
     }
 
     @Override
-    public Name getName() {
+    public TaskName getName() {
         return name;
-    }
-
-    public void setPhone(Phone phone) {
-        this.phone = requireNonNull(phone);
-    }
-
-    @Override
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public void setEmail(Email email) {
-        this.email = requireNonNull(email);
-    }
-
-    @Override
-    public Email getEmail() {
-        return email;
-    }
-
-    public void setAddress(Address address) {
-        this.address = requireNonNull(address);
-    }
-
-    @Override
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -98,32 +66,46 @@ public class Person implements ReadOnlyPerson {
     /**
      * Updates this person with the details of {@code replacement}.
      */
-    public void resetData(ReadOnlyPerson replacement) {
+    public void resetData(BaseTask replacement) {
         requireNonNull(replacement);
 
         this.setName(replacement.getName());
-        this.setPhone(replacement.getPhone());
-        this.setEmail(replacement.getEmail());
-        this.setAddress(replacement.getAddress());
         this.setTags(replacement.getTags());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
+                || (other instanceof BaseTask // instanceof handles nulls
+                && this.isSameStateAs((BaseTask) other));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, tags);
     }
 
     @Override
     public String toString() {
         return getAsText();
     }
+
+	@Override
+	public boolean getIsCompleted() {
+		return isCompleted;
+	}
+
+	@Override
+	public void setCompleted() {
+		isCompleted = true;
+
+	}
+
+	@Override
+	public void setIncompleted() {
+		isCompleted = false;
+
+	}
 
 }

@@ -16,8 +16,8 @@ import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
-import seedu.whatsnext.model.person.Person;
+import seedu.whatsnext.model.person.TaskName;
+import seedu.whatsnext.model.person.Floating;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
@@ -71,7 +71,7 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Floating editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
             model.updatePerson(personToEdit, editedPerson);
@@ -88,17 +88,17 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(ReadOnlyPerson personToEdit,
+    private static Floating createEditedPerson(ReadOnlyPerson personToEdit,
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        TaskName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Floating(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private TaskName name;
         private Phone phone;
         private Email email;
         private Address address;
@@ -147,11 +147,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.tags);
         }
 
-        public void setName(Name name) {
+        public void setName(TaskName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
