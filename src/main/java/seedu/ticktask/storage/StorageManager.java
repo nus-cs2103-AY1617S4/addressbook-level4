@@ -51,30 +51,30 @@ public class StorageManager extends ComponentManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public String getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public String getTickTaskFilePath() {
+        return addressBookStorage.getTickTaskFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTickTask> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
+        return readTickTask(addressBookStorage.getTickTaskFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTickTask> readAddressBook(String filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return addressBookStorage.readTickTask(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+        saveTickTask(addressBook, addressBookStorage.getTickTaskFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTickTask addressBook, String filePath) throws IOException {
+    public void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveTickTask(addressBook, filePath);
     }
 
 

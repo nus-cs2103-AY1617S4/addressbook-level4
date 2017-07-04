@@ -15,7 +15,7 @@ import seedu.ticktask.model.task.Time;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         try {
             return new Task[] {
 
@@ -43,15 +43,15 @@ public class SampleDataUtil {
         }
     }
 
-    public static ReadOnlyTickTask getSampleAddressBook() {
+    public static ReadOnlyTickTask getSampleTickTask() {
         try {
             TickTask sampleAb = new TickTask();
-            for (Task sampleTask : getSamplePersons()) {
+            for (Task sampleTask : getSampleTasks()) {
                 sampleAb.addTask(sampleTask);
             }
             return sampleAb;
         } catch (DuplicateTaskException e) {
-            throw new AssertionError("sample data cannot contain duplicate persons", e);
+            throw new AssertionError("sample data cannot contain duplicate tasks", e);
         }
     }
 

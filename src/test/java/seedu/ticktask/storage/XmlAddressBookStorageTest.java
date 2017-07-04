@@ -35,7 +35,7 @@ public class XmlAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyTickTask> readAddressBook(String filePath) throws Exception {
-        return new XmlTickTaskStorage(filePath).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new XmlTickTaskStorage(filePath).readTickTask(addToTestDataPathIfNotNull(filePath));
     }
 
     private String addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -68,21 +68,21 @@ public class XmlAddressBookStorageTest {
         XmlTickTaskStorage xmlAddressBookStorage = new XmlTickTaskStorage(filePath);
 
         //Save in new file and read back
-        xmlAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyTickTask readBack = xmlAddressBookStorage.readAddressBook(filePath).get();
+        xmlAddressBookStorage.saveTickTask(original, filePath);
+        ReadOnlyTickTask readBack = xmlAddressBookStorage.readTickTask(filePath).get();
         assertEquals(original, new TickTask(readBack));
 
         //Modify data, overwrite exiting file, and read back
         original.addTask(new Task(td.hoon));
         original.removePerson(new Task(td.alice));
-        xmlAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = xmlAddressBookStorage.readAddressBook(filePath).get();
+        xmlAddressBookStorage.saveTickTask(original, filePath);
+        readBack = xmlAddressBookStorage.readTickTask(filePath).get();
         assertEquals(original, new TickTask(readBack));
 
         //Save and read without specifying file path
         original.addTask(new Task(td.ida));
         xmlAddressBookStorage.saveAddressBook(original); //file path not specified
-        readBack = xmlAddressBookStorage.readAddressBook().get(); //file path not specified
+        readBack = xmlAddressBookStorage.readTickTask().get(); //file path not specified
         assertEquals(original, new TickTask(readBack));
 
     }
@@ -94,7 +94,7 @@ public class XmlAddressBookStorageTest {
     }
 
     private void saveAddressBook(ReadOnlyTickTask addressBook, String filePath) throws IOException {
-        new XmlTickTaskStorage(filePath).saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+        new XmlTickTaskStorage(filePath).saveTickTask(addressBook, addToTestDataPathIfNotNull(filePath));
     }
 
     @Test
