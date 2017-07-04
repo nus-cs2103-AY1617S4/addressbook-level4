@@ -3,43 +3,43 @@ package seedu.whatsnext.model;
 import java.util.Set;
 
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
-import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
-import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
+import seedu.whatsnext.model.person.BaseTask;
+import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    void resetData(ReadOnlyTaskManager newData);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskManager getTaskManager();
 
     /** Deletes the given person. */
-    void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
+    void deleteTask(BaseTask target) throws TaskNotFoundException;
 
     /** Adds the given person */
-    void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
+    void addTask(BaseTask baseTask) throws DuplicateTaskException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
-     * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
-     * @throws PersonNotFoundException if {@code target} could not be found in the list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
+     * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
-    void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
-            throws DuplicatePersonException, PersonNotFoundException;
+    void updateTask(BaseTask target, BaseTask editedTask)
+            throws DuplicateTaskException, TaskNotFoundException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
-    UnmodifiableObservableList<ReadOnlyPerson> getFilteredPersonList();
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    UnmodifiableObservableList<BaseTask> getFilteredTaskList();
 
-    /** Updates the filter of the filtered person list to show all persons */
+    /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered person list to filter by the given keywords*/
-    void updateFilteredPersonList(Set<String> keywords);
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
+    void updateFilteredTaskList(Set<String> keywords);
 
 }

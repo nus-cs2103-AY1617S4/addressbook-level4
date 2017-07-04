@@ -50,7 +50,7 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
         try {
-            model.addPerson(toAdd);
+            model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicatePersonException e) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

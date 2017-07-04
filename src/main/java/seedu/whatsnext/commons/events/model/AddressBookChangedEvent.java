@@ -1,14 +1,14 @@
 package seedu.whatsnext.commons.events.model;
 
 import seedu.whatsnext.commons.events.BaseEvent;
-import seedu.whatsnext.model.ReadOnlyAddressBook;
+import seedu.whatsnext.model.ReadOnlyTaskManager;
 
 /** Indicates the AddressBook in the model has changed*/
 public class AddressBookChangedEvent extends BaseEvent {
 
-    public final ReadOnlyAddressBook data;
+    public final ReadOnlyTaskManager data;
 
-    public AddressBookChangedEvent(ReadOnlyAddressBook data) {
+    public AddressBookChangedEvent(ReadOnlyTaskManager data) {
         this.data = data;
     }
 

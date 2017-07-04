@@ -22,7 +22,7 @@ import seedu.whatsnext.model.person.Floating;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
-import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
+import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
 import seedu.whatsnext.model.tag.Tag;
 
 /**
@@ -66,7 +66,7 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
+        List<ReadOnlyPerson> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -76,10 +76,10 @@ public class EditCommand extends Command {
         Floating editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
-            model.updatePerson(personToEdit, editedPerson);
+            model.updateTask(personToEdit, editedPerson);
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } catch (PersonNotFoundException pnfe) {
+        } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target person cannot be missing");
         }
         model.updateFilteredListToShowAll();

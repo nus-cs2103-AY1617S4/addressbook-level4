@@ -5,7 +5,7 @@ import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
-import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
+import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.
@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
 
-        UnmodifiableObservableList<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
+        UnmodifiableObservableList<ReadOnlyPerson> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -40,8 +40,8 @@ public class DeleteCommand extends Command {
         ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         try {
-            model.deletePerson(personToDelete);
-        } catch (PersonNotFoundException pnfe) {
+            model.deleteTask(personToDelete);
+        } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
 
