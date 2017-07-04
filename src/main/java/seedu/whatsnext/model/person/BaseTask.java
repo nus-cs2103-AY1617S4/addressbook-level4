@@ -10,8 +10,12 @@ import seedu.whatsnext.model.tag.Tag;
  */
 public interface BaseTask {
 
-    Name getName();
+    TaskName getName();
     Set<Tag> getTags();
+    boolean getIsCompleted();
+    void setCompleted();
+    void setIncompleted();
+
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
