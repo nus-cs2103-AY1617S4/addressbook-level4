@@ -1,30 +1,30 @@
 //package guitests;
 //
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 //
 //import org.junit.Test;
 //
 //import guitests.guihandles.PersonCardHandle;
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.FindCommand;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.PersonBuilder;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.commands.EditCommand;
+//import seedu.whatsnext.logic.commands.FindCommand;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.tag.Tag;
+//import seedu.whatsnext.testutil.PersonBuilder;
 //
 //// TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 //public class EditCommandTest extends AddressBookGuiTest {

@@ -1,4 +1,4 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
@@ -6,10 +6,10 @@
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.Model;
-//import seedu.address.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.logic.commands.exceptions.CommandException;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
 //
 ///**
 // * Contains helper methods for testing commands.

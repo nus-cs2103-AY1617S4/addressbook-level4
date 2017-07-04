@@ -4,11 +4,11 @@
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.Messages;
-//import seedu.address.logic.commands.ClearCommand;
-//import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.logic.commands.FindCommand;
-//import seedu.address.model.person.Person;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.logic.commands.ClearCommand;
+//import seedu.whatsnext.logic.commands.DeleteCommand;
+//import seedu.whatsnext.logic.commands.FindCommand;
+//import seedu.whatsnext.model.person.Person;
 //
 //public class FindCommandTest extends AddressBookGuiTest {
 //

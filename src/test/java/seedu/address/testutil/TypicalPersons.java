@@ -1,10 +1,10 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.exceptions.DuplicatePersonException;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
 //
 ///**
 // *

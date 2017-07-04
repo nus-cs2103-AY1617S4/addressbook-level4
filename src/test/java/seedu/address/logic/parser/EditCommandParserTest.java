@@ -1,39 +1,39 @@
-//package seedu.address.logic.parser;
+//package seedu.whatsnext.logic.parser;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_ADDRESS_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_EMAIL_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_NAME_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_PHONE_AMY;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_AMY;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_PHONE_BOB;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_FRIEND;
+//import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.Command;
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-//import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.commands.Command;
+//import seedu.whatsnext.logic.commands.EditCommand;
+//import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.whatsnext.logic.parser.exceptions.ParseException;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.tag.Tag;
+//import seedu.whatsnext.testutil.EditPersonDescriptorBuilder;
 //
 //public class EditCommandParserTest {
 //

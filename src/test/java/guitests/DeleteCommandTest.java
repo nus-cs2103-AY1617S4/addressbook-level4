@@ -1,15 +1,15 @@
 //package guitests;
 //
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.logic.commands.DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.commands.DeleteCommand;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 //public class DeleteCommandTest extends AddressBookGuiTest {
 //

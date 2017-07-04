@@ -1,13 +1,13 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //
-//import seedu.address.logic.commands.AddCommand;
-//import seedu.address.model.person.Person;
+//import seedu.whatsnext.logic.commands.AddCommand;
+//import seedu.whatsnext.model.person.Person;
 //
 ///**
 // * A utility class for Person.

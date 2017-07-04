@@ -2,7 +2,7 @@
 //
 //import guitests.GuiRobot;
 //import javafx.stage.Stage;
-//import seedu.address.TestApp;
+//import seedu.whatsnext.TestApp;
 //
 ///**
 // * A handler for the BrowserPanel of the UI

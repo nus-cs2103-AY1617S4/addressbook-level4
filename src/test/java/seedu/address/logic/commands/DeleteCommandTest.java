@@ -1,8 +1,8 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.Collections;
@@ -10,14 +10,14 @@
 //
 //import org.junit.Test;
 //
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.ReadOnlyPerson;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.commons.core.Messages;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.CommandHistory;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.

@@ -1,7 +1,7 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
 //
 ///**
 // * Utility class containing the constants required for tests related to EditCommand

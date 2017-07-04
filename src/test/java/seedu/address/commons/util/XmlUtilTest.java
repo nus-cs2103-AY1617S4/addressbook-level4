@@ -1,4 +1,4 @@
-//package seedu.address.commons.util;
+//package seedu.whatsnext.commons.util;
 //
 //import static org.junit.Assert.assertEquals;
 //
@@ -11,10 +11,10 @@
 //import org.junit.Test;
 //import org.junit.rules.ExpectedException;
 //
-//import seedu.address.model.AddressBook;
-//import seedu.address.storage.XmlSerializableAddressBook;
-//import seedu.address.testutil.AddressBookBuilder;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.storage.XmlSerializableAddressBook;
+//import seedu.whatsnext.testutil.AddressBookBuilder;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 //public class XmlUtilTest {
 //

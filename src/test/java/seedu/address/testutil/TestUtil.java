@@ -1,6 +1,6 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
-//import static seedu.address.model.util.SampleDataUtil.getTagSet;
+//import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
 //
 //import java.io.File;
 //import java.io.IOException;
@@ -13,16 +13,16 @@
 //import javafx.geometry.Point2D;
 //import javafx.scene.Node;
 //import junit.framework.AssertionFailedError;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.commons.util.FileUtil;
-//import seedu.address.commons.util.XmlUtil;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.commons.util.FileUtil;
+//import seedu.whatsnext.commons.util.XmlUtil;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
 //
 ///**
 // * A utility class for test cases.

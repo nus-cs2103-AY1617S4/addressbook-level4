@@ -1,16 +1,16 @@
-//package seedu.address.logic.commands;
+//package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
-//import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+//import static seedu.whatsnext.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 //
 //import org.junit.Before;
 //import org.junit.Test;
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
 //
 //public class HelpCommandTest {
 //    private boolean isEventCaught = false;

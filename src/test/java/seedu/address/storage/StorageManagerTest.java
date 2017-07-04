@@ -1,4 +1,4 @@
-//package seedu.address.storage;
+//package seedu.whatsnext.storage;
 //
 //import static junit.framework.TestCase.assertNotNull;
 //import static org.junit.Assert.assertEquals;
@@ -11,13 +11,13 @@
 //import org.junit.Test;
 //import org.junit.rules.TemporaryFolder;
 //
-//import seedu.address.commons.events.model.AddressBookChangedEvent;
-//import seedu.address.commons.events.storage.DataSavingExceptionEvent;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.testutil.EventsCollector;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.commons.events.model.AddressBookChangedEvent;
+//import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.ReadOnlyAddressBook;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.testutil.EventsCollector;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 //public class StorageManagerTest {
 //

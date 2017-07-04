@@ -1,4 +1,4 @@
-//package seedu.address.model;
+//package seedu.whatsnext.model;
 //
 //import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertTrue;
@@ -8,8 +8,8 @@
 //
 //import org.junit.Test;
 //
-//import seedu.address.testutil.AddressBookBuilder;
-//import seedu.address.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.AddressBookBuilder;
+//import seedu.whatsnext.testutil.TypicalPersons;
 //
 //public class ModelManagerTest {
 //

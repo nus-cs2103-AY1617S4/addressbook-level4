@@ -1,19 +1,19 @@
-//package seedu.address.logic;
+//package seedu.whatsnext.logic;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
 //import static org.junit.Assert.fail;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-//import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-//import static seedu.address.model.util.SampleDataUtil.getTagSet;
-//import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+//import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+//import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 //
 //import java.util.ArrayList;
 //import java.util.Arrays;
@@ -30,36 +30,36 @@
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import seedu.address.commons.core.EventsCenter;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.commons.events.model.AddressBookChangedEvent;
-//import seedu.address.commons.events.ui.JumpToListRequestEvent;
-//import seedu.address.commons.events.ui.ShowHelpRequestEvent;
-//import seedu.address.logic.commands.AddCommand;
-//import seedu.address.logic.commands.ClearCommand;
-//import seedu.address.logic.commands.Command;
-//import seedu.address.logic.commands.CommandResult;
-//import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.logic.commands.ExitCommand;
-//import seedu.address.logic.commands.FindCommand;
-//import seedu.address.logic.commands.HelpCommand;
-//import seedu.address.logic.commands.HistoryCommand;
-//import seedu.address.logic.commands.ListCommand;
-//import seedu.address.logic.commands.SelectCommand;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.PersonBuilder;
+//import seedu.whatsnext.commons.core.EventsCenter;
+//import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.commons.events.model.AddressBookChangedEvent;
+//import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
+//import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
+//import seedu.whatsnext.logic.commands.AddCommand;
+//import seedu.whatsnext.logic.commands.ClearCommand;
+//import seedu.whatsnext.logic.commands.Command;
+//import seedu.whatsnext.logic.commands.CommandResult;
+//import seedu.whatsnext.logic.commands.DeleteCommand;
+//import seedu.whatsnext.logic.commands.ExitCommand;
+//import seedu.whatsnext.logic.commands.FindCommand;
+//import seedu.whatsnext.logic.commands.HelpCommand;
+//import seedu.whatsnext.logic.commands.HistoryCommand;
+//import seedu.whatsnext.logic.commands.ListCommand;
+//import seedu.whatsnext.logic.commands.SelectCommand;
+//import seedu.whatsnext.logic.commands.exceptions.CommandException;
+//import seedu.whatsnext.logic.parser.exceptions.ParseException;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.Model;
+//import seedu.whatsnext.model.ModelManager;
+//import seedu.whatsnext.model.ReadOnlyAddressBook;
+//import seedu.whatsnext.model.UserPrefs;
+//import seedu.whatsnext.model.person.Address;
+//import seedu.whatsnext.model.person.Email;
+//import seedu.whatsnext.model.person.Name;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.tag.Tag;
+//import seedu.whatsnext.testutil.PersonBuilder;
 //
 //
 //public class LogicManagerTest {

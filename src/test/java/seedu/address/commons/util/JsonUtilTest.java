@@ -1,4 +1,4 @@
-//package seedu.address.commons.util;
+//package seedu.whatsnext.commons.util;
 //
 //import static org.junit.Assert.assertEquals;
 //
@@ -7,8 +7,8 @@
 //
 //import org.junit.Test;
 //
-//import seedu.address.testutil.SerializableTestClass;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.testutil.SerializableTestClass;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 ///**
 // * Tests JSON Read and Write

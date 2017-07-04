@@ -1,12 +1,12 @@
-//package seedu.address.testutil;
+//package seedu.whatsnext.testutil;
 //
 //import java.util.Arrays;
 //import java.util.Optional;
 //
-//import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-//import seedu.address.logic.parser.ParserUtil;
-//import seedu.address.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.commons.exceptions.IllegalValueException;
+//import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.whatsnext.logic.parser.ParserUtil;
+//import seedu.whatsnext.model.person.ReadOnlyPerson;
 //
 ///**
 // * A utility class to help with building EditPersonDescriptor objects.

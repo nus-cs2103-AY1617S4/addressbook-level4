@@ -1,15 +1,15 @@
-//package seedu.address.logic.parser;
+//package seedu.whatsnext.logic.parser;
 //
 //import static org.junit.Assert.assertEquals;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
 //
 //import org.junit.Rule;
 //import org.junit.Test;
 //import org.junit.rules.ExpectedException;
 //
-//import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.logic.parser.exceptions.ParseException;
+//import seedu.whatsnext.logic.commands.DeleteCommand;
+//import seedu.whatsnext.logic.parser.exceptions.ParseException;
 //
 ///**
 // * As we are only doing white-box testing, our test cases do not cover path variations

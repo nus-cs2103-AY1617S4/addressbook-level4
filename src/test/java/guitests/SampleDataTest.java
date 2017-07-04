@@ -4,10 +4,10 @@
 //
 //import org.junit.Test;
 //
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.util.SampleDataUtil;
-//import seedu.address.testutil.TestUtil;
+//import seedu.whatsnext.model.AddressBook;
+//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.util.SampleDataUtil;
+//import seedu.whatsnext.testutil.TestUtil;
 //
 //public class SampleDataTest extends AddressBookGuiTest {
 //    @Override
