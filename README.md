@@ -11,7 +11,7 @@
 * Automated GUI testing.
 * Support for *Build Automation* using Gradle and for
 *Continuous Integration* using Travis CI.
- 
+
 #### Site Map
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md)
