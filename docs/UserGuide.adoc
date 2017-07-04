@@ -28,7 +28,7 @@ This app will not work with earlier versions of Java 8.
 
 image::UI_Sample.jpg[width="790"]
 
-5. Type the command in the command box and press Enter to execute it.
+. Type the command in the command box and press Enter to execute it.
 
 
 e.g. typing help and pressing Enter will open the help window.
@@ -36,11 +36,9 @@ Some example commands you can try:
 
 `list` : lists all tasks
 
-`add complete tutorial 22/08 0530-6000`: adds a task named complete tutorial to the task manager
+`add n/complete tutorial s/2200 d/22/03/14`: adds a task named complete tutorial to the task manager
 
-`Delete` complete tutorial : deletes the  complete tutorial task previously added
-
-exit : exits the app
+`delete 1` : deletes the task at index 1
 
 
 Refer to the Features section below for details of each command. +
@@ -54,7 +52,7 @@ Displays the list of commands available.
 Format: `help`
 
 === Adding a task: `add`
-Adds a person to the address book. +
+Adds a task to the task manager. +
 
 Format: 
 `add n/[task name] s/[time] d/[date] t/[tags]`
@@ -77,7 +75,7 @@ Examples:
 ****
 
 === Editing a Task : `edit`
-Edits an existing person in the address book. +
+Edits an existing task in the address book. +
 
 Format: `edit [index] [prefix][new value]`
 
@@ -93,6 +91,21 @@ Edits the task name to tutorial.
 Edits the task's time to 2200.
 * `edit 0 s/2200 d/21/03/17` +
 Edits the task's time to 2200 and the date to 21/03/17.
+****
+
+=== Finding a Task : `find`
+Finds an existing task in the address book. +
+
+Format: `find [keyword(s)]`
+
+****
+* There can be more than one keyword
+****
+
+Examples:
+****
+* `find tutorial` 
+* `find wash dog`
 ****
 
 === Deleting a Task: `delete`
@@ -191,6 +204,16 @@ Edits the task name to tutorial.
 Edits the task's time to 2200.
 * `edit 2 s/2200 d/21/03/17` +
 Edits the task's time to 2200 and the date to 21/03/17.
+****
+
+=== Finding a Task
+
+Format: `find [keyword(s)]`
+
+Examples:
+****
+* `find tutorial` 
+* `find wash dog`
 ****
 
 === Deleting a Task
