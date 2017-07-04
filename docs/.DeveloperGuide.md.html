@@ -1,0 +1,1261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>/Users/luishengjie/Documents/cs2103/cs2103_project/main/docs/.DeveloperGuide.md.html</title>
+
+
+<style type="text/css">
+body {
+	color: #333;
+	font: 13px/1.4 "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	background: transparent;
+	color: #4183c4;
+	text-decoration: none;
+}
+
+a:active,
+a:hover {
+	outline: 0 none;
+	text-decoration: underline;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0 none;
+}
+svg:not(:root) {
+	overflow: hidden;
+}
+figure {
+	margin: 1em 40px;
+}
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace,monospace;
+	font-size: 1em;
+}
+
+pre {
+	overflow: auto;
+	font: 12px Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.markdown-body {
+	padding: 30px;
+	font-size: 16px;
+	line-height: 1.6;
+	word-wrap: break-word;
+}
+
+.markdown-body>*:first-child {
+	margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+.markdown-body .absent {
+	color: #c00;
+}
+
+.markdown-body .anchor {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	padding-right: 6px;
+	padding-left: 30px;
+	margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+	outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	position: relative;
+	margin-top: 1em;
+	margin-bottom: 16px;
+	font-weight: bold;
+	line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+	display: none;
+	color: #000;
+	vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+	padding-left: 8px;
+	margin-left: -30px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+	display: inline-block;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+	font-size: inherit;
+}
+
+.markdown-body h1 {
+	padding-bottom: 0.3em;
+	font-size: 2.25em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+	padding-bottom: 0.3em;
+	font-size: 1.75em;
+	line-height: 1.225;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+	font-size: 1.5em;
+	line-height: 1.43;
+}
+
+.markdown-body h4 {
+	font-size: 1.25em;
+}
+
+.markdown-body h5 {
+	font-size: 1em;
+}
+
+.markdown-body h6 {
+	font-size: 1em;
+	color: #777;
+}
+
+.markdown-body p,.markdown-body blockquote,
+.markdown-body ul,.markdown-body ol,
+.markdown-body dl,.markdown-body table,
+.markdown-body pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.markdown-body hr {
+	height: 4px;
+	padding: 0;
+	margin: 16px 0;
+	background-color: #e7e7e7;
+	border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+	padding-left: 2em;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.markdown-body li>p {
+	margin-top: 16px;
+}
+
+.markdown-body dl {
+	padding: 0;
+}
+
+.markdown-body dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.markdown-body dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+	padding: 0 15px;
+	color: #777;
+	border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+	margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body table {
+	display: block;
+	width: 100%;
+	overflow: auto;
+	word-break: normal;
+	word-break: keep-all;
+}
+
+.markdown-body table th {
+	font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.markdown-body img {
+	max-width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.markdown-body span.frame {
+	display: block;
+	overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+	display: block;
+	float: left;
+	width: auto;
+	padding: 7px;
+	margin: 13px 0 0;
+	overflow: hidden;
+	border: 1px solid #ddd;
+}
+
+.markdown-body span.frame span img {
+	display: block;
+	float: left;
+}
+
+.markdown-body span.frame span span {
+	display: block;
+	padding: 5px 0 0;
+	clear: both;
+	color: #333;
+}
+
+.markdown-body span.align-center {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-center>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.markdown-body span.align-center span img {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.markdown-body span.align-right {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-right>span {
+	display: block;
+	margin: 13px 0 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body span.align-right span img {
+	margin: 0;
+	text-align: right;
+}
+
+.markdown-body span.float-left {
+	display: block;
+	float: left;
+	margin-right: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+	margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+	display: block;
+	float: right;
+	margin-left: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body code,.markdown-body tt {
+	padding: 0;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	margin: 0;
+	font-size: 85%;
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after,
+.markdown-body tt:before,
+.markdown-body tt:after {
+	letter-spacing: -0.2em;
+	content: "\00a0";
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+	display: none;
+}
+
+.markdown-body del code {
+	text-decoration: inherit;
+}
+
+.markdown-body pre>code {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	word-break: normal;
+	white-space: pre;
+	background: transparent;
+	border: 0;
+}
+
+.markdown-body .highlight {
+	margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+	margin-bottom: 0;
+	word-break: normal;
+}
+
+.markdown-body pre {
+	word-wrap: normal;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+	display: inline;
+	max-width: initial;
+	padding: 0;
+	margin: 0;
+	overflow: initial;
+	line-height: inherit;
+	word-wrap: normal;
+	background-color: transparent;
+	border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after,
+.markdown-body pre tt:before,
+.markdown-body pre tt:after {
+	content: normal;
+}
+
+.highlight .pl-coc,
+.highlight .pl-entl,
+.highlight .pl-entm,
+.highlight .pl-eoa,
+.highlight .pl-mai .pl-sf,
+.highlight .pl-mm,
+.highlight .pl-pdv,
+.highlight .pl-sc,
+.highlight .pl-som,
+.highlight .pl-sr,
+.highlight .pl-v,
+.highlight .pl-vpf {
+	color: #0086b3;
+}
+.highlight .pl-eoac,
+.highlight .pl-mdht,
+.highlight .pl-mi1,
+.highlight .pl-mri,
+.highlight .pl-va,
+.highlight .pl-vpu {
+	color: #008080;
+}
+.highlight .pl-c,
+.highlight .pl-pdc {
+	color: #b4b7b4;
+	font-style: italic;
+}
+.highlight .pl-k,
+.highlight .pl-ko,
+.highlight .pl-kolp,
+.highlight .pl-mc,
+.highlight .pl-mr,
+.highlight .pl-ms,
+.highlight .pl-s,
+.highlight .pl-sok,
+.highlight .pl-st {
+	color: #6e5494;
+}
+.highlight .pl-ef,
+.highlight .pl-enf,
+.highlight .pl-enm,
+.highlight .pl-entc,
+.highlight .pl-eoi,
+.highlight .pl-sf,
+.highlight .pl-smc {
+	color: #d12089;
+}
+.highlight .pl-ens,
+.highlight .pl-eoai,
+.highlight .pl-kos,
+.highlight .pl-mh .pl-pdh,
+.highlight .pl-mp,
+.highlight .pl-pde,
+.highlight .pl-stp {
+	color: #458;
+}
+.highlight .pl-enti {
+	color: #d12089;
+	font-weight: bold;
+}
+.highlight .pl-cce,
+.highlight .pl-enc,
+.highlight .pl-kou,
+.highlight .pl-mq {
+	color: #f93;
+}
+.highlight .pl-mp1 .pl-sf {
+	color: #458;
+	font-weight: bold;
+}
+.highlight .pl-cos,
+.highlight .pl-ent,
+.highlight .pl-md,
+.highlight .pl-mdhf,
+.highlight .pl-ml,
+.highlight .pl-pdc1,
+.highlight .pl-pds,
+.highlight .pl-s1,
+.highlight .pl-scp,
+.highlight .pl-sol {
+	color: #df5000;
+}
+.highlight .pl-c1,
+.highlight .pl-cn,
+.highlight .pl-pse,
+.highlight .pl-pse .pl-s2,
+.highlight .pl-vi {
+	color: #a31515;
+}
+.highlight .pl-mb,
+.highlight .pl-pdb {
+	color: #df5000;
+	font-weight: bold;
+}
+.highlight .pl-mi,
+.highlight .pl-pdi {
+	color: #6e5494;
+	font-style: italic;
+}
+.highlight .pl-ms1 {
+	background-color: #f5f5f5;
+}
+.highlight .pl-mdh,
+.highlight .pl-mdi {
+	font-weight: bold;
+}
+.highlight .pl-mdr {
+	color: #0086b3;
+	font-weight: bold;
+}
+.highlight .pl-s2 {
+	color: #333;
+}
+.highlight .pl-ii {
+	background-color: #df5000;
+	color: #fff;
+}
+.highlight .pl-ib {
+	background-color: #f93;
+}
+.highlight .pl-id {
+	background-color: #a31515;
+	color: #fff;
+}
+.highlight .pl-iu {
+	background-color: #b4b7b4;
+}
+.highlight .pl-mo {
+	color: #969896;
+}
+
+</style>
+
+
+<script type="text/javascript">
+
+function getDocumentScrollTop() 
+{
+   var res = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+   // alert(res);
+   return res;
+}
+
+function setDocumentScrollTop(ypos) 
+{
+	window.scrollTo(0, ypos);
+}
+
+</script>
+
+
+</head>
+<body class="markdown-body">
+<h1> <a id="whatsnexttask-manager-application---developer-guide" class="anchor" href="#whatsnexttask-manager-application---developer-guide" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>whatsNext(Task Manager Application) - Developer Guide</h1> 
+<p>By: T01-T4 Since: Jun 2017 License: MIT</p> 
+<hr /> 
+<ol> 
+ <li><a href="#setting-up">Setting Up</a></li> 
+ <li><a href="#design">Design</a></li> 
+ <li><a href="#implementation">Implementation</a></li> 
+ <li><a href="#testing">Testing</a></li> 
+ <li><a href="#dev-ops">Dev Ops</a></li> 
+</ol> 
+<ul> 
+ <li><a href="#appendix-a--user-stories">Appendix A: User Stories</a></li> 
+ <li><a href="#appendix-b--use-cases">Appendix B: Use Cases</a></li> 
+ <li><a href="#appendix-c--non-functional-requirements">Appendix C: Non Functional Requirements</a></li> 
+ <li><a href="#appendix-d--glossary">Appendix D: Glossary</a></li> 
+ <li><a href="#appendix-e--product-survey">Appendix E : Product Survey</a></li> 
+</ul> 
+<h2> <a id="1-setting-up" class="anchor" href="#1-setting-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Setting up</h2> 
+<h3> <a id="11-prerequisites" class="anchor" href="#11-prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1. Prerequisites</h3> 
+<ol> 
+ <li> <p><strong>JDK <code>1.8.0_131</code></strong> or later<br /></p> 
+  <blockquote> 
+   <p>Having any Java 8 version is not enough. <br /> This app will not work with earlier versions of Java 8.</p> 
+  </blockquote> </li> 
+ <li> <p><strong>Eclipse</strong> IDE</p> </li> 
+ <li> <p><strong>e(fx)clipse</strong> plugin for Eclipse (Do the steps 2 onwards given in <a href="http://www.eclipse.org/efxclipse/install.html#for-the-ambitious">this page</a>)</p> </li> 
+ <li> <p><strong>Buildship Gradle Integration</strong> plugin from the Eclipse Marketplace</p> </li> 
+ <li> <p><strong>Checkstyle Plug-in</strong> plugin from the Eclipse Marketplace</p> </li> 
+</ol> 
+<h3> <a id="12-importing-the-project-into-eclipse" class="anchor" href="#12-importing-the-project-into-eclipse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2. Importing the project into Eclipse</h3> 
+<ol start="0"> 
+ <li>Fork this repo, and clone the fork to your computer</li> 
+ <li>Open Eclipse (Note: Ensure you have installed the <strong>e(fx)clipse</strong> and <strong>buildship</strong> plugins as given in the prerequisites above)</li> 
+ <li>Click <code>File</code> &gt; <code>Import</code> </li> 
+ <li>Click <code>Gradle</code> &gt; <code>Gradle Project</code> &gt; <code>Next</code> &gt; <code>Next</code> </li> 
+ <li>Click <code>Browse</code>, then locate the project's directory</li> 
+ <li>Click <code>Finish</code> </li> 
+</ol> 
+<blockquote> 
+ <ul> 
+  <li>If you are asked whether to 'keep' or 'overwrite' config files, choose to 'keep'.</li> 
+  <li>Depending on your connection speed and server load, it can even take up to 30 minutes for the set up to finish (This is because Gradle downloads library files from servers during the project set up process)</li> 
+  <li>If Eclipse auto-changed any settings files during the import process, you can discard those changes.</li> 
+ </ul> 
+</blockquote> 
+<h3> <a id="13-configuring-checkstyle" class="anchor" href="#13-configuring-checkstyle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.3. Configuring Checkstyle</h3> 
+<ol> 
+ <li>Click <code>Project</code> -&gt; <code>Properties</code> -&gt; <code>Checkstyle</code> -&gt; <code>Local Check Configurations</code> -&gt; <code>New...</code> </li> 
+ <li>Choose <code>External Configuration File</code> under <code>Type</code> </li> 
+ <li>Enter an arbitrary configuration name e.g. addressbook</li> 
+ <li>Import checkstyle configuration file found at <code>config/checkstyle/checkstyle.xml</code> </li> 
+ <li>Click OK once, go to the <code>Main</code> tab, use the newly imported check configuration.</li> 
+ <li>Tick and select <code>files from packages</code>, click <code>Change...</code>, and select the <code>resources</code> package</li> 
+ <li>Click OK twice. Rebuild project if prompted</li> 
+</ol> 
+<blockquote> 
+ <p>Note to click on the <code>files from packages</code> text after ticking in order to enable the <code>Change...</code> button</p> 
+</blockquote> 
+<h3> <a id="14-troubleshooting-project-setup" class="anchor" href="#14-troubleshooting-project-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.4. Troubleshooting project setup</h3> 
+<p><strong>Problem: Eclipse reports compile errors after new commits are pulled from Git</strong></p> 
+<ul> 
+ <li>Reason: Eclipse fails to recognize new files that appeared due to the Git pull.</li> 
+ <li>Solution: Refresh the project in Eclipse:<br /> Right click on the project (in Eclipse package explorer), choose <code>Gradle</code> -&gt; <code>Refresh Gradle Project</code>.</li> 
+</ul> 
+<p><strong>Problem: Eclipse reports some required libraries missing</strong></p> 
+<ul> 
+ <li>Reason: Required libraries may not have been downloaded during the project import.</li> 
+ <li>Solution: <a href=".UsingGradle.md.html">Run tests using Gradle</a> once (to refresh the libraries).</li> 
+</ul> 
+<h2> <a id="2-design" class="anchor" href="#2-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Design</h2> 
+<h3> <a id="21-architecture" class="anchor" href="#21-architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1. Architecture</h3> 
+<p>Author: {To be added} {To be added}</p> 
+<p><a href="images/Architecture.png" target="_blank"><img src="images/Architecture.png" width="600" style="max-width:100%;" /></a><br /> <em>Figure 2.1.1 : Architecture Diagram</em></p> 
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p> 
+<blockquote> 
+ <p>Tip: The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href=".diagrams.md.html">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.</p> 
+</blockquote> 
+<p><code>Main</code> has only one class called <a href="../src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p> 
+<ul> 
+ <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> 
+ <li>At shut down: Shuts down the components and invokes cleanup method where necessary.</li> 
+</ul> 
+<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p> 
+<ul> 
+ <li> <code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google's Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</li> 
+ <li> <code>LogsCenter</code> : Used by many classes to write log messages to the App's log file.</li> 
+</ul> 
+<p>The rest of the App consists of four components.</p> 
+<ul> 
+ <li> <a href="#ui-component"><strong><code>UI</code></strong></a> : The UI of the App.</li> 
+ <li> <a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor.</li> 
+ <li> <a href="#model-component"><strong><code>Model</code></strong></a> : Holds the data of the App in-memory.</li> 
+ <li> <a href="#storage-component"><strong><code>Storage</code></strong></a> : Reads data from, and writes data to, the hard disk.</li> 
+</ul> 
+<p>Each of the four components</p> 
+<ul> 
+ <li>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</li> 
+ <li>Exposes its functionality using a <code>{Component Name}Manager</code> class.</li> 
+</ul> 
+<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it's API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.<br /> <a href="images/LogicClassDiagram.png" target="_blank"><img src="images/LogicClassDiagram.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.1.2 : Class Diagram of the Logic Component</em></p> 
+<h4> <a id="events-driven-nature-of-the-design" class="anchor" href="#events-driven-nature-of-the-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events-Driven nature of the design</h4> 
+<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p> 
+<p><a href="images/SDforDeletePerson.png" target="_blank"><img src="images/SDforDeletePerson.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.1.3a : Component interactions for <code>delete 1</code> command (part 1)</em></p> 
+<blockquote> 
+ <p>Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.</p> 
+</blockquote> 
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br /> <a href="images/SDforDeletePersonEventHandling.png" target="_blank"><img src="images/SDforDeletePersonEventHandling.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.1.3b : Component interactions for <code>delete 1</code> command (part 2)</em></p> 
+<blockquote> 
+ <p>Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.</p> 
+</blockquote> 
+<p>The sections below give more details of each component.</p> 
+<h3> <a id="22-ui-component" class="anchor" href="#22-ui-component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.2. UI component</h3> 
+<p>Author: {To be added}</p> 
+<p><a href="images/UiClassDiagram.png" target="_blank"><img src="images/UiClassDiagram.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.2.1 : Structure of the UI Component</em></p> 
+<p><strong>API</strong> : <a href="../src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p> 
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p> 
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.<br /> For example, the layout of the <a href="../src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="../src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p> 
+<p>The <code>UI</code> component,</p> 
+<ul> 
+ <li>Executes user commands using the <code>Logic</code> component.</li> 
+ <li>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</li> 
+ <li>Responds to events raised from various parts of the App and updates the UI accordingly.</li> 
+</ul> 
+<h3> <a id="23-logic-component" class="anchor" href="#23-logic-component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.3. Logic component</h3> 
+<p>Author: {To be added}</p> 
+<p><a href="images/LogicClassDiagram.png" target="_blank"><img src="images/LogicClassDiagram.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.3.1 : Structure of the Logic Component</em></p> 
+<p><strong>API</strong> : <a href="../src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p> 
+<ol> 
+ <li> <code>Logic</code> uses the <code>Parser</code> class to parse the user command.</li> 
+ <li>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</li> 
+ <li>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</li> 
+ <li>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</li> 
+</ol> 
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute(&quot;delete 1&quot;)</code> API call.<br /> <a href="images/DeletePersonSdForLogic.png" target="_blank"><img src="images/DeletePersonSdForLogic.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.3.1 : Interactions Inside the Logic Component for the <code>delete 1</code> Command</em></p> 
+<h3> <a id="24-model-component" class="anchor" href="#24-model-component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.4. Model component</h3> 
+<p>Author: {To be added}</p> 
+<p><a href="images/ModelClassDiagram.png" target="_blank"><img src="images/ModelClassDiagram.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.4.1 : Structure of the Model Component</em></p> 
+<p><strong>API</strong> : <a href="../src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p> 
+<p>The <code>Model</code>,</p> 
+<ul> 
+ <li>stores a <code>UserPref</code> object that represents the user's preferences.</li> 
+ <li>stores the Address Book data.</li> 
+ <li>exposes a <code>UnmodifiableObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</li> 
+ <li>does not depend on any of the other three components.</li> 
+</ul> 
+<h3> <a id="25-storage-component" class="anchor" href="#25-storage-component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.5. Storage component</h3> 
+<p>Author: {To be added}</p> 
+<p><a href="images/StorageClassDiagram.png" target="_blank"><img src="images/StorageClassDiagram.png" width="800" style="max-width:100%;" /></a><br /> <em>Figure 2.5.1 : Structure of the Storage Component</em></p> 
+<p><strong>API</strong> : <a href="../src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p> 
+<p>The <code>Storage</code> component,</p> 
+<ul> 
+ <li>can save <code>UserPref</code> objects in json format and read it back.</li> 
+ <li>can save the Address Book data in xml format and read it back.</li> 
+</ul> 
+<h3> <a id="26-common-classes" class="anchor" href="#26-common-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.6. Common classes</h3> 
+<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p> 
+<h2> <a id="3-implementation" class="anchor" href="#3-implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Implementation</h2> 
+<h3> <a id="31-logging" class="anchor" href="#31-logging" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1. Logging</h3> 
+<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p> 
+<ul> 
+ <li>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>)</li> 
+ <li>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</li> 
+ <li>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</li> 
+</ul> 
+<p><strong>Logging Levels</strong></p> 
+<ul> 
+ <li> <code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</li> 
+ <li> <code>WARNING</code> : Can continue, but with caution</li> 
+ <li> <code>INFO</code> : Information showing the noteworthy actions by the App</li> 
+ <li> <code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</li> 
+</ul> 
+<h3> <a id="32-configuration" class="anchor" href="#32-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2. Configuration</h3> 
+<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>):</p> 
+<h2> <a id="4-testing" class="anchor" href="#4-testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Testing</h2> 
+<p>Tests can be found in the <code>./src/test/java</code> folder.</p> 
+<p><strong>In Eclipse</strong>:</p> 
+<ul> 
+ <li>To run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run as</code> &gt; <code>JUnit Test</code> </li> 
+ <li>To run a subset of tests, you can right-click on a test package, test class, or a test and choose to run as a JUnit test.</li> 
+</ul> 
+<p><strong>Using Gradle</strong>:</p> 
+<ul> 
+ <li>See <a href=".UsingGradle.md.html">UsingGradle.md</a> for how to run tests using Gradle.</li> 
+</ul> 
+<p>We have two types of tests:</p> 
+<ol> 
+ <li> <p><strong>GUI Tests</strong> - These are <em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>guitests</code> package.</p> </li> 
+ <li> <p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include,</p> 
+  <ol> 
+   <li> <em>Unit tests</em> targeting the lowest level methods/classes. <br /> e.g. <code>seedu.address.commons.UrlUtilTest</code> </li> 
+   <li> <em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br /> e.g. <code>seedu.address.storage.StorageManagerTest</code> </li> 
+   <li>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br /> e.g. <code>seedu.address.logic.LogicManagerTest</code> </li> 
+  </ol> </li> 
+</ol> 
+<h4> <a id="headless-gui-testing" class="anchor" href="#headless-gui-testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Headless GUI Testing</h4> 
+<p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.<br /> See <a href=".UsingGradle.md.html#running-tests">UsingGradle.md</a> to learn how to run tests in headless mode.</p> 
+<h3> <a id="41-troubleshooting-tests" class="anchor" href="#41-troubleshooting-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1. Troubleshooting tests</h3> 
+<p><strong>Problem: Tests fail because NullPointException when AssertionError is expected</strong></p> 
+<ul> 
+ <li>Reason: Assertions are not enabled for JUnit tests. This can happen if you are not using a recent Eclipse version (i.e. <em>Neon</em> or later)</li> 
+ <li>Solution: Enable assertions in JUnit tests as described <a href="http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option">here</a>. <br /> Delete run configurations created when you ran tests earlier.</li> 
+</ul> 
+<h2> <a id="5-dev-ops" class="anchor" href="#5-dev-ops" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Dev Ops</h2> 
+<h3> <a id="51-build-automation" class="anchor" href="#51-build-automation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1. Build Automation</h3> 
+<p>See <a href=".UsingGradle.md.html">UsingGradle.md</a> to learn how to use Gradle for build automation.</p> 
+<h3> <a id="52-continuous-integration" class="anchor" href="#52-continuous-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.2. Continuous Integration</h3> 
+<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href=".UsingTravis.md.html">UsingTravis.md</a> and <a href=".UsingAppVeyor.md.html">UsingAppVeyor.md</a> for more details.</p> 
+<h3> <a id="53-publishing-documentation" class="anchor" href="#53-publishing-documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.3. Publishing Documentation</h3> 
+<p>See <a href=".UsingGithubPages.md.html">UsingGithubPages.md</a> to learn how to use GitHub Pages to publish documentation to the project site.</p> 
+<h3> <a id="54-making-a-release" class="anchor" href="#54-making-a-release" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.4. Making a Release</h3> 
+<p>Here are the steps to create a new release.</p> 
+<ol> 
+ <li>Generate a JAR file <a href=".UsingGradle.md.html#creating-the-jar-file">using Gradle</a>.</li> 
+ <li>Tag the repo with the version number. e.g. <code>v0.1</code> </li> 
+ <li> <a href="https://help.github.com/articles/creating-releases/">Create a new release using GitHub</a> and upload the JAR file you created.</li> 
+</ol> 
+<h3> <a id="55-converting-documentation-to-pdf-format" class="anchor" href="#55-converting-documentation-to-pdf-format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.5. Converting Documentation to PDF format</h3> 
+<p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.</p> 
+<p>Here are the steps to convert the project documentation files to PDF format.</p> 
+<ol> 
+ <li>Make sure you have set up GitHub Pages as described in <a href=".UsingGithubPages.md.html#setting-up">UsingGithubPages.md</a>.</li> 
+ <li>Using Chrome, go to the <a href=".UsingGithubPages.md.html#viewing-the-project-site">GitHub Pages version</a> of the documentation file. <br /> e.g. For <a href=".UserGuide.md.html">UserGuide.md</a>, the URL will be <code>https://&lt;your-username-or-organization-name&gt;.github.io/addressbook-level4/docs/UserGuide.html</code>.</li> 
+ <li>Click on the <code>Print</code> option in Chrome's menu.</li> 
+ <li>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. <br /> For best results, use the settings indicated in the screenshot below. <br /> <a href="images/chrome_save_as_pdf.png" target="_blank"><img src="images/chrome_save_as_pdf.png" width="300" style="max-width:100%;" /></a><br /> <em>Figure 5.4.1 : Saving documentation as PDF files in Chrome</em> </li> 
+</ol> 
+<h3> <a id="56-managing-dependencies" class="anchor" href="#56-managing-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.6. Managing Dependencies</h3> 
+<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br /> a. Include those libraries in the repo (this bloats the repo size)<br /> b. Require developers to download those libraries manually (this creates extra work for developers)<br /></p> 
+<h2> <a id="appendix-a--user-stories" class="anchor" href="#appendix-a--user-stories" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appendix A : User Stories</h2> 
+<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p> 
+<table> 
+ <thead> 
+  <tr> 
+   <th>Priority</th> 
+   <th align="left">As a ...</th> 
+   <th align="left">I want to ...</th> 
+   <th align="left">So that I can...</th> 
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">new user</td> 
+   <td align="left">see command instructions</td> 
+   <td align="left">refer to instructions when I forget how to use the App</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">create a new task</td> 
+   <td align="left"></td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">delete an existing task</td> 
+   <td align="left">no longer keep track of tasks I do not care about</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">search a task by name or by tag</td> 
+   <td align="left">locate task without having to go through the entire list</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">view all task in a particular time</td> 
+   <td align="left"></td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">undo a recent action</td> 
+   <td align="left">remove my mistakes</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">sort all task by date or by priority</td> 
+   <td align="left">know which tasks are coming soon or require more attention</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">add priority marks to a task</td> 
+   <td align="left">know which tasks require more attention</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">keep track of my completed tasks</td> 
+   <td align="left">review details of previous tasks</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">specify a storage folder</td> 
+   <td align="left">know where my data will be saved</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">set periodic reminders</td> 
+   <td align="left">automatically be reminded about recurring events</td> 
+  </tr> 
+  <tr> 
+   <td><code>* * *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">see conflicts in events</td> 
+   <td align="left">resolve them earlier</td> 
+  </tr> 
+  <tr> 
+   <td><code>* *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">see the calendar on command</td> 
+   <td align="left">check out the dates</td> 
+  </tr> 
+  <tr> 
+   <td><code>* *</code></td> 
+   <td align="left">advanced user</td> 
+   <td align="left">use shortcut commands</td> 
+   <td align="left">utilize the app faster</td> 
+  </tr> 
+  <tr> 
+   <td><code>* *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">color code my tasks</td> 
+   <td align="left">differentiate the tasks easier</td> 
+  </tr> 
+  <tr> 
+   <td><code>* *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">sync my tasks with Google calendar</td> 
+   <td align="left">check them on Google platform</td> 
+  </tr> 
+  <tr> 
+   <td><code>* *</code></td> 
+   <td align="left">user</td> 
+   <td align="left">enable/disable notifications</td> 
+   <td align="left"></td> 
+  </tr> 
+  <tr> 
+   <td><code>*</code></td> 
+   <td align="left">user</td> 
+   <td align="left">share notes with others</td> 
+   <td align="left">keep tasks updated among a group of people</td> 
+  </tr> 
+  <tr> 
+   <td><code>*</code></td> 
+   <td align="left">user</td> 
+   <td align="left">share my schedule</td> 
+   <td align="left">let others know my occupied and unoccupied timeslots</td> 
+  </tr> 
+ </tbody> 
+</table> 
+<h2> <a id="appendix-b--use-cases" class="anchor" href="#appendix-b--use-cases" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appendix B : Use Cases</h2> 
+<p>(For all use cases below, the <strong>System</strong> is the <code>WhatsNext</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p> 
+<h4> <a id="use-case-add-task" class="anchor" href="#use-case-add-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Add task</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests to create task.</li> 
+ <li>System creates the task.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. There is already a event task during that time period.</p> 
+<blockquote> 
+ <p>2a1. System shows an error message with possible resolutions<br /> Use case ends</p> 
+</blockquote> 
+<h4> <a id="use-case-delete-task" class="anchor" href="#use-case-delete-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Delete task</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests the task list.</li> 
+ <li>System shows the task list.</li> 
+ <li>User specifies the task to be deleted.</li> 
+ <li>System deletes the task.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<p>3a. The given index is invalid</p> 
+<blockquote> 
+ <p>3a1. System shows an error message <br /> Use case resumes at step 2</p> 
+</blockquote> 
+<h4> <a id="use-case-search-task" class="anchor" href="#use-case-search-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Search task</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User inputs query.</li> 
+ <li>System shows tasks with query keywords in name or tag.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<p>2b. The given query word is not found</p> 
+<blockquote> 
+ <p>2b1. System shows an &quot;not found&quot; message <br /> Use case ends</p> 
+</blockquote> 
+<h4> <a id="use-case-mark-task-completed" class="anchor" href="#use-case-mark-task-completed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Mark task completed</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests the task list.</li> 
+ <li>System shows the task list.</li> 
+ <li>User requests to mark specific task completed.</li> 
+ <li>System marks the specified task completed.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<p>3a. The given index is invalid</p> 
+<blockquote> 
+ <p>3a1. System shows an error message <br /> Use case resumes at step 2</p> 
+</blockquote> 
+<h4> <a id="use-case-undo-last-action" class="anchor" href="#use-case-undo-last-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Undo last action</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests to undo last action.</li> 
+ <li>System reverts back to state before last action.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. There is no previous action done.</p> 
+<blockquote> 
+ <p>2a1. System shows a &quot;No actions to undo&quot; message <br /> Use case ends</p> 
+</blockquote> 
+<h4> <a id="use-case-sort-tasks-by-date-or-priority" class="anchor" href="#use-case-sort-tasks-by-date-or-priority" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Sort tasks by date or priority</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests to sort the task lists by certain formatted method.</li> 
+ <li>System sorts all task by users' method.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<p>3a. The given method is invalid</p> 
+<blockquote> 
+ <p>3a1. System shows an error message <br /> Use case ends.</p> 
+</blockquote> 
+<h4> <a id="use-case-list-tasks-by-type" class="anchor" href="#use-case-list-tasks-by-type" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: List tasks by type</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests to view tasks by type.</li> 
+ <li>System lists all tasks of the type.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<h4> <a id="use-case-edit-tasks" class="anchor" href="#use-case-edit-tasks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Edit tasks</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests the task list.</li> 
+ <li>System shows the task list.</li> 
+ <li>User requests to edit specific task's particular field.</li> 
+ <li>System edits the specified task.<br /> Use case ends.</li> 
+</ol> 
+<p><strong>Extensions</strong></p> 
+<p>2a. The list is empty</p> 
+<blockquote> 
+ <p>Use case ends</p> 
+</blockquote> 
+<p>3a. The given edit format is invalid</p> 
+<blockquote> 
+ <p>3a1. System shows an error message <br /> Use case resumes at step 2</p> 
+</blockquote> 
+<h4> <a id="use-case-update-storage-file-path" class="anchor" href="#use-case-update-storage-file-path" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Update storage file path</h4> 
+<p><strong>MSS</strong></p> 
+<p>User request the current file path of the storage. System display the current file path of the storage. User request the storage file to be in a new file path. System change the file path and delete the storage in the original path.</p> 
+<p><strong>Extensions</strong></p> 
+<p>3a. The new file path is invalid.</p> 
+<blockquote> 
+ <p>3a1. System display error message <br /> Use case resumes at step 2</p> 
+</blockquote> 
+<h4> <a id="use-case-exit-application" class="anchor" href="#use-case-exit-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use case: Exit application</h4> 
+<p><strong>MSS</strong></p> 
+<ol> 
+ <li>User requests to exit the application.</li> 
+ <li>System exits.<br /> Use case ends.</li> 
+</ol> 
+<h2> <a id="appendix-c--non-functional-requirements" class="anchor" href="#appendix-c--non-functional-requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appendix C : Non Functional Requirements</h2> 
+<ol> 
+ <li>Should work on any [mainstream OS] (#mainstream-os) as long as it has Java <code>1.8.0.131</code> or higher installed.</li> 
+ <li>Should be able to 1000 tasks without a noticeable sluggishness in performance for typical usage.</li> 
+ <li>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</li> 
+ <li>Should come with automated unit tests and open source code.</li> 
+ <li>Should favor DOS style commands over Unix-style commands.</li> 
+</ol> 
+<p>{More to be added}</p> 
+<h2> <a id="appendix-d--glossary" class="anchor" href="#appendix-d--glossary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appendix D : Glossary</h2> 
+<h5> <a id="mainstream-os" class="anchor" href="#mainstream-os" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mainstream OS</h5> 
+<blockquote> 
+ <p>Windows, Linux, Unix, OS-X</p> 
+</blockquote> 
+<h5> <a id="reserved-tags" class="anchor" href="#reserved-tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reserved Tags</h5> 
+<blockquote> 
+ <p>System defined tags that cannot be modified and deleted. E.g. &quot;HIGH&quot; = high priority task tag; &quot;MEDIUM&quot; = medium priority task tag; &quot;LOW&quot; = low priority task tag.</p> 
+</blockquote> 
+<h5> <a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h5> 
+<blockquote> 
+ <p>Tasks that have both starting and ending time. There will be no tolerance for collision, i.e. two events cannot occur at the same time.</p> 
+</blockquote> 
+<h5> <a id="deadlines" class="anchor" href="#deadlines" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deadlines</h5> 
+<blockquote> 
+ <p>Tasks that have only ending time. There are can be multiple deadlines at the same time.</p> 
+</blockquote> 
+<h5> <a id="floating" class="anchor" href="#floating" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Floating</h5> 
+<blockquote> 
+ <p>Tasks that do not have a particular time frame.</p> 
+</blockquote> 
+<p>{More to be added}</p> 
+<h2> <a id="appendix-e--product-survey" class="anchor" href="#appendix-e--product-survey" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appendix E : Product Survey</h2> 
+<p><strong>Product Name</strong>: Google Keep</p> 
+<p>Author: Sheng Jie</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Clean, simple &amp; easy to use GUI</li> 
+ <li>Able to access notes when offline (from places where there is no ready Internet connectivity.)</li> 
+ <li>Color codes to organise notes</li> 
+ <li>Able to collaborate and share notes</li> 
+ <li>Easy to use search bar</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>No customizable keyword tags available</li> 
+ <li>Unable to sort notes based on tags/keywords (level of importance)</li> 
+</ul> 
+<hr /> 
+<p><strong>Product Name</strong>: ToDoist</p> 
+<p>Author: Sheng Jie</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Email reminder</li> 
+ <li>Supports natural language input like &quot;tomorrow,&quot; &quot;next month,&quot; &quot;in 3 weeks,&quot; or for recurring tasks, &quot;every week&quot; or &quot;every 3 days.&quot;</li> 
+ <li>Able to collaborate and share notes</li> 
+ <li>Easy to use search bar</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>No filtering (display by tags etc)</li> 
+ <li>Does not support a start date</li> 
+ <li>Features such as reminders, comments and file uploads require premium upgrades.</li> 
+</ul> 
+<hr /> 
+<p><strong>Product Name</strong>: Apple Calendar</p> 
+<p>Author: Shicheng</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Simplistic graphic user interface</li> 
+ <li>Allow user to add notes</li> 
+ <li>Allow user to set reminders and alarms</li> 
+ <li>Synchronize with users' email contacts to reminder users of his/her contacts' birthday</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>Does not differentiate tasks by priorities</li> 
+ <li>Does not differentiate user-defined tasks and default festivals and holidays on the overall display (i.e. Chinese new year looks the same as project deadline)</li> 
+ <li>Does not allow event that lasts for more than a day (i.e. event time are set by hours on a specific day or all day.)</li> 
+</ul> 
+<hr /> 
+<p><strong>Product Name</strong>: Trello</p> 
+<p>Author: Chi Shien</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Free</li> 
+ <li>Simple dashboard style GUI, sync with gmail</li> 
+ <li>Each board has cards</li> 
+ <li>Each card represents a group of tasks</li> 
+ <li>Each task add/change title, description, members, checklist, labels, due date, attachments, comments</li> 
+ <li>Extra features like calendar view and card voting, stickers, etc</li> 
+ <li>Allows click-drag</li> 
+ <li>Daily to do list across all boards</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>Cannot rank tasks by importance (though you can colour code them)</li> 
+ <li>Requires heavily use of mouse to navigate</li> 
+ <li>No keyboard shortcuts available</li> 
+</ul> 
+<hr /> 
+<p><strong>Product Name</strong>: HiTask</p> 
+<p>Author: Aung Swumm</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Free</li> 
+ <li>Can set recurring task</li> 
+ <li>Can set a time tracker or a time estimator</li> 
+ <li>Can color-code tasks for ease of viewing</li> 
+ <li>Send reminder alerts to phone app or email</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>Cannot sync with google calendar on android phones</li> 
+ <li>Can be slow on the web app</li> 
+</ul> 
+<hr /> 
+<p><strong>Product Name</strong>: Google Calendar</p> 
+<p>Author: Dao Han</p> 
+<p>Pros:</p> 
+<ul> 
+ <li>Handles reminders, appointments and events</li> 
+ <li>Ease of setting up reminders</li> 
+ <li>Sets reminder when to leave location for appointment</li> 
+ <li>External apps such as Wix can sync with calendar</li> 
+ <li>Can view other people's calendars if they share it</li> 
+ <li>Color coding for events</li> 
+</ul> 
+<p>Cons:</p> 
+<ul> 
+ <li>Plain interface</li> 
+ <li>If too many events, may be hidden unless specific day is opened</li> 
+ <li>Not every email automatically downloaded into calendar</li> 
+</ul>
+</body>
+</html>
