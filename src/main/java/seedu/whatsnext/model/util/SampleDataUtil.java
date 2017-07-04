@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-import seedu.whatsnext.model.AddressBook;
+import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.Floating;
@@ -27,7 +27,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyTaskManager getSampleAddressBook() {
         try {
-            AddressBook sampleAb = new AddressBook();
+            TaskManager sampleAb = new TaskManager();
             for (Floating samplePerson : getSamplePersons()) {
                 sampleAb.addTask(samplePerson);
             }
