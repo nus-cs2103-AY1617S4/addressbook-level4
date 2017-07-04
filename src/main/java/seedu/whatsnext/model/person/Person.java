@@ -16,7 +16,7 @@ import seedu.whatsnext.model.tag.UniqueTagList;
  */
 public class Person implements ReadOnlyPerson {
 
-    private Name name;
+    private TaskName name;
     private Phone phone;
     private Email email;
     private Address address;
@@ -26,7 +26,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(TaskName name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -43,12 +43,12 @@ public class Person implements ReadOnlyPerson {
                 source.getTags());
     }
 
-    public void setName(Name name) {
+    public void setName(TaskName name) {
         this.name = requireNonNull(name);
     }
 
     @Override
-    public Name getName() {
+    public TaskName getName() {
         return name;
     }
 
