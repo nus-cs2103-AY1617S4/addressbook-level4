@@ -15,7 +15,7 @@ import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
+import seedu.whatsnext.model.person.TaskName;
 import seedu.whatsnext.model.person.Person;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
@@ -40,7 +40,7 @@ public class AddCommandParser {
         }
 
         try {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+            TaskName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();

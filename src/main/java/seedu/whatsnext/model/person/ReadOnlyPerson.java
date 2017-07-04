@@ -10,7 +10,7 @@ import seedu.whatsnext.model.tag.Tag;
  */
 public interface ReadOnlyPerson {
 
-    Name getName();
+    TaskName getName();
     Phone getPhone();
     Email getEmail();
     Address getAddress();

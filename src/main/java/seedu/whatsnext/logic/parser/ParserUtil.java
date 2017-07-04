@@ -12,7 +12,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
+import seedu.whatsnext.model.person.TaskName;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.tag.Tag;
 
@@ -40,9 +40,9 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */
-    public static Optional<Name> parseName(Optional<String> name) throws IllegalValueException {
+    public static Optional<TaskName> parseName(Optional<String> name) throws IllegalValueException {
         requireNonNull(name);
-        return name.isPresent() ? Optional.of(new Name(name.get())) : Optional.empty();
+        return name.isPresent() ? Optional.of(new TaskName(name.get())) : Optional.empty();
     }
 
     /**
