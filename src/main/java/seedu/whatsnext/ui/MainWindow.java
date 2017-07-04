@@ -16,7 +16,7 @@ import seedu.whatsnext.commons.events.ui.ExitAppRequestEvent;
 import seedu.whatsnext.commons.util.FxViewUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
+import seedu.whatsnext.model.task.BaseTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Region> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
     private Config config;
     private UserPrefs prefs;
 
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Region> {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -190,11 +190,11 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return this.personListPanel;
+    public TaskListPanel getPersonListPanel() {
+        return this.taskListPanel;
     }
 
-    void loadPersonPage(ReadOnlyPerson person) {
+    void loadPersonPage(BaseTask person) {
         browserPanel.loadPersonPage(person);
     }
 

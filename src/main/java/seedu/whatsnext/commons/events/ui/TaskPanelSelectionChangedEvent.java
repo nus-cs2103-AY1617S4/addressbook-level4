@@ -1,17 +1,17 @@
 package seedu.whatsnext.commons.events.ui;
 
 import seedu.whatsnext.commons.events.BaseEvent;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
+import seedu.whatsnext.model.task.BaseTask;
 
 /**
  * Represents a selection change in the Task List Panel
  */
-public class PersonPanelSelectionChangedEvent extends BaseEvent {
+public class TaskPanelSelectionChangedEvent extends BaseEvent {
 
 
-    private final ReadOnlyPerson newSelection;
+    private final BaseTask newSelection;
 
-    public PersonPanelSelectionChangedEvent(ReadOnlyPerson newSelection) {
+    public TaskPanelSelectionChangedEvent(BaseTask newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -20,7 +20,7 @@ public class PersonPanelSelectionChangedEvent extends BaseEvent {
         return this.getClass().getSimpleName();
     }
 
-    public ReadOnlyPerson getNewSelection() {
+    public BaseTask getNewSelection() {
         return newSelection;
     }
 }

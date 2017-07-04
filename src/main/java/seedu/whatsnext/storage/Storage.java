@@ -3,10 +3,10 @@ package seedu.whatsnext.storage;
 import java.io.IOException;
 import java.util.Optional;
 
-import seedu.whatsnext.commons.events.model.AddressBookChangedEvent;
+import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.exceptions.DataConversionException;
-import seedu.whatsnext.model.ReadOnlyAddressBook;
+import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.UserPrefs;
 
 /**
@@ -24,15 +24,15 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     String getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskManager> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyTaskManager addressBook) throws IOException;
 
     /**
      * Saves the current version of the Address Book to the hard disk.
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
-    void handleAddressBookChangedEvent(AddressBookChangedEvent abce);
+    void handleAddressBookChangedEvent(TaskManagerChangedEvent abce);
 }

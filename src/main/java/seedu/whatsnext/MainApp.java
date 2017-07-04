@@ -23,7 +23,7 @@ import seedu.whatsnext.logic.LogicManager;
 import seedu.whatsnext.model.AddressBook;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ModelManager;
-import seedu.whatsnext.model.ReadOnlyAddressBook;
+import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.model.util.SampleDataUtil;
 import seedu.whatsnext.storage.AddressBookStorage;
@@ -81,8 +81,8 @@ public class MainApp extends Application {
     }
 
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskManager> addressBookOptional;
+        ReadOnlyTaskManager initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
