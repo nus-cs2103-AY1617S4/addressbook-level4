@@ -1,10 +1,9 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -13,29 +12,27 @@ import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
 import seedu.whatsnext.model.person.Floating;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to the task manager.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_TIME + "TIME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "CS2013 Tutorial "
+            + PREFIX_DATE + "10 July "
+            + PREFIX_TIME + "10-12 "
+            + PREFIX_TAG + "school"
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
+    public static final String MESSAGE_TIME_CLASH = "This task cannot be added as time clashes with another event";
 
     private final Floating toAdd;
 
@@ -58,7 +55,7 @@ s
             model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicatePersonException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
     }

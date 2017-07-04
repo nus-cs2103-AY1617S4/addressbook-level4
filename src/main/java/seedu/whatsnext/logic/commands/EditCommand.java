@@ -1,10 +1,9 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -26,35 +25,34 @@ import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
 import seedu.whatsnext.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing task in the task manager.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
+            + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_TIME + "TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DATE + "10 July "
+            + PREFIX_TIME + "10-12";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the task in the filtered task list to edit
+     * @param editPersonDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -69,7 +67,7 @@ public class EditCommand extends Command {
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
@@ -78,12 +76,12 @@ public class EditCommand extends Command {
         try {
             model.updatePerson(personToEdit, editedPerson);
         } catch (DuplicatePersonException dpe) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (PersonNotFoundException pnfe) {
-            throw new AssertionError("The target person cannot be missing");
+            throw new AssertionError("The target task cannot be missing");
         }
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, personToEdit));
     }
 
     /**
@@ -122,8 +120,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditPersonDescriptor {
         private TaskName name;

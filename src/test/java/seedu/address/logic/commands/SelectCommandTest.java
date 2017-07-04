@@ -61,7 +61,7 @@
 //    public void execute_invalidIndexUnfilteredList_failure() {
 //        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 //
-//        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
@@ -79,7 +79,7 @@
 //        // ensures that outOfBoundIndex is still in bounds of address book list
 //        assertTrue(outOfBoundsIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 //
-//        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 //    }
 //
 //    /**
@@ -103,7 +103,7 @@
 //        SelectCommand selectCommand = prepareCommand(index);
 //        CommandResult commandResult = selectCommand.execute();
 //
-//        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, index.getOneBased()),
+//        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, index.getOneBased()),
 //                commandResult.feedbackToUser);
 //        assertEquals(index, eventTargetedJumpIndex);
 //    }
