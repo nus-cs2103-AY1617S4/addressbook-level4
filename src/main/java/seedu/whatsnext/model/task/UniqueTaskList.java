@@ -1,4 +1,4 @@
-package seedu.whatsnext.model.person;
+package seedu.whatsnext.model.task;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,8 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.util.CollectionUtil;
-import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

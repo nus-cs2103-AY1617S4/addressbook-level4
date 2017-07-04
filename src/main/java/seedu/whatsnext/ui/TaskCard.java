@@ -5,9 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
+import seedu.whatsnext.model.task.BaseTask;
 
-public class PersonCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -34,17 +34,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex) {
+    public TaskCard(BaseTask task, int displayedIndex) {
         super(FXML);
-        name.setText(person.getName().fullName);
+        name.setText(task.getName().fullTaskName);
         id.setText(displayedIndex + ". ");
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        initTags(person);
+        initTags(task);
     }
 
-    private void initTags(ReadOnlyPerson person) {
+    private void initTags(BaseTask person) {
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

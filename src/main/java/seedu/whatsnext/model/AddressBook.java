@@ -12,13 +12,13 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
-import seedu.whatsnext.model.person.BaseTask;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.UniqueTaskList;
-import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.UniqueTaskList;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Wraps all data at the address-book level

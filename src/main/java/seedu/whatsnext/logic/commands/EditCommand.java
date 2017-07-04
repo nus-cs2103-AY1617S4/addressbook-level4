@@ -1,10 +1,10 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,15 +14,15 @@ import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.person.Address;
-import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.TaskName;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.Phone;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
-import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.Address;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.Email;
+import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.Phone;
+import seedu.whatsnext.model.task.TaskName;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Edits the details of an existing task in the task manager.
@@ -64,20 +64,20 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        List<ReadOnlyPerson> lastShownList = model.getFilteredTaskList();
+        List<BaseTask> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
+        BaseTask personToEdit = lastShownList.get(index.getZeroBased());
         Floating editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
             model.updateTask(personToEdit, editedPerson);
-        } catch (DuplicatePersonException dpe) {
+        } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } catch (PersonNotFoundException pnfe) {
+        } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
         model.updateFilteredListToShowAll();
@@ -88,17 +88,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Floating createEditedPerson(ReadOnlyPerson personToEdit,
+    private static Floating createEditedPerson(BaseTask personToEdit,
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         TaskName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Floating(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Floating(updatedName,updatedTags);
     }
 
     @Override

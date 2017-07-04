@@ -9,11 +9,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
-import seedu.whatsnext.commons.events.model.AddressBookChangedEvent;
+import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
-import seedu.whatsnext.model.person.BaseTask;
-import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -55,7 +55,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(taskManager));
+        raise(new TaskManagerChangedEvent(taskManager));
     }
 
     @Override

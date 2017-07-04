@@ -1,8 +1,8 @@
 package seedu.whatsnext.model;
 
 import javafx.collections.ObservableList;
-import seedu.whatsnext.model.person.BaseTask;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BaseTask;
 
 /**
  * Unmodifiable view of an address book

@@ -3,9 +3,9 @@ package seedu.whatsnext.model;
 import java.util.Set;
 
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
-import seedu.whatsnext.model.person.BaseTask;
-import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * The API of the Model component.

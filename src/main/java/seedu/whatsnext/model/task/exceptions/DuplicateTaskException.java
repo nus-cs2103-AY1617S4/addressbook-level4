@@ -1,4 +1,4 @@
-package seedu.whatsnext.model.person.exceptions;
+package seedu.whatsnext.model.task.exceptions;
 
 import seedu.whatsnext.commons.exceptions.DuplicateDataException;
 

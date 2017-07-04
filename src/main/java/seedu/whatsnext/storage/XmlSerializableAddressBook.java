@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.Floating;
 
 /**
  * An Immutable AddressBook that is serializable to XML format
@@ -23,7 +23,7 @@ import seedu.whatsnext.model.tag.Tag;
 public class XmlSerializableAddressBook implements ReadOnlyTaskManager {
 
     @XmlElement
-    private List<XmlAdaptedPerson> persons;
+    private List<XmlAdaptedTask> persons;
     @XmlElement
     private List<XmlAdaptedTag> tags;
 
@@ -41,12 +41,12 @@ public class XmlSerializableAddressBook implements ReadOnlyTaskManager {
      */
     public XmlSerializableAddressBook(ReadOnlyTaskManager src) {
         this();
-        persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
-    public ObservableList<ReadOnlyPerson> getPersonList() {
+    public ObservableList<BaseTask> getTaskList() {
         final ObservableList<Floating> persons = this.persons.stream().map(p -> {
             try {
                 return p.toModelType();

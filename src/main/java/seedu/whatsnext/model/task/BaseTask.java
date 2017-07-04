@@ -1,4 +1,4 @@
-package seedu.whatsnext.model.person;
+package seedu.whatsnext.model.task;
 
 import java.util.Set;
 

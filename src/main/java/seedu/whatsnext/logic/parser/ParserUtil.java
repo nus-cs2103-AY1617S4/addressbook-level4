@@ -10,11 +10,11 @@ import java.util.Set;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.StringUtil;
-import seedu.whatsnext.model.person.Address;
-import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.TaskName;
-import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.Address;
+import seedu.whatsnext.model.task.Email;
+import seedu.whatsnext.model.task.Phone;
+import seedu.whatsnext.model.task.TaskName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes

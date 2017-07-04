@@ -6,17 +6,19 @@ import java.util.Set;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.AddressBook;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.TaskName;
-import seedu.whatsnext.model.person.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.TaskName;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 public class SampleDataUtil {
     public static Floating[] getSamplePersons() {
         try {
             return new Floating[] {
                 new Floating(new TaskName("Bernice Yu"),
-                    getTagSet("colleagues", "friends"))
+                    getTagSet("colleagues", "friends")),
+                new Floating(new TaskName("Barry Yu"),
+                        getTagSet("cory"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);

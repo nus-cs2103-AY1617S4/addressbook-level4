@@ -4,13 +4,8 @@ import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-<<<<<<< HEAD
-import seedu.whatsnext.model.person.ReadOnlyPerson;
-import seedu.whatsnext.model.person.exceptions.TaskNotFoundException;
-=======
-import seedu.whatsnext.model.person.BaseTask;
-import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
->>>>>>> 1a0c747d27b60d55b19c56f833684db002183136
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Deletes a task identified using it's last displayed index from the task manager.
@@ -32,15 +27,11 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-
     @Override
     public CommandResult execute() throws CommandException {
 
-<<<<<<< HEAD
-        UnmodifiableObservableList<ReadOnlyPerson> lastShownList = model.getFilteredTaskList();
-=======
-        UnmodifiableObservableList<BaseTask> lastShownList = model.getFilteredPersonList();
->>>>>>> 1a0c747d27b60d55b19c56f833684db002183136
+
+        UnmodifiableObservableList<BaseTask> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -49,16 +40,13 @@ public class DeleteCommand extends Command {
         BaseTask taskToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         try {
-<<<<<<< HEAD
-            model.deleteTask(personToDelete);
-        } catch (TaskNotFoundException pnfe) {
-=======
+
             model.deleteTask(taskToDelete);
-        } catch (PersonNotFoundException pnfe) {
->>>>>>> 1a0c747d27b60d55b19c56f833684db002183136
+        } catch (TaskNotFoundException pnfe) {
+
             assert false : "The target person cannot be missing";
         }
-      
+
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

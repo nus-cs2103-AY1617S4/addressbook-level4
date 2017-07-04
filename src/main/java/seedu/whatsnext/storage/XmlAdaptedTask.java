@@ -8,18 +8,15 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-import seedu.whatsnext.model.person.Address;
-import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.TaskName;
-import seedu.whatsnext.model.person.Floating;
-import seedu.whatsnext.model.person.Phone;
-import seedu.whatsnext.model.person.ReadOnlyPerson;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.TaskName;
 
 /**
  * JAXB-friendly version of the Person.
  */
-public class XmlAdaptedPerson {
+public class XmlAdaptedTask {
 
     @XmlElement(required = true)
     private String name;
@@ -37,7 +34,7 @@ public class XmlAdaptedPerson {
      * Constructs an XmlAdaptedPerson.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedPerson() {}
+    public XmlAdaptedTask() {}
 
 
     /**
@@ -45,11 +42,8 @@ public class XmlAdaptedPerson {
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
-    public XmlAdaptedPerson(ReadOnlyPerson source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+    public XmlAdaptedTask(BaseTask source) {
+        name = source.getName().fullTaskName;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -67,10 +61,7 @@ public class XmlAdaptedPerson {
             personTags.add(tag.toModelType());
         }
         final TaskName name = new TaskName(this.name);
-        final Phone phone = new Phone(this.phone);
-        final Email email = new Email(this.email);
-        final Address address = new Address(this.address);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Floating(name, phone, email, address, tags);
+        return new Floating(name, tags);
     }
 }

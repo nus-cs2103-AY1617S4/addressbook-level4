@@ -3,7 +3,7 @@ package seedu.whatsnext.storage;
 import java.io.IOException;
 import java.util.Optional;
 
-import seedu.whatsnext.commons.events.model.AddressBookChangedEvent;
+import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.exceptions.DataConversionException;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
@@ -34,5 +34,5 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
-    void handleAddressBookChangedEvent(AddressBookChangedEvent abce);
+    void handleAddressBookChangedEvent(TaskManagerChangedEvent abce);
 }
