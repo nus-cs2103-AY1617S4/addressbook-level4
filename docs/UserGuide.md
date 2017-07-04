@@ -4,14 +4,14 @@ By : `Team 4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 
 ---
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
+1. [Quick Start](#1-quick-start)
+2. [Features](#2-features)
+3. [FAQ](#3-faq)
+4. [Command Summary](#4-command-summary)
 
 ## 1. Quick Start
 
-0. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
+0. Ensure you have Java version `1.8.0_131` or later installed in your Computer.<br>
 
    > Having any Java 8 version is not enough. <br>
    > This app will not work with earlier versions of Java 8.
@@ -25,10 +25,10 @@ By : `Team 4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
-   * **`add d/July 10 t/5-6 e/project meeting`** adds an `Event` task to your task manager.
+   * **`add n/project d/July 10 t/5-6 meeting`** adds an `Event` task to your task manager.
    * **`delete`**` 1` : deletes the 1st task shown in your current list
    * **`exit`** : exits the app
-6. Refer to the [Features](#features) section below for details of each command.<br>
+6. Refer to the [Features](#2-features) section below for details of each command.<br>
 
 ## 2. Features
 
@@ -56,8 +56,8 @@ Format: `help`
 
 Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
 Format: <br>
->`(1) add d/DATE t/TIME n/TASK_NAME [h/TAG]...` <br>
->`(2) add d/DATE n/TASK_NAME [h/TAG]...` <br>
+>`(1) add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br>
+>`(2) add n/TASK_NAME d/DATE [h/TAG]...` <br>
 >`(3) add n/TASK_NAME [h/TAG]...` <br>
 > Tasks can have any number of tags (including 0)
 Smart Add: <br>
@@ -66,12 +66,11 @@ Smart Add: <br>
 > TASK_PARAMETERS **must match task parameters of task type**
 Examples:
 
-* `add d/July 10 t/5-6 e/project meeting`
-* `add d/July 10 n/project meeting`
+* `add n/project d/July 10 t/5-6 meeting`
+* `add n/project d/July 10 meeting`
 * `add n/project meeting h/CS2103`
-* `add n/project meeting h/CS2103 h/SPECIAL_TERM`
-<br>
-* `add event July 10, 5-6, project meeting`
+* `add n/project meeting h/CS2103 h/SPECIAL_TERM` <br>
+* `add event project meeting, July 10, 5-6`
 
 ### 2.3. Listing tasks : `list`
 
@@ -85,7 +84,7 @@ Format:  <br>
 ### 2.4. Editing a task : `edit`
 
 Edits an existing task in the task manager.<br>
-Format: `edit INDEX [d/DATE] [t/TIME] [n/TASK_NAME] [h/TAG]...`
+Format: `edit INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]...`
 
 > * Edits a task at the specified `INDEX`.
     The index refers to the index number shown in the last task listing.<br>
@@ -235,7 +234,7 @@ Format: `exit`
   e.g. `add d/July 10 t/5-6 e/project meeting`
 
 * **List**  `list` <br>
-  e.g.
+  e.g. list /i
 
 * **Clear** : `clear`
 
@@ -249,7 +248,6 @@ Format: `exit`
   e.g. `find CS2103 Exams`
 
 * **Undo** : `undo` <br>
-  e.g.
 
 * **Mark** : `mark INDEX` <br>
   e.g. mark 1
@@ -261,13 +259,10 @@ Format: `exit`
   e.g. sort floating alpha
 
 * **View Data File Path** : `viewPath` <br>
-  e.g.
 
 * **Update Data File Path** : `updatePath [Path Directory]` <br>
-  e.g.
+  e.g. updatePath [F:\Schedule\taskManager.xml]
 
 * **Exit** : `exit` <br>
-  e.g.
 
 * **Help** : `help` <br>
-  e.g.
