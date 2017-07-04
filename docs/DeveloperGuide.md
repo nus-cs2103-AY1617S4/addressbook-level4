@@ -103,7 +103,7 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 
 #### Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the 
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
 command `delete 1`.
 
 <img src="images/SDforDeletePerson.png" width="800"><br>
@@ -125,7 +125,7 @@ The sections below give more details of each component.
 
 ### 2.2. UI component
 
-Author: {To be added} 
+Author: {To be added}
 
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
@@ -168,7 +168,7 @@ _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Comma
 
 ### 2.4. Model component
 
-Author: {To be added} 
+Author: {To be added}
 
 <img src="images/ModelClassDiagram.png" width="800"><br>
 _Figure 2.4.1 : Structure of the Model Component_
@@ -267,11 +267,10 @@ Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
 ### 4.1. Troubleshooting tests
 
  **Problem: Tests fail because NullPointException when AssertionError is expected**
-
  * Reason: Assertions are not enabled for JUnit tests.
    This can happen if you are not using a recent Eclipse version (i.e. _Neon_ or later)
  * Solution: Enable assertions in JUnit tests as described
-   [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option). <br>
+   [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option).<br>
    Delete run configurations created when you ran tests earlier.
 
 ## 5. Dev Ops
@@ -328,8 +327,8 @@ b. Require developers to download those libraries manually (this creates extra w
 ## Appendix A : User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
- 
- 
+
+
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | new user | see command instructions | refer to instructions when I forget how to use the App
@@ -354,175 +353,175 @@ Priority | As a ... | I want to ... | So that I can...
 
 
 ## Appendix B : Use Cases
- 
+
 (For all use cases below, the **System** is the `WhatsNext` and the **Actor** is the `user`, unless specified otherwise)
- 
+
 #### Use case: Add task
- 
+
 **MSS**
- 
+
 1.	User requests to create task.
 2.	System creates the task.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. There is already a event task during that time period.
- 
+
 > 2a1. System shows an error message with possible resolutions<br>
 > Use case ends
- 
+
 #### Use case: Delete task
- 
+
 **MSS**
- 
+
 1.	User requests the task list.
 2.	System shows the task list.
 3.	User specifies the task to be deleted.
 4.	System deletes the task.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 3a. The given index is invalid
- 
+
 > 3a1. System shows an error message <br>
   Use case resumes at step 2
- 
+
 #### Use case: Search task
- 
+
 **MSS**
- 
+
 1.	User inputs query.
 2.	System shows tasks with query keywords in name or tag.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 2b. The given query word is not found
- 
+
 > 2b1. System shows an "not found" message <br>
 > Use case ends
- 
+
 #### Use case: Mark task completed
- 
+
 **MSS**
- 
+
 1.	User requests the task list.
 2.	System shows the task list.
 3.	User requests to mark specific task completed.
 4.	System marks the specified task completed.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 3a. The given index is invalid
- 
+
 > 3a1. System shows an error message <br>
 > Use case resumes at step 2
- 
+
 #### Use case: Undo last action
- 
+
 **MSS**
- 
+
 1.	User requests to undo last action.
 2.	System reverts back to state before last action.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. There is no previous action done.
- 
+
 > 2a1. System shows a "No actions to undo" message <br>
 > Use case ends
- 
+
 #### Use case: Sort tasks by date or priority
- 
+
 **MSS**
- 
+
 1.	User requests to sort the task lists by certain formatted method.
 2.	System sorts all task by users' method.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 3a. The given method is invalid
- 
+
 > 3a1. System shows an error message <br>
 > Use case ends.
- 
+
 #### Use case: List tasks by type
- 
+
 **MSS**
- 
+
 1.	User requests to view tasks by type.
 2.	System lists all tasks of the type.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 #### Use case: Edit tasks
- 
+
 **MSS**
- 
+
 1.	User requests the task list.
 2.	System shows the task list.
 3.	User requests to edit specific task's particular field.
 4.	System edits the specified task.<br>
 Use case ends.
- 
+
 **Extensions**
- 
+
 2a. The list is empty
- 
+
 > Use case ends
- 
+
 3a. The given edit format is invalid
- 
+
 > 3a1. System shows an error message <br>
 > Use case resumes at step 2
- 
+
 #### Use case: Update storage file path
- 
+
 **MSS**
- 
+
 User request the current file path of the storage.
 System display the current file path of the storage.
 User request the storage file to be in a new file path.
 System change the file path and delete the storage in the original path.
- 
+
 **Extensions**
- 
+
 3a. The new file path is invalid.
- 
+
 > 3a1. System display error message <br>
 > Use case resumes at step 2
- 
- 
+
+
 #### Use case: Exit application
- 
+
 **MSS**
- 
+
 1.	User requests to exit the application.
 2.	System exits.<br>
 Use case ends.
@@ -530,7 +529,7 @@ Use case ends.
 
 ## Appendix C : Non Functional Requirements
 
-1. Should work on any [mainstream OS] (#mainstream-os) as long as it has Java `1.8.0.131` or higher installed. 
+1. Should work on any [mainstream OS] (#mainstream-os) as long as it has Java `1.8.0.131` or higher installed.
 2. Should be able to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should come with automated unit tests and open source code.
@@ -546,87 +545,85 @@ Use case ends.
 
 ##### Reserved Tags
 
-> System defined tags that cannot be modified and deleted. E.g. "HIGH" = high priority task tag; "MEDIUM" = medium priority task tag; "LOW" = low priority task tag. 
+> System defined tags that cannot be modified and deleted. E.g. "HIGH" = high priority task tag; "MEDIUM" = medium priority task tag; "LOW" = low priority task tag.
 
 ##### Events
 
-> Tasks that have both starting and ending time. There will be no tolerance for collision, i.e. two events cannot occur at the same time. 
+> Tasks that have both starting and ending time. There will be no tolerance for collision, i.e. two events cannot occur at the same time.
 
 ##### Deadlines
 
-> Tasks that have only ending time. There are can be multiple deadlines at the same time. 
+> Tasks that have only ending time. There are can be multiple deadlines at the same time.
 
 ##### Floating
 
-> Tasks that do not have a particular time frame. 
+> Tasks that do not have a particular time frame.
 
 {More to be added}
 
 ## Appendix E : Product Survey
- 
+
 **Product Name**: Google Keep
- 
+
 Author: Sheng Jie
- 
+
 Pros:
- 
+
 * Clean, simple & easy to use GUI
 * Able to access notes when offline (from places where there is no ready Internet connectivity.)
 * Color codes to organise notes
 * Able to collaborate and share notes
 * Easy to use search bar
- 
+
 Cons:
- 
+
 * No customizable keyword tags available
 * Unable to sort notes based on tags/keywords (level of importance)
- 
+
 ---
- 
+
 **Product Name**: ToDoist
- 
+
 Author: Sheng Jie
- 
+
 Pros:
- 
+
 * Email reminder
 * Supports natural language input like "tomorrow," "next month," "in 3 weeks," or for recurring tasks, "every week" or "every 3 days."
 * Able to collaborate and share notes
 * Easy to use search bar
- 
+
 Cons:
- 
+
 * No filtering (display by tags etc)
 * Does not support a start date
 * Features such as reminders, comments and file uploads require premium upgrades.
- 
+
 ---
- 
+
 **Product Name**: Apple Calendar
- 
+
 Author: Shicheng
- 
+
 Pros:
- 
+
 * Simplistic graphic user interface
 * Allow user to add notes
 * Allow user to set reminders and alarms
 * Synchronize with users' email contacts to reminder users of his/her contacts' birthday
- 
+
 Cons:
- 
+
 * Does not differentiate tasks by priorities
 * Does not differentiate user-defined tasks and default festivals and holidays on the overall display (i.e. Chinese new year looks the same as project deadline)
 * Does not allow event that lasts for more than a day (i.e. event time are set by hours on a specific day or all day.)
- 
+
 ---
- 
+
 **Product Name**: Trello
- 
 Author: Chi Shien
- 
+
 Pros:
- 
 * Free
 * Simple dashboard style GUI, sync with gmail
 * Each board has cards
@@ -635,51 +632,40 @@ Pros:
 * Extra features like calendar view and card voting, stickers, etc
 * Allows click-drag
 * Daily to do list across all boards
- 
- 
 Cons:
- 
 * Cannot rank tasks by importance (though you can colour code them)
 * Requires heavily use of mouse to navigate
 * No keyboard shortcuts available
- 
 ---
- 
+
 **Product Name**: HiTask
- 
 Author: Aung Swumm
- 
+
 Pros:
- 
 * Free
 * Can set recurring task
 * Can set a time tracker or a time estimator
 * Can color-code tasks for ease of viewing
 * Send reminder alerts to phone app or email
- 
+
 Cons:
- 
 * Cannot sync with google calendar on android phones
-* Can be slow on the web app 
- 
+* Can be slow on the web app
+
 ---
- 
+
 **Product Name**: Google Calendar
- 
+
 Author: Dao Han
- 
+
 Pros:
- 
 * Handles reminders, appointments and events
 * Ease of setting up reminders
 * Sets reminder when to leave location for appointment
 * External apps such as Wix can sync with calendar
 * Can view other people's calendars if they share it
 * Color coding for events
- 
 Cons:
- 
 * Plain interface
 * If too many events, may be hidden unless specific day is opened
 * Not every email automatically downloaded into calendar
-
