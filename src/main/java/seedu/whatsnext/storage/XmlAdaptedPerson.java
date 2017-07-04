@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
+import seedu.whatsnext.model.person.TaskName;
 import seedu.whatsnext.model.person.Person;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
@@ -66,7 +66,7 @@ public class XmlAdaptedPerson {
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-        final Name name = new Name(this.name);
+        final TaskName name = new TaskName(this.name);
         final Phone phone = new Phone(this.phone);
         final Email email = new Email(this.email);
         final Address address = new Address(this.address);

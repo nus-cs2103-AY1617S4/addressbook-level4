@@ -17,7 +17,7 @@ import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.person.Address;
 import seedu.whatsnext.model.person.Email;
-import seedu.whatsnext.model.person.Name;
+import seedu.whatsnext.model.person.TaskName;
 import seedu.whatsnext.model.person.Person;
 import seedu.whatsnext.model.person.Phone;
 import seedu.whatsnext.model.person.ReadOnlyPerson;
@@ -94,7 +94,7 @@ public class EditCommand extends Command {
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        TaskName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private TaskName name;
         private Phone phone;
         private Email email;
         private Address address;
@@ -149,11 +149,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.tags);
         }
 
-        public void setName(Name name) {
+        public void setName(TaskName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
