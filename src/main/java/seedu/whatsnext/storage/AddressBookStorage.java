@@ -7,7 +7,7 @@ import seedu.whatsnext.commons.exceptions.DataConversionException;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 
 /**
- * Represents a storage for {@link seedu.whatsnext.model.AddressBook}.
+ * Represents a storage for {@link seedu.whatsnext.model.TaskManager}.
  */
 public interface AddressBookStorage {
 

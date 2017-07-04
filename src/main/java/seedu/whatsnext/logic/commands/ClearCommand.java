@@ -2,7 +2,7 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.whatsnext.model.AddressBook;
+import seedu.whatsnext.model.TaskManager;
 
 /**
  * Clears the address book.
@@ -16,7 +16,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         requireNonNull(model);
-        model.resetData(new AddressBook());
+        model.resetData(new TaskManager());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
