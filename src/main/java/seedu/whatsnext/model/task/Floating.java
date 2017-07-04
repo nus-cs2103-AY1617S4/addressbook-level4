@@ -76,7 +76,7 @@ public class Floating implements BaseTask {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BaseTask // instanceof handles nulls
+                || (other instanceof BaseTask // instanceof() handles nulls
                 && this.isSameStateAs((BaseTask) other));
     }
 
