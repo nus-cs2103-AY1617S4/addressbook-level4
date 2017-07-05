@@ -350,7 +350,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | view all task in a particular time |
 `* * *` | user | undo a recent action | remove my mistakes
 `* * *` | user | add priority marks to a task | know which tasks require more attention
-`* * *` | user | keep track of my completed tasks | review details of previous tasks
+`* * *` | user | list my completed tasks | review details of previous tasks
 `* * *` | user | specify a storage folder | know where my data will be saved
 `* * *` | user | set periodic reminders | automatically be reminded about recurring events
 `* * *` | user | see conflicts in events | resolve them earlier
@@ -501,10 +501,10 @@ Use case ends.
 
 **MSS**
 
-User request the current file path of the storage.
-System display the current file path of the storage.
-User request the storage file to be in a new file path.
-System change the file path and delete the storage in the original path.
+1. User request the current file path of the storage.
+2. System display the current file path of the storage.
+3. User request the storage file to be in a new file path.
+4. System change the file path and delete the storage in the original path.
 
 **Extensions**
 
@@ -617,6 +617,7 @@ Cons:
 ---
 
 **Product Name**: Trello
+
 Author: Chi Shien
 
 Pros:
@@ -637,6 +638,7 @@ Cons:
 ---
 
 **Product Name**: HiTask
+
 Author: Aung Swumm
 
 Pros:
