@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -55,13 +55,13 @@ public class XmlAdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Floating toModelType() throws IllegalValueException {
+    public BasicTask toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
         final TaskName name = new TaskName(this.name);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Floating(name, tags);
+        return new BasicTask(name, tags);
     }
 }

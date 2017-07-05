@@ -12,7 +12,7 @@ import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -39,7 +39,7 @@ public class AddCommandParser {
             TaskName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            BaseTask task = new Floating(name, tagList);
+            BaseTask task = new BasicTask(name, tagList);
 
             return new AddCommand(task);
         } catch (IllegalValueException ive) {

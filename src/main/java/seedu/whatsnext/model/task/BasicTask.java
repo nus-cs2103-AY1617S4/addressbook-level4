@@ -14,9 +14,11 @@ import seedu.whatsnext.model.tag.UniqueTagList;
  * Represents a Task in the WhatsNext application.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Floating implements BaseTask {
-
+public class BasicTask implements BaseTask {
+	private static final String TASK_TYPE = "basic task";
+	private String taskType;
     private TaskName name;
+    private TaskDescription description;
     private boolean isCompleted;
 
     private UniqueTagList tags;
@@ -24,19 +26,37 @@ public class Floating implements BaseTask {
     /**
      * Every field must be present and not null.
      */
-    public Floating(TaskName name, Set<Tag> tags) {
+    public BasicTask(TaskName name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
         this.name = name;
         isCompleted = false;
+        taskType = TASK_TYPE;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
     /**
      * Creates a copy of the given BasicTask.
      */
-    public Floating(BaseTask source) {
+    public BasicTask(BaseTask source) {
         this(source.getName(), source.getTags());
     }
+
+    public String getTaskType(){
+    	return taskType;
+    }
+
+    public void setTaskType(String taskType){
+    	this.taskType = taskType;
+    }
+
+    @Override
+	public TaskDescription getDescription() {
+		return description;
+	}
+
+    private void setDescription(TaskDescription description) {
+    	this.description = description;
+	}
 
     public void setName(TaskName name) {
         this.name = requireNonNull(name);
@@ -70,10 +90,12 @@ public class Floating implements BaseTask {
         requireNonNull(replacement);
 
         this.setName(replacement.getName());
+        this.setDescription(replacement.getDescription());
         this.setTags(replacement.getTags());
     }
 
-    @Override
+
+	@Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BaseTask // instanceof() handles nulls
@@ -107,5 +129,6 @@ public class Floating implements BaseTask {
 		isCompleted = false;
 
 	}
+
 
 }

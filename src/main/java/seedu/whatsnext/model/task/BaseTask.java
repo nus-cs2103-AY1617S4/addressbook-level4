@@ -11,6 +11,7 @@ import seedu.whatsnext.model.tag.Tag;
 public interface BaseTask {
 
     TaskName getName();
+    TaskDescription getDescription();
     Set<Tag> getTags();
     boolean getIsCompleted();
     void setCompleted();
@@ -33,8 +34,15 @@ public interface BaseTask {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                .append(" Tags: ");
-        getTags().forEach(builder::append);
+        builder.append(getAllTags());
         return builder.toString();
+    }
+
+    default String getAllTags(){
+    	final StringBuilder builder = new StringBuilder();
+    	getTags().forEach(builder::append);
+    	return builder.toString();
+
     }
 
 }
