@@ -7,17 +7,17 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 public class SampleDataUtil {
-    public static Floating[] getSamplePersons() {
+    public static BasicTask[] getSamplePersons() {
         try {
-            return new Floating[] {
-                new Floating(new TaskName("Bernice Yu"),
+            return new BasicTask[] {
+                new BasicTask(new TaskName("Bernice Yu"),
                     getTagSet("colleagues", "friends")),
-                new Floating(new TaskName("Barry Yu"),
+                new BasicTask(new TaskName("Barry Yu"),
                         getTagSet("cory"))
             };
         } catch (IllegalValueException e) {
@@ -28,7 +28,7 @@ public class SampleDataUtil {
     public static ReadOnlyTaskManager getSampleAddressBook() {
         try {
             TaskManager sampleAb = new TaskManager();
-            for (Floating samplePerson : getSamplePersons()) {
+            for (BasicTask samplePerson : getSamplePersons()) {
                 sampleAb.addTask(samplePerson);
             }
             return sampleAb;

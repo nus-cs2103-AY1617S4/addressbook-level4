@@ -6,7 +6,7 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
@@ -25,7 +25,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
     public static final String MESSAGE_TIME_CLASH = "This task cannot be added as time clashes with another task";
 
-    private final Floating toAdd;
+    private final BasicTask toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
 //            toAdd = new Deadline(task);
 //        else if (task.getType().equals("event"))
 //            toAdd = new Event(task);
-        toAdd = new Floating(task);
+        toAdd = new BasicTask(task);
     }
 
     @Override

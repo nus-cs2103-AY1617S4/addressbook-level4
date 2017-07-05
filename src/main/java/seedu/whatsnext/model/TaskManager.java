@@ -15,7 +15,7 @@ import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
 import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.UniqueTaskList;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -86,7 +86,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
     public void addTask(BaseTask p) throws DuplicateTaskException {
-        Floating newFloating = new Floating(p);
+        BasicTask newFloating = new BasicTask(p);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
     }
@@ -99,13 +99,13 @@ public class TaskManager implements ReadOnlyTaskManager {
      *      another existing person in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      *
-     * @see #syncMasterTagListWith(Floating)
+     * @see #syncMasterTagListWith(BasicTask)
      */
     public void updateTask(BaseTask target, BaseTask editedReadOnlyPerson)
             throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedReadOnlyPerson);
 
-        Floating editedPerson = new Floating(editedReadOnlyPerson);
+        BasicTask editedPerson = new BasicTask(editedReadOnlyPerson);
         syncMasterTagListWith(editedPerson);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
@@ -118,7 +118,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncMasterTagListWith(Floating person) {
+    private void syncMasterTagListWith(BasicTask person) {
         final UniqueTagList personTags = new UniqueTagList(person.getTags());
         tags.mergeFrom(personTags);
 
@@ -137,7 +137,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Ensures that every tag in these persons:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
-     *  @see #syncMasterTagListWith(Floating)
+     *  @see #syncMasterTagListWith(BasicTask)
      */
     private void syncMasterTagListWith(UniqueTaskList persons) {
         persons.forEach(this::syncMasterTagListWith);
