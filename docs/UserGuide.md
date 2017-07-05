@@ -44,8 +44,6 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 > * Reserved tag `HIGH`, `MEDIUM`, `LOW` names  are used to denote the importance of a certain task
 > * Tagged task will be highlighted `RED`, `BLUE`, `GREEN`
 > * Reserved tag `OVERLAP` are used to warn you about overlapping events. 
-> * Items with `...` after them can have multiple instances.
-> * Parameters can be in any order.
 
 ### 2.1. Viewing help : `help`
 
