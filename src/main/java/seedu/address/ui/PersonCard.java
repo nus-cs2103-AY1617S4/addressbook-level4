@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -33,7 +34,9 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-
+    @FXML
+    CheckBox checkbox1;
+    
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
         name.setText(person.getName().fullName);
