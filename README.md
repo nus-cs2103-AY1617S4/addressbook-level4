@@ -16,11 +16,11 @@
 #### Site Map
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md)
-* [Learning Outcomes](docs/LearningOutcomes.md)
+* [Learning Outcomes](docs/LearningOutcomes.adoc)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
-#### Acknowledgements
+#### Acknowledgement
 
 * This code is developed from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4) by a [team](https://github.com/se-edu) from National University of Singapore, School of Computing for students learning Software Engineering.
 * Some parts of this sample application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
