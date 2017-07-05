@@ -340,6 +340,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
+* Task in the following table refers to all three types of tasks involved: Floating; Deadlines; Events. 
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
@@ -352,8 +353,8 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | add priority marks to a task | know which tasks require more attention
 `* * *` | user | list my completed tasks | review details of previous tasks
 `* * *` | user | specify a storage folder | know where my data will be saved
-`* * *` | user | set periodic reminders | automatically be reminded about recurring events
 `* * *` | user | see conflicts in events | resolve them earlier
+`* * ` | user | set periodic reminders | automatically be reminded about recurring events
 `* *` | user | see the calendar on command | check out the dates
 `* *` | advanced user | use shortcut commands | utilize the app faster
 `* *` | user | color code my tasks | differentiate the tasks easier
