@@ -16,7 +16,7 @@
 #### Site Map
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md)
-* [Learning Outcomes](docs/LearningOutcomes.md)
+* [Learning Outcomes](docs/LearningOutcomes.adoc)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
