@@ -5,7 +5,7 @@ We are a team Engineering students based in the [School of Computing, National U
 <img src="images/luishengjie.png" width="150"><br>
 **Role**: Team Leader <br>
 **Responsibilities**: Project Coordination & Development <br>
-**Components in charge of:** Storage, Testing<br>
+**Components in charge of:** Logic & Model<br>
 **Features implemented:**<br>
 **Code Written:**<br>
 **Other major contributions:**<br>
@@ -15,8 +15,7 @@ We are a team Engineering students based in the [School of Computing, National U
 #### [Li Shi Cheng](https://github.com/Li-Shicheng)
 <img src="images/lishicheng.png" width="150"><br>
 **Role:** Developer <br>
-**Responsibilities:** Logic<br>
-**Components in charge of:** Ui, Logic, Model<br>
+**Components in charge of:** Logic<br> 
 **Features implemented:**<br>
 **Code Written:**<br>
 **Other major contributions:**
@@ -25,8 +24,7 @@ We are a team Engineering students based in the [School of Computing, National U
 #### [Lim Dao Han](http://github.com/)
 <img src="images/limdaohan.png" width="150"><br>
 **Role:** Developer <br>
-**Responsibilities:** Data<br>
-**Components in charge of:** Ui, Storage, Commons<br>
+**Components in charge of:** Storage & Google Calendar<br>
 **Features implemented:**<br>
 **Code Written:**<br>
 **Other major contributions:**
@@ -35,8 +33,7 @@ We are a team Engineering students based in the [School of Computing, National U
 #### [Tay Chi Shien](https://github.com/chishien)
 <img src="images/taychishien.png" width="150"><br>
 **Role:** Developer <br>
-**Responsibilities:** Ui<br>
-**Components in charge of:** Ui, Testing<br>
+**Components in charge of:** Logic<br>
 **Features implemented:**<br>
 **Code Written:**<br>
 **Other major contributions:**
@@ -45,8 +42,7 @@ We are a team Engineering students based in the [School of Computing, National U
 #### [Aung Swumm Htet Pyi Aye](https://github.com/ashpa)
 <img src="images/aung.png" width="150"><br>
 **Role:** Developer <br>
-**Responsibilities:** Data<br>
-**Components in charge of:** Ui, Logic, Model<br>
+**Components in charge of:** Ui & Ux<br>
 **Features implemented:**<br>
 **Code Written:**<br>
 **Other major contributions:**
