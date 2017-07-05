@@ -25,7 +25,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
-   * **`add n/project d/July 10 t/5-6 meeting`** adds an `Event` task to your task manager.
+   * **`add n/project meeting d/July 10 t/5-6`** adds an `Event` task to your task manager.
    * **`delete`**` 1` : deletes the 1st task shown in your current list
    * **`exit`** : exits the app
 6. Refer to the [Features](#2-features) section below for details of each command.<br>
@@ -43,6 +43,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 >
 > * Reserved tag `HIGH`, `MEDIUM`, `LOW` names  are used to denote the importance of a certain task
 > * Tagged task will be highlighted `RED`, `BLUE`, `GREEN`
+> * Reserved tag `OVERLAP` are used to warn you about overlapping events. 
 > * Items with `...` after them can have multiple instances.
 > * Parameters can be in any order.
 
@@ -55,9 +56,12 @@ Format: `help`
 ### 2.2. Adding a task: `add`
 
 Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
+Events must have a date, start time and end time. Events can overlap, but it will be tagged with the reserved tag `OVERLAP` to warn you. <br> 
+Deadlines must have a date, but the end time could be optional. If it is specified, it will be by default 2359. <br>
+Floating tasks do not have date or time. <br>
 Format: <br>
 >`(1) add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br>
->`(2) add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br>
+>`(2) add n/TASK_NAME d/DATE [t/TIME] [h/TAG]...` <br>
 >`(3) add n/TASK_NAME [h/TAG]...` <br>
 > Tasks can have any number of tags (including 0)
 Smart Add: <br>
@@ -141,7 +145,7 @@ Examples:
 
 ### 2.7. Undo last action : `undo`
 
-Undo the last action performed by the user.<br>
+Undo the last action performed by you.<br>
 Format: `undo`
 
 
@@ -216,7 +220,9 @@ Format: `exit`
 ## 4. Command Summary
 
 * **Add**  `add n/TASK_NAME d/DATE t/TIME [h/TAG]...` ` <br>
-  e.g. `add n/project meeting d/July 10 t/5-6 `
+  e.g. `add n/project meeting d/July 10 t/5-6`
+  e.g. `add n/project submission d/July 11 [h/HIGH]`
+  e.g. `add n/midterm exam revision`
 
 * **List**  `list` <br>
   e.g. list /i

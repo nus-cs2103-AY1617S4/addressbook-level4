@@ -379,7 +379,7 @@ Use case ends.
 
 2a. There is already a event task during that time period.
 
-> 2a1. System shows an error message with possible resolutions<br>
+> 2a1. System will tag the overlapping events with reserved tag `OVERLAP`<br>
 > Use case ends
 
 #### Use case: Delete task
@@ -541,15 +541,15 @@ Use case ends.
 
 ##### Reserved Tags
 
-> System defined tags that cannot be modified and deleted. E.g. "HIGH" = high priority task tag; "MEDIUM" = medium priority task tag; "LOW" = low priority task tag.
+> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag.
 
 ##### Events
 
-> Tasks that have both starting and ending time. There will be no tolerance for collision, i.e. two events cannot occur at the same time.
+> Tasks that have a date, both starting and ending time. Overlapping events are allowed, but will be tagged by the system as `OVERLAP` to warn users. 
 
 ##### Deadlines
 
-> Tasks that have only ending time. There are can be multiple deadlines at the same time.
+> Tasks that have a date, but may have an ending time. If the ending time is not specified by the user, it will be set to 2359 by default. There are can be multiple deadlines at the same time.
 
 ##### Floating
 
