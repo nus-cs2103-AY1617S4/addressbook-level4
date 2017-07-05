@@ -349,7 +349,6 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | search a task by name or by tag | locate task without having to go through the entire list
 `* * *` | user | view all task in a particular time |
 `* * *` | user | undo a recent action | remove my mistakes
-`* * *` | user | sort all task by date or by priority | know which tasks are coming soon or require more attention
 `* * *` | user | add priority marks to a task | know which tasks require more attention
 `* * *` | user | keep track of my completed tasks | review details of previous tasks
 `* * *` | user | specify a storage folder | know where my data will be saved
@@ -462,25 +461,6 @@ Use case ends.
 
 > 2a1. System shows a "No actions to undo" message <br>
 > Use case ends
-
-#### Use case: Sort tasks by date or priority
-
-**MSS**
-
-1.	User requests to sort the task lists by certain formatted method.
-2.	System sorts all task by users' method.<br>
-Use case ends.
-
-**Extensions**
-
-2a. The list is empty
-
-> Use case ends
-
-3a. The given method is invalid
-
-> 3a1. System shows an error message <br>
-> Use case ends.
 
 #### Use case: List tasks by type
 

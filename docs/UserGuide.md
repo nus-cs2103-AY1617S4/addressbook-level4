@@ -57,7 +57,7 @@ Format: `help`
 Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
 Format: <br>
 >`(1) add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br>
->`(2) add n/TASK_NAME d/DATE [h/TAG]...` <br>
+>`(2) add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br>
 >`(3) add n/TASK_NAME [h/TAG]...` <br>
 > Tasks can have any number of tags (including 0)
 Smart Add: <br>
@@ -66,8 +66,8 @@ Smart Add: <br>
 > TASK_PARAMETERS **must match task parameters of task type**
 Examples:
 
-* `add n/project d/July 10 t/5-6 meeting`
-* `add n/project d/July 10 meeting`
+* `add n/project d/July 10 t/5-6 h/meeting`
+* `add n/project submission d/July 10 t/12 h/HIGH`
 * `add n/project meeting h/CS2103`
 * `add n/project meeting h/CS2103 h/SPECIAL_TERM` <br>
 * `add event project meeting, July 10, 5-6`
@@ -184,40 +184,25 @@ Examples:
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
 
-### 2.11. Sorting tasks : `sort`
-Sort the tasks on the task manager<br>
-Format: `sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]`
-> sort the task of the specified `TASK_TYPE`. <br>
-> The TASK_TYPE **must be a valid task type** `events`, `deadline`, `floating`.
-
-* `sort events important`<br>
-  Sorts the events task in the task manager by importance.
-* `sort events date`<br>
-  Sorts the events task in the task manager by date and time.
-* `sort deadline date`<br>
-  Sorts the deadline task in the task manager by date.
-* `sort floating alpha`<br>
-  Sorts the floating task in the task manager alphabetically.
-
 ### 2.11. View current data file path : `viewPath`
 
 View data file directory path. <br>
 Format: `viewPath`
 > View the directory where the data file is saved <br>
 
-### 2.11. Updating data file
+### 2.12. Updating data file
 
 Updates data file directory. : `updatePath`<br>
 Format: `updatePath [Path Directory]`
 > Updates the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
 
-### 2.12. Saving the data
+### 2.13. Saving the data
 
 Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
-### 2.13. Exiting the program : `exit`
+### 2.14. Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
@@ -230,8 +215,8 @@ Format: `exit`
 
 ## 4. Command Summary
 
-* **Add**  `add d/DATE t/TIME n/TASK_NAME [h/TAG]...` ` <br>
-  e.g. `add d/July 10 t/5-6 e/project meeting`
+* **Add**  `add n/TASK_NAME d/DATE t/TIME [h/TAG]...` ` <br>
+  e.g. `add n/project meeting d/July 10 t/5-6 `
 
 * **List**  `list` <br>
   e.g. list /i
@@ -254,9 +239,6 @@ Format: `exit`
 
 * **Mark** : `unmark INDEX` <br>
   e.g. unmark 1
-
-* **Sort** : `sort tt/TASK_TYPE [DATE] [IMPORTANCE] [ALPHABETICALLY]` <br>
-  e.g. sort floating alpha
 
 * **View Data File Path** : `viewPath` <br>
 
