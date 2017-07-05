@@ -628,7 +628,9 @@ Pros:
 * Extra features like calendar view and card voting, stickers, etc
 * Allows click-drag
 * Daily to do list across all boards
+
 Cons:
+
 * Cannot rank tasks by importance (though you can colour code them)
 * Requires heavily use of mouse to navigate
 * No keyboard shortcuts available
@@ -645,6 +647,7 @@ Pros:
 * Send reminder alerts to phone app or email
 
 Cons:
+
 * Cannot sync with google calendar on android phones
 * Can be slow on the web app
 
@@ -661,7 +664,9 @@ Pros:
 * External apps such as Wix can sync with calendar
 * Can view other people's calendars if they share it
 * Color coding for events
+
 Cons:
+
 * Plain interface
 * If too many events, may be hidden unless specific day is opened
 * Not every email automatically downloaded into calendar

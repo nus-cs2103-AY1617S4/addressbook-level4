@@ -18,7 +18,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.Address;
 import seedu.whatsnext.model.task.BaseTask;
 import seedu.whatsnext.model.task.Email;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.Phone;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
@@ -71,7 +71,7 @@ public class EditCommand extends Command {
         }
 
         BaseTask personToEdit = lastShownList.get(index.getZeroBased());
-        Floating editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        BasicTask editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
             model.updateTask(personToEdit, editedPerson);
@@ -88,14 +88,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Floating createEditedPerson(BaseTask personToEdit,
+    private static BasicTask createEditedPerson(BaseTask personToEdit,
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         TaskName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Floating(updatedName,updatedTags);
+        return new BasicTask(updatedName,updatedTags);
     }
 
     @Override

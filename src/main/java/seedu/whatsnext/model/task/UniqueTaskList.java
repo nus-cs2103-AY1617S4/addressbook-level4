@@ -18,12 +18,12 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Floating#equals(Object)
+ * @see BasicTask#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
-public class UniqueTaskList implements Iterable<Floating> {
+public class UniqueTaskList implements Iterable<BasicTask> {
 
-    private final ObservableList<Floating> internalList = FXCollections.observableArrayList();
+    private final ObservableList<BasicTask> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
@@ -43,7 +43,7 @@ public class UniqueTaskList implements Iterable<Floating> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-        internalList.add(new Floating(toAdd));
+        internalList.add(new BasicTask(toAdd));
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueTaskList implements Iterable<Floating> {
             throw new TaskNotFoundException();
         }
 
-        Floating personToUpdate = internalList.get(index);
+        BasicTask personToUpdate = internalList.get(index);
         if (!personToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
@@ -95,17 +95,17 @@ public class UniqueTaskList implements Iterable<Floating> {
     public void setTasks(List<? extends BaseTask> baseTasksList) throws DuplicateTaskException {
         final UniqueTaskList replacement = new UniqueTaskList();
         for (final BaseTask task : baseTasksList) {
-            replacement.add(new Floating(task));
+            replacement.add(new BasicTask(task));
         }
         setTasks(replacement);
     }
 
-    public UnmodifiableObservableList<Floating> asObservableList() {
+    public UnmodifiableObservableList<BasicTask> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }
 
     @Override
-    public Iterator<Floating> iterator() {
+    public Iterator<BasicTask> iterator() {
         return internalList.iterator();
     }
 

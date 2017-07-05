@@ -14,7 +14,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Floating;
+import seedu.whatsnext.model.task.BasicTask;
 
 /**
  * An Immutable AddressBook that is serializable to XML format
@@ -47,7 +47,7 @@ public class XmlSerializableAddressBook implements ReadOnlyTaskManager {
 
     @Override
     public ObservableList<BaseTask> getTaskList() {
-        final ObservableList<Floating> persons = this.persons.stream().map(p -> {
+        final ObservableList<BasicTask> persons = this.persons.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {
