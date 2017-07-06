@@ -57,6 +57,7 @@ public class TickTask implements ReadOnlyTickTask {
 
     public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
+        this.completedTasks.setTasks(tasks);
     }
 
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
