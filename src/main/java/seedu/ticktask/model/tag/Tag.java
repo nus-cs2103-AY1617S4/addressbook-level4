@@ -8,6 +8,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
  * Represents a Tag in the Ticktask.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
+
 public class Tag {
 
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should only contain alphanumeric characters and spaces";
@@ -15,11 +16,12 @@ public class Tag {
 
     public final String tagName;
 
-    /**
+   /**
      * Validates given tag name.
      *
      * @throws IllegalValueException if the given tag name string is invalid.
      */
+    
     public Tag(String name) throws IllegalValueException {
         requireNonNull(name);
         String trimmedName = name.trim();

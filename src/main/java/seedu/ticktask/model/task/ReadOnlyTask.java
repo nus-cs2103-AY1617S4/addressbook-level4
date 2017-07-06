@@ -15,6 +15,8 @@ public interface ReadOnlyTask {
     Time getTime();
     Email getEmail();
     Date getDate();
+    boolean getCompleted();
+    void setCompleted(boolean s);
     Set<Tag> getTags();
 
     /**

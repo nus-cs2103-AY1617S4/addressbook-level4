@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
+import seedu.ticktask.logic.commands.CompleteCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.ExitCommand;
@@ -51,6 +52,9 @@ public class Parser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+            
+        case CompleteCommand.COMMAND_WORD:
+        	return new CompleteCommandParser().parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);

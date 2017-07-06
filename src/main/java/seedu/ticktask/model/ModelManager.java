@@ -24,6 +24,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TickTask tickTask;
     private final FilteredList<ReadOnlyTask> filteredTasks;
+    private final FilteredList<ReadOnlyTask> filteredCompletedTasks;
 
     /**
      * Initializes a ModelManager with the given tickTask and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.tickTask = new TickTask(addressBook);
         filteredTasks = new FilteredList<>(this.tickTask.getTaskList());
+        filteredCompletedTasks = new FilteredList<>(this.tickTask.getCompletedTaskList());
     }
 
     public ModelManager() {
@@ -70,6 +72,11 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateAddressBookChanged();
     }
+    
+    @Override
+    public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
+        tickTask.completeTask(task);
+    }
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
@@ -89,19 +96,27 @@ public class ModelManager extends ComponentManager implements Model {
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
+    
+    @Override
+    public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
+        return new UnmodifiableObservableList<>(filteredCompletedTasks);
+    }
 
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
+        filteredCompletedTasks.setPredicate(null);
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
+        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
+        
     }
 
-    private void updateFilteredPersonList(Expression expression) {
+    private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+        filteredCompletedTasks.setPredicate(expression::satisfies);
     }
 
     @Override

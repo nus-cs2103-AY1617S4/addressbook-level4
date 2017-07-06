@@ -21,5 +21,9 @@ public interface Logic {
 
     /** Returns the filtered list of persons */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
+    
+    /** Returns the filtered list of completed tasks */
+    ObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
+
 
 }
