@@ -20,6 +20,8 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /** Returns the filtered list of persons */
-    ObservableList<BasicTaskFeatures> getFilteredPersonList();
+
+    ObservableList<BasicTaskFeatures> getFilteredTaskList();
+
 
 }

@@ -340,6 +340,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
+* Task in the following table refers to all three types of tasks involved: Floating; Deadlines; Events. 
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
@@ -350,10 +351,10 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | view all task in a particular time |
 `* * *` | user | undo a recent action | remove my mistakes
 `* * *` | user | add priority marks to a task | know which tasks require more attention
-`* * *` | user | keep track of my completed tasks | review details of previous tasks
+`* * *` | user | list my completed tasks | review details of previous tasks
 `* * *` | user | specify a storage folder | know where my data will be saved
-`* * *` | user | set periodic reminders | automatically be reminded about recurring events
 `* * *` | user | see conflicts in events | resolve them earlier
+`* * ` | user | set periodic reminders | automatically be reminded about recurring events
 `* *` | user | see the calendar on command | check out the dates
 `* *` | advanced user | use shortcut commands | utilize the app faster
 `* *` | user | color code my tasks | differentiate the tasks easier
@@ -379,7 +380,7 @@ Use case ends.
 
 2a. There is already a event task during that time period.
 
-> 2a1. System shows an error message with possible resolutions<br>
+> 2a1. System will tag the overlapping events with reserved tag `OVERLAP`<br>
 > Use case ends
 
 #### Use case: Delete task
@@ -501,10 +502,10 @@ Use case ends.
 
 **MSS**
 
-User request the current file path of the storage.
-System display the current file path of the storage.
-User request the storage file to be in a new file path.
-System change the file path and delete the storage in the original path.
+1. User request the current file path of the storage.
+2. System display the current file path of the storage.
+3. User request the storage file to be in a new file path.
+4. System change the file path and delete the storage in the original path.
 
 **Extensions**
 
@@ -541,15 +542,15 @@ Use case ends.
 
 ##### Reserved Tags
 
-> System defined tags that cannot be modified and deleted. E.g. "HIGH" = high priority task tag; "MEDIUM" = medium priority task tag; "LOW" = low priority task tag.
+> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag.
 
 ##### Events
 
-> Tasks that have both starting and ending time. There will be no tolerance for collision, i.e. two events cannot occur at the same time.
+> Tasks that have a date, both starting and ending time. Overlapping events are allowed, but will be tagged by the system as `OVERLAP` to warn users. 
 
 ##### Deadlines
 
-> Tasks that have only ending time. There are can be multiple deadlines at the same time.
+> Tasks that have a date, but may have an ending time. If the ending time is not specified by the user, it will be set to 2359 by default. There are can be multiple deadlines at the same time.
 
 ##### Floating
 
@@ -617,6 +618,7 @@ Cons:
 ---
 
 **Product Name**: Trello
+
 Author: Chi Shien
 
 Pros:
@@ -637,6 +639,7 @@ Cons:
 ---
 
 **Product Name**: HiTask
+
 Author: Aung Swumm
 
 Pros:
