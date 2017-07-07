@@ -16,7 +16,7 @@
 //import seedu.whatsnext.model.Model;
 //import seedu.whatsnext.model.ModelManager;
 //import seedu.whatsnext.model.UserPrefs;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.testutil.TypicalPersons;
 //
 ///**

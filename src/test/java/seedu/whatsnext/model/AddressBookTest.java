@@ -14,8 +14,8 @@
 //
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.model.tag.Tag;
 //import seedu.whatsnext.testutil.TypicalPersons;
 //

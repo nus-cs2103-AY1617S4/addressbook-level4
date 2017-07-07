@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
@@ -153,7 +154,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     //// tag-level operations
 
-    public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
+    public void addTag(Tag t) throws UniqueTagList.DuplicateTagException, IllegalValueException {
         tags.add(t);
     }
 

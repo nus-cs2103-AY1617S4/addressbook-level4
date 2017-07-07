@@ -8,7 +8,7 @@
 //
 //import seedu.whatsnext.commons.core.index.Index;
 //import seedu.whatsnext.logic.commands.DeleteCommand;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.testutil.TestUtil;
 //
 //public class DeleteCommandTest extends AddressBookGuiTest {

@@ -12,8 +12,8 @@
 //import javafx.scene.control.ListView;
 //import javafx.stage.Stage;
 //import seedu.whatsnext.TestApp;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.testutil.TestUtil;
 //
 ///**

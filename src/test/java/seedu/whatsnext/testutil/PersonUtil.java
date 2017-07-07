@@ -7,7 +7,7 @@
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //
 //import seedu.whatsnext.logic.commands.AddCommand;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //
 ///**
 // * A utility class for Person.
