@@ -25,7 +25,7 @@ public class SampleDataUtil {
         }
     }
 
-    public static ReadOnlyTaskManager getSampleAddressBook() {
+    public static ReadOnlyTaskManager getSampleTaskManager() {
         try {
             TaskManager sampleAb = new TaskManager();
             for (BasicTask samplePerson : getSamplePersons()) {

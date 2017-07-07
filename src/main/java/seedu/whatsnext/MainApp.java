@@ -26,12 +26,12 @@ import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.model.util.SampleDataUtil;
-import seedu.whatsnext.storage.AddressBookStorage;
+import seedu.whatsnext.storage.TaskManagerStorage;
 import seedu.whatsnext.storage.JsonUserPrefsStorage;
 import seedu.whatsnext.storage.Storage;
 import seedu.whatsnext.storage.StorageManager;
 import seedu.whatsnext.storage.UserPrefsStorage;
-import seedu.whatsnext.storage.XmlAddressBookStorage;
+import seedu.whatsnext.storage.XmlTaskManagerStorage;
 import seedu.whatsnext.ui.Ui;
 import seedu.whatsnext.ui.UiManager;
 
@@ -61,8 +61,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskManagerStorage taskManagerStorage = new XmlTaskManagerStorage(userPrefs.getTaskManagerFilePath());
+        storage = new StorageManager(taskManagerStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,19 +81,19 @@ public class MainApp extends Application {
     }
 
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlyTaskManager> addressBookOptional;
+        Optional<ReadOnlyTaskManager> taskManagerOptional;
         ReadOnlyTaskManager initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            taskManagerOptional = storage.readTaskManager();
+            if (!taskManagerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskManager");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskManagerOptional.orElseGet(SampleDataUtil::getSampleTaskManager);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
         }
 
@@ -148,7 +148,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
             initializedPrefs = new UserPrefs();
         }
 
@@ -168,7 +168,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TaskManager " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
