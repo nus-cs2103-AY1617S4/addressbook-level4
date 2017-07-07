@@ -47,4 +47,6 @@ public interface Model {
 
 	UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 
+	void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
+
 }

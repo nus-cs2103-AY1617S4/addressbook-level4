@@ -154,6 +154,13 @@ public class TickTask implements ReadOnlyTickTask {
         }
     }
     
+    public boolean removeCompletedTask(ReadOnlyTask key) throws TaskNotFoundException {
+        if (completedTasks.remove(key)) {
+            return true;
+        } else {
+            throw new TaskNotFoundException();
+        }
+    }    
     /**
      * Adds the task to the list of completed tasks and removes it from the tasks list. 
      */

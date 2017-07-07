@@ -65,6 +65,11 @@ public class ModelManager extends ComponentManager implements Model {
         tickTask.removePerson(target);
         indicateAddressBookChanged();
     }
+    
+    public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+        tickTask.removeCompletedTask(target);
+        indicateAddressBookChanged();
+    }
 
     @Override
     public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
