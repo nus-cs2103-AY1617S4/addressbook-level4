@@ -16,7 +16,7 @@ import seedu.whatsnext.commons.events.ui.ExitAppRequestEvent;
 import seedu.whatsnext.commons.util.FxViewUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Region> {
         return this.taskListPanel;
     }
 
-    void loadPersonPage(BaseTask person) {
+    void loadPersonPage(BasicTaskFeatures person) {
         browserPanel.loadPersonPage(person);
     }
 

@@ -9,7 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.commons.core.LogsCenter;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * Panel containing the list of persons.
@@ -19,14 +19,14 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<BaseTask> taskListView;
+    private ListView<BasicTaskFeatures> taskListView;
 
-    public TaskListPanel(ObservableList<BaseTask> personList) {
+    public TaskListPanel(ObservableList<BasicTaskFeatures> personList) {
         super(FXML);
         setConnections(personList);
     }
 
-    private void setConnections(ObservableList<BaseTask> personList) {
+    private void setConnections(ObservableList<BasicTaskFeatures> personList) {
 //        taskListView.setItems(personList);
 //        taskListView.setCellFactory(listView -> new TaskListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -49,10 +49,10 @@ public class TaskListPanel extends UiPart<Region> {
         });
     }
 
-    class TaskListViewCell extends ListCell<BaseTask> {
+    class TaskListViewCell extends ListCell<BasicTaskFeatures> {
 
         @Override
-        protected void updateItem(BaseTask person, boolean empty) {
+        protected void updateItem(BasicTaskFeatures person, boolean empty) {
             super.updateItem(person, empty);
 
             if (empty || person == null) {

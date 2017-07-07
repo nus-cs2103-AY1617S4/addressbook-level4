@@ -8,11 +8,11 @@ import seedu.whatsnext.model.tag.Tag;
  * A read-only immutable interface for a task in the WhatsNext application.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-public interface BaseTask {
+public interface BasicTaskFeatures {
 
     TaskName getName();
-    TaskDescription getDescription();
     Set<Tag> getTags();
+    String getTaskType();
     boolean getIsCompleted();
     void setCompleted();
     void setIncompleted();
@@ -21,7 +21,7 @@ public interface BaseTask {
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
-    default boolean isSameStateAs(BaseTask other) {
+    default boolean isSameStateAs(BasicTaskFeatures other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName())); // state checks here onwards

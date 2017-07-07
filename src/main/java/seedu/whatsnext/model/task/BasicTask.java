@@ -11,14 +11,14 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
 
 /**
- * Represents a Task in the WhatsNext application.
+ * Represents a Basic Task in the WhatsNext application.
+ * Basic Tasks are only able to store task name, task description and tags
  * Guarantees: details are present and not null, field values are validated.
  */
-public class BasicTask implements BaseTask {
-	private static final String TASK_TYPE = "basic task";
-	private String taskType;
-    private TaskName name;
-    private TaskDescription description;
+public class BasicTask implements BasicTaskFeatures {
+	public static final String TASK_TYPE = "basic";
+	protected String taskType;
+    private TaskName taskName;
     private boolean isCompleted;
 
     private UniqueTagList tags;
@@ -26,9 +26,9 @@ public class BasicTask implements BaseTask {
     /**
      * Every field must be present and not null.
      */
-    public BasicTask(TaskName name, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
-        this.name = name;
+    public BasicTask(TaskName taskName, Set<Tag> tags) {
+        requireAllNonNull(taskName, tags);
+        this.taskName = taskName;
         isCompleted = false;
         taskType = TASK_TYPE;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -37,7 +37,7 @@ public class BasicTask implements BaseTask {
     /**
      * Creates a copy of the given BasicTask.
      */
-    public BasicTask(BaseTask source) {
+    public BasicTask(BasicTaskFeatures source) {
         this(source.getName(), source.getTags());
     }
 
@@ -49,22 +49,13 @@ public class BasicTask implements BaseTask {
     	this.taskType = taskType;
     }
 
-    @Override
-	public TaskDescription getDescription() {
-		return description;
-	}
-
-    private void setDescription(TaskDescription description) {
-    	this.description = description;
-	}
-
     public void setName(TaskName name) {
-        this.name = requireNonNull(name);
+        this.taskName = requireNonNull(name);
     }
 
     @Override
     public TaskName getName() {
-        return name;
+        return taskName;
     }
 
     /**
@@ -86,11 +77,10 @@ public class BasicTask implements BaseTask {
     /**
      * Updates this person with the details of {@code replacement}.
      */
-    public void resetData(BaseTask replacement) {
+    public void resetData(BasicTaskFeatures replacement) {
         requireNonNull(replacement);
 
         this.setName(replacement.getName());
-        this.setDescription(replacement.getDescription());
         this.setTags(replacement.getTags());
     }
 
@@ -98,14 +88,14 @@ public class BasicTask implements BaseTask {
 	@Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BaseTask // instanceof() handles nulls
-                && this.isSameStateAs((BaseTask) other));
+                || (other instanceof BasicTaskFeatures // instanceof() handles nulls
+                && this.isSameStateAs((BasicTaskFeatures) other));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(taskName, tags);
     }
 
     @Override

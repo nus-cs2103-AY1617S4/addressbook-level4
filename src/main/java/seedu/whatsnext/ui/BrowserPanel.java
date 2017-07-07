@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.whatsnext.MainApp;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * The Browser Panel of the App.
@@ -29,7 +29,7 @@ public class BrowserPanel extends UiPart<Region> {
         loadDefaultPage();
     }
 
-    public void loadPersonPage(BaseTask person) {
+    public void loadPersonPage(BasicTaskFeatures person) {
         loadPage("https://www.google.com.sg/#safe=off&q=" + person.getName().fullTaskName.replaceAll(" ", "+"));
     }
 

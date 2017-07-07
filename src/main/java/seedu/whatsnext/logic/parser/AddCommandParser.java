@@ -11,8 +11,8 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.task.BaseTask;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.DeadlineTask;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -25,7 +25,7 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String taskType, String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
@@ -38,8 +38,11 @@ public class AddCommandParser {
 
             TaskName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-            BaseTask task = new BasicTask(name, tagList);
+            if(taskType.equals("basic")){
+                BasicTask task = new BasicTask(name, tagList);
+                return new AddCommand(task);
+            }
+            DeadlineTask task = new DeadlineTask(name, null, null, tagList);
 
             return new AddCommand(task);
         } catch (IllegalValueException ive) {

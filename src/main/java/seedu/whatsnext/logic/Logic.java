@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * API of the Logic component
@@ -20,6 +20,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /** Returns the filtered list of persons */
-    ObservableList<BaseTask> getFilteredPersonList();
+    ObservableList<BasicTaskFeatures> getFilteredPersonList();
 
 }

@@ -4,7 +4,7 @@ import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -31,13 +31,13 @@ public class DeleteCommand extends Command {
     public CommandResult execute() throws CommandException {
 
 
-        UnmodifiableObservableList<BaseTask> lastShownList = model.getFilteredTaskList();
+        UnmodifiableObservableList<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        BaseTask taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        BasicTaskFeatures taskToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         try {
 

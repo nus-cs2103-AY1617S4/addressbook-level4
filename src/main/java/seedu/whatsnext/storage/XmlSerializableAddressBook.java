@@ -13,7 +13,7 @@ import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.BasicTask;
 
 /**
@@ -46,7 +46,7 @@ public class XmlSerializableAddressBook implements ReadOnlyTaskManager {
     }
 
     @Override
-    public ObservableList<BaseTask> getTaskList() {
+    public ObservableList<BasicTaskFeatures> getTaskList() {
         final ObservableList<BasicTask> persons = this.persons.stream().map(p -> {
             try {
                 return p.toModelType();

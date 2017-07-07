@@ -3,7 +3,7 @@ package seedu.whatsnext.model;
 import java.util.Set;
 
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
@@ -18,10 +18,10 @@ public interface Model {
     ReadOnlyTaskManager getTaskManager();
 
     /** Deletes the given person. */
-    void deleteTask(BaseTask target) throws TaskNotFoundException;
+    void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException;
 
     /** Adds the given person */
-    void addTask(BaseTask baseTask) throws DuplicateTaskException;
+    void addTask(BasicTaskFeatures basicTaskFeatures) throws DuplicateTaskException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -30,11 +30,11 @@ public interface Model {
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
-    void updateTask(BaseTask target, BaseTask editedTask)
+    void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
-    UnmodifiableObservableList<BaseTask> getFilteredTaskList();
+    UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
 
     /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();

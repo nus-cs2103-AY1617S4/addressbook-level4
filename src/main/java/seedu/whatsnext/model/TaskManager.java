@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.UniqueTaskList;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
@@ -53,7 +53,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     //// list overwrite operations
 
-    public void setTasks(List<? extends BaseTask> tasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends BasicTaskFeatures> tasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
     }
 
@@ -85,7 +85,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
-    public void addTask(BaseTask p) throws DuplicateTaskException {
+    public void addTask(BasicTaskFeatures p) throws DuplicateTaskException {
         BasicTask newFloating = new BasicTask(p);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
@@ -101,7 +101,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @see #syncMasterTagListWith(BasicTask)
      */
-    public void updateTask(BaseTask target, BaseTask editedReadOnlyPerson)
+    public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedReadOnlyPerson)
             throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedReadOnlyPerson);
 
@@ -143,7 +143,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         persons.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removeTask(BaseTask key) throws TaskNotFoundException {
+    public boolean removeTask(BasicTaskFeatures key) throws TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
@@ -166,7 +166,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
-    public ObservableList<BaseTask> getTaskList() {
+    public ObservableList<BasicTaskFeatures> getTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
 

@@ -11,7 +11,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.Parser;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.Model;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * The main LogicManager of the app.
@@ -42,7 +42,7 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     @Override
-    public ObservableList<BaseTask> getFilteredPersonList() {
+    public ObservableList<BasicTaskFeatures> getFilteredPersonList() {
         return model.getFilteredTaskList();
     }
 }

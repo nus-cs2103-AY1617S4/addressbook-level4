@@ -5,8 +5,9 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.task.BaseTask;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.DeadlineTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
@@ -30,14 +31,12 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
      */
-    public AddCommand(BaseTask task) {
-//        if(task.getType().equals("floating"))
-//            toAdd = new Floating(task);
-//        else if (task.getType().equals("deadline"))
-//            toAdd = new Deadline(task);
-//        else if (task.getType().equals("event"))
-//            toAdd = new Event(task);
+    public AddCommand(BasicTaskFeatures task) {
         toAdd = new BasicTask(task);
+    }
+
+    public AddCommand(DeadlineTask task) {
+        toAdd = new DeadlineTask(task);
     }
 
     @Override
