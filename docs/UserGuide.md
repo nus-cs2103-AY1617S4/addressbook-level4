@@ -43,7 +43,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 >
 > * Reserved tag `HIGH`, `MEDIUM`, `LOW` names  are used to denote the importance of a certain task
 > * Tagged task will be highlighted `RED`, `BLUE`, `GREEN`
-> * Reserved tag `OVERLAP` are used to warn you about overlapping events. 
+> * Reserved tag `OVERLAP` are used to warn you about overlapping events.
 
 ### 2.1. Viewing help : `help`
 
@@ -56,7 +56,7 @@ Format: `help`
 
 
 Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
-Event must have a date, start time and end time. Event can overlap, but it will be tagged with the reserved tag `OVERLAP` to warn you. <br> 
+Event must have a date, start time and end time. Event can overlap, but it will be tagged with the reserved tag `OVERLAP` to warn you. <br>
 Deadline must have a date, but the end time could be optional. If it is specified, it will be by default 2359. <br>
 Floating task do not have date or time. <br>
 
@@ -85,7 +85,7 @@ Format: <br>
 Examples:<br>
 * `add event project meeting, July 10, 5-6`
 
-##### Note: 
+##### Note:
 > Tasks can have any number of tags (including 0) <br>
 > TASK_TYPE **must match task type** (1) event, (2) deadline or (3) floating <br>
 > TASK_PARAMETERS **must match task parameters of task type**
@@ -158,14 +158,14 @@ Examples:
 * `find CS2103`<br>
   `delete TASK_TYPE 1`<br>
   Deletes the 1st task in the results of the `find` command.
-  
+
 ### 2.7. View in detail : `view`
 
 View a specific task in detail <br>
 Format `view TASK_TYPE INDEX` <br>
 Example: <br>
 * `view event 1`
-  View the 1 event in the task manager. 
+  View the 1 event in the task manager.
 
 ### 2.8. Undo last action : `undo`
 
@@ -248,20 +248,20 @@ Function | Format | Examples
 Get Help infomation | `help` |
 Add a event | `add n/TASK_NAME d/DATE t/TIME [h/TAG]...` <br> `add event n/TASK_NAME d/DATE t/TIME [h/TAG]...` | `add n/Project metting d/July 5 t/18-20`
 Add a deadline | `add n/TASK_NAME d/DATE [t/TIME] [h/TAG]...` <br> `add deadline n/TASK_NAME d/DATE [t/TIME] [h/TAG]...` | `add n/Project submission d/July 5 t/20`
-Add a floating | `add n/TASK_NAME [h/TAG]...` <br> `add floating n/TASK_NAME [h/TAG]...`| `add n/CS2103 exam h/HIGH` 
-List all task/floating/deadline/event | `list /a` `list floating /a`  `list deadline /a`  `list event /a` | 
+Add a floating | `add n/TASK_NAME [h/TAG]...` <br> `add floating n/TASK_NAME [h/TAG]...`| `add n/CS2103 exam h/HIGH`
+List all task/floating/deadline/event | `list /a` `list floating /a`  `list deadline /a`  `list event /a` |
 List incomplete task/floating/deadline/event | `list /i` `list floating /i` `list deadline /i`  `list event /i` |
 List complete task/floating/deadline/event | `list /c` `list floating /c` `list deadline /c`  `list event /c` |
-Clear all task/floating/deadline/event | `clear /a` `clear floating /a`  `clear deadline /a`  `clear event /a` | 
+Clear all task/floating/deadline/event | `clear /a` `clear floating /a`  `clear deadline /a`  `clear event /a` |
 Clear incomplete task/floating/deadline/event | `clear /i` `clear floating /i`  `clear deadline /i`  `clear event /i` | 
-Clear complete task/floating/deadline/event | `clear /c` `clear floating /c`  `clear deadline /c`  `clear event /c` | 
+Clear complete task/floating/deadline/event | `clear /c` `clear floating /c`  `clear deadline /c`  `clear event /c` |
 Edit floating/deadline/event | `edit floating INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` <br><br> `edit deadline INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` <br><br> `edit event INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` | `edit event 1 h/HIGH`
 Delete floating/deadline/event | `delete floating INDEX` <br> `delete deadline INDEX ` <br> `delete event INDEX ` | `delete event 1`
-Find by keywords or tags | `find KEYWORD [MORE_KEYWORDS]` | `find CS2103 Exams` 
-Undo the last action | `Undo` | 
+Find by keywords or tags | `find KEYWORD [MORE_KEYWORDS]` | `find CS2103 Exams`
+Undo the last action | `Undo` |
 Mark incomplete floating/deadline/event as completed | `mark floating INDEX`  `mark deadline INDEX`  `mark event INDEX` | `mark event 1`
 Unmark completed floating/deadline/event as incomplete | `unmark floating INDEX`  `unmark deadline INDEX`  `unmark event INDEX` | `unmark event 1`
 View floating/deadline/event | `view floating INDEX` <br> `view deadline INDEX ` <br> `view event INDEX ` | `view event 1`
 ViewPath of the storage file | `viewPath` |
 Change the path of the storage file | `updatePath [path_directory]` | `updatePath C:\User\tasks.xml`
-Exit the programme | `exit` |  
+Exit the programme | `exit` |

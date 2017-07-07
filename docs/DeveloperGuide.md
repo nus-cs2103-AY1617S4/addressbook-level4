@@ -340,7 +340,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
-* Task in the following table refers to all three types of tasks involved: Floating; Deadlines; Events. 
+* Task in the following table refers to all three types of tasks involved: Floating; Deadlines; Events.
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
@@ -546,7 +546,7 @@ Use case ends.
 
 ##### Events
 
-> Tasks that have a date, both starting and ending time. Overlapping events are allowed, but will be tagged by the system as `OVERLAP` to warn users. 
+> Tasks that have a date, both starting and ending time. Overlapping events are allowed, but will be tagged by the system as `OVERLAP` to warn users.
 
 ##### Deadlines
 
