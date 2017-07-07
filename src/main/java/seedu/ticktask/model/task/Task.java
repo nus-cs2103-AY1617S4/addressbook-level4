@@ -20,6 +20,7 @@ public class Task implements ReadOnlyTask {
     private Time time;
     private Email email;
     private Date date;
+    private boolean completed;
 
     private UniqueTagList tags;
 
@@ -34,6 +35,8 @@ public class Task implements ReadOnlyTask {
         this.time = time;
         this.email = email;
         this.date = date;
+        this.completed = false;
+        
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -78,6 +81,14 @@ public class Task implements ReadOnlyTask {
     @Override
     public Date getDate() {
         return date;
+    }
+    
+    public boolean getCompleted() {
+    	return completed;
+    }
+    
+    public void setCompleted(boolean newStatus) {
+    	this.completed = newStatus;
     }
 
     /**

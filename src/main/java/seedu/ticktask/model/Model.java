@@ -19,6 +19,9 @@ public interface Model {
 
     /** Deletes the given task. */
     void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;
+    
+    /** Marks the given task as complete and archives the task. */
+    void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
 
     /** Adds the given task */
     void addTask(ReadOnlyTask task) throws DuplicateTaskException;
@@ -41,5 +44,7 @@ public interface Model {
 
     /** Updates the filter of the filtered person list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+
+	UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 
 }

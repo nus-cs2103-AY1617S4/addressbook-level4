@@ -27,6 +27,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class TickTask implements ReadOnlyTickTask {
 
     private final UniqueTaskList tasks;
+    private final UniqueTaskList completedTasks;
     private final UniqueTagList tags;
 
     /*
@@ -38,6 +39,7 @@ public class TickTask implements ReadOnlyTickTask {
      */
     {
         tasks = new UniqueTaskList();
+        completedTasks = new UniqueTaskList();
         tags = new UniqueTagList();
     }
 
@@ -53,8 +55,9 @@ public class TickTask implements ReadOnlyTickTask {
 
     //// list overwrite operations
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks, List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
+        this.completedTasks.setTasks(completedTasks);
     }
 
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
@@ -64,7 +67,7 @@ public class TickTask implements ReadOnlyTickTask {
     public void resetData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
-            setTasks(newData.getTaskList());
+            setTasks(newData.getTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "AddressBooks should not have duplicate persons";
         }
@@ -150,6 +153,22 @@ public class TickTask implements ReadOnlyTickTask {
             throw new TaskNotFoundException();
         }
     }
+    
+    /**
+     * Adds the task to the list of completed tasks and removes it from the tasks list. 
+     */
+    public boolean completeTask(ReadOnlyTask key) throws TaskNotFoundException {
+    	if (tasks.contains(key)) {
+            completedTasks.archive(key);
+    		tasks.remove(key);
+    		
+    		return true;
+    	}
+    	
+    	else {
+    		throw new TaskNotFoundException();
+    	}
+    }
 
     //// tag-level operations
 
@@ -168,6 +187,10 @@ public class TickTask implements ReadOnlyTickTask {
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
+    }
+    
+    public ObservableList<ReadOnlyTask> getCompletedTaskList() {
+    	return new UnmodifiableObservableList<>(completedTasks.asObservableList());
     }
 
     @Override
