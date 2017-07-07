@@ -8,7 +8,7 @@
 //import seedu.whatsnext.logic.commands.ClearCommand;
 //import seedu.whatsnext.logic.commands.DeleteCommand;
 //import seedu.whatsnext.logic.commands.FindCommand;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //
 //public class FindCommandTest extends AddressBookGuiTest {
 //

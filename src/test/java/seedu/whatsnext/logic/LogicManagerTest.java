@@ -53,11 +53,11 @@
 //import seedu.whatsnext.model.ModelManager;
 //import seedu.whatsnext.model.ReadOnlyAddressBook;
 //import seedu.whatsnext.model.UserPrefs;
-//import seedu.whatsnext.model.person.Address;
-//import seedu.whatsnext.model.person.Email;
-//import seedu.whatsnext.model.person.Name;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.task.Address;
+//import seedu.whatsnext.model.task.Email;
+//import seedu.whatsnext.model.task.Name;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.Phone;
 //import seedu.whatsnext.model.tag.Tag;
 //import seedu.whatsnext.testutil.PersonBuilder;
 //

@@ -9,7 +9,7 @@
 //import seedu.whatsnext.logic.commands.exceptions.CommandException;
 //import seedu.whatsnext.model.AddressBook;
 //import seedu.whatsnext.model.Model;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //
 ///**
 // * Contains helper methods for testing commands.

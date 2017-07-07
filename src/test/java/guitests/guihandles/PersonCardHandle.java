@@ -9,7 +9,7 @@
 //import javafx.scene.control.Labeled;
 //import javafx.scene.layout.Region;
 //import javafx.stage.Stage;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.model.tag.Tag;
 //
 ///**

@@ -1,4 +1,5 @@
-//package seedu.whatsnext.model.person;
+package seedu.whatsnext.model.task;
+//package seedu.whatsnext.model.task;
 //
 //import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertTrue;

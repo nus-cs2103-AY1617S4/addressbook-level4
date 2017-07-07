@@ -8,7 +8,7 @@
 //import seedu.whatsnext.commons.core.Messages;
 //import seedu.whatsnext.logic.commands.AddCommand;
 //import seedu.whatsnext.logic.commands.ClearCommand;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.testutil.PersonUtil;
 //import seedu.whatsnext.testutil.TestUtil;
 //

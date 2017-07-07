@@ -17,12 +17,12 @@
 //import seedu.whatsnext.commons.exceptions.IllegalValueException;
 //import seedu.whatsnext.commons.util.FileUtil;
 //import seedu.whatsnext.commons.util.XmlUtil;
-//import seedu.whatsnext.model.person.Address;
-//import seedu.whatsnext.model.person.Email;
-//import seedu.whatsnext.model.person.Name;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.Phone;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.Address;
+//import seedu.whatsnext.model.task.Email;
+//import seedu.whatsnext.model.task.Name;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.Phone;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //
 ///**
 // * A utility class for test cases.

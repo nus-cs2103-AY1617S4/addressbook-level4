@@ -13,6 +13,8 @@ public class Tag {
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
+    public static final String[] RESERVEREDTAGS = {"HIGH", "MEDIUM", "LOW", "OVERLAP"};
+
     public final String tagName;
 
     /**
@@ -53,6 +55,37 @@ public class Tag {
      */
     public String toString() {
         return '[' + tagName + ']';
+    }
+
+    /*
+     * Returns true if the tag is a reserved Tag.
+     */
+    public boolean isReservedTag() {
+        String trimmedName = tagName.trim();
+        assert isValidTagName(trimmedName);
+
+        for (int i = 0; i < 4; i++) {
+            if (trimmedName.equals(RESERVEREDTAGS[i])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+     * Returns true if the given tagName is a reserved Tag for priority.
+     */
+    public boolean isPriorityTag() {
+        String trimmedName = tagName.trim();
+        assert isValidTagName(trimmedName);
+
+        for (int i = 0; i < 3; i++) {
+            if (trimmedName.equals(RESERVEREDTAGS[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -26,7 +26,7 @@
 //import seedu.whatsnext.commons.core.EventsCenter;
 //import seedu.whatsnext.commons.events.BaseEvent;
 //import seedu.whatsnext.model.AddressBook;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.testutil.TestUtil;
 //import seedu.whatsnext.testutil.TypicalPersons;
 //
