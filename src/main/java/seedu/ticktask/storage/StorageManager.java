@@ -20,13 +20,13 @@ import seedu.ticktask.model.UserPrefs;
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TickTaskStorage addressBookStorage;
+    private TickTaskStorage tickTaskStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
     public StorageManager(TickTaskStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.tickTaskStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -52,29 +52,29 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     public String getTickTaskFilePath() {
-        return addressBookStorage.getTickTaskFilePath();
+        return tickTaskStorage.getTickTaskFilePath();
     }
 
     @Override
     public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
-        return readTickTask(addressBookStorage.getTickTaskFilePath());
+        return readTickTask(tickTaskStorage.getTickTaskFilePath());
     }
 
     @Override
     public Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readTickTask(filePath);
+        return tickTaskStorage.readTickTask(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException {
-        saveTickTask(addressBook, addressBookStorage.getTickTaskFilePath());
+        saveTickTask(addressBook, tickTaskStorage.getTickTaskFilePath());
     }
 
     @Override
     public void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveTickTask(addressBook, filePath);
+        tickTaskStorage.saveTickTask(addressBook, filePath);
     }
 
 

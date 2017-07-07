@@ -25,6 +25,8 @@ public class XmlSerializableTickTask implements ReadOnlyTickTask {
     @XmlElement
     private List<XmlAdaptedTask> persons;
     @XmlElement
+    private List<XmlAdaptedTask> completedTasks;
+    @XmlElement
     private List<XmlAdaptedTag> tags;
 
     /**
@@ -33,6 +35,7 @@ public class XmlSerializableTickTask implements ReadOnlyTickTask {
      */
     public XmlSerializableTickTask() {
         persons = new ArrayList<>();
+        completedTasks = new ArrayList<>();
         tags = new ArrayList<>();
     }
 
@@ -42,12 +45,27 @@ public class XmlSerializableTickTask implements ReadOnlyTickTask {
     public XmlSerializableTickTask(ReadOnlyTickTask src) {
         this();
         persons.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        completedTasks.addAll(src.getCompletedTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
         final ObservableList<Task> tasks = this.persons.stream().map(p -> {
+            try {
+                return p.toModelType();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+                //TODO: better error handling
+                return null;
+            }
+        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+        return new UnmodifiableObservableList<>(tasks);
+    }
+    
+    @Override
+    public ObservableList<ReadOnlyTask> getCompletedTaskList() {
+        final ObservableList<Task> tasks = this.completedTasks.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {

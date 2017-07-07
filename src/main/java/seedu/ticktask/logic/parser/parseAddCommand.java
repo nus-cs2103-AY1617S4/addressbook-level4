@@ -31,9 +31,9 @@ import seedu.ticktask.model.task.Time;
  */
 public class parseAddCommand {
 	
-	private static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!by|from|#))+)" //.(?!by)+ will keep matching until by.
-            + "(?=.(by|from)\\s(?<dates>(.(?!.'|#|at))+)?)?"
-            + "(?=.(at)\\s(?<time>(.(?!.'|#))+)?)?"
+	private static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!by|from|#|at))+)" //.(?!by)+ will keep matching until by.
+            + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|at))+)?)?"
+            + "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
             + "((?=.*#(?<tags>.+)))?"
             + ".*");
 	
@@ -58,8 +58,8 @@ public class parseAddCommand {
             Time time = ParserUtil.parseTime(parsetime).get();
             Email email = ParserUtil.parseEmail(Optional.of(" ")).get();
             Date date = ParserUtil.parseDate(parsedate).get();
-            HashSet<String> bla = new HashSet<String>();
-            Set<Tag> tagList = ParserUtil.parseTags(bla);
+            HashSet<String> parsetag = new HashSet<String>();
+            Set<Tag> tagList = ParserUtil.parseTags(parsetag);
 
             ReadOnlyTask task = new Task(name, time, email, date, tagList);
 

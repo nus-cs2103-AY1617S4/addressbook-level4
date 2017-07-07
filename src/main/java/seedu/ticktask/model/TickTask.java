@@ -55,9 +55,9 @@ public class TickTask implements ReadOnlyTickTask {
 
     //// list overwrite operations
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks, List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
-        this.completedTasks.setTasks(tasks);
+        this.completedTasks.setTasks(completedTasks);
     }
 
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
@@ -67,7 +67,7 @@ public class TickTask implements ReadOnlyTickTask {
     public void resetData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
-            setTasks(newData.getTaskList());
+            setTasks(newData.getTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "AddressBooks should not have duplicate persons";
         }
