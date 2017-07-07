@@ -14,7 +14,7 @@
 //import seedu.whatsnext.commons.util.FileUtil;
 //import seedu.whatsnext.model.AddressBook;
 //import seedu.whatsnext.model.ReadOnlyAddressBook;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.testutil.TypicalPersons;
 //
 //public class XmlAddressBookStorageTest {

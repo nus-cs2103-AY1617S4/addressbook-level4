@@ -28,10 +28,10 @@
 //import seedu.whatsnext.logic.commands.EditCommand;
 //import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
 //import seedu.whatsnext.logic.parser.exceptions.ParseException;
-//import seedu.whatsnext.model.person.Address;
-//import seedu.whatsnext.model.person.Email;
-//import seedu.whatsnext.model.person.Name;
-//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.task.Address;
+//import seedu.whatsnext.model.task.Email;
+//import seedu.whatsnext.model.task.Name;
+//import seedu.whatsnext.model.task.Phone;
 //import seedu.whatsnext.model.tag.Tag;
 //import seedu.whatsnext.testutil.EditPersonDescriptorBuilder;
 //

@@ -6,7 +6,7 @@
 //import seedu.whatsnext.commons.exceptions.IllegalValueException;
 //import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
 //import seedu.whatsnext.logic.parser.ParserUtil;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //
 ///**
 // * A utility class to help with building EditPersonDescriptor objects.

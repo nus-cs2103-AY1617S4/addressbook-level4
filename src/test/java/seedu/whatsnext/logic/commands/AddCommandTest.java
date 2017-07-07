@@ -17,10 +17,10 @@
 //import seedu.whatsnext.logic.commands.exceptions.CommandException;
 //import seedu.whatsnext.model.Model;
 //import seedu.whatsnext.model.ReadOnlyAddressBook;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
-//import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
-//import seedu.whatsnext.model.person.exceptions.PersonNotFoundException;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.exceptions.DuplicatePersonException;
+//import seedu.whatsnext.model.task.exceptions.PersonNotFoundException;
 //import seedu.whatsnext.testutil.PersonBuilder;
 //
 //public class AddCommandTest {

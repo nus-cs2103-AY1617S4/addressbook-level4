@@ -18,10 +18,10 @@
 //import org.junit.rules.ExpectedException;
 //
 //import seedu.whatsnext.commons.exceptions.IllegalValueException;
-//import seedu.whatsnext.model.person.Address;
-//import seedu.whatsnext.model.person.Email;
-//import seedu.whatsnext.model.person.Name;
-//import seedu.whatsnext.model.person.Phone;
+//import seedu.whatsnext.model.task.Address;
+//import seedu.whatsnext.model.task.Email;
+//import seedu.whatsnext.model.task.Name;
+//import seedu.whatsnext.model.task.Phone;
 //import seedu.whatsnext.model.tag.Tag;
 //
 //public class ParserUtilTest {

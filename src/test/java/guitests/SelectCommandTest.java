@@ -8,7 +8,7 @@
 //import seedu.whatsnext.commons.core.index.Index;
 //import seedu.whatsnext.logic.commands.ClearCommand;
 //import seedu.whatsnext.logic.commands.SelectCommand;
-//import seedu.whatsnext.model.person.ReadOnlyPerson;
+//import seedu.whatsnext.model.task.ReadOnlyPerson;
 //
 //public class SelectCommandTest extends AddressBookGuiTest {
 //

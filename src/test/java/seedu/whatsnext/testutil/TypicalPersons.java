@@ -3,8 +3,8 @@
 //import seedu.whatsnext.commons.core.index.Index;
 //import seedu.whatsnext.commons.exceptions.IllegalValueException;
 //import seedu.whatsnext.model.AddressBook;
-//import seedu.whatsnext.model.person.Person;
-//import seedu.whatsnext.model.person.exceptions.DuplicatePersonException;
+//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.exceptions.DuplicatePersonException;
 //
 ///**
 // *
