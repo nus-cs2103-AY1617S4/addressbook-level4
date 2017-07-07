@@ -35,7 +35,7 @@ public class TaskCard extends UiPart<Region> {
         initTags(task);
     }
 
-    private void initTags(BasicTaskFeatures person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    private void initTags(BasicTaskFeatures task) {
+        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
