@@ -45,20 +45,11 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        final String taskType = arguments.trim().split(" ")[0];
-
-        if (commandWord.equals(AddCommand.COMMAND_WORD)){
-            Matcher matchEventType = EVENT_TYPE_FORMAT.matcher(taskType);
-            if(!matchEventType.matches()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-            }
-
-        }
 
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(taskType, arguments);
+            return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

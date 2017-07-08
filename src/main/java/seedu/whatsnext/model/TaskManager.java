@@ -15,8 +15,8 @@ import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.UniqueTaskList;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -86,7 +86,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
-    public void addTask(BasicTaskFeatures p) throws DuplicateTaskException {
+    public void addTask(BasicTask p) throws DuplicateTaskException {
         BasicTask newFloating = new BasicTask(p);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
@@ -167,7 +167,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
-    public ObservableList<BasicTaskFeatures> getTaskList() {
+    public ObservableList<BasicTask> getTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
 

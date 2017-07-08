@@ -1,7 +1,6 @@
 package seedu.whatsnext.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -17,21 +16,41 @@ import seedu.whatsnext.model.tag.UniqueTagList;
  */
 public class BasicTask implements BasicTaskFeatures {
 	public static final String TASK_TYPE = "basic";
-	protected String taskType;
     private TaskName taskName;
     private boolean isCompleted;
+    private DateTime startDate;
+    private DateTime endDate;
+    private Time startTime;
+    private Time endTime;
 
     private UniqueTagList tags;
 
     /**
-     * Every field must be present and not null.
+     * Constructor for Floating
+     * Floating consists of Name and tags
      */
     public BasicTask(TaskName taskName, Set<Tag> tags) {
-        requireAllNonNull(taskName, tags);
+        this(taskName, null, null, null, null, tags);
+    }
+
+    /**
+     * Constructor for Deadline
+     * Deadline consists of Name, End Date, End Time and tags
+     * */
+    public BasicTask(TaskName taskName, DateTime endDate, Time endTime, Set<Tag> tags) {
+        this(taskName, null, endDate, null, endTime, tags);
+    }
+
+    /**
+     * Constructor for Event
+     * */
+    public BasicTask(TaskName taskName, DateTime startDate, DateTime endDate, Time startTime, Time endTime, Set<Tag> tags) {
         this.taskName = taskName;
-        isCompleted = false;
-        taskType = TASK_TYPE;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.tags = new UniqueTagList(tags);
     }
 
     /**
@@ -41,13 +60,6 @@ public class BasicTask implements BasicTaskFeatures {
         this(source.getName(), source.getTags());
     }
 
-    public String getTaskType(){
-    	return taskType;
-    }
-
-    public void setTaskType(String taskType){
-    	this.taskType = taskType;
-    }
 
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);
@@ -119,6 +131,30 @@ public class BasicTask implements BasicTaskFeatures {
 		isCompleted = false;
 
 	}
+
+    @Override
+    public DateTime getStartDate() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DateTime getEndDate() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Time getStartTime() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Time getEndTime() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 
 }

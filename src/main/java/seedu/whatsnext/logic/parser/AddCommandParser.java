@@ -1,9 +1,11 @@
 package seedu.whatsnext.logic.parser;
 
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TO;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -12,7 +14,7 @@ import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.DeadlineTask;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -24,27 +26,33 @@ public class AddCommandParser {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @@author A0156106M
      */
-    public AddCommand parse(String taskType, String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
+    public AddCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ON, PREFIX_TO, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-        	System.out.println("ARGUMENT = " + args);
+        if (!arePrefixesPresent(argMultimap)) {
+            System.out.println("ARGUMENT = " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
         try {
-
-            TaskName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+            TaskName taskName = new TaskName(argMultimap.getPreamble());
+            Optional<String> startDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_ON));
+            Optional<String> endDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_TO));
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            if(taskType.equals("basic")){
-                BasicTask task = new BasicTask(name, tagList);
+            if (startDateTime.isPresent() && endDateTime.isPresent()) {
+                System.out.println("EVENT");
+                BasicTask task = new BasicTask(taskName, tagList);
+                return new AddCommand(task);
+            } else if (startDateTime.isPresent()) {
+                System.out.println("DEADLINE");
+                BasicTask task = new BasicTask(taskName, tagList);
+                return new AddCommand(task);
+            } else {
+                System.out.println("FLOATING");
+                BasicTask task = new BasicTask(taskName, tagList);
                 return new AddCommand(task);
             }
-            DeadlineTask task = new DeadlineTask(name, null, null, tagList);
-
-            return new AddCommand(task);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }

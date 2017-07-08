@@ -3,6 +3,7 @@ package seedu.whatsnext.model;
 import java.util.Set;
 
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -21,7 +22,7 @@ public interface Model {
     void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException;
 
     /** Adds the given person */
-    void addTask(BasicTaskFeatures basicTaskFeatures) throws DuplicateTaskException;
+    void addTask(BasicTask basicTask) throws DuplicateTaskException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -33,7 +34,7 @@ public interface Model {
     void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
 
-    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<BasicTaskFeatures>} */
     UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
 
     /** Updates the filter of the filtered task list to show all persons */

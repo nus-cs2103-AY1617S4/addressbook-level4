@@ -1,9 +1,9 @@
 package seedu.whatsnext.model.task;
 
 public interface AdvanceTaskFeatures {
-    Date getDate();
+    DateTime getDate();
     Time getEndTime();
     void setEndTime(Time taskTime);
-    void setDate(Date taskDate);
+    void setDate(DateTime taskDate);
 
 }

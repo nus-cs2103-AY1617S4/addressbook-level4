@@ -12,10 +12,13 @@ public interface BasicTaskFeatures {
 
     TaskName getName();
     Set<Tag> getTags();
-    String getTaskType();
     boolean getIsCompleted();
     void setCompleted();
     void setIncompleted();
+    DateTime getStartDate();
+    DateTime getEndDate();
+    Time getStartTime();
+    Time getEndTime();
 
 
     /**
