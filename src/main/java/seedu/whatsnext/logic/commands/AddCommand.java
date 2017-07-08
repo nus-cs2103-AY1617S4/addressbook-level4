@@ -18,9 +18,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: "
             + "Submit assignment "
-            + "on " + "Monday 10AM"
-            + "to " + "Friday 10AM"
-            + PREFIX_TAG + "high";
+            + "on " + "Monday 10AM "
+            + "to " + "Friday 10AM "
+            + PREFIX_TAG + " high";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
