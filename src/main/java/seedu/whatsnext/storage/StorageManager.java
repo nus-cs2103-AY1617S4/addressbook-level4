@@ -31,11 +31,11 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
     // ================ UserPrefs methods ==============================
-    
+
     @Override
     public String getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
-    }   
+    }
 
     @Override
     public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
@@ -61,7 +61,7 @@ public class StorageManager extends ComponentManager implements Storage {
     public void changeTaskManagerFilePath(String filePath){
         taskManagerStorage.changeTaskManagerFilePath(filePath);
     }
-    
+
     @Override
     public Optional<ReadOnlyTaskManager> readTaskManager() throws DataConversionException, IOException {
         return readTaskManager(taskManagerStorage.getTaskManagerFilePath());

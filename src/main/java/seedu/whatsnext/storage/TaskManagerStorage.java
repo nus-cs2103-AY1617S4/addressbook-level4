@@ -15,8 +15,8 @@ public interface TaskManagerStorage {
      * Returns the file path of the data file.
      */
     String getTaskManagerFilePath();
-    
-    /**  
+
+    /**
      * Changes file path of system
      */
     void changeTaskManagerFilePath(String filePath);
