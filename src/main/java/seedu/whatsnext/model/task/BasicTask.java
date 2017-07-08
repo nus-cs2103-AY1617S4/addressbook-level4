@@ -18,10 +18,8 @@ public class BasicTask implements BasicTaskFeatures {
 	public static final String TASK_TYPE = "basic";
     private TaskName taskName;
     private boolean isCompleted;
-    private DateTime startDate;
-    private DateTime endDate;
-    private Time startTime;
-    private Time endTime;
+    private DateTime startDateTime;
+    private DateTime endDateTime;
 
     private UniqueTagList tags;
 
@@ -30,27 +28,36 @@ public class BasicTask implements BasicTaskFeatures {
      * Floating consists of Name and tags
      */
     public BasicTask(TaskName taskName, Set<Tag> tags) {
-        this(taskName, null, null, null, null, tags);
+        this(taskName, null, null, tags);
     }
 
     /**
      * Constructor for Deadline
      * Deadline consists of Name, End Date, End Time and tags
      * */
-    public BasicTask(TaskName taskName, DateTime endDate, Time endTime, Set<Tag> tags) {
-        this(taskName, null, endDate, null, endTime, tags);
+    public BasicTask(TaskName taskName, DateTime startDateTime, Set<Tag> tags) {
+        this(taskName, startDateTime, null, tags);
     }
 
     /**
      * Constructor for Event
      * */
-    public BasicTask(TaskName taskName, DateTime startDate, DateTime endDate, Time startTime, Time endTime, Set<Tag> tags) {
+    public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
         this.taskName = taskName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags);
+    }
+
+    /**
+     * Constructor for Event
+     * */
+    public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, boolean isCompleted, Set<Tag> tags) {
+        this.taskName = taskName;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.tags = new UniqueTagList(tags);
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -133,25 +140,13 @@ public class BasicTask implements BasicTaskFeatures {
 	}
 
     @Override
-    public DateTime getStartDate() {
+    public DateTime getStartDateTime() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public DateTime getEndDate() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Time getStartTime() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Time getEndTime() {
+    public DateTime getEndDateTime() {
         // TODO Auto-generated method stub
         return null;
     }

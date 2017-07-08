@@ -22,7 +22,7 @@ import seedu.whatsnext.model.task.BasicTask;
 public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
 
     @XmlElement
-    private List<XmlAdaptedTask> persons;
+    private List<XmlAdaptedTask> tasks;
     @XmlElement
     private List<XmlAdaptedTag> tags;
 
@@ -31,7 +31,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
      * This empty constructor is required for marshalling.
      */
     public XmlSerializableTaskManager() {
-        persons = new ArrayList<>();
+        tasks = new ArrayList<>();
         tags = new ArrayList<>();
     }
 
@@ -40,13 +40,13 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
      */
     public XmlSerializableTaskManager(ReadOnlyTaskManager src) {
         this();
-        persons.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
     public ObservableList<BasicTask> getTaskList() {
-        final ObservableList<BasicTask> persons = this.persons.stream().map(p -> {
+        final ObservableList<BasicTask> persons = this.tasks.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {

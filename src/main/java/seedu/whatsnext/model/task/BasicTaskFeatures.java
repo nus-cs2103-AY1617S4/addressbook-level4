@@ -15,10 +15,8 @@ public interface BasicTaskFeatures {
     boolean getIsCompleted();
     void setCompleted();
     void setIncompleted();
-    DateTime getStartDate();
-    DateTime getEndDate();
-    Time getStartTime();
-    Time getEndTime();
+    DateTime getStartDateTime();
+    DateTime getEndDateTime();
 
 
     /**
