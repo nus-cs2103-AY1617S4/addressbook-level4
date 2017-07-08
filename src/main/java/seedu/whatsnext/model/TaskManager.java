@@ -45,7 +45,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public TaskManager() {}
 
     /**
-     * Creates an AddressBook using the Persons and Tags in the {@code toBeCopied}
+     * Creates an Task Manager using the Persons and Tags in the {@code toBeCopied}
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
         this();
