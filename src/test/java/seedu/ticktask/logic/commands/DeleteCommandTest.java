@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteTask(personToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -58,7 +58,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteTask(personToDelete);
         showNoPerson(expectedModel);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

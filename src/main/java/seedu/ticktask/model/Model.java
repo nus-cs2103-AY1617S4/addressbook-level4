@@ -1,5 +1,6 @@
 package seedu.ticktask.model;
 
+import java.util.EmptyStackException;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
@@ -18,7 +19,7 @@ public interface Model {
     ReadOnlyTickTask getTickTask();
 
     /** Deletes the given task. */
-    void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;
+    void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
     
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
@@ -48,5 +49,10 @@ public interface Model {
 	UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 
 	void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
-
+	
+	/** Undo a previously completed action on TickTask*/
+	void undoPreviousCommand() throws EmptyStackException;
+	
+	/**Redo a previously undone action on TickTask*/
+	void redoUndoneCommand() throws EmptyStackException;
 }

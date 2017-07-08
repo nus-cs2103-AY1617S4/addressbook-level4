@@ -19,6 +19,8 @@ import seedu.ticktask.logic.commands.HelpCommand;
 import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
+import seedu.ticktask.logic.commands.UndoCommand;
+import seedu.ticktask.logic.commands.RedoCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,38 +53,44 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return new parseAddCommand().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
             
         case CompleteCommand.COMMAND_WORD:
-        	return new CompleteCommandParser().parse(arguments);
-
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
-
+            return new CompleteCommandParser().parse(arguments);
+            
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         
         case DeleteCompleteCommand.COMMAND_WORD:
-        	return new DeleteCompleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
+            return new DeleteCompleteCommandParser().parse(arguments);
+            
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
+            
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+            
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+            
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+            
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+            
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

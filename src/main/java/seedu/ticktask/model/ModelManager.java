@@ -4,6 +4,7 @@ import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.Stack;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.ComponentManager;
@@ -16,13 +17,15 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TickTask client data.
  * All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TickTask tickTask;
+    private TickTask currentProgramInstance;
+    private Stack<TickTask> previousProgramInstances;
+    private Stack<TickTask> futureProgramInstances;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final FilteredList<ReadOnlyTask> filteredCompletedTasks;
 
@@ -35,9 +38,11 @@ public class ModelManager extends ComponentManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.tickTask = new TickTask(addressBook);
-        filteredTasks = new FilteredList<>(this.tickTask.getTaskList());
-        filteredCompletedTasks = new FilteredList<>(this.tickTask.getCompletedTaskList());
+        this.currentProgramInstance = new TickTask(addressBook);
+        filteredTasks = new FilteredList<>(this.currentProgramInstance.getTaskList());
+        filteredCompletedTasks = new FilteredList<>(this.currentProgramInstance.getCompletedTaskList());
+        previousProgramInstances = new Stack<TickTask>();
+        futureProgramInstances = new Stack<TickTask>();
     }
 
     public ModelManager() {
@@ -46,50 +51,86 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void resetData(ReadOnlyTickTask newData) {
-        tickTask.resetData(newData);
-        indicateAddressBookChanged();
+        saveInstance();
+        currentProgramInstance.resetData(newData);
+        indicateTickTaskModelChanged();
     }
 
     @Override
     public ReadOnlyTickTask getTickTask() {
-        return tickTask;
+        return currentProgramInstance;
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new TickTaskChangedEvent(tickTask));
+    private void indicateTickTaskModelChanged() {
+        raise(new TickTaskChangedEvent(currentProgramInstance));
     }
-
+    //@@author A0139819N
+    
+    /**Reverses the previous command executed by the user 
+     * Restores the TickTask client to one state before the previous command was executed
+     * */
+    public void undoPreviousCommand(){
+        TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
+        currentProgramInstance.resetData(previousProgramInstances.pop());
+        futureProgramInstances.push(currentTickTaskInstance);
+        indicateTickTaskModelChanged();
+    }
+    
+    /**Redo an existing command that was previously undone by the user 
+     * Restores the TickTask client to one state after the undone command was executed
+     * User can only use redo command after an undo command was previously executed
+     */
+    public void redoUndoneCommand(){
+        TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
+        currentProgramInstance.resetData(futureProgramInstances.pop());
+        previousProgramInstances.push(currentTickTaskInstance);
+        indicateTickTaskModelChanged();
+    }
+    
+    /**Saves the current instance of the TickTask program before any data is modified
+     * so that the program can return to previous instances if desired
+     */
+    private void saveInstance(){
+        previousProgramInstances.push(new TickTask(currentProgramInstance));
+        futureProgramInstances.clear();      
+    }
+    
+    //@@author A0139819N
+    
     @Override
-    public synchronized void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
-        tickTask.removePerson(target);
-        indicateAddressBookChanged();
+    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        saveInstance();
+        currentProgramInstance.removePerson(target);
+        indicateTickTaskModelChanged();
     }
     
     public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
-        tickTask.removeCompletedTask(target);
-        indicateAddressBookChanged();
+        currentProgramInstance.removeCompletedTask(target);
+        indicateTickTaskModelChanged();
     }
 
     @Override
     public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
-        tickTask.addTask(task);
+        saveInstance();
+        currentProgramInstance.addTask(task);
         updateFilteredListToShowAll();
-        indicateAddressBookChanged();
+        indicateTickTaskModelChanged();
     }
     
     @Override
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
-        tickTask.completeTask(task);
+        saveInstance();
+        currentProgramInstance.completeTask(task);
     }
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
             throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedTask);
-
-        tickTask.updateTask(target, editedTask);
-        indicateAddressBookChanged();
+        saveInstance();
+        currentProgramInstance.updateTask(target, editedTask);
+        indicateTickTaskModelChanged();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -138,7 +179,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return tickTask.equals(other.tickTask)
+        return currentProgramInstance.equals(other.currentProgramInstance)
                 && filteredTasks.equals(other.filteredTasks);
     }
 

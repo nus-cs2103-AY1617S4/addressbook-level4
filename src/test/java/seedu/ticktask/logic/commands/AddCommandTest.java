@@ -92,7 +92,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
 
