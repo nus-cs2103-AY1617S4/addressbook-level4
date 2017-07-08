@@ -15,10 +15,10 @@ public class SampleDataUtil {
     public static BasicTask[] getSamplePersons() {
         try {
             return new BasicTask[] {
-                new BasicTask(new TaskName("Bernice Yu"),
-                    getTagSet("colleagues", "friends")),
-                new BasicTask(new TaskName("Barry Yu"),
-                        getTagSet("cory"))
+                new BasicTask(new TaskName("Complete CS2103 assignment"),
+                    getTagSet("nus", "cs2103")),
+                new BasicTask(new TaskName("Meet John for dinner"),
+                        getTagSet("dinner"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
