@@ -28,7 +28,7 @@ public class Tag {
         if (!isValidTagName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }
-        this.tagName = trimmedName;
+        this.tagName = trimmedName.toUpperCase();
     }
 
     /**
@@ -67,7 +67,6 @@ public class Tag {
 
         for (int i = 0; i < 4; i++) {
             if (trimmedName.toUpperCase().equals(RESERVEREDTAGS[i])) {
-                tagName.toUpperCase();
                 return true;
             }
         }
@@ -85,7 +84,6 @@ public class Tag {
 
         for (int i = 0; i < 3; i++) {
             if (trimmedName.toUpperCase().equals(RESERVEREDTAGS[i])) {
-                tagName.toUpperCase();
                 return true;
             }
         }
