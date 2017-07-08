@@ -11,10 +11,10 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes
@@ -48,17 +48,17 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> time} into an {@code Optional<time>} if {@code time} is present.
      */
-    public static Optional<Time> parseTime(Optional<String> time) throws IllegalValueException {
+    public static Optional<DueTime> parseTime(Optional<String> time) throws IllegalValueException {
         time = setNullToString(time);
-        return time.isPresent() ? Optional.of(new Time(time.get())) : Optional.empty();
+        return time.isPresent() ? Optional.of(new DueTime(time.get())) : Optional.empty();
     }
 
     /**
      * Parses a {@code Optional<String> date} into an {@code Optional<Date>} if {@code date} is present.
      */
-    public static Optional<Date> parseDate(Optional<String> date) throws IllegalValueException {
+    public static Optional<DueDate> parseDate(Optional<String> date) throws IllegalValueException {
         date = setNullToString(date);
-        return date.isPresent() ? Optional.of(new Date(date.get())) : Optional.empty();
+        return date.isPresent() ? Optional.of(new DueDate(date.get())) : Optional.empty();
     }
 
     /**

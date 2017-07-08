@@ -56,11 +56,11 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.TaskBuilder;
 
 
@@ -231,7 +231,7 @@ public class LogicManagerTest {
                 + PREFIX_TIME + "not_numbers "
                 + PREFIX_EMAIL + "valid@e.mail "
                 + PREFIX_DATE + "valid, address",
-                Time.MESSAGE_TIME_CONSTRAINTS);
+                DueTime.MESSAGE_TIME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "12345 "
@@ -466,9 +466,9 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             Name name = new Name("Adam Brown");
-            Time privateTime = new Time("111111");
+            DueTime privateTime = new DueTime("111111");
             Email email = new Email("adam@example.com");
-            Date privateAddress = new Date("111, alpha street");
+            DueDate privateAddress = new DueDate("111, alpha street");
 
             return new Task(name, privateTime, email, privateAddress,
                     getTagSet("tag1", "longertag2"));
@@ -487,9 +487,9 @@ public class LogicManagerTest {
 
             return new Task(
                     new Name("Person " + seed),
-                    new Time(phoneNumber),
+                    new DueTime(phoneNumber),
                     new Email(seed + "@email"),
-                    new Date("House of " + seed),
+                    new DueDate("House of " + seed),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
 
