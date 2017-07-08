@@ -5,13 +5,14 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.LogsCenter;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.Parser;
-import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 
 /**
  * The main LogicManager of the app.
@@ -30,7 +31,8 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText)
+            throws CommandException, TagNotFoundException, IllegalValueException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
             Command command = parser.parseCommand(commandText);

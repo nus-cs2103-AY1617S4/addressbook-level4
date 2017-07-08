@@ -7,6 +7,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 /**
  * Represents a Task's name in the WhatsNext application.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * @@author A0156106M
  */
 public class TaskName {
 

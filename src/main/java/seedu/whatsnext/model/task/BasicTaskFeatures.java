@@ -7,6 +7,7 @@ import seedu.whatsnext.model.tag.Tag;
 /**
  * A read-only immutable interface for a task in the WhatsNext application.
  * Implementations should guarantee: details are present and not null, field values are validated.
+ * @@author A0156106M
  */
 public interface BasicTaskFeatures {
 
@@ -15,11 +16,8 @@ public interface BasicTaskFeatures {
     boolean getIsCompleted();
     void setCompleted();
     void setIncompleted();
-    DateTime getStartDate();
-    DateTime getEndDate();
-    Time getStartTime();
-    Time getEndTime();
-
+    DateTime getStartDateTime();
+    DateTime getEndDateTime();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -41,11 +39,10 @@ public interface BasicTaskFeatures {
         return builder.toString();
     }
 
-    default String getAllTags(){
-    	final StringBuilder builder = new StringBuilder();
-    	getTags().forEach(builder::append);
-    	return builder.toString();
-
+    default String getAllTags() {
+        final StringBuilder builder = new StringBuilder();
+        getTags().forEach(builder::append);
+        return builder.toString();
     }
 
 }
