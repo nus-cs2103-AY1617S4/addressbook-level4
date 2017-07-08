@@ -16,6 +16,7 @@ import seedu.whatsnext.logic.commands.FindCommand;
 import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.commands.ListCommand;
+import seedu.whatsnext.logic.commands.MarkCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
@@ -60,8 +61,8 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-//        case MarkCommand.COMMAND_WORD:
-//            return new MarkCommandParser().parse(arguments);
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
