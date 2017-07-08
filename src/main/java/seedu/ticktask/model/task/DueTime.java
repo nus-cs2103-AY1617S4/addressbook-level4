@@ -10,7 +10,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
  * Represents a task's deadline time.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Time {
+public class DueTime {
 
     private int _hours;
     private int _minutes;
@@ -26,7 +26,7 @@ public class Time {
      *
      * @throws IllegalValueException if given time string is invalid.
      */
-    public Time(String phone) throws IllegalValueException {
+    public DueTime(String phone) throws IllegalValueException {
         requireNonNull(phone);
         String trimmedTime = phone.trim();
         if (!trimmedTime.equals("")) {
@@ -61,8 +61,8 @@ public class Time {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Time // instanceof handles nulls
-                && this.value.equals(((Time) other).value)); // state check
+                || (other instanceof DueTime // instanceof handles nulls
+                && this.value.equals(((DueTime) other).value)); // state check
     }
 
     @Override

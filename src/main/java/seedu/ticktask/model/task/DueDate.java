@@ -12,7 +12,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
  * Represents a Task's date in the TickTask.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class DueDate {
 
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Date should be in format DD/MM/YY";
@@ -34,7 +34,7 @@ public class Date {
      *
      * @throws IllegalValueException if given date string is invalid.
      */
-    public Date(String date) throws IllegalValueException {
+    public DueDate(String date) throws IllegalValueException {
         requireNonNull(date);
         
         Matcher m = BASIC_COMMAND_FORMAT.matcher(date);
@@ -88,8 +88,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && this.value.equals(((Date) other).value)); // state check
+                || (other instanceof DueDate // instanceof handles nulls
+                && this.value.equals(((DueDate) other).value)); // state check
     }
 
     @Override

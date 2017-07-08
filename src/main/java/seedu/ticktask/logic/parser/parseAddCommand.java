@@ -16,12 +16,12 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
  
 //@@A0139964M
 /**
@@ -54,9 +54,9 @@ public class parseAddCommand {
             Optional<String> parsetag = Optional.ofNullable((matcher.group("tags")));
             tagList = createTagList(parsetag);
             Name name = ParserUtil.parseName(parsename).get();
-            Time time = ParserUtil.parseTime(parsetime).get();
+            DueTime time = ParserUtil.parseTime(parsetime).get();
             Email email = ParserUtil.parseEmail(Optional.of(" ")).get();
-            Date date = ParserUtil.parseDate(parsedate).get();
+            DueDate date = ParserUtil.parseDate(parsedate).get();
              
              
             ReadOnlyTask task = new Task(name, time, email, date, tagList);

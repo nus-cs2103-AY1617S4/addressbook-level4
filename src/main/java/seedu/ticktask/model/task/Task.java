@@ -17,9 +17,9 @@ import seedu.ticktask.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Time time;
+    private DueTime time;
     private Email email;
-    private Date date;
+    private DueDate date;
     private boolean completed;
 
     private UniqueTagList tags;
@@ -28,7 +28,7 @@ public class Task implements ReadOnlyTask {
      * Every field must be present and not null.
      */
 
-    public Task(Name name, Time time, Email email, Date date, Set<Tag> tags) {
+    public Task(Name name, DueTime time, Email email, DueDate date, Set<Tag> tags) {
         requireAllNonNull(name, time, email, date, tags);
 
         this.name = name;
@@ -57,11 +57,11 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
-    public void setTime(Time time) {
+    public void setTime(DueTime time) {
         this.time = requireNonNull(time);
     }
 
-    public Time getTime() {
+    public DueTime getTime() {
         return time;
     }
 
@@ -74,12 +74,12 @@ public class Task implements ReadOnlyTask {
         return email;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DueDate date) {
         this.date = requireNonNull(date);
     }
 
     @Override
-    public Date getDate() {
+    public DueDate getDate() {
         return date;
     }
     

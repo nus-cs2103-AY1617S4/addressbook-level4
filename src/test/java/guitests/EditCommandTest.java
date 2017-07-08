@@ -19,11 +19,11 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.TaskBuilder;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
@@ -107,13 +107,13 @@ public class EditCommandTest extends TickTaskGuiTest {
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TIME + "abcd");
-        assertResultMessage(Time.MESSAGE_TIME_CONSTRAINTS);
+        assertResultMessage(DueTime.MESSAGE_TIME_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_EMAIL + "yahoo!!!");
         assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_DATE.getPrefix());
-        assertResultMessage(Date.MESSAGE_DATE_CONSTRAINTS);
+        assertResultMessage(DueDate.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TAG + "*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);

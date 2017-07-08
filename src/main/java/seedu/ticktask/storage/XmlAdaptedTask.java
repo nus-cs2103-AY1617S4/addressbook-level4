@@ -9,12 +9,12 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 
 /**
  * JAXB-friendly version of the Person.
@@ -67,9 +67,9 @@ public class XmlAdaptedTask {
             personTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final Time time = new Time(this.phone);
+        final DueTime time = new DueTime(this.phone);
         final Email email = new Email(this.email);
-        final Date address = new Date(this.address);
+        final DueDate address = new DueDate(this.address);
         final Set<Tag> tags = new HashSet<>(personTags);
         return new Task(name, time, email, address, tags);
     }

@@ -19,10 +19,10 @@ import org.junit.rules.ExpectedException;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.parser.ParserUtil;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -107,8 +107,8 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValue_returnsPhone() throws Exception {
-        Time expectedTime = new Time(VALID_PHONE);
-        Optional<Time> actualPhone = ParserUtil.parseTime(Optional.of(VALID_PHONE));
+        DueTime expectedTime = new DueTime(VALID_PHONE);
+        Optional<DueTime> actualPhone = ParserUtil.parseTime(Optional.of(VALID_PHONE));
 
         assertEquals(expectedTime, actualPhone.get());
     }
@@ -132,8 +132,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValue_returnsAddress() throws Exception {
-        Date expectedAddress = new Date(VALID_ADDRESS);
-        Optional<Date> actualAddress = ParserUtil.parseDate(Optional.of(VALID_ADDRESS));
+        DueDate expectedAddress = new DueDate(VALID_ADDRESS);
+        Optional<DueDate> actualAddress = ParserUtil.parseDate(Optional.of(VALID_ADDRESS));
 
         assertEquals(expectedAddress, actualAddress.get());
     }

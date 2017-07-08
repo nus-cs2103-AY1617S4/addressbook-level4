@@ -14,12 +14,12 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -41,9 +41,9 @@ public class AddCommandParser {
 
         try {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
-            Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).get();
+            DueTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).get();
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
-            Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).get();
+            DueDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
             ReadOnlyTask task = new Task(name, time, email, date, tagList);

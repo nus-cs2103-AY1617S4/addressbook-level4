@@ -30,10 +30,10 @@ import seedu.ticktask.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.ticktask.logic.parser.EditCommandParser;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -90,17 +90,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure("1" + INVALID_NAME_DESC, Name.MESSAGE_NAME_CONSTRAINTS); // invalid name
-        assertParseFailure("1" + INVALID_PHONE_DESC, Time.MESSAGE_TIME_CONSTRAINTS); // invalid phone
+        assertParseFailure("1" + INVALID_PHONE_DESC, DueTime.MESSAGE_TIME_CONSTRAINTS); // invalid phone
         assertParseFailure("1" + INVALID_EMAIL_DESC, Email.MESSAGE_EMAIL_CONSTRAINTS); // invalid email
-        assertParseFailure("1" + INVALID_ADDRESS_DESC, Date.MESSAGE_DATE_CONSTRAINTS); // invalid address
+        assertParseFailure("1" + INVALID_ADDRESS_DESC, DueDate.MESSAGE_DATE_CONSTRAINTS); // invalid address
         assertParseFailure("1" + INVALID_TAG_DESC, Tag.MESSAGE_TAG_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure("1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Time.MESSAGE_TIME_CONSTRAINTS);
+        assertParseFailure("1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, DueTime.MESSAGE_TIME_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure("1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Time.MESSAGE_TIME_CONSTRAINTS);
+        assertParseFailure("1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, DueTime.MESSAGE_TIME_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
