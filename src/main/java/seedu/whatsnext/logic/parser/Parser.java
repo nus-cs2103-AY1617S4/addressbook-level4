@@ -18,6 +18,7 @@ import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.MarkCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
+import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,7 +30,6 @@ public class Parser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern EVENT_TYPE_FORMAT = Pattern.compile("\\bbasic\\b|\\bdeadline\\b|\\bevent\\b");
 
     /**
      * Parses user input into command for execution.
@@ -48,7 +48,7 @@ public class Parser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-
+        //@@author A0156106M
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -60,9 +60,12 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
+        //@@author A0156106M
         case MarkCommand.COMMAND_WORD:
-            return new MarkCommandParser().parse(arguments);
+            return new MarkCommandParser().parseMarkCommand(arguments);
+        //@@author A0156106M
+        case UnmarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parseUnmarkCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
