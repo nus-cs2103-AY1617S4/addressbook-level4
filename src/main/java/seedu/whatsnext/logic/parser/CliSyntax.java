@@ -20,4 +20,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME_ALTERNATIVE_TO = new Prefix("name to");
     public static final Prefix PREFIX_DATE_TO = new Prefix("date to");
     public static final Prefix PREFIX_TIME_TO = new Prefix("time to");
+    public static final Prefix PREFIX_DELETE_TAG = new Prefix("delete tag");
+    public static final Prefix PREFIX_NEW_TAG = new Prefix("new tag");
 }
