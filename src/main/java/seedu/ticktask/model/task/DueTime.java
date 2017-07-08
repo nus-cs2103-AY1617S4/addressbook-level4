@@ -121,7 +121,7 @@ public class DueTime {
     }
 
     /**
-     * Returns true if a given string is a valid person phone number.
+     * Returns true if a given string is a valid time format.
      */
     public static boolean isValidTime(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);

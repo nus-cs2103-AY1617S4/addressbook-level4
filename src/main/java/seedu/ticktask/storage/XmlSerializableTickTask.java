@@ -17,24 +17,24 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 
 /**
- * An Immutable AddressBook that is serializable to XML format
+ * An Immutable TickTask program that is serializable to XML format
  */
-@XmlRootElement(name = "addressbook")
+@XmlRootElement(name = "ticktask")
 public class XmlSerializableTickTask implements ReadOnlyTickTask {
 
     @XmlElement
-    private List<XmlAdaptedTask> persons;
+    private List<XmlAdaptedTask> tasks;
     @XmlElement
     private List<XmlAdaptedTask> completedTasks;
     @XmlElement
     private List<XmlAdaptedTag> tags;
 
     /**
-     * Creates an empty XmlSerializableAddressBook.
+     * Creates an empty XmlSerializableTickTask.
      * This empty constructor is required for marshalling.
      */
     public XmlSerializableTickTask() {
-        persons = new ArrayList<>();
+        tasks = new ArrayList<>();
         completedTasks = new ArrayList<>();
         tags = new ArrayList<>();
     }
@@ -44,14 +44,14 @@ public class XmlSerializableTickTask implements ReadOnlyTickTask {
      */
     public XmlSerializableTickTask(ReadOnlyTickTask src) {
         this();
-        persons.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         completedTasks.addAll(src.getCompletedTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
-        final ObservableList<Task> tasks = this.persons.stream().map(p -> {
+        final ObservableList<Task> tasks = this.tasks.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {

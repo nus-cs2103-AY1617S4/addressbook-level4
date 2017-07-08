@@ -32,13 +32,13 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given tickTask and userPrefs.
      */
-    public ModelManager(ReadOnlyTickTask addressBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTickTask tickTask, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(tickTask, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Tick Task program: " + tickTask + " and user prefs " + userPrefs);
 
-        this.currentProgramInstance = new TickTask(addressBook);
+        this.currentProgramInstance = new TickTask(tickTask);
         filteredTasks = new FilteredList<>(this.currentProgramInstance.getTaskList());
         filteredCompletedTasks = new FilteredList<>(this.currentProgramInstance.getCompletedTaskList());
         previousProgramInstances = new Stack<TickTask>();
@@ -101,7 +101,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         saveInstance();
-        currentProgramInstance.removePerson(target);
+        currentProgramInstance.removeTask(target);
         indicateTickTaskModelChanged();
     }
     
@@ -133,10 +133,10 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTickTaskModelChanged();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Return a list of {@code ReadOnlyPerson} backed by the internal list of {@code addressBook}
+     * Return a list of {@code ReadOnlyTask} backed by the internal list of {@code TickTask}
      */
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
@@ -186,7 +186,7 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
-        boolean satisfies(ReadOnlyTask person);
+        boolean satisfies(ReadOnlyTask task);
         String toString();
     }
 

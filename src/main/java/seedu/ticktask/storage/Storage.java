@@ -27,12 +27,12 @@ public interface Storage extends TickTaskStorage, UserPrefsStorage {
     Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException;
+    void saveTickTask(ReadOnlyTickTask addressBook) throws IOException;
 
     /**
-     * Saves the current version of the Address Book to the hard disk.
+     * Saves the current version of the TickTask program to the hard disk.
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
-    void handleAddressBookChangedEvent(TickTaskChangedEvent abce);
+    void handleTickTaskChangedEvent(TickTaskChangedEvent abce);
 }
