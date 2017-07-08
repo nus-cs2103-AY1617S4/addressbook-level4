@@ -49,7 +49,7 @@ public class XmlAdaptedTask {
         name = source.getName().fullName;
         phone = source.getTime().value;
         email = source.getEmail().value;
-        address = source.getDate().value;
+        address = source.getDate().toString();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));

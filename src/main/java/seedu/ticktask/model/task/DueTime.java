@@ -29,11 +29,11 @@ public class DueTime {
     public DueTime(String phone) throws IllegalValueException {
         requireNonNull(phone);
         String trimmedTime = phone.trim();
-        if (!trimmedTime.equals("")) {
+        /*if (!trimmedTime.equals("")) {
             if (!isValidTime(trimmedTime)) {
                 throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
             }
-        }
+        }*/
 
         Pattern pattern = Pattern.compile(PHONE_VALIDATION_REGEX);
         Matcher matcher = pattern.matcher(trimmedTime);
@@ -61,7 +61,7 @@ public class DueTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DueTime // instanceof handles nulls
+                || (other instanceof DueTime
                 && this.value.equals(((DueTime) other).value)); // state check
     }
 
