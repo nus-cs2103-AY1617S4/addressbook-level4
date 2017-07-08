@@ -1,9 +1,11 @@
 package seedu.whatsnext.logic.commands;
 
 import seedu.whatsnext.commons.core.Messages;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.Model;
+import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -27,8 +29,10 @@ public abstract class Command {
      *
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
+     * @throws TagNotFoundException
+     * @throws IllegalValueException
      */
-    public abstract CommandResult execute() throws CommandException;
+    public abstract CommandResult execute() throws CommandException, TagNotFoundException, IllegalValueException;
 
     /**
      * Provides any needed dependencies to the command.

@@ -92,9 +92,25 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws IllegalValueException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
+        boolean containsPriorityTag = false;
+        
         for (String tagName : tags) {
-            tagSet.add(new Tag(tagName.trim()));
+            if (isPriorityTagString(tagName) && (!containsPriorityTag)) {
+                containsPriorityTag = true;
+                tagSet.add(new Tag(tagName.trim()));
+            } else if (!isPriorityTagString(tagName)) {
+                tagSet.add(new Tag(tagName.trim()));
+            }
         }
         return tagSet;
+    }
+
+    private static boolean isPriorityTagString(String tagName) {
+        final String HIGH = "HIGH";
+        final String MEDIUM = "MEDIUM";
+        final String LOW = "LOW";
+        return tagName.toUpperCase().equals(HIGH)
+              || tagName.toUpperCase().equals(MEDIUM)
+              || tagName.toUpperCase().equals(LOW);
     }
 }

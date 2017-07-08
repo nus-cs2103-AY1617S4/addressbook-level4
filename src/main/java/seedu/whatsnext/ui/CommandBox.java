@@ -8,10 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.ui.NewResultAvailableEvent;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
+import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 
 public class CommandBox extends UiPart<Region> {
 
@@ -30,7 +32,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     @FXML
-    private void handleCommandInputChanged() {
+    private void handleCommandInputChanged() throws IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandTextField.getText());
 
@@ -40,7 +42,7 @@ public class CommandBox extends UiPart<Region> {
             logger.info("Result: " + commandResult.feedbackToUser);
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | TagNotFoundException e) {
             // handle command failure
             setStyleToIndicateCommandFailure();
             logger.info("Invalid command: " + commandTextField.getText());
