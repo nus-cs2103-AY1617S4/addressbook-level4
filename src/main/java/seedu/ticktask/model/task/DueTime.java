@@ -4,38 +4,40 @@ import static java.util.Objects.requireNonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
-
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
+//@@author A0138471A
 /**
  * Represents a task's deadline time.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class DueTime {
-
-    private int _hours;
-    private int _minutes;
     
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Time should be in a 24 hours format HHMM";
     public static final String PHONE_VALIDATION_REGEX = "(\\d{2}+)(\\d{2}+)";
     
+    private final Parser parser = new Parser();
+	private final SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mma");
+	private final int FIRST_INDEX_OF_ARRAY = 0;
+	private final int INDEX_START_DATE = 0;
+	private final int INDEX_END_DATE = 1;
+	
     private String value;
     
-    private  ArrayList<Date> datesAndTimes = new ArrayList<Date>();
+    private ArrayList<Date> datesAndTimes = new ArrayList<Date>();
     private Date start_time;
 	private Date end_time;
 	private String start_time_string = "", 
 			end_time_string = "";
-	private static Parser parser = new Parser();
-	private SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mma");
+	
     private boolean isFloating = false;
 	private boolean isRange = false;
 	private boolean isDeadline = false;
@@ -48,15 +50,10 @@ public class DueTime {
     public DueTime(String phone) throws IllegalValueException {
         requireNonNull(phone);
         String trimmedTime = phone.trim();
-        /*if (!trimmedTime.equals("")) {
-            if (!isValidTime(trimmedTime)) {
-                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-            }
-        }*/
 
         List<DateGroup> dateGroups = parser.parse(trimmedTime);
         if(!dateGroups.isEmpty()){
-	        for (Date dates : dateGroups.get(0).getDates()) {
+	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
 				datesAndTimes.add(dates);
 			}
 	        if(datesAndTimes.size()>1){
@@ -65,7 +62,6 @@ public class DueTime {
 	        else isDeadline = true;
         }
         else isFloating = true;
-        
         
         if(isFloating){
         	
@@ -88,10 +84,11 @@ public class DueTime {
         
         else if (isRange){
         	
-        	//Collections.sort(datesAndTimes);
-			
-			start_time = datesAndTimes.get(0);
-			end_time = datesAndTimes.get(1);
+        	//sorts according to earlier time first
+        	Collections.sort(datesAndTimes);
+        	
+			start_time = datesAndTimes.get(INDEX_START_DATE);
+			end_time = datesAndTimes.get(INDEX_END_DATE);
 			
 			start_time_string = timeFormatter.format(start_time);
 			end_time_string = timeFormatter.format(end_time);
@@ -102,6 +99,26 @@ public class DueTime {
         
     }
     
+    /**
+     * Returns true if a given date is an empty string or invalid string
+     */    
+    public boolean isFloating(){
+		return isFloating;
+    }
+    
+    /**
+     * Returns true if a given date only has a start date
+     */    
+    public boolean isDeadline(){
+		return isDeadline;
+    }
+    
+    /**
+     * Returns true if a given date has both start and end date
+     */    
+    public boolean isRange(){
+		return isRange;
+    }
 
     /**
      * Returns true if a given string is a valid person phone number.
