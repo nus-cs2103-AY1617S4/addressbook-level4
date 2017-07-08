@@ -91,7 +91,6 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws IllegalValueException {
         requireNonNull(tags);
-        System.out.println("IN PARSE TAGS");
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName.trim()));
