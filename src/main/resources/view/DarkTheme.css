@@ -244,7 +244,7 @@
 }
 
 .dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
     -fx-font-style: italic;
     -fx-fill: white;
     -fx-text-fill: white;
