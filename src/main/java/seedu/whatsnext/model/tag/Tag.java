@@ -28,7 +28,7 @@ public class Tag {
         if (!isValidTagName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }
-        this.tagName = trimmedName;
+        this.tagName = trimmedName.toUpperCase();
     }
 
     /**
@@ -59,13 +59,14 @@ public class Tag {
 
     /*
      * Returns true if the tag is a reserved Tag.
+     * @@author A0142675B
      */
     public boolean isReservedTag() {
         String trimmedName = tagName.trim();
         assert isValidTagName(trimmedName);
 
         for (int i = 0; i < 4; i++) {
-            if (trimmedName.equals(RESERVEREDTAGS[i])) {
+            if (trimmedName.toUpperCase().equals(RESERVEREDTAGS[i])) {
                 return true;
             }
         }
@@ -75,13 +76,14 @@ public class Tag {
 
     /*
      * Returns true if the given tagName is a reserved Tag for priority.
+     * @@author A0142675B
      */
     public boolean isPriorityTag() {
         String trimmedName = tagName.trim();
         assert isValidTagName(trimmedName);
 
         for (int i = 0; i < 3; i++) {
-            if (trimmedName.equals(RESERVEREDTAGS[i])) {
+            if (trimmedName.toUpperCase().equals(RESERVEREDTAGS[i])) {
                 return true;
             }
         }
