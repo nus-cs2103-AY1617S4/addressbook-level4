@@ -2,10 +2,10 @@ package seedu.whatsnext.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE_TO;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME_ALTERNATIVE_TO;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +32,8 @@ public class EditCommandParser {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME_ALTERNATIVE_TO,
+                                           PREFIX_DATE_TO, PREFIX_TIME_TO, PREFIX_TAG);
 
         Index index;
 
@@ -44,7 +45,8 @@ public class EditCommandParser {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         try {
-            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editTaskDescriptor::setName);
+            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_ALTERNATIVE_TO))
+                                                                .ifPresent(editTaskDescriptor::setName);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);

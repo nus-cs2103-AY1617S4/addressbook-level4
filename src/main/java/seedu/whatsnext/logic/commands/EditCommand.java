@@ -2,9 +2,10 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME_ALTERNATIVE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,17 +34,20 @@ public class EditCommand extends Command {
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TIME + "TIME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "10 July "
-            + PREFIX_TIME + "10-12";
+            + "[" + PREFIX_NAME_ALTERNATIVE + " to " + "NAME] "
+            + "[" + PREFIX_DATE + " to " + "DATE] "
+            + "[" + PREFIX_TIME + " to " + "TIME] "
+            + "[" + PREFIX_TAG  + "OLD_TAG" + PREFIX_TO + "TAG]...\n"
+            + "Example 1 : " + COMMAND_WORD + " 1 "
+            + PREFIX_DATE + " 10 July "
+            + PREFIX_TIME + " 10-12"
+            + "Example 2 : " + COMMAND_WORD + " 2 "
+            + PREFIX_NAME_ALTERNATIVE + " to project meeting "
+            + PREFIX_TAG + " HIGH";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
     private final Index index;
     private final EditTaskDescriptor editPersonDescriptor;
