@@ -2,10 +2,10 @@ package seedu.whatsnext.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE_TO;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME_ALTERNATIVE_TO;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +15,7 @@ import java.util.Set;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.EditCommand;
-import seedu.whatsnext.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.whatsnext.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.tag.Tag;
 
@@ -32,7 +32,8 @@ public class EditCommandParser {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME_ALTERNATIVE_TO,
+                                           PREFIX_DATE_TO, PREFIX_TIME_TO, PREFIX_TAG);
 
         Index index;
 
@@ -42,22 +43,20 @@ public class EditCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         try {
-            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editPersonDescriptor::setName);
-            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_DATE)).ifPresent(editPersonDescriptor::setPhone);
-            ParserUtil.parseEmail(argMultimap.getValue(PREFIX_TIME)).ifPresent(editPersonDescriptor::setEmail);
-            ParserUtil.parseAddress(argMultimap.getValue(PREFIX_TIME)).ifPresent(editPersonDescriptor::setAddress);
-            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_ALTERNATIVE_TO))
+                                                                .ifPresent(editTaskDescriptor::setName);
+            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editTaskDescriptor);
     }
 
     /**

@@ -14,5 +14,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_TO = new Prefix("to");
     public static final Prefix PREFIX_ON = new Prefix("on");
     public static final Prefix PREFIX_TAG = new Prefix("tag");
+    public static final Prefix PREFIX_ALL = new Prefix("all");
+    public static final Prefix PREFIX_MARK = new Prefix("mark");
+    public static final Prefix PREFIX_UNMARK = new Prefix("unmark");
 
+    //@@author A0142675B
+    public static final Prefix PREFIX_NAME_ALTERNATIVE = new Prefix("name");
+    public static final Prefix PREFIX_NAME_ALTERNATIVE_TO = new Prefix("name to");
+    public static final Prefix PREFIX_DATE_TO = new Prefix("date to");
+    public static final Prefix PREFIX_TIME_TO = new Prefix("time to");
 }

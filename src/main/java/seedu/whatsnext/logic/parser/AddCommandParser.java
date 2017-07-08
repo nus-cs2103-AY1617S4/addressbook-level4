@@ -40,6 +40,7 @@ public class AddCommandParser {
             Optional<String> startDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_ON));
             Optional<String> endDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_TO));
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
             if (startDateTime.isPresent() && endDateTime.isPresent()) {
                 System.out.println("EVENT");
                 BasicTask task = new BasicTask(taskName, tagList);
