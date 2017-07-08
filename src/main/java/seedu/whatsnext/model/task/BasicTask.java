@@ -1,7 +1,6 @@
 package seedu.whatsnext.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -11,60 +10,64 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
 
 /**
- * Represents a Task in the WhatsNext application.
+ * Represents a Basic Task in the WhatsNext application.
+ * Basic Tasks are only able to store task name, task description and tags
  * Guarantees: details are present and not null, field values are validated.
  */
-public class BasicTask implements BaseTask {
-	private static final String TASK_TYPE = "basic task";
-	private String taskType;
-    private TaskName name;
-    private TaskDescription description;
+public class BasicTask implements BasicTaskFeatures {
+	public static final String TASK_TYPE = "basic";
+    private TaskName taskName;
     private boolean isCompleted;
+    private DateTime startDate;
+    private DateTime endDate;
+    private Time startTime;
+    private Time endTime;
 
     private UniqueTagList tags;
 
     /**
-     * Every field must be present and not null.
+     * Constructor for Floating
+     * Floating consists of Name and tags
      */
-    public BasicTask(TaskName name, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
-        this.name = name;
-        isCompleted = false;
-        taskType = TASK_TYPE;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+    public BasicTask(TaskName taskName, Set<Tag> tags) {
+        this(taskName, null, null, null, null, tags);
+    }
+
+    /**
+     * Constructor for Deadline
+     * Deadline consists of Name, End Date, End Time and tags
+     * */
+    public BasicTask(TaskName taskName, DateTime endDate, Time endTime, Set<Tag> tags) {
+        this(taskName, null, endDate, null, endTime, tags);
+    }
+
+    /**
+     * Constructor for Event
+     * */
+    public BasicTask(TaskName taskName, DateTime startDate, DateTime endDate, Time startTime, Time endTime, Set<Tag> tags) {
+        this.taskName = taskName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.tags = new UniqueTagList(tags);
     }
 
     /**
      * Creates a copy of the given BasicTask.
      */
-    public BasicTask(BaseTask source) {
+    public BasicTask(BasicTaskFeatures source) {
         this(source.getName(), source.getTags());
     }
 
-    public String getTaskType(){
-    	return taskType;
-    }
-
-    public void setTaskType(String taskType){
-    	this.taskType = taskType;
-    }
-
-    @Override
-	public TaskDescription getDescription() {
-		return description;
-	}
-
-    private void setDescription(TaskDescription description) {
-    	this.description = description;
-	}
 
     public void setName(TaskName name) {
-        this.name = requireNonNull(name);
+        this.taskName = requireNonNull(name);
     }
 
     @Override
     public TaskName getName() {
-        return name;
+        return taskName;
     }
 
     /**
@@ -86,11 +89,10 @@ public class BasicTask implements BaseTask {
     /**
      * Updates this person with the details of {@code replacement}.
      */
-    public void resetData(BaseTask replacement) {
+    public void resetData(BasicTaskFeatures replacement) {
         requireNonNull(replacement);
 
         this.setName(replacement.getName());
-        this.setDescription(replacement.getDescription());
         this.setTags(replacement.getTags());
     }
 
@@ -98,14 +100,14 @@ public class BasicTask implements BaseTask {
 	@Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BaseTask // instanceof() handles nulls
-                && this.isSameStateAs((BaseTask) other));
+                || (other instanceof BasicTaskFeatures // instanceof() handles nulls
+                && this.isSameStateAs((BasicTaskFeatures) other));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(taskName, tags);
     }
 
     @Override
@@ -129,6 +131,30 @@ public class BasicTask implements BaseTask {
 		isCompleted = false;
 
 	}
+
+    @Override
+    public DateTime getStartDate() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DateTime getEndDate() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Time getStartTime() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Time getEndTime() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 
 }

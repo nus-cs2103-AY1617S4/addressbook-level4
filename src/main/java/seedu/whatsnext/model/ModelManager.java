@@ -11,7 +11,8 @@ import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
@@ -23,18 +24,18 @@ public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TaskManager taskManager;
-    private final FilteredList<BaseTask> filteredTasks;
+    private final FilteredList<BasicTask> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskManager addressBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskManager taskManager, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(taskManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + taskManager + " and user prefs " + userPrefs);
 
-        this.taskManager = new TaskManager(addressBook);
+        this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
     }
 
@@ -59,20 +60,20 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deleteTask(BaseTask target) throws TaskNotFoundException {
+    public synchronized void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
         taskManager.removeTask(target);
         indicateAddressBookChanged();
     }
 
     @Override
-    public synchronized void addTask(BaseTask task) throws DuplicateTaskException {
+    public synchronized void addTask(BasicTask task) throws DuplicateTaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateAddressBookChanged();
     }
 
     @Override
-    public void updateTask(BaseTask target, BaseTask editedTask)
+    public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedTask);
 
@@ -86,7 +87,7 @@ public class ModelManager extends ComponentManager implements Model {
      * Return a list of {@code BaseTask} backed by the internal list of {@code taskManager}
      */
     @Override
-    public UnmodifiableObservableList<BaseTask> getFilteredTaskList() {
+    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
@@ -125,7 +126,7 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
-        boolean satisfies(BaseTask baseTask);
+        boolean satisfies(BasicTaskFeatures basicTaskFeatures);
         @Override
 		String toString();
     }
@@ -139,8 +140,8 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(BaseTask baseTask) {
-            return qualifier.run(baseTask);
+        public boolean satisfies(BasicTaskFeatures basicTaskFeatures) {
+            return qualifier.run(basicTaskFeatures);
         }
 
         @Override
@@ -150,7 +151,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     interface Qualifier {
-        boolean run(BaseTask baseTask);
+        boolean run(BasicTaskFeatures basicTaskFeatures);
         @Override
 		String toString();
     }
@@ -163,9 +164,9 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean run(BaseTask baseTask) {
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
             return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(baseTask.getName().fullTaskName, keyword))
+                    .filter(keyword -> StringUtil.containsWordIgnoreCase(basicTaskFeatures.getName().fullTaskName, keyword))
                     .findAny()
                     .isPresent();
         }

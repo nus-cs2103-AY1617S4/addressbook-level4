@@ -16,9 +16,9 @@ import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.Address;
-import seedu.whatsnext.model.task.BaseTask;
-import seedu.whatsnext.model.task.Email;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.Email;
 import seedu.whatsnext.model.task.Phone;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
@@ -64,13 +64,13 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        List<BaseTask> lastShownList = model.getFilteredTaskList();
+        List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        BaseTask personToEdit = lastShownList.get(index.getZeroBased());
+        BasicTaskFeatures personToEdit = lastShownList.get(index.getZeroBased());
         BasicTask editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         try {
@@ -88,14 +88,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static BasicTask createEditedPerson(BaseTask personToEdit,
+    private static BasicTask createEditedPerson(BasicTaskFeatures personToEdit,
                                              EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         TaskName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new BasicTask(updatedName,updatedTags);
+        return new BasicTask(updatedName, updatedTags);
     }
 
     @Override

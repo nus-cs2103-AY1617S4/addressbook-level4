@@ -10,25 +10,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<BaseTask> taskListView;
+    private ListView<BasicTaskFeatures> taskListView;
 
-    public TaskListPanel(ObservableList<BaseTask> taskList) {
+    public TaskListPanel(ObservableList<BasicTaskFeatures> taskList) {
         super(FXML);
         setConnections(taskList);
     }
 
-    private void setConnections(ObservableList<BaseTask> taskList) {
-    	
+    private void setConnections(ObservableList<BasicTaskFeatures> taskList) {
+
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -38,7 +38,7 @@ public class TaskListPanel extends UiPart<Region> {
         taskListView.getSelectionModel().selectedItemProperty()
                 .addListener((observablse, oldValue, newValue) -> {
                     if (newValue != null) {
-                        logger.fine("Selection in person list panel changed to : '" + newValue + "'");
+                        logger.fine("Selection in task list panel changed to : '" + newValue + "'");
                         raise(new TaskPanelSelectionChangedEvent(newValue));
                     }
                 });
@@ -51,10 +51,10 @@ public class TaskListPanel extends UiPart<Region> {
         });
     }
 
-    class TaskListViewCell extends ListCell<BaseTask> {
+    class TaskListViewCell extends ListCell<BasicTaskFeatures> {
 
         @Override
-        protected void updateItem(BaseTask task, boolean empty) {
+        protected void updateItem(BasicTaskFeatures task, boolean empty) {
             super.updateItem(task, empty);
 
             if (empty || task == null) {

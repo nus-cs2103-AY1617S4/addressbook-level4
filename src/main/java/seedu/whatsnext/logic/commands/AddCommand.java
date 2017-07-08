@@ -5,8 +5,8 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.task.BaseTask;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
@@ -19,7 +19,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: "
             + PREFIX_NAME + "Submit assignment "
-            + "[" + PREFIX_TAG + "homework" + "]";
+            + "on " + "Monday 10AM"
+            + "to " + "Friday 10AM"
+            + PREFIX_TAG + "high";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
@@ -30,13 +32,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
      */
-    public AddCommand(BaseTask task) {
-//        if(task.getType().equals("floating"))
-//            toAdd = new Floating(task);
-//        else if (task.getType().equals("deadline"))
-//            toAdd = new Deadline(task);
-//        else if (task.getType().equals("event"))
-//            toAdd = new Event(task);
+    public AddCommand(BasicTaskFeatures task) {
         toAdd = new BasicTask(task);
     }
 
