@@ -28,7 +28,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
     /**
      * Returns true if the list contains an equivalent task as the given argument.
      */
-    public boolean contains(BaseTask toCheck) {
+    public boolean contains(BasicTaskFeatures toCheck) {
         requireNonNull(toCheck);
         return internalList.contains(toCheck);
     }
@@ -38,7 +38,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      *
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
      */
-    public void add(BaseTask toAdd) throws DuplicateTaskException {
+    public void add(BasicTaskFeatures toAdd) throws DuplicateTaskException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
@@ -53,7 +53,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
-    public void updateTask(BaseTask target, BaseTask editedTask)
+    public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedTask);
 
@@ -79,7 +79,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      *
      * @throws TaskNotFoundException if no such person could be found in the list.
      */
-    public boolean remove(BaseTask toRemove) throws TaskNotFoundException {
+    public boolean remove(BasicTaskFeatures toRemove) throws TaskNotFoundException {
         requireNonNull(toRemove);
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
         if (!taskFoundAndDeleted) {
@@ -92,9 +92,9 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         this.internalList.setAll(replacement.internalList);
     }
 
-    public void setTasks(List<? extends BaseTask> baseTasksList) throws DuplicateTaskException {
+    public void setTasks(List<? extends BasicTaskFeatures> baseTasksList) throws DuplicateTaskException {
         final UniqueTaskList replacement = new UniqueTaskList();
-        for (final BaseTask task : baseTasksList) {
+        for (final BasicTaskFeatures task : baseTasksList) {
             replacement.add(new BasicTask(task));
         }
         setTasks(replacement);
