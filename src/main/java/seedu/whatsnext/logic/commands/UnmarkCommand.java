@@ -18,22 +18,21 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  * Marks an existing task in the task manager.
  * @@author A0156106M
  */
-public class MarkCommand extends Command{
-    public static final String COMMAND_WORD = "mark";
+public class UnmarkCommand extends Command{
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": marks the task identified by the index number used in the last task listing to 'completed'.\n"
+            + ": unmarks the task identified by the index number used in the last task listing to 'completed'.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
-
     private final Index targetIndex;
 
-    public MarkCommand(Index targetIndex) {
+    public UnmarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -45,7 +44,7 @@ public class MarkCommand extends Command{
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        BasicTask markedTask = createMarkedTask(taskToMark);
+        BasicTask markedTask = createUnmarkedTask(taskToMark);
         try{
             model.updateTask(taskToMark, markedTask);
 
@@ -55,22 +54,25 @@ public class MarkCommand extends Command{
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }
 
     /**
-     * Creates a new marked BasicTask based on @param taskToMark
+     * Creates a new unmarked BasicTask based on @param taskToUnmark
      * @return marked BasicTask
      * */
-    private static BasicTask createMarkedTask(BasicTaskFeatures taskToMark) {
-        assert taskToMark != null;
-        TaskName updatedName = taskToMark.getName();
-        DateTime updatedStartDateTime = taskToMark.getStartDateTime();
-        DateTime updatedEndDateTime = taskToMark.getEndDateTime();
-        taskToMark.setCompleted();
-        boolean updateIsComplete = taskToMark.getIsCompleted();
-        Set<Tag> updatedTags = taskToMark.getTags();
+    private static BasicTask createUnmarkedTask(BasicTaskFeatures taskToUnmark) {
+        assert taskToUnmark != null;
+        TaskName updatedName = taskToUnmark.getName();
+        DateTime updatedStartDateTime = taskToUnmark.getStartDateTime();
+        DateTime updatedEndDateTime = taskToUnmark.getEndDateTime();
+        taskToUnmark.setIncompleted();
+        boolean updateIsComplete = taskToUnmark.getIsCompleted();
+        Set<Tag> updatedTags = taskToUnmark.getTags();
         return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updateIsComplete, updatedTags);
     }
+
+
+
 
 }

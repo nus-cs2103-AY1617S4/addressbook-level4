@@ -5,6 +5,7 @@ import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.MarkCommand;
+import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 public class MarkCommandParser {
@@ -15,10 +16,19 @@ public class MarkCommandParser {
      * @throws ParseException if the user input does not confirm the expected format
      * @@author A0156106M
      * */
-    public MarkCommand parse(String args) throws ParseException {
+    public MarkCommand parseMarkCommand(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new MarkCommand(index);
+        } catch (IllegalValueException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        }
+    }
+
+    public UnmarkCommand parseUnmarkCommand(String args) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new UnmarkCommand(index);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }

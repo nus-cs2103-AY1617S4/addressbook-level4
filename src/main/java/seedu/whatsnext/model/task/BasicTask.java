@@ -13,12 +13,15 @@ import seedu.whatsnext.model.tag.UniqueTagList;
  * Represents a Basic Task in the WhatsNext application.
  * Basic Tasks are only able to store task name, task description and tags
  * Guarantees: details are present and not null, field values are validated.
+ * @@author A0156106M
  */
 public class BasicTask implements BasicTaskFeatures {
-	public static final String TASK_TYPE = "basic";
+    public static final String TASK_TYPE = "basic";
     private TaskName taskName;
     private boolean isCompleted;
+    @SuppressWarnings("unused")
     private DateTime startDateTime;
+    @SuppressWarnings("unused")
     private DateTime endDateTime;
 
     private UniqueTagList tags;
@@ -52,12 +55,14 @@ public class BasicTask implements BasicTaskFeatures {
     /**
      * Constructor for Event
      * */
-    public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, boolean isCompleted, Set<Tag> tags) {
+    public BasicTask(TaskName taskName, DateTime startDateTime,
+            DateTime endDateTime, boolean isCompleted, Set<Tag> tags) {
         this.taskName = taskName;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags);
         this.isCompleted = isCompleted;
+        System.out.println("VALUE IS " + isCompleted);
     }
 
     /**
@@ -104,7 +109,7 @@ public class BasicTask implements BasicTaskFeatures {
     }
 
 
-	@Override
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BasicTaskFeatures // instanceof() handles nulls
@@ -122,22 +127,22 @@ public class BasicTask implements BasicTaskFeatures {
         return getAsText();
     }
 
-	@Override
-	public boolean getIsCompleted() {
-		return isCompleted;
-	}
+    @Override
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
 
-	@Override
-	public void setCompleted() {
-		isCompleted = true;
+    @Override
+    public void setCompleted() {
+        isCompleted = true;
 
-	}
+    }
 
-	@Override
-	public void setIncompleted() {
-		isCompleted = false;
+    @Override
+    public void setIncompleted() {
+        isCompleted = false;
 
-	}
+    }
 
     @Override
     public DateTime getStartDateTime() {
