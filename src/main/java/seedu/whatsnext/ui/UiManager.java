@@ -15,8 +15,8 @@ import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
-import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
+import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
@@ -118,7 +118,7 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.getPersonListPanel().scrollTo(event.targetIndex);
+        mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
     @Subscribe

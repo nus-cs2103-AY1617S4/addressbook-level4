@@ -28,6 +28,7 @@ public class Parser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern EVENT_TYPE_FORMAT = Pattern.compile("\\bbasic\\b|\\bdeadline\\b|\\bevent\\b");
 
     /**
      * Parses user input into command for execution.
@@ -44,6 +45,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -57,6 +59,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+//        case MarkCommand.COMMAND_WORD:
+//            return new MarkCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

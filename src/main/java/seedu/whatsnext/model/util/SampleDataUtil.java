@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
+import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.TaskName;

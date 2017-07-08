@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.whatsnext.model.task.BaseTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 public class TaskCard extends UiPart<Region> {
 
@@ -28,14 +28,14 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public TaskCard(BaseTask task, int displayedIndex) {
+    public TaskCard(BasicTaskFeatures task, int displayedIndex) {
         super(FXML);
         name.setText(task.getName().fullTaskName);
         id.setText(displayedIndex + ". ");
         initTags(task);
     }
 
-    private void initTags(BaseTask task) {
+    private void initTags(BasicTaskFeatures task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

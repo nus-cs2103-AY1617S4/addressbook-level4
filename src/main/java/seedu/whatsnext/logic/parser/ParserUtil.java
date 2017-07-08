@@ -14,6 +14,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.Address;
 import seedu.whatsnext.model.task.Email;
 import seedu.whatsnext.model.task.Phone;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -43,6 +44,22 @@ public class ParserUtil {
     public static Optional<TaskName> parseName(Optional<String> name) throws IllegalValueException {
         requireNonNull(name);
         return name.isPresent() ? Optional.of(new TaskName(name.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
+     */
+    public static Optional<String> parseType(Optional<String> name) throws IllegalValueException {
+        requireNonNull(name);
+        return name.isPresent() ? Optional.of(new String(name.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
+     */
+    public static Optional<TaskDescription> parseDescription(Optional<String> description) throws IllegalValueException {
+        requireNonNull(description);
+        return description.isPresent() ? Optional.of(new TaskDescription(description.get())) : Optional.empty();
     }
 
     /**
