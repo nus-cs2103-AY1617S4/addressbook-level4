@@ -5,7 +5,7 @@
 //import org.junit.Test;
 //
 //import seedu.whatsnext.model.AddressBook;
-//import seedu.whatsnext.model.person.Person;
+//import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.model.util.SampleDataUtil;
 //import seedu.whatsnext.testutil.TestUtil;
 //

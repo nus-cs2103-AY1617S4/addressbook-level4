@@ -143,17 +143,43 @@ public class UniqueTagList implements Iterable<Tag> {
         return internalList.contains(toCheck);
     }
 
+    /*
+     * Returns true if the list contains a priority tag, i.e. "HIGH", "MEDIUM", "LOW".
+     */
+    public boolean containsPriorityTag() throws IllegalValueException {
+        final Tag highPriority = new Tag("HIGH");
+        final Tag mediumPriority = new Tag("MEDIUM");
+        final Tag lowPriority = new Tag("LOW");
+        return internalList.contains(highPriority)
+              || internalList.contains(mediumPriority)
+              || internalList.contains(lowPriority);
+    }
+
     /**
      * Adds a Tag to the list.
-     *
-     * @throws DuplicateTagException if the Tag to add is a duplicate of an existing Tag in the list.
+     * If the tag is a priority tag,
+     * the existing priority tag inside the list will be removed and replaced with the new priority tag.
+     * @throws IllegalValueException
      */
-    public void add(Tag toAdd) throws DuplicateTagException {
+    public void add(Tag toAdd) throws IllegalValueException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTagException();
         }
-        internalList.add(toAdd);
+
+        if (!toAdd.isPriorityTag()) {
+            internalList.add(toAdd);
+        } else if (toAdd.isPriorityTag() && !containsPriorityTag()) {
+            internalList.add(toAdd);
+        } else {
+            final Tag highPriority = new Tag("HIGH");
+            final Tag mediumPriority = new Tag("MEDIUM");
+            final Tag lowPriority = new Tag("LOW");
+            internalList.remove(highPriority);
+            internalList.remove(mediumPriority);
+            internalList.remove(lowPriority);
+            internalList.add(toAdd);
+        }
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
