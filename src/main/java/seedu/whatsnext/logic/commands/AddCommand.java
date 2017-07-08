@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -18,15 +17,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: "
-            + PREFIX_NAME + "Submit assignment "
+            + "Submit assignment "
             + "on " + "Monday 10AM"
             + "to " + "Friday 10AM"
             + PREFIX_TAG + "high";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
-    public static final String MESSAGE_TIME_CLASH = "This task cannot be added as time clashes with another task";
-
     private final BasicTask toAdd;
 
     /**
