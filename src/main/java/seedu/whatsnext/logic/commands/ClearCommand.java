@@ -27,6 +27,7 @@ public class ClearCommand extends Command {
         this.clearArgument = clearArgument;
     }
 
+    //@@author A0156106M
     @Override
     public CommandResult execute() {
         requireNonNull(model);
