@@ -27,12 +27,14 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
     }
 
     //@@sA0149894H
+    @Override
     public String getTaskManagerFilePath() {
         return filePath;
     }
 
     //@@A0149894H
-    public void changeTaskManagerFilePath(String filePath){
+    @Override
+    public void changeTaskManagerFilePath(String filePath) {
         this.filePath = filePath;
     }
 
@@ -46,6 +48,7 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
+    @Override
     public Optional<ReadOnlyTaskManager> readTaskManager(String filePath) throws DataConversionException,
                                                                                  FileNotFoundException {
         requireNonNull(filePath);
@@ -71,6 +74,7 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
      * Similar to {@link #saveTaskManager(ReadOnlyTaskManager)}
      * @param filePath location of the data. Cannot be null
      */
+    @Override
     public void saveTaskManager(ReadOnlyTaskManager taskManager, String filePath) throws IOException {
         requireNonNull(taskManager);
         requireNonNull(filePath);
