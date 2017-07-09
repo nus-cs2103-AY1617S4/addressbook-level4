@@ -203,7 +203,7 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             return (keyWords.stream()
                     .filter(keyword ->
-                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), keyword))
+                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), "[" + keyword + "]"))
                     .findAny()
                     .isPresent())
                     || (keyWords.stream()
