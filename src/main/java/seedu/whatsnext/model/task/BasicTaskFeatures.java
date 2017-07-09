@@ -14,6 +14,7 @@ public interface BasicTaskFeatures {
     TaskName getName();
     Set<Tag> getTags();
     boolean getIsCompleted();
+    String getStatusString();
     void setCompleted();
     void setIncompleted();
     DateTime getStartDateTime();

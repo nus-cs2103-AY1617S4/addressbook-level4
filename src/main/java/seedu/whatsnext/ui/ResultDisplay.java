@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.ui.NewResultAvailableEvent;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -20,7 +21,7 @@ public class ResultDisplay extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
-    private final StringProperty displayed = new SimpleStringProperty("");
+    private static final StringProperty displayed = new SimpleStringProperty("");
 
     @FXML
     private TextArea resultDisplay;
@@ -28,6 +29,8 @@ public class ResultDisplay extends UiPart<Region> {
     public ResultDisplay() {
         super(FXML);
         resultDisplay.textProperty().bind(displayed);
+        //@@author A0154987J
+        resultDisplay.setWrapText(true);
         registerAsAnEventHandler(this);
     }
 
@@ -35,6 +38,13 @@ public class ResultDisplay extends UiPart<Region> {
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         displayed.setValue(event.message);
+    }
+
+    //displays details of selected task inside resultDisplay box
+    public static void showSelectedTask(BasicTaskFeatures task) {
+        displayed.setValue("Task name: " + task.getName() + "\n"
+                + "Tags: " + task.getAllTags() + "\n"
+                + "Status: " + task.getStatusString());
     }
 
 }
