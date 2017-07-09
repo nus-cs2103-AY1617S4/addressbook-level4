@@ -72,7 +72,4 @@ public class UnmarkCommand extends Command {
         return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updateIsComplete, updatedTags);
     }
 
-
-
-
 }
