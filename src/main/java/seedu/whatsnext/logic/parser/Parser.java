@@ -18,7 +18,9 @@ import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.MarkCommand;
+import seedu.whatsnext.logic.commands.RedoCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
+import seedu.whatsnext.logic.commands.UndoCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
@@ -83,6 +85,14 @@ public class Parser {
         //@@author A0154986L
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
+
+        //@@author A0154986L
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        //@@author A0154986L
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
