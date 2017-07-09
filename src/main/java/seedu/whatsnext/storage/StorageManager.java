@@ -56,6 +56,15 @@ public class StorageManager extends ComponentManager implements Storage {
         return taskManagerStorage.getTaskManagerFilePath();
     }
 
+<<<<<<< HEAD
+=======
+    //@@A01498494H
+    @Override
+    public void changeTaskManagerFilePath(String filePath) {
+        taskManagerStorage.changeTaskManagerFilePath(filePath);
+    }
+
+>>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
     @Override
     public Optional<ReadOnlyTaskManager> readTaskManager() throws DataConversionException, IOException {
         return readTaskManager(taskManagerStorage.getTaskManagerFilePath());

@@ -22,7 +22,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String name;
     @XmlElement(required = true)
-    private boolean isComplete;
+    private boolean isCompleted;
     @XmlElement(required = true)
     private DateTime startDateTime;
     @XmlElement(required = true)
@@ -45,7 +45,7 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(BasicTaskFeatures source) {
         name = source.getName().fullTaskName;
-        isComplete = source.getIsCompleted();
+        isCompleted = source.getIsCompleted();
         startDateTime = source.getStartDateTime();
         endDateTime = source.getEndDateTime();
         tagged = new ArrayList<>();
@@ -54,6 +54,7 @@ public class XmlAdaptedTask {
         }
     }
 
+    //@@author A0156106M
     /**
      * Converts this jaxb-friendly adapted person object into the model's Task object.
      *
@@ -65,7 +66,10 @@ public class XmlAdaptedTask {
             personTags.add(tag.toModelType());
         }
         final TaskName name = new TaskName(this.name);
+        final DateTime startDateTime = this.startDateTime;
+        final DateTime endDateTime = this.endDateTime;
+        final boolean isCompleted = this.isCompleted;
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new BasicTask(name, tags);
+        return new BasicTask(name, startDateTime, endDateTime, isCompleted, tags);
     }
 }
