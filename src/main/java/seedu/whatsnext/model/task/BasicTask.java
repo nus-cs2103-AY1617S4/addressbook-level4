@@ -28,7 +28,6 @@ public class BasicTask implements BasicTaskFeatures {
      * Constructor for Floating
      * Floating consists of Name and tags
      */
-    
     public BasicTask(TaskName taskName, Set<Tag> tags) {
         this(taskName, null, null, false, tags);
     }
@@ -124,13 +123,13 @@ public class BasicTask implements BasicTaskFeatures {
     public boolean getIsCompleted() {
         return isCompleted;
     }
-    
+
     public String getStatusString() {
-    	if (getIsCompleted()) {
-    		return "Completed";
-    	} else {
-    		return "Incomplete";
-    	}
+        if (getIsCompleted()) {
+            return "Completed";
+        } else {
+            return "Incomplete";
+        }
     }
 
     @Override
@@ -154,6 +153,4 @@ public class BasicTask implements BasicTaskFeatures {
         // TODO Auto-generated method stub
         return null;
     }
-
-
 }

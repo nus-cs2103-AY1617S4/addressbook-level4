@@ -16,7 +16,6 @@ import seedu.whatsnext.commons.events.ui.ExitAppRequestEvent;
 import seedu.whatsnext.commons.util.FxViewUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -45,7 +44,7 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
-    
+
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -111,7 +110,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-    	//@@author A0154987J
+        //@@author A0154987J
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 

@@ -47,7 +47,7 @@ public class TaskListPanel extends UiPart<Region> {
     //@@author A0154987J
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-        	//scrolls to task with index and selects and focuses on it
+            //scrolls to task with index and selects and focuses on it
             taskListView.scrollTo(index);
             taskListView.requestFocus();
             taskListView.getSelectionModel().clearAndSelect(index);
@@ -69,5 +69,4 @@ public class TaskListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

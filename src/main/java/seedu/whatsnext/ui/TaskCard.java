@@ -1,11 +1,7 @@
 package seedu.whatsnext.ui;
 
-import com.sun.prism.paint.Color;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -33,16 +29,16 @@ public class TaskCard extends UiPart<Region> {
         setPriorityColors(task);
     }
 
-	private void setPriorityColors(BasicTaskFeatures task) {
-		if (task.getAllTags().contains("HIGH")) {
+    private void setPriorityColors(BasicTaskFeatures task) {
+        if (task.getAllTags().contains("HIGH")) {
             cardBackground.setStyle("-fx-border-color : red; "
-            		+ "-fx-border-width : 5px");
+                    + "-fx-border-width : 5px");
         } else if (task.getAllTags().contains("MEDIUM")) {
             cardBackground.setStyle("-fx-border-color : green; "
-            		+ "-fx-border-width : 5px");
+                    + "-fx-border-width : 5px");
         } else if (task.getAllTags().contains("LOW")) {
             cardBackground.setStyle("-fx-border-color : yellow; "
-            		+ "-fx-border-width : 5px");
+                    + "-fx-border-width : 5px");
         }
-	}
+    }
 }

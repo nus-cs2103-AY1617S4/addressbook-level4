@@ -21,7 +21,7 @@ public class ResultDisplay extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
-    private final static StringProperty displayed = new SimpleStringProperty("");
+    private static final StringProperty displayed = new SimpleStringProperty("");
 
     @FXML
     private TextArea resultDisplay;
@@ -39,11 +39,12 @@ public class ResultDisplay extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         displayed.setValue(event.message);
     }
-    
-    public static void showSelectedTask(BasicTaskFeatures task) {   	
-    	displayed.setValue("Task name: " + task.getName() + "\n" 
+
+    //displays details of selected task inside resultDisplay box
+    public static void showSelectedTask(BasicTaskFeatures task) {
+        displayed.setValue("Task name: " + task.getName() + "\n"
                 + "Tags: " + task.getAllTags() + "\n"
-                + "Status: " + task.getStatusString() );                    
+                + "Status: " + task.getStatusString());
     }
 
 }
