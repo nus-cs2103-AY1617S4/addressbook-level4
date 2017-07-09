@@ -20,19 +20,10 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TickTask. "
-            + "Parameters: "
-            + PREFIX_NAME + "TASK "
-            + PREFIX_TIME + "TIME "
-            + PREFIX_EMAIL + "EMAIL" 
-            + PREFIX_DATE + "DATE "            
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Meeting "
-            + PREFIX_TIME + "1000 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_DATE + "12/12/17 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + "Parameters: add [TASKNAME] by [DUE DATE] at [DUE TIME] \n"
+            + "Examples: \" " + COMMAND_WORD + " Submit final report by 08/23/17 at 2359 \" "
+            + "or \" " + COMMAND_WORD + " Upload presentation slides by 24 August at 11pm \"";
+             
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program";

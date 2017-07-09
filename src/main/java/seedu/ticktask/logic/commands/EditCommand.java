@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIME + "TIME] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            
+            + "[" + PREFIX_DATE + "DATE] \n"
+            //+ "[" + PREFIX_TAG + "TAG]..."
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIME + "10:00 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Final report submission "
+            + PREFIX_DATE + "08/26/17";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
