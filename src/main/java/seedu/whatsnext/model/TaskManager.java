@@ -45,7 +45,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     public TaskManager() {}
 
     /**
+<<<<<<< HEAD
+     * Creates an Task Manager using the tasks and Tags in the {@code toBeCopied}
+=======
      * Creates an Task Manager using the Persons and Tags in the {@code toBeCopied}
+>>>>>>> 36473ed42d3789bec77def7e65a8253bc8e489d2
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
         this();
@@ -67,7 +71,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             setTasks(newData.getTaskList());
         } catch (DuplicateTaskException e) {
-            assert false : "WhatsNext application should not have duplicate persons";
+            assert false : "WhatsNext application should not have duplicate tasks";
         }
         try {
             setTags(newData.getTagList());
@@ -77,14 +81,14 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(tasks);
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * Adds a task to the task manager.
+     * Also checks the new task's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the tasks to point to those in {@link #tags}.
      *
-     * @throws DuplicatePersonException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent task already exists.
      */
     public void addTask(BasicTask p) throws DuplicateTaskException {
         BasicTask newFloating = new BasicTask(p);
@@ -93,55 +97,55 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
+     * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
+     * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
      *
-     * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      *
      * @see #syncMasterTagListWith(BasicTask)
      */
-    public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedReadOnlyPerson)
+    public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedReadOnlyTask)
             throws DuplicateTaskException, TaskNotFoundException {
-        requireNonNull(editedReadOnlyPerson);
+        requireNonNull(editedReadOnlyTask);
 
-        BasicTask editedPerson = new BasicTask(editedReadOnlyPerson);
-        syncMasterTagListWith(editedPerson);
+        BasicTask editedTask = new BasicTask(editedReadOnlyTask);
+        syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-        tasks.updateTask(target, editedPerson);
+        // This can cause the tags master list to have additional tags that are not tagged to any task
+        // in the task list.
+        tasks.updateTask(target, editedTask);
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncMasterTagListWith(BasicTask person) {
-        final UniqueTagList personTags = new UniqueTagList(person.getTags());
-        tags.mergeFrom(personTags);
+    private void syncMasterTagListWith(BasicTask task) {
+        final UniqueTagList taskTags = new UniqueTagList(task.getTags());
+        tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
-        // used for checking person tag references
+        // used for checking task tag references
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
         tags.forEach(tag -> masterTagObjects.put(tag, tag));
 
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        // Rebuild the list of task tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
-        personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
-        person.setTags(correctTagReferences);
+        taskTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
+        task.setTags(correctTagReferences);
     }
 
     /**
-     * Ensures that every tag in these persons:
+     * Ensures that every tag in these tasks:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      *  @see #syncMasterTagListWith(BasicTask)
      */
-    private void syncMasterTagListWith(UniqueTaskList persons) {
-        persons.forEach(this::syncMasterTagListWith);
+    private void syncMasterTagListWith(UniqueTaskList tasks) {
+        tasks.forEach(this::syncMasterTagListWith);
     }
 
     public boolean removeTask(BasicTaskFeatures key) throws TaskNotFoundException {
@@ -162,7 +166,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     @Override
     public String toString() {
-        return tasks.asObservableList().size() + " persons, " + tags.asObservableList().size() +  " tags";
+        return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags";
         // TODO: refine later
     }
 
