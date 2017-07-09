@@ -9,12 +9,11 @@ import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 public class MarkCommandParser {
-
+    //@@author A0156106M
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
      * and returns a MarkCommand object for execution
      * @throws ParseException if the user input does not confirm the expected format
-     * @@author A0156106M
      * */
     public MarkCommand parseMarkCommand(String args) throws ParseException {
         try {
