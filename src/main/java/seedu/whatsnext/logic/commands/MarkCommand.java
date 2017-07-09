@@ -14,9 +14,9 @@ import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
+//@@author A0156106M
 /**
  * Marks an existing task in the task manager.
- * @@author A0156106M
  */
 public class MarkCommand extends Command{
     public static final String COMMAND_WORD = "mark";
