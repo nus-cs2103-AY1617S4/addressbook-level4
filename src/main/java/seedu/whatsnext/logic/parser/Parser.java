@@ -14,6 +14,7 @@ import seedu.whatsnext.logic.commands.EditCommand;
 import seedu.whatsnext.logic.commands.ExitCommand;
 import seedu.whatsnext.logic.commands.FindCommand;
 import seedu.whatsnext.logic.commands.FindPathCommand;
+import seedu.whatsnext.logic.commands.ChangePathCommand;
 import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.commands.ListCommand;
@@ -53,6 +54,10 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        //@@author A0149894H
+        case ChangePathCommand.COMMAND_WORD:
+            return new ChangePathCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -73,9 +78,12 @@ public class Parser {
         //@@author A0156106M
         case ClearCommand.COMMAND_WORD:
             return new ClearCommandParser().parse(arguments);
-
+            
+        //@@author A0149894H
         case FindPathCommand.COMMAND_WORD:
             return new FindPathCommand();
+            
+
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

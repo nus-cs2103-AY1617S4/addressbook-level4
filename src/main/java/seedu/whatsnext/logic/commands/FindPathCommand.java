@@ -2,8 +2,11 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.whatsnext.logic.commands.exceptions.CommandException;
 
+import seedu.whatsnext.logic.commands.exceptions.CommandException;
+/**
+ * Shows the path where storage xml file is stored.
+ */
 public class FindPathCommand extends Command{
     public static final String COMMAND_WORD = "filePath";
     public static final String MESSAGE_SUCCESS = "File Path located at:";

@@ -3,6 +3,8 @@ package seedu.whatsnext.commons.core;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
+
 /**
  * Config values used by the app
  */
@@ -14,6 +16,7 @@ public class Config {
     private String appTitle = "WhatsNext App";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
+    private String taskManagerFilePath = "data/whatsnext.xml";
 
     public String getAppTitle() {
         return appTitle;
@@ -38,6 +41,26 @@ public class Config {
     public void setUserPrefsFilePath(String userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
+    
+    public String getTaskManagerFilePath(){
+        return taskManagerFilePath;
+    }
+    
+    public void setTaskManagerFilePath(String taskManagerFilePath) throws RepeatTaskManagerFilePathException{
+        if (this.taskManagerFilePath.equals(taskManagerFilePath)){
+            throw new RepeatTaskManagerFilePathException();
+        }
+        else{
+            this.taskManagerFilePath = taskManagerFilePath;
+        }
+    }
+    
+    public static class RepeatTaskManagerFilePathException extends IllegalValueException {
+        public RepeatTaskManagerFilePathException() {
+            super("Function will result in duplicate tasks");
+        }
+    }
+
 
     @Override
     public boolean equals(Object other) {

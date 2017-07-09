@@ -16,10 +16,6 @@ public interface TaskManagerStorage {
      */
     String getTaskManagerFilePath();
 
-    /**
-     * Changes file path of system
-     */
-    void changeTaskManagerFilePath(String filePath);
 
     /**
      * Returns TaskManager data as a {@link ReadOnlyTaskManager}.

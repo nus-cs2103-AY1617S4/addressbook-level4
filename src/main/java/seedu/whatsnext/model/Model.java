@@ -17,6 +17,9 @@ public interface Model {
 
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
+    
+    /** Re-saves data when file path is changed. */
+    void saveTaskManager();
 
     /** Deletes the given task. */
     void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException;
