@@ -3,14 +3,15 @@ package seedu.whatsnext.model.task;
 import static java.util.Objects.requireNonNull;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-
+//@@author A0156106M
 /**
  * Represents a Task's name in the WhatsNext application.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 
 public class TaskDescription {
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Task description should only contain alphanumeric characters and spaces";
+    public static final String MESSAGE_NAME_CONSTRAINTS =
+            "Task description should only contain alphanumeric characters and spaces";
     /*
      * The first character of the task must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

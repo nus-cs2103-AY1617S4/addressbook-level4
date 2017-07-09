@@ -253,7 +253,7 @@ List all task/floating/deadline/event | `list /a` `list floating /a`  `list dead
 List incomplete task/floating/deadline/event | `list /i` `list floating /i` `list deadline /i`  `list event /i` |
 List complete task/floating/deadline/event | `list /c` `list floating /c` `list deadline /c`  `list event /c` |
 Clear all task/floating/deadline/event | `clear /a` `clear floating /a`  `clear deadline /a`  `clear event /a` |
-Clear incomplete task/floating/deadline/event | `clear /i` `clear floating /i`  `clear deadline /i`  `clear event /i` | 
+Clear incomplete task/floating/deadline/event | `clear /i` `clear floating /i`  `clear deadline /i`  `clear event /i` |
 Clear complete task/floating/deadline/event | `clear /c` `clear floating /c`  `clear deadline /c`  `clear event /c` |
 Edit floating/deadline/event | `edit floating INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` <br><br> `edit deadline INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` <br><br> `edit event INDEX [n/TASK_NAME] [d/DATE] [t/TIME]  [h/TAG]` | `edit event 1 h/HIGH`
 Delete floating/deadline/event | `delete floating INDEX` <br> `delete deadline INDEX ` <br> `delete event INDEX ` | `delete event 1`

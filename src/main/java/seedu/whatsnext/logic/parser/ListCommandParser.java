@@ -25,7 +25,7 @@ public class ListCommandParser {
         if (args.trim().isEmpty()) {
             return new ListCommand(keyWordSet);
         }
-        
+
         keyWordArray = new String[] { args.trim() };
         keyWordSet = new HashSet<>(Arrays.asList(keyWordArray));
         return new ListCommand(keyWordSet);

@@ -16,7 +16,7 @@ public class ClearCommandParser {
      * and returns a ClearCommand object for execution
      * @throws ParseException if the user input does not conform the expected format
      * */
-    public ClearCommand parse(String args) throws ParseException{
+    public ClearCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         try {
