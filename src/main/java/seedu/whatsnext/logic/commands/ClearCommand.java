@@ -2,7 +2,7 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ALL;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MARK;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_COMPLETED;
 
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
@@ -12,6 +12,7 @@ import seedu.whatsnext.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
+//@@author A0156106M
 /**
  * Clears the Task Manager.
  */
@@ -34,33 +35,35 @@ public class ClearCommand extends Command {
         if (clearArgument.equals(PREFIX_ALL.toString())) {
             model.resetData(new TaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
-        } else if (clearArgument.equals(PREFIX_MARK.toString())) {
-            System.out.println("MARK FILES TO BE CLEARED");
-            ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
-            ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
-            ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
-            TaskManager taskManager = new TaskManager();
-            for (BasicTask basicTask: taskList) {
-                if (!basicTask.getIsCompleted()) {
-                    try {
-                        taskManager.addTask(basicTask);
-                    } catch (DuplicateTaskException e) {
-                        e.printStackTrace();
-                    }
+        } else if (clearArgument.equals(PREFIX_COMPLETED.toString())) {
+            return clearCompletedOrIncomplete(false);
+        } else {
+            return clearCompletedOrIncomplete(true);
+        }
+    }
+
+    private CommandResult clearCompletedOrIncomplete(boolean isCompletedOrIncomplete) {
+        ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
+        ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
+        ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
+        TaskManager taskManager = new TaskManager();
+        for (BasicTask basicTask: taskList) {
+            if (isCompletedOrIncomplete ? basicTask.getIsCompleted() : !basicTask.getIsCompleted()) {
+                try {
+                    taskManager.addTask(basicTask);
+                } catch (DuplicateTaskException e) {
+                    e.printStackTrace();
                 }
             }
-
-            try {
-                taskManager.setTags(tagList);
-            } catch (DuplicateTagException e) {
-                e.printStackTrace();
-            }
-            model.resetData(taskManager);
-            return new CommandResult(MESSAGE_SUCCESS);
-        } else {
-            return new CommandResult(MESSAGE_SUCCESS);
         }
 
+        try {
+            taskManager.setTags(tagList);
+        } catch (DuplicateTagException e) {
+            e.printStackTrace();
+        }
+        model.resetData(taskManager);
+        return new CommandResult(MESSAGE_SUCCESS);
 
     }
 }

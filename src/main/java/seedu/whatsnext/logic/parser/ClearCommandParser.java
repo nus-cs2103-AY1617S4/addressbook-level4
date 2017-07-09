@@ -6,6 +6,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.ClearCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
+//@@author A0156106M
 /**
  * Parse input arguments and creates a new ClearCommand Object
  * */
@@ -33,6 +34,6 @@ public class ClearCommandParser {
     }
 
     private boolean isArgumentValidPrefixesPresent(String clearArgument) {
-        return clearArgument.matches(".*\\b(all|mark|unmark)\\b.*");
+        return clearArgument.matches(".*\\b(completed|incomplete|all)\\b.*");
     }
 }
