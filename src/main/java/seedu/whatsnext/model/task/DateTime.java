@@ -15,7 +15,13 @@ public class DateTime {
     public static final String EMPTY_FIELD = "EMPTY_FIELD";
     public static final String MESSAGE_DATE_CONSTRAINT = "Task date should be either "
             + "a day (e.g. friday) or a date with the format: DD/MM/YY (e.g. 06/07/17)\n";
+<<<<<<< HEAD
+
     private String dateValue;
+
+=======
+    private String dateValue;
+>>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
     public DateTime(String dateInput) throws IllegalValueException {
         assert(dateInput != null);
         String dateInputTrim = dateInput.trim();
