@@ -99,7 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
+        updateFilteredTaskList(new PredicateExpression(new NameAndTagQualifier(keywords)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
@@ -136,7 +136,7 @@ public class ModelManager extends ComponentManager implements Model {
     interface Expression {
         boolean satisfies(BasicTaskFeatures basicTaskFeatures);
         @Override
-		String toString();
+        String toString();
     }
 
     private class PredicateExpression implements Expression {
@@ -161,28 +161,7 @@ public class ModelManager extends ComponentManager implements Model {
     interface Qualifier {
         boolean run(BasicTaskFeatures basicTaskFeatures);
         @Override
-		String toString();
-    }
-
-    private class NameQualifier implements Qualifier {
-        private Set<String> nameKeyWords;
-
-        NameQualifier(Set<String> nameKeyWords) {
-            this.nameKeyWords = nameKeyWords;
-        }
-
-        @Override
-        public boolean run(BasicTaskFeatures basicTaskFeatures) {
-            return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(basicTaskFeatures.getName().fullTaskName, keyword))
-                    .findAny()
-                    .isPresent();
-        }
-
-        @Override
-        public String toString() {
-            return "name=" + String.join(", ", nameKeyWords);
-        }
+        String toString();
     }
 
     // @@author A0154986L
@@ -205,8 +184,39 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public String getFilePath(){
+    public String getFilePath() {
         return userPrefs.getTaskManagerFilePath();
     }
 
+    /*
+     * Find the task either by name or tag.
+     * @@author A0142675B
+     */
+    private class NameAndTagQualifier implements Qualifier {
+        private Set<String> keyWords;
+
+        NameAndTagQualifier(Set<String> KeyWords) {
+            this.keyWords =  KeyWords;
+        }
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            return (keyWords.stream()
+                    .filter(keyword ->
+                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), "[" + keyword + "]"))
+                    .findAny()
+                    .isPresent())
+                    || (keyWords.stream()
+                    .filter(keyword ->
+                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getName().fullTaskName, keyword))
+                    .findAny()
+                    .isPresent());
+        }
+
+        @Override
+        public String toString() {
+            return "keywords = " + String.join(", ", keyWords);
+        }
+    }
 }
+
