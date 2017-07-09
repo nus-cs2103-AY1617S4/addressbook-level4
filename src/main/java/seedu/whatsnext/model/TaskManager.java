@@ -45,11 +45,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public TaskManager() {}
 
     /**
-<<<<<<< HEAD
      * Creates an Task Manager using the tasks and Tags in the {@code toBeCopied}
-=======
-     * Creates an Task Manager using the Persons and Tags in the {@code toBeCopied}
->>>>>>> 36473ed42d3789bec77def7e65a8253bc8e489d2
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
         this();
@@ -118,6 +114,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.updateTask(target, editedTask);
     }
 
+
     /**
      * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
@@ -161,6 +158,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException, IllegalValueException {
         tags.add(t);
     }
+
 
     //// util methods
 
