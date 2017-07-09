@@ -8,12 +8,11 @@ import java.util.Set;
 
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
-
+//@@author A0156106M
 /**
  * Represents a Basic Task in the WhatsNext application.
  * Basic Tasks are only able to store task name, task description and tags
  * Guarantees: details are present and not null, field values are validated.
- * @@author A0156106M
  */
 public class BasicTask implements BasicTaskFeatures {
     public static final String TASK_TYPE = "basic";
@@ -31,7 +30,8 @@ public class BasicTask implements BasicTaskFeatures {
      * Floating consists of Name and tags
      */
     public BasicTask(TaskName taskName, Set<Tag> tags) {
-        this(taskName, null, null, tags);
+        this(taskName, null, null, false, tags);
+
     }
 
     /**
@@ -39,17 +39,15 @@ public class BasicTask implements BasicTaskFeatures {
      * Deadline consists of Name, End Date, End Time and tags
      * */
     public BasicTask(TaskName taskName, DateTime startDateTime, Set<Tag> tags) {
-        this(taskName, startDateTime, null, tags);
+        this(taskName, startDateTime, null, false, tags);
     }
 
     /**
      * Constructor for Event
      * */
     public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
-        this.taskName = taskName;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.tags = new UniqueTagList(tags);
+        this(taskName, startDateTime, endDateTime, false, tags);
+
     }
 
     /**
