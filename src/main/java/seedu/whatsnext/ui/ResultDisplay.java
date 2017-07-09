@@ -29,6 +29,8 @@ public class ResultDisplay extends UiPart<Region> {
     public ResultDisplay() {
         super(FXML);
         resultDisplay.textProperty().bind(displayed);
+        //@@author A0154987J
+        resultDisplay.setWrapText(true);
         registerAsAnEventHandler(this);
     }
 
@@ -39,7 +41,9 @@ public class ResultDisplay extends UiPart<Region> {
     }
     
     public static void showSelectedTask(BasicTaskFeatures task) {   	
-    	displayed.setValue("Taskname: " + task.getName().toString() + "\n" + "Tags: " + task.getAllTags());
+    	displayed.setValue("Task name: " + task.getName() + "\n" 
+                + "Tags: " + task.getAllTags() + "\n"
+                + "Status: " + task.getStatusString() );                    
     }
 
 }

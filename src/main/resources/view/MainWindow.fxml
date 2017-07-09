@@ -32,13 +32,14 @@
     </padding>
   </StackPane>
 
-  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
     <padding>
       <Insets bottom="5" left="10" right="10" top="5" />
     </padding>
   </StackPane>
 
   <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5, 0.5" VBox.vgrow="ALWAYS">
+    <!--@@author A0154987J-->
     <VBox fx:id="taskList" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />

@@ -35,11 +35,14 @@ public class TaskCard extends UiPart<Region> {
 
 	private void setPriorityColors(BasicTaskFeatures task) {
 		if (task.getAllTags().contains("HIGH")) {
-            cardBackground.setStyle("-fx-background-color : red; ");
+            cardBackground.setStyle("-fx-border-color : red; "
+            		+ "-fx-border-width : 5px");
         } else if (task.getAllTags().contains("MEDIUM")) {
-            cardBackground.setStyle("-fx-background-color : green; ");
+            cardBackground.setStyle("-fx-border-color : green; "
+            		+ "-fx-border-width : 5px");
         } else if (task.getAllTags().contains("LOW")) {
-            cardBackground.setStyle("-fx-background-color : yellow; ");
+            cardBackground.setStyle("-fx-border-color : yellow; "
+            		+ "-fx-border-width : 5px");
         }
 	}
 }
