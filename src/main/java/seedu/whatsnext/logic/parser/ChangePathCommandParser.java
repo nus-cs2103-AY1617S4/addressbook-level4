@@ -35,7 +35,7 @@ public class ChangePathCommandParser {
             stringNewFilePath += "/";
         }
 
-        stringNewFilePath += "TaskManager.xml";
+        stringNewFilePath += "WhatsNext.xml";
 
         File newFilePath = new File(stringNewFilePath.trim());
 
