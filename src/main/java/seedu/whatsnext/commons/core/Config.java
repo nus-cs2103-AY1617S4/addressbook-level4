@@ -41,20 +41,20 @@ public class Config {
     public void setUserPrefsFilePath(String userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
-    
-    public String getTaskManagerFilePath(){
+
+    public String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
-    
-    public void setTaskManagerFilePath(String taskManagerFilePath) throws RepeatTaskManagerFilePathException{
-        if (this.taskManagerFilePath.equals(taskManagerFilePath)){
+
+    public void setTaskManagerFilePath(String taskManagerFilePath) throws RepeatTaskManagerFilePathException {
+        if (this.taskManagerFilePath.equals(taskManagerFilePath)) {
             throw new RepeatTaskManagerFilePathException();
         }
-        else{
+        else {
             this.taskManagerFilePath = taskManagerFilePath;
         }
     }
-    
+
     public static class RepeatTaskManagerFilePathException extends IllegalValueException {
         public RepeatTaskManagerFilePathException() {
             super("Function will result in duplicate tasks");

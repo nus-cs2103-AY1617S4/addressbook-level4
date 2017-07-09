@@ -26,25 +26,15 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
         XmlTaskManagerStorage.filePath = newFilePath;
     }
 
-<<<<<<< HEAD
-=======
     //@@sA0149894H
     @Override
->>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
     public String getTaskManagerFilePath() {
         return filePath;
     }
 
-<<<<<<< HEAD
-    //@@Author A0149894H
-    public static void changeTaskManagerFilePath(String newFilePath){
-        filePath = newFilePath;
-=======
     //@@A0149894H
-    @Override
-    public void changeTaskManagerFilePath(String filePath) {
-        this.filePath = filePath;
->>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
+    public static void changeTaskManagerFilePath(String newFilePath) {
+        filePath = newFilePath;
     }
 
     @Override

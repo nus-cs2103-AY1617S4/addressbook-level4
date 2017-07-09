@@ -58,7 +58,7 @@ public class ModelManager extends ComponentManager implements Model {
     private void indicateTaskManagerChanged() {
         raise(new TaskManagerChangedEvent(taskManager));
     }
-    
+
     //@@author A01498494H
     /**Re-saves data when file path is changed. */
     public void saveTaskManager(){
