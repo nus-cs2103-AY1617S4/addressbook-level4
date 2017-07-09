@@ -22,7 +22,6 @@ public class BasicTask implements BasicTaskFeatures {
     private DateTime startDateTime;
     @SuppressWarnings("unused")
     private DateTime endDateTime;
-
     private UniqueTagList tags;
 
     /**
@@ -47,7 +46,6 @@ public class BasicTask implements BasicTaskFeatures {
      * */
     public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
         this(taskName, startDateTime, endDateTime, false, tags);
-
     }
 
     /**
@@ -60,24 +58,15 @@ public class BasicTask implements BasicTaskFeatures {
         this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags);
         this.isCompleted = isCompleted;
-        System.out.println("VALUE IS " + isCompleted);
     }
-
-    /**
-     * Creates a copy of the given BasicTask.
-     */
-//    public BasicTask(BasicTaskFeatures source) {
-//        this(source.getName(), source.getTags());
-//    }
 
     /**
      * Creates a copy of the given BasicTask.
      */
     public BasicTask(BasicTaskFeatures source) {
-        this(source.getName(), source.getStartDateTime(), source.getEndDateTime(), source.getIsCompleted(), source.getTags());
-
+        this(source.getName(), source.getStartDateTime(), source.getEndDateTime(),
+                source.getIsCompleted(), source.getTags());
     }
-
 
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);
@@ -109,11 +98,9 @@ public class BasicTask implements BasicTaskFeatures {
      */
     public void resetData(BasicTaskFeatures replacement) {
         requireNonNull(replacement);
-
         this.setName(replacement.getName());
         this.setTags(replacement.getTags());
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -149,13 +136,11 @@ public class BasicTask implements BasicTaskFeatures {
     @Override
     public void setCompleted() {
         isCompleted = true;
-
     }
 
     @Override
     public void setIncompleted() {
         isCompleted = false;
-
     }
 
     @Override
