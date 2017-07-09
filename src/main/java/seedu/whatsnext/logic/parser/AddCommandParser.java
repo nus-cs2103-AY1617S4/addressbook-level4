@@ -1,6 +1,5 @@
 package seedu.whatsnext.logic.parser;
 
-import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TO;
@@ -29,11 +28,12 @@ public class AddCommandParser {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ON, PREFIX_TO, PREFIX_TAG);
-
+        /*
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        */
         try {
             TaskName taskName = new TaskName(argMultimap.getPreamble());
             Optional<String> startDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_ON));

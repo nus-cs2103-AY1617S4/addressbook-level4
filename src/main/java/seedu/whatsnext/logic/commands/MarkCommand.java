@@ -18,7 +18,7 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 /**
  * Marks an existing task in the task manager.
  */
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -46,10 +46,10 @@ public class MarkCommand extends Command{
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         BasicTask markedTask = createMarkedTask(taskToMark);
-        try{
+        try {
             model.updateTask(taskToMark, markedTask);
 
-        } catch (TaskNotFoundException e){
+        } catch (TaskNotFoundException e) {
             throw new AssertionError("The target task cannot be missing");
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
