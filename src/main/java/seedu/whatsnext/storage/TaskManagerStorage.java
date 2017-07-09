@@ -17,6 +17,11 @@ public interface TaskManagerStorage {
     String getTaskManagerFilePath();
 
     /**
+     * Changes file path of system
+     */
+    void changeTaskManagerFilePath(String filePath);
+
+    /**
      * Returns TaskManager data as a {@link ReadOnlyTaskManager}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
@@ -40,5 +45,6 @@ public interface TaskManagerStorage {
      * @see #saveTaskManager(ReadOnlyTaskManager)
      */
     void saveTaskManager(ReadOnlyTaskManager TaskManager, String filePath) throws IOException;
+
 
 }
