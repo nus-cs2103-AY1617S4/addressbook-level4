@@ -54,7 +54,8 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */
-    public static Optional<TaskDescription> parseDescription(Optional<String> description) throws IllegalValueException {
+    public static Optional<TaskDescription> parseDescription(Optional<String> description)
+                                            throws IllegalValueException {
         requireNonNull(description);
         return description.isPresent() ? Optional.of(new TaskDescription(description.get())) : Optional.empty();
     }
@@ -80,11 +81,11 @@ public class ParserUtil {
     }
 
     private static boolean isPriorityTagString(String tagName) {
-        final String HIGH = "HIGH";
-        final String MEDIUM = "MEDIUM";
-        final String LOW = "LOW";
-        return tagName.toUpperCase().equals(HIGH)
-              || tagName.toUpperCase().equals(MEDIUM)
-              || tagName.toUpperCase().equals(LOW);
+        final String high = "HIGH";
+        final String medium = "MEDIUM";
+        final String low = "LOW";
+        return tagName.toUpperCase().equals(high)
+              || tagName.toUpperCase().equals(medium)
+              || tagName.toUpperCase().equals(low);
     }
 }

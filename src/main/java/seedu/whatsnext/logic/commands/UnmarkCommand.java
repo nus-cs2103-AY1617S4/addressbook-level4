@@ -18,7 +18,7 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  * Marks an existing task in the task manager.
  * @@author A0156106M
  */
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -45,10 +45,10 @@ public class UnmarkCommand extends Command{
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         BasicTask markedTask = createUnmarkedTask(taskToMark);
-        try{
+        try {
             model.updateTask(taskToMark, markedTask);
 
-        } catch (TaskNotFoundException e){
+        } catch (TaskNotFoundException e) {
             throw new AssertionError("The target task cannot be missing");
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -71,8 +71,5 @@ public class UnmarkCommand extends Command{
         Set<Tag> updatedTags = taskToUnmark.getTags();
         return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updateIsComplete, updatedTags);
     }
-
-
-
 
 }

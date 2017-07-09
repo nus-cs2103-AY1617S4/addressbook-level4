@@ -10,7 +10,8 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
  */
 
 public class TaskDescription {
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Task description should only contain alphanumeric characters and spaces";
+    public static final String MESSAGE_NAME_CONSTRAINTS =
+            "Task description should only contain alphanumeric characters and spaces";
     /*
      * The first character of the task must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

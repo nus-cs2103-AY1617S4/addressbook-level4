@@ -31,17 +31,17 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         requireNonNull(model);
-        if (clearArgument.equals(PREFIX_ALL.toString())){
+        if (clearArgument.equals(PREFIX_ALL.toString())) {
             model.resetData(new TaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
-        } else if (clearArgument.equals(PREFIX_MARK.toString())){
+        } else if (clearArgument.equals(PREFIX_MARK.toString())) {
             System.out.println("MARK FILES TO BE CLEARED");
             ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
             ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
             ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
             TaskManager taskManager = new TaskManager();
-            for (BasicTask basicTask: taskList){
-                if(!basicTask.getIsCompleted()){
+            for (BasicTask basicTask: taskList) {
+                if (!basicTask.getIsCompleted()) {
                     try {
                         taskManager.addTask(basicTask);
                     } catch (DuplicateTaskException e) {
