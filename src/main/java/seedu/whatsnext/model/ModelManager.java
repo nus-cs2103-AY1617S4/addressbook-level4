@@ -22,7 +22,7 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private final UserPrefs userPrefs;
     private final TaskManager taskManager;
     private final FilteredList<BasicTask> filteredTasks;
 
@@ -34,7 +34,7 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(taskManager, userPrefs);
 
         logger.fine("Initializing with address book: " + taskManager + " and user prefs " + userPrefs);
-
+        this.userPrefs = userPrefs;
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
     }
@@ -58,7 +58,7 @@ public class ModelManager extends ComponentManager implements Model {
     private void indicateTaskManagerChanged() {
         raise(new TaskManagerChangedEvent(taskManager));
     }
-    
+
     @Override
     public synchronized void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
         taskManager.removeTask(target);
@@ -184,7 +184,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-    
+
     // @@author A0154986L
     private class CompletedQualifier implements Qualifier {
         private boolean isComplete;
@@ -193,6 +193,7 @@ public class ModelManager extends ComponentManager implements Model {
             this.isComplete = isComplete;
         }
 
+        @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             return (basicTaskFeatures.getIsCompleted() == isComplete);
         }
@@ -201,6 +202,11 @@ public class ModelManager extends ComponentManager implements Model {
         public String toString() {
             return "task name=" + String.join(", ", "w");
         }
+    }
+
+    @Override
+    public String getFilePath(){
+        return userPrefs.getTaskManagerFilePath();
     }
 
 }

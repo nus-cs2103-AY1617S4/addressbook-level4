@@ -49,4 +49,7 @@ public interface Model {
      */
     void updateFilteredTaskListToShowByCompletion(boolean isComplete);
 
+    String getFilePath();
+
+
 }

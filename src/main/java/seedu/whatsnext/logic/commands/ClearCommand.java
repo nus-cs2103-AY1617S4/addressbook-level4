@@ -4,15 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MARK;
 
-import java.util.Iterator;
-
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.UniqueTaskList;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
@@ -41,33 +38,24 @@ public class ClearCommand extends Command {
             ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
             ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
             ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
-            UniqueTaskList updatedTaskList = new UniqueTaskList();
-            for(BasicTask basicTask : taskList) {
-                System.out.println(basicTask.toString() + " " + basicTask.getIsCompleted() );
-                System.out.println("HELLO");
-                if (basicTask.getIsCompleted()) {
-                    System.out.println("TASK " + basicTask.toString());
+            TaskManager taskManager = new TaskManager();
+            for (BasicTask basicTask: taskList){
+                if(!basicTask.getIsCompleted()){
                     try {
-                        updatedTaskList.add(basicTask);
+                        taskManager.addTask(basicTask);
                     } catch (DuplicateTaskException e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
             }
-            Iterator<BasicTask> iterator = updatedTaskList.iterator();
-            while(iterator.hasNext()){
-                System.out.println("HELLO ");
-                System.out.println("TASK " + iterator.toString());
-                iterator = (Iterator<BasicTask>) iterator.next();
-            }
 
-            TaskManager taskManager = new TaskManager();
             try {
                 taskManager.setTags(tagList);
-                taskManager.setTasks(updatedTaskList.asObservableList());
-            } catch (DuplicateTagException | DuplicateTaskException e) {
+            } catch (DuplicateTagException e) {
                 e.printStackTrace();
             }
+            model.resetData(taskManager);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             return new CommandResult(MESSAGE_SUCCESS);
