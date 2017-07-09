@@ -56,7 +56,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.resetData(newData);
         indicateTaskManagerChanged();
     }
-    
+
     // @@author A0154986L
     /** Save a copy of task manager before data is changed. */
     private void saveInstance() {
