@@ -16,9 +16,13 @@ public class SampleDataUtil {
         try {
             return new BasicTask[] {
                 new BasicTask(new TaskName("Complete CS2103 assignment"),
-                    getTagSet("nus", "cs2103")),
+                    getTagSet("HIGH", "cs2103")),
                 new BasicTask(new TaskName("Meet John for dinner"),
-                        getTagSet("dinner"))
+                        getTagSet("MEDIUM")),
+                new BasicTask(new TaskName("Testing low priority"),
+                        getTagSet("LOW")),
+                new BasicTask(new TaskName("Testing no priority"),
+                        getTagSet("nopriority"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);

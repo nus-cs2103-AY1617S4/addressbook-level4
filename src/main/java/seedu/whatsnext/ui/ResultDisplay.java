@@ -39,7 +39,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
     
     public static void showSelectedTask(BasicTaskFeatures task) {   	
-    	displayed.setValue(task.getName().toString() + "\n" + task.getAllTags());
+    	displayed.setValue("Taskname: " + task.getName().toString() + "\n" + "Tags: " + task.getAllTags());
     }
 
 }

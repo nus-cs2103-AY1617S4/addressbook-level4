@@ -38,7 +38,7 @@
     </padding>
   </StackPane>
 
-  <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.33116883116883117, 0.6688311688311688" VBox.vgrow="ALWAYS">
+  <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5, 0.5" VBox.vgrow="ALWAYS">
     <VBox fx:id="taskList" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
@@ -54,17 +54,11 @@
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
-         <children>
-            <StackPane fx:id="taskListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
-         </children>
       </VBox>
       <VBox fx:id="taskList11" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
-         <children>
-            <StackPane fx:id="taskListPanelPlaceholder11" VBox.vgrow="ALWAYS" />
-         </children>
       </VBox>
   </SplitPane>
 
