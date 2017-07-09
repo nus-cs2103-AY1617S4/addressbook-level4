@@ -16,7 +16,7 @@ public class SampleDataUtil {
         try {
             return new BasicTask[] {
                 new BasicTask(new TaskName("Complete CS2103 assignment"),
-                    getTagSet("nus", "cs2103")),
+                    getTagSet("HIGH", "cs2103")),
                 new BasicTask(new TaskName("Meet John for dinner"),
                         getTagSet("dinner")),
                 new BasicTask(new TaskName("Meet Tom for lunch"),

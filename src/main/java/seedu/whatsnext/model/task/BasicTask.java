@@ -30,7 +30,6 @@ public class BasicTask implements BasicTaskFeatures {
      */
     public BasicTask(TaskName taskName, Set<Tag> tags) {
         this(taskName, null, null, false, tags);
-
     }
 
     /**
@@ -125,6 +124,14 @@ public class BasicTask implements BasicTaskFeatures {
         return isCompleted;
     }
 
+    public String getStatusString() {
+        if (getIsCompleted()) {
+            return "Completed";
+        } else {
+            return "Incomplete";
+        }
+    }
+
     @Override
     public void setCompleted() {
         isCompleted = true;
@@ -146,6 +153,4 @@ public class BasicTask implements BasicTaskFeatures {
         // TODO Auto-generated method stub
         return null;
     }
-
-
 }
