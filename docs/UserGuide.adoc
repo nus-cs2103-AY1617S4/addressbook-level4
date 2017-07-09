@@ -26,7 +26,7 @@ This app will not work with earlier versions of Java 8.
 4. Double-click the file to start the app. The GUI should appear in a few seconds.
 
 
-image::UI_Sample.jpg[width="790"]
+image::UI_Sample.png[width="790"]
 
 . Type the command in the command box and press Enter to execute it.
 
