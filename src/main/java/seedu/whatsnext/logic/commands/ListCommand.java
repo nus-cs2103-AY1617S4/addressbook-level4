@@ -14,8 +14,9 @@ public class ListCommand extends Command {
     public static final String LIST_COMPLETED = "completed";
     public static final String LIST_ALL = "all";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all incomplete tasks \n"
-            + COMMAND_WORD + "completed/all: List all completed/all tasks \n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all incomplete tasks. "
+            + "Parameters: "
+            + "completed/all: List all completed/all tasks ";
 
     public static final String MESSAGE_SUCCESS_UNCOMPLETED = "List all incomplete tasks";
     public static final String MESSAGE_SUCCESS_COMPLETED = "List all completed tasks";
