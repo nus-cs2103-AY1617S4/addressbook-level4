@@ -17,6 +17,14 @@ public interface Model {
 
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
+    
+    // @@author A0154986L
+    /** Undo previous action of task manager. */
+    void undoTaskManager();
+    
+    // @@author A0154986L
+    /** Redo previous action of task manager. */
+    void redoTaskManager();
 
     /** Deletes the given task. */
     void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException;
