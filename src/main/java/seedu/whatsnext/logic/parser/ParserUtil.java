@@ -11,9 +11,6 @@ import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.task.Address;
-import seedu.whatsnext.model.task.Email;
-import seedu.whatsnext.model.task.Phone;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
@@ -62,29 +59,6 @@ public class ParserUtil {
         return description.isPresent() ? Optional.of(new TaskDescription(description.get())) : Optional.empty();
     }
 
-    /**
-     * Parses a {@code Optional<String> phone} into an {@code Optional<Phone>} if {@code phone} is present.
-     */
-    public static Optional<Phone> parsePhone(Optional<String> phone) throws IllegalValueException {
-        requireNonNull(phone);
-        return phone.isPresent() ? Optional.of(new Phone(phone.get())) : Optional.empty();
-    }
-
-    /**
-     * Parses a {@code Optional<String> address} into an {@code Optional<Address>} if {@code address} is present.
-     */
-    public static Optional<Address> parseAddress(Optional<String> address) throws IllegalValueException {
-        requireNonNull(address);
-        return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
-    }
-
-    /**
-     * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
-     */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        requireNonNull(email);
-        return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
-    }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
@@ -93,7 +67,7 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         boolean containsPriorityTag = false;
-        
+
         for (String tagName : tags) {
             if (isPriorityTagString(tagName) && (!containsPriorityTag)) {
                 containsPriorityTag = true;
