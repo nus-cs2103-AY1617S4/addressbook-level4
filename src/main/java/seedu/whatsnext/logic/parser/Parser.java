@@ -60,9 +60,11 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
         //@@author A0156106M
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parseMarkCommand(arguments);
+
         //@@author A0156106M
         case UnmarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parseUnmarkCommand(arguments);
@@ -74,8 +76,9 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        //@@author A0154986L
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();

@@ -46,7 +46,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
         taskManager.resetData(newData);
-        indicateAddressBookChanged();
+        indicateTaskManagerChanged();
     }
 
     @Override
@@ -55,21 +55,21 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
+    private void indicateTaskManagerChanged() {
         raise(new TaskManagerChangedEvent(taskManager));
     }
-
+    
     @Override
     public synchronized void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
         taskManager.removeTask(target);
-        indicateAddressBookChanged();
+        indicateTaskManagerChanged();
     }
 
     @Override
     public synchronized void addTask(BasicTask task) throws DuplicateTaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
-        indicateAddressBookChanged();
+        indicateTaskManagerChanged();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(target, editedTask);
 
         taskManager.updateTask(target, editedTask);
-        indicateAddressBookChanged();
+        indicateTaskManagerChanged();
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -94,6 +94,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
+
     }
 
     @Override
@@ -105,6 +106,13 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
+    // @@author A0154986L
+    @Override
+    public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
+        updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(isComplete)));
+        indicateTaskManagerChanged();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -112,7 +120,7 @@ public class ModelManager extends ComponentManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
+        // instance of handles nulls
         if (!(obj instanceof ModelManager)) {
             return false;
         }
@@ -174,6 +182,24 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);
+        }
+    }
+    
+    // @@author A0154986L
+    private class CompletedQualifier implements Qualifier {
+        private boolean isComplete;
+
+        CompletedQualifier(boolean isComplete) {
+            this.isComplete = isComplete;
+        }
+
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            return (basicTaskFeatures.getIsCompleted() == isComplete);
+        }
+
+        @Override
+        public String toString() {
+            return "task name=" + String.join(", ", "w");
         }
     }
 
