@@ -14,7 +14,7 @@ import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.model.ReadOnlyTickTask;
 
 /**
- * A class to access AddressBook data stored as an xml file on the hard disk.
+ * A class to access TickTask program data stored as an xml file on the hard disk.
  */
 public class XmlTickTaskStorage implements TickTaskStorage {
 
@@ -57,12 +57,12 @@ public class XmlTickTaskStorage implements TickTaskStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTickTask ticktask) throws IOException {
+    public void saveTickTask(ReadOnlyTickTask ticktask) throws IOException {
         saveTickTask(ticktask, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTickTask)}
+     * Similar to {@link #saveTickTask(ReadOnlyTickTask)}
      * @param filePath location of the data. Cannot be null
      */
     public void saveTickTask(ReadOnlyTickTask ticktask, String filePath) throws IOException {

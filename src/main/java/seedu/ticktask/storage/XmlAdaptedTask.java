@@ -28,7 +28,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String email;
     @XmlElement(required = true)
-    private String address;
+    private String dueDate;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -49,7 +49,7 @@ public class XmlAdaptedTask {
         name = source.getName().fullName;
         phone = source.getTime().toString();
         email = source.getEmail().value;
-        address = source.getDate().toString();
+        dueDate = source.getDate().toString();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -69,8 +69,8 @@ public class XmlAdaptedTask {
         final Name name = new Name(this.name);
         final DueTime time = new DueTime(this.phone);
         final Email email = new Email(this.email);
-        final DueDate address = new DueDate(this.address);
+        final DueDate dueDate = new DueDate(this.dueDate);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Task(name, time, email, address, tags);
+        return new Task(name, time, email, dueDate, tags);
     }
 }

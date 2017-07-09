@@ -1,5 +1,6 @@
 package seedu.ticktask.model;
 
+import java.util.EmptyStackException;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
@@ -18,7 +19,7 @@ public interface Model {
     ReadOnlyTickTask getTickTask();
 
     /** Deletes the given task. */
-    void deletePerson(ReadOnlyTask target) throws TaskNotFoundException;
+    void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
     
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
@@ -27,26 +28,31 @@ public interface Model {
     void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given task {@code target} with {@code editedTask}.
      *
-     * @throws DuplicateTaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
-    void updateTask(ReadOnlyTask target, ReadOnlyTask editedPerson)
+    void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
-    /** Updates the filter of the filtered person list to show all persons */
+    /** Updates the filter of the filtered task list to show all tasks*/
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered person list to filter by the given keywords*/
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
 	UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 
 	void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
-
+	
+	/** Undo a previously completed action on the TickTask program*/
+	void undoPreviousCommand() throws EmptyStackException;
+	
+	/**Redo a previously undone action on the TickTask program*/
+	void redoUndoneCommand() throws EmptyStackException;
 }

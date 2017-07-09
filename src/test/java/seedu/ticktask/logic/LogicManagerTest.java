@@ -367,7 +367,7 @@ public class LogicManagerTest {
         List<Task> threeTasks = helper.generatePersonList(3);
 
         Model expectedModel = new ModelManager(helper.generateAddressBook(threeTasks), new UserPrefs());
-        expectedModel.deletePerson(threeTasks.get(1));
+        expectedModel.deleteTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
         assertCommandSuccess(DeleteCommand.COMMAND_WORD + " 2",

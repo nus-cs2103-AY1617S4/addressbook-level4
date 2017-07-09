@@ -17,7 +17,7 @@ public interface TickTaskStorage {
     String getTickTaskFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyTickTask}.
+     * Returns TickTask data as a {@link ReadOnlyTickTask}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -31,14 +31,14 @@ public interface TickTaskStorage {
 
     /**
      * Saves the given {@link ReadOnlyTickTask} to the storage.
-     * @param addressBook cannot be null.
+     * @param tickTask cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException;
+    void saveTickTask(ReadOnlyTickTask tickTask) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTickTask)
+     * @see #saveTickTask(ReadOnlyTickTask)
      */
-    void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException;
+    void saveTickTask(ReadOnlyTickTask tickTask, String filePath) throws IOException;
 
 }

@@ -54,15 +54,15 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TickTask ]===========================");
         super.init();
 
         config = initConfig(getApplicationParameter("config"));
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        TickTaskStorage addressBookStorage = new XmlTickTaskStorage(userPrefs.getTickTaskFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TickTaskStorage tickTaskStorage = new XmlTickTaskStorage(userPrefs.getTickTaskFilePath());
+        storage = new StorageManager(tickTaskStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,19 +81,19 @@ public class MainApp extends Application {
     }
 
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlyTickTask> addressBookOptional;
+        Optional<ReadOnlyTickTask> tickTaskOptional;
         ReadOnlyTickTask initialData;
         try {
-            addressBookOptional = storage.readTickTask();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            tickTaskOptional = storage.readTickTask();
+            if (!tickTaskOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TickTask program");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTickTask);
+            initialData = tickTaskOptional.orElseGet(SampleDataUtil::getSampleTickTask);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty TickTask program");
             initialData = new TickTask();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TickTask program");
             initialData = new TickTask();
         }
 
@@ -148,7 +148,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TickTask program");
             initializedPrefs = new UserPrefs();
         }
 

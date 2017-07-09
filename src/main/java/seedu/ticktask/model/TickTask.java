@@ -69,24 +69,24 @@ public class TickTask implements ReadOnlyTickTask {
         try {
             setTasks(newData.getTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
-            assert false : "AddressBooks should not have duplicate persons";
+            assert false : "The TickTask program should not have duplicate tasks";
         }
         try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "AddressBooks should not have duplicate tags";
+            assert false : "The TickTask program should not have duplicate tags";
         }
         syncMasterTagListWith(tasks);
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
      * Adds a task to the TickTask.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
-     * @throws DuplicateTaskException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent task already exists.
      */
     public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
         Task newTask = new Task(p);
@@ -95,11 +95,11 @@ public class TickTask implements ReadOnlyTickTask {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
+     * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
+     * {@code TickTask}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
      *
-     * @throws DuplicateTaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      *
      * @see #syncMasterTagListWith(Task)
@@ -111,13 +111,13 @@ public class TickTask implements ReadOnlyTickTask {
         Task editedTask = new Task(editedReadOnlyTask);
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
+        // This can cause the tags master list to have additional tags that are not tagged to any task
+        // in the tasklist.
         tasks.updateTask(target, editedTask);
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
@@ -126,11 +126,11 @@ public class TickTask implements ReadOnlyTickTask {
         tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
-        // used for checking person tag references
+        // used for checking task tag references
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
         tags.forEach(tag -> masterTagObjects.put(tag, tag));
 
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        // Rebuild the list of task tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
         taskTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         task.setTags(correctTagReferences);
@@ -146,7 +146,7 @@ public class TickTask implements ReadOnlyTickTask {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removePerson(ReadOnlyTask key) throws TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
