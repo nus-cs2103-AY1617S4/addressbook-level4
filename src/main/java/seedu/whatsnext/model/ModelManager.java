@@ -195,15 +195,15 @@ public class ModelManager extends ComponentManager implements Model {
     private class NameAndTagQualifier implements Qualifier {
         private Set<String> keyWords;
 
-        NameAndTagQualifier(Set<String> KeyWords) {
-            this.keyWords =  KeyWords;
+        NameAndTagQualifier(Set<String> keyWords) {
+            this.keyWords =  keyWords;
         }
 
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             return (keyWords.stream()
                     .filter(keyword ->
-                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), "[" + keyword + "]"))
+                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), keyword))
                     .findAny()
                     .isPresent())
                     || (keyWords.stream()
