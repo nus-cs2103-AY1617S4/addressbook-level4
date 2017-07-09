@@ -42,6 +42,7 @@ public class ClearCommand extends Command {
         }
     }
 
+    //@@author A0156106M
     private CommandResult clearCompletedOrIncomplete(boolean isCompletedOrIncomplete) {
         ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
         ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
