@@ -43,7 +43,7 @@ public interface BasicTaskFeatures {
     default String getAllTags() {
         final StringBuilder builder = new StringBuilder();
         getTags().forEach(builder::append);
-        return builder.toString();
+        return builder.toString().replaceAll("]", "] ");
     }
 
 }
