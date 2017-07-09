@@ -18,6 +18,10 @@ public class SampleDataUtil {
                 new BasicTask(new TaskName("Complete CS2103 assignment"),
                     getTagSet("nus", "cs2103")),
                 new BasicTask(new TaskName("Meet John for dinner"),
+                        getTagSet("dinner")),
+                new BasicTask(new TaskName("Meet Tom for lunch"),
+                        getTagSet("dinner")),
+                new BasicTask(new TaskName("Complete Homework"),
                         getTagSet("dinner"))
             };
         } catch (IllegalValueException e) {

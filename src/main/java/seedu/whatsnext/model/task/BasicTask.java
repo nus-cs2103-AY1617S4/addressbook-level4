@@ -68,8 +68,16 @@ public class BasicTask implements BasicTaskFeatures {
     /**
      * Creates a copy of the given BasicTask.
      */
+//    public BasicTask(BasicTaskFeatures source) {
+//        this(source.getName(), source.getTags());
+//    }
+
+    /**
+     * Creates a copy of the given BasicTask.
+     */
     public BasicTask(BasicTaskFeatures source) {
-        this(source.getName(), source.getTags());
+        this(source.getName(), source.getStartDateTime(), source.getEndDateTime(), source.getIsCompleted(), source.getTags());
+
     }
 
 
