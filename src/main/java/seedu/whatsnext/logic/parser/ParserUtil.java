@@ -86,5 +86,6 @@ public class ParserUtil {
         return tagName.toUpperCase().equals(HIGH)
               || tagName.toUpperCase().equals(MEDIUM)
               || tagName.toUpperCase().equals(LOW);
+
     }
 }
