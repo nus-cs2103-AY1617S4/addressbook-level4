@@ -45,7 +45,6 @@ public class ClearCommand extends Command {
                     try {
                         taskManager.addTask(basicTask);
                     } catch (DuplicateTaskException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }

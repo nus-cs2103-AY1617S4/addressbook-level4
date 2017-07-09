@@ -18,7 +18,9 @@ import seedu.whatsnext.model.task.TaskName;
  * Contains utility methods used for parsing strings in the various *Parser classes
  */
 public class ParserUtil {
-
+    public static final String HIGH = "HIGH";
+    public static final String MEDIUM = "MEDIUM";
+    public static final String LOW = "LOW";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INSUFFICIENT_PARTS = "Number of parts must be more than 1.";
 
@@ -55,7 +57,11 @@ public class ParserUtil {
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */
     public static Optional<TaskDescription> parseDescription(Optional<String> description)
+<<<<<<< HEAD
                                             throws IllegalValueException {
+=======
+            throws IllegalValueException {
+>>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
         requireNonNull(description);
         return description.isPresent() ? Optional.of(new TaskDescription(description.get())) : Optional.empty();
     }
@@ -81,11 +87,17 @@ public class ParserUtil {
     }
 
     private static boolean isPriorityTagString(String tagName) {
+<<<<<<< HEAD
         final String high = "HIGH";
         final String medium = "MEDIUM";
         final String low = "LOW";
         return tagName.toUpperCase().equals(high)
               || tagName.toUpperCase().equals(medium)
               || tagName.toUpperCase().equals(low);
+=======
+        return tagName.toUpperCase().equals(HIGH)
+              || tagName.toUpperCase().equals(MEDIUM)
+              || tagName.toUpperCase().equals(LOW);
+>>>>>>> ae6c25bf05038f445a3deefa266954a6ece71d18
     }
 }
