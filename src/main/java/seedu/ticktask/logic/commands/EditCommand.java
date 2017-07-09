@@ -158,7 +158,7 @@ public class EditCommand extends Command {
         }
 
         public void setTime(DueTime time) {
-            if(time.toString().equals("")){
+            if(time.toString().equals("") || time.toString().equals(" ")){
                 this.time = null;
             }
            else this.time = time;
@@ -169,7 +169,7 @@ public class EditCommand extends Command {
         }
 
         public void setEmail(Email email) {
-            if(email.toString().equals("")) {
+            if(email.toString().equals("") || email.toString().equals(" ")) {
                 this.email = null;
             }
             else this.email = email;
@@ -180,7 +180,7 @@ public class EditCommand extends Command {
         }
 
         public void setDate(DueDate date) {
-            if(date.toString().equals(" ")) {
+            if(date.toString().equals("") || date.toString().equals(" ")) {
                 this.date = null;
             }
             else this.date = date;
