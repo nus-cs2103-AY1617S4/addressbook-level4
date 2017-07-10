@@ -103,7 +103,7 @@ Format: `edit INDEX [name to NEW_TASK_NAME] [starting date/time to DATETIME] [en
 > * At least one of the optional fields must be provided.
 > * Option fields **must match task type** (1) event, (2) deadline or (3) floating
 > * Existing values will be updated to the input values.
-> * When editing tags, the existing tags of the task will not not be removed. But if there is already a priority tag, i.e. HIGH, MEDIUM, LOW, and the new tag is a priority tag, the original priority tag will be replace with the new one. 
+> * When editing tags, the existing tags of the task will not not be removed. But if there is already a priority tag, i.e. HIGH, MEDIUM, LOW, and the new tag is a priority tag, the original priority tag will be replace with the new one.
 > * When deleting a tag, the tag provided must be inside the existing tag list.
 
 Examples:
