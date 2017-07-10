@@ -10,15 +10,16 @@ import java.util.Set;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-
+    public static final String LIST_INCOMPLETE = "incomplete";
     public static final String LIST_COMPLETED = "completed";
     public static final String LIST_ALL = "all";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all uncompleted tasks\n"
-            + COMMAND_WORD + "completed/all: List all completed/all tasks\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all incomplete tasks. "
+            + "Parameters: "
+            + "completed/all: List all completed/all tasks ";
 
-    public static final String MESSAGE_SUCCESS_UNCOMPLETED = "Listed all uncompleted tasks";
-    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all completed tasks";
+    public static final String MESSAGE_SUCCESS_UNCOMPLETED = "List all incomplete tasks";
+    public static final String MESSAGE_SUCCESS_COMPLETED = "List all completed tasks";
     public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
     public static final String MESSAGE_INVALID_COMMAND = "Invalid list command";
 
@@ -30,7 +31,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (keywords.isEmpty()) {
+        if (keywords.isEmpty() || keywords.contains(LIST_INCOMPLETE)) {
             boolean isComplete = false;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_UNCOMPLETED);

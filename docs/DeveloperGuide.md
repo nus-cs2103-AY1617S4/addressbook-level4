@@ -174,7 +174,7 @@ _Figure 2.3.1 : Structure of the Logic Component_
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
-<img src="images/DeletePersonSdForLogic.png" width="800"><br>
+<img src="images/DeleteTaskSdForLogic.png" width="800"><br>
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
 
@@ -191,7 +191,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
-* exposes a `UnmodifiableObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list
+* exposes a `UnmodifiableObservableList<ReadOnlyTask>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -542,7 +542,7 @@ Use case ends.
 
 ##### Reserved Tags
 
-> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag.
+> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag; `OVERLAP` = to indicate events having clashing schedules. 
 
 ##### Events
 
