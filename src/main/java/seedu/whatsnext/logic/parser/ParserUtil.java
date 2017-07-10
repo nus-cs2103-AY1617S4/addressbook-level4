@@ -69,13 +69,15 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws IllegalValueException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
-        boolean containsPriorityTag = false;
+        for (String tagName : tags) {
+            if (isPriorityTagString(tagName)) {
+                tagSet.add(new Tag(tagName.trim()));
+                break;
+            }
+        }
 
         for (String tagName : tags) {
-            if (isPriorityTagString(tagName) && (!containsPriorityTag)) {
-                containsPriorityTag = true;
-                tagSet.add(new Tag(tagName.trim()));
-            } else if (!isPriorityTagString(tagName)) {
+            if (!isPriorityTagString(tagName)) {
                 tagSet.add(new Tag(tagName.trim()));
             }
         }

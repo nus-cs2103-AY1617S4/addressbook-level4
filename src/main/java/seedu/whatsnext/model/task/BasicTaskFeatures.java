@@ -1,5 +1,6 @@
 package seedu.whatsnext.model.task;
 
+import java.util.Iterator;
 import java.util.Set;
 
 import seedu.whatsnext.model.tag.Tag;
@@ -42,8 +43,23 @@ public interface BasicTaskFeatures {
 
     default String getAllTags() {
         final StringBuilder builder = new StringBuilder();
-        getTags().forEach(builder::append);
-        return builder.toString().replaceAll("]", "] ");
+        Iterator<Tag> tag = getTags().iterator();
+        while (tag.hasNext()) {
+            Tag tagToBeDisplayed = tag.next();
+            if (tagToBeDisplayed.isPriorityTag()) {
+                builder.append("[" + tagToBeDisplayed.tagName + "] ");
+            }
+        }
+
+        tag = getTags().iterator();
+        while (tag.hasNext()) {
+            Tag tagToBeDisplayed = tag.next();
+            if (!tagToBeDisplayed.isPriorityTag()) {
+                builder.append("[" + tagToBeDisplayed.tagName + "] ");
+            }
+        }
+
+        return builder.toString();
     }
 
 }

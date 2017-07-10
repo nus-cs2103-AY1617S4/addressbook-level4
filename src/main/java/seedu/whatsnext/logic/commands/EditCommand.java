@@ -120,11 +120,30 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = new HashSet<Tag>();
         Set<Tag> existingTags = taskToEdit.getTags();
 
+        boolean hasNewPriorityTag = false;
+
+        if (editTaskDescriptor.newTags != null) {
+            Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
+            while (tag.hasNext()) {
+                Tag tagToBeAdded = tag.next();
+                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
+                    updatedTags.add(tagToBeAdded);
+                    hasNewPriorityTag = true;
+                    break;
+                }
+            }
+        }
+        
         if (existingTags != null) {
             Iterator<Tag> tag = existingTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeRetained = tag.next();
-                updatedTags.add(tagToBeRetained);
+                if (!tagToBeRetained.isPriorityTag()) {
+                    updatedTags.add(tagToBeRetained);
+                } else if (tagToBeRetained.isPriorityTag() && (!hasNewPriorityTag)) {
+                    updatedTags.add(tagToBeRetained);
+                }
+                
             }
         }
 
@@ -140,29 +159,17 @@ public class EditCommand extends Command {
             }
         }
 
-        boolean hasNewPriorityTag = false;
-        Tag newPriorityTag = null;
 
         if (editTaskDescriptor.newTags != null) {
             Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeAdded = tag.next();
-                updatedTags.add(tagToBeAdded);
-                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
-                    newPriorityTag = tagToBeAdded;
-                    hasNewPriorityTag = true;
+                if (!tagToBeAdded.isPriorityTag()) {
+                    updatedTags.add(tagToBeAdded);                    
                 }
             }
         }
-        if (updatedTags != null && hasNewPriorityTag && newPriorityTag != null) {
-            final Tag high = new Tag("HIGH");
-            final Tag medium = new Tag("MEDIUM");
-            final Tag low = new Tag("LOW");
-            updatedTags.remove(high);
-            updatedTags.remove(medium);
-            updatedTags.remove(low);
-            updatedTags.add(newPriorityTag);
-        }
+        
         return updatedTags;
     }
 
