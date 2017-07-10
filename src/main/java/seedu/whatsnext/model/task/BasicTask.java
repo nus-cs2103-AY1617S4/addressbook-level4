@@ -99,6 +99,7 @@ public class BasicTask implements BasicTaskFeatures {
         requireNonNull(replacement);
         this.setName(replacement.getName());
         this.setTags(replacement.getTags());
+        this.isCompleted = (replacement.getIsCompleted());
     }
 
     @Override
