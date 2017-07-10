@@ -111,7 +111,7 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
         //@@author A0154987J
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getInitialFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
