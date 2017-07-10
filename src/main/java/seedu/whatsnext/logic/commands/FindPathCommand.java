@@ -14,22 +14,11 @@ public class FindPathCommand extends Command {
     public static final String MESSAGE_SUCCESS = "File Path located at:";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Locates the path where the storage xml file exists.";
 
-    File f = null;
-    String path = "";
-    boolean bool = false;
-    
-       // create new files
-       f = new File("test.txt");
-       
-       // returns true if the file exists
-       bool = f.exists();
-       
-       // if file exists
-       if(bool) {
-       
-          // get absolute path
-          path = f.getAbsolutePath();
-    
+    private File f = null;
+    private String path = "";
+    private boolean bool = false;
+
+
     public FindPathCommand() {
     }
 
@@ -37,9 +26,20 @@ public class FindPathCommand extends Command {
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
 
+        // create new files
+        File f = new File("test.txt");
+
+        // returns true if the file exists
+        bool = f.exists();
+
+        // if file exists
+        if (bool) {
+            this.path = f.getAbsolutePath();
+        }
+
         return new CommandResult(String.format(model.getFilePath()));
-        
-//        return new CommandResult(String.format(model.getFilePath()));
+
     }
 
 }
+
