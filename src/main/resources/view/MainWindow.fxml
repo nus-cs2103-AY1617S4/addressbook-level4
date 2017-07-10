@@ -46,15 +46,21 @@
          <Label text="Floating Tasks" />
       <StackPane fx:id="taskListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
     </VBox>
-      <VBox fx:id="taskList1" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
+      <VBox fx:id="taskList1" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
+         <children>
+            <Label text="Deadline Tasks" />
+         </children>
       </VBox>
-      <VBox fx:id="taskList11" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
+      <VBox fx:id="taskList11" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
+         <children>
+            <Label text="Events" />
+         </children>
       </VBox>
   </SplitPane>
 

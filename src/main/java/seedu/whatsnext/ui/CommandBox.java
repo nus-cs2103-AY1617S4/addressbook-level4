@@ -35,7 +35,6 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandInputChanged() throws IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandTextField.getText());
-
             // process result of the command
             setStyleToIndicateCommandSuccess();
             commandTextField.setText("");

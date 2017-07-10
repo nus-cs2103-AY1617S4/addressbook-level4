@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -56,7 +58,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
     private final Index index;
-    private final EditTaskDescriptor editPersonDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
@@ -67,7 +69,7 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditTaskDescriptor(editPersonDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -78,18 +80,18 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        BasicTaskFeatures personToEdit = lastShownList.get(index.getZeroBased());
-        BasicTask editedPerson = createEditedTask(personToEdit, editPersonDescriptor);
+        BasicTaskFeatures taskToEdit = lastShownList.get(index.getZeroBased());
+        BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
-            model.updateTask(personToEdit, editedPerson);
+            model.updateTask(taskToEdit, editedTask);
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
     /**
@@ -120,11 +122,30 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = new HashSet<Tag>();
         Set<Tag> existingTags = taskToEdit.getTags();
 
+        boolean hasNewPriorityTag = false;
+
+        if (editTaskDescriptor.newTags != null) {
+            Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
+            while (tag.hasNext()) {
+                Tag tagToBeAdded = tag.next();
+                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
+                    updatedTags.add(tagToBeAdded);
+                    hasNewPriorityTag = true;
+                    break;
+                }
+            }
+        }
+
         if (existingTags != null) {
             Iterator<Tag> tag = existingTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeRetained = tag.next();
-                updatedTags.add(tagToBeRetained);
+                if (!tagToBeRetained.isPriorityTag()) {
+                    updatedTags.add(tagToBeRetained);
+                } else if (tagToBeRetained.isPriorityTag() && (!hasNewPriorityTag)) {
+                    updatedTags.add(tagToBeRetained);
+                }
+
             }
         }
 
@@ -140,29 +161,17 @@ public class EditCommand extends Command {
             }
         }
 
-        boolean hasNewPriorityTag = false;
-        Tag newPriorityTag = null;
 
         if (editTaskDescriptor.newTags != null) {
             Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeAdded = tag.next();
-                updatedTags.add(tagToBeAdded);
-                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
-                    newPriorityTag = tagToBeAdded;
-                    hasNewPriorityTag = true;
+                if (!tagToBeAdded.isPriorityTag()) {
+                    updatedTags.add(tagToBeAdded);
                 }
             }
         }
-        if (updatedTags != null && hasNewPriorityTag && newPriorityTag != null) {
-            final Tag high = new Tag("HIGH");
-            final Tag medium = new Tag("MEDIUM");
-            final Tag low = new Tag("LOW");
-            updatedTags.remove(high);
-            updatedTags.remove(medium);
-            updatedTags.remove(low);
-            updatedTags.add(newPriorityTag);
-        }
+
         return updatedTags;
     }
 
@@ -181,7 +190,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
