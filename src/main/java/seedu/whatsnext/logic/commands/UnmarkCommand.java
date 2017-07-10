@@ -29,7 +29,7 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
-
+    public static final String SHOWN_LIST = "Completed Tasks Listed";
     private final Index targetIndex;
 
     public UnmarkCommand(Index targetIndex) {
@@ -47,13 +47,13 @@ public class UnmarkCommand extends Command {
         BasicTask markedTask = createUnmarkedTask(taskToMark);
         try {
             model.updateTask(taskToMark, markedTask);
-
+            model.updateFilteredTaskListToShowByCompletion(true);
         } catch (TaskNotFoundException e) {
             throw new AssertionError("The target task cannot be missing");
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark) + "/n" + SHOWN_LIST);
     }
 
     /**
