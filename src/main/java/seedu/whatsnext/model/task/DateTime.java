@@ -48,11 +48,7 @@ public class DateTime {
         return null;
     }
 
-    public static DateTime getDefaultDateTime() throws IllegalValueException{
-        return new DateTime("12/12/12");
-    }
-
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return dateValue.equals(INIT_DATEVALUE);
     }
 
