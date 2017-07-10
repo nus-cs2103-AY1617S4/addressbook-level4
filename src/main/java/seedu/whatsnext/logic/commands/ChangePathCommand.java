@@ -2,11 +2,13 @@ package seedu.whatsnext.logic.commands;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Logger;
 
 import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.util.ConfigUtil;
+import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.storage.XmlTaskManagerStorage;
 
@@ -36,6 +38,18 @@ public class ChangePathCommand extends Command {
             Config config = new Config();
             config.setTaskManagerFilePath(toSave.toString());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+            
+  /*          File f = new File("test.txt");
+            boolean bool = f.exists();
+            String string = f.getAbsolutePath();
+            int texttxtSize = 8;
+            int size = string.length()- texttxtSize;
+            string = string.substring(0,size);
+            string = string.replace("\\", "/");
+            String toDelete = String.format(string).concat(model.getFilePath());
+            File filePath = new File(toDelete);
+            filePath.delete(); */
+
 
             XmlTaskManagerStorage.changeTaskManagerFilePath(toSave.toString());
             model.saveTaskManager();
@@ -44,8 +58,9 @@ public class ChangePathCommand extends Command {
         } catch (Config.RepeatTaskManagerFilePathException dtmfpe) {
             throw new CommandException(MESSAGE_REPEAT_TASK_MANAGER_FILE_PATH);
         } catch (IOException ioe) {
+            logger.warning("Failed to save config file : " + StringUtil.getDetails(ioe));
             throw new CommandException(MESSAGE_CREATED_NEW_CONFIG_FILE);
-        }
+        }        
         
     }
 
