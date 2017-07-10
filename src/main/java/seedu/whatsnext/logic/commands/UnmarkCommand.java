@@ -9,6 +9,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -62,10 +63,12 @@ public class UnmarkCommand extends Command {
     private static BasicTask createUnmarkedTask(BasicTaskFeatures taskToUnmark) {
         assert taskToUnmark != null;
         TaskName updatedName = taskToUnmark.getName();
-        taskToUnmark.setIncompleted();
+        DateTime startDateTime = taskToUnmark.getStartDateTime();
+        DateTime endDateTime = taskToUnmark.getEndDateTime();
+        taskToUnmark.setIncomplete();
         boolean updateIsComplete = taskToUnmark.getIsCompleted();
         Set<Tag> updatedTags = taskToUnmark.getTags();
-        return new BasicTask(updatedName, updateIsComplete, updatedTags);
+        return new BasicTask(updatedName, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
 }

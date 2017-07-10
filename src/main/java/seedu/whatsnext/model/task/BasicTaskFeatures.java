@@ -14,9 +14,15 @@ public interface BasicTaskFeatures {
     TaskName getName();
     Set<Tag> getTags();
     boolean getIsCompleted();
-    String getStatusString();
     void setCompleted();
-    void setIncompleted();
+    void setIncomplete();
+    void setStartDateTime(DateTime dateTime);
+    void setEndDateTime(DateTime dateTime);
+    DateTime getStartDateTime();
+    DateTime getEndDateTime();
+    String getTaskType();
+    String getStatusString();
+
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -43,5 +49,6 @@ public interface BasicTaskFeatures {
         getTags().forEach(builder::append);
         return builder.toString().replaceAll("]", "] ");
     }
+
 
 }
