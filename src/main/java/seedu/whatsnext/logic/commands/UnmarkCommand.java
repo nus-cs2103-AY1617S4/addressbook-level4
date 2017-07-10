@@ -53,7 +53,6 @@ public class UnmarkCommand extends Command {
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }
 
