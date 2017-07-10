@@ -235,12 +235,6 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    //@@author A0149894H
-    @Override
-    public String getFilePath() {
-        return userPrefs.getTaskManagerFilePath();
-    }
-
     /*
      * Find the task either by name or tag.
      * @@author A0142675B

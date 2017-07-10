@@ -16,7 +16,8 @@ public class Config {
     private String appTitle = "WhatsNext App";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
-    private String taskManagerFilePath = "data/whatsnext.xml";
+    private static String taskManagerFilePath = "data/whatsnext.xml";
+    private static String taskManagerName = "MyTaskManager";
 
     public String getAppTitle() {
         return appTitle;
@@ -42,7 +43,7 @@ public class Config {
         this.userPrefsFilePath = userPrefsFilePath;
     }
 
-    public String getTaskManagerFilePath() {
+    public static String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
 
@@ -90,6 +91,14 @@ public class Config {
         sb.append("\nCurrent log level : " + logLevel);
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         return sb.toString();
+    }
+
+    public String getTaskManagerName() {
+        return taskManagerName;
+    }
+
+    public void setTaskManagerName(String taskManagerName) {
+        this.taskManagerName = taskManagerName;
     }
 
 }

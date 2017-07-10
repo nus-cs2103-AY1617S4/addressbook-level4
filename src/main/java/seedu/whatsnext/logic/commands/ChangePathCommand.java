@@ -39,16 +39,16 @@ public class ChangePathCommand extends Command {
             config.setTaskManagerFilePath(toSave.toString());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
             
-  /*          File f = new File("test.txt");
+            File f = new File("test.txt");
             boolean bool = f.exists();
             String string = f.getAbsolutePath();
             int texttxtSize = 8;
             int size = string.length()- texttxtSize;
             string = string.substring(0,size);
             string = string.replace("\\", "/");
-            String toDelete = String.format(string).concat(model.getFilePath());
+            String toDelete = String.format(string).concat(config.getUserPrefsFilePath());
             File filePath = new File(toDelete);
-            filePath.delete(); */
+            filePath.delete(); 
 
 
             XmlTaskManagerStorage.changeTaskManagerFilePath(toSave.toString());

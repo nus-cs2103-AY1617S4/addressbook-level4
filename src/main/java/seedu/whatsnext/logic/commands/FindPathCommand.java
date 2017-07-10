@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 
+import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 /**
  * Shows the path where storage xml file is stored.
@@ -39,7 +40,7 @@ public class FindPathCommand extends Command {
         string = string.substring(0,size);
         string = string.replace("\\", "/");
         return new CommandResult(String.format(string).concat(model.getFilePath()));*/
-        return new CommandResult(String.format(model.getFilePath()));
+        return new CommandResult(String.format(Config.getTaskManagerFilePath()));
 
     }
 

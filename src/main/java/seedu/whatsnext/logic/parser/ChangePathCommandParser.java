@@ -21,7 +21,7 @@ public class ChangePathCommandParser {
 
     public Command parse(String args) {
 
-        String stringNewFilePath = args.trim();
+        String stringSaveLocation = args.trim();
         File targetLocation = new File(args.trim());
         String emptyString = "";
 
@@ -31,14 +31,14 @@ public class ChangePathCommandParser {
         if (!targetLocation.exists()) {
             targetLocation.mkdir();
         }
-        if (!(stringNewFilePath.substring(stringNewFilePath.length() - 1).equals("/"))) {
-            stringNewFilePath += "/";
+        if (!(stringSaveLocation.substring(stringSaveLocation.length() - 1).equals("/"))) {
+            stringSaveLocation += "/";
         }
 
-        stringNewFilePath += "WhatsNext.xml";
+        stringSaveLocation += "WhatsNext.xml";
 
-        File newFilePath = new File(stringNewFilePath.trim());
+        File newLocation = new File(stringSaveLocation.trim());
 
-        return new ChangePathCommand(newFilePath);
+        return new ChangePathCommand(newLocation);
     }
 }
