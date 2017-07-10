@@ -15,6 +15,7 @@ import seedu.whatsnext.storage.XmlTaskManagerStorage;
 /**
  * Changes location where task manager is stored.
  */
+//@@author A0149894H
 public class ChangePathCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(ChangePathCommand.class);
     public static final String COMMAND_WORD = "changePath";
@@ -25,7 +26,6 @@ public class ChangePathCommand extends Command {
 
     private final File toSave;
 
-    //@@author A0149894H
     public ChangePathCommand(File filePath){
         this.toSave = filePath;
     }
@@ -46,6 +46,7 @@ public class ChangePathCommand extends Command {
         } catch (IOException ioe) {
             throw new CommandException(MESSAGE_CREATED_NEW_CONFIG_FILE);
         }
+        
     }
 
 

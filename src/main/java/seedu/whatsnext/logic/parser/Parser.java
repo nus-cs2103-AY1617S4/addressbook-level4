@@ -83,9 +83,7 @@ public class Parser {
             
         //@@author A0149894H
         case FindPathCommand.COMMAND_WORD:
-            return new FindPathCommand();
-            
-
+            return new FindPathCommand();            
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
