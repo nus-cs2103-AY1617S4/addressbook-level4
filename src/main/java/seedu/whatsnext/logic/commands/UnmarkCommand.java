@@ -61,12 +61,12 @@ public class UnmarkCommand extends Command {
     private static BasicTask createUnmarkedTask(BasicTaskFeatures taskToUnmark) {
         assert taskToUnmark != null;
         TaskName updatedName = taskToUnmark.getName();
-        DateTime updatedStartDateTime = taskToUnmark.getStartDateTime();
-        DateTime updatedEndDateTime = taskToUnmark.getEndDateTime();
-        taskToUnmark.setIncompleted();
+        DateTime startDateTime = taskToUnmark.getStartDateTime();
+        DateTime endDateTime = taskToUnmark.getEndDateTime();
+        taskToUnmark.setIncomplete();
         boolean updateIsComplete = taskToUnmark.getIsCompleted();
         Set<Tag> updatedTags = taskToUnmark.getTags();
-        return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updateIsComplete, updatedTags);
+        return new BasicTask(updatedName, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
 }

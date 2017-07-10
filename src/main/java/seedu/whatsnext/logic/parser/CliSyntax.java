@@ -13,7 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("m/");
     public static final Prefix PREFIX_TO = new Prefix("to");
     public static final Prefix PREFIX_ON = new Prefix("on");
-    public static final Prefix PREFIX_TAG = new Prefix("tag");
+    public static final Prefix PREFIX_TAG = new Prefix("tag ");
     public static final Prefix PREFIX_ALL = new Prefix("all");
     public static final Prefix PREFIX_COMPLETED = new Prefix("completed");
     public static final Prefix PREFIX_INCOMPLETE = new Prefix("incomplete");

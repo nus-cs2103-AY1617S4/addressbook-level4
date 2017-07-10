@@ -11,12 +11,17 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
  * Time is represented in a 24 hour format
  * */
 public class DateTime {
+    public static final String INIT_DATEVALUE = "00/00/00";
     public static final String DATE_VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{2}";
     public static final String EMPTY_FIELD = "EMPTY_FIELD";
     public static final String MESSAGE_DATE_CONSTRAINT = "Task date should be either "
             + "a day (e.g. friday) or a date with the format: DD/MM/YY (e.g. 06/07/17)\n";
 
     private String dateValue;
+
+    public DateTime() throws IllegalValueException {
+        this(INIT_DATEVALUE);
+    }
 
     public DateTime(String dateInput) throws IllegalValueException {
         assert(dateInput != null);
@@ -41,6 +46,14 @@ public class DateTime {
             return dateTime;
         }
         return null;
+    }
+
+    public static DateTime getDefaultDateTime() throws IllegalValueException{
+        return new DateTime("12/12/12");
+    }
+
+    boolean isEmpty() {
+        return dateValue.equals(INIT_DATEVALUE);
     }
 
 }
