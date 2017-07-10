@@ -2,7 +2,6 @@ package seedu.whatsnext.logic.parser;
 
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.Optional;
 import java.util.Set;
@@ -14,6 +13,7 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.DeadlineTask;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -27,26 +27,23 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ON, PREFIX_TO, PREFIX_TAG);
-        /*
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ON, PREFIX_TAG);
+
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("testing", AddCommand.MESSAGE_USAGE));
         }
-        */
+
         try {
             TaskName taskName = new TaskName(argMultimap.getPreamble());
-            Optional<String> startDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_ON));
-            Optional<String> endDateTime = DateTime.formatDateTime(argMultimap.getValue(PREFIX_TO));
+            Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_ON);
+            System.out.println("START DATE TIME: " + argMultimap.getValue(PREFIX_ON));
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            if (startDateTime.isPresent() && endDateTime.isPresent()) {
-                System.out.println("EVENT");
-                BasicTask task = new BasicTask(taskName, tagList);
-                return new AddCommand(task);
-            } else if (startDateTime.isPresent()) {
+            if (startDateTimeValue.isPresent()) {
                 System.out.println("DEADLINE");
-                BasicTask task = new BasicTask(taskName, tagList);
+                DateTime startDateTime = new DateTime(startDateTimeValue.get());
+                BasicTask task = new DeadlineTask(taskName,startDateTime, tagList);
                 return new AddCommand(task);
             } else {
                 System.out.println("FLOATING");

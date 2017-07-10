@@ -9,7 +9,6 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
-import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -65,12 +64,10 @@ public class MarkCommand extends Command {
     private static BasicTask createMarkedTask(BasicTaskFeatures taskToMark) {
         assert taskToMark != null;
         TaskName updatedName = taskToMark.getName();
-        DateTime updatedStartDateTime = taskToMark.getStartDateTime();
-        DateTime updatedEndDateTime = taskToMark.getEndDateTime();
         taskToMark.setCompleted();
         boolean updateIsComplete = taskToMark.getIsCompleted();
         Set<Tag> updatedTags = taskToMark.getTags();
-        return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updateIsComplete, updatedTags);
+        return new BasicTask(updatedName, updateIsComplete, updatedTags);
     }
 
 }

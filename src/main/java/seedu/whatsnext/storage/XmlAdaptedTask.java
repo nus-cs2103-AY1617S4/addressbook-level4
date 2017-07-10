@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskName;
 
@@ -43,11 +42,9 @@ public class XmlAdaptedTask {
      *
      * @param source future changes to this will not affect the created XmlAdaptedTask
      */
-    public XmlAdaptedTask(BasicTaskFeatures source) {
+    public XmlAdaptedTask(BasicTask source) {
         name = source.getName().fullTaskName;
         isCompleted = source.getIsCompleted();
-        startDateTime = source.getStartDateTime();
-        endDateTime = source.getEndDateTime();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -66,10 +63,8 @@ public class XmlAdaptedTask {
             personTags.add(tag.toModelType());
         }
         final TaskName name = new TaskName(this.name);
-        final DateTime startDateTime = this.startDateTime;
-        final DateTime endDateTime = this.endDateTime;
         final boolean isCompleted = this.isCompleted;
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new BasicTask(name, startDateTime, endDateTime, isCompleted, tags);
+        return new BasicTask(name, isCompleted, tags);
     }
 }

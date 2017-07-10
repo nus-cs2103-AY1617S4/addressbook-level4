@@ -17,8 +17,6 @@ public interface BasicTaskFeatures {
     String getStatusString();
     void setCompleted();
     void setIncompleted();
-    DateTime getStartDateTime();
-    DateTime getEndDateTime();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)

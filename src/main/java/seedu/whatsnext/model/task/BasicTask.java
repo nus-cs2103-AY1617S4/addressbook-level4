@@ -18,43 +18,21 @@ public class BasicTask implements BasicTaskFeatures {
     public static final String TASK_TYPE = "basic";
     private TaskName taskName;
     private boolean isCompleted;
-    @SuppressWarnings("unused")
-    private DateTime startDateTime;
-    @SuppressWarnings("unused")
-    private DateTime endDateTime;
     private UniqueTagList tags;
-
-    /**
-     * Constructor for Floating
-     * Floating consists of Name and tags
-     */
-    public BasicTask(TaskName taskName, Set<Tag> tags) {
-        this(taskName, null, null, false, tags);
-    }
 
     /**
      * Constructor for Deadline
      * Deadline consists of Name, End Date, End Time and tags
      * */
-    public BasicTask(TaskName taskName, DateTime startDateTime, Set<Tag> tags) {
-        this(taskName, startDateTime, null, false, tags);
+    public BasicTask(TaskName taskName, Set<Tag> tags) {
+        this(taskName, false, tags);
     }
 
     /**
      * Constructor for Event
      * */
-    public BasicTask(TaskName taskName, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
-        this(taskName, startDateTime, endDateTime, false, tags);
-    }
-
-    /**
-     * Constructor for Event
-     * */
-    public BasicTask(TaskName taskName, DateTime startDateTime,
-            DateTime endDateTime, boolean isCompleted, Set<Tag> tags) {
+    public BasicTask(TaskName taskName, boolean isCompleted, Set<Tag> tags) {
         this.taskName = taskName;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
         this.tags = new UniqueTagList(tags);
         this.isCompleted = isCompleted;
     }
@@ -63,8 +41,7 @@ public class BasicTask implements BasicTaskFeatures {
      * Creates a copy of the given BasicTask.
      */
     public BasicTask(BasicTaskFeatures source) {
-        this(source.getName(), source.getStartDateTime(), source.getEndDateTime(),
-                source.getIsCompleted(), source.getTags());
+        this(source.getName(), source.getIsCompleted(), source.getTags());
     }
 
     public void setName(TaskName name) {
@@ -124,6 +101,7 @@ public class BasicTask implements BasicTaskFeatures {
         return isCompleted;
     }
 
+    @Override
     public String getStatusString() {
         if (getIsCompleted()) {
             return "Completed";
@@ -142,15 +120,4 @@ public class BasicTask implements BasicTaskFeatures {
         isCompleted = false;
     }
 
-    @Override
-    public DateTime getStartDateTime() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public DateTime getEndDateTime() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
