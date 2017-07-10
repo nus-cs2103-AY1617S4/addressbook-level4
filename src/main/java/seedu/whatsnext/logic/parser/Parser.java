@@ -23,6 +23,7 @@ import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.commands.UndoCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
+import seedu.whatsnext.model.task.ParseDateTime;
 
 /**
  * Parses user input.
@@ -51,6 +52,9 @@ public class Parser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+            case "test":
+                ParseDateTime.testDateTime();
+                return new SelectCommandParser().parse("1");
         //@@author A0156106M
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
