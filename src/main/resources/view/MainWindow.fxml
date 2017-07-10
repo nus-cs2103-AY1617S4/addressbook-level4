@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -38,18 +37,14 @@
     </padding>
   </StackPane>
 
-  <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5, 0.5" VBox.vgrow="ALWAYS">
+  <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5, 0.5" focusTraversable="false" VBox.vgrow="ALWAYS">
     <!--@@author A0154987J-->
-    <VBox fx:id="taskList" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
+    <VBox fx:id="taskList" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
       </padding>
-         <AnchorPane prefHeight="4.0" prefWidth="180.0">
-            <children>
-               <Label layoutX="43.0" layoutY="-10.0" text="Floating Tasks" />
-            </children>
-         </AnchorPane>
-      <StackPane fx:id="taskListPanelPlaceholder" prefHeight="230.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
+         <Label text="Floating Tasks" />
+      <StackPane fx:id="taskListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
     </VBox>
       <VBox fx:id="taskList1" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
          <padding>

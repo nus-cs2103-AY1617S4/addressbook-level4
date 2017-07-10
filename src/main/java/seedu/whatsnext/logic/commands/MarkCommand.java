@@ -29,7 +29,7 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
-
+    public static final String SHOWN_LIST = "Uncompleted Tasks Listed";
 
     private final Index targetIndex;
 
@@ -48,14 +48,13 @@ public class MarkCommand extends Command {
         BasicTask markedTask = createMarkedTask(taskToMark);
         try {
             model.updateTask(taskToMark, markedTask);
-
+            model.updateFilteredTaskListToShowByCompletion(false);
         } catch (TaskNotFoundException e) {
             throw new AssertionError("The target task cannot be missing");
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark) + "\n" + SHOWN_LIST);
     }
 
     /**

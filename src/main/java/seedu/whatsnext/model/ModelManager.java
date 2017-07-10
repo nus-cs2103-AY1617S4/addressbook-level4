@@ -107,7 +107,6 @@ public class ModelManager extends ComponentManager implements Model {
     public synchronized void addTask(BasicTask task) throws DuplicateTaskException {
         saveInstance();
         taskManager.addTask(task);
-        updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
 
@@ -127,6 +126,12 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Return a list of {@code BaseTask} backed by the internal list of {@code taskManager}
      */
+    @Override
+    public UnmodifiableObservableList<BasicTaskFeatures> getInitialFilteredTaskList() {
+        updateFilteredTaskListToShowByCompletion(false);
+        return new UnmodifiableObservableList<>(filteredTasks);
+    }
+
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
