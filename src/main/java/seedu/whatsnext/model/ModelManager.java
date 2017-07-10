@@ -3,6 +3,7 @@ package seedu.whatsnext.model;
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
@@ -22,9 +23,13 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
     private final UserPrefs userPrefs;
     private final TaskManager taskManager;
     private final FilteredList<BasicTask> filteredTasks;
+
+    private Stack<TaskManager> undoTaskManager;
+    private Stack<TaskManager> redoTaskManager;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +42,8 @@ public class ModelManager extends ComponentManager implements Model {
         this.userPrefs = userPrefs;
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+        undoTaskManager = new Stack<TaskManager>();
+        redoTaskManager = new Stack<TaskManager>();
     }
 
     public ModelManager() {
@@ -45,7 +52,37 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
+        saveInstance();
         taskManager.resetData(newData);
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
+    /** Save a copy of task manager before data is changed. */
+    private void saveInstance() {
+        undoTaskManager.push(new TaskManager(taskManager));
+        redoTaskManager.clear();
+    }
+
+    // @@author A0154986L
+    /** Undo previous action of task manager. */
+    @Override
+    public void undoTaskManager() {
+        TaskManager currentTaskManager = new TaskManager(taskManager);
+        taskManager.resetData(undoTaskManager.peek());
+        undoTaskManager.pop();
+        redoTaskManager.push(currentTaskManager);
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
+    /** Redo previous action of task manager. */
+    @Override
+    public void redoTaskManager() {
+        TaskManager currentTaskManager = new TaskManager(taskManager);
+        taskManager.resetData(redoTaskManager.peek());
+        redoTaskManager.pop();
+        undoTaskManager.push(currentTaskManager);
         indicateTaskManagerChanged();
     }
 
@@ -61,12 +98,14 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
+        saveInstance();
         taskManager.removeTask(target);
         indicateTaskManagerChanged();
     }
 
     @Override
     public synchronized void addTask(BasicTask task) throws DuplicateTaskException {
+        saveInstance();
         taskManager.addTask(task);
         indicateTaskManagerChanged();
     }
@@ -75,8 +114,10 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedTask);
+        saveInstance();
 
         taskManager.updateTask(target, editedTask);
+        updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
 

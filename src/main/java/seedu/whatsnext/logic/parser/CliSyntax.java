@@ -15,8 +15,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ON = new Prefix("on");
     public static final Prefix PREFIX_TAG = new Prefix("tag");
     public static final Prefix PREFIX_ALL = new Prefix("all");
-    public static final Prefix PREFIX_MARK = new Prefix("mark");
-    public static final Prefix PREFIX_UNMARK = new Prefix("unmark");
+    public static final Prefix PREFIX_COMPLETED = new Prefix("complete");
+    public static final Prefix PREFIX_INCOMPLETE = new Prefix("incomplete");
 
     //@@author A0142675B
     public static final Prefix PREFIX_NAME_ALTERNATIVE = new Prefix("name");
