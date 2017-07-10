@@ -27,6 +27,7 @@ public class ChangePathCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Save location changed to: %1$s";
 
     private final File toSave;
+    private static String toDelete = Config.getTaskManagerFilePath();
 
     public ChangePathCommand(File filePath){
         this.toSave = filePath;
@@ -37,17 +38,16 @@ public class ChangePathCommand extends Command {
         try {
             Config config = new Config();
             config.setTaskManagerFilePath(toSave.toString());
-            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);           
             
             File f = new File("test.txt");
-            boolean bool = f.exists();
             String string = f.getAbsolutePath();
             int texttxtSize = 8;
             int size = string.length()- texttxtSize;
             string = string.substring(0,size);
             string = string.replace("\\", "/");
-            String toDelete = String.format(string).concat(config.getUserPrefsFilePath());
-            File filePath = new File(toDelete);
+            String deleteLocation = String.format(string).concat(toDelete);
+            File filePath = new File(deleteLocation);
             filePath.delete(); 
 
 
