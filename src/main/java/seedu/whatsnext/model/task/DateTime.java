@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
-
 //@@author A0156106M
 /**
  * Represents the Date of an AdvancedTask in WhatsNext
