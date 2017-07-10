@@ -56,7 +56,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
     private final Index index;
-    private final EditTaskDescriptor editPersonDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
@@ -67,7 +67,7 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditTaskDescriptor(editPersonDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -78,18 +78,18 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        BasicTaskFeatures personToEdit = lastShownList.get(index.getZeroBased());
-        BasicTask editedPerson = createEditedTask(personToEdit, editPersonDescriptor);
+        BasicTaskFeatures taskToEdit = lastShownList.get(index.getZeroBased());
+        BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
-            model.updateTask(personToEdit, editedPerson);
+            model.updateTask(taskToEdit, editedTask);
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
         model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
     /**
@@ -188,7 +188,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
