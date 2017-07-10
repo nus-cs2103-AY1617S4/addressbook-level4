@@ -69,8 +69,8 @@ public class XmlAdaptedTask {
         }
         final TaskName name = new TaskName(this.name);
         final boolean isCompleted = this.isCompleted;
-        final DateTime startDateTime = new DateTime(this.endDateTime);
-        final DateTime endDateTime = new DateTime(this.startDateTime);
+        final DateTime startDateTime = new DateTime(this.startDateTime);
+        final DateTime endDateTime = new DateTime(this.endDateTime);
         final Set<Tag> tags = new HashSet<>(personTags);
         return new BasicTask(name, isCompleted, startDateTime, endDateTime, tags);
     }
