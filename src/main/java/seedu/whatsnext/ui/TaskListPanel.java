@@ -47,12 +47,15 @@ public class TaskListPanel extends UiPart<Region> {
     //@@author A0154987J
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-            //scrolls to task with index and selects and focuses on it
+            //scrolls to task with index and selects it
+            taskListView.getSelectionModel().clearSelection();
             taskListView.scrollTo(index);
-            taskListView.requestFocus();
             taskListView.getSelectionModel().clearAndSelect(index);
-            taskListView.getFocusModel().focus(index);
         });
+    }
+
+    public void clearSelection() {
+        taskListView.getSelectionModel().clearSelection();
     }
 
     class TaskListViewCell extends ListCell<BasicTaskFeatures> {

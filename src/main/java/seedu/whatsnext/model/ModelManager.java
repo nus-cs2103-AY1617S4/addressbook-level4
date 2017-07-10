@@ -113,11 +113,9 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
             throws DuplicateTaskException, TaskNotFoundException {
-        requireAllNonNull(target, editedTask);
         saveInstance();
-
+        requireAllNonNull(target, editedTask);
         taskManager.updateTask(target, editedTask);
-        updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
 

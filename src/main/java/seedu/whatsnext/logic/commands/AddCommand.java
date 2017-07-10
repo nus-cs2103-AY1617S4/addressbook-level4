@@ -3,6 +3,9 @@ package seedu.whatsnext.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.whatsnext.commons.core.EventsCenter;
+import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
@@ -38,6 +41,8 @@ public class AddCommand extends Command {
         requireNonNull(model);
         try {
             model.addTask(toAdd);
+            Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

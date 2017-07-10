@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
