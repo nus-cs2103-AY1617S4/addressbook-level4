@@ -133,7 +133,7 @@ public class EditCommand extends Command {
                 }
             }
         }
-        
+
         if (existingTags != null) {
             Iterator<Tag> tag = existingTags.iterator();
             while (tag.hasNext()) {
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
                 } else if (tagToBeRetained.isPriorityTag() && (!hasNewPriorityTag)) {
                     updatedTags.add(tagToBeRetained);
                 }
-                
+
             }
         }
 
@@ -165,11 +165,11 @@ public class EditCommand extends Command {
             while (tag.hasNext()) {
                 Tag tagToBeAdded = tag.next();
                 if (!tagToBeAdded.isPriorityTag()) {
-                    updatedTags.add(tagToBeAdded);                    
+                    updatedTags.add(tagToBeAdded);
                 }
             }
         }
-        
+
         return updatedTags;
     }
 
