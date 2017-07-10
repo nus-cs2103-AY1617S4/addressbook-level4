@@ -542,7 +542,7 @@ Use case ends.
 
 ##### Reserved Tags
 
-> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag; `OVERLAP` = to indicate events having clashing schedules. 
+> System defined tags that cannot be modified and deleted. E.g. `HIGH` = high priority task tag; `MEDIUM` = medium priority task tag; `LOW` = low priority task tag; `OVERLAP` = to indicate events having clashing schedules.
 
 ##### Events
 
