@@ -20,9 +20,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TickTask. "
-            + "Parameters: add [TASKNAME] by [DUE DATE] at [DUE TIME] \n"
-            + "Examples: \" " + COMMAND_WORD + " Submit final report by 08/23/17 at 2359 \" "
-            + "or \" " + COMMAND_WORD + " Upload presentation slides by 24 August at 11pm \"";
+            + "Parameters: add [TASKNAME] by [DUE DATE] at [DUE TIME] #[TAG1 TAG2 TAG3]\n"
+            + "Examples: \" " + COMMAND_WORD + " Submit final report by 08/23/17 at 2359 #CAP5  \" "
+            + "or \" " + COMMAND_WORD + " Upload presentation slides by 24 August at 11pm #CAP5 \"";
              
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";

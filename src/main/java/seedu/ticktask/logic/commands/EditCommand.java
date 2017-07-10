@@ -39,8 +39,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIME + "TIME] "
             
-            + "[" + PREFIX_DATE + "DATE] \n"
-            //+ "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Final report submission "
             + PREFIX_DATE + "08/26/17";
