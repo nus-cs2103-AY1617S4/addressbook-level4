@@ -50,7 +50,6 @@ public class DateTime {
 
 
     public boolean isEmpty() {
-
         return dateValue.equals(INIT_DATEVALUE);
     }
 
