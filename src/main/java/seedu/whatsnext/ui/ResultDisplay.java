@@ -21,7 +21,7 @@ public class ResultDisplay extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
-    private static final StringProperty displayed = new SimpleStringProperty("");
+    private static final StringProperty displayed = new SimpleStringProperty("Hello!");
 
     @FXML
     private TextArea resultDisplay;

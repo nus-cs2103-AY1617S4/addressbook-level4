@@ -18,6 +18,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label status;
+    @FXML
     private GridPane cardBackground;
 
     public TaskCard(BasicTaskFeatures task, int displayedIndex) {
@@ -26,6 +28,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullTaskName);
         //@@author A0154987J
         name.setWrapText(true);
+        status.setText(task.getStatusString());
         setPriorityColors(task);
     }
 
