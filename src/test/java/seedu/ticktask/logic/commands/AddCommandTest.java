@@ -86,9 +86,13 @@ public class AddCommandTest {
             fail("This method should not be called.");
             return null;
         }
+        
+        public void completeTask(ReadOnlyTask target) throws TaskNotFoundException {
+        	fail("This method should not be called.");
+        }
 
         @Override
-        public void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
 
@@ -113,6 +117,12 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Set<String> keywords) {
             fail("This method should not be called.");
         }
+
+		@Override
+		public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
+            fail("This method should not be called.");
+            return null;
+		}
     }
 
     /**

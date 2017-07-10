@@ -15,18 +15,18 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TickTask program data in local storage.
  */
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TickTaskStorage addressBookStorage;
+    private TickTaskStorage tickTaskStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(TickTaskStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(TickTaskStorage tickTaskStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.tickTaskStorage = tickTaskStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -48,42 +48,42 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TickTask methods ==============================
 
     @Override
     public String getTickTaskFilePath() {
-        return addressBookStorage.getTickTaskFilePath();
+        return tickTaskStorage.getTickTaskFilePath();
     }
 
     @Override
     public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
-        return readTickTask(addressBookStorage.getTickTaskFilePath());
+        return readTickTask(tickTaskStorage.getTickTaskFilePath());
     }
 
     @Override
     public Optional<ReadOnlyTickTask> readTickTask(String filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readTickTask(filePath);
+        return tickTaskStorage.readTickTask(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTickTask addressBook) throws IOException {
-        saveTickTask(addressBook, addressBookStorage.getTickTaskFilePath());
+    public void saveTickTask(ReadOnlyTickTask tickTask) throws IOException {
+        saveTickTask(tickTask, tickTaskStorage.getTickTaskFilePath());
     }
 
     @Override
-    public void saveTickTask(ReadOnlyTickTask addressBook, String filePath) throws IOException {
+    public void saveTickTask(ReadOnlyTickTask tickTask, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveTickTask(addressBook, filePath);
+        tickTaskStorage.saveTickTask(tickTask, filePath);
     }
 
 
     @Override
     @Subscribe
-    public void handleAddressBookChangedEvent(TickTaskChangedEvent event) {
+    public void handleTickTaskChangedEvent(TickTaskChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
         try {
-            saveAddressBook(event.data);
+            saveTickTask(event.data);
         } catch (IOException e) {
             raise(new DataSavingExceptionEvent(e));
         }

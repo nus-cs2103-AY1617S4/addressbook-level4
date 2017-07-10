@@ -66,7 +66,7 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link XmlAddressBookStorageTest} class.
          */
         TickTask original = new TypicalTasks().getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
+        storageManager.saveTickTask(original);
         ReadOnlyTickTask retrieved = storageManager.readTickTask().get();
         assertEquals(original, new TickTask(retrieved));
     }
@@ -82,7 +82,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlAddressBookStorageExceptionThrowingStub("dummy"),
                                              new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleAddressBookChangedEvent(new TickTaskChangedEvent(new TickTask()));
+        storage.handleTickTaskChangedEvent(new TickTaskChangedEvent(new TickTask()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 

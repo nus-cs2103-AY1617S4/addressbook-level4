@@ -10,9 +10,9 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 /**
  * Deletes a task identified using it's last displayed index from the TickTask.
  */
-public class DeleteCommand extends Command {
+public class DeleteCompleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete_complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the last task listing.\n"
@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
 
     public final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteCompleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
 
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredCompletedTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex.getZeroBased());
 
         try {
-            model.deleteTask(taskToMark);
+            model.deleteCompletedTask(taskToMark);
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }

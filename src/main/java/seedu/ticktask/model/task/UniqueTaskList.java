@@ -45,6 +45,15 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         internalList.add(new Task(toAdd));
     }
+    
+    /**
+     * Archives the task into the list.
+     */
+    public void archive(ReadOnlyTask toAdd) {
+    	toAdd.setCompleted(true);
+        requireNonNull(toAdd);
+        internalList.add(new Task(toAdd));
+    }
 
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.

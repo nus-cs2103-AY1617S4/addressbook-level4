@@ -16,12 +16,12 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.tag.Tag;
-import seedu.ticktask.model.task.Date;
+import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.Email;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.Time;
+import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
@@ -38,16 +38,16 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIME + "TIME] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIME + "10:00 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Final report submission "
+            + PREFIX_DATE + "08/26/17";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -95,9 +95,9 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        Time updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
+        DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
-        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
+        DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedName, updatedTime, updatedEmail, updatedDate, updatedTags);
@@ -127,9 +127,9 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
-        private Time time;
+        private DueTime time;
         private Email email;
-        private Date date;
+        private DueDate date;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -157,19 +157,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setTime(Time time) {
-            if(time.toString().equals("")){
+        public void setTime(DueTime time) {
+            if(time.toString().equals("") || time.toString().equals(" ")){
                 this.time = null;
             }
            else this.time = time;
         }
 
-        public Optional<Time> getTime() {
+        public Optional<DueTime> getTime() {
             return Optional.ofNullable(time);
         }
 
         public void setEmail(Email email) {
-            if(email.toString().equals("")) {
+            if(email.toString().equals("") || email.toString().equals(" ")) {
                 this.email = null;
             }
             else this.email = email;
@@ -179,14 +179,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setDate(Date date) {
-            if(date.toString().equals(" ")) {
+        public void setDate(DueDate date) {
+            if(date.toString().equals("") || date.toString().equals(" ")) {
                 this.date = null;
             }
             else this.date = date;
         }
 
-        public Optional<Date> getDate() {
+        public Optional<DueDate> getDate() {
             return Optional.ofNullable(date);
         }
 

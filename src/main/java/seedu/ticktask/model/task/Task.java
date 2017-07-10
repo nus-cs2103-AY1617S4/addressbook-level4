@@ -17,9 +17,10 @@ import seedu.ticktask.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Time time;
+    private DueTime time;
     private Email email;
-    private Date date;
+    private DueDate date;
+    private boolean completed;
 
     private UniqueTagList tags;
 
@@ -27,18 +28,20 @@ public class Task implements ReadOnlyTask {
      * Every field must be present and not null.
      */
 
-    public Task(Name name, Time time, Email email, Date date, Set<Tag> tags) {
+    public Task(Name name, DueTime time, Email email, DueDate date, Set<Tag> tags) {
         requireAllNonNull(name, time, email, date, tags);
 
         this.name = name;
         this.time = time;
         this.email = email;
         this.date = date;
+        this.completed = false;
+        
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
     /**
-     * Creates a copy of the given ReadOnlyPerson.
+     * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
         this(source.getName(), source.getTime(), source.getEmail(), source.getDate(),
@@ -54,11 +57,11 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
-    public void setTime(Time time) {
+    public void setTime(DueTime time) {
         this.time = requireNonNull(time);
     }
 
-    public Time getTime() {
+    public DueTime getTime() {
         return time;
     }
 
@@ -71,13 +74,21 @@ public class Task implements ReadOnlyTask {
         return email;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DueDate date) {
         this.date = requireNonNull(date);
     }
 
     @Override
-    public Date getDate() {
+    public DueDate getDate() {
         return date;
+    }
+    
+    public boolean getCompleted() {
+    	return completed;
+    }
+    
+    public void setCompleted(boolean newStatus) {
+    	this.completed = newStatus;
     }
 
     /**

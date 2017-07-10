@@ -12,9 +12,11 @@ public interface ReadOnlyTask {
 
     //These are methods
     Name getName();
-    Time getTime();
+    DueTime getTime();
     Email getEmail();
-    Date getDate();
+    DueDate getDate();
+    boolean getCompleted();
+    void setCompleted(boolean s);
     Set<Tag> getTags();
 
     /**
