@@ -44,22 +44,24 @@
         <Insets bottom="10" left="10" right="10" top="10" />
       </padding>
          <Label text="Floating Tasks" />
-      <StackPane fx:id="taskListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
+      <StackPane fx:id="floatingListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
     </VBox>
-      <VBox fx:id="taskList1" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
+      <VBox fx:id="taskList1" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
          <children>
             <Label text="Deadline Tasks" />
+            <StackPane fx:id="deadlineListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox fx:id="taskList11" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" minWidth="200.0" prefWidth="200.0" styleClass="list-background">
+      <VBox fx:id="taskList2" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
          <children>
-            <Label text="Events" />
+            <Label text="Event Tasks" />
+            <StackPane fx:id="eventListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
   </SplitPane>

@@ -8,9 +8,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
-public class TaskCard extends UiPart<Region> {
+public class DeadlineTaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "DeadlineTaskCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -25,7 +25,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public TaskCard(BasicTaskFeatures task, int displayedIndex) {
+    public DeadlineTaskCard(BasicTaskFeatures task, int displayedIndex) {
         super(FXML);
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
@@ -53,3 +53,4 @@ public class TaskCard extends UiPart<Region> {
         }
     }
 }
+

@@ -68,6 +68,14 @@ public class BasicTask implements BasicTaskFeatures {
 
     }
 
+    /**
+     * Creates a copy of the given BasicTask.
+     */
+    public BasicTask(BasicTaskFeatures source) {
+        this (source.getName(), source.getIsCompleted(),
+                source.getStartDateTime(), source.getEndDateTime(), source.getTags());
+    }
+
     public void setTaskType() {
         if (this.startDateTime.isEmpty() && this.endDateTime.isEmpty()) {
             taskType = TASK_TYPE_FLOATING;
@@ -78,13 +86,7 @@ public class BasicTask implements BasicTaskFeatures {
         }
     }
 
-    /**
-     * Creates a copy of the given BasicTask.
-     */
-    public BasicTask(BasicTaskFeatures source) {
-        this (source.getName(), source.getIsCompleted(),
-                source.getStartDateTime(), source.getEndDateTime(), source.getTags());
-    }
+
 
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);
