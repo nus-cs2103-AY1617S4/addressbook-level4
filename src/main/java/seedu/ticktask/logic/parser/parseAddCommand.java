@@ -69,7 +69,7 @@ public class parseAddCommand {
      
     public Set<Tag> createTagList(Optional<String> parsetag) throws IllegalValueException {
         if(parsetag.isPresent()){
-            String[] stringArray = parsetag.get().split("");
+            String[] stringArray = parsetag.get().split(" ");
             Collection<String> tagCollection = Arrays.asList(stringArray);
             HashSet<String> tagsList= new HashSet<>(tagCollection);
             tagList = ParserUtil.parseTags(tagsList);
