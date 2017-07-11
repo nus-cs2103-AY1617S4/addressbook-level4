@@ -157,14 +157,14 @@ public class DueTime {
     }
     
     /**
-     * Returns true if a given date only has a start date
+     * Returns true if a given date only has a start time
      */    
     public boolean isDeadline(){
 		return isDeadline;
     }
     
     /**
-     * Returns true if a given date has both start and end date
+     * Returns true if a given date has both start and end time
      */    
     public boolean isRange(){
 		return isRange;
