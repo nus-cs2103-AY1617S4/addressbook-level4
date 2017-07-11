@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
+
 //@@author A0156106M
 /**
  * Represents a Basic Task in the WhatsNext application.
@@ -73,10 +74,9 @@ public class BasicTask implements BasicTaskFeatures {
 
     }
 
-    /**
-     * Creates a copy of the given BasicTask.
-     */
-    public BasicTask(BasicTaskFeatures source) {
+
+
+    public BasicTask(BasicTask source) {
         this (source.getName(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
@@ -90,8 +90,6 @@ public class BasicTask implements BasicTaskFeatures {
             taskType = TASK_TYPE_EVENT;
         }
     }
-
-
 
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);

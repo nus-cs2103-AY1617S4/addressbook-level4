@@ -14,9 +14,9 @@ import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
+//@@author A0156106M
 /**
  * Marks an existing task in the task manager.
- * @@author A0156106M
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
@@ -54,18 +54,20 @@ public class UnmarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }
 
+    //@@author A0156106M
     /**
      * Creates a new unmarked BasicTask based on @param taskToUnmark
      * @return marked BasicTask
      * */
     private static BasicTask createUnmarkedTask(BasicTaskFeatures taskToUnmark) {
         assert taskToUnmark != null;
-        TaskName updatedName = taskToUnmark.getName();
-        DateTime startDateTime = taskToUnmark.getStartDateTime();
-        DateTime endDateTime = taskToUnmark.getEndDateTime();
-        taskToUnmark.setIncomplete();
-        boolean updateIsComplete = taskToUnmark.getIsCompleted();
-        Set<Tag> updatedTags = taskToUnmark.getTags();
+        BasicTask toCopy = new BasicTask(taskToUnmark);
+        TaskName updatedName = toCopy.getName();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        toCopy.setIncomplete();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> updatedTags = toCopy.getTags();
         return new BasicTask(updatedName, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
