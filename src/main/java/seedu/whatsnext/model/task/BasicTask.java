@@ -138,6 +138,7 @@ public class BasicTask implements BasicTaskFeatures {
         this.isCompleted = (replacement.getIsCompleted());
         this.startDateTime = (replacement.getStartDateTime());
         this.endDateTime = (replacement.getEndDateTime());
+        setTaskType();
     }
 
     @Override
