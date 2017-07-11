@@ -55,18 +55,20 @@ public class MarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
     }
 
+    //@@author A0156106M
     /**
      * Creates a new marked BasicTask based on @param taskToMark
      * @return marked BasicTask
      * */
     private static BasicTask createMarkedTask(BasicTaskFeatures taskToMark) {
         assert taskToMark != null;
-        TaskName updatedName = taskToMark.getName();
-        DateTime startDateTime = taskToMark.getStartDateTime();
-        DateTime endDateTime = taskToMark.getEndDateTime();
-        taskToMark.setCompleted();
-        boolean updateIsComplete = taskToMark.getIsCompleted();
-        Set<Tag> updatedTags = taskToMark.getTags();
+        BasicTask toCopy = new BasicTask(taskToMark);
+        TaskName updatedName = toCopy.getName();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        toCopy.setCompleted();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> updatedTags = toCopy.getTags();
         return new BasicTask(updatedName, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
