@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
+
 //@@author A0156106M
 /**
  * Represents a Basic Task in the WhatsNext application.
@@ -73,14 +74,9 @@ public class BasicTask implements BasicTaskFeatures {
 
     }
 
-    public void setTaskType() {
-        if (this.startDateTime.isEmpty() && this.endDateTime.isEmpty()) {
-            taskType = TASK_TYPE_FLOATING;
-        } else if (this.startDateTime.isEmpty() && !this.endDateTime.isEmpty()) {
-            taskType = TASK_TYPE_DEADLINE;
-        } else {
-            taskType = TASK_TYPE_EVENT;
-        }
+    public BasicTask(BasicTask source) {
+        this (source.getName(), source.getIsCompleted(),
+                source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
 
     /**
@@ -89,6 +85,16 @@ public class BasicTask implements BasicTaskFeatures {
     public BasicTask(BasicTaskFeatures source) {
         this (source.getName(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
+    }
+
+    public void setTaskType() {
+        if (this.startDateTime.isEmpty() && this.endDateTime.isEmpty()) {
+            taskType = TASK_TYPE_FLOATING;
+        } else if (this.startDateTime.isEmpty() && !this.endDateTime.isEmpty()) {
+            taskType = TASK_TYPE_DEADLINE;
+        } else {
+            taskType = TASK_TYPE_EVENT;
+        }
     }
 
     public void setName(TaskName name) {

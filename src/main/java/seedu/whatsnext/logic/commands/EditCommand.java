@@ -13,10 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
-import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -62,14 +60,14 @@ public class EditCommand extends Command {
 
     /**
      * @param index of the task in the filtered task list to edit
-     * @param editPersonDescriptor details to edit the task with
+     * @param editTaskDescriptor details to edit the task with
      */
-    public EditCommand(Index index, EditTaskDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTaskDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskDescriptor(editPersonDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
