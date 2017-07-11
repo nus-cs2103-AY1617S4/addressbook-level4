@@ -96,6 +96,12 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new TaskManagerChangedEvent(taskManager));
     }
 
+    //@@author A01498494H
+    /**Re-saves data when file path is changed. */
+    public void saveTaskManager(){
+        indicateTaskManagerChanged();
+    }
+
     @Override
     public synchronized void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
         saveInstance();
@@ -228,11 +234,6 @@ public class ModelManager extends ComponentManager implements Model {
         public String toString() {
             return "task name=" + String.join(", ", "w");
         }
-    }
-
-    @Override
-    public String getFilePath() {
-        return userPrefs.getTaskManagerFilePath();
     }
 
     /*

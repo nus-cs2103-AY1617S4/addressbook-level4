@@ -26,6 +26,9 @@ public interface Model {
     /** Redo previous action of task manager. */
     void redoTaskManager();
 
+    /** Re-saves data when file path is changed. */
+    void saveTaskManager();
+
     /** Deletes the given task. */
     void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException;
 
@@ -58,8 +61,5 @@ public interface Model {
      * Updates the filter of the filtered task list to filter by task completion
      */
     void updateFilteredTaskListToShowByCompletion(boolean isComplete);
-
-    String getFilePath();
-
 
 }
