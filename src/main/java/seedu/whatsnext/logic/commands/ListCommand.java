@@ -45,7 +45,7 @@ public class ListCommand extends Command {
             model.updateFilteredListToShowAll();
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND);
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_COMMAND);
         }
     }
 }
