@@ -201,7 +201,7 @@ While the overall structure and architect of model is retained, there is a very 
 `RedoTaskManagers` also stores instances of TaskManager data, but only when undo commands are called. Functioning in the same way as undoTaskManager, it restores previous instances of data before the undo commands. It is an empty stack during initialization and will only redo the undo commands in the current session. <br>
 
 **Reserved Tags** <br>
-To indicate priority of a certain task, the system set aside three reserved tags -- `HIGH`, `MEDIUM`, `LOW` -- to indicate descending priorities. The reserved tags will always displayed as the first tag among the tag list. And due the nature of such tags, one task will only have one priority tag at any time. For easier use, the user does not have to manually delete the current priority tag, and rather add a new priority tag and the app will automatically replace the previous tag. 
+To indicate priority of a certain task, the system set aside three reserved tags -- `HIGH`, `MEDIUM`, `LOW` -- to indicate descending priorities. The reserved tags will always displayed as the first tag among the tag list. And due the nature of such tags, one task will only have one priority tag at any time. For easier use, the user does not have to manually delete the current priority tag, and rather add a new priority tag and the app will automatically replace the previous tag.
 
 ### 2.5. Storage component
 
