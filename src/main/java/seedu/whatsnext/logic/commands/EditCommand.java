@@ -83,7 +83,6 @@ public class EditCommand extends Command {
 
         try {
             model.updateTask(taskToEdit, editedTask);
-            EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
