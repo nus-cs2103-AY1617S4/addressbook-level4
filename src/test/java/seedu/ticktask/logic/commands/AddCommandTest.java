@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.Set;
 
 import org.junit.Rule;
@@ -122,6 +123,24 @@ public class AddCommandTest {
 		public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
             fail("This method should not be called.");
             return null;
+		}
+
+		@Override
+		public void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void undoPreviousCommand() throws EmptyStackException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void redoUndoneCommand() throws EmptyStackException {
+			// TODO Auto-generated method stub
+			
 		}
     }
 

@@ -32,7 +32,7 @@ public class DueTime {
 	private final int INDEX_START_TIME = 0;
 	private final int INDEX_END_TIME = 1;
 	
-    private String value;
+    public String value;
     
     private ArrayList<Date> datesAndTimes = new ArrayList<Date>();
     private Date start_time;
