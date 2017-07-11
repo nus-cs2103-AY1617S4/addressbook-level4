@@ -178,8 +178,12 @@ _Figure 2.3.1 : Structure of the Logic Component_
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
 <img src="images/DeleteTaskSdForLogic.png" width="800"><br>
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+_Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Command_
 
+The Command section of the Logic component utilises the Open-Closed Principle whereby one can create other new types of command easily without the need to modify current codes via the Parent Abstract class [`Command`](../src/main/java/seedu/whatsnext/logic/commands/Command.java). Thus, the Command section illustrates the principle whereby it is "open for extensions but closed for modification".
+
+<img src="images/OpenCloseDiagram.jpg" width="800"><br>
+_Figure 2.3.3 : Open-Closed Principle within the Logic Component under Command section_
 
 ### 2.4. Model component
 

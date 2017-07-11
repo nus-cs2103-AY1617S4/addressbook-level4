@@ -219,6 +219,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     // @@author A0154986L
+    /*
+     * Finds tasks by completion status.
+     */
     private class CompletedQualifier implements Qualifier {
         private boolean isComplete;
 
@@ -233,7 +236,11 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public String toString() {
-            return "task name=" + String.join(", ", "w");
+            if (isComplete) {
+                return "completion status = " + String.join(", ", "true");
+            } else {
+                return "completion status = " + String.join(", ", "false");
+            }
         }
     }
 
@@ -252,14 +259,14 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             return (keyWords.stream()
                     .filter(keyword ->
-                            StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), "[" + keyword + "]"))
+                    StringUtil.containsWordIgnoreCase(basicTaskFeatures.getAllTags(), "[" + keyword + "]"))
                     .findAny()
                     .isPresent())
                     || (keyWords.stream()
-                    .filter(keyword ->
+                            .filter(keyword ->
                             StringUtil.containsWordIgnoreCase(basicTaskFeatures.getName().fullTaskName, keyword))
-                    .findAny()
-                    .isPresent());
+                            .findAny()
+                            .isPresent());
         }
 
         @Override
