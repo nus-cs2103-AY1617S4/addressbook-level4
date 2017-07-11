@@ -14,8 +14,8 @@ public class TaskType {
             "Task types should be one of the following: [event], [deadline] or [floating]";
     
 
-    public final String value;
-    public static final String TASK_TYPE_EVENTS = "event";
+    public String value;
+    public static final String TASK_TYPE_EVENT = "event";
     public static final String TASK_TYPE_DEADLINE = "deadline";
     public static final String TASK_TYPE_FLOATING = "floating";
 
@@ -36,11 +36,18 @@ public class TaskType {
         this.value = trimmedType;
     }
 
+    public String getValue(){
+        return value;
+    }
+
+    public void setValue(String value){
+        this.value=value;
+    }
     /**
      * Returns if a given string is a valid  task type.
      */
     public static boolean isValidTaskType(String test) {
-        return test.equals(TASK_TYPE_EVENTS) || test.equals(TASK_TYPE_DEADLINE) || test.equals(TASK_TYPE_FLOATING) ;
+        return test.equals(TASK_TYPE_EVENT) || test.equals(TASK_TYPE_DEADLINE) || test.equals(TASK_TYPE_FLOATING) ;
     }
 
     @Override

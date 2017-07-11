@@ -90,6 +90,7 @@ public class TickTask implements ReadOnlyTickTask {
      */
     public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
         Task newTask = new Task(p);
+        newTask.resetTaskType();
         syncMasterTagListWith(newTask);
         tasks.add(newTask);
     }

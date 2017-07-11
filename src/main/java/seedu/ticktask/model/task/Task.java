@@ -37,6 +37,8 @@ public class Task implements ReadOnlyTask {
         this.date = date;
         this.completed = false;
         
+        //resetTaskType();
+        
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -68,6 +70,23 @@ public class Task implements ReadOnlyTask {
     public void setTaskType(TaskType type) {
         this.type = requireNonNull(type);
     }
+    //@@author A0139819N
+    /**
+     * Resets the task type based on the due date and due time of the task object 
+     */
+    public void resetTaskType(){
+
+        if (time.isRange() || date.isRange() ){
+            type.setValue(TaskType.TASK_TYPE_EVENT);
+        }else if(time.isFloating() && date.isFloating()  ){
+            type.setValue(TaskType.TASK_TYPE_FLOATING);
+        }else { 
+            type.setValue(TaskType.TASK_TYPE_DEADLINE);
+        }
+
+        System.out.println(type.toString());
+    }
+    //@@author A0139819N
 
     @Override
     public TaskType getTaskType() {
