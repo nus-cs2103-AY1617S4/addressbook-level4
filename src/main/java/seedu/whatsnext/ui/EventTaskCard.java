@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
+//@@author A0154987J
 public class EventTaskCard extends UiPart<Region> {
 
     private static final String FXML = "EventTaskCard.fxml";
@@ -23,7 +24,9 @@ public class EventTaskCard extends UiPart<Region> {
     @FXML
     private GridPane cardBackground;
     @FXML
-    private Label fromTo;
+    private Label from;
+    @FXML
+    private Label to;
     @FXML
     private FlowPane tags;
 
@@ -31,10 +34,9 @@ public class EventTaskCard extends UiPart<Region> {
         super(FXML);
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
-        //@@author A0154987J
-        //name.setWrapText(true);
         status.setText(task.getStatusString());
-        fromTo.setText("From: " + task.getStartDateTime().toString() + "  To: " + task.getEndDateTime().toString());
+        from.setText("From: " + task.getStartDateTime().toString());
+        to.setText("To: " + task.getEndDateTime().toString());
         setPriorityColors(task);
         initTags(task);
     }

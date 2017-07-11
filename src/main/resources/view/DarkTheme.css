@@ -310,7 +310,16 @@
     -fx-font-size: 9;
 }
 
-#fromTo {
+#from {
+	-fx-text-fill: white;
+    -fx-background-color: red;
+    -fx-padding: 1 1 1 1;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 9;
+}
+
+#to {
 	-fx-text-fill: white;
     -fx-background-color: red;
     -fx-padding: 1 1 1 1;

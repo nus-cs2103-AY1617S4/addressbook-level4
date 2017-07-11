@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
+//@@author A0154987J
 public class FloatingTaskCard extends UiPart<Region> {
 
     private static final String FXML = "FloatingTaskCard.fxml";
@@ -29,8 +30,6 @@ public class FloatingTaskCard extends UiPart<Region> {
         super(FXML);
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
-        //@@author A0154987J
-        //name.setWrapText(true);
         status.setText(task.getStatusString());
         setPriorityColors(task);
         initTags(task);

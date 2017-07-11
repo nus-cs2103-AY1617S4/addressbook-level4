@@ -17,8 +17,9 @@ import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
- * Panel containing the list of tasks.
+ * Panel containing the list of deadline tasks.
  */
+//@@author A0154987J
 public class DeadlineListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DeadlineListPanel.class);
     private static final String FXML = "DeadlineListPanel.fxml";
@@ -39,7 +40,6 @@ public class DeadlineListPanel extends UiPart<Region> {
         ObservableList<Pair<BasicTaskFeatures, Integer>> deadlineList = extractDeadlineTasks(taskList);
         deadlineListView.setItems(deadlineList);
         deadlineListView.setCellFactory(listView -> new TaskListViewCell());
-        System.out.println("noooo");
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -55,7 +55,6 @@ public class DeadlineListPanel extends UiPart<Region> {
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-        	//deadlineListView.getSelectionModel().clearSelection();
             deadlineListView.scrollTo(index);
             deadlineListView.getSelectionModel().clearAndSelect(index);
         });

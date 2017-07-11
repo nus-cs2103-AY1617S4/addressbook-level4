@@ -115,20 +115,29 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.handleHelp();
     }
 
+  //@@author A0154987J
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
-    	mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
-    	mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
-    	mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
-    	if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
+    	clearSelect();
+    	findAndScroll(event);
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    }
+
+	private void findAndScroll(JumpToListRequestEvent event) {
+		if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
     		mainWindow.getEventListPanel().scrollTo(mainWindow.getEventListPanel().getMap().get(event.targetIndex));
     	} else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
     		mainWindow.getDeadlineListPanel().scrollTo(mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
     	} else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
     		mainWindow.getFloatingListPanel().scrollTo(mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
     	}
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-    }
+	}
+
+	private void clearSelect() {
+		mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+    	mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+    	mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+	}
 
     @Subscribe
     public void handleTaskManagerChangedEvent(TaskManagerChangedEvent abce) {
