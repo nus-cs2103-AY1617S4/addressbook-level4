@@ -17,19 +17,19 @@ import seedu.ticktask.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_NAME = "Wash dog";
+    public static final String DEFAULT_TIME = "0000";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TAGS = "friends";
+    public static final String DEFAULT_DATE = "01/01";
+    public static final String DEFAULT_TAGS = "cleaning";
 
     private Task task;
 
     public TaskBuilder() throws IllegalValueException {
         Name defaultName = new Name(DEFAULT_NAME);
-        DueTime defaultTime = new DueTime(DEFAULT_PHONE);
+        DueTime defaultTime = new DueTime(DEFAULT_TIME);
         Email defaultEmail = new Email(DEFAULT_EMAIL);
-        DueDate defaultAddress = new DueDate(DEFAULT_ADDRESS);
+        DueDate defaultAddress = new DueDate(DEFAULT_DATE);
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
         this.task = new Task(defaultName, defaultTime, defaultEmail, defaultAddress, defaultTags);
     }
@@ -51,12 +51,12 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withAddress(String address) throws IllegalValueException {
+    public TaskBuilder withDate(String address) throws IllegalValueException {
         this.task.setDate(new DueDate(address));
         return this;
     }
 
-    public TaskBuilder withPhone(String phone) throws IllegalValueException {
+    public TaskBuilder withTime(String phone) throws IllegalValueException {
         this.task.setTime(new DueTime(phone));
         return this;
     }

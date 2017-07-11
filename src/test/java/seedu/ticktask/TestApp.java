@@ -24,7 +24,7 @@ public class TestApp extends MainApp {
 
     protected static final String DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
             TestUtil.getFilePathInSandboxFolder("pref_testing.json");
-    protected static final String ADDRESS_BOOK_NAME = "Test";
+    protected static final String TICK_TASK_NAME = "Test";
     protected Supplier<ReadOnlyTickTask> initialDataSupplier = () -> null;
     protected String saveFileLocation = SAVE_LOCATION_FOR_TESTING;
 
@@ -59,7 +59,7 @@ public class TestApp extends MainApp {
         double y = Screen.getPrimary().getVisualBounds().getMinY();
         userPrefs.updateLastUsedGuiSetting(new GuiSettings(600.0, 600.0, (int) x, (int) y));
         userPrefs.setTickTaskFilePath(saveFileLocation);
-        userPrefs.setTickTaskName(ADDRESS_BOOK_NAME);
+        userPrefs.setTickTaskName(TICK_TASK_NAME);
         return userPrefs;
     }
 

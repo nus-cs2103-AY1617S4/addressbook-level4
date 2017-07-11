@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import guitests.guihandles.PersonCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -56,15 +55,10 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
               
-                new Task(new Name("Ali Muster"), new DueTime("9482424"), new Email("hans@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Boris Mueller"), new DueTime("87249245"), new Email("ruth@example.com"), new DueDate("81th street"), getTagSet()),
-                new Task(new Name("Carl Kurz"), new DueTime("95352563"), new Email("heinz@example.com"), new DueDate("wall street"), getTagSet()),
-                new Task(new Name("Daniel Meier"), new DueTime("87652533"), new Email("cornelia@example.com"), new DueDate("10th street"), getTagSet()),
-                new Task(new Name("Elle Meyer"), new DueTime("9482224"), new Email("werner@example.com"), new DueDate("michegan ave"), getTagSet()),
-                new Task(new Name("Fiona Kunz"), new DueTime("9482427"), new Email("lydia@example.com"), new DueDate("little tokyo"), getTagSet()),
-                new Task(new Name("George Best"), new DueTime("9482442"), new Email("anna@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Hoon Meier"), new DueTime("8482424"), new Email("stefan@example.com"), new DueDate("little india"), getTagSet()),
-                new Task(new Name("Ida Mueller"), new DueTime("8482131"), new Email("hans@example.com"), new DueDate("chicago ave"), getTagSet())
+                new Task(new Name("wash dog"), new DueTime("2200"), new Email("hans@example.com"), new DueDate("22/08"), getTagSet()),
+                new Task(new Name("do tutorial"), new DueTime("2300"), new Email("ruth@example.com"), new DueDate("21/03/18"), getTagSet()),
+                new Task(new Name("meet girlfriend"), new DueTime("1200"), new Email("heinz@example.com"), new DueDate("Christmas"), getTagSet()),
+         
 
             };
             //CHECKSTYLE.ON: LineLength
@@ -158,10 +152,6 @@ public class TestUtil {
             list.add(obj);
         }
         return list;
-    }
-
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyTask person) {
-        return card.isSamePerson(person);
     }
 
 }
