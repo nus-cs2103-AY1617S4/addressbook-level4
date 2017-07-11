@@ -31,6 +31,14 @@ public class DateTime {
     public DateTime(String dateInput) throws IllegalValueException {
         assert(dateInput != null);
         String dateInputTrim = dateInput.trim();
+        initDateValue(dateInputTrim);
+    }
+
+    /**
+     * Initializes the dateValue object variable base on its input parameters
+     *
+     * */
+    private void initDateValue(String dateInputTrim) throws IllegalValueException{
         if (dateInputTrim.equals(INIT_DATEVALUE)) {
             try {
                 dateValue = dateTimeFormat.parse(INIT_DATEVALUE);
@@ -39,18 +47,26 @@ public class DateTime {
             }
         } else {
             List<Date> dateInputList = new PrettyTimeParser().parse(dateInputTrim);
-
             if (!isValidDate(dateInputList)) {
                 throw new IllegalValueException(MESSAGE_DATE_CONSTRAINT);
             }
             dateValue = dateInputList.get(0);
         }
-
-
     }
 
+    /**
+     * Checks if the list is empty
+     * */
     private boolean isValidDate(List<Date> dateInputList) {
         return !dateInputList.isEmpty();
+    }
+
+    public String getDate() {
+        return dateFormat.format(dateValue);
+    }
+
+    public String getTime() {
+        return timeFormat.format(dateValue);
     }
 
     @Override
