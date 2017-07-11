@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.ui.NewResultAvailableEvent;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.Logic;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
@@ -30,7 +31,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     @FXML
-    private void handleCommandInputChanged() {
+    private void handleCommandInputChanged() throws IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandTextField.getText());
 
