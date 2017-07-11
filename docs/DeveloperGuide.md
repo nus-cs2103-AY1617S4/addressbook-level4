@@ -193,10 +193,19 @@ _Figure 2.4.1 : Structure of the Model Component_
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Task Manager data.
+* stores the current and previous Task Manager data; current Task Manager data will be on display in the UI and will be in sync with the storage file, while previous Task Manager data will enable the user to revert the changes in the current session.
 * exposes a `UnmodifiableObservableList<BasicTaskFeatures>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+**Undo/Redo functions** <br>
+While the overall structure and architect of model is retained, there is a very important and useful addition through the implementation of Undo and Redo functions. It is implemented using two stacks: `undoTaskManager` and `redoTaskManager`.<br>
+
+`UndoTaskManagers` stores the instances of TaskManager data when data changes are made. Before the data-mutating commands, namely `add`, `edit`, `clear`, `delete`, `mark`/`unmark`, take effect, the current instance of TaskManager data is pushed into UndoTaskManagers stack. It enables user to undo multiple data-mutating commands by restoring the instances of the data in the stack. Non-data-mutating commands, such as `list`, `find`, will not lead to any actions in the undoTaskManager stack.  As the stack is initialized as empty when the app starts to run, tt will only undo the changes in the current session. <br>
+`RedoTaskManagers` also stores instances of TaskManager data, but only when undo commands are called. Functioning in the same way as undoTaskManager, it restores previous instances of data before the undo commands. It is an empty stack during initialization and will only redo the undo commands in the current session. <br>
+
+**Reserved Tags** <br>
+To indicate priority of a certain task, the system set aside three reserved tags -- `HIGH`, `MEDIUM`, `LOW` -- to indicate descending priorities. The reserved tags will always displayed as the first tag among the tag list. And due the nature of such tags, one task will only have one priority tag at any time. For easier use, the user does not have to manually delete the current priority tag, and rather add a new priority tag and the app will automatically replace the previous tag.
 
 ### 2.5. Storage component
 
