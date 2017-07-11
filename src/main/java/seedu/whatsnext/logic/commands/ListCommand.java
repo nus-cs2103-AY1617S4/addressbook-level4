@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
     public static final String LIST_INCOMPLETE = "incomplete";
-    public static final String LIST_COMPLETE = "complete";
+    public static final String LIST_COMPLETE = "completed";
     public static final String LIST_ALL = "all";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Listed all incomplete tasks. "

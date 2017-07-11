@@ -68,6 +68,8 @@ public class AddCommandParser {
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
             task = new BasicTask(taskName, false, endDateTime, tagList);
         // Create Floating Task
+        } else if (startDateTimeValue.isPresent() && !endDateTimeValue.isPresent()){
+            throw new IllegalValueException(AddCommand.INVALID_TASK_CREATED);
         } else {
             task = new BasicTask(taskName, tagList);
         }
