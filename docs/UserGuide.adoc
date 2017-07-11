@@ -195,7 +195,7 @@ Examples:
 
 == Command Summary
 
-=== View help
+=== Viewing help
 
 Format: `help`
 
