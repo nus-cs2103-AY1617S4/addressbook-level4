@@ -180,6 +180,16 @@ Examples:
 Displays history of commands inputted.
 ****
 
+=== Clear Tasks : `clear`
+Clear all tasks ever added.
+
+Format: `clear`
+
+Examples:
+****
+* `clear` +
+****
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
@@ -193,28 +203,31 @@ Format: `help`
 
 === Adding a task
 
-Format: `add n/[task name] s/[time] d/[date] t/[tags]`
+Format: +
+`add [task name] "by " [date] "at " [time] + "#"[tags]` +
+`add [task name] "at " [time] + "#"[tags]` +
+`add [task name]` +
+`add [task name] "from " [start date] "to " [end date]`
 
 Examples:
 ****
-* `add n/complete tutorial s/2200 d/22/03/16 t/school`
-* `add n/complete tutorial s/2200 d/22/03/16`
-* `add n/complete tutorial`
-* `add n/complete tutorial s/2100`
+* `add complete tutorial by 23/02 #school`
+* `add complete tutorial by 23/05/17 at 2200`
+* `add complete tutorial`
+* `add complete tutorial from monday to friday`
 ****
-
 === Editing a Task
 
-Format: `edit [index] [prefix][new value]`
+Format: `edit [index] [attribute to change][new value]`
 
 Examples:
 ****
-* `edit 1 n/tutorial` +
+* `edit 1 name tutorial` +
 Edits the task name to tutorial.
-* `edit 2 s/2200` +
-Edits the task's time to 2200.
-* `edit 2 s/2200 d/21/03/17` +
-Edits the task's time to 2200 and the date to 21/03/17.
+* `edit 0 end time 2200` +
+Edits the task's end time to 2200.
+* `edit 0 start time 2300 date christmas` +
+Edits the task's start time to 2300 and the date to 25/12/2017.
 ****
 
 === Finding a Task
@@ -223,45 +236,76 @@ Format: `find [keyword(s)]`
 
 Examples:
 ****
-* `find tutorial` 
-* `find wash dog`
+* `find wash dog` +
+Will find all tasks that contain the substring "wash dog"
+* `find tu` + 
+Will find all tasks that contain the substring "tu"
 ****
 
 === Deleting a Task
 
-Format: `delete [index]`
+Format: +
+`delete [index]` +
+`delete [list to delete from] [index]`
 
 Examples:
 ****
 * `delete 1` +
-Deletes the task at index 1
+Deletes the task at index 1 +
+* `delete complete 1` +
+Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Completing a Task
 
-Example: +
-`complete tutorial`
+Format: `complete [task name]`
+
+Examples:
+****
+* `complete tutorial` +
+The task tutorial is moved to completed list.
+****
 
 === Undo/ Redo Actions
 
-Example: +
-`undo` +
-`redo`
+Format: `undo` or `redo`
 
-=== Specify Storage Folder
-
-Example: +
-`folder c://user/documents/taskmanager`
+Examples:
+****
+* `undo` +
+Undo the previous action such as add, delete, edit or complete.
+* `redo` +
+Redo the undo action
+****
 
 === Listing All Tasks
 
-Example: +
-`list` +
-`list all`
+Format: `list`
 
-=== Search Tasks
+Examples:
+****
+* `list` +
+Displays pending tasks.
+****
 
-Example: +
-`search tutorial` +
-`search 22/08` +
-`search 3`
+=== Listing Command History : `history`
+
+Format: `history`
+
+Examples:
+****
+* `history` +
+Displays history of commands inputted.
+****
+
+=== Clear Tasks : `clear`
+
+Format: `clear`
+
+Examples:
+****
+* `clear` +
+****
+
