@@ -122,7 +122,7 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
 
-image::SDforDeletePerson.png[width="800"]
+image::SDforDeleteTickTask.png[width="800"]
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 [NOTE]
@@ -130,7 +130,7 @@ Note how the `Model` simply raises a `TickTaskChangedEvent` when the Tick Task d
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
-image::SDforDeletePersonEventHandling.png[width="800"]
+image::SDforDeleteTaskEventHandling.png[width="800"]
 _Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
 
 [NOTE]
@@ -174,7 +174,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-image::DeletePersonSdForLogic.png[width="800"]
+image::DeleteTaskSdForLogic.png[width="800"]
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
 === Model component
