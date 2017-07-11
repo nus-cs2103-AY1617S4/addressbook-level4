@@ -48,13 +48,13 @@ public interface Model {
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<BasicTaskFeatures>} */
     UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
 
-    UnmodifiableObservableList<BasicTaskFeatures> getInitialFilteredTaskList();
-
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+
+    void updateFilteredTaskListForInitialView();
 
     // @@author A0154986L
     /**

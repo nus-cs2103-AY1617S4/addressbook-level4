@@ -8,9 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
-public class TaskCard extends UiPart<Region> {
+//@@author A0154987J
+public class FloatingTaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "FloatingTaskCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -25,12 +26,10 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public TaskCard(BasicTaskFeatures task, int displayedIndex) {
+    public FloatingTaskCard(BasicTaskFeatures task, int displayedIndex) {
         super(FXML);
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
-        //@@author A0154987J
-        //name.setWrapText(true);
         status.setText(task.getStatusString());
         setPriorityColors(task);
         initTags(task);

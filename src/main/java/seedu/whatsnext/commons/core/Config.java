@@ -46,12 +46,11 @@ public class Config {
         return taskManagerFilePath;
     }
 
-    public void setTaskManagerFilePath(String taskManagerFilePath) throws RepeatTaskManagerFilePathException {
-        if (this.taskManagerFilePath.equals(taskManagerFilePath)) {
+    public void setTaskManagerFilePath(String newTaskManagerFilePath) throws RepeatTaskManagerFilePathException {
+        if (taskManagerFilePath.equals(newTaskManagerFilePath)) {
             throw new RepeatTaskManagerFilePathException();
-        }
-        else {
-            this.taskManagerFilePath = taskManagerFilePath;
+        } else {
+            taskManagerFilePath = newTaskManagerFilePath;
         }
     }
 
