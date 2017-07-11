@@ -39,7 +39,7 @@ public class UserPrefs {
 
         UserPrefs o = (UserPrefs) other;
 
-        return Objects.equals(guiSettings, o.guiSettings);            
+        return Objects.equals(guiSettings, o.guiSettings);
     }
 
     @Override
