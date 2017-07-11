@@ -107,6 +107,8 @@ public class TaskManager implements ReadOnlyTaskManager {
         requireNonNull(editedReadOnlyTask);
 
         BasicTask editedTask = new BasicTask(editedReadOnlyTask);
+        System.out.println(editedTask.getStartDateTime().toString());
+        System.out.println(editedTask.getEndDateTime().toString());
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any task

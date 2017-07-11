@@ -1,11 +1,11 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME_ALTERNATIVE;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NEW_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,18 +38,18 @@ public class EditCommand extends Command {
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME_ALTERNATIVE + " to " + "NAME] "
-            + "[" + PREFIX_DATE + " to " + "DATE] "
-            + "[" + PREFIX_TIME + " to " + "TIME] "
-            + "[" + PREFIX_NEW_TAG  + " TAG]...\n"
-            + "[" + PREFIX_DELETE_TAG + " TAG]...\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_START_DATETIME + "DATE] "
+            + "[" + PREFIX_END_DATETIME + "TIME] "
+            + "[" + PREFIX_NEW_TAG  + "TAG]...\n"
+            + "[" + PREFIX_DELETE_TAG + "TAG]...\n"
             + "Example 1 : " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + " 10 July "
-            + PREFIX_TIME + " 10-12"
+            + PREFIX_START_DATETIME + " 10 July 10PM"
+            + PREFIX_END_DATETIME + " 11 July 12AM"
             + "Example 2 : " + COMMAND_WORD + " 2 "
-            + PREFIX_NAME_ALTERNATIVE + " to project meeting "
-            + PREFIX_NEW_TAG + " HIGH"
-            + PREFIX_DELETE_TAG + " RELAX";
+            + PREFIX_NAME + "to project meeting "
+            + PREFIX_NEW_TAG + "HIGH"
+            + PREFIX_DELETE_TAG + "RELAX";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -104,9 +104,10 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        DateTime updatedStartDateTime = editTaskDescriptor.getStartDateTime().orElse(taskToEdit.getStartDateTime());
+        DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
-
-        return new BasicTask(updatedName, updatedTags);
+        return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
     /*
@@ -197,8 +198,8 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private TaskName name;
         private boolean isCompleted;
-        private DateTime startDate;
-        private DateTime endDate;
+        private DateTime startDateTime;
+        private DateTime endDateTime;
         private Set<Tag> newTags;
         private Set<Tag> removeTags;
 
@@ -207,8 +208,8 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.name;
             this.isCompleted = toCopy.isCompleted;
-            this.startDate = toCopy.startDate;
-            this.endDate = toCopy.endDate;
+            this.startDateTime = toCopy.startDateTime;
+            this.endDateTime = toCopy.endDateTime;
             this.newTags = toCopy.newTags;
             this.removeTags = toCopy.removeTags;
         }
@@ -219,8 +220,8 @@ public class EditCommand extends Command {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name,
                                                this.isCompleted,
-                                               this.startDate,
-                                               this.endDate,
+                                               this.startDateTime,
+                                               this.endDateTime,
                                                this.newTags,
                                                this.removeTags);
         }
@@ -237,20 +238,20 @@ public class EditCommand extends Command {
             this.isCompleted = isCompleted;
         }
 
-        public Optional<DateTime> getStartDate() {
-            return Optional.ofNullable(startDate);
+        public Optional<DateTime> getStartDateTime() {
+            return Optional.ofNullable(startDateTime);
         }
 
-        public void setStartDate(DateTime startDate) {
-            this.startDate = startDate;
+        public void setStartDateTime(DateTime startDateTime) {
+            this.startDateTime = startDateTime;
         }
 
-        public Optional<DateTime> getEndDate() {
-            return Optional.ofNullable(endDate);
+        public Optional<DateTime> getEndDateTime() {
+            return Optional.ofNullable(endDateTime);
         }
 
-        public void setEndDate(DateTime endDate) {
-            this.endDate = endDate;
+        public void setEndDateTime(DateTime endDateTime) {
+            this.endDateTime = endDateTime;
         }
 
         /*
@@ -291,8 +292,8 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getStartDate().equals(e.getStartDate())
-                    && getEndDate().equals(e.getEndDate())
+                    && getStartDateTime().equals(e.getStartDateTime())
+                    && getEndDateTime().equals(e.getEndDateTime())
                     && getNewTags().equals(e.getNewTags())
                     && getRemoveTags().equals(e.removeTags);
         }

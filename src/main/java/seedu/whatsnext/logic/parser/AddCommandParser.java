@@ -1,8 +1,8 @@
 package seedu.whatsnext.logic.parser;
 
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.Optional;
 import java.util.Set;
@@ -27,7 +27,7 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ON, PREFIX_TO, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
@@ -36,8 +36,8 @@ public class AddCommandParser {
 
         try {
             TaskName taskName = new TaskName(argMultimap.getPreamble());
-            Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_ON);
-            Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_TO);
+            Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
+            Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             BasicTask task = createBasicTaskBasedOnInputs(taskName, startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
@@ -60,9 +60,9 @@ public class AddCommandParser {
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
             task = new BasicTask(taskName, false, startDateTime, endDateTime, tagList);
         // Create Deadline Task
-        } else if (startDateTimeValue.isPresent()) {
-            DateTime startDateTime = new DateTime(startDateTimeValue.get());
-            task = new BasicTask(taskName, false, startDateTime, tagList);
+        } else if (endDateTimeValue.isPresent()) {
+            DateTime endDateTime = new DateTime(endDateTimeValue.get());
+            task = new BasicTask(taskName, false, endDateTime, tagList);
         // Create Floating Task
         } else {
             task = new BasicTask(taskName, tagList);
