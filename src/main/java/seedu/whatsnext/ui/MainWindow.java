@@ -32,7 +32,9 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TaskListPanel taskListPanel;
+    private FloatingListPanel floatingListPanel;
+    private DeadlineListPanel deadlineListPanel;
+    private EventListPanel eventListPanel;
     private Config config;
     private UserPrefs prefs;
 
@@ -43,7 +45,13 @@ public class MainWindow extends UiPart<Region> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane taskListPanelPlaceholder;
+    private StackPane floatingListPanelPlaceholder;
+
+    @FXML
+    private StackPane deadlineListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,8 +119,14 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
         //@@author A0154987J
-        taskListPanel = new TaskListPanel(logic.getInitialFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getInitialFilteredTaskList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
+        floatingListPanel = new FloatingListPanel(logic.getFilteredTaskList());
+        floatingListPanelPlaceholder.getChildren().add(floatingListPanel.getRoot());
+
+        deadlineListPanel = new DeadlineListPanel(logic.getFilteredTaskList());
+        deadlineListPanelPlaceholder.getChildren().add(deadlineListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -183,8 +197,16 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return this.taskListPanel;
+    public FloatingListPanel getFloatingListPanel() {
+        return this.floatingListPanel;
+    }
+
+    public EventListPanel getEventListPanel() {
+        return this.eventListPanel;
+    }
+
+    public DeadlineListPanel getDeadlineListPanel() {
+        return this.deadlineListPanel;
     }
 
 }
