@@ -102,10 +102,10 @@ The `Commons` component contains utility code used across other components
 
 The rest of the App consists of four components.
 
-* [**`UI`**] : The UI of the App.
-* [**`Logic`**] : The command executor.
-* [**`Model`**] : Holds the data of the App in-memory.
-* [**`Storage`**] : Reads data from, and writes data to, the hard disk.
+* [**`UI`**] : The UI of the App. Makes use of the data stored in `Model` to display Tasks.
+* [**`Logic`**] : The command executor. Parse the arguments and calls the respective Command objects.
+* [**`Model`**] : Holds the data of the App in-memory which is used to display the `Ui`. 
+* [**`Storage`**] : Reads data from, and writes data to, the hard disk. This allows the app to retain added tasks even after the program is closed.
 
 Each of the four components
 
