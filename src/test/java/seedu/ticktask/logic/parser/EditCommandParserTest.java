@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -31,7 +31,7 @@ import seedu.ticktask.logic.parser.EditCommandParser;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
@@ -41,8 +41,8 @@ public class EditCommandParserTest {
     private static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     private static final String PHONE_DESC_AMY = " " + PREFIX_TIME + VALID_PHONE_AMY;
     private static final String PHONE_DESC_BOB = " " + PREFIX_TIME + VALID_PHONE_BOB;
-    private static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    private static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    private static final String EMAIL_DESC_AMY = " " + PREFIX_TASK_TYPE + VALID_EMAIL_AMY;
+    private static final String EMAIL_DESC_BOB = " " + PREFIX_TASK_TYPE + VALID_EMAIL_BOB;
     private static final String ADDRESS_DESC_AMY = " " + PREFIX_DATE + VALID_ADDRESS_AMY;
     private static final String ADDRESS_DESC_BOB = " " + PREFIX_DATE + VALID_ADDRESS_BOB;
     private static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -51,7 +51,7 @@ public class EditCommandParserTest {
 
     private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     private static final String INVALID_PHONE_DESC = " " + PREFIX_TIME + "911a"; // 'a' not allowed in phones
-    private static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    private static final String INVALID_EMAIL_DESC = " " + PREFIX_TASK_TYPE + "bob!yahoo"; // missing '@' symbol
     private static final String INVALID_ADDRESS_DESC = " " + PREFIX_DATE; // empty string not allowed for addresses
     private static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -91,7 +91,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure("1" + INVALID_NAME_DESC, Name.MESSAGE_NAME_CONSTRAINTS); // invalid name
         assertParseFailure("1" + INVALID_PHONE_DESC, DueTime.MESSAGE_TIME_CONSTRAINTS); // invalid phone
-        assertParseFailure("1" + INVALID_EMAIL_DESC, Email.MESSAGE_EMAIL_CONSTRAINTS); // invalid email
+        assertParseFailure("1" + INVALID_EMAIL_DESC, TaskType.MESSAGE_TASK_TYPE_CONSTRAINTS); // invalid email
         assertParseFailure("1" + INVALID_ADDRESS_DESC, DueDate.MESSAGE_DATE_CONSTRAINTS); // invalid address
         assertParseFailure("1" + INVALID_TAG_DESC, Tag.MESSAGE_TAG_CONSTRAINTS); // invalid tag
 

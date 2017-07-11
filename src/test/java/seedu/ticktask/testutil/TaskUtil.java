@@ -1,7 +1,7 @@
 package seedu.ticktask.testutil;
 
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -28,7 +28,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
         sb.append(PREFIX_TIME + task.getTime().value + " ");
-        sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
+        sb.append(PREFIX_TASK_TYPE + task.getTaskType().value + " ");
 
         sb.append(PREFIX_DATE + task.getDate().toString() + " ");
 

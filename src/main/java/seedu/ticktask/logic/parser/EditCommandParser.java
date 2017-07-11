@@ -3,7 +3,7 @@ package seedu.ticktask.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -33,7 +33,7 @@ public class EditCommandParser {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_EMAIL, PREFIX_DATE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_TASK_TYPE, PREFIX_DATE, PREFIX_TAG);
 
         Index index;
 
@@ -47,7 +47,7 @@ public class EditCommandParser {
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editTaskDescriptor::setName);
             ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).ifPresent(editTaskDescriptor::setTime);
-            ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).ifPresent(editTaskDescriptor::setEmail);
+            ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASK_TYPE)).ifPresent(editTaskDescriptor::setTaskType);
             ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).ifPresent(editTaskDescriptor::setDate);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);

@@ -7,7 +7,7 @@ import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -57,7 +57,7 @@ import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
@@ -207,14 +207,14 @@ public class LogicManagerTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertParseException(AddCommand.COMMAND_WORD + " wrong args wrong args", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name 12345 "
-                + PREFIX_EMAIL + "valid@email.butNoPhonePrefix "
+                + PREFIX_TASK_TYPE + "valid@email.butNoPhonePrefix "
                 + PREFIX_DATE + "valid,address", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "12345 valid@email.butNoPrefix "
                 + PREFIX_DATE + "valid, address", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "12345 "
-                + PREFIX_EMAIL + "valid@email.butNoAddressPrefix valid, address",
+                + PREFIX_TASK_TYPE + "valid@email.butNoAddressPrefix valid, address",
                 expectedMessage);
     }
 
@@ -223,25 +223,25 @@ public class LogicManagerTest {
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "[]\\[;] "
                 + PREFIX_TIME + "12345 "
-                + PREFIX_EMAIL + "valid@e.mail "
+                + PREFIX_TASK_TYPE + "valid@e.mail "
                 + PREFIX_DATE + "valid, address",
                 Name.MESSAGE_NAME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "not_numbers "
-                + PREFIX_EMAIL + "valid@e.mail "
+                + PREFIX_TASK_TYPE + "valid@e.mail "
                 + PREFIX_DATE + "valid, address",
                 DueTime.MESSAGE_TIME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "12345 "
-                + PREFIX_EMAIL + "notAnEmail "
+                + PREFIX_TASK_TYPE + "notAnEmail "
                 + PREFIX_DATE + "valid, address",
-                Email.MESSAGE_EMAIL_CONSTRAINTS);
+                TaskType.MESSAGE_TASK_TYPE_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
                 + PREFIX_TIME + "12345 "
-                + PREFIX_EMAIL + "valid@e.mail "
+                + PREFIX_TASK_TYPE + "valid@e.mail "
                 + PREFIX_DATE + "valid, address "
                 + PREFIX_TAG + "invalid_-[.tag",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
@@ -467,7 +467,7 @@ public class LogicManagerTest {
         Task adam() throws Exception {
             Name name = new Name("Adam Brown");
             DueTime privateTime = new DueTime("111111");
-            Email email = new Email("adam@example.com");
+            TaskType email = new TaskType("adam@example.com");
             DueDate privateAddress = new DueDate("111, alpha street");
 
             return new Task(name, privateTime, email, privateAddress,
@@ -488,7 +488,7 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Person " + seed),
                     new DueTime(phoneNumber),
-                    new Email(seed + "@email"),
+                    new TaskType(seed + "@email"),
                     new DueDate("House of " + seed),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
@@ -500,7 +500,7 @@ public class LogicManagerTest {
             cmd.append(AddCommand.COMMAND_WORD);
 
             cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
-            cmd.append(" " + PREFIX_EMAIL.getPrefix()).append(p.getEmail());
+            cmd.append(" " + PREFIX_TASK_TYPE.getPrefix()).append(p.getTaskType());
             cmd.append(" " + PREFIX_TIME.getPrefix()).append(p.getTime());
             cmd.append(" " + PREFIX_DATE.getPrefix()).append(p.getDate());
 

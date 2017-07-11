@@ -30,7 +30,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(person.getName());
         descriptor.setTime(person.getTime());
-        descriptor.setEmail(person.getEmail());
+        descriptor.setTaskType(person.getTaskType());
         descriptor.setDate(person.getDate());
         descriptor.setTags(person.getTags());
     }
@@ -46,7 +46,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     public EditTaskDescriptorBuilder withEmail(String email) throws IllegalValueException {
-        ParserUtil.parseEmail(Optional.of(email)).ifPresent(descriptor::setEmail);
+        ParserUtil.parseTaskType(Optional.of(email)).ifPresent(descriptor::setTaskType);
         return this;
     }
 

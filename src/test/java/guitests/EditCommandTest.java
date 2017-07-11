@@ -3,7 +3,7 @@ package guitests;
 import static org.junit.Assert.assertTrue;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -20,7 +20,7 @@ import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
@@ -36,7 +36,7 @@ public class EditCommandTest extends TickTaskGuiTest {
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
         String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_TIME + "91234567 "
-                + PREFIX_EMAIL + "bobby@example.com "
+                + PREFIX_TASK_TYPE + "bobby@example.com "
                 + PREFIX_DATE + "Block 123, Bobby Street 3 "
                 + PREFIX_TAG + "husband";
         Index addressBookIndex = INDEX_FIRST_PERSON;
@@ -109,8 +109,8 @@ public class EditCommandTest extends TickTaskGuiTest {
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TIME + "abcd");
         assertResultMessage(DueTime.MESSAGE_TIME_CONSTRAINTS);
 
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_EMAIL + "yahoo!!!");
-        assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
+        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TASK_TYPE + "yahoo!!!");
+        assertResultMessage(TaskType.MESSAGE_TASK_TYPE_CONSTRAINTS);
 
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_DATE.getPrefix());
         assertResultMessage(DueDate.MESSAGE_DATE_CONSTRAINTS);
@@ -123,7 +123,7 @@ public class EditCommandTest extends TickTaskGuiTest {
     public void edit_duplicatePerson_failure() {
         commandBox.runCommand(EditCommand.COMMAND_WORD + " 3 "
                 + PREFIX_TIME + "85355255 "
-                + PREFIX_EMAIL + "alice@example.com "
+                + PREFIX_TASK_TYPE + "alice@example.com "
                 + PREFIX_NAME + "Alice Pauline "
                 + PREFIX_DATE + "123, Jurong West Ave 6, #08-111 "
                 + PREFIX_TAG + "friends");

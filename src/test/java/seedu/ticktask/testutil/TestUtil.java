@@ -18,7 +18,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.commons.util.XmlUtil;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -56,15 +56,15 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
               
-                new Task(new Name("Ali Muster"), new DueTime("9482424"), new Email("hans@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Boris Mueller"), new DueTime("87249245"), new Email("ruth@example.com"), new DueDate("81th street"), getTagSet()),
-                new Task(new Name("Carl Kurz"), new DueTime("95352563"), new Email("heinz@example.com"), new DueDate("wall street"), getTagSet()),
-                new Task(new Name("Daniel Meier"), new DueTime("87652533"), new Email("cornelia@example.com"), new DueDate("10th street"), getTagSet()),
-                new Task(new Name("Elle Meyer"), new DueTime("9482224"), new Email("werner@example.com"), new DueDate("michegan ave"), getTagSet()),
-                new Task(new Name("Fiona Kunz"), new DueTime("9482427"), new Email("lydia@example.com"), new DueDate("little tokyo"), getTagSet()),
-                new Task(new Name("George Best"), new DueTime("9482442"), new Email("anna@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Hoon Meier"), new DueTime("8482424"), new Email("stefan@example.com"), new DueDate("little india"), getTagSet()),
-                new Task(new Name("Ida Mueller"), new DueTime("8482131"), new Email("hans@example.com"), new DueDate("chicago ave"), getTagSet())
+                new Task(new Name("Ali Muster"), new DueTime("9482424"), new TaskType("hans@example.com"), new DueDate("4th street"), getTagSet()),
+                new Task(new Name("Boris Mueller"), new DueTime("87249245"), new TaskType("ruth@example.com"), new DueDate("81th street"), getTagSet()),
+                new Task(new Name("Carl Kurz"), new DueTime("95352563"), new TaskType("heinz@example.com"), new DueDate("wall street"), getTagSet()),
+                new Task(new Name("Daniel Meier"), new DueTime("87652533"), new TaskType("cornelia@example.com"), new DueDate("10th street"), getTagSet()),
+                new Task(new Name("Elle Meyer"), new DueTime("9482224"), new TaskType("werner@example.com"), new DueDate("michegan ave"), getTagSet()),
+                new Task(new Name("Fiona Kunz"), new DueTime("9482427"), new TaskType("lydia@example.com"), new DueDate("little tokyo"), getTagSet()),
+                new Task(new Name("George Best"), new DueTime("9482442"), new TaskType("anna@example.com"), new DueDate("4th street"), getTagSet()),
+                new Task(new Name("Hoon Meier"), new DueTime("8482424"), new TaskType("stefan@example.com"), new DueDate("little india"), getTagSet()),
+                new Task(new Name("Ida Mueller"), new DueTime("8482131"), new TaskType("hans@example.com"), new DueDate("chicago ave"), getTagSet())
 
             };
             //CHECKSTYLE.ON: LineLength

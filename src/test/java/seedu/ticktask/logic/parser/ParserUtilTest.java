@@ -20,7 +20,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.parser.ParserUtil;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.DueTime;
 
@@ -141,24 +141,24 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parseEmail(null);
+        ParserUtil.parseTaskType(null);
     }
 
     @Test
     public void parseEmail_invalidValue_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parseEmail(Optional.of(INVALID_EMAIL));
+        ParserUtil.parseTaskType(Optional.of(INVALID_EMAIL));
     }
 
     @Test
     public void parseEmail_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parseEmail(Optional.empty()).isPresent());
+        assertFalse(ParserUtil.parseTaskType(Optional.empty()).isPresent());
     }
 
     @Test
     public void parseEmail_validValue_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        Optional<Email> actualEmail = ParserUtil.parseEmail(Optional.of(VALID_EMAIL));
+        TaskType expectedEmail = new TaskType(VALID_EMAIL);
+        Optional<TaskType> actualEmail = ParserUtil.parseTaskType(Optional.of(VALID_EMAIL));
 
         assertEquals(expectedEmail, actualEmail.get());
     }

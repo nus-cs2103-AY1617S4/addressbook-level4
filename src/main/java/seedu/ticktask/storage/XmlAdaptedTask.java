@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -48,7 +48,7 @@ public class XmlAdaptedTask {
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
         phone = source.getTime().toString();
-        email = source.getEmail().value;
+        email = source.getTaskType().value;
         dueDate = source.getDate().toString();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -68,7 +68,7 @@ public class XmlAdaptedTask {
         }
         final Name name = new Name(this.name);
         final DueTime time = new DueTime(this.phone);
-        final Email email = new Email(this.email);
+        final TaskType email = new TaskType(this.email);
         final DueDate dueDate = new DueDate(this.dueDate);
         final Set<Tag> tags = new HashSet<>(personTags);
         return new Task(name, time, email, dueDate, tags);

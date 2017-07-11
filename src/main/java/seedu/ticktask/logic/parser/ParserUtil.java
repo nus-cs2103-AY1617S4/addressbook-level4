@@ -12,7 +12,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.DueTime;
 
@@ -62,11 +62,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
+     * Parses a {@code Optional<String> taskType} into an {@code Optional<taskType>} if {@code taskType} is present.
      */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        email = setNullToString(email);
-        return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
+    public static Optional<TaskType> parseTaskType(Optional<String> taskType) throws IllegalValueException {
+        taskType = setNullToString(taskType);
+        return taskType.isPresent() ? Optional.of(new TaskType(taskType.get())) : Optional.empty();
     }
 
     /**
