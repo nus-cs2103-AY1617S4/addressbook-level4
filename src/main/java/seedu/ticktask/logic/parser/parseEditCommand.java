@@ -20,6 +20,7 @@ public class parseEditCommand {
             + "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*start time(?:(?<startTime>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*end time(?:(?<endTime>.+?)(?:,|$|\\R|start|end))?))?"
+            + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*tags to #(?:(?<tags>.+?)(?:\\s|,\\s|$|,$|\\R))?))?"
@@ -41,8 +42,9 @@ public class parseEditCommand {
         final Optional<String> time = Optional.ofNullable(matcher.group("time"));
         Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));
         Optional<String> endTime = Optional.ofNullable(matcher.group("endTime"));
-        final Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
-        final Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
+        final Optional<String> date = Optional.ofNullable(matcher.group("date"));
+        Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
+        Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
         final Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
         
         
@@ -68,10 +70,24 @@ public class parseEditCommand {
                     endTime = Optional.of("end time " + startTime);
                     ParserUtil.parseTime(endTime).ifPresent(editTaskDescriptor::setTime);
                 }
-                
+            }
+    
+            if(date.isPresent()) {
+                ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
+            }
+            if(!date.isPresent() && (date.isPresent() || endDate.isPresent())){
+        
+                if(startDate.isPresent()){
+                    startDate = Optional.of("start date " + startDate);
+                    ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
+                }
+                if(endDate.isPresent()){
+                    endDate = Optional.of("end date " + endTime);
+                    ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
+                }
             }
             ParserUtil.parseEmail(Optional.of(" ")).ifPresent(editTaskDescriptor::setEmail);
-            ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
+            //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
 
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
