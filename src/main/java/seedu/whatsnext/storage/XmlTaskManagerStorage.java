@@ -20,22 +20,21 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
 
     private static final Logger logger = LogsCenter.getLogger(XmlTaskManagerStorage.class);
 
-    private String filePath;
+    private static String filePath;
 
-    public XmlTaskManagerStorage(String filePath) {
-        this.filePath = filePath;
+    public XmlTaskManagerStorage(String newFilePath) {
+        XmlTaskManagerStorage.filePath = newFilePath;
     }
 
-    //@@sA0149894H
+    //@@A0149894H
     @Override
     public String getTaskManagerFilePath() {
         return filePath;
     }
 
     //@@A0149894H
-    @Override
-    public void changeTaskManagerFilePath(String filePath) {
-        this.filePath = filePath;
+    public static void changeTaskManagerFilePath(String newFilePath) {
+        filePath = newFilePath;
     }
 
     @Override
