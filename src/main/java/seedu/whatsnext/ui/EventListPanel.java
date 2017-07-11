@@ -19,12 +19,12 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
  * Panel containing the list of tasks.
  */
 public class EventListPanel extends UiPart<Region> {
-    private final Logger logger = LogsCenter.getLogger(EventListPanel.class);
     private static final String FXML = "EventListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(EventListPanel.class);
 
     @FXML
     private ListView<Pair<BasicTaskFeatures, Integer>> eventListView;
-    
+
     private HashMap<Integer, Integer> eventMap = new HashMap<Integer, Integer>();
     private int scrollIndex = 0;
 
@@ -38,7 +38,6 @@ public class EventListPanel extends UiPart<Region> {
         ObservableList<Pair<BasicTaskFeatures, Integer>> eventList = extracteventTasks(taskList);
         eventListView.setItems(eventList);
         eventListView.setCellFactory(listView -> new TaskListViewCell());
-        System.out.println("noooo");
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -54,7 +53,6 @@ public class EventListPanel extends UiPart<Region> {
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-        	//eventListView.getSelectionModel().clearSelection();
             eventListView.scrollTo(index);
             eventListView.getSelectionModel().clearAndSelect(index);
         });
@@ -83,7 +81,8 @@ public class EventListPanel extends UiPart<Region> {
      * @param taskList
      * @return ObserableList containing only event tasks with their respective index from original list
      */
-    private ObservableList<Pair<BasicTaskFeatures, Integer>> extracteventTasks(ObservableList<BasicTaskFeatures> taskList) {
+    private ObservableList<Pair<BasicTaskFeatures, Integer>> extracteventTasks(
+            ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> eventList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
             BasicTaskFeatures taskToDelete = taskList.get(index);
@@ -96,8 +95,8 @@ public class EventListPanel extends UiPart<Region> {
         }
         return eventList;
     }
-    
+
     public HashMap<Integer, Integer> getMap() {
-    	return eventMap;
+        return eventMap;
     }
 }

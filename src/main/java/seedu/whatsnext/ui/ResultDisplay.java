@@ -42,13 +42,13 @@ public class ResultDisplay extends UiPart<Region> {
 
     //displays details of selected task inside resultDisplay box
     public static void showSelectedTask(BasicTaskFeatures task) {
-    	if (task.getTaskType().equals("event")) {
-        displayed.setValue("Task name: " + task.getName() + "\n"
+        if (task.getTaskType().equals("event")) {
+            displayed.setValue("Task name: " + task.getName() + "\n"
                 + "Tags: " + task.getAllTags() + "\n"
                 + "Status: " + task.getStatusString() + "\n"
                 + "From: " + task.getStartDateTime().toString() + " "
                 + "To: " + task.getEndDateTime().toString());
-    	} else if (task.getTaskType().equals("deadline")) {
+        } else if (task.getTaskType().equals("deadline")) {
             displayed.setValue("Task name: " + task.getName() + "\n"
                     + "Tags: " + task.getAllTags() + "\n"
                     + "Status: " + task.getStatusString() + "\n"

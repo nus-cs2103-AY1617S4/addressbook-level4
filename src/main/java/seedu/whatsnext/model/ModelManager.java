@@ -116,7 +116,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.addTask(task);
         indicateTaskManagerChanged();
     }
-    
+
     @Override
     public void updateFilteredTaskListForInitialView() {
         updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(false)));
@@ -144,7 +144,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAll() {
-    	
+
         filteredTasks.setPredicate(null);
         indicateTaskManagerChanged();
 

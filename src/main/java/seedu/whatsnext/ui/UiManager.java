@@ -17,7 +17,6 @@ import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
-import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
@@ -115,33 +114,35 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.handleHelp();
     }
 
-  //@@author A0154987J
+    //@@author A0154987J
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
-    	clearSelect();
-    	findAndScroll(event);
+        clearSelect();
+        findAndScroll(event);
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
     }
 
-	private void findAndScroll(JumpToListRequestEvent event) {
-		if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
-    		mainWindow.getEventListPanel().scrollTo(mainWindow.getEventListPanel().getMap().get(event.targetIndex));
-    	} else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
-    		mainWindow.getDeadlineListPanel().scrollTo(mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
-    	} else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
-    		mainWindow.getFloatingListPanel().scrollTo(mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
-    	}
-	}
+    private void findAndScroll(JumpToListRequestEvent event) {
+        if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getEventListPanel().scrollTo(
+                    mainWindow.getEventListPanel().getMap().get(event.targetIndex));
+        } else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getDeadlineListPanel().scrollTo(
+                    mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
+        } else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getFloatingListPanel().scrollTo(
+                    mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
+        }
+    }
 
-	private void clearSelect() {
-		mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
-    	mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
-    	mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
-	}
+    private void clearSelect() {
+        mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+        mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+        mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+    }
 
     @Subscribe
     public void handleTaskManagerChangedEvent(TaskManagerChangedEvent abce) {
-    	//System.out.println("hello");
         mainWindow.getEventListPanel().setConnections(logic.getFilteredTaskList());
         mainWindow.getDeadlineListPanel().setConnections(logic.getFilteredTaskList());
         mainWindow.getFloatingListPanel().setConnections(logic.getFilteredTaskList());

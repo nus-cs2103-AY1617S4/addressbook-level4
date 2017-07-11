@@ -119,9 +119,9 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
         //@@author A0154987J
-    	eventListPanel = new EventListPanel(logic.getInitialFilteredTaskList());
+        eventListPanel = new EventListPanel(logic.getInitialFilteredTaskList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-    	
+
         floatingListPanel = new FloatingListPanel(logic.getFilteredTaskList());
         floatingListPanelPlaceholder.getChildren().add(floatingListPanel.getRoot());
 
@@ -200,7 +200,7 @@ public class MainWindow extends UiPart<Region> {
     public FloatingListPanel getFloatingListPanel() {
         return this.floatingListPanel;
     }
-    
+
     public EventListPanel getEventListPanel() {
         return this.eventListPanel;
     }

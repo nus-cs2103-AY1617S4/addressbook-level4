@@ -80,7 +80,7 @@ public class BasicTask implements BasicTaskFeatures {
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
 
-    
+
     public BasicTask(BasicTask source) {
         this (source.getName(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());

@@ -24,7 +24,7 @@ public class FloatingListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Pair<BasicTaskFeatures, Integer>> floatingListView;
-    
+
     private HashMap<Integer, Integer> floatingMap = new HashMap<Integer, Integer>();
     private int scrollIndex = 0;
 
@@ -36,12 +36,12 @@ public class FloatingListPanel extends UiPart<Region> {
     public void setConnections(ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> floatingTaskList = extractFloatingTasks(taskList);
         floatingListView.setItems(floatingTaskList);
-        System.out.println("alright");
         floatingListView.setCellFactory(listView -> new TaskListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
-    private ObservableList<Pair<BasicTaskFeatures, Integer>> extractFloatingTasks(ObservableList<BasicTaskFeatures> taskList) {
+    private ObservableList<Pair<BasicTaskFeatures, Integer>> extractFloatingTasks(
+            ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> floatingTaskList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
             BasicTaskFeatures taskToFloat = taskList.get(index);
@@ -54,7 +54,7 @@ public class FloatingListPanel extends UiPart<Region> {
         }
         return floatingTaskList;
     }
-    
+
     public ListView<Pair<BasicTaskFeatures, Integer>> getFloatingListView() {
         return this.floatingListView;
     }
@@ -73,7 +73,6 @@ public class FloatingListPanel extends UiPart<Region> {
     public void scrollTo(int index) {
         Platform.runLater(() -> {
             //scrolls to task with index and selects it
-        	//floatingListView.getSelectionModel().clearSelection();
             floatingListView.scrollTo(index);
             floatingListView.getSelectionModel().clearAndSelect(index);
         });
@@ -81,7 +80,7 @@ public class FloatingListPanel extends UiPart<Region> {
 
     class TaskListViewCell extends ListCell<Pair<BasicTaskFeatures, Integer>> {
 
-    	@Override
+        @Override
         protected void updateItem(Pair<BasicTaskFeatures, Integer> task, boolean empty) {
             super.updateItem(task, empty);
 
@@ -93,8 +92,8 @@ public class FloatingListPanel extends UiPart<Region> {
             }
         }
     }
-    
+
     public HashMap<Integer, Integer> getMap() {
-    	return floatingMap;
+        return floatingMap;
     }
 }
