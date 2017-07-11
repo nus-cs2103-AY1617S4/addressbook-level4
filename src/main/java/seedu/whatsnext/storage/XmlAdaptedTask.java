@@ -78,11 +78,11 @@ public class XmlAdaptedTask {
         final DateTime startDateTime;
         final DateTime endDateTime;
         // Event Task
-        if(this.startDateTime != null && this.endDateTime != null){
+        if (this.startDateTime != null && this.endDateTime != null) {
             startDateTime = new DateTime(this.startDateTime);
             endDateTime = new DateTime(this.endDateTime);
             return new BasicTask(name, isCompleted, startDateTime, endDateTime, tags);
-        } else if(this.endDateTime != null) {
+        } else if (this.endDateTime != null) {
             endDateTime = new DateTime(this.endDateTime);
             return new BasicTask(name, isCompleted, endDateTime, tags);
         } else {

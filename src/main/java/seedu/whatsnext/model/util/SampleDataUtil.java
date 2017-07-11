@@ -26,7 +26,8 @@ public class SampleDataUtil {
                         getTagSet("dinner")),
                 new BasicTask(new TaskName("Assignment"), false, new DateTime("06/12/12"), new DateTime(),
                         getTagSet("homework")),
-                new BasicTask(new TaskName("CS2103 workshop"), false, new DateTime("06/12/12"), new DateTime("07/12/12"),
+                new BasicTask(new TaskName("CS2103 workshop"), false,
+                        new DateTime("06/12/12"), new DateTime("07/12/12"),
                         getTagSet("workshop")),
                 new BasicTask(new TaskName("Camping"), false, new DateTime("07/10/12"), new DateTime("07/11/12"),
                         getTagSet("camping"))

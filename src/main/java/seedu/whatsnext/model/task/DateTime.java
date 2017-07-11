@@ -38,7 +38,7 @@ public class DateTime {
      * Initializes the dateValue object variable base on its input parameters
      *
      * */
-    private void initDateValue(String dateInputTrim) throws IllegalValueException{
+    private void initDateValue(String dateInputTrim) throws IllegalValueException {
         if (dateInputTrim.equals(INIT_DATEVALUE)) {
             try {
                 dateValue = dateTimeFormat.parse(INIT_DATEVALUE);
