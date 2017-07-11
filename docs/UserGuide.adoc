@@ -117,7 +117,7 @@ Will find all tasks that contain the substring "tu"
 Deletes a task from the task manager. +
 
 Format: +
-`delete [index]`
+`delete [index]` +
 `delete [list to delete from] [index]`
 
 ****
