@@ -3,6 +3,7 @@ package seedu.whatsnext.model.task;
 import static java.util.Objects.requireNonNull;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
+
 //@@author A0156106M
 /**
  * Represents a Task's name in the WhatsNext application.

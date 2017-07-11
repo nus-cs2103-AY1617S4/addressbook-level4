@@ -98,7 +98,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author A01498494H
     /**Re-saves data when file path is changed. */
-    public void saveTaskManager(){
+    @Override
+    public void saveTaskManager() {
         indicateTaskManagerChanged();
     }
 
@@ -267,4 +268,3 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 }
-

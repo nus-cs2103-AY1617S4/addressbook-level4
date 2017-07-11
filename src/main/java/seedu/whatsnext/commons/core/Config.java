@@ -1,5 +1,4 @@
 package seedu.whatsnext.commons.core;
-
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -11,13 +10,13 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 public class Config {
 
     public static final String DEFAULT_CONFIG_FILE = "config.json";
-
+    private static String taskManagerFilePath = "data/whatsnext.xml";
+    private static String taskManagerName = "MyTaskManager";
     // Config values customizable through config file
     private String appTitle = "WhatsNext App";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
-    private static String taskManagerFilePath = "data/whatsnext.xml";
-    private static String taskManagerName = "MyTaskManager";
+
 
     public String getAppTitle() {
         return appTitle;
