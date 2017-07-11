@@ -20,7 +20,7 @@ public class CommandHistory {
      */
     public void add(String userInput) {
         requireNonNull(userInput);
-        userInputHistory.add(userInput);
+        userInputHistory.add(0, userInput);
     }
 
     /**

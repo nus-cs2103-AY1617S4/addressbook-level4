@@ -49,6 +49,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -63,8 +64,8 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         
-        case DeleteCompleteCommand.COMMAND_WORD:
-            return new DeleteCompleteCommandParser().parse(arguments);
+        /*case DeleteCompleteCommand.COMMAND_WORD:
+            return new DeleteCompleteCommandParser().parse(arguments);*/
             
         case EditCommand.COMMAND_WORD:
             return new parseEditCommand().parse(arguments);
