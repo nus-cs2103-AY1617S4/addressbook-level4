@@ -13,10 +13,10 @@ import seedu.whatsnext.MainApp;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.commons.core.LogsCenter;
+import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
-import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
@@ -114,15 +114,41 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.handleHelp();
     }
 
+    //@@author A0154987J
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+        clearSelect();
+        findAndScroll(event);
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
+    }
+
+    private void findAndScroll(JumpToListRequestEvent event) {
+        if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getEventListPanel().scrollTo(
+                    mainWindow.getEventListPanel().getMap().get(event.targetIndex));
+        } else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getDeadlineListPanel().scrollTo(
+                    mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
+        } else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
+            mainWindow.getFloatingListPanel().scrollTo(
+                    mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
+        }
+    }
+
+    private void clearSelect() {
+        mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+        mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+        mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
     }
 
     @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    public void handleTaskManagerChangedEvent(TaskManagerChangedEvent abce) {
+        mainWindow.getEventListPanel().setConnections(logic.getFilteredTaskList());
+        mainWindow.getDeadlineListPanel().setConnections(logic.getFilteredTaskList());
+        mainWindow.getFloatingListPanel().setConnections(logic.getFilteredTaskList());
+        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Updating Task List Panels"
+                + Integer.toString(mainWindow.getEventListPanel().getEventListView().getItems().size())));
     }
+
 
 }
