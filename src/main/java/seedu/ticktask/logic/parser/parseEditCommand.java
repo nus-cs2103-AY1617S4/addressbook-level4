@@ -23,7 +23,7 @@ public class parseEditCommand {
             + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R))?))?"
             + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R))?))?"
-            + "(?:(?=.*tags to #(?:(?<tags>.+?)(?:\\s|,\\s|$|,$|\\R))?))?"
+            + "((?=.*#(?<tags>.+)))?"
             + ".+";
     
     
@@ -45,15 +45,14 @@ public class parseEditCommand {
         final Optional<String> date = Optional.ofNullable(matcher.group("date"));
         Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
         Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
-        final Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
-        
+        Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
+
         
         //Optional<Set<String>> tagSet = Optional.empty();
         //if (tags.isPresent()) {
         //    tagSet = Optional.ofNullable(getTagsFromArgs(tags.get()));
         //}
-        tagList = createTagList(tags);
-    
+
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
         try {
             ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
@@ -88,7 +87,10 @@ public class parseEditCommand {
             }
             ParserUtil.parseEmail(Optional.of(" ")).ifPresent(editTaskDescriptor::setEmail);
             //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
-
+            tagList = createTagList(tags);
+            editTaskDescriptor.setTags(tagList);
+    
+    
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }
