@@ -266,7 +266,7 @@ Examples:
 The task tutorial is moved to completed list.
 ****
 
-=== Undo/ Redo Actions
+=== Undo/ Redo Actions 
 
 Format: `undo` or `redo`
 
@@ -278,7 +278,7 @@ Undo the previous action such as add, delete, edit or complete.
 Redo the undo action
 ****
 
-=== Listing All Tasks
+=== Listing All Tasks : 
 
 Format: `list`
 
@@ -287,7 +287,7 @@ Examples:
 * `list`
 ****
 
-=== Listing Command History : `history`
+=== Listing Command History 
 
 Format: `history`
 
@@ -296,7 +296,7 @@ Examples:
 * `history`
 ****
 
-=== Clear Tasks : `clear`
+=== Clear Tasks
 
 Format: `clear`
 
