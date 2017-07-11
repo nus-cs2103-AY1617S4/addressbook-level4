@@ -22,7 +22,7 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         assertCommandSuccess(model);
     }
 

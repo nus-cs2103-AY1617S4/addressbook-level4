@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.Set;
 
 import org.junit.Rule;
@@ -44,12 +45,12 @@ public class AddCommandTest {
         CommandResult commandResult = getAddCommandForPerson(validTask, modelStub).execute();
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
-        assertEquals(Arrays.asList(validTask), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        ModelStub modelStub = new ModelStubThrowingDuplicatePersonException();
+    public void execute_duplicateTask_throwsCommandException() throws Exception {
+        ModelStub modelStub = new ModelStubThrowingDuplicateTaskException();
         Task validTask = new TaskBuilder().build();
 
         thrown.expect(CommandException.class);
@@ -123,12 +124,30 @@ public class AddCommandTest {
             fail("This method should not be called.");
             return null;
 		}
+
+		@Override
+		public void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+			fail("This method should not be called.");
+			
+		}
+
+		@Override
+		public void undoPreviousCommand() throws EmptyStackException {
+			fail("This method should not be called.");
+			
+		}
+
+		@Override
+		public void redoUndoneCommand() throws EmptyStackException {
+			fail("This method should not be called.");
+			
+		}
     }
 
     /**
      * A Model stub that always throw a DuplicatePersonException when trying to add a person.
      */
-    private class ModelStubThrowingDuplicatePersonException extends ModelStub {
+    private class ModelStubThrowingDuplicateTaskException extends ModelStub {
         @Override
         public void addTask(ReadOnlyTask person) throws DuplicateTaskException {
             throw new DuplicateTaskException();
@@ -139,11 +158,11 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Task> personsAdded = new ArrayList<>();
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
-        public void addTask(ReadOnlyTask person) throws DuplicateTaskException {
-            personsAdded.add(new Task(person));
+        public void addTask(ReadOnlyTask task) throws DuplicateTaskException {
+            tasksAdded.add(new Task(task));
         }
     }
 
