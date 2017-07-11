@@ -22,7 +22,8 @@ public class DueTime {
     
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Time should be in a 24 hours format HHMM";
-    public static final String PHONE_VALIDATION_REGEX = "(\\d{2}+)(\\d{2}+)";
+    public static final String TIME_VALIDATION_REGEX = "(\\d{2}+)(\\d{2}+)";
+	private static final String MESSAGE_EMAIL_CONSTRAINTS = "End Time does not exist";
     
     private final Parser parser = new Parser();
 	private final SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mma");
@@ -99,6 +100,15 @@ public class DueTime {
         
     }
     
+    public String getEndTime() throws IllegalValueException{
+    	if(!isRange){ 
+        	throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
+    	}
+
+    	return end_time_string;
+    	
+    }
+    
     /**
      * Returns true if a given date is an empty string or invalid string
      */    
@@ -124,7 +134,7 @@ public class DueTime {
      * Returns true if a given string is a valid time format.
      */
     public static boolean isValidTime(String test) {
-        return test.matches(PHONE_VALIDATION_REGEX);
+        return test.matches(TIME_VALIDATION_REGEX);
     }
 
     @Override
