@@ -11,6 +11,7 @@ import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
@@ -43,6 +44,26 @@ public class ParserUtil {
     public static Optional<TaskName> parseName(Optional<String> name) throws IllegalValueException {
         requireNonNull(name);
         return name.isPresent() ? Optional.of(new TaskName(name.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
+     * if {@code startDateTime} is present.
+     * @@author A0142675B
+     */
+    public static Optional<DateTime> parseStartDateTime(Optional<String> startDateTime) throws IllegalValueException {
+        requireNonNull(startDateTime);
+        return startDateTime.isPresent() ? Optional.of(new DateTime(startDateTime.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
+     * if {@code startDateTime} is present.
+     * @@author A0142675B
+     */
+    public static Optional<DateTime> parseEndDateTime(Optional<String> endDateTime) throws IllegalValueException {
+        requireNonNull(endDateTime);
+        return endDateTime.isPresent() ? Optional.of(new DateTime(endDateTime.get())) : Optional.empty();
     }
 
     /**
@@ -84,10 +105,28 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //@@author A0156106M
+    /**
+     * Parses {@code Optional<String> tags} into a {@code Set<Tag>}.
+     * @return {@code Set<tag>} which represent all tags
+     */
+    public static Set<Tag> parseMultipleTags(Optional<String> tagStringInput) throws IllegalValueException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (tagStringInput.isPresent()) {
+            String tagString = tagStringInput.get();
+            String[] tagList = tagString.split(" ");
+            for (String tagName : tagList) {
+                tagSet.add(new Tag(tagName.trim()));
+            }
+        }
+        return tagSet;
+    }
+
     private static boolean isPriorityTagString(String tagName) {
         return tagName.toUpperCase().equals(HIGH)
               || tagName.toUpperCase().equals(MEDIUM)
               || tagName.toUpperCase().equals(LOW);
 
     }
+
 }

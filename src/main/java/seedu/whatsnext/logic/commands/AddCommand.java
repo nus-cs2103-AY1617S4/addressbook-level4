@@ -1,6 +1,8 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.commons.core.EventsCenter;
@@ -10,6 +12,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
+
 
 /**
  * Adds a task to the task manager.
@@ -21,8 +24,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: "
             + "Submit assignment "
-            + "on " + "Monday 10AM "
-            + "to " + "Friday 10AM "
+            + PREFIX_START_DATETIME + "Monday 10AM "
+            + PREFIX_END_DATETIME + "Friday 10AM "
             + PREFIX_TAG + " high";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
