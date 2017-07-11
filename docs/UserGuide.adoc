@@ -36,9 +36,9 @@ Some example commands you can try:
 
 `list` : lists all tasks
 
-`add n/complete tutorial s/2200 d/22/03/14`: adds a task named complete tutorial to the task manager
+`add complete tutorial by christmas at 2200`: adds a task named complete tutorial to the task manager
 
-`delete 1` : deletes the task at index 1
+`delete 1` : deletes the task at index 1 from the active(pending) task list
 
 
 Refer to the Features section below for details of each command. +
