@@ -75,32 +75,36 @@ By: T01-T4	&nbsp;&nbsp;&nbsp;&nbsp;	Since: Jun 2017	&nbsp;&nbsp;&nbsp;&nbsp;	Lic
 
 Author: Lui Sheng Jie
 
+**WhatsNext** is a stand alone CRUD (Create, Read, Update, Delete) Desktop application. 
+
 <img src="images/Architecture.png" width="600"><br>
 _Figure 2.1.1 : Architecture Diagram_
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
+
+A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used. 
 Given below is a quick overview of each component.
 
 > Tip: The `.pptx` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder.
 > To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
-`Main` has only one class called [`MainApp`](../src/main/java/seedu/address/MainApp.java). It is responsible for,
+[**`Main`**] consists of a single class called [`MainApp`](../src/main/java/seedu/address/MainApp.java) which is responsible for,
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup method where necessary.
+1. At app launch: Initializes the `Ui`, `Logic`, `Storage`, `Model`, `Config` and `UserPrefs` components in the correct sequence, and connects them up with each other. It also ensures that prefs file is updated in the case where it is missing or when there are new/unused fields.
+2. At shut down: Shuts down the components, saves the `UserPrefs` and invokes cleanup method where necessary.
 
 [**`Commons`**] represents a collection of classes used by multiple other components.
-Two of those classes play important roles at the architecture level.
-
+The `Commons` component contains utility code used across other components
 * `EventsCenter` : This class (written using [Google's Event Bus library](https://github.com/google/guava/wiki/EventBusExplained))
   is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
 * `LogsCenter` : Used by many classes to write log messages to the App's log file.
+* `UnmodifiedObservableList` : Unmodifiable view of an observable list is used to prevent illegal changes to be done to its data.
 
 The rest of the App consists of four components.
 
 * [**`UI`**] : The UI of the App.
 * [**`Logic`**] : The command executor.
-* [**`Model`**]: Holds the data of the App in-memory.
+* [**`Model`**] : Holds the data of the App in-memory.
 * [**`Storage`**] : Reads data from, and writes data to, the hard disk.
 
 Each of the four components
