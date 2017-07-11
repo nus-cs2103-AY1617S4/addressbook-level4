@@ -121,7 +121,7 @@ Format: +
 `delete [list to delete from] [index]`
 
 ****
-* List to delete from can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
 ****
 
 Examples:
@@ -130,6 +130,8 @@ Examples:
 Deletes the task at index 1 +
 * `delete complete 1` +
 Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Completing a Task : `complete`
@@ -152,7 +154,7 @@ Examples:
 ****
 * `undo` +
 Undo the previous action such as add, delete, edit or complete.
-* `Redo` +
+* `redo` +
 Redo the undo action
 ****
 
