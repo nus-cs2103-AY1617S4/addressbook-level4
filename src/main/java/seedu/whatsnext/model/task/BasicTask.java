@@ -53,6 +53,11 @@ public class BasicTask implements BasicTaskFeatures {
         this (taskName, isCompleted, new DateTime(), endDateTime, tags);
     }
 
+    public BasicTask(TaskName taskName, DateTime endDateTime, Set<Tag> tags)
+            throws IllegalValueException {
+        this (taskName, false, new DateTime(), endDateTime, tags);
+    }
+
     /**
      * Constructor for Event
      * */
