@@ -84,10 +84,28 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //@@author A0156106M
+    /**
+     * Parses {@code Optional<String> tags} into a {@code Set<Tag>}.
+     * @return {@code Set<tag>} which represent all tags
+     */
+    public static Set<Tag> parseMultipleTags(Optional<String> tagStringInput) throws IllegalValueException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (tagStringInput.isPresent()) {
+            String tagString = tagStringInput.get();
+            String[] tagList = tagString.split(" ");
+            for (String tagName : tagList) {
+                tagSet.add(new Tag(tagName.trim()));
+            }
+        }
+        return tagSet;
+    }
+
     private static boolean isPriorityTagString(String tagName) {
         return tagName.toUpperCase().equals(HIGH)
               || tagName.toUpperCase().equals(MEDIUM)
               || tagName.toUpperCase().equals(LOW);
 
     }
+
 }
