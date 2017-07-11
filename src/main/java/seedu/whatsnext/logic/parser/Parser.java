@@ -7,13 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.whatsnext.logic.commands.AddCommand;
+import seedu.whatsnext.logic.commands.ChangePathCommand;
 import seedu.whatsnext.logic.commands.ClearCommand;
 import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.DeleteCommand;
-import seedu.whatsnext.logic.commands.ChangePathCommand;
-import seedu.whatsnext.logic.commands.FilePathCommand;
 import seedu.whatsnext.logic.commands.EditCommand;
 import seedu.whatsnext.logic.commands.ExitCommand;
+import seedu.whatsnext.logic.commands.FilePathCommand;
 import seedu.whatsnext.logic.commands.FindCommand;
 import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.logic.commands.HistoryCommand;
@@ -64,11 +64,11 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-            
+
         //@@author A0149894H
         case ChangePathCommand.COMMAND_WORD:
             return new ChangePathCommandParser().parse(arguments);
-            
+
         //@@author A0149894H
         case FilePathCommand.COMMAND_WORD:
             return new FilePathCommand();
