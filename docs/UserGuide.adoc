@@ -165,8 +165,7 @@ Format: `list`
 
 Examples:
 ****
-* `list` +
-Displays pending tasks.
+* `list` 
 ****
 
 === Listing Command History : `history`
