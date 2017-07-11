@@ -284,8 +284,7 @@ Format: `list`
 
 Examples:
 ****
-* `list` +
-Displays pending tasks.
+* `list`
 ****
 
 === Listing Command History : `history`
@@ -294,8 +293,7 @@ Format: `history`
 
 Examples:
 ****
-* `history` +
-Displays history of commands inputted.
+* `history`
 ****
 
 === Clear Tasks : `clear`
@@ -304,6 +302,6 @@ Format: `clear`
 
 Examples:
 ****
-* `clear` +
+* `clear`
 ****
 
