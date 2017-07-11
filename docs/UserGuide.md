@@ -60,26 +60,27 @@ Floating task do not have date or time. <br>
 
 #### 2.2.1 Adding a event <br>
 Format: <br>
-* `add TASK_NAME on DATETIME to DATETIME tag TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME s/ START_DATE_TIME to e/ END_DATE_TIME t/ TAG1 [tag TAG2...]` <br>
 Examples: <br>
-* `add project on July 10 5pm to July 10 6pm tag meeting` <br>
+* `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
 
 #### 2.2.2 Adding a deadline <br>
 Format: <br>
-* `add TASK_NAME on DATETIME tag TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME e/ DATETIME t/ TAG1 [tag TAG2...]` <br>
 Examples:<br>
-* `add project on July 10 6pm tag meeting` <br>
+* `add project e/ July 10 6pm t/ meeting` <br>
 
 #### 2.2.3 Adding a floating <br>
 Format: <br>
-* `add TASK_NAME tag TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME t/ TAG1 [tag TAG2...]` <br>
 Examples:<br>
-* `add project tag meeting`
+* `add project t/ meeting`
 
 ##### Note:
 > Tasks can have any number of tags (including 0) <br>
 > Only the first priority tag will be accepted if there are more than one inputed. <br>
 > TASK_TYPE **must match task type** (1) event, (2) deadline or (3) floating <br>
+> TASK_TYPE will be determined by the application internally based on your input. Event must have starting and ending date-time. Deadline must have ending date-time and Floating should not have any date-time. <br>
 > TASK_PARAMETERS **must match task parameters of task type**
 
 
@@ -95,7 +96,7 @@ Format:  <br>
 ### 2.4. Editing a task : `edit`
 
 Edits an existing task of a particular type in the task manager.<br>
-Format: `edit INDEX [name to NEW_TASK_NAME] [starting date/time to DATETIME] [ending date/time to TIME]  [new tag TAG1] [delete tag TAG2]...`
+Format: `edit INDEX [n/ NEW_TASK_NAME] [s/ to START_DATE_TIME] [e/ to START_DATE_TIME]  [+t/ TAG1] [-t/ TAG2]...`
 
 > * Edits a task at the specified `INDEX`.
     The index refers to the index number shown in the last task listing.<br>
@@ -107,7 +108,7 @@ Format: `edit INDEX [name to NEW_TASK_NAME] [starting date/time to DATETIME] [en
 > * When deleting a tag, the tag provided must be inside the existing tag list.
 
 Examples:
-* `edit 1 name to midterm exam new tag HIGH delete tag CS2010`<br>
+* `edit 1 n/ midterm exam +t/ HIGH -t/ CS2010`<br>
   Edits name 1st task to be `midterm exam`, create a new Priority Tag `HIGH` and delete the existing tag `CS2010` respectively.
 
 ### 2.5. Finding all tasks containing any keyword in their name or tags: `find`
@@ -200,10 +201,10 @@ Examples:
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
 
-### 2.12. View current data file path : `viewPath`
+### 2.12. View current data file path : `filepath`
 
 View data file directory path. <br>
-Format: `viewPath`
+Format: `filepath`
 > View the directory where the data file is saved <br>
 
 ### 2.13. Updating data file
@@ -234,22 +235,22 @@ Format: `exit`
 Function | Format | Examples
 -------- | ------ | --------
 Get Help infomation | `help` |
-Add a event | `add TASK_NAME on START_DATE_TIME to END_DATE_TIME [tag TAG]...` | `add Project metting on July 5 18 to July 5 19`
-Add a deadline | `add TASK_NAME on END_DATE_TIME [tag TAG1]...` | `add Project submission on July 5 20`
-Add a floating | `add TASK_NAME [tag TAG]...` | `add CS2103 exam tag HIGH`
+Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG]...` | `add Project metting s/ July 5 18 e/ July 5 19`
+Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1]...` | `add Project submission e/ July 5 20`
+Add a floating | `add TASK_NAME [t/ TAG]...` | `add CS2103 exam t/ HIGH`
 List all tasks | `list all` |
 List incomplete tasks | `list incomplete` |
 List complete tasks | `list complete` |
 Clear all tasks | `clear all` |
 Clear incomplete tasks | `clear incomplete` |
 Clear complete tasks | `clear complete` |
-Edit task | `edit INDEX [name to TASK_NAME] [start datetime to DATE_TIME] [end datetime to DATE_TIME]  [new tag TAG] [delete tag TAG]` | `edit 1 new tag HIGH`
+Edit task | `edit INDEX [n/ TASK_NAME] [s/ START_DATE_TIME] [e/ END_DATE_TIME]  [+t/ TAG] [-t/ TAG]` | `edit 1 +t/ HIGH`
 Delete task | `delete INDEX` | `delete 1`
 Find by keywords or tags | `find KEYWORD [MORE_KEYWORDS]` | `find CS2103 Exams`
 Undo the last action | `Undo` |
 Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
 Select and view tasks | `view INDEX` | `view 1`
-ViewPath of the storage file | `viewPath` |
+Check file path of the storage file | `filepath` |
 Change the path of the storage file | `updatePath [path_directory]` | `updatePath C:\User\tasks.xml`
 Exit the programme | `exit` |
