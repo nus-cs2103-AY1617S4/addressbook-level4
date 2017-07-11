@@ -2,7 +2,7 @@ package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;

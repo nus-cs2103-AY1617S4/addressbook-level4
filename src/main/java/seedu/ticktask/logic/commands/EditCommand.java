@@ -2,7 +2,7 @@ package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -17,7 +17,7 @@ import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -96,11 +96,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
-        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
+        TaskType updatedTaskType = editTaskDescriptor.getTaskType().orElse(taskToEdit.getTaskType());
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedTime, updatedEmail, updatedDate, updatedTags);
+        return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private DueTime time;
-        private Email email;
+        private TaskType type;
         private DueDate date;
         private Set<Tag> tags;
 
@@ -137,7 +137,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.name;
             this.time = toCopy.time;
-            this.email = toCopy.email;
+            this.type = toCopy.type;
             this.date = toCopy.date;
             this.tags = toCopy.tags;
         }
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.time, this.email, this.date, this.tags);
+            return CollectionUtil.isAnyNonNull(this.name, this.time, this.type, this.date, this.tags);
         }
 
         public void setName(Name name) {
@@ -168,15 +168,15 @@ public class EditCommand extends Command {
             return Optional.ofNullable(time);
         }
 
-        public void setEmail(Email email) {
-            if(email.toString().equals("") || email.toString().equals(" ")) {
-                this.email = null;
+        public void setTaskType(TaskType type) {
+            if(type.toString().equals("") || type.toString().equals(" ")) {
+                this.type = null;
             }
-            else this.email = email;
+            else this.type = type;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<TaskType> getTaskType() {
+            return Optional.ofNullable(type);
         }
 
         public void setDate(DueDate date) {
@@ -215,7 +215,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getTime().equals(e.getTime())
-                    && getEmail().equals(e.getEmail())
+                    && getTaskType().equals(e.getTaskType())
                     && getDate().equals(e.getDate())
                     && getTags().equals(e.getTags());
         }
