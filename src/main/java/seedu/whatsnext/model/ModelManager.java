@@ -109,6 +109,11 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.addTask(task);
         indicateTaskManagerChanged();
     }
+    
+    @Override
+    public void updateFilteredTaskListForInitialView() {
+        updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(false)));
+    }
 
     @Override
     public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
@@ -124,11 +129,6 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Return a list of {@code BaseTask} backed by the internal list of {@code taskManager}
      */
-    @Override
-    public UnmodifiableObservableList<BasicTaskFeatures> getInitialFilteredTaskList() {
-        updateFilteredTaskListToShowByCompletion(false);
-        return new UnmodifiableObservableList<>(filteredTasks);
-    }
 
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
@@ -137,13 +137,16 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAll() {
+    	
         filteredTasks.setPredicate(null);
+        indicateTaskManagerChanged();
 
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameAndTagQualifier(keywords)));
+        indicateTaskManagerChanged();
     }
 
     private void updateFilteredTaskList(Expression expression) {

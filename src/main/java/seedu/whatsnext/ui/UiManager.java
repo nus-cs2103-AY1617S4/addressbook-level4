@@ -13,6 +13,7 @@ import seedu.whatsnext.MainApp;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.commons.core.LogsCenter;
+import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
@@ -116,13 +117,28 @@ public class UiManager extends ComponentManager implements Ui {
 
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+    	mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+    	mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+    	mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+    	if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
+    		mainWindow.getEventListPanel().scrollTo(mainWindow.getEventListPanel().getMap().get(event.targetIndex));
+    	} else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
+    		mainWindow.getDeadlineListPanel().scrollTo(mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
+    	} else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
+    		mainWindow.getFloatingListPanel().scrollTo(mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
+    	}
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
     @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    public void handleTaskManagerChangedEvent(TaskManagerChangedEvent abce) {
+    	//System.out.println("hello");
+        mainWindow.getEventListPanel().setConnections(logic.getFilteredTaskList());
+        mainWindow.getDeadlineListPanel().setConnections(logic.getFilteredTaskList());
+        mainWindow.getFloatingListPanel().setConnections(logic.getFilteredTaskList());
+        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Updating Task List Panels"
+                + Integer.toString(mainWindow.getEventListPanel().getEventListView().getItems().size())));
     }
+
 
 }

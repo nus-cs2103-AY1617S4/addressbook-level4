@@ -23,6 +23,8 @@ public class DeadlineTaskCard extends UiPart<Region> {
     @FXML
     private GridPane cardBackground;
     @FXML
+    private Label dueBy;
+    @FXML
     private FlowPane tags;
 
     public DeadlineTaskCard(BasicTaskFeatures task, int displayedIndex) {
@@ -32,6 +34,7 @@ public class DeadlineTaskCard extends UiPart<Region> {
         //@@author A0154987J
         //name.setWrapText(true);
         status.setText(task.getStatusString());
+        dueBy.setText("Due by: " + task.getEndDateTime().toString());
         setPriorityColors(task);
         initTags(task);
     }

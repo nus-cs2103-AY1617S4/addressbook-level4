@@ -38,23 +38,6 @@
   </StackPane>
 
   <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5, 0.5" focusTraversable="false" VBox.vgrow="ALWAYS">
-    <!--@@author A0154987J-->
-    <VBox fx:id="taskList" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
-      <padding>
-        <Insets bottom="10" left="10" right="10" top="10" />
-      </padding>
-         <Label text="Floating Tasks" />
-      <StackPane fx:id="floatingListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
-    </VBox>
-      <VBox fx:id="taskList1" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background">
-         <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-         </padding>
-         <children>
-            <Label text="Deadline Tasks" />
-            <StackPane fx:id="deadlineListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
       <VBox fx:id="taskList2" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background">
          <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
@@ -64,6 +47,23 @@
             <StackPane fx:id="eventListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
+      <VBox fx:id="taskList1" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background">
+         <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+         </padding>
+         <children>
+            <Label text="Deadline Tasks" />
+            <StackPane fx:id="deadlineListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+    <!--@@author A0154987J-->
+    <VBox fx:id="taskList" alignment="CENTER" minWidth="200.0" prefHeight="210.0" prefWidth="200.0" styleClass="list-background" SplitPane.resizableWithParent="true">
+      <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+      </padding>
+         <Label text="Floating Tasks" />
+      <StackPane fx:id="floatingListPanelPlaceholder" prefHeight="200.0" prefWidth="180.0" VBox.vgrow="ALWAYS" />
+    </VBox>
   </SplitPane>
 
   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

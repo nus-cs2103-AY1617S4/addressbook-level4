@@ -44,7 +44,9 @@ public class ResultDisplay extends UiPart<Region> {
     public static void showSelectedTask(BasicTaskFeatures task) {
         displayed.setValue("Task name: " + task.getName() + "\n"
                 + "Tags: " + task.getAllTags() + "\n"
-                + "Status: " + task.getStatusString());
+                + "Status: " + task.getStatusString() + "\n"
+                + "Start Date: " + task.getStartDateTime().toString() + " "
+                + "End Date: " + task.getEndDateTime().toString());
     }
 
 }

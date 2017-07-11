@@ -23,6 +23,8 @@ public class EventTaskCard extends UiPart<Region> {
     @FXML
     private GridPane cardBackground;
     @FXML
+    private Label fromTo;
+    @FXML
     private FlowPane tags;
 
     public EventTaskCard(BasicTaskFeatures task, int displayedIndex) {
@@ -32,6 +34,7 @@ public class EventTaskCard extends UiPart<Region> {
         //@@author A0154987J
         //name.setWrapText(true);
         status.setText(task.getStatusString());
+        fromTo.setText("From: " + task.getStartDateTime().toString() + "  To: " + task.getEndDateTime().toString());
         setPriorityColors(task);
         initTags(task);
     }
