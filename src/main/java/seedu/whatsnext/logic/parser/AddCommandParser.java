@@ -42,6 +42,7 @@ public class AddCommandParser {
             Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
             Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
             BasicTask task = createBasicTaskBasedOnInputs(taskName, startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
         } catch (IllegalValueException ive) {
