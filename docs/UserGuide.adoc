@@ -138,8 +138,10 @@ Marks a task as complete in the task manager and moves it into the completed tas
 Format: `complete [task name]`
 
 Examples:
+****
 * `complete tutorial` +
 The task tutorial is moved to completed list.
+****
 
 === Undo/ Redo Actions: `undo` `redo`
 Undo or redo the latest action. +
@@ -147,18 +149,12 @@ Undo or redo the latest action. +
 Format: `undo` or `redo`
 
 Examples:
+****
 * `undo` +
 Undo the previous action such as add, delete, edit or complete.
 * `Redo` +
 Redo the undo action
-
-=== Specify Storage Folder : `folder`
-Specify folder to store all task manager data. +
-
-Format: `Folder [path]`
-
-Examples:
-* `folder c://user/documents/taskmanager`
+****
 
 === Listing All Tasks : `list`
 Displays pending tasks within task manager. +
@@ -166,8 +162,10 @@ Displays pending tasks within task manager. +
 Format: `list`
 
 Examples:
+****
 * `list` +
 Displays pending tasks.
+****
 
 === Listing Command History : `history`
 Displays history of commands since application opened. +
@@ -175,9 +173,10 @@ Displays history of commands since application opened. +
 Format: `history`
 
 Examples:
+****
 * `history` +
 Displays history of commands inputted.
-
+****
 
 == FAQ
 
