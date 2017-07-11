@@ -11,6 +11,7 @@ import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
@@ -43,6 +44,26 @@ public class ParserUtil {
     public static Optional<TaskName> parseName(Optional<String> name) throws IllegalValueException {
         requireNonNull(name);
         return name.isPresent() ? Optional.of(new TaskName(name.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
+     * if {@code startDateTime} is present.
+     * @@author A0142675B
+     */
+    public static Optional<DateTime> parseStartDateTime(Optional<String> startDateTime) throws IllegalValueException {
+        requireNonNull(startDateTime);
+        return startDateTime.isPresent() ? Optional.of(new DateTime(startDateTime.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
+     * if {@code startDateTime} is present.
+     * @@author A0142675B
+     */
+    public static Optional<DateTime> parseEndDateTime(Optional<String> endDateTime) throws IllegalValueException {
+        requireNonNull(endDateTime);
+        return endDateTime.isPresent() ? Optional.of(new DateTime(endDateTime.get())) : Optional.empty();
     }
 
     /**

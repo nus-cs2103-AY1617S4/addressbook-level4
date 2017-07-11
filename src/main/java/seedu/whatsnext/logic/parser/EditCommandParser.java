@@ -2,11 +2,11 @@ package seedu.whatsnext.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE_TO;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME_ALTERNATIVE_TO;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NEW_TAG;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME_TO;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,8 +34,11 @@ public class EditCommandParser {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME_ALTERNATIVE_TO,
-                                           PREFIX_DATE_TO, PREFIX_TIME_TO, PREFIX_NEW_TAG, PREFIX_DELETE_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                                           PREFIX_START_DATETIME,
+                                           PREFIX_END_DATETIME,
+                                           PREFIX_NEW_TAG,
+                                           PREFIX_DELETE_TAG);
 
         Index index;
 
@@ -47,8 +50,14 @@ public class EditCommandParser {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         try {
-            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_ALTERNATIVE_TO))
+            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME))
                                                                 .ifPresent(editTaskDescriptor::setName);
+
+            ParserUtil.parseStartDateTime(argMultimap.getValue(PREFIX_START_DATETIME))
+                                                                .ifPresent(editTaskDescriptor::setStartDateTime);
+
+            ParserUtil.parseEndDateTime(argMultimap.getValue(PREFIX_END_DATETIME))
+                                                                .ifPresent(editTaskDescriptor::setEndDateTime);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_NEW_TAG))
                                                                 .ifPresent(editTaskDescriptor::addTags);
