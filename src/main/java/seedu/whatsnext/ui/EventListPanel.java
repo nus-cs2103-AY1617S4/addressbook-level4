@@ -81,6 +81,7 @@ public class EventListPanel extends UiPart<Region> {
      * @param taskList
      * @return ObserableList containing only event tasks with their respective index from original list
      */
+    //@@author A0154987J
     private ObservableList<Pair<BasicTaskFeatures, Integer>> extracteventTasks(
             ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> eventList = FXCollections.observableArrayList();
