@@ -52,13 +52,13 @@ public class EditCommandParser {
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME))
                                                                 .ifPresent(editTaskDescriptor::setName);
-            
+
             ParserUtil.parseStartDateTime(argMultimap.getValue(PREFIX_START_DATETIME))
                                                                 .ifPresent(editTaskDescriptor::setStartDateTime);
-            
+
             ParserUtil.parseEndDateTime(argMultimap.getValue(PREFIX_END_DATETIME))
                                                                 .ifPresent(editTaskDescriptor::setEndDateTime);
-            
+
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_NEW_TAG))
                                                                 .ifPresent(editTaskDescriptor::addTags);
 

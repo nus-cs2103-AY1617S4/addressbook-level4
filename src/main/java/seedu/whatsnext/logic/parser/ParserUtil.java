@@ -65,7 +65,7 @@ public class ParserUtil {
         requireNonNull(endDateTime);
         return endDateTime.isPresent() ? Optional.of(new DateTime(endDateTime.get())) : Optional.empty();
     }
-    
+
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */

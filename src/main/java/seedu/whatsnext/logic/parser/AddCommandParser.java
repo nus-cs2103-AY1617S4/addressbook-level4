@@ -27,7 +27,10 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                                                                  PREFIX_START_DATETIME,
+                                                                  PREFIX_END_DATETIME,
+                                                                  PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
