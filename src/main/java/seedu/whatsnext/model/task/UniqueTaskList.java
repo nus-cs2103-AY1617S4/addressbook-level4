@@ -13,7 +13,7 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
@@ -46,7 +46,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedTask}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      *
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
@@ -61,16 +61,16 @@ public class UniqueTaskList implements Iterable<BasicTask> {
             throw new TaskNotFoundException();
         }
 
-        BasicTask personToUpdate = internalList.get(index);
-        if (!personToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
+        BasicTask taskToUpdate = internalList.get(index);
+        if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
 
-        personToUpdate.resetData(editedTask);
+        taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
         // Then, TaskCard should then bind its text labels to those observable properties.
-        internalList.set(index, personToUpdate);
+        internalList.set(index, taskToUpdate);
     }
 
     /**
