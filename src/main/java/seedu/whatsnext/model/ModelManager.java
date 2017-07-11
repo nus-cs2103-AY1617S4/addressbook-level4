@@ -38,7 +38,7 @@ public class ModelManager extends ComponentManager implements Model {
         super();
         requireAllNonNull(taskManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + taskManager + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Task Manager: " + taskManager + " and user prefs " + userPrefs);
         this.userPrefs = userPrefs;
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
