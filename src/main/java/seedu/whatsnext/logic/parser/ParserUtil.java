@@ -87,7 +87,7 @@ public class ParserUtil {
     //@@author A0156106M
     /**
      * Parses {@code Optional<String> tags} into a {@code Set<Tag>}.
-     * @return Set<tag> which represent all tags
+     * @return {@code Set<tag>} which represent all tags
      */
     public static Set<Tag> parseMultipleTags(Optional<String> tagStringInput) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
