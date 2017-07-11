@@ -84,6 +84,8 @@ public class ParserUtil {
         return tagSet;
     }
 
+
+
     private static boolean isPriorityTagString(String tagName) {
         return tagName.toUpperCase().equals(HIGH)
               || tagName.toUpperCase().equals(MEDIUM)
