@@ -18,6 +18,7 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 /**
  * Panel containing the list of deadline tasks.
  */
+
 //@@author A0154987J
 public class DeadlineListPanel extends UiPart<Region> {
     private static final String FXML = "DeadlineListPanel.fxml";
