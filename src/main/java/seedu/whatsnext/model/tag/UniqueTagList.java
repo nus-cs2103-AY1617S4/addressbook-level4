@@ -143,9 +143,9 @@ public class UniqueTagList implements Iterable<Tag> {
         return internalList.contains(toCheck);
     }
 
-    /*
+    //@@author A0142675B
+    /**
      * Returns true if the list contains a priority tag, i.e. "HIGH", "MEDIUM", "LOW".
-     * @@author A0142675B
      */
     public boolean containsPriorityTag() throws IllegalValueException {
         final Tag highPriority = new Tag("HIGH");
@@ -156,12 +156,12 @@ public class UniqueTagList implements Iterable<Tag> {
               || internalList.contains(lowPriority);
     }
 
+    //@@author A0142675B
     /**
      * Adds a Tag to the list.
      * If the tag is a priority tag,
      * the existing priority tag inside the list will be removed and replaced with the new priority tag.
      * @throws IllegalValueException
-     * @@author A0142675B
      */
     public void add(Tag toAdd) throws IllegalValueException {
         requireNonNull(toAdd);
