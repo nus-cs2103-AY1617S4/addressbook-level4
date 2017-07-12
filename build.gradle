@@ -86,7 +86,7 @@ allprojects {
     }
 
     shadowJar {
-        archiveName = "addressbook.jar"
+        archiveName = "ticktask.jar"
 
         destinationDir = file("${buildDir}/jar/")
     }
@@ -121,8 +121,8 @@ tasks.coveralls {
     onlyIf { System.env.'CI' }
 }
 
-class AddressBookTest extends Test {
-    public AddressBookTest() {
+class TickTaskTest extends Test {
+    public TickTaskTest() {
     	  forkEvery = 1
         systemProperty 'testfx.setup.timeout', '60000'
 
@@ -147,7 +147,7 @@ class AddressBookTest extends Test {
     }
 }
 
-task guiTests(type: AddressBookTest) {
+task guiTests(type: TickTaskTest) {
     include 'guitests/**'
 
     jacoco {
@@ -156,8 +156,8 @@ task guiTests(type: AddressBookTest) {
 }
 
 
-task nonGuiTests(type: AddressBookTest) {
-    include 'seedu/address/**'
+task nonGuiTests(type: TickTaskTest) {
+    include 'seedu/ticktask/**'
 
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
@@ -165,7 +165,7 @@ task nonGuiTests(type: AddressBookTest) {
 }
 
 // Test mode depends on whether headless task has been run
-task allTests(type: AddressBookTest) {
+task allTests(type: TickTaskTest) {
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
     }

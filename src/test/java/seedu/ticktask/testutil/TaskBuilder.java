@@ -13,7 +13,7 @@ import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 
@@ -29,16 +29,16 @@ public class TaskBuilder {
         Name defaultName = new Name(DEFAULT_NAME);
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
         Email defaultEmail = new Email(DEFAULT_EMAIL);
-        DueDate defaultAddress = new DueDate(DEFAULT_DATE);
+        DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new Task(defaultName, defaultTime, defaultEmail, defaultAddress, defaultTags);
+        this.task = new Task(defaultName, defaultTime, defaultEmail, defaultDueDate, defaultTags);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
-    public TaskBuilder(ReadOnlyTask personToCopy) {
-        this.task = new Task(personToCopy);
+    public TaskBuilder(ReadOnlyTask taskToCopy) {
+        this.task = new Task(taskToCopy);
     }
 
     public TaskBuilder withName(String name) throws IllegalValueException {
@@ -51,8 +51,8 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withDate(String address) throws IllegalValueException {
-        this.task.setDate(new DueDate(address));
+    public TaskBuilder withDate(String dueDate) throws IllegalValueException {
+        this.task.setDate(new DueDate(dueDate));
         return this;
     }
 

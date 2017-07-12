@@ -5,13 +5,13 @@ import static java.util.Objects.requireNonNull;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a TickTask's Email in the address book.
+ * Represents a TickTask's Email in the TickTask.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
 
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
-            "Person emails should be 2 alphanumeric/period strings separated by '@'";
+            "Task emails should be 2 alphanumeric/period strings separated by '@'";
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
     public final String value;
@@ -19,7 +19,7 @@ public class Email {
     /**
      * Validates given email.
      *
-     * @throws IllegalValueException if given email address string is invalid.
+     * @throws IllegalValueException if given task type string is invalid.
      */
     public Email(String email) throws IllegalValueException {
         requireNonNull(email);
@@ -34,7 +34,7 @@ public class Email {
     }
 
     /**
-     * Returns if a given string is a valid person email.
+     * Returns if a given string is a valid task email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);

@@ -13,7 +13,6 @@ import org.junit.Test;
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.CommandHistory;
-import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
@@ -29,13 +28,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        ReadOnlyTask personToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteCommand deleteCommand = prepareCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
-        expectedModel.deleteTask(personToDelete);
+        expectedModel.deleteTask(taskToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -59,7 +58,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
-        showNoPerson(expectedModel);
+        showNoTask(expectedModel);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -69,7 +68,7 @@ public class DeleteCommandTest {
         showFirstTaskOnly(model);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of TickTask list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTickTask().getTaskList().size());
 
         DeleteCommand deleteCommand = prepareCommand(outOfBoundIndex);
@@ -87,7 +86,7 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the first person from the address book.
+     * Updates {@code model}'s filtered list to show only the first task from the TickTask.
      */
     private void showFirstTaskOnly(Model model) {
         ReadOnlyTask task = model.getTickTask().getTaskList().get(0);
@@ -100,7 +99,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoTask(Model model) {
         model.updateFilteredTaskList(Collections.emptySet());
 
         assert model.getFilteredTaskList().isEmpty();
