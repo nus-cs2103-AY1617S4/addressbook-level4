@@ -209,8 +209,8 @@ Format: `filepath`
 
 ### 2.13. Updating data file
 
-Updates data file directory. : `updatePath`<br>
-Format: `updatePath [Path Directory]`
+Updates data file directory. : `changepath`<br>
+Format: `changepath [Path Directory]`
 > Updates the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
 
@@ -252,5 +252,5 @@ Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
 Select and view tasks | `view INDEX` | `view 1`
 Check file path of the storage file | `filepath` |
-Change the path of the storage file | `updatePath [path_directory]` | `updatePath C:\User\tasks.xml`
+Change the path of the storage file | `changepath [path_directory]` | `changepath C:\User\tasks.xml`
 Exit the programme | `exit` |
