@@ -1,4 +1,4 @@
-package seedu.ticktask.model.person;
+package seedu.ticktask.model.task;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

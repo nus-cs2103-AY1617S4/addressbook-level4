@@ -9,7 +9,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,11 +26,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label time;
     @FXML
-    private Label address;
+    private Label date;
     @FXML
-    private Label email;
+    private Label taskType;
     @FXML
     private FlowPane tags;
 
@@ -38,9 +38,9 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        phone.setText(task.getTime().getStartTime() + " " + task.getTime().getEndTime());
-        address.setText(task.getDate().toString());
-        email.setText(task.getEmail().value);
+        time.setText(task.getTime().getStartTime() + " " + task.getTime().getEndTime());
+        date.setText(task.getDate().toString());
+        taskType.setText(task.getEmail().value);
         initTags(task);
     }
 
