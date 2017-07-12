@@ -43,6 +43,7 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
+        toAdd.resetTaskType();
         internalList.add(new Task(toAdd));
     }
     
@@ -80,6 +81,7 @@ public class UniqueTaskList implements Iterable<Task> {
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
         // Then, TaskCard should then bind its text labels to those observable properties.
+        taskToUpdate.resetTaskType();
         internalList.set(index, taskToUpdate);
     }
 

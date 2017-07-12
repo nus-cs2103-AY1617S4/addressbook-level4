@@ -14,6 +14,7 @@ public interface ReadOnlyTask {
     Name getName();
     DueTime getTime();
     TaskType getTaskType();
+    void resetTaskType();
     DueDate getDate();
     boolean getCompleted();
     void setCompleted(boolean s);
