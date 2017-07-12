@@ -24,7 +24,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String name;
     @XmlElement(required = true)
-    private String phone;
+    private String time;
     @XmlElement(required = true)
     private String type;
     @XmlElement(required = true)
@@ -47,7 +47,7 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
-        phone = source.getTime().value;
+        time = source.getTime().value;
         type = source.getTaskType().value;
         dueDate = source.getDate().toString();
         tagged = new ArrayList<>();
@@ -67,7 +67,7 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final DueTime time = new DueTime(this.phone);
+        final DueTime time = new DueTime(this.time);
         final TaskType type = new TaskType(this.type);
         final DueDate dueDate = new DueDate(this.dueDate);
 
