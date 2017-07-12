@@ -57,9 +57,9 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
-    /*
+    //@@author A0142675B
+    /**
      * Returns true if the tag is a reserved Tag.
-     * @@author A0142675B
      */
     public boolean isReservedTag() {
         String trimmedName = tagName.trim();
@@ -74,9 +74,9 @@ public class Tag {
         return false;
     }
 
-    /*
+    //@@author A0142675B
+    /**
      * Returns true if the given tagName is a reserved Tag for priority.
-     * @@author A0142675B
      */
     public boolean isPriorityTag() {
         String trimmedName = tagName.trim();

@@ -1,8 +1,8 @@
 package seedu.whatsnext.model.task.exceptions;
 
-/*
+//@@author A0142675B
+/**
  * Throws exceptions when the tag provided by the user is not found.
- * @@author A0142675B
  */
 public class TagNotFoundException extends Exception {
     public TagNotFoundException() {

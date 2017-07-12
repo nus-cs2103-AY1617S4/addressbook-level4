@@ -244,9 +244,9 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    /*
+    //@@author A0142675B
+    /**
      * Find the task either by name or tag.
-     * @@author A0142675B
      */
     private class NameAndTagQualifier implements Qualifier {
         private Set<String> keyWords;

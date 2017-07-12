@@ -46,6 +46,7 @@ public class ParserUtil {
         return name.isPresent() ? Optional.of(new TaskName(name.get())) : Optional.empty();
     }
 
+    //@@author A0142675B
     /**
      * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
      * if {@code startDateTime} is present.
@@ -56,10 +57,10 @@ public class ParserUtil {
         return startDateTime.isPresent() ? Optional.of(new DateTime(startDateTime.get())) : Optional.empty();
     }
 
+    //@@author A0142675B
     /**
      * Parses a {@code Optional<String> startDateTime} into an {@code Optional<startDateTime>}
      * if {@code startDateTime} is present.
-     * @@author A0142675B
      */
     public static Optional<DateTime> parseEndDateTime(Optional<String> endDateTime) throws IllegalValueException {
         requireNonNull(endDateTime);

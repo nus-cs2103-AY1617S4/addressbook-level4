@@ -91,12 +91,12 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
+    //@@author A0142675B
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      * @throws TagNotFoundException
      * @throws IllegalValueException
-     * @@author A0142675B
      */
     private static BasicTask createEditedTask(BasicTaskFeatures taskToEdit,
                                              EditTaskDescriptor editTaskDescriptor)
@@ -110,9 +110,9 @@ public class EditCommand extends Command {
         return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
-    /*
+    //@@author A0142675B
+    /**
      * Adds and removes the tags accordingly.
-     * @@author A0142675B
      */
     private static Set<Tag> consolidateTags(
                    BasicTaskFeatures taskToEdit, EditTaskDescriptor editTaskDescriptor)
@@ -254,16 +254,12 @@ public class EditCommand extends Command {
             this.endDateTime = endDateTime;
         }
 
-        /*
-         * @@author A0142675B
-         */
+        //@@author A0142675B
         public void addTags(Set<Tag> tags) {
             this.newTags = tags;
         }
 
-        /*
-         * @@author A0142675B
-         */
+        //@@author A0142675B
         public void deleteTags(Set<Tag> tags) {
             this.removeTags = tags;
         }
