@@ -37,15 +37,15 @@ public class Config {
     public String getUserPrefsFilePath() {
         return userPrefsFilePath;
     }
-
+    
     public void setUserPrefsFilePath(String userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
-
+    //@@author A0149894H
     public static String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
-
+    //@@author A01498494H
     public void setTaskManagerFilePath(String newTaskManagerFilePath) throws RepeatTaskManagerFilePathException {
         if (taskManagerFilePath.equals(newTaskManagerFilePath)) {
             throw new RepeatTaskManagerFilePathException();
@@ -53,7 +53,7 @@ public class Config {
             taskManagerFilePath = newTaskManagerFilePath;
         }
     }
-
+    //@@author A0149894H
     public static class RepeatTaskManagerFilePathException extends IllegalValueException {
         public RepeatTaskManagerFilePathException() {
             super("Function will result in duplicate tasks");
@@ -90,13 +90,13 @@ public class Config {
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         return sb.toString();
     }
-
+    //@@author A0149894H
     public String getTaskManagerName() {
         return taskManagerName;
     }
-
-    public void setTaskManagerName(String taskManagerName) {
-        this.taskManagerName = taskManagerName;
+    //@@author A0149894H
+    public void setTaskManagerName(String newTaskManagerName) {
+        taskManagerName = newTaskManagerName;
     }
 
 }
