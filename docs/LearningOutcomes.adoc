@@ -164,7 +164,7 @@ Compare the above with link:{repoURL}/src/test/java/seedu/address/logic/LogicMan
 @Test
 public void execute_add_invalidArgsFormat() throws Exception {
     ...
-    assertCommandBehavior("add n/Valid Name 12345 e/valid@e-mail.butNoPhonePrefix a/valid, task", expectedMessage);
+    assertCommandBehavior("add n/Valid Name 12345 e/valid@e-mail.butNoTimePrefix a/valid, task", expectedMessage);
     assertCommandBehavior("add n/Valid Name p/12345 valid@e-mail.butNoPrefix a/valid, task", expectedMessage);
     ...
 }
