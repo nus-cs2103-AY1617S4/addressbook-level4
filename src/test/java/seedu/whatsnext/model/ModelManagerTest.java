@@ -9,11 +9,11 @@
 //import org.junit.Test;
 //
 //import seedu.whatsnext.testutil.AddressBookBuilder;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 //public class ModelManagerTest {
 //
-//    private TypicalPersons typicalPersons = new TypicalPersons();
+//    private TypicalTasks typicalPersons = new TypicalTasks();
 //
 //    @Test
 //    public void equals() throws Exception {

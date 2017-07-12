@@ -5,7 +5,7 @@
 //import static org.junit.Assert.assertTrue;
 //
 //import static seedu.whatsnext.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.Collections;

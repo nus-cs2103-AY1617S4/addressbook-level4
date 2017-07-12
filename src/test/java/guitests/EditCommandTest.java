@@ -7,9 +7,9 @@
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 //
 //import org.junit.Test;
 //
@@ -24,7 +24,7 @@
 //import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.model.task.Phone;
 //import seedu.whatsnext.model.tag.Tag;
-//import seedu.whatsnext.testutil.PersonBuilder;
+//import seedu.whatsnext.testutil.TaskBuilder;
 //
 //// TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 //public class EditCommandTest extends AddressBookGuiTest {
@@ -41,7 +41,7 @@
 //                + PREFIX_TAG + "husband";
 //        Index addressBookIndex = INDEX_FIRST_PERSON;
 //
-//        Person editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
+//        Person editedPerson = new TaskBuilder().withName("Bobby").withPhone("91234567")
 //                .withEmail("bobby@example.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
 //
 //        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
@@ -54,7 +54,7 @@
 //        Index addressBookIndex = INDEX_SECOND_PERSON;
 //
 //        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-//        Person editedPerson = new PersonBuilder(personToEdit).withTags("sweetie", "bestie").build();
+//        Person editedPerson = new TaskBuilder(personToEdit).withTags("sweetie", "bestie").build();
 //
 //        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
 //    }
@@ -65,7 +65,7 @@
 //        Index addressBookIndex = INDEX_SECOND_PERSON;
 //
 //        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-//        Person editedPerson = new PersonBuilder(personToEdit).withTags().build();
+//        Person editedPerson = new TaskBuilder(personToEdit).withTags().build();
 //
 //        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
 //    }
@@ -78,7 +78,7 @@
 //        Index addressBookIndex = INDEX_THIRD_PERSON;
 //
 //        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-//        Person editedPerson = new PersonBuilder(personToEdit).withName("Carrle").build();
+//        Person editedPerson = new TaskBuilder(personToEdit).withName("Carrle").build();
 //
 //        assertEditSuccess(INDEX_FIRST_PERSON, addressBookIndex, detailsToEdit, editedPerson);
 //    }
