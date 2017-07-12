@@ -64,6 +64,7 @@ public class BasicTask implements BasicTaskFeatures {
         this (taskName, false, startDateTime, endDateTime, tags);
 
     }
+
     /**
      * Constructor for Event
      * */
@@ -76,22 +77,17 @@ public class BasicTask implements BasicTaskFeatures {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         setTaskType();
-
     }
-
 
     public BasicTask(BasicTaskFeatures source) {
         this (source.getName(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
 
-
     public BasicTask(BasicTask source) {
         this (source.getName(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
-
-
 
     public void setTaskType() {
         if (this.startDateTime.isEmpty() && this.endDateTime.isEmpty()) {

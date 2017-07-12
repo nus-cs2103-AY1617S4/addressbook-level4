@@ -1,5 +1,8 @@
 # WHATSNEXT
 
+[![Build Status](https://travis-ci.org/CS2103JUN2017-T4/main.svg?branch=master)](https://travis-ci.org/CS2103JUN2017-T4/main)
+[![Coverage Status](https://coveralls.io/repos/github/CS2103JUN2017-T4/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103JUN2017-T4/main?branch=master)
+
 <br>
 <img src="docs/images/Ui.png" width="600"><br>
 * This is a desktop Task & event manager application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
