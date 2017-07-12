@@ -24,6 +24,7 @@ public class BasicTask implements BasicTaskFeatures {
     private DateTime endDateTime;
     private String taskType;
     private TaskName taskName;
+    private TaskDescription taskDescription;
     private boolean isCompleted;
     private UniqueTagList tags;
 
@@ -33,46 +34,33 @@ public class BasicTask implements BasicTaskFeatures {
      * Deadline consists of Name, End Date, End Time and tags
      * @throws IllegalValueException
      * */
-    public BasicTask(TaskName taskName, Set<Tag> tags) throws IllegalValueException {
-        this(taskName, false, new DateTime(), new DateTime(), tags);
-
-    }
 
     /**
      * Constructor for Floating
      * @throws IllegalValueException
      * */
-    public BasicTask(TaskName taskName, boolean isCompleted, Set<Tag> tags) throws IllegalValueException {
-        this (taskName, isCompleted, new DateTime(), new DateTime(), tags);
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted, Set<Tag> tags) throws IllegalValueException {
+        this (taskName, taskDescription, isCompleted, new DateTime(), new DateTime(), tags);
     }
 
     /**
      * Constructor for Deadline
      * @throws IllegalValueException
      * */
-    public BasicTask(TaskName taskName, boolean isCompleted, DateTime endDateTime, Set<Tag> tags)
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted, DateTime endDateTime, Set<Tag> tags)
             throws IllegalValueException {
-        this (taskName, isCompleted, new DateTime(), endDateTime, tags);
-    }
-
-    public BasicTask(TaskName taskName, DateTime endDateTime, Set<Tag> tags)
-            throws IllegalValueException {
-        this (taskName, false, new DateTime(), endDateTime, tags);
-    }
-
-    public BasicTask(TaskName taskName,
-            DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
-        this (taskName, false, startDateTime, endDateTime, tags);
-
+        this (taskName, taskDescription, isCompleted, new DateTime(), endDateTime, tags);
     }
 
     /**
      * Constructor for Event
+     * @throws IllegalValueException
      * */
-    public BasicTask(TaskName taskName, boolean isCompleted,
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted,
             DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
         assert (startDateTime.isEmpty() && !endDateTime.isEmpty());
         this.taskName = taskName;
+        this.taskDescription = taskDescription;
         this.tags = new UniqueTagList(tags);
         this.isCompleted = isCompleted;
         this.startDateTime = startDateTime;
@@ -81,12 +69,7 @@ public class BasicTask implements BasicTaskFeatures {
     }
 
     public BasicTask(BasicTaskFeatures source) {
-        this (source.getName(), source.getIsCompleted(),
-                source.getStartDateTime(), source.getEndDateTime(), source.getTags());
-    }
-
-    public BasicTask(BasicTask source) {
-        this (source.getName(), source.getIsCompleted(),
+        this (source.getName(), source.getDescription(), source.getIsCompleted(),
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
 
@@ -102,6 +85,10 @@ public class BasicTask implements BasicTaskFeatures {
 
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);
+    }
+
+    public void setDescription(TaskDescription description) {
+        this.taskDescription = requireNonNull(description);
     }
 
     @Override
@@ -132,6 +119,7 @@ public class BasicTask implements BasicTaskFeatures {
         requireNonNull(replacement);
         this.setName(replacement.getName());
         this.setTags(replacement.getTags());
+        this.setDescription(replacement.getDescription());
         this.isCompleted = (replacement.getIsCompleted());
         this.startDateTime = (replacement.getStartDateTime());
         this.endDateTime = (replacement.getEndDateTime());
@@ -206,5 +194,10 @@ public class BasicTask implements BasicTaskFeatures {
     public void setEndDateTime(DateTime dateTime) {
         endDateTime = dateTime;
         setTaskType();
+    }
+
+    @Override
+    public TaskDescription getDescription() {
+        return taskDescription;
     }
 }

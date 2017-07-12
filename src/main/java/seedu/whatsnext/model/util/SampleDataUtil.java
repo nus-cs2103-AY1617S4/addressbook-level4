@@ -9,6 +9,7 @@ import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
@@ -16,20 +17,13 @@ public class SampleDataUtil {
     public static BasicTask[] getSamplePersons() {
         try {
             return new BasicTask[] {
-                new BasicTask(new TaskName("Complete CS2103 assignment"),
+                new BasicTask(new TaskName("Complete CS2103 assignment"),new TaskDescription(), false,
                     getTagSet("HIGH", "cs2103")),
-                new BasicTask(new TaskName("Meet John for dinner"),
-                        getTagSet("dinner")),
-                new BasicTask(new TaskName("Meet Tom for lunch"),
-                        getTagSet("lunch")),
-                new BasicTask(new TaskName("Complete Homework"),
-                        getTagSet("dinner")),
-                new BasicTask(new TaskName("Assignment"), false, new DateTime("06/12/12"), new DateTime(),
+                new BasicTask(new TaskName("Assignment"),new TaskDescription(), false, new DateTime("06/12/12"), new DateTime(),
                         getTagSet("homework")),
-                new BasicTask(new TaskName("CS2103 workshop"), false,
-                        new DateTime("06/12/12"), new DateTime("07/12/12"),
-                        getTagSet("workshop")),
-                new BasicTask(new TaskName("Camping"), false, new DateTime("07/10/12"), new DateTime("07/11/12"),
+                new BasicTask(new TaskName("CS2103 Workshop"), new TaskDescription(), false, new DateTime("August 3rd"), new DateTime("August 4th"),
+                        getTagSet("camping")),
+                new BasicTask(new TaskName("Camping"), new TaskDescription(), false, new DateTime("07/10/12"), new DateTime("07/11/12"),
                         getTagSet("camping"))
             };
         } catch (IllegalValueException e) {

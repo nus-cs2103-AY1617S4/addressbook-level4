@@ -13,6 +13,7 @@ import seedu.whatsnext.model.tag.Tag;
 public interface BasicTaskFeatures {
 
     TaskName getName();
+    TaskDescription getDescription();
     Set<Tag> getTags();
     boolean getIsCompleted();
     void setCompleted();

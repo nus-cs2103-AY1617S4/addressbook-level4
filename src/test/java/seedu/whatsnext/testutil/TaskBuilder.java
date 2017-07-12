@@ -7,6 +7,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.util.SampleDataUtil;
 
@@ -24,10 +25,11 @@ public class TaskBuilder {
 
     public TaskBuilder() throws IllegalValueException {
         TaskName defaultName = new TaskName(DEFAULT_TASKNAME);
+        TaskDescription defaultDescription = new TaskDescription(TaskDescription.INIT_DECRIPTION_VALUE);
         DateTime defaultStartDateTime = new DateTime(DEFAULT_START_DATETIME);
         DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new BasicTask(defaultName, defaultStartDateTime, defaultEndDateTime, defaultTags);
+        this.task = new BasicTask(defaultName, defaultDescription, false, defaultStartDateTime, defaultEndDateTime, defaultTags);
     }
 
     /**

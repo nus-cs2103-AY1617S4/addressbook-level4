@@ -107,6 +107,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         requireNonNull(editedReadOnlyTask);
 
         BasicTask editedTask = new BasicTask(editedReadOnlyTask);
+        System.out.println(editedTask.getDescription().toString());
         System.out.println(editedTask.getStartDateTime().toString());
         System.out.println(editedTask.getEndDateTime().toString());
         syncMasterTagListWith(editedTask);
