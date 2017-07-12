@@ -25,18 +25,6 @@
     </Menu>
   </MenuBar>
 
-  <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-    <padding>
-      <Insets bottom="5" left="10" right="10" top="5" />
-    </padding>
-  </StackPane>
-
-  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-    <padding>
-      <Insets bottom="5" left="10" right="10" top="5" />
-    </padding>
-  </StackPane>
-
   <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5" VBox.vgrow="ALWAYS">
     <VBox fx:id="taskList" minWidth="340" prefWidth="340.0" SplitPane.resizableWithParent="false">
       <padding>
@@ -56,5 +44,17 @@
       </VBox>
   </SplitPane>
 
-  <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+    <padding>
+      <Insets bottom="5" left="10" right="10" top="5" />
+    </padding>
+  </StackPane>
+
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+    <padding>
+      <Insets bottom="5" left="10" right="10" top="5" />
+    </padding>
+  </StackPane>
+
+              <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
 </VBox>

@@ -43,11 +43,11 @@ public class TaskCard extends UiPart<Region> {
         date.setText(task.getDate().toString());
         taskType.setText(task.getTaskType().value);
         if (task.getTaskType().getValue().equals("event")){
-            cardPane.setStyle("-fx-background-color: red");
+            cardPane.setStyle("-fx-background-color: #201b42");
         } else if (task.getTaskType().getValue().equals("deadline")){
-            cardPane.setStyle("-fx-background-color: blue");
+            cardPane.setStyle("-fx-background-color: #421b25");
         } else if (task.getTaskType().getValue().equals("floating")){
-            cardPane.setStyle("-fx-background-color: green");
+            cardPane.setStyle("-fx-background-color: #1b4233");
         }
         
         initTags(task);
