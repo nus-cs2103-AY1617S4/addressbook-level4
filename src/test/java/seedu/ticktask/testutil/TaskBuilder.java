@@ -30,7 +30,7 @@ public class TaskBuilder {
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
 
         TaskType defaultEmail = new TaskType(DEFAULT_EMAIL);
-        DueDate defaultAddress = new DueDate(DEFAULT_DATE);
+        DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
 
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
         this.task = new Task(defaultName, defaultTime, defaultEmail, defaultDueDate, defaultTags);
