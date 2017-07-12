@@ -8,7 +8,7 @@ import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
@@ -19,22 +19,22 @@ public class SampleDataUtil {
         try {
             return new Task[] {
 
-                new Task(new Name("Alex Yeoh"), new DueTime("87438807"), new Email("alexyeoh@example.com"),
+                new Task(new Name("Alex Yeoh"), new DueTime("87438807"), new TaskType("alexyeoh@example.com"),
                     new DueDate("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("friends")),
-                new Task(new Name("Bernice Yu"), new DueTime("99272758"), new Email("berniceyu@example.com"),
+                new Task(new Name("Bernice Yu"), new DueTime("99272758"), new TaskType("berniceyu@example.com"),
                     new DueDate("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("colleagues", "friends")),
-                new Task(new Name("Charlotte Oliveiro"), new DueTime("93210283"), new Email("charlotte@example.com"),
+                new Task(new Name("Charlotte Oliveiro"), new DueTime("93210283"), new TaskType("charlotte@example.com"),
                     new DueDate("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getTagSet("neighbours")),
-                new Task(new Name("David Li"), new DueTime("91031282"), new Email("lidavid@example.com"),
+                new Task(new Name("David Li"), new DueTime("91031282"), new TaskType("lidavid@example.com"),
                     new DueDate("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getTagSet("family")),
-                new Task(new Name("Irfan Ibrahim"), new DueTime("92492021"), new Email("irfan@example.com"),
+                new Task(new Name("Irfan Ibrahim"), new DueTime("92492021"), new TaskType("irfan@example.com"),
                     new DueDate("Blk 47 Tampines Street 20, #17-35"),
                     getTagSet("classmates")),
-                new Task(new Name("Roy Balakrishnan"), new DueTime("92624417"), new Email("royb@example.com"),
+                new Task(new Name("Roy Balakrishnan"), new DueTime("92624417"), new TaskType("royb@example.com"),
                     new DueDate("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("colleagues"))
             };

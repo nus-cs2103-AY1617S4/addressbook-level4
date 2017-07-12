@@ -2,7 +2,7 @@ package seedu.ticktask.logic.parser;
 
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -15,7 +15,7 @@ import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -33,7 +33,7 @@ public class AddCommandParser {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_EMAIL, PREFIX_DATE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_TASK_TYPE, PREFIX_DATE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -42,11 +42,11 @@ public class AddCommandParser {
         try {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             DueTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).get();
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
+            TaskType type = ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASK_TYPE)).get();
             DueDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            ReadOnlyTask task = new Task(name, time, email, date, tagList);
+            ReadOnlyTask task = new Task(name, time, type, date, tagList);
 
             return new AddCommand(task);
         } catch (IllegalValueException ive) {

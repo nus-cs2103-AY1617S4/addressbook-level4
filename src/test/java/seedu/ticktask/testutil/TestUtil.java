@@ -17,7 +17,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.commons.util.XmlUtil;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
@@ -54,9 +54,9 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
               
-                new Task(new Name("wash dog"), new DueTime("2200"), new Email("hans@example.com"), new DueDate("22/08"), getTagSet()),
-                new Task(new Name("do tutorial"), new DueTime("2300"), new Email("ruth@example.com"), new DueDate("21/03/18"), getTagSet()),
-                new Task(new Name("meet girlfriend"), new DueTime("1200"), new Email("heinz@example.com"), new DueDate("Christmas"), getTagSet()),
+                new Task(new Name("wash dog"), new DueTime("2200"), new TaskType("hans@example.com"), new DueDate("22/08"), getTagSet()),
+                new Task(new Name("do tutorial"), new DueTime("2300"), new TaskType("ruth@example.com"), new DueDate("21/03/18"), getTagSet()),
+                new Task(new Name("meet girlfriend"), new DueTime("1200"), new TaskType("heinz@example.com"), new DueDate("Christmas"), getTagSet()),
          
 
             };

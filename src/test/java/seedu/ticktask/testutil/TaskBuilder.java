@@ -5,7 +5,7 @@ import java.util.Set;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -28,8 +28,10 @@ public class TaskBuilder {
     public TaskBuilder() throws IllegalValueException {
         Name defaultName = new Name(DEFAULT_NAME);
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
-        Email defaultEmail = new Email(DEFAULT_EMAIL);
-        DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
+
+        TaskType defaultEmail = new TaskType(DEFAULT_EMAIL);
+        DueDate defaultAddress = new DueDate(DEFAULT_DATE);
+
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
         this.task = new Task(defaultName, defaultTime, defaultEmail, defaultDueDate, defaultTags);
     }
@@ -62,7 +64,7 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withEmail(String email) throws IllegalValueException {
-        this.task.setEmail(new Email(email));
+        this.task.setTaskType(new TaskType(email));
         return this;
     }
 

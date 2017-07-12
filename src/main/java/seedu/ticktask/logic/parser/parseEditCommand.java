@@ -85,7 +85,7 @@ public class parseEditCommand {
                     ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
                 }
             }
-            ParserUtil.parseEmail(Optional.of(" ")).ifPresent(editTaskDescriptor::setEmail);
+            ParserUtil.parseTaskType(Optional.of(" ")).ifPresent(editTaskDescriptor::setTaskType);
             //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
             tagList = createTagList(tags);
             editTaskDescriptor.setTags(tagList);
