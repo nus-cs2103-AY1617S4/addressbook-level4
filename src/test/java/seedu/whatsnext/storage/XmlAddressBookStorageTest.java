@@ -15,7 +15,7 @@
 //import seedu.whatsnext.model.AddressBook;
 //import seedu.whatsnext.model.ReadOnlyAddressBook;
 //import seedu.whatsnext.model.task.Person;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 //public class XmlAddressBookStorageTest {
 //    private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlAddressBookStorageTest/");
@@ -61,7 +61,7 @@
 //    @Test
 //    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
 //        String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
-//        TypicalPersons td = new TypicalPersons();
+//        TypicalTasks td = new TypicalTasks();
 //        AddressBook original = td.getTypicalAddressBook();
 //        XmlAddressBookStorage xmlAddressBookStorage = new XmlAddressBookStorage(filePath);
 //

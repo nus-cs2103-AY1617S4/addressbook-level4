@@ -12,8 +12,8 @@
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
 //import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 //import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_THIRD_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_PERSON;
 //
 //import java.util.ArrayList;
 //import java.util.Arrays;
@@ -59,7 +59,7 @@
 //import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.model.task.Phone;
 //import seedu.whatsnext.model.tag.Tag;
-//import seedu.whatsnext.testutil.PersonBuilder;
+//import seedu.whatsnext.testutil.TaskBuilder;
 //
 //
 //public class LogicManagerTest {
@@ -382,10 +382,10 @@
 //    @Test
 //    public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
 //        TestDataHelper helper = new TestDataHelper();
-//        Person pTarget1 = new PersonBuilder().withName("bla bla KEY bla").build();
-//        Person pTarget2 = new PersonBuilder().withName("bla KEY bla bceofeia").build();
-//        Person p1 = new PersonBuilder().withName("KE Y").build();
-//        Person p2 = new PersonBuilder().withName("KEYKEYKEY sduauo").build();
+//        Person pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
+//        Person pTarget2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
+//        Person p1 = new TaskBuilder().withName("KE Y").build();
+//        Person p2 = new TaskBuilder().withName("KEYKEYKEY sduauo").build();
 //
 //        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
 //        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());
@@ -399,10 +399,10 @@
 //    @Test
 //    public void execute_find_isNotCaseSensitive() throws Exception {
 //        TestDataHelper helper = new TestDataHelper();
-//        Person p1 = new PersonBuilder().withName("bla bla KEY bla").build();
-//        Person p2 = new PersonBuilder().withName("bla KEY bla bceofeia").build();
-//        Person p3 = new PersonBuilder().withName("key key").build();
-//        Person p4 = new PersonBuilder().withName("KEy sduauo").build();
+//        Person p1 = new TaskBuilder().withName("bla bla KEY bla").build();
+//        Person p2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
+//        Person p3 = new TaskBuilder().withName("key key").build();
+//        Person p4 = new TaskBuilder().withName("KEy sduauo").build();
 //
 //        List<Person> fourPersons = helper.generatePersonList(p3, p1, p4, p2);
 //        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());
@@ -416,10 +416,10 @@
 //    @Test
 //    public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
 //        TestDataHelper helper = new TestDataHelper();
-//        Person pTarget1 = new PersonBuilder().withName("bla bla KEY bla").build();
-//        Person pTarget2 = new PersonBuilder().withName("bla rAnDoM bla bceofeia").build();
-//        Person pTarget3 = new PersonBuilder().withName("key key").build();
-//        Person p1 = new PersonBuilder().withName("sduauo").build();
+//        Person pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
+//        Person pTarget2 = new TaskBuilder().withName("bla rAnDoM bla bceofeia").build();
+//        Person pTarget3 = new TaskBuilder().withName("key key").build();
+//        Person p1 = new TaskBuilder().withName("sduauo").build();
 //
 //        List<Person> fourPersons = helper.generatePersonList(pTarget1, p1, pTarget2, pTarget3);
 //        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());

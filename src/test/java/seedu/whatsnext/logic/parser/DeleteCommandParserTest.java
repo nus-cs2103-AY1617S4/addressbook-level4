@@ -2,7 +2,7 @@
 //
 //import static org.junit.Assert.assertEquals;
 //import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 //
 //import org.junit.Rule;
 //import org.junit.Test;

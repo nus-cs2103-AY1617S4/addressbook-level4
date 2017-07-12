@@ -1,7 +1,7 @@
 //package guitests;
 //
 //import static org.junit.Assert.assertEquals;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
 //
 //import org.junit.Test;
 //

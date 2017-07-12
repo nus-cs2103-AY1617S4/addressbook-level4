@@ -8,7 +8,7 @@
 //import seedu.whatsnext.model.Model;
 //import seedu.whatsnext.model.ModelManager;
 //import seedu.whatsnext.model.UserPrefs;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 //public class ClearCommandTest {
 //
@@ -20,7 +20,7 @@
 //
 //    @Test
 //    public void execute_nonEmptyAddressBook_success() {
-//        Model model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+//        Model model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
 //        assertCommandSuccess(model);
 //    }
 //
