@@ -49,7 +49,7 @@ public class MainWindow extends UiPart<Region> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane taskListPanelPlaceholder;
     
     @FXML
     private StackPane completedTaskListPanelPlaceholder;
@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Region> {
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         completedTaskListPanel = new TaskListPanel(logic.getFilteredCompletedTaskList());
-        personListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
         browserPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();

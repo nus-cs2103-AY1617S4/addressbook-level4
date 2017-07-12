@@ -28,7 +28,7 @@ Note how the <<DeveloperGuide#architecture, Developer Guide>> uses events to com
 
 == Use API Design `[LO-ApiDesign]`
 
-Note how components of AddressBook have well-defined APIs. For example, the API of the `Logic` component is given in the link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+Note how components of TickTask have well-defined APIs. For example, the API of the `Logic` component is given in the link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 image:LogicClassDiagram.png[width="800"]
 
 *Resources*
@@ -39,7 +39,7 @@ image:LogicClassDiagram.png[width="800"]
 
 == Use Assertions `[LO-Assertions]`
 
-Note how the AddressBook app uses Java ``assert``s to verify assumptions.
+Note how the TickTask app uses Java ``assert``s to verify assumptions.
 
 *Resources*
 
@@ -50,14 +50,14 @@ Note how the AddressBook app uses Java ``assert``s to verify assumptions.
 
 * Make sure assertions are enabled in Eclipse by forcing an assertion failure (e.g. add `assert false;` somewhere in the code and run the code
 to ensure the runtime reports an assertion failure).
-* Add more assertions to AddressBook as you see fit.
+* Add more assertions to TickTask as you see fit.
 
 
 '''
 
 == Use Logging `[LO-Logging]`
 
-Note <<DeveloperGuide#31-logging, how the AddressBook app uses Java's `java.util.log` package to do logging>>.
+Note <<DeveloperGuide#31-logging, how the TickTask app uses Java's `java.util.log` package to do logging>>.
 
 *Resources*
 
@@ -71,18 +71,18 @@ Note <<DeveloperGuide#31-logging, how the AddressBook app uses Java's `java.util
 
 === Exercise: Add more logging
 
-Add more logging to AddressBook as you see fit.
+Add more logging to TickTask as you see fit.
 
 
 '''
 
 == Use Defensive Coding `[LO-DefensiveCoding]`
 
-Note how AddressBook uses the `ReadOnly*` interfaces to prevent objects being modified by clients who are not supposed to modify them.
+Note how TickTask uses the `ReadOnly*` interfaces to prevent objects being modified by clients who are not supposed to modify them.
 
 === Exercise: identify more places for defensive coding
 
-Analyze the AddressBook code/design to identify,
+Analyze the TickTask code/design to identify,
 
 * where defensive coding is used
 * where the code can be more defensive
@@ -91,7 +91,7 @@ Analyze the AddressBook code/design to identify,
 
 == Use Build Automation `[LO-BuildAutomation]`
 
-Note <<UsingGradle#, how the AddressBook app uses Gradle to automate build tasks>>.
+Note <<UsingGradle#, how the TickTask app uses Gradle to automate build tasks>>.
 
 *Resources*
 
@@ -112,7 +112,7 @@ Note <<UsingGradle#, how the AddressBook app uses Gradle to automate build tasks
 
 == Use Continuous Integration `[LO-ContinuousIntegration]`
 
-Note <<UsingTravis#, how the AddressBook app uses Travis to perform Continuous Integration>>. (https://travis-ci.org/se-edu/addressbook-level4[image:https://travis-ci.org/se-edu/addressbook-level4.svg?branch=master[Build Status]])
+Note <<UsingTravis#, how the TickTask app uses Travis to perform Continuous Integration>>. (https://travis-ci.org/se-edu/addressbook-level4[image:https://travis-ci.org/se-edu/addressbook-level4.svg?branch=master[Build Status]])
 
 *Resources*
 
@@ -155,8 +155,8 @@ class gives some examples of how to use _Equivalence Partitions_, _Boundary Valu
 
 Consider the link:{repoURL}/src/test/java/seedu/address/storage/StorageManagerTest.java[`StorageManagerTest.java`] class.
 
-* Test methods `prefsReadSave()` and `addressBookReadSave()` are integration tests. Note how they simply test if The `StorageManager` class is correctly wired to its dependencies.
-* Test method `handleAddressBookChangedEvent_exceptionThrown_eventRaised()` is a unit test because it uses _dependency injection_ to isolate the SUT `StorageManger::handleAddressBookChangedEvent(...)` from its dependencies.
+* Test methods `prefsReadSave()` and `tickTaskReadSave()` are integration tests. Note how they simply test if The `StorageManager` class is correctly wired to its dependencies.
+* Test method `handleTickTaskChangedEvent_exceptionThrown_eventRaised()` is a unit test because it uses _dependency injection_ to isolate the SUT `StorageManger::handleAddressBookChangedEvent(...)` from its dependencies.
 
 Compare the above with link:{repoURL}/src/test/java/seedu/address/logic/LogicManagerTest.java[`LogicManagerTest`]. Many of the tests in that class (e.g. `execute_add_*` methods) tests are neither integration nor unit tests. They are a _integration + unit_ tests because they not only checks if the LogicManager is correctly wired to its dependencies, but also checks the working of its dependencies. For example, the following two lines test the the `LogicManager` but also the `Parser`.
 
@@ -165,8 +165,8 @@ Compare the above with link:{repoURL}/src/test/java/seedu/address/logic/LogicMan
 @Test
 public void execute_add_invalidArgsFormat() throws Exception {
     ...
-    assertCommandBehavior("add n/Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address", expectedMessage);
-    assertCommandBehavior("add n/Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
+    assertCommandBehavior("add n/Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, task", expectedMessage);
+    assertCommandBehavior("add n/Valid Name p/12345 valid@email.butNoPrefix a/valid, task", expectedMessage);
     ...
 }
 ----
@@ -209,7 +209,7 @@ Here are some example design patterns used in the code base.
 * *MVC Pattern* :
 ** The 'View' part of the application is mostly in the `.fxml` files in the `src/main/resources/view` folder.
 ** `Model` component contains the 'Model'.
-** Sub classes of link:{repoURL}/src/main/java/seedu/address/ui/UiPart.java[`UiPart`] (e.g. `PersonListPanel` ) act as 'Controllers', each controlling some part of the UI and communicating with the 'Model' via a `Logic` component which sits between the 'Controller' and the 'Model'.
+** Sub classes of link:{repoURL}/src/main/java/seedu/address/ui/UiPart.java[`UiPart`] (e.g. `TaskListPanel` ) act as 'Controllers', each controlling some part of the UI and communicating with the 'Model' via a `Logic` component which sits between the 'Controller' and the 'Model'.
 * *Abstraction Occurrence Pattern* : Not currently used in the app.
 
 === Exercise: Discover other possible applications of the patterns

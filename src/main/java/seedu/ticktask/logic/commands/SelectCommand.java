@@ -9,7 +9,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 
 /**
- * Selects a task identified using it's last displayed index from the address book.
+ * Selects a task identified using it's last displayed index from the TickTask.
  */
 public class SelectCommand extends Command {
 

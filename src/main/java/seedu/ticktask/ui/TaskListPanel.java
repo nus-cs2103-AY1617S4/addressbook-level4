@@ -16,11 +16,11 @@ import seedu.ticktask.model.task.ReadOnlyTask;
  * Panel containing the list of task.
  */
 public class TaskListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<ReadOnlyTask> personListView;
+    private ListView<ReadOnlyTask> taskListView;
 
     public TaskListPanel(ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
@@ -28,13 +28,13 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {
-        personListView.setItems(taskList);
-        personListView.setCellFactory(listView -> new TaskListViewCell());
+        taskListView.setItems(taskList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        personListView.getSelectionModel().selectedItemProperty()
+        taskListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
@@ -45,8 +45,8 @@ public class TaskListPanel extends UiPart<Region> {
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-            personListView.scrollTo(index);
-            personListView.getSelectionModel().clearAndSelect(index);
+            taskListView.scrollTo(index);
+            taskListView.getSelectionModel().clearAndSelect(index);
         });
     }
 

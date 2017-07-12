@@ -17,7 +17,7 @@ import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 
 /**
- * JAXB-friendly version of the Person.
+ * JAXB-friendly version of the Task.
  */
 public class XmlAdaptedTask {
 
@@ -34,16 +34,16 @@ public class XmlAdaptedTask {
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs an XmlAdaptedPerson.
+     * Constructs an XmlAdaptedTask.
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedTask() {}
 
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Task into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created XmlAdaptedPerson
+     * @param source future changes to this will not affect the created XmlAdaptedPTask
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
@@ -57,20 +57,22 @@ public class XmlAdaptedTask {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Person object.
+     * Converts this jaxb-friendly adapted task object into the model's task object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted task
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> taskTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
         final DueTime time = new DueTime(this.phone);
         final TaskType type = new TaskType(this.type);
         final DueDate dueDate = new DueDate(this.dueDate);
+
         final Set<Tag> tags = new HashSet<>(personTags);
         return new Task(name, time, type, dueDate, tags);
+
     }
 }

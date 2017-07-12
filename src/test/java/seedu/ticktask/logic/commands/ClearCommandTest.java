@@ -15,13 +15,13 @@ import seedu.ticktask.testutil.TypicalTasks;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTickTask_success() {
         Model model = new ModelManager();
         assertCommandSuccess(model);
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyTickTask_success() {
         Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         assertCommandSuccess(model);
     }
@@ -29,7 +29,7 @@ public class ClearCommandTest {
     /**
      * Executes {@code ClearCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
-     * - the address book and filtered person list in {@code model} is empty <br>
+     * - the TickTask and filtered task list in {@code model} is empty <br>
      */
     private void assertCommandSuccess(Model model) {
         ClearCommand command = new ClearCommand();

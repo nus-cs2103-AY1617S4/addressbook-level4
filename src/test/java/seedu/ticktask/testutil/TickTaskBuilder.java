@@ -19,8 +19,8 @@ public class TickTaskBuilder {
         tickTask = new TickTask();
     }
 
-    public TickTaskBuilder(TickTask addressBook) {
-        this.tickTask = addressBook;
+    public TickTaskBuilder(TickTask ticktask) {
+        this.tickTask = ticktask;
     }
 
     public TickTaskBuilder withTask(Task task) throws DuplicateTaskException {
