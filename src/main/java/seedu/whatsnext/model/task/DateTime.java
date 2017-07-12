@@ -1,6 +1,7 @@
 package seedu.whatsnext.model.task;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,8 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
  * Time is represented in a 24 hour format
  * */
 public class DateTime {
-    public static final String INIT_DATEVALUE = "0001/01/01 00:00";
+    public static final String INIT_DATETIME_VALUE = "0001/01/01 00:00";
+    public static final String DEFAULT_TIME_VALUE = " 23:59";
     public static final String MESSAGE_DATE_CONSTRAINT = "Task date should be either "
             + "a day (e.g. friday) or a date with the format: DD/MM/YY (e.g. 06/07/17)\n";
 
@@ -25,7 +27,7 @@ public class DateTime {
     private Date dateValue;
 
     public DateTime() throws IllegalValueException {
-        this(INIT_DATEVALUE);
+        this(INIT_DATETIME_VALUE);
     }
 
     public DateTime(String dateInput) throws IllegalValueException {
@@ -39,9 +41,9 @@ public class DateTime {
      *
      * */
     private void initDateValue(String dateInputTrim) throws IllegalValueException {
-        if (dateInputTrim.equals(INIT_DATEVALUE)) {
+        if (dateInputTrim.equals(INIT_DATETIME_VALUE)) {
             try {
-                dateValue = dateTimeFormat.parse(INIT_DATEVALUE);
+                dateValue = dateTimeFormat.parse(INIT_DATETIME_VALUE);
             } catch (java.text.ParseException e) {
                 e.printStackTrace();
             }
@@ -51,8 +53,23 @@ public class DateTime {
                 throw new IllegalValueException(MESSAGE_DATE_CONSTRAINT);
             }
             dateValue = dateInputList.get(0);
+            System.out.println(dateValue.toString());
+            validateDateTime();
         }
     }
+
+    private void validateDateTime() {
+        Date today = new Date();
+        if (timeFormat.format(today).equals(getTime())) {
+            String tempDateValue = getDate() + DEFAULT_TIME_VALUE;
+            try {
+                dateValue = dateTimeFormat.parse(tempDateValue);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     /**
      * Checks if the list is empty
@@ -74,9 +91,17 @@ public class DateTime {
         return dateTimeFormat.format(dateValue);
     }
 
+    /**
+     * @return true if dateValue is before parameter
+     * */
+    public boolean isBefore(DateTime endDateTime) {
+        // dateValue is before source
+        return dateValue.compareTo(endDateTime.dateValue) < 0;
+    }
+
 
     public boolean isEmpty() {
-        return toString().equals(INIT_DATEVALUE);
+        return toString().equals(INIT_DATETIME_VALUE);
     }
 
 }

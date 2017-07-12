@@ -48,10 +48,10 @@ public class XmlAdaptedTask {
         name = source.getName().fullTaskName;
         isCompleted = source.getIsCompleted();
         tagged = new ArrayList<>();
-        if (!source.getStartDateTime().toString().equals(DateTime.INIT_DATEVALUE)) {
+        if (!source.getStartDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)) {
             startDateTime = source.getStartDateTime().toString();
         }
-        if (!source.getEndDateTime().toString().equals(DateTime.INIT_DATEVALUE)) {
+        if (!source.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)) {
             endDateTime = source.getEndDateTime().toString();
         }
 
