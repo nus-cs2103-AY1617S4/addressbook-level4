@@ -3,6 +3,10 @@ package seedu.ticktask.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -27,16 +31,18 @@ public class DueTime {
 	private static final String MESSAGE_END_TIME_CONSTRAINTS = "End time does not exist";
     
     private final Parser parser = new Parser();
-	private final SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mma");
+    private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mma");
+	//private final SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mma");
 	private final int FIRST_INDEX_OF_ARRAY = 0;
 	private final int INDEX_START_TIME = 0;
 	private final int INDEX_END_TIME = 1;
 	
     public String value;
+    LocalTime local_time;
     
-    private ArrayList<Date> datesAndTimes = new ArrayList<Date>();
-    private Date start_time;
-	private Date end_time;
+    private ArrayList<LocalTime> timesArray = new ArrayList<LocalTime>();
+    private LocalTime start_time;
+	private LocalTime end_time;
 	private String start_time_string = "", 
 			end_time_string = "";
 	
@@ -60,17 +66,18 @@ public class DueTime {
             }*/
             if(!dateGroups.isEmpty()){
     	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
-    				datesAndTimes.add(dates);
+       	        	local_time = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
+    				timesArray.add(local_time);
     			}
             }
 	        if (time.matches(END_TIME_VALIDATION_REGEX)){
 	            System.out.println("This SHOILD run" + time);
-	        	end_time = datesAndTimes.get(INDEX_START_TIME);
+	        	end_time = timesArray.get(INDEX_START_TIME);
 	        	setEndTime(end_time);
 	        }
 	        if (time.matches(START_TIME_VALIDATION_REGEX)){
 	            System.out.println("This should not run" + time);
-	        	start_time = datesAndTimes.get(INDEX_START_TIME);
+	        	start_time = timesArray.get(INDEX_START_TIME);
 	        	setStartTime(start_time);
 	        }
         	
@@ -79,25 +86,30 @@ public class DueTime {
         	extractTime(trimmedTime);
         }
         
-        value = getStartTime() + " " + getEndTime();
+        value = getStartTime() + " - " + getEndTime();
     }
     
     
-    public void setEndTime(Date end_time){
-    	if(end_time ==null){
+    public void setEndTime(LocalTime end_time2){
+    	if(end_time2 ==null){
+    		//LocalTime localtime = LocalTime.MAX;
+    		//end_time_string =  localtime.format(TIME_FORMAT).toString();
+    		LocalTime localtime = LocalTime.MAX;
     		end_time_string =  "";
     	}
     	else{
-    		end_time_string = timeFormatter.format(end_time);
+    		end_time_string = end_time2.format(TIME_FORMAT).toString();
     	}
     }
     
-    public void setStartTime(Date start_time){
-    	if(start_time ==null){
+    public void setStartTime(LocalTime start_time2){
+    	if(start_time2 ==null){
+    		//LocalTime localtime = LocalTime.MAX;
+    		//start_time_string =  localtime.format(TIME_FORMAT).toString();
     		start_time_string =  "";
     	}
     	else{
-    		start_time_string = timeFormatter.format(start_time);
+    		start_time_string = start_time2.format(TIME_FORMAT).toString();
     	}
     }
     
@@ -108,22 +120,23 @@ public class DueTime {
         }*/
         if(!dateGroups.isEmpty()){
 	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
-				datesAndTimes.add(dates);
+   	        	local_time = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
+				timesArray.add(local_time);
 			}
         }
         else{
         	setStartTime(null);
         	setEndTime(null);
         }
-        if(datesAndTimes.size()==2){
-        	start_time = datesAndTimes.get(INDEX_START_TIME);
-        	end_time = datesAndTimes.get(INDEX_END_TIME);
+        if(timesArray.size()==2){
+        	start_time = timesArray.get(INDEX_START_TIME);
+        	end_time = timesArray.get(INDEX_END_TIME);
         	setStartTime(start_time);
         	setEndTime(end_time);
         	isRange = true;
         }
-        else if(datesAndTimes.size()==1){
-        	start_time = datesAndTimes.get(INDEX_START_TIME);
+        else if(timesArray.size()==1){
+        	start_time = timesArray.get(INDEX_START_TIME);
         	setStartTime(start_time);
         	setEndTime(null);
         	isDeadline = true;

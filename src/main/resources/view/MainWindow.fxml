@@ -26,7 +26,7 @@
   </MenuBar>
 
   <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.5" VBox.vgrow="ALWAYS">
-    <VBox fx:id="taskList" minWidth="340" prefWidth="340.0" SplitPane.resizableWithParent="false">
+    <VBox fx:id="taskList" minWidth="340" prefWidth="1500" SplitPane.resizableWithParent="false">
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
       </padding>

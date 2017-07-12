@@ -3,6 +3,10 @@ package seedu.ticktask.model.task;
 
 import static java.util.Objects.requireNonNull;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -32,16 +36,18 @@ public class DueDate {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(START_DATE_VALIDATION_REGEX);
 
 	private final Parser parser = new Parser();
-	private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+    private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+	//private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 	private final int FIRST_INDEX_OF_ARRAY = 0;
 	private final int INDEX_START_DATE = 0;
 	private final int INDEX_END_DATE = 1;
 	
     private String value;
+    LocalDate local_date;
     
-    private ArrayList<Date> datesAndTimes = new ArrayList<Date>();
-    private Date start_date;
-	private Date end_date;
+    private ArrayList<LocalDate> datesArray = new ArrayList<LocalDate>();    
+    private LocalDate start_date;
+	private LocalDate end_date;
 	private String start_date_string = "", 
 			end_date_string = "";
 
@@ -61,23 +67,22 @@ public class DueDate {
         String trimmedDate = date.trim();
         
         if(((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))){
-        	List<DateGroup> dateGroups = parser.parse(date);
+        	List<DateGroup> dateGroups = parser.parse(trimmedDate);
             /*if(dateGroups.isEmpty()){
             	throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
             }*/
             if(!dateGroups.isEmpty()){
     	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
-    				datesAndTimes.add(dates);
+    	        	local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+    	        	datesArray.add(local_date);
     			}
             }
 	        if (date.matches(END_DATE_VALIDATION_REGEX)){
-	            System.out.println("This SHOILD run" + date);
-	        	end_date = datesAndTimes.get(INDEX_START_DATE);
+	        	end_date = datesArray.get(INDEX_START_DATE);
 	        	setEndDate(end_date);
 	        }
 	        if (date.matches(START_DATE_VALIDATION_REGEX)){
-	            System.out.println("This should not run" + date);
-	        	start_date = datesAndTimes.get(INDEX_START_DATE);
+	        	start_date = datesArray.get(INDEX_START_DATE);
 	        	setStartDate(start_date);
 	        }
         	
@@ -98,22 +103,23 @@ public class DueDate {
 	        }*/
 	        if(!dateGroups.isEmpty()){
 		        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
-					datesAndTimes.add(dates);
+		        	local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+		        	datesArray.add(local_date);
 				}
 	        }
 	        else{
 	        	setStartDate(null);
 	        	setEndDate(null);
 	        }
-	        if(datesAndTimes.size()==2){
-	        	start_date = datesAndTimes.get(INDEX_START_DATE);
-	        	end_date = datesAndTimes.get(INDEX_END_DATE);
+	        if(datesArray.size()==2){
+	        	start_date = datesArray.get(INDEX_START_DATE);
+	        	end_date = datesArray.get(INDEX_END_DATE);
 	        	setStartDate(start_date);
 	        	setEndDate(end_date);
 	        	isRange = true;
 	        }
-	        else if(datesAndTimes.size()==1){
-	        	start_date = datesAndTimes.get(INDEX_START_DATE);
+	        else if(datesArray.size()==1){
+	        	start_date = datesArray.get(INDEX_START_DATE);
 	        	setStartDate(start_date);
 	        	setEndDate(null);
 	        	isDeadline = true;
@@ -131,21 +137,21 @@ public class DueDate {
 		return start_date_string;
 	}
 
-	private void setEndDate(Date end_date2) {
-    	if(end_date ==null){
+	private void setEndDate(LocalDate end_date2) {
+    	if(end_date2 ==null){
     		end_date_string =  "";
     	}
     	else{
-    		end_date_string = dateFormatter.format(end_date2);
+    		end_date_string = end_date2.format(DATE_FORMAT).toString();
     	}
 		
 	}
-    private void setStartDate(Date start_date2) {
-    	if(start_date ==null){
+    private void setStartDate(LocalDate start_date2) {
+    	if(start_date2 ==null){
     		start_date_string =  "";
     	}
     	else{
-    		start_date_string = dateFormatter.format(start_date2);
+    		start_date_string = start_date2.format(DATE_FORMAT).toString();
     	}
 		
 	}

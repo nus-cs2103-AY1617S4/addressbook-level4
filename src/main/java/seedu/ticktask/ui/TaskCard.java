@@ -38,8 +38,13 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
-
-        time.setText(task.getTime().getStartTime() + " " + task.getTime().getEndTime());
+        if(task.getTime().isRange()){
+        	time.setText(task.getTime().getStartTime() + " - " + task.getTime().getEndTime());
+        }
+        else{
+            time.setText(task.getTime().getStartTime());
+        }
+        
         date.setText(task.getDate().toString());
         taskType.setText(task.getTaskType().value);
         if (task.getTaskType().getValue().equals("event")){
