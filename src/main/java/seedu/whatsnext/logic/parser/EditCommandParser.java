@@ -63,7 +63,7 @@ public class EditCommandParser {
                                                                 .ifPresent(editTaskDescriptor::addTags);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_DELETE_TAG))
-                                                                .ifPresent(editTaskDescriptor::deleteTags);
+                                                                .ifPresent(editTaskDescriptor::setRemoveTags);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }

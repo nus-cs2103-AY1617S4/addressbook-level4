@@ -260,7 +260,7 @@ public class EditCommand extends Command {
         }
 
         //@@author A0142675B
-        public void deleteTags(Set<Tag> tags) {
+        public void setRemoveTags(Set<Tag> tags) {
             this.removeTags = tags;
         }
 
