@@ -5,7 +5,7 @@ import java.util.Set;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -13,32 +13,36 @@ import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TAGS = "friends";
+    public static final String DEFAULT_NAME = "Wash dog";
+    public static final String DEFAULT_TIME = "0000";
+    public static final String DEFAULT_TASK_TYPE = "deadline";
+
+    public static final String DEFAULT_DATE = "01/01";
+    public static final String DEFAULT_TAGS = "cleaning";
 
     private Task task;
 
     public TaskBuilder() throws IllegalValueException {
         Name defaultName = new Name(DEFAULT_NAME);
-        DueTime defaultTime = new DueTime(DEFAULT_PHONE);
-        Email defaultEmail = new Email(DEFAULT_EMAIL);
-        DueDate defaultAddress = new DueDate(DEFAULT_ADDRESS);
+        DueTime defaultTime = new DueTime(DEFAULT_TIME);
+
+        TaskType defaultTaskType = new TaskType(DEFAULT_TASK_TYPE);
+
+        DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
+
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new Task(defaultName, defaultTime, defaultEmail, defaultAddress, defaultTags);
+        this.task = new Task(defaultName, defaultTime, defaultTaskType, defaultDueDate, defaultTags);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
-    public TaskBuilder(ReadOnlyTask personToCopy) {
-        this.task = new Task(personToCopy);
+    public TaskBuilder(ReadOnlyTask taskToCopy) {
+        this.task = new Task(taskToCopy);
     }
 
     public TaskBuilder withName(String name) throws IllegalValueException {
@@ -51,18 +55,19 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withAddress(String address) throws IllegalValueException {
-        this.task.setDate(new DueDate(address));
+    public TaskBuilder withDate(String dueDate) throws IllegalValueException {
+        this.task.setDate(new DueDate(dueDate));
         return this;
     }
 
-    public TaskBuilder withPhone(String phone) throws IllegalValueException {
-        this.task.setTime(new DueTime(phone));
+    public TaskBuilder withTime(String time) throws IllegalValueException {
+        this.task.setTime(new DueTime(time));
         return this;
     }
 
-    public TaskBuilder withEmail(String email) throws IllegalValueException {
-        this.task.setEmail(new Email(email));
+    public TaskBuilder withType(String type) throws IllegalValueException {
+        this.task.setTaskType(new TaskType(type));
+
         return this;
     }
 

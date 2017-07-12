@@ -2,7 +2,7 @@ package seedu.ticktask.logic.parser;
  
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -17,7 +17,7 @@ import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
@@ -31,7 +31,7 @@ public class parseAddCommand {
     Set<Tag> tagList;
      
     public static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|#|\\bat\\b))+)" //.(?!by)+ will keep matching until by.
-                                                                     + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|at))+)?)?"
+                                                                     + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
                                                                      + "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
                                                                      + "((?=.*#(?<tags>.+)))?"
                                                                      + ".*");
@@ -55,11 +55,11 @@ public class parseAddCommand {
             tagList = createTagList(parsetag);
             Name name = ParserUtil.parseName(parsename).get();
             DueTime time = ParserUtil.parseTime(parsetime).get();
-            Email email = ParserUtil.parseEmail(Optional.of(" ")).get();
+            TaskType type = ParserUtil.parseTaskType(Optional.of(" ")).get();
             DueDate date = ParserUtil.parseDate(parsedate).get();
              
              
-            ReadOnlyTask task = new Task(name, time, email, date, tagList);
+            ReadOnlyTask task = new Task(name, time, type, date, tagList);
              
             return new AddCommand(task);
         } catch (IllegalValueException ive) {

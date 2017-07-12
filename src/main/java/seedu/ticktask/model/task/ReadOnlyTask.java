@@ -13,7 +13,8 @@ public interface ReadOnlyTask {
     //These are methods
     Name getName();
     DueTime getTime();
-    Email getEmail();
+    TaskType getTaskType();
+    void resetTaskType();
     DueDate getDate();
     boolean getCompleted();
     void setCompleted(boolean s);
@@ -27,7 +28,7 @@ public interface ReadOnlyTask {
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getTime().equals(this.getTime())
-                && other.getEmail().equals(this.getEmail())
+                && other.getTaskType().equals(this.getTaskType())
                 && other.getDate().equals(this.getDate()));
     }
 
@@ -39,8 +40,8 @@ public interface ReadOnlyTask {
         builder.append(getName())
                 .append(" Time: ")
                 .append(getTime())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" Task Type: ")
+                .append(getTaskType())
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Tags: ");

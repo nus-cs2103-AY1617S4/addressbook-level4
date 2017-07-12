@@ -24,7 +24,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
  */
 public class MainWindow extends UiPart<Region> {
 
-    private static final String ICON = "/images/address_book_32.png";
+    private static final String ICON = "/images/ticktask.png";
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
@@ -49,7 +49,7 @@ public class MainWindow extends UiPart<Region> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane taskListPanelPlaceholder;
     
     @FXML
     private StackPane completedTaskListPanelPlaceholder;
@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Region> {
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         completedTaskListPanel = new TaskListPanel(logic.getFilteredCompletedTaskList());
-        personListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
         browserPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();

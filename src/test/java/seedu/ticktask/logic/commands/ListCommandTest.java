@@ -10,9 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
-import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.CommandResult;
-import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
@@ -31,7 +28,7 @@ public class ListCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         listCommand = new ListCommand();
@@ -45,16 +42,16 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() throws Exception {
-        showFirstPersonOnly(model);
+        showFirstTaskOnly(model);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     /**
-     * Updates the filtered list to show only the first person in the {@code model}'s address book.
+     * Updates the filtered list to show only the first task in the {@code model}'s TickTask.
      */
-    private void showFirstPersonOnly(Model model) {
-        ReadOnlyTask person = model.getTickTask().getTaskList().get(0);
-        final String[] splitName = person.getName().fullName.split("\\s+");
+    private void showFirstTaskOnly(Model model) {
+        ReadOnlyTask task = model.getTickTask().getTaskList().get(0);
+        final String[] splitName = task.getName().fullName.split("\\s+");
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
         assertTrue(model.getFilteredTaskList().size() == 1);
@@ -63,7 +60,7 @@ public class ListCommandTest {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the result message matches {@code expectedMessage} <br>
-     * - the address book and the filtered person list in the {@code model} matches that of {@code expectedModel}
+     * - the TickTask and the filtered task list in the {@code model} matches that of {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model model, String expectedMessage, Model expectedModel)
             throws CommandException {

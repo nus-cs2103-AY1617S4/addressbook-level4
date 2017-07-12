@@ -22,11 +22,11 @@ This app will not work with earlier versions of Java 8.
 +
 
 2. Download the latest `ticktask.jar` from the releases tab. +
-3. Copy the file to the folder you want to use as the home folder for your Address Book. +
+3. Copy the file to the folder you want to use as the home folder for your TickTask. +
 4. Double-click the file to start the app. The GUI should appear in a few seconds.
 
 
-image::UI_Sample.png[width="790"]
+image::UI_TickTask.png[width="790"]
 
 . Type the command in the command box and press Enter to execute it.
 
@@ -36,9 +36,9 @@ Some example commands you can try:
 
 `list` : lists all tasks
 
-`add n/complete tutorial s/2200 d/22/03/14`: adds a task named complete tutorial to the task manager
+`add complete tutorial by christmas at 2200`: adds a task named complete tutorial to the task manager
 
-`delete 1` : deletes the task at index 1
+`delete 1` : deletes the task at index 1 from the active(pending) task list
 
 
 Refer to the Features section below for details of each command. +
@@ -54,79 +54,96 @@ Format: `help`
 === Adding a task: `add`
 Adds a task to the task manager. +
 
-Format: 
-`add n/[task name] s/[time] d/[date] t/[tags]`
-`add n/[task name] s/[time]`
-`add n/[task name] d/[date]`
-`add n/[task name]`
+Format: +
+`add [task name] "by " [date] "at " [time] + "#"[tags]` +
+`add [task name] "at " [time] + "#"[tags]` +
+`add [task name]` +
+`add [task name] "from " [start date] "to " [end date]`
 
 ****
 * Only task name is mandatory when using the add command
-* Time must be inputted in 24 hour format: HHMM 
-* Date must be inputted in format: DD/MM/YY
+* A tag can be added by inserting "#" before the tag
+* "by" precedes date, "at" precedes time
+* "from" and "to" can be used to add events over a range of days
+* Date and time can be inputted in natural language
 ****
 
 Examples:
 ****
-* `add n/complete tutorial s/2200 d/22/03/16 t/school`
-* `add n/complete tutorial s/2200 d/22/03/16`
-* `add n/complete tutorial`
-* `add n/complete tutorial s/2100`
+* `add complete tutorial by 23/02 #school`
+* `add complete tutorial by 23/05/17 at 2200`
+* `add complete tutorial`
+* `add complete tutorial from monday to friday`
 ****
 
 === Editing a Task : `edit`
-Edits an existing task in the address book. +
+Edits an existing task in the ticktask. +
 
-Format: `edit [index] [prefix][new value]`
+Format: `edit [index] [attribute to change][new value]`
 
 ****
-* The possible prefixes are: 's/' for time, 'd/' for date, '/n' for name, '/t' for tags
+* The possible attributes are: "time", "date", "name", "start time", "end time" and "#"
 ****
 
 Examples:
 ****
-* `edit 1 n/tutorial` +
+* `edit 1 name tutorial` +
 Edits the task name to tutorial.
-* `edit 0 s/2200` +
-Edits the task's time to 2200.
-* `edit 0 s/2200 d/21/03/17` +
-Edits the task's time to 2200 and the date to 21/03/17.
+* `edit 0 end time 2200` +
+Edits the task's end time to 2200.
+* `edit 0 start time 2300 date christmas` +
+Edits the task's start time to 2300 and the date to 25/12/2017.
 ****
 
 === Finding a Task : `find`
-Finds an existing task in the address book. +
+Finds an existing task in the ticktask. +
 
 Format: `find [keyword(s)]`
 
 ****
 * There can be more than one keyword
+* Supports substring search
 ****
 
 Examples:
 ****
-* `find tutorial` 
-* `find wash dog`
+* `find wash dog` +
+Will find all tasks that contain the substring "wash dog"
+* `find tu` + 
+Will find all tasks that contain the substring "tu"
 ****
 
 === Deleting a Task: `delete`
 Deletes a task from the task manager. +
 
-Format: `delete [index]`
+Format: +
+`delete [index]` +
+`delete [list to delete from] [index]`
+
+****
+* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+****
 
 Examples:
 ****
 * `delete 1` +
-Deletes the task at index 1
+Deletes the task at index 1 +
+* `delete complete 1` +
+Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Completing a Task : `complete`
-Marks a task as complete in the task manager. +
+Marks a task as complete in the task manager and moves it into the completed task list. +
 
 Format: `complete [task name]`
 
 Examples:
+****
 * `complete tutorial` +
-The task tutorial is marked as complete.
+The task tutorial is moved to completed list.
+****
 
 === Undo/ Redo Actions: `undo` `redo`
 Undo or redo the latest action. +
@@ -134,76 +151,81 @@ Undo or redo the latest action. +
 Format: `undo` or `redo`
 
 Examples:
+****
 * `undo` +
 Undo the previous action such as add, delete, edit or complete.
-* `Redo` +
+* `redo` +
 Redo the undo action
+****
 
-=== Specify Storage Folder : `folder`
-Specify folder to store all task manager data. +
+=== Listing All Tasks : `list`
+Displays pending tasks within task manager. +
 
-Format: `Folder [path]`
-
-Examples:
-* `folder c://user/documents/taskmanager`
-
-=== Listing All Tasks : `list` `list all`
-Displays pending tasks within task manager. To display completed tasks as well, add 'all' to the list comand. +
-
-Format: `list` or 'list all'
+Format: `list`
 
 Examples:
-* `list` +
-Displays pending tasks.
-* `list all` +
-Displays pending and completed tasks.
+****
+* `list` 
+****
 
-=== Search Tasks : `search`
-Searches for task based on keyword.
+=== Listing Command History : `history`
+Displays history of commands since application opened. +
 
-Format: `search [keyword]`
+Format: `history`
 
 Examples:
-* `search tutorial` +
-* `search 22/08` +
-* `search 3` +
-Keyword can be either 'date', 'title', or 'duration'
+****
+* `history` 
+****
+
+=== Clear Tasks : `clear`
+Clear all tasks ever added.
+
+Format: `clear`
+
+Examples:
+****
+* `clear`
+****
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TickTask folder.
 
 == Command Summary
 
-=== View help
+=== Viewing help
 
 Format: `help`
 
 === Adding a task
 
-Format: `add n/[task name] s/[time] d/[date] t/[tags]`
+Format: +
+`add [task name] "by " [date] "at " [time] + "#"[tags]` +
+`add [task name] "at " [time] + "#"[tags]` +
+`add [task name]` +
+`add [task name] "from " [start date] "to " [end date]`
 
 Examples:
 ****
-* `add n/complete tutorial s/2200 d/22/03/16 t/school`
-* `add n/complete tutorial s/2200 d/22/03/16`
-* `add n/complete tutorial`
-* `add n/complete tutorial s/2100`
+* `add complete tutorial by 23/02 #school`
+* `add complete tutorial by 23/05/17 at 2200`
+* `add complete tutorial`
+* `add complete tutorial from monday to friday`
 ****
-
 === Editing a Task
 
-Format: `edit [index] [prefix][new value]`
+Format: `edit [index] [attribute to change][new value]`
 
 Examples:
 ****
-* `edit 1 n/tutorial` +
+* `edit 1 name tutorial` +
 Edits the task name to tutorial.
-* `edit 2 s/2200` +
-Edits the task's time to 2200.
-* `edit 2 s/2200 d/21/03/17` +
-Edits the task's time to 2200 and the date to 21/03/17.
+* `edit 0 end time 2200` +
+Edits the task's end time to 2200.
+* `edit 0 start time 2300 date christmas` +
+Edits the task's start time to 2300 and the date to 25/12/2017.
 ****
 
 === Finding a Task
@@ -212,45 +234,74 @@ Format: `find [keyword(s)]`
 
 Examples:
 ****
-* `find tutorial` 
-* `find wash dog`
+* `find wash dog` +
+Will find all tasks that contain the substring "wash dog"
+* `find tu` + 
+Will find all tasks that contain the substring "tu"
 ****
 
 === Deleting a Task
 
-Format: `delete [index]`
+Format: +
+`delete [index]` +
+`delete [list to delete from] [index]`
 
 Examples:
 ****
 * `delete 1` +
-Deletes the task at index 1
+Deletes the task at index 1 +
+* `delete complete 1` +
+Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Completing a Task
 
-Example: +
-`complete tutorial`
+Format: `complete [task name]`
 
-=== Undo/ Redo Actions
+Examples:
+****
+* `complete tutorial` +
+The task tutorial is moved to completed list.
+****
 
-Example: +
-`undo` +
-`redo`
+=== Undo/ Redo Actions 
 
-=== Specify Storage Folder
+Format: `undo` or `redo`
 
-Example: +
-`folder c://user/documents/taskmanager`
+Examples:
+****
+* `undo` +
+Undo the previous action such as add, delete, edit or complete.
+* `redo` +
+Redo the undo action
+****
 
-=== Listing All Tasks
+=== Listing All Tasks : 
 
-Example: +
-`list` +
-`list all`
+Format: `list`
 
-=== Search Tasks
+Examples:
+****
+* `list`
+****
 
-Example: +
-`search tutorial` +
-`search 22/08` +
-`search 3`
+=== Listing Command History 
+
+Format: `history`
+
+Examples:
+****
+* `history`
+****
+
+=== Clear Tasks
+
+Format: `clear`
+
+Examples:
+****
+* `clear`
+****
+

@@ -6,6 +6,7 @@ import static seedu.ticktask.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
@@ -38,9 +39,9 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws IllegalValueException 
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws IllegalValueException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -48,6 +49,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -62,11 +64,11 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         
-        case DeleteCompleteCommand.COMMAND_WORD:
-            return new DeleteCompleteCommandParser().parse(arguments);
+        /*case DeleteCompleteCommand.COMMAND_WORD:
+            return new DeleteCompleteCommandParser().parse(arguments);*/
             
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new parseEditCommand().parse(arguments);
             
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

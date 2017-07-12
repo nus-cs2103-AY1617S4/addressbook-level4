@@ -3,6 +3,10 @@ package seedu.ticktask.model.task;
 
 import static java.util.Objects.requireNonNull;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -27,20 +31,23 @@ public class DueDate {
      * The first character of the date must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String DATE_VALIDATION_REGEX = "(\\d{2}+)(/)(\\d{2}+)(/)(\\d{2}+)"; // no longer using regex
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(DATE_VALIDATION_REGEX);
+    public static final String START_DATE_VALIDATION_REGEX = "start date.*";
+    public static final String END_DATE_VALIDATION_REGEX = "end date.*";
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(START_DATE_VALIDATION_REGEX);
 
 	private final Parser parser = new Parser();
-	private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+    private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+	//private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 	private final int FIRST_INDEX_OF_ARRAY = 0;
 	private final int INDEX_START_DATE = 0;
 	private final int INDEX_END_DATE = 1;
 	
     private String value;
+    LocalDate local_date;
     
-    private ArrayList<Date> datesAndTimes = new ArrayList<Date>();
-    private Date start_date;
-	private Date end_date;
+    private ArrayList<LocalDate> datesArray = new ArrayList<LocalDate>();    
+    private LocalDate start_date;
+	private LocalDate end_date;
 	private String start_date_string = "", 
 			end_date_string = "";
 
@@ -59,54 +66,100 @@ public class DueDate {
         
         String trimmedDate = date.trim();
         
-        List<DateGroup> dateGroups = parser.parse(trimmedDate);
+        if(((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))){
+        	List<DateGroup> dateGroups = parser.parse(trimmedDate);
+            /*if(dateGroups.isEmpty()){
+            	throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+            }*/
+            if(!dateGroups.isEmpty()){
+    	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
+    	        	local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+    	        	datesArray.add(local_date);
+    			}
+            }
+	        if (date.matches(END_DATE_VALIDATION_REGEX)){
+	        	end_date = datesArray.get(INDEX_START_DATE);
+	        	setEndDate(end_date);
+	        }
+	        if (date.matches(START_DATE_VALIDATION_REGEX)){
+	        	start_date = datesArray.get(INDEX_START_DATE);
+	        	setStartDate(start_date);
+	        }
+        	
+        }
+        else{
+        	extractDate(trimmedDate);
+        }
         
-        if(!dateGroups.isEmpty()){
-	        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
-				datesAndTimes.add(dates);
-			}
-	        if(datesAndTimes.size()>1){
+        value = getStartDate() + " " + getEndDate();
+
+        }
+        
+
+	private void extractDate(String trimmedDate) {
+		List<DateGroup> dateGroups = parser.parse(trimmedDate);
+	       /* if(dateGroups.isEmpty()){
+	        	throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+	        }*/
+	        if(!dateGroups.isEmpty()){
+		        for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
+		        	local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+		        	datesArray.add(local_date);
+				}
+	        }
+	        else{
+	        	setStartDate(null);
+	        	setEndDate(null);
+	        }
+	        if(datesArray.size()==2){
+	        	start_date = datesArray.get(INDEX_START_DATE);
+	        	end_date = datesArray.get(INDEX_END_DATE);
+	        	setStartDate(start_date);
+	        	setEndDate(end_date);
 	        	isRange = true;
 	        }
-	        else isDeadline = true;
-        }
-        else isFloating = true;
-        
-        if(isFloating){
-        	
-        	start_date_string = "";
-        	end_date_string = "";
-        	
-            value = new StringBuilder("").toString();
+	        else if(datesArray.size()==1){
+	        	start_date = datesArray.get(INDEX_START_DATE);
+	        	setStartDate(start_date);
+	        	setEndDate(null);
+	        	isDeadline = true;
+	        	
+	        }
+	        else{
+	        	setStartDate(null);
+	        	setEndDate(null);
+	        	isFloating = true;
+	        }
+		
+	}
 
-        }
-        
-        else if (isDeadline){
-        	
-	        start_date = datesAndTimes.get(0);
-	        start_date_string = dateFormatter.format(start_date);
-	        end_date_string = "";
-	        
-	        value = new StringBuilder(start_date_string).toString();
+	private String getStartDate() {
+		return start_date_string;
+	}
 
-        }
-        
-        else if (isRange){
-        	
-        	//sorts according to earlier date first
-        	Collections.sort(datesAndTimes);
-			
-			start_date = datesAndTimes.get(INDEX_START_DATE);
-			end_date = datesAndTimes.get(INDEX_END_DATE);
-			
-			start_date_string = dateFormatter.format(start_date);
-			end_date_string = dateFormatter.format(end_date);
-			
-	        value = new StringBuilder(start_date_string + " - " + end_date_string).toString();
+	private void setEndDate(LocalDate end_date2) {
+    	if(end_date2 ==null){
+    		end_date_string =  "";
+    	}
+    	else{
+    		end_date_string = end_date2.format(DATE_FORMAT).toString();
+    	}
+		
+	}
+    private void setStartDate(LocalDate start_date2) {
+    	if(start_date2 ==null){
+    		start_date_string =  "";
+    	}
+    	else{
+    		start_date_string = start_date2.format(DATE_FORMAT).toString();
+    	}
+		
+	}
 
-        }
-        
-    }
+	private String getEndDate() {
+
+		return end_date_string;
+	}
     
     /**
      * Returns true if a given date is an empty string or invalid string
@@ -133,7 +186,7 @@ public class DueDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(DATE_VALIDATION_REGEX);
+        return test.matches(START_DATE_VALIDATION_REGEX);
     }
 
     @Override

@@ -20,10 +20,10 @@ public class CommandHistoryTest {
     @Test
     public void add() {
         final String validCommand = "clear";
-        final String invalidCommand = "adds Bob";
+        final String invalidCommand = "adds wash dog";
 
         history.add(validCommand);
         history.add(invalidCommand);
-        assertEquals(Arrays.asList(validCommand, invalidCommand), history.getHistory());
+        assertEquals(Arrays.asList(invalidCommand, validCommand), history.getHistory());
     }
 }

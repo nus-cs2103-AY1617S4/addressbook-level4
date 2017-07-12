@@ -31,12 +31,12 @@ public class HistoryCommandTest {
         assertCommandResult(historyCommand, String.format(HistoryCommand.MESSAGE_SUCCESS, command1));
 
         String command2 = "randomCommand";
-        String command3 = "select 1";
+        String command3 = "delete 1";
         history.add(command2);
         history.add(command3);
 
         String expectedMessage = String.format(HistoryCommand.MESSAGE_SUCCESS,
-                String.join("\n", command1, command2, command3));
+                String.join("\n", command3, command2, command1));
 
         assertCommandResult(historyCommand, expectedMessage);
     }

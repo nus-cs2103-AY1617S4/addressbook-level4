@@ -9,7 +9,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,11 +26,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label time;
     @FXML
-    private Label address;
+    private Label date;
     @FXML
-    private Label email;
+    private Label taskType;
     @FXML
     private FlowPane tags;
 
@@ -38,9 +38,23 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        phone.setText(task.getTime().toString());
-        address.setText(task.getDate().toString());
-        email.setText(task.getEmail().value);
+        if(task.getTime().isRange()){
+        	time.setText(task.getTime().getStartTime() + " - " + task.getTime().getEndTime());
+        }
+        else{
+            time.setText(task.getTime().getStartTime());
+        }
+        
+        date.setText(task.getDate().toString());
+        taskType.setText(task.getTaskType().value);
+        if (task.getTaskType().getValue().equals("event")){
+            cardPane.setStyle("-fx-background-color: #201b42");
+        } else if (task.getTaskType().getValue().equals("deadline")){
+            cardPane.setStyle("-fx-background-color: #421b25");
+        } else if (task.getTaskType().getValue().equals("floating")){
+            cardPane.setStyle("-fx-background-color: #1b4233");
+        }
+        
         initTags(task);
     }
 

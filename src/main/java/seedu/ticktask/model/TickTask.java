@@ -90,6 +90,7 @@ public class TickTask implements ReadOnlyTickTask {
      */
     public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
         Task newTask = new Task(p);
+        newTask.resetTaskType();
         syncMasterTagListWith(newTask);
         tasks.add(newTask);
     }
@@ -109,6 +110,7 @@ public class TickTask implements ReadOnlyTickTask {
         requireNonNull(editedReadOnlyTask);
 
         Task editedTask = new Task(editedReadOnlyTask);
+        editedTask.resetTaskType();
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any task

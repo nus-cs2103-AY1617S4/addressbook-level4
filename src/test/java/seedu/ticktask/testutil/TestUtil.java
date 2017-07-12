@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import guitests.guihandles.PersonCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -18,9 +17,8 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.FileUtil;
 import seedu.ticktask.commons.util.XmlUtil;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.Email;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.Name;
-import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 
@@ -56,15 +54,10 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
               
-                new Task(new Name("Ali Muster"), new DueTime("9482424"), new Email("hans@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Boris Mueller"), new DueTime("87249245"), new Email("ruth@example.com"), new DueDate("81th street"), getTagSet()),
-                new Task(new Name("Carl Kurz"), new DueTime("95352563"), new Email("heinz@example.com"), new DueDate("wall street"), getTagSet()),
-                new Task(new Name("Daniel Meier"), new DueTime("87652533"), new Email("cornelia@example.com"), new DueDate("10th street"), getTagSet()),
-                new Task(new Name("Elle Meyer"), new DueTime("9482224"), new Email("werner@example.com"), new DueDate("michegan ave"), getTagSet()),
-                new Task(new Name("Fiona Kunz"), new DueTime("9482427"), new Email("lydia@example.com"), new DueDate("little tokyo"), getTagSet()),
-                new Task(new Name("George Best"), new DueTime("9482442"), new Email("anna@example.com"), new DueDate("4th street"), getTagSet()),
-                new Task(new Name("Hoon Meier"), new DueTime("8482424"), new Email("stefan@example.com"), new DueDate("little india"), getTagSet()),
-                new Task(new Name("Ida Mueller"), new DueTime("8482131"), new Email("hans@example.com"), new DueDate("chicago ave"), getTagSet())
+                new Task(new Name("wash dog"), new DueTime("2200"), new TaskType("deadline"), new DueDate("22/08"), getTagSet()),
+                new Task(new Name("do tutorial"), new DueTime("2300"), new TaskType("deadline"), new DueDate("21/03/18"), getTagSet()),
+                new Task(new Name("meet girlfriend"), new DueTime("1200"), new TaskType("deadline"), new DueDate("Christmas"), getTagSet()),
+         
 
             };
             //CHECKSTYLE.ON: LineLength
@@ -75,7 +68,7 @@ public class TestUtil {
         }
     }
 
-    public static List<Task> generateSamplePersonData() {
+    public static List<Task> generateSampleTaskData() {
         return Arrays.asList(SAMPLE_TASK_DATa);
     }
 
@@ -120,35 +113,35 @@ public class TestUtil {
     }
 
     /**
-     * Removes a subset from the list of persons.
-     * @param tasks The list of persons
-     * @param personsToRemove The subset of persons.
-     * @return The modified persons after removal of the subset from persons.
+     * Removes a subset from the list of tasks.
+     * @param tasks The list of tasks
+     * @param tasksToRemove The subset of tasks.
+     * @return The modified tasks after removal of the subset from tasks.
      */
-    public static Task[] removePersonsFromList(final Task[] tasks, Task... personsToRemove) {
+    public static Task[] removeTasksFromList(final Task[] tasks, Task... tasksToRemove) {
         List<Task> listOfTasks = asList(tasks);
-        listOfTasks.removeAll(asList(personsToRemove));
+        listOfTasks.removeAll(asList(tasksToRemove));
         return listOfTasks.toArray(new Task[listOfTasks.size()]);
     }
 
 
     /**
-     * Returns a copy of the list with the person at specified index removed.
+     * Returns a copy of the list with the task at specified index removed.
      * @param list original list to copy from
      */
-    public static Task[] removePersonFromList(final Task[] list, Index index) {
-        return removePersonsFromList(list, list[index.getZeroBased()]);
+    public static Task[] removeTaskFromList(final Task[] list, Index index) {
+        return removeTasksFromList(list, list[index.getZeroBased()]);
     }
 
     /**
-     * Appends persons to the array of persons.
-     * @param tasks A array of persons.
-     * @param personsToAdd The persons that are to be appended behind the original array.
-     * @return The modified array of persons.
+     * Appends tasks to the array of tasks.
+     * @param tasks A array of tasks.
+     * @param tasksToAdd The tasks that are to be appended behind the original array.
+     * @return The modified array of tasks.
      */
-    public static Task[] addTasksToList(final Task[] tasks, Task... personsToAdd) {
+    public static Task[] addTasksToList(final Task[] tasks, Task... tasksToAdd) {
         List<Task> listOfTasks = asList(tasks);
-        listOfTasks.addAll(asList(personsToAdd));
+        listOfTasks.addAll(asList(tasksToAdd));
         return listOfTasks.toArray(new Task[listOfTasks.size()]);
     }
 
@@ -158,10 +151,6 @@ public class TestUtil {
             list.add(obj);
         }
         return list;
-    }
-
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyTask person) {
-        return card.isSamePerson(person);
     }
 
 }
