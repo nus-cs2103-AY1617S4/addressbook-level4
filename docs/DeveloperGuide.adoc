@@ -9,7 +9,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3
 
 By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
 
@@ -90,7 +90,7 @@ The *_Architecture Diagram_* given above explains the high-level design of the A
 [TIP]
 The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
-`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
+`Main` has only one class called link:{repoURL}/src/main/java/seedu/ticktask/ui/Ui.java[`MainApp`]. It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
@@ -145,11 +145,11 @@ Author: Alice Bee
 image::UiClassDiagram.png[width="800"]
 _Figure 2.2.1 : Structure of the UI Component_
 
-*API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : link:{repoURL}/src/main/java/seedu/ticktask/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/ticktask/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
@@ -165,7 +165,7 @@ image::LogicClassDiagram.png[width="800"]
 _Figure 2.3.1 : Structure of the Logic Component_
 
 *API* :
-link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+link:{repoURL}/src/main/java/seedu/ticktask/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `Parser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
@@ -184,7 +184,7 @@ Author: Cynthia Dharman
 image::ModelClassDiagram.png[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/src/main/java/seedu/ticktask/model/Model.java[`Model.java`]
 
 The `Model`,
 
@@ -200,7 +200,7 @@ Author: Darius Foong
 image::StorageClassDiagram.png[width="800"]
 _Figure 2.5.1 : Structure of the Storage Component_
 
-*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
+*API* : link:{repoURL}/src/main/java/seedu/ticktask/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -296,7 +296,7 @@ We use https://www.google.com/chrome/browser/desktop/[Google Chrome] for convert
 Here are the steps to convert the project documentation files to PDF format.
 
 .  Make sure you have set up GitHub Pages as described in <<UsingGithubPages#setting-up, UsingGithubPages.adoc>>.
-.  Using Chrome, go to the <<UsingGithubPages#viewing-the-project-site, GitHub Pages version>> of the documentation file. e.g. For <<UserGuide#, UserGuide.adoc>>, the URL will be `\https://<your-username-or-organization-name>.github.io/addressbook-level4/docs/UserGuide.html`.
+.  Using Chrome, go to the <<UsingGithubPages#viewing-the-project-site, GitHub Pages version>> of the documentation file. e.g. For <<UserGuide#, UserGuide.adoc>>, the URL will be `\https://<your-username-or-organization-name>.github.io/ticktask/docs/UserGuide.html`.
 .  Click on the `Print` option in Chrome's menu.
 .  Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
 

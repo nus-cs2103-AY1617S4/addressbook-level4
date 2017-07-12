@@ -20,6 +20,7 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Wash dog";
     public static final String DEFAULT_TIME = "0000";
     public static final String DEFAULT_TASK_TYPE = "deadline";
+
     public static final String DEFAULT_DATE = "01/01";
     public static final String DEFAULT_TAGS = "cleaning";
 
@@ -30,10 +31,11 @@ public class TaskBuilder {
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
 
         TaskType defaultEmail = new TaskType(DEFAULT_TASK_TYPE);
+
         DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
 
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new Task(defaultName, defaultTime, defaultEmail, defaultDueDate, defaultTags);
+        this.task = new Task(defaultName, defaultTime, defaultTaskType, defaultDueDate, defaultTags);
     }
 
     /**
@@ -65,6 +67,7 @@ public class TaskBuilder {
 
     public TaskBuilder withType(String type) throws IllegalValueException {
         this.task.setTaskType(new TaskType(type));
+
         return this;
     }
 

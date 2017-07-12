@@ -42,7 +42,14 @@ public class TaskCard extends UiPart<Region> {
         time.setText(task.getTime().getStartTime() + " " + task.getTime().getEndTime());
         date.setText(task.getDate().toString());
         taskType.setText(task.getTaskType().value);
-
+        if (task.getTaskType().getValue().equals("event")){
+            cardPane.setStyle("-fx-background-color: red");
+        } else if (task.getTaskType().getValue().equals("deadline")){
+            cardPane.setStyle("-fx-background-color: blue");
+        } else if (task.getTaskType().getValue().equals("floating")){
+            cardPane.setStyle("-fx-background-color: green");
+        }
+        
         initTags(task);
     }
 
