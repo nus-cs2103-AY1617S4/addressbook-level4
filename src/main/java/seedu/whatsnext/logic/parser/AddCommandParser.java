@@ -27,10 +27,8 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                                                                  PREFIX_START_DATETIME,
-                                                                  PREFIX_END_DATETIME,
-                                                                  PREFIX_TAG);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
@@ -62,18 +60,26 @@ public class AddCommandParser {
         if (startDateTimeValue.isPresent() && endDateTimeValue.isPresent()) {
             DateTime startDateTime = new DateTime(startDateTimeValue.get());
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
+            validateStartEndDateTime(startDateTime, endDateTime);
             task = new BasicTask(taskName, false, startDateTime, endDateTime, tagList);
         // Create Deadline Task
         } else if (endDateTimeValue.isPresent()) {
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
             task = new BasicTask(taskName, false, endDateTime, tagList);
-        // Create Floating Task
+        // Invalid Task
         } else if (startDateTimeValue.isPresent() && !endDateTimeValue.isPresent()) {
             throw new IllegalValueException(AddCommand.INVALID_TASK_CREATED);
+        // Create Floating Task
         } else {
             task = new BasicTask(taskName, tagList);
         }
         return task;
+    }
+
+    private void validateStartEndDateTime(DateTime startDateTime, DateTime endDateTime) throws IllegalValueException {
+        if (!startDateTime.isBefore(endDateTime)) {
+            throw new IllegalValueException(AddCommand.INVALID_TASK_CREATED);
+        }
     }
 
     /**
