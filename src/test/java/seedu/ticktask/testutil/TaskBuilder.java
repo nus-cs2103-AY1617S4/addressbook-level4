@@ -19,7 +19,7 @@ public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Wash dog";
     public static final String DEFAULT_TIME = "0000";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_TASKTYPE = "deadline";
     public static final String DEFAULT_DATE = "01/01";
     public static final String DEFAULT_TAGS = "cleaning";
 
@@ -29,11 +29,11 @@ public class TaskBuilder {
         Name defaultName = new Name(DEFAULT_NAME);
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
 
-        TaskType defaultEmail = new TaskType(DEFAULT_EMAIL);
+        TaskType defaultTaskType = new TaskType(DEFAULT_TASKTYPE);
         DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
 
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new Task(defaultName, defaultTime, defaultEmail, defaultDueDate, defaultTags);
+        this.task = new Task(defaultName, defaultTime, defaultTaskType, defaultDueDate, defaultTags);
     }
 
     /**
@@ -58,13 +58,13 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withTime(String phone) throws IllegalValueException {
-        this.task.setTime(new DueTime(phone));
+    public TaskBuilder withTime(String time) throws IllegalValueException {
+        this.task.setTime(new DueTime(time));
         return this;
     }
 
-    public TaskBuilder withEmail(String email) throws IllegalValueException {
-        this.task.setTaskType(new TaskType(email));
+    public TaskBuilder withTaskType(String taskType) throws IllegalValueException {
+        this.task.setTaskType(new TaskType(taskType));
         return this;
     }
 

@@ -22,7 +22,7 @@ This app will not work with earlier versions of Java 8.
 +
 
 2. Download the latest `ticktask.jar` from the releases tab. +
-3. Copy the file to the folder you want to use as the home folder for your Address Book. +
+3. Copy the file to the folder you want to use as the home folder for your TickTask. +
 4. Double-click the file to start the app. The GUI should appear in a few seconds.
 
 
@@ -77,7 +77,7 @@ Examples:
 ****
 
 === Editing a Task : `edit`
-Edits an existing task in the address book. +
+Edits an existing task in the ticktask. +
 
 Format: `edit [index] [attribute to change][new value]`
 
@@ -96,7 +96,7 @@ Edits the task's start time to 2300 and the date to 25/12/2017.
 ****
 
 === Finding a Task : `find`
-Finds an existing task in the address book. +
+Finds an existing task in the ticktask. +
 
 Format: `find [keyword(s)]`
 
@@ -191,7 +191,7 @@ Examples:
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TickTask folder.
 
 == Command Summary
 

@@ -9,7 +9,7 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 /**
  * A utility class to help with building TickTask objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withTask("wash dog").withTag("Friend").build();}
+ *     {@code TickTask ab = new TickTaskBuilder().withTask("wash dog").withTag("Friend").build();}
  */
 public class TickTaskBuilder {
 
