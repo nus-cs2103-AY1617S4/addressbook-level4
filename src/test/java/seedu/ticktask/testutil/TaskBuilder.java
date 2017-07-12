@@ -29,7 +29,9 @@ public class TaskBuilder {
         Name defaultName = new Name(DEFAULT_NAME);
         DueTime defaultTime = new DueTime(DEFAULT_TIME);
 
+
         TaskType defaultTaskType = new TaskType(DEFAULT_TASKTYPE);
+
         DueDate defaultDueDate = new DueDate(DEFAULT_DATE);
 
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
