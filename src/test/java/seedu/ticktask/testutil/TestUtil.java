@@ -54,9 +54,9 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
               
-                new Task(new Name("wash dog"), new DueTime("2200"), new TaskType("hans@example.com"), new DueDate("22/08"), getTagSet()),
-                new Task(new Name("do tutorial"), new DueTime("2300"), new TaskType("ruth@example.com"), new DueDate("21/03/18"), getTagSet()),
-                new Task(new Name("meet girlfriend"), new DueTime("1200"), new TaskType("heinz@example.com"), new DueDate("Christmas"), getTagSet()),
+                new Task(new Name("wash dog"), new DueTime("2200"), new TaskType("deadline"), new DueDate("22/08"), getTagSet()),
+                new Task(new Name("do tutorial"), new DueTime("2300"), new TaskType("deadline"), new DueDate("21/03/18"), getTagSet()),
+                new Task(new Name("meet girlfriend"), new DueTime("1200"), new TaskType("deadline"), new DueDate("Christmas"), getTagSet()),
          
 
             };
