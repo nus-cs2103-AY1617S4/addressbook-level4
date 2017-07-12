@@ -17,7 +17,7 @@
 //import seedu.whatsnext.model.task.Person;
 //import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.model.tag.Tag;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 //public class AddressBookTest {
 //
@@ -40,14 +40,14 @@
 //
 //    @Test
 //    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-//        AddressBook newData = new TypicalPersons().getTypicalAddressBook();
+//        AddressBook newData = new TypicalTasks().getTypicalAddressBook();
 //        addressBook.resetData(newData);
 //        assertEquals(newData, addressBook);
 //    }
 //
 //    @Test
 //    public void resetData_withDuplicatePersons_throwsAssertionError() {
-//        TypicalPersons td = new TypicalPersons();
+//        TypicalTasks td = new TypicalTasks();
 //        // Repeat td.alice twice
 //        List<Person> newPersons = Arrays.asList(new Person(td.alice), new Person(td.alice));
 //        List<Tag> newTags = new ArrayList<>(td.alice.getTags());
@@ -59,7 +59,7 @@
 //
 //    @Test
 //    public void resetData_withDuplicateTags_throwsAssertionError() {
-//        AddressBook typicalAddressBook = new TypicalPersons().getTypicalAddressBook();
+//        AddressBook typicalAddressBook = new TypicalTasks().getTypicalAddressBook();
 //        List<ReadOnlyPerson> newPersons = typicalAddressBook.getPersonList();
 //        List<Tag> newTags = new ArrayList<>(typicalAddressBook.getTagList());
 //        // Repeat the first tag twice

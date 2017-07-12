@@ -1,8 +1,8 @@
 //package seedu.whatsnext.logic.commands;
 //
 //import static org.junit.Assert.assertTrue;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-//import static seedu.whatsnext.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_PERSON;
 //
 //import java.util.Arrays;
 //import java.util.Collections;
@@ -17,14 +17,14 @@
 //import seedu.whatsnext.model.ModelManager;
 //import seedu.whatsnext.model.UserPrefs;
 //import seedu.whatsnext.model.task.ReadOnlyPerson;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
 // */
 //public class DeleteCommandTest {
 //
-//    private Model model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+//    private Model model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
 //
 //    @Test
 //    public void execute_validIndexUnfilteredList_success() throws Exception {

@@ -15,7 +15,7 @@
 //import seedu.whatsnext.model.ModelManager;
 //import seedu.whatsnext.model.UserPrefs;
 //import seedu.whatsnext.model.task.ReadOnlyPerson;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -28,7 +28,7 @@
 //
 //    @Before
 //    public void setUp() {
-//        model = new ModelManager(new TypicalPersons().getTypicalAddressBook(), new UserPrefs());
+//        model = new ModelManager(new TypicalTasks().getTypicalAddressBook(), new UserPrefs());
 //        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 //
 //        listCommand = new ListCommand();

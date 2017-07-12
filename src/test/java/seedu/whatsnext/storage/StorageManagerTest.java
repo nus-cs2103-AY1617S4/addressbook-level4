@@ -17,7 +17,7 @@
 //import seedu.whatsnext.model.ReadOnlyAddressBook;
 //import seedu.whatsnext.model.UserPrefs;
 //import seedu.whatsnext.testutil.EventsCollector;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 //public class StorageManagerTest {
 //
@@ -60,7 +60,7 @@
 //         * {@link XmlAddressBookStorage} class.
 //         * More extensive testing of UserPref saving/reading is done in {@link XmlAddressBookStorageTest} class.
 //         */
-//        AddressBook original = new TypicalPersons().getTypicalAddressBook();
+//        AddressBook original = new TypicalTasks().getTypicalAddressBook();
 //        storageManager.saveAddressBook(original);
 //        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
 //        assertEquals(original, new AddressBook(retrieved));

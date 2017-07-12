@@ -21,7 +21,7 @@
 //import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.model.task.exceptions.DuplicatePersonException;
 //import seedu.whatsnext.model.task.exceptions.PersonNotFoundException;
-//import seedu.whatsnext.testutil.PersonBuilder;
+//import seedu.whatsnext.testutil.TaskBuilder;
 //
 //public class AddCommandTest {
 //
@@ -37,7 +37,7 @@
 //    @Test
 //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
 //        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-//        Person validPerson = new PersonBuilder().build();
+//        Person validPerson = new TaskBuilder().build();
 //
 //        CommandResult commandResult = getAddCommandForPerson(validPerson, modelStub).execute();
 //
@@ -48,7 +48,7 @@
 //    @Test
 //    public void execute_duplicatePerson_throwsCommandException() throws Exception {
 //        ModelStub modelStub = new ModelStubThrowingDuplicatePersonException();
-//        Person validPerson = new PersonBuilder().build();
+//        Person validPerson = new TaskBuilder().build();
 //
 //        thrown.expect(CommandException.class);
 //        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_TASK);

@@ -28,7 +28,7 @@
 //import seedu.whatsnext.model.AddressBook;
 //import seedu.whatsnext.model.task.ReadOnlyPerson;
 //import seedu.whatsnext.testutil.TestUtil;
-//import seedu.whatsnext.testutil.TypicalPersons;
+//import seedu.whatsnext.testutil.TypicalTasks;
 //
 ///**
 // * A GUI Test class for AddressBook.
@@ -39,7 +39,7 @@
 //    @Rule
 //    public TestName name = new TestName();
 //
-//    protected TypicalPersons td = new TypicalPersons();
+//    protected TypicalTasks td = new TypicalTasks();
 //
 //    /*
 //     *   Handles to GUI elements present at the start up are created in advance
@@ -90,7 +90,7 @@
 //     */
 //    protected AddressBook getInitialData() {
 //        AddressBook ab = new AddressBook();
-//        TypicalPersons.loadAddressBookWithSampleData(ab);
+//        TypicalTasks.loadAddressBookWithSampleData(ab);
 //        return ab;
 //    }
 //
