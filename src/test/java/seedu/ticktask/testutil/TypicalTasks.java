@@ -20,14 +20,14 @@ public class TypicalTasks {
     public TypicalTasks() {
         try {
             washdog = new TaskBuilder().withName("wash dog")
-                    .withDate("01/01").withEmail("alice@example.com")
+                    .withDate("01/01").withTaskType("alice@example.com")
                     .withTime("2200")
                     .withTags("cleaning").build();
             dotutorial = new TaskBuilder().withName("do tutorial").withDate("23/03/19")
-                    .withEmail("dotutorial@example.com").withTime("2300")
+                    .withTaskType("dotutorial@example.com").withTime("2300")
                     .withTags("school", "homework").build();
             meetgirlfriend = new TaskBuilder().withName("meet girlfriend").withTime("0800")
-                    .withEmail("email@example.com").withDate("23/02").build();
+                    .withTaskType("e-mail@example.com").withDate("23/02").build();
             
           
         } catch (IllegalValueException e) {

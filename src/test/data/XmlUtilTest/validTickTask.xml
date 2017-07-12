@@ -2,56 +2,56 @@
 <ticktask>
     <tasks>
         <name>Hans Muster</name>
-        <phone isPrivate="false">9482424</phone>
-        <email isPrivate="false">hans@example.com</email>
-        <address isPrivate="false">4th street</address>
+        <time isPrivate="false">9482424</time>
+        <taskType isPrivate="false">hans@example.com</taskType>
+        <date isPrivate="false">4th street</date>
     </tasks>
     <tasks>
         <name>Ruth Mueller</name>
-        <phone isPrivate="false">87249245</phone>
-        <email isPrivate="false">ruth@example.com</email>
-        <address isPrivate="false">81th street</address>
+        <time isPrivate="false">87249245</time>
+        <taskType isPrivate="false">ruth@example.com</taskType>
+        <date isPrivate="false">81th street</date>
     </tasks>
     <tasks>
         <name>Heinz Kurz</name>
-        <phone isPrivate="false">95352563</phone>
-        <email isPrivate="false">heinz@example.com</email>
-        <address isPrivate="false">wall street</address>
+        <time isPrivate="false">95352563</time>
+        <taskType isPrivate="false">heinz@example.com</taskType>
+        <date isPrivate="false">wall street</date>
     </tasks>
     <tasks>
         <name>Cornelia Meier</name>
-        <phone isPrivate="false">87652533</phone>
-        <email isPrivate="false">cornelia@example.com</email>
-        <address isPrivate="false">10th street</address>
+        <time isPrivate="false">87652533</time>
+        <taskType isPrivate="false">cornelia@example.com</taskType>
+        <date isPrivate="false">10th street</date>
     </tasks>
     <tasks>
         <name>Werner Meyer</name>
-        <phone isPrivate="false">9482224</phone>
-        <email isPrivate="false">werner@example.com</email>
-        <address isPrivate="false">michegan ave</address>
+        <time isPrivate="false">9482224</time>
+        <taskType isPrivate="false">werner@example.com</taskType>
+        <date isPrivate="false">michegan ave</date>
     </tasks>
     <tasks>
         <name>Lydia Kunz</name>
-        <phone isPrivate="false">9482427</phone>
-        <email isPrivate="false">lydia@example.com</email>
-        <address isPrivate="false">little tokyo</address>
+        <time isPrivate="false">9482427</time>
+        <taskType isPrivate="false">lydia@example.com</taskType>
+        <date isPrivate="false">little tokyo</date>
     </tasks>
     <tasks>
         <name>Anna Best</name>
-        <phone isPrivate="false">9482442</phone>
-        <email isPrivate="false">anna@example.com</email>
-        <address isPrivate="false">4th street</address>
+        <time isPrivate="false">9482442</time>
+        <taskType isPrivate="false">anna@example.com</taskType>
+        <date isPrivate="false">4th street</date>
     </tasks>
     <tasks>
         <name>Stefan Meier</name>
-        <phone isPrivate="false">8482424</phone>
-        <email isPrivate="false">stefan@example.com</email>
-        <address isPrivate="false">little india</address>
+        <time isPrivate="false">8482424</time>
+        <taskType isPrivate="false">stefan@example.com</taskType>
+        <date isPrivate="false">little india</date>
     </tasks>
     <tasks>
         <name>Martin Mueller</name>
-        <phone isPrivate="false">8482131</phone>
-        <email isPrivate="false">hans@example.com</email>
-        <address isPrivate="false">chicago ave</address>
+        <time isPrivate="false">8482131</time>
+        <taskType isPrivate="false">hans@example.com</taskType>
+        <date isPrivate="false">chicago ave</date>
     </tasks>
 </ticktask>
