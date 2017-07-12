@@ -31,7 +31,7 @@ public class parseAddCommand {
     Set<Tag> tagList;
      
     public static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|#|\\bat\\b))+)" //.(?!by)+ will keep matching until by.
-                                                                     + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|at))+)?)?"
+                                                                     + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
                                                                      + "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
                                                                      + "((?=.*#(?<tags>.+)))?"
                                                                      + ".*");
