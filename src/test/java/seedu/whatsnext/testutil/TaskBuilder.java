@@ -16,8 +16,8 @@ import seedu.whatsnext.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TASKNAME = "CS2103 Exam";
-    public static final String DEFAULT_START_DATETIME = DateTime.INIT_DATEVALUE;
-    public static final String DEFAULT_END_DATETIME = DateTime.INIT_DATEVALUE;
+    public static final String DEFAULT_START_DATETIME = DateTime.INIT_DATETIME_VALUE;
+    public static final String DEFAULT_END_DATETIME = DateTime.INIT_DATETIME_VALUE;
     public static final String DEFAULT_TAGS = "HIGH";
 
     private BasicTask task;

@@ -27,6 +27,7 @@ public class BasicTask implements BasicTaskFeatures {
     private boolean isCompleted;
     private UniqueTagList tags;
 
+
     /**
      * Constructor for Floating
      * Deadline consists of Name, End Date, End Time and tags
