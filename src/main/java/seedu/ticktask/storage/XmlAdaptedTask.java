@@ -71,7 +71,7 @@ public class XmlAdaptedTask {
         final TaskType type = new TaskType(this.type);
         final DueDate dueDate = new DueDate(this.dueDate);
 
-        final Set<Tag> tags = new HashSet<>(personTags);
+        final Set<Tag> tags = new HashSet<>(taskTags);
         return new Task(name, time, type, dueDate, tags);
 
     }
