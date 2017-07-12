@@ -75,7 +75,6 @@ public class Task implements ReadOnlyTask {
      * Resets the task type based on the due date and due time of the task object 
      */
     public void resetTaskType(){
-
         if (time.isRange() || date.isRange() ){
             type.setValue(TaskType.TASK_TYPE_EVENT);
         }else if(time.isFloating() && date.isFloating()  ){
@@ -83,8 +82,6 @@ public class Task implements ReadOnlyTask {
         }else { 
             type.setValue(TaskType.TASK_TYPE_DEADLINE);
         }
-
-        System.out.println(type.toString());
     }
     //@@author A0139819N
 
