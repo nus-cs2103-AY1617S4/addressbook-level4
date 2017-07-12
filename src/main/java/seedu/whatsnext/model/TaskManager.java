@@ -90,6 +90,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         BasicTask newFloating = new BasicTask(p);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
+        tasks.sort();
     }
 
     /**
@@ -114,6 +115,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         // This can cause the tags master list to have additional tags that are not tagged to any task
         // in the task list.
         tasks.updateTask(target, editedTask);
+        tasks.sort();
     }
 
 
@@ -149,6 +151,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public boolean removeTask(BasicTaskFeatures key) throws TaskNotFoundException {
         if (tasks.remove(key)) {
+            tasks.sort();
             return true;
         } else {
             throw new TaskNotFoundException();

@@ -99,6 +99,38 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         setTasks(replacement);
     }
 
+    //@@ A0154986L
+    /***
+     * Sorts internalList by Events first, then Deadline then Floating tasks
+     */
+    public void sort() {
+        ObservableList<BasicTask> eventList = FXCollections.observableArrayList();
+        ObservableList<BasicTask> deadlineList = FXCollections.observableArrayList();
+        ObservableList<BasicTask> floatingList = FXCollections.observableArrayList();
+        for (BasicTask basicTask : internalList) {
+            if (basicTask.getTaskType().equals("event")) {
+                eventList.add(basicTask);
+            }
+            if (basicTask.getTaskType().equals("deadline")) {
+                deadlineList.add(basicTask);
+            }
+            if (basicTask.getTaskType().equals("floating")) {
+                floatingList.add(basicTask);
+            }
+        }
+        internalList.clear();
+        for (BasicTask basicTask : eventList) {
+            internalList.add(basicTask);
+        }
+        for (BasicTask basicTask : deadlineList) {
+            internalList.add(basicTask);
+        }
+        for (BasicTask basicTask : floatingList) {
+            internalList.add(basicTask);
+        }
+    }
+
+
     public UnmodifiableObservableList<BasicTask> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }
