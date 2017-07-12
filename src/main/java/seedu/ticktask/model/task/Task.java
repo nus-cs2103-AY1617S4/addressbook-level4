@@ -18,7 +18,7 @@ public class Task implements ReadOnlyTask {
 
     private Name name;
     private DueTime time;
-    private Email email;
+    private TaskType type;
     private DueDate date;
     private boolean completed;
 
@@ -28,14 +28,16 @@ public class Task implements ReadOnlyTask {
      * Every field must be present and not null.
      */
 
-    public Task(Name name, DueTime time, Email email, DueDate date, Set<Tag> tags) {
-        requireAllNonNull(name, time, email, date, tags);
+    public Task(Name name, DueTime time, TaskType type, DueDate date, Set<Tag> tags) {
+        requireAllNonNull(name, time, type, date, tags);
 
         this.name = name;
         this.time = time;
-        this.email = email;
+        this.type = type;
         this.date = date;
         this.completed = false;
+        
+        //resetTaskType();
         
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
@@ -44,7 +46,7 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getTime(), source.getEmail(), source.getDate(),
+        this(source.getName(), source.getTime(), source.getTaskType(), source.getDate(),
                 source.getTags());
     }
 
@@ -65,13 +67,30 @@ public class Task implements ReadOnlyTask {
         return time;
     }
 
-    public void setEmail(Email email) {
-        this.email = requireNonNull(email);
+    public void setTaskType(TaskType type) {
+        this.type = requireNonNull(type);
     }
+    //@@author A0139819N
+    /**
+     * Resets the task type based on the due date and due time of the task object 
+     */
+    public void resetTaskType(){
+
+        if (time.isRange() || date.isRange() ){
+            type.setValue(TaskType.TASK_TYPE_EVENT);
+        }else if(time.isFloating() && date.isFloating()  ){
+            type.setValue(TaskType.TASK_TYPE_FLOATING);
+        }else { 
+            type.setValue(TaskType.TASK_TYPE_DEADLINE);
+        }
+
+        System.out.println(type.toString());
+    }
+    //@@author A0139819N
 
     @Override
-    public Email getEmail() {
-        return email;
+    public TaskType getTaskType() {
+        return type;
     }
 
     public void setDate(DueDate date) {
@@ -115,7 +134,7 @@ public class Task implements ReadOnlyTask {
 
         this.setName(replacement.getName());
         this.setTime(replacement.getTime());
-        this.setEmail(replacement.getEmail());
+        this.setTaskType(replacement.getTaskType());
         this.setDate(replacement.getDate());
         this.setTags(replacement.getTags());
     }
@@ -130,7 +149,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, time, email, date, tags);
+        return Objects.hash(name, time, type, date, tags);
     }
 
     @Override
