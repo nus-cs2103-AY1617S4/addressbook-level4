@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
@@ -83,6 +84,14 @@ public class BasicTask implements BasicTaskFeatures {
         }
     }
 
+    @Override
+    public boolean eventTaskOverlap(BasicTaskFeatures task) {
+        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT) &&
+                this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime()) &&
+                task.getStartDateTime().isBeforeOrEqual(this.getEndDateTime()));
+
+    }
+
     public void setName(TaskName name) {
         this.taskName = requireNonNull(name);
     }
@@ -106,14 +115,14 @@ public class BasicTask implements BasicTaskFeatures {
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag set.
+     * Replaces this task's tags with the tags in the argument tag set.
      */
     public void setTags(Set<Tag> replacement) {
         tags.setTags(new UniqueTagList(replacement));
     }
 
     /**
-     * Updates this person with the details of {@code replacement}.
+     * Updates this task with the details of {@code replacement}.
      */
     public void resetData(BasicTaskFeatures replacement) {
         requireNonNull(replacement);
@@ -200,4 +209,19 @@ public class BasicTask implements BasicTaskFeatures {
     public TaskDescription getDescription() {
         return taskDescription;
     }
+  
+    public static boolean eventTaskOverlap(int overlapIndex) {
+        return overlapIndex != -1;
+    }
+
+    public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit, UnmodifiableObservableList<BasicTaskFeatures> taskList) {
+        int index = 0;
+        for (BasicTaskFeatures task : taskList) {
+            if (taskToEdit.eventTaskOverlap(task) && (!taskToEdit.equals(task))) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
 }

@@ -26,7 +26,6 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final UserPrefs userPrefs;
     private final TaskManager taskManager;
     private final FilteredList<BasicTask> filteredTasks;
 
@@ -41,7 +40,6 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(taskManager, userPrefs);
 
         logger.fine("Initializing with Task Manager: " + taskManager + " and user prefs " + userPrefs);
-        this.userPrefs = userPrefs;
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         undoTaskManager = new Stack<TaskManager>();

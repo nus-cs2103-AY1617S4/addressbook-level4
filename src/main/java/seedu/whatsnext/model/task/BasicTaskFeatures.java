@@ -36,7 +36,7 @@ public interface BasicTaskFeatures {
     }
 
     /**
-     * Formats the task as text, showing all contact details.
+     * Formats the task as text, showing all task details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
@@ -66,6 +66,7 @@ public interface BasicTaskFeatures {
 
         return builder.toString();
     }
+    boolean eventTaskOverlap(BasicTaskFeatures task);
 
 
 }
