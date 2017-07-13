@@ -10,6 +10,9 @@ import seedu.whatsnext.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
+    
+    private String taskManagerFilePath = "data/whatsnext.xml";
+    private String taskManagerName = "MyTaskManager";
 
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
@@ -25,6 +28,22 @@ public class UserPrefs {
 
     public void setGuiSettings(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
+    }
+
+    public String getTaskManagerFilePath() {
+        return taskManagerFilePath;
+    }
+
+    public void setTaskManagerFilePath(String taskManagerFilePath) {
+        this.taskManagerFilePath = taskManagerFilePath;
+    }
+
+    public String getTaskManagerName() {
+        return taskManagerName;
+    }
+
+    public void setTaskManagerName(String taskManagerName) {
+        this.taskManagerName = taskManagerName;
     }
 
 

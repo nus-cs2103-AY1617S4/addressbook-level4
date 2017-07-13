@@ -6,7 +6,7 @@
 //
 //import seedu.whatsnext.logic.commands.ClearCommand;
 //import seedu.whatsnext.logic.commands.DeleteCommand;
-//import seedu.whatsnext.testutil.PersonUtil;
+//import seedu.whatsnext.testutil.BasicTaskUtil;
 //
 //public class ClearCommandTest extends AddressBookGuiTest {
 //
@@ -18,7 +18,7 @@
 //        assertClearCommandSuccess();
 //
 //        //verify other commands can work after a clear command
-//        commandBox.runCommand(PersonUtil.getAddCommand(td.hoon));
+//        commandBox.runCommand(BasicTaskUtil.getAddCommand(td.hoon));
 //        assertTrue(personListPanel.isListMatching(td.hoon));
 //        commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
 //        assertListSize(0);
