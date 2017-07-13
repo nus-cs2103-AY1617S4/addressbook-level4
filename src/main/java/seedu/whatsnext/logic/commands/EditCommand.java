@@ -72,7 +72,7 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
-  //@@author A0156106M
+    //@@author A0156106M
     @Override
     public CommandResult execute() throws CommandException, TagNotFoundException, IllegalValueException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
@@ -83,6 +83,8 @@ public class EditCommand extends Command {
 
         BasicTaskFeatures taskToEdit = lastShownList.get(index.getZeroBased());
         BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        validateEditTask(editedTask);
+
         UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
 
         try {
@@ -102,6 +104,19 @@ public class EditCommand extends Command {
             throw new AssertionError("The target task cannot be missing");
         }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+    }
+
+    /**
+    * Checks the new editedTask created to ensure that the edited task value(s) is/are valid
+    * @throws CommandException if edited task is invalid
+    */
+    public void validateEditTask(BasicTask editedTask) throws CommandException {
+        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
+                editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))||
+                (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
+                        editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
+        }
     }
 
     //@@author A0142675B
@@ -125,7 +140,7 @@ public class EditCommand extends Command {
         return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
-  //@@author A0156106M
+    //@@author A0156106M
     /**
      * Creates a new overlapping BasicTask based on @param taskToMark
      * @return marked BasicTask

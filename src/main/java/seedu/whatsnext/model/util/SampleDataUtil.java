@@ -8,8 +8,6 @@ import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.DateTime;
-import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
@@ -17,14 +15,14 @@ public class SampleDataUtil {
     public static BasicTask[] getSamplePersons() {
         try {
             return new BasicTask[] {
-                new BasicTask(new TaskName("Complete CS2103 assignment"),new TaskDescription(), false,
-                    getTagSet("HIGH", "cs2103")),
-                new BasicTask(new TaskName("Assignment"),new TaskDescription(), false, new DateTime("06/12/12"),
-                        getTagSet("homework")),
-                new BasicTask(new TaskName("CS2103 Workshop"), new TaskDescription(), false, new DateTime("August 3rd"), new DateTime("August 4th"),
-                        getTagSet("camping")),
-                new BasicTask(new TaskName("Camping"), new TaskDescription(), false, new DateTime("07/10/12"), new DateTime("07/11/12"),
-                        getTagSet("camping"))
+                new BasicTask(new TaskName("Complete CS2103 assignment"),
+                    getTagSet("HIGH", "NUS")),
+                new BasicTask(new TaskName("Complete CS1231 assignment"),
+                        getTagSet("MEDIUM", "NUS")),
+                new BasicTask(new TaskName("Complete EE2024 assignment"),
+                        getTagSet("LOW", "NUS")),
+                new BasicTask(new TaskName("Complete EE2021 assignment"),
+                        getTagSet("NUS", "EE2021"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
