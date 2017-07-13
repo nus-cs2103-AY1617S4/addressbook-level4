@@ -52,13 +52,7 @@ public interface Model {
     /**
      * Returns the filtered event task list for reminder pop up window.
      */
-    UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForEventReminder();
-
-    // @@author A0154986L
-    /**
-     * Returns the filtered deadline task list for reminder pop up window.
-     */
-    UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForDeadlineReminder();
+    UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder();
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();

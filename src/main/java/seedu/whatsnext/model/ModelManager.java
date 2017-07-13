@@ -145,21 +145,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /**
-     * Returns the filtered event task list for reminder pop up window.
+     * Returns the filtered task list for reminder pop up window.
      */
     @Override
-    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForEventReminder() {
-        updateFilteredTaskList(new PredicateExpression(new EventReminderQualifier()));
-        return new UnmodifiableObservableList<>(filteredTasks);
-    }
-
-    // @@author A0154986L
-    /**
-     * Returns the filtered deadline task list for reminder pop up window.
-     */
-    @Override
-    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForDeadlineReminder() {
-        updateFilteredTaskList(new PredicateExpression(new DeadlineReminderQualifier()));
+    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
+        updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
@@ -265,9 +255,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /*
-     * Finds event tasks for reminder pop up window.
+     * Finds the tasks for reminder pop up window.
      */
-    private class EventReminderQualifier implements Qualifier {
+    private class ReminderQualifier implements Qualifier {
 
         Date remindStart = new Date();
         Date remindEnd = new Date();
@@ -279,39 +269,12 @@ public class ModelManager extends ComponentManager implements Model {
             remindStart = cal.getTime();
             cal.add(Calendar.DATE, 3);
             remindEnd = cal.getTime();
-            return basicTaskFeatures.getTaskType().equals("event")
+            return (basicTaskFeatures.getTaskType().equals("event")
                     && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
-                    && basicTaskFeatures.getStartDateTime().isBefore(remindEnd);
-        }
-
-        @Override
-        public String toString() {
-            cal.setTime(remindStart);
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
-            return remindEnd.toString();
-        }
-    }
-
-    // @@author A0154986L
-    /*
-     * Finds deadline tasks for reminder pop up window.
-     */
-    private class DeadlineReminderQualifier implements Qualifier {
-
-        Date remindStart = new Date();
-        Date remindEnd = new Date();
-        Calendar cal = Calendar.getInstance();
-
-        @Override
-        public boolean run(BasicTaskFeatures basicTaskFeatures) {
-            cal.setTime(remindStart);
-            remindStart = cal.getTime();
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
-            return basicTaskFeatures.getTaskType().equals("deadline")
-                    && !basicTaskFeatures.getEndDateTime().isBefore(remindStart)
-                    && basicTaskFeatures.getEndDateTime().isBefore(remindEnd);
+                    && basicTaskFeatures.getStartDateTime().isBefore(remindEnd))
+                    || (basicTaskFeatures.getTaskType().equals("deadline")
+                            && !basicTaskFeatures.getEndDateTime().isBefore(remindStart)
+                            && basicTaskFeatures.getEndDateTime().isBefore(remindEnd));
         }
 
         @Override

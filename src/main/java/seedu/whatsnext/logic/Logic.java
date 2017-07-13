@@ -32,14 +32,8 @@ public interface Logic {
 
     // @@author A0154986L
     /**
-     * Returns the filtered event task list for reminder pop up window.
+     * Returns the filtered task list for reminder pop up window.
      */
-    ObservableList<BasicTaskFeatures> getEventReminderList();
-
-    // @@author A0154986L
-    /**
-     * Returns the filtered deadline task list for reminder pop up window.
-     */
-    ObservableList<BasicTaskFeatures> getDeadlineReminderList();
+    ObservableList<BasicTaskFeatures> getReminderList();
 
 }
