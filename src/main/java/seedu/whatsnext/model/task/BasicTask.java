@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
@@ -81,6 +82,14 @@ public class BasicTask implements BasicTaskFeatures {
         } else {
             taskType = TASK_TYPE_EVENT;
         }
+    }
+
+    @Override
+    public boolean eventTaskOverlap(BasicTaskFeatures task) {
+        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT) &&
+                this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime()) &&
+                task.getStartDateTime().isBeforeOrEqual(this.getEndDateTime()));
+
     }
 
     public void setName(TaskName name) {
@@ -200,4 +209,19 @@ public class BasicTask implements BasicTaskFeatures {
     public TaskDescription getDescription() {
         return taskDescription;
     }
+
+    public static boolean eventTaskOverlap(int overlapIndex) {
+        return overlapIndex != -1;
+    }
+
+    public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit, UnmodifiableObservableList<BasicTaskFeatures> taskList) {
+        int index = 0;
+        for (BasicTaskFeatures task : taskList) {
+            if (taskToEdit.eventTaskOverlap(task) && (!taskToEdit.equals(task))) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
 }
