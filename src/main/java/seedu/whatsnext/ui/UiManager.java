@@ -39,7 +39,6 @@ public class UiManager extends ComponentManager implements Ui {
     private Config config;
     private UserPrefs prefs;
     private static MainWindow mainWindow;
-    private static ListView list;
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
@@ -60,7 +59,7 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            showBS();
+            showBs();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -68,7 +67,7 @@ public class UiManager extends ComponentManager implements Ui {
         }
     }
 
-    public static void showBS() {
+    public static void showBs() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Reminder");
         alert.setHeaderText("The following tasks are nearing deadline");
@@ -79,19 +78,19 @@ public class UiManager extends ComponentManager implements Ui {
     public static String everyTaskName() {
         StringBuilder allText = new StringBuilder("Events:\n");
         int index = 0;
-        for (int i=0; i<logic.getFilteredTaskList().size(); i++) {
+        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
             BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
             if (task.getTaskType().equals("event")) {
-                allText.append(index+1 + ". " + task.getName().toString() + "\n");
+                allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
             }
         }
         allText.append("\nDeadlines:\n");
-        for (int i=0; i<logic.getFilteredTaskList().size(); i++) {
+        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
             BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
             index = 0;
             if (task.getTaskType().equals("deadline")) {
-                allText.append(index+1 + ". " + task.getName().toString() + "\n");
+                allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
             }
         }

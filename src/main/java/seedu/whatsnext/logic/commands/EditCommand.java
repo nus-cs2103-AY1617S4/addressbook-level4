@@ -72,7 +72,7 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
-  //@@author A0156106M
+    //@@author A0156106M
     @Override
     public CommandResult execute() throws CommandException, TagNotFoundException, IllegalValueException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
         return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
-  //@@author A0156106M
+    //@@author A0156106M
     /**
      * Creates a new overlapping BasicTask based on @param taskToMark
      * @return marked BasicTask

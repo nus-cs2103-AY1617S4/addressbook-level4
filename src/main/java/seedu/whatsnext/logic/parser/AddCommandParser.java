@@ -30,7 +30,8 @@ public class AddCommandParser {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
+                        PREFIX_END_DATETIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
@@ -44,7 +45,7 @@ public class AddCommandParser {
             Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            BasicTask task = createBasicTaskBasedOnInputs(taskName,taskDescriptionValue,
+            BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
                     startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
         } catch (IllegalValueException ive) {
@@ -58,7 +59,7 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     private BasicTask createBasicTaskBasedOnInputs(
-            TaskName taskName, Optional<String> taskDescriptionValue,Optional<String> startDateTimeValue,
+            TaskName taskName, Optional<String> taskDescriptionValue, Optional<String> startDateTimeValue,
             Optional<String> endDateTimeValue, Set<Tag> tagList) throws IllegalValueException {
         BasicTask task;
         TaskDescription taskDescription = new TaskDescription();
