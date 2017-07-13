@@ -85,15 +85,17 @@ public class DeadlineListPanel extends UiPart<Region> {
      */
     private ObservableList<Pair<BasicTaskFeatures, Integer>> extractDeadlineTasks(
             ObservableList<BasicTaskFeatures> taskList) {
+        int counter = 0;
         ObservableList<Pair<BasicTaskFeatures, Integer>> deadlineList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
             BasicTaskFeatures taskToDelete = taskList.get(index);
             if (taskToDelete.getTaskType().equals("deadline")) {
                 Pair<BasicTaskFeatures, Integer> deadlineTask =
-                        new Pair<BasicTaskFeatures, Integer>(taskToDelete, index);
+                        new Pair<BasicTaskFeatures, Integer>(taskToDelete, counter);
                 deadlineList.add(deadlineTask);
                 deadlineMap.put(index, scrollIndex);
                 scrollIndex++;
+                counter++;
             }
         }
         return deadlineList;

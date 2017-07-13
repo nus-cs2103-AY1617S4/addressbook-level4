@@ -302,8 +302,8 @@
 }
 
 #dueBy {
-	-fx-text-fill: white;
-    -fx-background-color: red;
+	-fx-text-fill: #ffffff;
+    -fx-background-color: #093145;
     -fx-padding: 1 1 1 1;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -311,8 +311,8 @@
 }
 
 #from {
-	-fx-text-fill: white;
-    -fx-background-color: red;
+	-fx-text-fill: #ffffff;
+    -fx-background-color: #093145;
     -fx-padding: 1 1 1 1;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -320,8 +320,8 @@
 }
 
 #to {
-	-fx-text-fill: white;
-    -fx-background-color: red;
+	-fx-text-fill: #ffffff;
+    -fx-background-color: #093145;
     -fx-padding: 1 1 1 1;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -330,7 +330,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: blue;
+    -fx-background-color: #1287A8;
     -fx-padding: 1 1 1 1;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

@@ -29,6 +29,8 @@ public interface Logic {
     ObservableList<BasicTaskFeatures> getFilteredTaskList();
 
     ObservableList<BasicTaskFeatures> getInitialFilteredTaskList();
+    
+    //public ObservableList<BasicTaskFeatures> getAlertList();
 
 
 }

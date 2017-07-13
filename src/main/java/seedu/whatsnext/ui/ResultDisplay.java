@@ -47,16 +47,19 @@ public class ResultDisplay extends UiPart<Region> {
                 + "Tags: " + task.getAllTags() + "\n"
                 + "Status: " + task.getStatusString() + "\n"
                 + "From: " + task.getStartDateTime().toString() + " "
-                + "To: " + task.getEndDateTime().toString());
+                + "To: " + task.getEndDateTime().toString() + "\n"
+                + "Description: " + task.getDescription().toString());
         } else if (task.getTaskType().equals("deadline")) {
             displayed.setValue("Task name: " + task.getName() + "\n"
                     + "Tags: " + task.getAllTags() + "\n"
                     + "Status: " + task.getStatusString() + "\n"
-                    + "Due by: " + task.getEndDateTime().toString());
+                    + "Due by: " + task.getEndDateTime().toString() + "\n"
+                    + "Description: " + task.getDescription().toString());
         } else if (task.getTaskType().equals("floating")) {
             displayed.setValue("Task name: " + task.getName() + "\n"
                     + "Tags: " + task.getAllTags() + "\n"
-                    + "Status: " + task.getStatusString() + "\n");
+                    + "Status: " + task.getStatusString() + "\n"
+                    + "Description: " + task.getDescription().toString());
         }
     }
 }

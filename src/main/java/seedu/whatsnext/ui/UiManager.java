@@ -7,6 +7,7 @@ import com.google.common.eventbus.Subscribe;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import seedu.whatsnext.MainApp;
@@ -17,9 +18,12 @@ import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
+import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.Logic;
 import seedu.whatsnext.model.UserPrefs;
+import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
  * The manager of the UI component.
@@ -31,10 +35,11 @@ public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
-    private Logic logic;
+    private static Logic logic;
     private Config config;
     private UserPrefs prefs;
-    private MainWindow mainWindow;
+    private static MainWindow mainWindow;
+    private static ListView list;
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
@@ -55,11 +60,42 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            showBS();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    public static void showBS() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Reminder");
+        alert.setHeaderText("The following tasks are nearing deadline");
+        alert.setContentText(everyTaskName());
+        alert.show();
+    }
+
+    public static String everyTaskName() {
+        StringBuilder allText = new StringBuilder("Events:\n");
+        int index = 0;
+        for (int i=0; i<logic.getFilteredTaskList().size(); i++) {
+            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
+            if (task.getTaskType().equals("event")) {
+                allText.append(index+1 + ". " + task.getName().toString() + "\n");
+                index++;
+            }
+        }
+        allText.append("\nDeadlines:\n");
+        for (int i=0; i<logic.getFilteredTaskList().size(); i++) {
+            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
+            index = 0;
+            if (task.getTaskType().equals("deadline")) {
+                allText.append(index+1 + ". " + task.getName().toString() + "\n");
+                index++;
+            }
+        }
+        return allText.toString();
     }
 
     @Override
@@ -82,7 +118,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+            String contentText) {
         final Alert alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         alert.initOwner(owner);
@@ -135,7 +171,7 @@ public class UiManager extends ComponentManager implements Ui {
         }
     }
 
-    private void clearSelect() {
+    public static void clearSelect() {
         mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
         mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
         mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
@@ -150,5 +186,8 @@ public class UiManager extends ComponentManager implements Ui {
                 + Integer.toString(mainWindow.getEventListPanel().getEventListView().getItems().size())));
     }
 
-
+    @Subscribe
+    public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+        ResultDisplay.showSelectedTask(event.getNewSelection());
+    }
 }
