@@ -186,6 +186,7 @@ public class UiManager extends ComponentManager implements Ui {
 
     @Subscribe
     public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ResultDisplay.showSelectedTask(event.getNewSelection());
     }
 }

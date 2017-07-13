@@ -24,6 +24,7 @@ public interface BasicTaskFeatures {
     DateTime getEndDateTime();
     String getTaskType();
     String getStatusString();
+    String getTaskDetails();
 
 
     /**
