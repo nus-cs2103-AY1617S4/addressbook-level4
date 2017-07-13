@@ -1,4 +1,4 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -10,18 +10,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import seedu.address.TestApp;
-import seedu.address.commons.core.LogsCenter;
+import teamthree.twodo.TestApp;
+import teamthree.twodo.commons.core.LogsCenter;
 
-/**
+*//**
  * Base class for all GUI Handles used in testing.
- */
+ *//*
 public class GuiHandle {
     protected final GuiRobot guiRobot;
     protected final Stage primaryStage;
-    /**
+    *//**
      * An optional stage that exists in the App other than the primaryStage, could be a alert dialog, popup window, etc.
-     */
+     *//*
     protected Optional<Stage> intermediateStage = Optional.empty();
     protected final String stageTitle;
 
@@ -98,3 +98,4 @@ public class GuiHandle {
         focusOnMainApp();
     }
 }
+*/

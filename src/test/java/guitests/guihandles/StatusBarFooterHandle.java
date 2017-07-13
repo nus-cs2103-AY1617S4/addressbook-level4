@@ -1,14 +1,14 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import org.controlsfx.control.StatusBar;
 
 import guitests.GuiRobot;
 import javafx.stage.Stage;
-import seedu.address.TestApp;
+import teamthree.twodo.TestApp;
 
-/**
+*//**
  * A handle for the status bar at the footer of the application.
- */
+ *//*
 public class StatusBarFooterHandle extends GuiHandle {
 
     public static final String SYNC_STATUS_ID = "#syncStatus";
@@ -26,3 +26,4 @@ public class StatusBarFooterHandle extends GuiHandle {
         return ((StatusBar) getNode(SAVE_LOCATION_STATUS_ID)).getText();
     }
 }
+*/

@@ -1,12 +1,12 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import guitests.GuiRobot;
 import javafx.stage.Stage;
-import seedu.address.TestApp;
+import teamthree.twodo.TestApp;
 
-/**
+*//**
  * Provides a handle for {@code MainWindow}.
- */
+ *//*
 public class MainWindowHandle extends GuiHandle {
 
     private final PersonListPanelHandle personListPanel;
@@ -51,3 +51,4 @@ public class MainWindowHandle extends GuiHandle {
         return browserPanel;
     }
 }
+*/

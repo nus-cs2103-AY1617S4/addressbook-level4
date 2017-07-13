@@ -1,4 +1,4 @@
-package guitests;
+/*package guitests;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -7,9 +7,9 @@ import java.io.IOException;
 import org.junit.Test;
 
 import guitests.guihandles.AlertDialogHandle;
-import seedu.address.commons.events.storage.DataSavingExceptionEvent;
+import teamthree.twodo.commons.events.storage.DataSavingExceptionEvent;
 
-public class ErrorDialogGuiTest extends AddressBookGuiTest {
+public class ErrorDialogGuiTest extends TaskBookGuiTest {
 
     @Test
     public void showErrorDialogs() throws InterruptedException {
@@ -25,3 +25,4 @@ public class ErrorDialogGuiTest extends AddressBookGuiTest {
     }
 
 }
+*/

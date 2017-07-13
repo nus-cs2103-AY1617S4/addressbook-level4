@@ -1,9 +1,9 @@
 build/
-.gradle/
+.gradle/*
 .checkstyle
 .settings/
 .idea/
-lib/*
+.classpath
 *.iml
 *.log
 *.log.*
@@ -17,3 +17,6 @@ classes/
 /data/
 /bin/
 src/main/resources/docs/
+/.gradle/
+/config/checkstyle/checkstyle.xml
+

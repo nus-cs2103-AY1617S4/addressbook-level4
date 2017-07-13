@@ -1,15 +1,15 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import java.util.Arrays;
 
 import guitests.GuiRobot;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import seedu.address.TestApp;
+import teamthree.twodo.TestApp;
 
-/**
+*//**
  * Provides a handle to the main menu of the app.
- */
+ *//*
 public class MainMenuHandle extends GuiHandle {
     public MainMenuHandle(GuiRobot guiRobot, Stage primaryStage) {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
@@ -35,3 +35,4 @@ public class MainMenuHandle extends GuiHandle {
         guiRobot.sleep(500);
     }
 }
+*/

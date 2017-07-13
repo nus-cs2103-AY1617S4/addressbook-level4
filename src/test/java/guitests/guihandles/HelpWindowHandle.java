@@ -1,11 +1,11 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import guitests.GuiRobot;
 import javafx.stage.Stage;
 
-/**
+*//**
  * Provides a handle to the help window of the app.
- */
+ *//*
 public class HelpWindowHandle extends GuiHandle {
 
     private static final String HELP_WINDOW_TITLE = "Help";
@@ -20,9 +20,11 @@ public class HelpWindowHandle extends GuiHandle {
         return guiRobot.lookup(HELP_WINDOW_ROOT_FIELD_ID).tryQuery().isPresent();
     }
 
+    @Override
     public void closeWindow() {
         super.closeWindow();
         guiRobot.sleep(500);
     }
 
 }
+*/
