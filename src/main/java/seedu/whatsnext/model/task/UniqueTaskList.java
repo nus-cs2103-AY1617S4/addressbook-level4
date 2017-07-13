@@ -2,6 +2,8 @@ package seedu.whatsnext.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,9 +101,9 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         setTasks(replacement);
     }
 
-    //@@ A0154986L
+    //@@author A0154986L
     /***
-     * Sorts internalList by Events first, then Deadline then Floating tasks
+     * Sorts all tasks by Event tasks first, then Deadline tasks then Floating tasks
      */
     public void sort() {
         ObservableList<BasicTask> eventList = FXCollections.observableArrayList();
@@ -118,7 +120,12 @@ public class UniqueTaskList implements Iterable<BasicTask> {
                 floatingList.add(basicTask);
             }
         }
+
         internalList.clear();
+        sortEvents(eventList);
+        sortDeadlines(deadlineList);
+        sortFloating(floatingList);
+
         for (BasicTask basicTask : eventList) {
             internalList.add(basicTask);
         }
@@ -130,6 +137,81 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         }
     }
 
+    //@@author A0154986L
+    /***
+     * Sorts event tasks by end date and time first, then start date and time.
+     */
+    private void sortEvents(ObservableList<BasicTask> eventList) {
+        Collections.sort(eventList, new EndDateTimeComparator());
+        Collections.sort(eventList, new StartDateTimeComparator());
+    }
+
+    //@@author A0154986L
+    /***
+     * Sorts deadline tasks by end date and time only.
+     */
+    private void sortDeadlines(ObservableList<BasicTask> deadlineList) {
+        Collections.sort(deadlineList, new EndDateTimeComparator());
+    }
+
+    //@@author A0154986L
+    /***
+     * Sorts floating tasks by priority tags only.
+     * Ordered by HIGH, MEDIUM, LOW
+     */
+    private void sortFloating(ObservableList<BasicTask> floatingList) {
+        ObservableList<BasicTask> highList = FXCollections.observableArrayList();
+        ObservableList<BasicTask> mediumList = FXCollections.observableArrayList();
+        ObservableList<BasicTask> lowList = FXCollections.observableArrayList();
+        ObservableList<BasicTask> otherList = FXCollections.observableArrayList();
+
+        for (BasicTask basicTask : floatingList) {
+            if (basicTask.getAllTags().contains("HIGH")) {
+                highList.add(basicTask);
+            } else if (basicTask.getAllTags().contains("MEDIUM")) {
+                mediumList.add(basicTask);
+            } else if (basicTask.getAllTags().contains("LOW")) {
+                lowList.add(basicTask);
+            } else {
+                otherList.add(basicTask);
+            }
+        }
+
+        floatingList.clear();
+
+        for (BasicTask basicTask : highList) {
+            floatingList.add(basicTask);
+        }
+        for (BasicTask basicTask : mediumList) {
+            floatingList.add(basicTask);
+        }
+        for (BasicTask basicTask : lowList) {
+            floatingList.add(basicTask);
+        }
+        for (BasicTask basicTask : otherList) {
+            floatingList.add(basicTask);
+        }
+    }
+
+    //@@author A0154986L
+    /***
+     * Compares the start data time value of the tasks.
+     */
+    static class StartDateTimeComparator implements Comparator<BasicTask> {
+        public int compare(BasicTask c1, BasicTask c2) {
+            return c1.getStartDateTime().toString().compareTo(c2.getStartDateTime().toString());
+        }
+    }
+
+    //@@author A0154986L
+    /***
+     * Compares the end data time value of the tasks.
+     */
+    static class EndDateTimeComparator implements Comparator<BasicTask> {
+        public int compare(BasicTask c1, BasicTask c2) {
+            return c1.getEndDateTime().toString().compareTo(c2.getEndDateTime().toString());
+        }
+    }
 
     public UnmodifiableObservableList<BasicTask> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
