@@ -6,6 +6,23 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 
 1. [Quick Start](#1-quick-start)
 2. [Features](#2-features)
+    1. [Viewing help](#21-viewing-help--help)
+    2. [Adding a task](#22-adding-a-task-add-)
+    3. [Listing tasks](#23-listing-tasks--list)
+    4. [Editing a task](#24-editing-a-task--edit)
+    5. [Finding all tasks containing any keywords in their names or tags](#25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find)
+    6. [Deleting a task](#26-deleting-a-task--delete)
+    7. [View in detail](#27-view-in-detail--select)
+    8. [Undo last action](#28-undo-last-action--undo)
+    9. [Redo last action](#29-redo-last-action--redo)
+    10. [Clear tasks](#210-clear-tasks--clear)
+    11. [Mark tasks](#211-mark-tasks--mark)
+    12. [Unmark tasks](#212-unmark-tasks--unmark)
+    13. [View current data file path](#213-view-current-data-file-path--filepath)
+    14. [Change data file path](#214-change-data-file-path--changepath)
+    15. [Save the data](#215-save-the-data)
+    16. [Exit the programme](#216-exit-the-programme--exit)
+    
 3. [FAQ](#3-faq)
 4. [Command Summary](#4-command-summary)
 
@@ -162,8 +179,13 @@ Undo the last action performed by you.<br>
 There can be more than one undo action. You may undo the actions during that single session. <br>
 Format: `undo`
 
+### 2.9. Redo last action : `redo`
 
-### 2.9. Clearing tasks : `clear`
+Redo the last action undid by previous undo.<br>
+There can be more than one redo action. You may redo the actions during that single session. <br>
+Format: `redo`
+
+### 2.10. Clear tasks : `clear`
 Clears (1) incomplete, (2) complete, (3)all tasks in the task manager.<br>
 Clears all entries of the same type from the task manager.<br>
 Format: `clear MODIFYIER`
@@ -171,7 +193,7 @@ Format: `clear MODIFYIER`
 * Clear complete tasks: `clear` <br>
 * Clear all tasks: `clear all` <br>
 
-### 2.10. Marking tasks : `mark`
+### 2.11. Mark tasks : `mark`
 Mark the task at the specified `INDEX` to complete the task. <br>
 Format: `mark INDEX`
 > mark the task at the specified `INDEX`. <br>
@@ -186,7 +208,7 @@ Examples:
   `mark 1`<br>
   Marks the 1st task in the results of the `find` command.
 
-### 2.11. Marking tasks : `unmark`
+### 2.12. Unmark tasks : `unmark`
 Unmark the task at the specified `INDEX`. <br>
 Format: `unmark INDEX`
 > Unmark the task at the specified `INDEX`. <br>
@@ -201,25 +223,25 @@ Examples:
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
 
-### 2.12. View current data file path : `filepath`
+### 2.13. View current data file path : `filepath`
 
 View data file directory path. <br>
 Format: `filepath`
 > View the directory where the data file is saved <br>
 
-### 2.13. Updating data file
+### 2.14. Change data file path : `changepath`
 
-Updates data file directory. : `updatePath`<br>
-Format: `updatePath [Path Directory]`
-> Updates the directory where the data file is saved <br>
+Updates data file directory. : `changepath`<br>
+Format: `changepath [Path Directory]`
+> Changes the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
 
-### 2.14. Saving the data
+### 2.15. Save the data
 
 Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
-### 2.15. Exiting the program : `exit`
+### 2.16. Exit the programme : `exit`
 
 Exits the program.<br>
 Format: `exit`
@@ -247,10 +269,11 @@ Clear complete tasks | `clear complete` |
 Edit task | `edit INDEX [n/ TASK_NAME] [s/ START_DATE_TIME] [e/ END_DATE_TIME]  [+t/ TAG] [-t/ TAG]` | `edit 1 +t/ HIGH`
 Delete task | `delete INDEX` | `delete 1`
 Find by keywords or tags | `find KEYWORD [MORE_KEYWORDS]` | `find CS2103 Exams`
-Undo the last action | `Undo` |
+Undo the last action | `undo` |
+Redo the last undo | `redo` |
 Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
-Select and view tasks | `view INDEX` | `view 1`
+Select and view tasks | `select INDEX` | `select 1`
 Check file path of the storage file | `filepath` |
-Change the path of the storage file | `updatePath [path_directory]` | `updatePath C:\User\tasks.xml`
+Change the path of the storage file | `changepath [path_directory]` | `changepath \User\tasks.xml`
 Exit the programme | `exit` |

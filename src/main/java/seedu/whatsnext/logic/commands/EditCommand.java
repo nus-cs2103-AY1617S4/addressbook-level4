@@ -22,6 +22,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
@@ -104,10 +105,12 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskDescription updateDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         DateTime updatedStartDateTime = editTaskDescriptor.getStartDateTime().orElse(taskToEdit.getStartDateTime());
         DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
-        return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updatedTags);
+
+        return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
     //@@author A0142675B
@@ -197,6 +200,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private TaskName name;
+        private TaskDescription description;
         private boolean isCompleted;
         private DateTime startDateTime;
         private DateTime endDateTime;
@@ -207,6 +211,7 @@ public class EditCommand extends Command {
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.name;
+            this.description = toCopy.description;
             this.isCompleted = toCopy.isCompleted;
             this.startDateTime = toCopy.startDateTime;
             this.endDateTime = toCopy.endDateTime;
@@ -219,6 +224,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name,
+                                               this.description,
                                                this.isCompleted,
                                                this.startDateTime,
                                                this.endDateTime,
@@ -233,7 +239,16 @@ public class EditCommand extends Command {
         public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
+        //@@author A0156106M
+        public void setDescription(TaskDescription description) {
+            this.description = description;
+        }
 
+        public Optional<TaskDescription> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        //@@author A0142675B
         public void setIsCompleted(boolean isCompleted) {
             this.isCompleted = isCompleted;
         }
