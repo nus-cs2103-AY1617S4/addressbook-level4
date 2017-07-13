@@ -2,8 +2,6 @@ package seedu.whatsnext.model;
 
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
@@ -145,8 +143,8 @@ public class ModelManager extends ComponentManager implements Model {
     /*@Override
     public UnmodifiableObservableList<BasicTaskFeatures> getAlertList() {
         Date date = new Date(); //this will get the system date
-        Calendar c = Calendar.getInstance(); 
-        c.setTime(date); 
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
         c.add(Calendar.DATE, 7); //adds 7 days
         date = c.getTime(); //date with 7 days added
         FilteredList<BasicTask> filteredReminderList = new FilteredList<BasicTask>();

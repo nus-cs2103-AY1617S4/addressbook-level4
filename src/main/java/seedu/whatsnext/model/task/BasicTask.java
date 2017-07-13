@@ -209,7 +209,7 @@ public class BasicTask implements BasicTaskFeatures {
     public TaskDescription getDescription() {
         return taskDescription;
     }
-  
+
     public static boolean eventTaskOverlap(int overlapIndex) {
         return overlapIndex != -1;
     }
