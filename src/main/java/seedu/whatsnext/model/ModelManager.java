@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.LogsCenter;
@@ -140,6 +142,7 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
+
     /*@Override
     public UnmodifiableObservableList<BasicTaskFeatures> getAlertList() {
         Date date = new Date(); //this will get the system date
@@ -157,6 +160,7 @@ public class ModelManager extends ComponentManager implements Model {
             }
         }
     }*/
+
 
     @Override
     public void updateFilteredListToShowAll() {

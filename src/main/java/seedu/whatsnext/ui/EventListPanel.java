@@ -84,16 +84,14 @@ public class EventListPanel extends UiPart<Region> {
     //@@author A0154987J
     private ObservableList<Pair<BasicTaskFeatures, Integer>> extracteventTasks(
             ObservableList<BasicTaskFeatures> taskList) {
-        int counter = 0;
         ObservableList<Pair<BasicTaskFeatures, Integer>> eventList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
-            BasicTaskFeatures taskToDelete = taskList.get(index);
-            if (taskToDelete.getTaskType().equals("event")) {
-                Pair<BasicTaskFeatures, Integer> eventTask = new Pair<BasicTaskFeatures, Integer>(taskToDelete, counter);
+            BasicTaskFeatures taskToConsider = taskList.get(index);
+            if (taskToConsider.getTaskType().equals("event")) {
+                Pair<BasicTaskFeatures, Integer> eventTask = new Pair<BasicTaskFeatures, Integer>(taskToConsider, index);
                 eventList.add(eventTask);
                 eventMap.put(index, scrollIndex);
                 scrollIndex++;
-                counter++;
             }
         }
         return eventList;

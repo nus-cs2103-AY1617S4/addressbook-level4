@@ -47,7 +47,7 @@ public interface Model {
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<BasicTaskFeatures>} */
     UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
-
+  
     //UnmodifiableObservableList<BasicTaskFeatures> getAlertList();
 
     /** Updates the filter of the filtered task list to show all tasks */
