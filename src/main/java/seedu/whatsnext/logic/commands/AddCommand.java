@@ -55,8 +55,8 @@ public class AddCommand extends Command {
             } else {
                 model.addTask(toAdd);
             }
-            //Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
-            //EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
+            Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

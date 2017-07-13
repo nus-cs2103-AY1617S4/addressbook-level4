@@ -1,10 +1,8 @@
 package seedu.whatsnext.ui;
 
-import java.awt.event.KeyEvent;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.scene.input.KeyCode;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -32,21 +30,20 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         commandTextField.setOnKeyPressed(
-                event -> {
-                    switch (event.getCode()) {
-                    case UP: commandTextField.setText("what is this #$@!");
+            event -> {
+                switch (event.getCode()) {
+                case UP: commandTextField.setText("what is this #$@!");
                              break;
-                    
-                    case DOWN: commandTextField.clear();
+
+                case DOWN: commandTextField.clear();
                                 break;
-                    
-                    default:
-                    }
-                    
+
+                default:
                 }
+            }
         );
     }
-    
+
     @FXML
     private void handleCommandInputChanged() throws IllegalValueException {
         try {
