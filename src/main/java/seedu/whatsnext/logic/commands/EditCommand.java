@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.whatsnext.commons.core.Messages;
+import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
@@ -71,6 +72,7 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
+  //@@author A0156106M
     @Override
     public CommandResult execute() throws CommandException, TagNotFoundException, IllegalValueException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
@@ -81,9 +83,19 @@ public class EditCommand extends Command {
 
         BasicTaskFeatures taskToEdit = lastShownList.get(index.getZeroBased());
         BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
 
         try {
+
+            // Check overlapping tasks still exist
+            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
+            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+                editedTask = EditCommand.createOverlappingTask(editedTask);
+            } else {
+                // REMOVE OVERLAP TAG
+            }
             model.updateTask(taskToEdit, editedTask);
+
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
@@ -111,6 +123,30 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
 
         return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
+    }
+
+  //@@author A0156106M
+    /**
+     * Creates a new overlapping BasicTask based on @param taskToMark
+     * @return marked BasicTask
+     * */
+    static BasicTask createOverlappingTask(BasicTaskFeatures taskToMark) {
+        assert taskToMark != null;
+        BasicTask toCopy = new BasicTask(taskToMark);
+        TaskName updatedName = toCopy.getName();
+        TaskDescription updatedDescription = toCopy.getDescription();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> copyTags = toCopy.getTags();
+        Set<Tag> updatedTags = new HashSet<Tag>(copyTags);
+
+        try {
+            updatedTags.add(new Tag("Overlapping"));
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+        return new BasicTask(updatedName, updatedDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
     //@@author A0142675B

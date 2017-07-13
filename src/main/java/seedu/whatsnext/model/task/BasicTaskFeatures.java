@@ -66,6 +66,7 @@ public interface BasicTaskFeatures {
 
         return builder.toString();
     }
+    boolean eventTaskOverlap(BasicTaskFeatures task);
 
 
 }

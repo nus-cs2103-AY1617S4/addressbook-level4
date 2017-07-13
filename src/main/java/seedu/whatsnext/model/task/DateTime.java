@@ -97,6 +97,16 @@ public class DateTime {
         return dateValue.compareTo(endDateTime.dateValue) < 0;
     }
 
+    public boolean isAfterOrEqual(DateTime endDateTime) {
+        // dateValue is after or equal source
+        return dateValue.compareTo(endDateTime.dateValue) >= 0;
+    }
+
+    public boolean isBeforeOrEqual(DateTime endDateTime) {
+        // dateValue is before or equal source
+        return dateValue.compareTo(endDateTime.dateValue) <= 0;
+    }
+
 
     public boolean isEmpty() {
         return toString().equals(INIT_DATETIME_VALUE);
