@@ -2,12 +2,12 @@ package seedu.whatsnext.model;
 
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.whatsnext.commons.core.ComponentManager;
 import seedu.whatsnext.commons.core.LogsCenter;
@@ -142,32 +142,30 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
+    // @@author A0154986L
+    /**
+     * Returns the filtered event task list for reminder pop up window.
+     */
+    @Override
+    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForEventReminder() {
+        updateFilteredTaskList(new PredicateExpression(new EventReminderQualifier()));
+        return new UnmodifiableObservableList<>(filteredTasks);
+    }
 
-    /*@Override
-    public UnmodifiableObservableList<BasicTaskFeatures> getAlertList() {
-        Date date = new Date(); //this will get the system date
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.DATE, 7); //adds 7 days
-        date = c.getTime(); //date with 7 days added
-        FilteredList<BasicTask> filteredReminderList = new FilteredList<BasicTask>();
-        for (int i = 0; i< filteredTasks.size(); i++) {
-            BasicTaskFeatures task = filteredTasks.get(i);
-            if (task.getTaskType().equals("event")) {
-                if (date.equals(task.getStartDateTime().getDate())) {
-                    filteredReminderList.add(Task);
-                }
-            }
-        }
-    }*/
-
+    // @@author A0154986L
+    /**
+     * Returns the filtered deadline task list for reminder pop up window.
+     */
+    @Override
+    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForDeadlineReminder() {
+        updateFilteredTaskList(new PredicateExpression(new DeadlineReminderQualifier()));
+        return new UnmodifiableObservableList<>(filteredTasks);
+    }
 
     @Override
     public void updateFilteredListToShowAll() {
-
         filteredTasks.setPredicate(null);
         indicateTaskManagerChanged();
-
     }
 
     @Override
@@ -261,6 +259,60 @@ public class ModelManager extends ComponentManager implements Model {
             } else {
                 return "completion status = " + String.join(", ", "false");
             }
+        }
+    }
+
+    // @@author A0154986L
+    /*
+     * Finds tasks by for reminder pop up window.
+     */
+    private class EventReminderQualifier implements Qualifier {
+
+        Date date = new Date(); //this will get the system date
+        Calendar c = Calendar.getInstance();
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            c.setTime(date); 
+            c.add(Calendar.DATE, 3); //adds 3 days
+            date = c.getTime(); //date with 3 days added
+            return basicTaskFeatures.getTaskType().equals("event")
+                    && basicTaskFeatures.getStartDateTime().isBefore(date);
+        }
+
+        @Override
+        public String toString() {
+            c.setTime(date); 
+            c.add(Calendar.DATE, 3); //adds 3 days
+            date = c.getTime(); //date with 3 days added
+            return date.toString();
+        }
+    }
+
+    // @@author A0154986L
+    /*
+     * Finds tasks by for reminder pop up window.
+     */
+    private class DeadlineReminderQualifier implements Qualifier {
+
+        Date date = new Date(); //this will get the system date
+        Calendar c = Calendar.getInstance();
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            c.setTime(date); 
+            c.add(Calendar.DATE, 3); //adds 3 days
+            date = c.getTime(); //date with 3 days added
+            return basicTaskFeatures.getTaskType().equals("deadline")
+                    && basicTaskFeatures.getEndDateTime().isBefore(date);
+        }
+
+        @Override
+        public String toString() {
+            c.setTime(date); 
+            c.add(Calendar.DATE, 3); //adds 3 days
+            date = c.getTime(); //date with 3 days added
+            return date.toString();
         }
     }
 

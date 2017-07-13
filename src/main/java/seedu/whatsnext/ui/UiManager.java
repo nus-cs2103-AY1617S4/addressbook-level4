@@ -77,17 +77,17 @@ public class UiManager extends ComponentManager implements Ui {
     public static String everyTaskName() {
         StringBuilder allText = new StringBuilder("Events:\n");
         int index = 0;
-        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
-            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
+        for (int i = 0; i < logic.getEventReminderList().size(); i++) {
+            BasicTaskFeatures task = logic.getEventReminderList().get(i);
             if (task.getTaskType().equals("event")) {
                 allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
             }
         }
+        index = 0;
         allText.append("\nDeadlines:\n");
-        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
-            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
-            index = 0;
+        for (int i = 0; i < logic.getDeadlineReminderList().size(); i++) {
+            BasicTaskFeatures task = logic.getDeadlineReminderList().get(i);
             if (task.getTaskType().equals("deadline")) {
                 allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
