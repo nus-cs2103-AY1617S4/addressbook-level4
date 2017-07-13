@@ -139,6 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
+        filteredTasks.setPredicate(null);
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
@@ -264,61 +265,67 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /*
-     * Finds tasks by for reminder pop up window.
+     * Finds event tasks for reminder pop up window.
      */
     private class EventReminderQualifier implements Qualifier {
 
-        Date date = new Date(); //this will get the system date
-        Calendar c = Calendar.getInstance();
+        Date remindStart = new Date();
+        Date remindEnd = new Date();
+        Calendar cal = Calendar.getInstance();
 
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
-            c.setTime(date); 
-            c.add(Calendar.DATE, 3); //adds 3 days
-            date = c.getTime(); //date with 3 days added
+            cal.setTime(remindStart);
+            remindStart = cal.getTime();
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
             return basicTaskFeatures.getTaskType().equals("event")
-                    && basicTaskFeatures.getStartDateTime().isBefore(date);
+                    && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
+                    && basicTaskFeatures.getStartDateTime().isBefore(remindEnd);
         }
 
         @Override
         public String toString() {
-            c.setTime(date); 
-            c.add(Calendar.DATE, 3); //adds 3 days
-            date = c.getTime(); //date with 3 days added
-            return date.toString();
+            cal.setTime(remindStart);
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
+            return remindEnd.toString();
         }
     }
 
     // @@author A0154986L
     /*
-     * Finds tasks by for reminder pop up window.
+     * Finds deadline tasks for reminder pop up window.
      */
     private class DeadlineReminderQualifier implements Qualifier {
 
-        Date date = new Date(); //this will get the system date
-        Calendar c = Calendar.getInstance();
+        Date remindStart = new Date();
+        Date remindEnd = new Date();
+        Calendar cal = Calendar.getInstance();
 
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
-            c.setTime(date); 
-            c.add(Calendar.DATE, 3); //adds 3 days
-            date = c.getTime(); //date with 3 days added
+            cal.setTime(remindStart);
+            remindStart = cal.getTime();
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
             return basicTaskFeatures.getTaskType().equals("deadline")
-                    && basicTaskFeatures.getEndDateTime().isBefore(date);
+                    && !basicTaskFeatures.getEndDateTime().isBefore(remindStart)
+                    && basicTaskFeatures.getEndDateTime().isBefore(remindEnd);
         }
 
         @Override
         public String toString() {
-            c.setTime(date); 
-            c.add(Calendar.DATE, 3); //adds 3 days
-            date = c.getTime(); //date with 3 days added
-            return date.toString();
+            cal.setTime(remindStart);
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
+            return remindEnd.toString();
         }
     }
 
     //@@author A0142675B
     /**
-     * Find the task either by name or tag.
+     * Finds the tasks either by name or tag.
      */
     private class NameAndTagQualifier implements Qualifier {
         private Set<String> keyWords;
