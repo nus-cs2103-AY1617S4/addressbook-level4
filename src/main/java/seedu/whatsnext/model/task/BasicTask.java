@@ -115,14 +115,14 @@ public class BasicTask implements BasicTaskFeatures {
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag set.
+     * Replaces this task's tags with the tags in the argument tag set.
      */
     public void setTags(Set<Tag> replacement) {
         tags.setTags(new UniqueTagList(replacement));
     }
 
     /**
-     * Updates this person with the details of {@code replacement}.
+     * Updates this task with the details of {@code replacement}.
      */
     public void resetData(BasicTaskFeatures replacement) {
         requireNonNull(replacement);
@@ -209,7 +209,7 @@ public class BasicTask implements BasicTaskFeatures {
     public TaskDescription getDescription() {
         return taskDescription;
     }
-
+  
     public static boolean eventTaskOverlap(int overlapIndex) {
         return overlapIndex != -1;
     }
