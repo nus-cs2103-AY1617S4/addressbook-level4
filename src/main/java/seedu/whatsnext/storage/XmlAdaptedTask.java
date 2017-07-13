@@ -11,6 +11,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
@@ -28,6 +29,8 @@ public class XmlAdaptedTask {
     private String endDateTime;
     @XmlElement(required = true)
     private String taskType;
+    @XmlElement(required = true)
+    private String taskDescription;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -48,6 +51,7 @@ public class XmlAdaptedTask {
         name = source.getName().fullTaskName;
         isCompleted = source.getIsCompleted();
         tagged = new ArrayList<>();
+        taskDescription = source.getDescription().toString();
         if (!source.getStartDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)) {
             startDateTime = source.getStartDateTime().toString();
         }
@@ -77,16 +81,21 @@ public class XmlAdaptedTask {
         final Set<Tag> tags = new HashSet<>(taskTags);
         final DateTime startDateTime;
         final DateTime endDateTime;
+        TaskDescription taskDescription = new TaskDescription();
+        if (this.taskDescription != null) {
+            taskDescription = new TaskDescription(this.taskDescription);
+        }
+
         // Event Task
         if (this.startDateTime != null && this.endDateTime != null) {
             startDateTime = new DateTime(this.startDateTime);
             endDateTime = new DateTime(this.endDateTime);
-            return new BasicTask(name, isCompleted, startDateTime, endDateTime, tags);
+            return new BasicTask(name, taskDescription, isCompleted, startDateTime, endDateTime, tags);
         } else if (this.endDateTime != null) {
             endDateTime = new DateTime(this.endDateTime);
-            return new BasicTask(name, isCompleted, endDateTime, tags);
+            return new BasicTask(name, taskDescription, isCompleted, endDateTime, tags);
         } else {
-            return new BasicTask(name, isCompleted, tags);
+            return new BasicTask(name, taskDescription, isCompleted, tags);
         }
 
     }

@@ -10,6 +10,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
@@ -63,12 +64,13 @@ public class UnmarkCommand extends Command {
         assert taskToUnmark != null;
         BasicTask toCopy = new BasicTask(taskToUnmark);
         TaskName updatedName = toCopy.getName();
+        TaskDescription updateDescription = toCopy.getDescription();
         DateTime startDateTime = toCopy.getStartDateTime();
         DateTime endDateTime = toCopy.getEndDateTime();
         toCopy.setIncomplete();
         boolean updateIsComplete = toCopy.getIsCompleted();
         Set<Tag> updatedTags = toCopy.getTags();
-        return new BasicTask(updatedName, updateIsComplete, startDateTime, endDateTime, updatedTags);
+        return new BasicTask(updatedName, updateDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
 }

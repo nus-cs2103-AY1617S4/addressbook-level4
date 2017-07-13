@@ -53,7 +53,6 @@ public class DateTime {
                 throw new IllegalValueException(MESSAGE_DATE_CONSTRAINT);
             }
             dateValue = dateInputList.get(0);
-            System.out.println(dateValue.toString());
             validateDateTime();
         }
     }
@@ -69,7 +68,6 @@ public class DateTime {
             }
         }
     }
-
 
     /**
      * Checks if the list is empty
