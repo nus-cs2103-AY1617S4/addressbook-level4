@@ -2,6 +2,7 @@ package seedu.whatsnext.model;
 
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
@@ -47,6 +48,8 @@ public interface Model {
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<BasicTaskFeatures>} */
     UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
+    
+    //UnmodifiableObservableList<BasicTaskFeatures> getAlertList();
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();

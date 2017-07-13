@@ -42,14 +42,16 @@ public class FloatingListPanel extends UiPart<Region> {
 
     private ObservableList<Pair<BasicTaskFeatures, Integer>> extractFloatingTasks(
             ObservableList<BasicTaskFeatures> taskList) {
+        int counter = 0;
         ObservableList<Pair<BasicTaskFeatures, Integer>> floatingTaskList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
             BasicTaskFeatures taskToFloat = taskList.get(index);
             if (taskToFloat.getTaskType().equals("floating")) {
-                Pair<BasicTaskFeatures, Integer> floatTask = new Pair<BasicTaskFeatures, Integer>(taskToFloat, index);
+                Pair<BasicTaskFeatures, Integer> floatTask = new Pair<BasicTaskFeatures, Integer>(taskToFloat, counter);
                 floatingTaskList.add(floatTask);
                 floatingMap.put(index, scrollIndex);
                 scrollIndex++;
+                counter++;
             }
         }
         return floatingTaskList;
