@@ -1,53 +1,53 @@
-//package seedu.whatsnext.model;
-//
-//import static org.junit.Assert.assertFalse;
-//import static org.junit.Assert.assertTrue;
-//
-//import java.util.Arrays;
-//import java.util.HashSet;
-//
-//import org.junit.Test;
-//
-//import seedu.whatsnext.testutil.AddressBookBuilder;
-//import seedu.whatsnext.testutil.TypicalTasks;
-//
-//public class ModelManagerTest {
-//
-//    private TypicalTasks typicalPersons = new TypicalTasks();
-//
-//    @Test
-//    public void equals() throws Exception {
-//        AddressBook addressBook = new AddressBookBuilder().withPerson(typicalPersons.alice)
-//                .withPerson(typicalPersons.benson).build();
-//        AddressBook differentAddressBook = new AddressBook();
-//        UserPrefs userPrefs = new UserPrefs();
-//
-//        // same values -> returns true
-//        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
-//        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-//        assertTrue(modelManager.equals(modelManagerCopy));
-//
-//        // same object -> returns true
-//        assertTrue(modelManager.equals(modelManager));
-//
-//        // null -> returns false
-//        assertFalse(modelManager.equals(null));
-//
-//        // different types -> returns false
-//        assertFalse(modelManager.equals(5));
-//
-//        // different addressBook -> returns false
-//        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-//
-//        // different filteredList -> returns false
-//        modelManager.updateFilteredPersonList(new HashSet<>(
-//                Arrays.asList(typicalPersons.alice.getName().fullName.split(" "))));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-//        modelManager.updateFilteredListToShowAll(); // resets modelManager to initial state for upcoming tests
-//
-//        // different userPrefs -> returns true
-//        UserPrefs differentUserPrefs = new UserPrefs();
-//        differentUserPrefs.setAddressBookName("differentName");
-//        assertTrue(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-//    }
-//}
+package seedu.whatsnext.model;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+import org.junit.Test;
+
+import seedu.whatsnext.testutil.TaskManagerBuilder;
+import seedu.whatsnext.testutil.TypicalTasks;
+
+public class ModelManagerTest {
+
+    private TypicalTasks typicalPersons = new TypicalTasks();
+
+    @Test
+    public void equals() throws Exception {
+        TaskManager taskManager = new TaskManagerBuilder().withPerson(typicalPersons.alice)
+                .withPerson(typicalPersons.benson).build();
+        TaskManager differentTaskManager = new TaskManager();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        ModelManager modelManager = new ModelManager(taskManager, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(taskManager, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentTaskManager, userPrefs)));
+
+        // different filteredList -> returns false
+        modelManager.updateFilteredPersonList(new HashSet<>(
+                Arrays.asList(typicalPersons.alice.getName().fullName.split(" "))));
+        assertFalse(modelManager.equals(new ModelManager(taskManager, userPrefs)));
+        modelManager.updateFilteredListToShowAll(); // resets modelManager to initial state for upcoming tests
+
+        // different userPrefs -> returns true
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setTaskManagerName("differentName");
+        assertTrue(modelManager.equals(new ModelManager(taskManager, differentUserPrefs)));
+    }
+}
