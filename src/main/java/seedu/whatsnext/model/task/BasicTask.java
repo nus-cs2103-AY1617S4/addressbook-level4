@@ -63,7 +63,7 @@ public class BasicTask implements BasicTaskFeatures {
      * */
     public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted,
             DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
-        assert (startDateTime.isEmpty() && !endDateTime.isEmpty());
+        //assert (startDateTime.isEmpty() && !endDateTime.isEmpty());
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.tags = new UniqueTagList(tags);

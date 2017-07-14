@@ -26,8 +26,8 @@ public class TaskBuilder {
     public TaskBuilder() throws IllegalValueException {
         TaskName defaultName = new TaskName(DEFAULT_TASKNAME);
         TaskDescription defaultDescription = new TaskDescription(TaskDescription.INIT_DECRIPTION_VALUE);
-        DateTime defaultStartDateTime = new DateTime(DEFAULT_START_DATETIME);
-        DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
+        DateTime defaultStartDateTime = new DateTime();
+        DateTime defaultEndDateTime = new DateTime();
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
         this.task = new BasicTask(defaultName, defaultDescription, false, defaultStartDateTime, defaultEndDateTime, defaultTags);
     }

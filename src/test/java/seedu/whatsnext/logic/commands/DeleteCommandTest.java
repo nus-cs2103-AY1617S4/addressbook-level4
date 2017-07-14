@@ -76,6 +76,8 @@ public class DeleteCommandTest {
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+
+
     /**
      * Returns a {@code DeleteCommand} with the parameter {@code index}.
      */
@@ -86,14 +88,15 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the first person from the address book.
+     * Updates {@code model}'s filtered list to show only the first person from the Task Manager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
-        final String[] splitName = task.getName().fullTaskName.split("\\s+");
+        final String[] splitName = task.getName().toString().split("\\s+");
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
         assert model.getFilteredTaskList().size() == 1;
+
     }
 
     /**

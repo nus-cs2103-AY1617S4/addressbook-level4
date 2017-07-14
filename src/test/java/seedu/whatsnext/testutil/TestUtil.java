@@ -54,15 +54,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new BasicTask[]{
-                new BasicTask(new TaskName("CS2103 project"), new TaskDescription(), false, new DateTime(), new DateTime(), getTagSet()),
-                new BasicTask(new TaskName("John's Birthday"), new TaskDescription(), false, new DateTime(), new DateTime("11th August"), getTagSet()),
-                new BasicTask(new TaskName("EE2024 project submission"), new TaskDescription(), false, new DateTime(), new DateTime("11th October"), getTagSet()),
-                new BasicTask(new TaskName("Christmas Party"), new TaskDescription(), false, new DateTime(), new DateTime("25th December"), getTagSet()),
-                new BasicTask(new TaskName("Holiday"), new TaskDescription("Vacation Break"), false, new DateTime("20th December"), new DateTime("22 December"), getTagSet()),
-                new BasicTask(new TaskName("Buy Groceries"), new TaskDescription("Buy ice cream"), false, new DateTime(), new DateTime(), getTagSet()),
-                new BasicTask(new TaskName("Buy Pencil"), new TaskDescription(), false, new DateTime(), new DateTime(), getTagSet()),
-                new BasicTask(new TaskName("Wash the dishes"), new TaskDescription(), false, new DateTime(), new DateTime(), getTagSet()),
-                new BasicTask(new TaskName("Dinner with family"), new TaskDescription(), false, new DateTime(), new DateTime("next monday"), getTagSet()),
+                new BasicTask(new TaskName("CS2103 project"), new TaskDescription(), false, new DateTime(), new DateTime(), getTagSet())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
