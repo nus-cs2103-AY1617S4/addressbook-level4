@@ -155,6 +155,14 @@ public class DueDate {
 
         return end_date_string;
     }
+    
+    public LocalDate getLocalStartDate() {
+        return start_date;
+    }
+    
+    public LocalDate getLocalEndDate() {
+        return end_date;
+    }
 
     /**
      * Returns true if a given date is an empty string or invalid string

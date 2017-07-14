@@ -157,6 +157,14 @@ public class DueTime {
         return start_time_string;
 
     }
+    
+    public LocalTime getLocalEndTime() {
+        return end_time;
+    }
+    
+    public LocalTime getLocalSstartTime() {
+        return start_time;
+    }
 
     /**
      * Returns true if a given date is an empty string or invalid string
