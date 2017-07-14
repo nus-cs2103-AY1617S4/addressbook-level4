@@ -47,10 +47,14 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-
-        if (eventClash(toAdd)) {
+        if(!isChornological(toAdd)){
             throw new DuplicateTaskException();
         }
+
+        //if (eventClash(toAdd)) {
+        //    throw new DuplicateTaskException();
+        //}
+        
         toAdd.resetTaskType();
         internalList.add(new Task(toAdd));
     }
@@ -62,9 +66,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public static Predicate<Task> isEvent() {
         return p-> p.getTaskType().toString().equals("event");
     }
-    //@@author
-
-    //@@author A0147928N
+    
     /**
      * Returns true if the list contains a task within the same time frame as the given argument.
      */
@@ -128,10 +130,15 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         
-        if (eventClash(editedTask)) {
+        //if (eventClash(editedTask)) {
+        //    throw new DuplicateTaskException();
+        //}
+
+        if(!isChornological(editedTask)){
             throw new DuplicateTaskException();
         }
-
+    
+    
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
@@ -186,4 +193,59 @@ public class UniqueTaskList implements Iterable<Task> {
     public int hashCode() {
         return internalList.hashCode();
     }
+    
+    //@@author A0139964M
+    /**
+     * Checks if the task added is in the past.
+     * @param task
+     * @return boolean
+     */
+    public boolean isChornological(ReadOnlyTask task) {
+        LocalDate currDate = LocalDate.now();
+        LocalDate taskDate = task.getDate().getLocalStartDate();
+        //System.out.println("localDate: " + currDate);
+        //System.out.println("TaskDate: " + taskDate);
+        
+        if(task.getDate().getLocalStartDate() == null){
+            //No date either means today or no time, if no time or time is chornological just add
+            if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
+                return true;
+            }
+        }
+        //Check if task's is today.
+        if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
+            if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //If date exist, but it is in the future, i dont need to check the time.
+        if(isDateChornological(task)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    public boolean isTimeChornological(ReadOnlyTask task) {
+        LocalTime currTime = LocalTime.now();
+        LocalTime taskTime = task.getTime().getLocalStartTime();
+        if (taskTime.isBefore(currTime)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean isDateChornological(ReadOnlyTask task){
+        LocalDate currDate = LocalDate.now();
+        LocalDate taskDate = task.getDate().getLocalStartDate();
+        if(taskDate.isBefore(currDate)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    //@@author
 }
