@@ -139,7 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
-        filteredTasks.setPredicate(null);
+        //filteredTasks.setPredicate(null);
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
