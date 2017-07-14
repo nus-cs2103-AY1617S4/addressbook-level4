@@ -48,12 +48,6 @@ public interface Model {
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<BasicTaskFeatures>} */
     UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList();
 
-    // @@author A0154986L
-    /**
-     * Returns the filtered event task list for reminder pop up window.
-     */
-    UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder();
-
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
@@ -67,5 +61,11 @@ public interface Model {
      * Updates the filter of the filtered task list to filter by task completion
      */
     void updateFilteredTaskListToShowByCompletion(boolean isComplete);
+
+    // @@author A0154986L
+    /**
+     * Returns the filtered event task list for reminder pop up window.
+     */
+    void updateFilteredTaskListForReminder();
 
 }

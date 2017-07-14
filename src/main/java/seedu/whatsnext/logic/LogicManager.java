@@ -61,11 +61,13 @@ public class LogicManager extends ComponentManager implements Logic {
      */
     @Override
     public ObservableList<BasicTaskFeatures> getReminderList() {
-        return model.getFilteredTaskListForReminder();
+        model.updateFilteredTaskListForReminder();
+        return model.getFilteredTaskList();
     }
 
     @Override
     public List<String> getHistory() {
         return history.getHistory();
     }
+
 }
