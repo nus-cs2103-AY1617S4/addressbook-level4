@@ -76,7 +76,9 @@ public class UniqueTaskList implements Iterable<Task> {
         LocalTime toCheckStartTime = toCheck.getTime().getLocalStartTime();
         LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
 
-        for (Task curr : eventList) {
+        for (ReadOnlyTask curr : eventList) {
+            if (curr.equals(toCheck)) continue;
+            
             LocalDate currStartDate = curr.getDate().getLocalStartDate();
             LocalDate currEndDate = curr.getDate().getLocalEndDate();
             LocalTime currStartTime = curr.getTime().getLocalStartTime();

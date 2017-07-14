@@ -39,16 +39,16 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         if(task.getTime().isRange()){
-        	time.setText(task.getTime().getStartTime() + " - " + task.getTime().getEndTime());
+        	time.setText(task.getTime().toString());
         }
         else{
-            time.setText(task.getTime().getStartTime());
+            time.setText(task.getTime().toString());
         }
         if(task.getDate().isRange()){
-            date.setText(task.getDate().getStartDate() + " - " + task.getDate().getEndDate());
+            date.setText(task.getDate().toString());
         }
         else{
-            date.setText(task.getDate().getStartDate());
+            date.setText(task.getDate().toString());
         }
 
         taskType.setText(task.getTaskType().value);

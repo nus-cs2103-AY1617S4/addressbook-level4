@@ -3,6 +3,8 @@ package seedu.ticktask.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
@@ -77,10 +79,16 @@ public class Task implements ReadOnlyTask {
     public void resetTaskType(){
         if (time.isRange() || date.isRange() ){
             type.setValue(TaskType.TASK_TYPE_EVENT);
+            if (time.getStartTime().equals("")) time.setStartTime(LocalTime.parse("23:59"));
+            if (date.getStartDate().equals("")) date.setStartDate(LocalDate.now());
+            if (time.getEndTime().equals("")) time.setEndTime(LocalTime.parse("23:59"));
+            if (date.getEndDate().equals("")) date.setEndDate(LocalDate.now());   
         }else if(time.isFloating() && date.isFloating()  ){
             type.setValue(TaskType.TASK_TYPE_FLOATING);
         }else { 
             type.setValue(TaskType.TASK_TYPE_DEADLINE);
+            if (time.getStartTime().equals("")) time.setStartTime(LocalTime.parse("23:59"));
+            if (date.getStartDate().equals("")) date.setStartDate(LocalDate.now());
         }
     }
     //@@author A0139819N

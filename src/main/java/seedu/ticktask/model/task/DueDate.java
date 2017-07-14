@@ -131,21 +131,30 @@ public class DueDate {
         return start_date_string;
     }
 
-    private void setEndDate(LocalDate end_date2) {
+    void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
+
         }
         else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
+            value = getStartDate() + " - " + getEndDate();
+            end_date = end_date2;
+
         }
 
     }
-    private void setStartDate(LocalDate start_date2) {
+    void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
+
         }
         else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
+            value = getStartDate() + " - " + getEndDate();
+            start_date = start_date2;
+
+
         }
 
     }
