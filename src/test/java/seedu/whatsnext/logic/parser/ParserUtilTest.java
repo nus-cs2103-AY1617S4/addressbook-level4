@@ -18,21 +18,19 @@ import org.junit.rules.ExpectedException;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DATE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_TIME = "example.com";
-    private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DATE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_TIME = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String INVALID_NAME = "Complete Assignment @";
+    private static final String INVALID_DESCRIPTION = "Inv@lid D3scription";
+    private static final String INVALID_TAG = "#homework";
+    private static final String VALID_NAME = "Complete Assignment";
+    private static final String VALID_DESCRIPTION = "Valid Description";
+
+    private static final String VALID_TAG_1 = "homework";
+    private static final String VALID_TAG_2 = "high";
 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
@@ -84,81 +82,33 @@ public class ParserUtilTest {
         assertEquals(expectedName, actualName.get());
     }
 
+    //@@author A0156106M
     @Test
-    public void parsePhone_null_throwsNullPointerException() throws Exception {
+    public void parseDescription_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parsePhone(null);
+        ParserUtil.parseDescription(null);
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsIllegalValueException() throws Exception {
+    public void parseDescription_invalidValue_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parsePhone(Optional.of(INVALID_PHONE));
+        ParserUtil.parseDescription(Optional.of(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void parsePhone_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parsePhone(Optional.empty()).isPresent());
+    public void parseDescription_optionalEmpty_returnsOptionalEmpty() throws Exception {
+        assertFalse(ParserUtil.parseDescription(Optional.empty()).isPresent());
     }
 
     @Test
-    public void parsePhone_validValue_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Optional<Phone> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
+    public void parseDescription_validValue_returnsName() throws Exception {
+        TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
+        Optional<TaskDescription> actualDescription = ParserUtil.parseDescription(Optional.of(VALID_NAME));
 
-        assertEquals(expectedPhone, actualPhone.get());
+        assertEquals(expectedDescription, actualDescription.get());
     }
 
-    @Test
-    public void parseAddress_null_throwsNullPointerException() throws Exception {
-        thrown.expect(NullPointerException.class);
-        ParserUtil.parseAddress(null);
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsIllegalValueException() throws Exception {
-        thrown.expect(IllegalValueException.class);
-        ParserUtil.parseAddress(Optional.of(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parseAddress(Optional.empty()).isPresent());
-    }
-
-    @Test
-    public void parseAddress_validValue_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        Optional<Address> actualAddress = ParserUtil.parseAddress(Optional.of(VALID_ADDRESS));
-
-        assertEquals(expectedAddress, actualAddress.get());
-    }
-
-    @Test
-    public void parseEmail_null_throwsNullPointerException() throws Exception {
-        thrown.expect(NullPointerException.class);
-        ParserUtil.parseEmail(null);
-    }
-
-    @Test
-    public void parseEmail_invalidValue_throwsIllegalValueException() throws Exception {
-        thrown.expect(IllegalValueException.class);
-        ParserUtil.parseEmail(Optional.of(INVALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parseEmail(Optional.empty()).isPresent());
-    }
-
-    @Test
-    public void parseEmail_validValue_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        Optional<Email> actualEmail = ParserUtil.parseEmail(Optional.of(VALID_EMAIL));
-
-        assertEquals(expectedEmail, actualEmail.get());
-    }
-
+    //@@author
     @Test
     public void parseTags_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
