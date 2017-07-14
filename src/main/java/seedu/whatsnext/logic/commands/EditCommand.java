@@ -311,7 +311,7 @@ public class EditCommand extends Command {
         public Optional<DateTime> getStartDateTime() {
             return Optional.ofNullable(startDateTime);
         }
-        
+
         public DateTime getStartDateTimeNonOptional() {
             return startDateTime;
         }
@@ -323,7 +323,7 @@ public class EditCommand extends Command {
         public Optional<DateTime> getEndDateTime() {
             return Optional.ofNullable(endDateTime);
         }
-        
+
         public DateTime getEndDateTimeNonOptional() {
             return endDateTime;
         }
@@ -364,10 +364,10 @@ public class EditCommand extends Command {
 
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
-            
+
             DateTime thisStartDateTime = this.getStartDateTimeNonOptional();
             DateTime otherStartDateTime = e.getStartDateTimeNonOptional();
-            
+
             boolean startDateTimeIsEqual = false;
             if (thisStartDateTime == null && otherStartDateTime == null) {
                 startDateTimeIsEqual = true;
@@ -375,7 +375,7 @@ public class EditCommand extends Command {
                        && thisStartDateTime.equals(otherStartDateTime)) {
                 startDateTimeIsEqual = true;
             }
-            
+
             DateTime thisEndDateTime = this.getEndDateTimeNonOptional();
             DateTime otherEndDateTime = e.getEndDateTimeNonOptional();
 

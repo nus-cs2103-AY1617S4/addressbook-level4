@@ -11,25 +11,25 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_PROJECTMEETING;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_READBORNACRIME;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ENDDATETIME_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ENDDATETIME_PROJECTMEETING;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTDEMO;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTMEETING;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_READBORNACRIME;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_STARTDATETIME_PROJECTMEETING;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ENDDATETIME_PROJECTDEMO;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ENDDATETIME_PROJECTMEETING;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_PROJECTMEETING;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_PROJECTDEMO;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_READBORNACRIME;
+
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_LOW;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_MEDIUM;
 
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_TASK;
 
-import org.hamcrest.Description;
 import org.junit.Test;
 
 import seedu.whatsnext.commons.core.index.Index;
@@ -37,26 +37,31 @@ import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.EditCommand;
 import seedu.whatsnext.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
-import seedu.whatsnext.model.task.TaskName;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskDescription;
-import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
-    
+
     private static final String NAME_DESC_PROJECTMEETING = " " + PREFIX_NAME + VALID_NAME_PROJECTMEETING;
-    private static final String STARTDATETIME_DESC_PROJECTMEETING = " " + PREFIX_START_DATETIME + VALID_STARTDATETIME_PROJECTMEETING;
-    private static final String ENDDATETIME_DESC_PROJECTMEETING = " " + PREFIX_END_DATETIME + VALID_ENDDATETIME_PROJECTMEETING;
-    private static final String DESCRIPTION_DESC_PROJECTMEETING = " " + PREFIX_MESSAGE + VALID_DESCRIPTION_PROJECTMEETING;
-    
+    private static final String STARTDATETIME_DESC_PROJECTMEETING =
+                            " " + PREFIX_START_DATETIME + VALID_STARTDATETIME_PROJECTMEETING;
+    private static final String ENDDATETIME_DESC_PROJECTMEETING =
+                            " " + PREFIX_END_DATETIME + VALID_ENDDATETIME_PROJECTMEETING;
+    private static final String DESCRIPTION_DESC_PROJECTMEETING =
+                            " " + PREFIX_MESSAGE + VALID_DESCRIPTION_PROJECTMEETING;
+
     private static final String NAME_DESC_PROJECTDEMO = " " + PREFIX_NAME + VALID_NAME_PROJECTDEMO;
-    private static final String ENDDATETIME_DESC_PROJECTDEMO = " " + PREFIX_END_DATETIME + VALID_ENDDATETIME_PROJECTDEMO;
+    private static final String ENDDATETIME_DESC_PROJECTDEMO =
+                                " " + PREFIX_END_DATETIME + VALID_ENDDATETIME_PROJECTDEMO;
     private static final String DESCRIPTION_DESC_PROJECTDEMO = " " + PREFIX_MESSAGE + VALID_DESCRIPTION_PROJECTDEMO;
-    
+
     private static final String NAME_DESC_READBORNACRIME = " " + PREFIX_NAME + VALID_NAME_READBORNACRIME;
-    private static final String DESCRIPTION_DESC_READBORNACRIME = " " + PREFIX_MESSAGE + VALID_DESCRIPTION_READBORNACRIME;
-    
+    private static final String DESCRIPTION_DESC_READBORNACRIME =
+                                        " " + PREFIX_MESSAGE + VALID_DESCRIPTION_READBORNACRIME;
+
     private static final String TAG_DESC_CS2103 = " " +  PREFIX_NEW_TAG + VALID_TAG_CS2103;
     private static final String TAG_DESC_HIGH = " " + PREFIX_NEW_TAG + VALID_TAG_HIGH;
     private static final String TAG_DESC_MEDIUM = " " + PREFIX_NEW_TAG + VALID_TAG_MEDIUM;
@@ -67,9 +72,9 @@ public class EditCommandParserTest {
     private static final String INVALID_ENDDATETIME_DESC = " " + PREFIX_END_DATETIME + "qwfpmpa";
     private static final String INVALID_NEWTAG_DESC = " " + PREFIX_NEW_TAG + "@Noon";
     private static final String INVALID_REMOVETAG_DESC = " " + PREFIX_DELETE_TAG + "tom's tag";
-    private static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_MESSAGE + "NOTE: MUST DO"; // ":" not allowed in messages
-    
-    
+    private static final String INVALID_DESCRIPTION_DESC =
+                                        " " + PREFIX_MESSAGE + "NOTE: MUST DO"; // ":" not allowed in messages
+
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
@@ -109,14 +114,16 @@ public class EditCommandParserTest {
         assertParseFailure("1" + INVALID_ENDDATETIME_DESC, DateTime.MESSAGE_DATE_CONSTRAINT); // invalid endDateTime
         assertParseFailure("1" + INVALID_NEWTAG_DESC, Tag.MESSAGE_TAG_CONSTRAINTS); // invalid tag
         assertParseFailure("1" + INVALID_REMOVETAG_DESC, Tag.MESSAGE_TAG_CONSTRAINTS); // invalid tag
-        assertParseFailure("1" + INVALID_DESCRIPTION_DESC, TaskDescription.MESSAGE_NAME_CONSTRAINTS); // invalid description
-        
+        assertParseFailure("1" + INVALID_DESCRIPTION_DESC,
+                TaskDescription.MESSAGE_NAME_CONSTRAINTS); // invalid description
+
         // invalid DateTime followed by valid tags
         assertParseFailure("1" + INVALID_STARTDATETIME_DESC + TAG_DESC_HIGH, DateTime.MESSAGE_DATE_CONSTRAINT);
 
         // valid DateTime followed by invalid DateTime. The test case for invalid DateTime followed by valid DateTime
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure("1" + STARTDATETIME_DESC_PROJECTMEETING + INVALID_STARTDATETIME_DESC, DateTime.MESSAGE_DATE_CONSTRAINT);
+        assertParseFailure("1" + STARTDATETIME_DESC_PROJECTMEETING + INVALID_STARTDATETIME_DESC,
+                DateTime.MESSAGE_DATE_CONSTRAINT);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure("1" + INVALID_NAME_DESC + INVALID_STARTDATETIME_DESC + TAG_DESC_LOW,
@@ -129,11 +136,11 @@ public class EditCommandParserTest {
 
         String userInput = targetIndex.getOneBased() + NAME_DESC_PROJECTMEETING + STARTDATETIME_DESC_PROJECTMEETING
                 + ENDDATETIME_DESC_PROJECTMEETING + TAG_DESC_CS2103 + TAG_DESC_MEDIUM + DESCRIPTION_DESC_PROJECTMEETING;
-        
+
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_PROJECTMEETING)
                 .withStartDateTime(VALID_STARTDATETIME_PROJECTMEETING).withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING)
                 .withTags(VALID_TAG_MEDIUM, VALID_TAG_CS2103).withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
-        
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(userInput, expectedCommand);
@@ -206,14 +213,19 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_ENDDATETIME_DESC + ENDDATETIME_DESC_PROJECTMEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING).build();
+        EditTaskDescriptor descriptor =
+                new EditTaskDescriptorBuilder().withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + NAME_DESC_PROJECTDEMO + INVALID_DESCRIPTION_DESC + ENDDATETIME_DESC_PROJECTDEMO
+        userInput = targetIndex.getOneBased()
+                + NAME_DESC_PROJECTDEMO
+                + INVALID_DESCRIPTION_DESC
+                + ENDDATETIME_DESC_PROJECTDEMO
                 + DESCRIPTION_DESC_PROJECTDEMO;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_PROJECTDEMO).withEndDateTime(VALID_ENDDATETIME_PROJECTDEMO)
+        descriptor = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_PROJECTDEMO).withEndDateTime(VALID_ENDDATETIME_PROJECTDEMO)
                 .withName(VALID_NAME_PROJECTDEMO).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(userInput, expectedCommand);

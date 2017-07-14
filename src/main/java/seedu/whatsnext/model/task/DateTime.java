@@ -96,7 +96,7 @@ public class DateTime {
     public String toString() {
         return dateTimeFormat.format(dateValue);
     }
-    
+
     public boolean equals(DateTime other) {
         return this.toString().equals(other.toString());
     }
