@@ -48,7 +48,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
 
-        if (eventClash(toAdd)) {
+        if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd)) {
             throw new DuplicateTaskException();
         }
         toAdd.resetTaskType();
@@ -72,23 +72,25 @@ public class UniqueTaskList implements Iterable<Task> {
         FilteredList<Task> eventList = internalList.filtered(isEvent());
 
         LocalDate toCheckStartDate = toCheck.getDate().getLocalStartDate();
-        LocalDate toCheckendDate = toCheck.getDate().getLocalEndDate();
+        LocalDate toCheckEndDate = toCheck.getDate().getLocalEndDate();
         LocalTime toCheckStartTime = toCheck.getTime().getLocalStartTime();
         LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
 
         for (ReadOnlyTask curr : eventList) {
-            if (curr.equals(toCheck)) continue;
-            
             LocalDate currStartDate = curr.getDate().getLocalStartDate();
             LocalDate currEndDate = curr.getDate().getLocalEndDate();
             LocalTime currStartTime = curr.getTime().getLocalStartTime();
             LocalTime currEndTime = curr.getTime().getLocalEndTime();
 
-            if (toCheckendDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
+            if (toCheckEndDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
                 continue;
             } else if (toCheckStartDate.equals(currStartDate) && toCheckStartTime.isBefore(currStartTime)) {
                 continue;
-            } else if (toCheckendDate.equals(currEndDate) && toCheckEndTime.isAfter(currEndTime)) {
+            } else if (toCheckEndDate.equals(currEndDate) && toCheckEndTime.isAfter(currEndTime)) {
+                continue;
+            } else if (toCheckStartDate.equals(currEndDate) && toCheckStartTime.isAfter(currEndTime)) {
+                continue;
+            } else if (toCheckEndDate.equals(currStartDate) && toCheckEndTime.isBefore(currStartTime)) {
                 continue;
             } else {
                 return true;
