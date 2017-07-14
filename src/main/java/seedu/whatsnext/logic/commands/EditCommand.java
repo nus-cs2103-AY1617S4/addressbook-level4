@@ -281,7 +281,6 @@ public class EditCommand extends Command {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name,
                                                this.description,
-                                               this.isCompleted,
                                                this.startDateTime,
                                                this.endDateTime,
                                                this.newTags,
@@ -312,6 +311,10 @@ public class EditCommand extends Command {
         public Optional<DateTime> getStartDateTime() {
             return Optional.ofNullable(startDateTime);
         }
+        
+        public DateTime getStartDateTimeNonOptional() {
+            return startDateTime;
+        }
 
         public void setStartDateTime(DateTime startDateTime) {
             this.startDateTime = startDateTime;
@@ -319,6 +322,10 @@ public class EditCommand extends Command {
 
         public Optional<DateTime> getEndDateTime() {
             return Optional.ofNullable(endDateTime);
+        }
+        
+        public DateTime getEndDateTimeNonOptional() {
+            return endDateTime;
         }
 
         public void setEndDateTime(DateTime endDateTime) {
@@ -357,12 +364,33 @@ public class EditCommand extends Command {
 
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
+            
+            DateTime thisStartDateTime = this.getStartDateTimeNonOptional();
+            DateTime otherStartDateTime = e.getStartDateTimeNonOptional();
+            
+            boolean startDateTimeIsEqual = false;
+            if (thisStartDateTime == null && otherStartDateTime == null) {
+                startDateTimeIsEqual = true;
+            } else if (thisStartDateTime != null && otherStartDateTime != null
+                       && thisStartDateTime.equals(otherStartDateTime)) {
+                startDateTimeIsEqual = true;
+            }
+            
+            DateTime thisEndDateTime = this.getEndDateTimeNonOptional();
+            DateTime otherEndDateTime = e.getEndDateTimeNonOptional();
 
+            boolean endDateTimeIsEqual = false;
+            if (thisEndDateTime == null && otherEndDateTime == null) {
+                endDateTimeIsEqual = true;
+            } else if (thisEndDateTime != null && otherEndDateTime != null
+                       && thisEndDateTime.equals(otherEndDateTime)) {
+                endDateTimeIsEqual = true;
+            }
             return getName().equals(e.getName())
-                    && getStartDateTime().equals(e.getStartDateTime())
-                    && getEndDateTime().equals(e.getEndDateTime())
+                    && startDateTimeIsEqual
+                    && endDateTimeIsEqual
                     && getNewTags().equals(e.getNewTags())
-                    && getRemoveTags().equals(e.removeTags);
+                    && getRemoveTags().equals(e.getRemoveTags());
         }
     }
 }
