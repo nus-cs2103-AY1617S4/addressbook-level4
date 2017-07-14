@@ -139,7 +139,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
-        filteredTasks.setPredicate(null);
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
@@ -148,9 +147,8 @@ public class ModelManager extends ComponentManager implements Model {
      * Returns the filtered task list for reminder pop up window.
      */
     @Override
-    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
+    public void updateFilteredTaskListForReminder() {
         updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
-        return new UnmodifiableObservableList<>(filteredTasks);
     }
 
     @Override
