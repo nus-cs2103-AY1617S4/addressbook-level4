@@ -94,7 +94,7 @@ public class EditCommand extends Command {
             // Check overlapping tasks still exist
             int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
             if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
-                editedTask = EditCommand.createOverlappingTask(editedTask);
+                editedTask = EditCommand.createOverlapTask(editedTask);
             } else {
                 // REMOVE OVERLAP TAG
             }
@@ -114,10 +114,10 @@ public class EditCommand extends Command {
     * @throws CommandException if edited task is invalid
     */
     public void validateEditTask(BasicTask editedTask) throws CommandException {
-        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
-                editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))||
-                (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
-                        editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
+        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
+                && editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))
+                || (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
+                        && editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
         }
     }
@@ -140,7 +140,8 @@ public class EditCommand extends Command {
         DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
 
-        return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
+        return new BasicTask(updatedName, updateDescription, false,
+                updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
     //@@author A0156106M
@@ -148,7 +149,7 @@ public class EditCommand extends Command {
      * Creates a new overlapping BasicTask based on @param taskToMark
      * @return marked BasicTask
      * */
-    static BasicTask createOverlappingTask(BasicTaskFeatures taskToMark) {
+    static BasicTask createOverlapTask(BasicTaskFeatures taskToMark) {
         assert taskToMark != null;
         BasicTask toCopy = new BasicTask(taskToMark);
         TaskName updatedName = toCopy.getName();
@@ -160,11 +161,12 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = new HashSet<Tag>(copyTags);
 
         try {
-            updatedTags.add(new Tag("Overlapping"));
+            updatedTags.add(new Tag(Tag.RESERVED_TAG_OVERLAP));
         } catch (IllegalValueException e) {
             e.printStackTrace();
         }
-        return new BasicTask(updatedName, updatedDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
+        return new BasicTask(updatedName, updatedDescription,
+                updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
     //@@author A0142675B
@@ -324,7 +326,7 @@ public class EditCommand extends Command {
         }
 
         //@@author A0142675B
-        public void addTags(Set<Tag> tags) {
+        public void setNewTags(Set<Tag> tags) {
             this.newTags = tags;
         }
 

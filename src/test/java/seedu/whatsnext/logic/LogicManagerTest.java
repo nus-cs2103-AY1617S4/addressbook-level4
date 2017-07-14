@@ -6,11 +6,12 @@ import static org.junit.Assert.fail;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_COMPLETED;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_TASK;
@@ -35,6 +36,7 @@ import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.model.TaskManagerChangedEvent;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.logic.commands.ClearCommand;
 import seedu.whatsnext.logic.commands.Command;
@@ -48,15 +50,17 @@ import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
-import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ModelManager;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
+import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.UserPrefs;
-import seedu.whatsnext.model.task.TaskName;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.DateTime;
-import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.TaskDescription;
+import seedu.whatsnext.model.task.TaskName;
+import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 import seedu.whatsnext.testutil.TaskBuilder;
 
 
@@ -161,13 +165,13 @@ public class LogicManagerTest {
             CommandResult result = logic.execute(inputCommand);
             assertEquals(expectedException, null);
             assertEquals(expectedMessage, result.feedbackToUser);
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | TagNotFoundException | IllegalValueException e) {
             assertEquals(expectedException, e.getClass());
             assertEquals(expectedMessage, e.getMessage());
         }
 
         assertEquals(expectedModel, model);
-        assertEquals(expectedModel.getAddressBook(), latestSavedTaskManager);
+        assertEquals(expectedModel.getTaskManager(), latestSavedTaskManager);
     }
 
     @Test
@@ -190,66 +194,43 @@ public class LogicManagerTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        model.addPerson(helper.generatePerson(1));
-        model.addPerson(helper.generatePerson(2));
-        model.addPerson(helper.generatePerson(3));
+        model.addTask(helper.generateTask(1));
+        model.addTask(helper.generateTask(2));
+        model.addTask(helper.generateTask(3));
 
         assertCommandSuccess(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_SUCCESS, new ModelManager());
     }
 
 
+    //@@author A0156106M
     @Test
     public void execute_add_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertParseException(AddCommand.COMMAND_WORD + " wrong args wrong args", expectedMessage);
         assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name 12345 "
-                + PREFIX_TIME + "valid@email.butNoPhonePrefix "
-                + PREFIX_ADDRESS + "valid,address", expectedMessage);
-        assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-                + PREFIX_DATE + "12345 valid@email.butNoPrefix "
-                + PREFIX_ADDRESS + "valid, address", expectedMessage);
-        assertParseException(AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "Valid Name "
-                + PREFIX_DATE + "12345 "
-                + PREFIX_TIME + "valid@email.butNoAddressPrefix valid, address",
-                expectedMessage);
+                + PREFIX_MESSAGE + "valid butwith **SPECIAL CHARACTERS**!!!@@# ", expectedMessage);
+
     }
 
     @Test
-    public void execute_add_invalidPersonData() {
+    public void execute_add_invalidTaskData() {
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "[]\\[;] "
-                + PREFIX_DATE + "12345 "
-                + PREFIX_TIME + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address",
-                Name.MESSAGE_NAME_CONSTRAINTS);
+                + PREFIX_MESSAGE + "valid message ",
+                TaskName.MESSAGE_NAME_CONSTRAINTS);
         assertParseException(AddCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + "Valid Name "
-                + PREFIX_DATE + "not_numbers "
-                + PREFIX_TIME + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address",
-                Phone.MESSAGE_DATE_CONSTRAINTS);
-        assertParseException(AddCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "Valid Name "
-                + PREFIX_DATE + "12345 "
-                + PREFIX_TIME + "notAnEmail "
-                + PREFIX_ADDRESS + "valid, address",
-                Email.MESSAGE_TIME_CONSTRAINTS);
-        assertParseException(AddCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "Valid Name "
-                + PREFIX_DATE + "12345 "
-                + PREFIX_TIME + "valid@e.mail "
-                + PREFIX_ADDRESS + "valid, address "
-                + PREFIX_TAG + "invalid_-[.tag",
-                Tag.MESSAGE_TAG_CONSTRAINTS);
+                + PREFIX_MESSAGE + "not_valid_message ",
+                TaskDescription.MESSAGE_NAME_CONSTRAINTS);
     }
 
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Person toBeAdded = helper.adam();
+        BasicTask toBeAdded = helper.sampleTask();
         Model expectedModel = new ModelManager();
-        expectedModel.addPerson(toBeAdded);
+        expectedModel.addTask(toBeAdded);
 
         // execute command and verify result
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
@@ -261,10 +242,10 @@ public class LogicManagerTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Person toBeAdded = helper.adam();
+        BasicTask toBeAdded = helper.sampleTask();
 
         // setup starting state
-        model.addPerson(toBeAdded); // person already in internal address book
+        model.addTask(toBeAdded); // person already in internal address book
 
         // execute command and verify result
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -273,7 +254,7 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_list_showsAllPersons() throws Exception {
+    public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         Model expectedModel = new ModelManager(helper.generateAddressBook(2), new UserPrefs());
@@ -281,7 +262,7 @@ public class LogicManagerTest {
         // prepare address book state
         helper.addToModel(model, 2);
 
-        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
 
@@ -309,15 +290,15 @@ public class LogicManagerTest {
     private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
-        List<Person> personList = helper.generatePersonList(2);
+        List<BasicTask> basicTaskList = helper.generateBasicTaskList(2);
 
         // set AB state to 2 persons
-        model.resetData(new AddressBook());
-        for (Person p : personList) {
-            model.addPerson(p);
+        model.resetData(new TaskManager());
+        for (BasicTask basicTask : basicTaskList) {
+            model.addTask(basicTask);
         }
 
-        assertCommandException(commandWord + " " + INDEX_THIRD_PERSON.getOneBased(), expectedMessage);
+        assertCommandException(commandWord + " " + INDEX_THIRD_TASK.getOneBased(), expectedMessage);
     }
 
     @Test
@@ -334,15 +315,15 @@ public class LogicManagerTest {
     @Test
     public void execute_select_jumpsToCorrectPerson() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        List<Person> threePersons = helper.generatePersonList(3);
+        List<BasicTask> threePersons = helper.generateBasicTaskList(3);
 
-        Model expectedModel = new ModelManager(helper.generateAddressBook(threePersons), new UserPrefs());
+        Model expectedModel = new ModelManager(helper.generateTaskManger(threePersons), new UserPrefs());
         helper.addToModel(model, threePersons);
 
         assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
                 String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
-        assertEquals(INDEX_SECOND_PERSON, targetedJumpIndex);
-        assertEquals(model.getFilteredPersonList().get(1), threePersons.get(1));
+        assertEquals(INDEX_SECOND_TASK, targetedJumpIndex);
+        assertEquals(model.getFilteredTaskList().get(1), threePersons.get(1));
     }
 
 
@@ -360,14 +341,14 @@ public class LogicManagerTest {
     @Test
     public void execute_delete_removesCorrectPerson() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        List<Person> threePersons = helper.generatePersonList(3);
+        List<BasicTask> threeTasks = helper.generateBasicTaskList(3);
 
-        Model expectedModel = new ModelManager(helper.generateAddressBook(threePersons), new UserPrefs());
-        expectedModel.deletePerson(threePersons.get(1));
-        helper.addToModel(model, threePersons);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(threeTasks), new UserPrefs());
+        expectedModel.deleteTask(threeTasks.get(1));
+        helper.addToModel(model, threeTasks);
 
         assertCommandSuccess(DeleteCommand.COMMAND_WORD + " 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threePersons.get(1)), expectedModel);
+                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)), expectedModel);
     }
 
 
@@ -380,52 +361,52 @@ public class LogicManagerTest {
     @Test
     public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
-        Person pTarget2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
-        Person p1 = new TaskBuilder().withName("KE Y").build();
-        Person p2 = new TaskBuilder().withName("KEYKEYKEY sduauo").build();
+        BasicTask pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
+        BasicTask pTarget2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
+        BasicTask p1 = new TaskBuilder().withName("KE Y").build();
+        BasicTask p2 = new TaskBuilder().withName("KEYKEYKEY sduauo").build();
 
-        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
-        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new HashSet<>(Collections.singletonList("KEY")));
+        List<BasicTask> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
+        expectedModel.updateFilteredTaskList(new HashSet<>(Collections.singletonList("KEY")));
         helper.addToModel(model, fourPersons);
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
     @Test
     public void execute_find_isNotCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = new TaskBuilder().withName("bla bla KEY bla").build();
-        Person p2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
-        Person p3 = new TaskBuilder().withName("key key").build();
-        Person p4 = new TaskBuilder().withName("KEy sduauo").build();
+        BasicTask p1 = new TaskBuilder().withName("bla bla KEY bla").build();
+        BasicTask p2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
+        BasicTask p3 = new TaskBuilder().withName("key key").build();
+        BasicTask p4 = new TaskBuilder().withName("KEy sduauo").build();
 
-        List<Person> fourPersons = helper.generatePersonList(p3, p1, p4, p2);
-        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());
+        List<BasicTask> fourPersons = helper.generatePersonList(p3, p1, p4, p2);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
         helper.addToModel(model, fourPersons);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
     @Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
-        Person pTarget2 = new TaskBuilder().withName("bla rAnDoM bla bceofeia").build();
-        Person pTarget3 = new TaskBuilder().withName("key key").build();
-        Person p1 = new TaskBuilder().withName("sduauo").build();
+        BasicTask pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
+        BasicTask pTarget2 = new TaskBuilder().withName("bla rAnDoM bla bceofeia").build();
+        BasicTask pTarget3 = new TaskBuilder().withName("key key").build();
+        BasicTask p1 = new TaskBuilder().withName("sduauo").build();
 
-        List<Person> fourPersons = helper.generatePersonList(pTarget1, p1, pTarget2, pTarget3);
-        Model expectedModel = new ModelManager(helper.generateAddressBook(fourPersons), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
+        List<BasicTask> fourPersons = helper.generatePersonList(pTarget1, p1, pTarget2, pTarget3);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
+        expectedModel.updateFilteredTaskList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
         helper.addToModel(model, fourPersons);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " key rAnDoM",
-                Command.getMessageForPersonListShownSummary(expectedModel.getFilteredPersonList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
     }
 
@@ -459,51 +440,56 @@ public class LogicManagerTest {
      * A utility class to generate test data.
      */
     class TestDataHelper {
+        BasicTask sampleTask() throws Exception {
+            TaskName taskName = new TaskName("Sample Task");
+            TaskDescription taskDescription = new TaskDescription("More information on Sample Task");
+            boolean isCompleted = false;
+            DateTime startDateTime = new DateTime("25th September 2017");
+            DateTime startEndDate = new DateTime("27th September 2017");
+            Set<Tag> tags = getTagSet("high", "event");
+            return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
 
-        Person adam() throws Exception {
-            Name name = new Name("Adam Brown");
-            Phone privatePhone = new Phone("111111");
-            Email email = new Email("adam@example.com");
-            Address privateAddress = new Address("111, alpha street");
 
-            return new Person(name, privatePhone, email, privateAddress,
-                    getTagSet("tag1", "longertag2"));
         }
 
         /**
          * Generates a valid person using the given seed.
          * Running this function with the same parameter values
          * guarantees the returned person will have the same state.
-         * Each unique seed will generate a unique Person object.
+         * Each unique seed will generate a unique BasicTask object.
          *
          * @param seed used to generate the person data field values
          */
-        Person generatePerson(int seed) throws Exception {
+        BasicTask generateTask(int seed) throws Exception {
             // to ensure that phone numbers are at least 3 digits long, when seed is less than 3 digits
             String phoneNumber = String.join("", Collections.nCopies(3, String.valueOf(Math.abs(seed))));
 
-            return new Person(
-                    new Name("Person " + seed),
-                    new Phone(phoneNumber),
-                    new Email(seed + "@email"),
-                    new Address("House of " + seed),
+            return new BasicTask(
+                    new TaskName("BasicTask " + seed),
+                    new TaskDescription(phoneNumber),
+                    false,
+                    new DateTime("Next Monday"),
+                    new DateTime("Next Friday"),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
 
         /** Generates the correct add command based on the person given */
-        String generateAddCommand(Person p) {
+        String generateAddCommand(BasicTask basicTask) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append(AddCommand.COMMAND_WORD);
 
-            cmd.append(" " + PREFIX_NAME.getPrefix()).append(p.getName());
-            cmd.append(" " + PREFIX_TIME.getPrefix()).append(p.getEmail());
-            cmd.append(" " + PREFIX_DATE.getPrefix()).append(p.getPhone());
-            cmd.append(" " + PREFIX_ADDRESS.getPrefix()).append(p.getAddress());
+            cmd.append(" " + PREFIX_NAME.getPrefix()).append(basicTask.getName());
+            cmd.append(" " + PREFIX_MESSAGE.getPrefix()).append(basicTask.getDescription());
+            cmd.append(" " + PREFIX_COMPLETED.getPrefix()).append(basicTask.getIsCompleted());
+            cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime());
+            cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime());
+            cmd.append(" " + PREFIX_TAG_CLI.getPrefix()).append(basicTask.getTags());
 
-            Set<Tag> tags = p.getTags();
+
+            Set<Tag> tags = basicTask.getTags();
             for (Tag t: tags) {
-                cmd.append(" " + PREFIX_TAG.getPrefix()).append(t.tagName);
+                cmd.append(" " + PREFIX_TAG_CLI.getPrefix()).append(t.tagName);
             }
 
             return cmd.toString();
@@ -512,68 +498,68 @@ public class LogicManagerTest {
         /**
          * Generates an AddressBook with auto-generated persons.
          */
-        AddressBook generateAddressBook(int numGenerated) throws Exception {
-            AddressBook addressBook = new AddressBook();
-            addToAddressBook(addressBook, numGenerated);
-            return addressBook;
+        TaskManager generateAddressBook(int numGenerated) throws Exception {
+            TaskManager taskManager = new TaskManager();
+            addToTaskManager(taskManager, numGenerated);
+            return taskManager;
         }
 
         /**
          * Generates an AddressBook based on the list of Persons given.
          */
-        AddressBook generateAddressBook(List<Person> persons) throws Exception {
-            AddressBook addressBook = new AddressBook();
-            addToAddressBook(addressBook, persons);
-            return addressBook;
+        TaskManager generateTaskManger(List<BasicTask> basicTask) throws Exception {
+            TaskManager taskManager = new TaskManager();
+            addToTaskManager(taskManager, basicTask);
+            return taskManager;
         }
 
         /**
-         * Adds auto-generated Person objects to the given AddressBook
-         * @param addressBook The AddressBook to which the Persons will be added
+         * Adds auto-generated BasicTask objects to the given AddressBook
+         * @param taskManager The AddressBook to which the Persons will be added
          */
-        void addToAddressBook(AddressBook addressBook, int numGenerated) throws Exception {
-            addToAddressBook(addressBook, generatePersonList(numGenerated));
+        void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
+            addToTaskManager(taskManager, generateBasicTaskList(numGenerated));
         }
 
         /**
-         * Adds the given list of Persons to the given AddressBook
+         * Adds the given list of BasicTask to the given TaskManager
          */
-        void addToAddressBook(AddressBook addressBook, List<Person> personsToAdd) throws Exception {
-            for (Person p: personsToAdd) {
-                addressBook.addPerson(p);
+        void addToTaskManager(TaskManager addressBook, List<BasicTask> taskToAdd) throws Exception {
+            for (BasicTask task: taskToAdd) {
+                addressBook.addTask(task);
             }
         }
 
         /**
-         * Adds auto-generated Person objects to the given model
-         * @param model The model to which the Persons will be added
+         * Adds auto-generated BasicTask objects to the given model
+         * @param model The model to which the BasicTask will be added
          */
         void addToModel(Model model, int numGenerated) throws Exception {
-            addToModel(model, generatePersonList(numGenerated));
+            addToModel(model, generateBasicTaskList(numGenerated));
         }
 
         /**
          * Adds the given list of Persons to the given model
          */
-        void addToModel(Model model, List<Person> personsToAdd) throws Exception {
-            for (Person p: personsToAdd) {
-                model.addPerson(p);
+        void addToModel(Model model, List<BasicTask> tasksToAdd) throws Exception {
+            for (BasicTask task: tasksToAdd) {
+                model.addTask(task);
             }
         }
 
         /**
          * Generates a list of Persons based on the flags.
          */
-        List<Person> generatePersonList(int numGenerated) throws Exception {
-            List<Person> persons = new ArrayList<>();
+        List<BasicTask> generateBasicTaskList(int numGenerated) throws Exception {
+            List<BasicTask> basicTaskList = new ArrayList<>();
             for (int i = 1; i <= numGenerated; i++) {
-                persons.add(generatePerson(i));
+                basicTaskList.add(generateTask(i));
             }
-            return persons;
+            return basicTaskList;
         }
 
-        List<Person> generatePersonList(Person... persons) {
-            return Arrays.asList(persons);
+        List<BasicTask> generatePersonList(BasicTask... basicTasks) {
+            return Arrays.asList(basicTasks);
         }
     }
 }

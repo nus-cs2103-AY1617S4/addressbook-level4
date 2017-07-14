@@ -63,7 +63,7 @@ public class BasicTask implements BasicTaskFeatures {
      * */
     public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted,
             DateTime startDateTime, DateTime endDateTime, Set<Tag> tags) {
-        assert (startDateTime.isEmpty() && !endDateTime.isEmpty());
+        //assert (startDateTime.isEmpty() && !endDateTime.isEmpty());
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.tags = new UniqueTagList(tags);
@@ -90,8 +90,8 @@ public class BasicTask implements BasicTaskFeatures {
 
     @Override
     public boolean eventTaskOverlap(BasicTaskFeatures task) {
-        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT) 
-                && this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime()) 
+        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT)
+                && this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime())
                 && task.getStartDateTime().isBeforeOrEqual(this.getEndDateTime()));
 
     }
@@ -228,6 +228,10 @@ public class BasicTask implements BasicTaskFeatures {
         return -1;
     }
 
+    public boolean containsOverlapTag() throws IllegalValueException  {
+        return tags.containsOverlapTag();
+    }
+
     @Override
     public String getTaskDetails() {
         StringBuilder details = new StringBuilder();
@@ -252,4 +256,5 @@ public class BasicTask implements BasicTaskFeatures {
         }
         return details.toString();
     }
+
 }

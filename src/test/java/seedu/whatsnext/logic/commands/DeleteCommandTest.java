@@ -22,10 +22,6 @@ import seedu.whatsnext.testutil.TypicalTasks;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
-<<<<<<< HEAD
-//@@author A0149894H
-=======
->>>>>>> TeamMain/master
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
@@ -80,6 +76,8 @@ public class DeleteCommandTest {
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+
+
     /**
      * Returns a {@code DeleteCommand} with the parameter {@code index}.
      */
@@ -90,18 +88,15 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the first person from the address book.
+     * Updates {@code model}'s filtered list to show only the first person from the Task Manager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
-<<<<<<< HEAD
         final String[] splitName = task.getName().toString().split("\\s+");
-=======
-        final String[] splitName = task.getName().fullTaskName.split("\\s+");
->>>>>>> TeamMain/master
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
         assert model.getFilteredTaskList().size() == 1;
+
     }
 
     /**

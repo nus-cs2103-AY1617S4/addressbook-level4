@@ -14,9 +14,8 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 public class TaskManagerTest {
@@ -49,8 +48,8 @@ public class TaskManagerTest {
     public void resetData_withDuplicatePersons_throwsAssertionError() {
         TypicalTasks td = new TypicalTasks();
         // Repeat td.alice twice
-        List<BasicTask> newPersons = Arrays.asList(new BasicTask(td.alice), new BasicTask(td.alice));
-        List<Tag> newTags = new ArrayList<>(td.alice.getTags());
+        List<BasicTask> newPersons = Arrays.asList(new BasicTask(td.completeCS2103Assignment), new BasicTask(td.completeCS2103Assignment));
+        List<Tag> newTags = new ArrayList<>(td.completeCS2103Assignment.getTags());
         TaskManagerStub newData = new TaskManagerStub(newPersons, newTags);
 
         thrown.expect(AssertionError.class);
