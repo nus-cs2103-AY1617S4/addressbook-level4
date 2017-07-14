@@ -55,7 +55,8 @@ public class TickTask implements ReadOnlyTickTask {
 
     //// list overwrite operations
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks, List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks,
+            List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
         this.completedTasks.setTasks(completedTasks);
     }
@@ -155,28 +156,28 @@ public class TickTask implements ReadOnlyTickTask {
             throw new TaskNotFoundException();
         }
     }
-    
+
     public boolean removeCompletedTask(ReadOnlyTask key) throws TaskNotFoundException {
         if (completedTasks.remove(key)) {
             return true;
         } else {
             throw new TaskNotFoundException();
         }
-    }    
+    }
     /**
-     * Adds the task to the list of completed tasks and removes it from the tasks list. 
+     * Adds the task to the list of completed tasks and removes it from the tasks list.
      */
     public boolean completeTask(ReadOnlyTask key) throws TaskNotFoundException {
-    	if (tasks.contains(key)) {
+        if (tasks.contains(key)) {
             completedTasks.archive(key);
-    		tasks.remove(key);
-    		
-    		return true;
-    	}
-    	
-    	else {
-    		throw new TaskNotFoundException();
-    	}
+            tasks.remove(key);
+
+            return true;
+        }
+
+        else {
+            throw new TaskNotFoundException();
+        }
     }
 
     //// tag-level operations
@@ -197,9 +198,9 @@ public class TickTask implements ReadOnlyTickTask {
     public ObservableList<ReadOnlyTask> getTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
-    
+
     public ObservableList<ReadOnlyTask> getCompletedTaskList() {
-    	return new UnmodifiableObservableList<>(completedTasks.asObservableList());
+        return new UnmodifiableObservableList<>(completedTasks.asObservableList());
     }
 
     @Override
@@ -211,8 +212,8 @@ public class TickTask implements ReadOnlyTickTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TickTask // instanceof handles nulls
-                && this.tasks.equals(((TickTask) other).tasks)
-                && this.tags.equalsOrderInsensitive(((TickTask) other).tags));
+                        && this.tasks.equals(((TickTask) other).tasks)
+                        && this.tags.equalsOrderInsensitive(((TickTask) other).tags));
     }
 
     @Override

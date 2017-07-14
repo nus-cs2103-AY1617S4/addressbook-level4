@@ -12,9 +12,9 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.TaskType;
-import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.DueTime;
+import seedu.ticktask.model.task.Name;
+import seedu.ticktask.model.task.TaskType;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes
@@ -80,9 +80,9 @@ public class ParserUtil {
         }
         return tagSet;
     }
-    public static Optional<String> setNullToString(Optional<String> data){
+    public static Optional<String> setNullToString(Optional<String> data) {
         String string = " ";
-        if(!data.isPresent()){
+        if (!data.isPresent()) {
             return Optional.of(string);
         }
         return data;

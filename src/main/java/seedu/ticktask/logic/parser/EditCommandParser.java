@@ -3,9 +3,9 @@ package seedu.ticktask.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collection;

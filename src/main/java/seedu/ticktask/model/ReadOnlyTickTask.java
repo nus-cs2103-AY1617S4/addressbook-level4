@@ -1,6 +1,5 @@
 package seedu.ticktask.model;
 
-
 import javafx.collections.ObservableList;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.ReadOnlyTask;
@@ -15,7 +14,7 @@ public interface ReadOnlyTickTask {
      * This list will not contain any duplicate task.
      */
     ObservableList<ReadOnlyTask> getTaskList();
-    
+
     ObservableList<ReadOnlyTask> getCompletedTaskList();
 
 

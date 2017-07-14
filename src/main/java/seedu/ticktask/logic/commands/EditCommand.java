@@ -2,7 +2,6 @@ package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TASK_TYPE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
@@ -17,11 +16,11 @@ import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
-import seedu.ticktask.model.task.TaskType;
+import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
-import seedu.ticktask.model.task.DueTime;
+import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
@@ -29,16 +28,15 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
  * Edits the details of an existing task in the TickTask.
  */
 public class EditCommand extends Command {
-
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the last task listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified"
+            + "by the index number used in the last task listing."
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIME + "TIME] "
-            
+
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -91,7 +89,7 @@ public class EditCommand extends Command {
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                           EditTaskDescriptor editTaskDescriptor) {
+            EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
@@ -158,10 +156,11 @@ public class EditCommand extends Command {
         }
 
         public void setTime(DueTime time) {
-            if(time.toString().equals("") || time.toString().equals(" ")){
+            if (time.toString().equals("") || time.toString().equals(" ")) {
                 this.time = null;
+            } else {
+                this.time = time;
             }
-           else this.time = time;
         }
 
         public Optional<DueTime> getTime() {
@@ -169,10 +168,11 @@ public class EditCommand extends Command {
         }
 
         public void setTaskType(TaskType type) {
-            if(type.toString().equals("") || type.toString().equals(" ")) {
+            if (type.toString().equals("") || type.toString().equals(" ")) {
                 this.type = null;
+            } else {
+                this.type = type;
             }
-            else this.type = type;
         }
 
         public Optional<TaskType> getTaskType() {
@@ -180,10 +180,12 @@ public class EditCommand extends Command {
         }
 
         public void setDate(DueDate date) {
-            if(date.toString().equals("") || date.toString().equals(" ")) {
+            if (date.toString().equals("") || date.toString().equals(" ")) {
                 this.date = null;
             }
-            else this.date = date;
+            else {
+                this.date = date;
+            }
         }
 
         public Optional<DueDate> getDate() {

@@ -11,17 +11,18 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 public class Tag {
 
-    public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should only contain alphanumeric characters and spaces";
+    public static final String MESSAGE_TAG_CONSTRAINTS =
+            "Tags names should only contain alphanumeric characters and spaces";
     public static final String TAG_VALIDATION_REGEX = "[\\p{Alnum}[\\s]]+";
 
     public final String tagName;
 
-   /**
+    /**
      * Validates given tag name.
      *
      * @throws IllegalValueException if the given tag name string is invalid.
      */
-    
+
     public Tag(String name) throws IllegalValueException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -42,7 +43,7 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && this.tagName.equals(((Tag) other).tagName)); // state check
+                        && this.tagName.equals(((Tag) other).tagName)); // state check
     }
 
     @Override
