@@ -326,7 +326,7 @@ public class EditCommand extends Command {
         }
 
         //@@author A0142675B
-        public void addTags(Set<Tag> tags) {
+        public void setNewTags(Set<Tag> tags) {
             this.newTags = tags;
         }
 

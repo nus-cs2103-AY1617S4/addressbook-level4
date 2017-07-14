@@ -65,7 +65,7 @@ public class EditCommandParser {
                                                                 .ifPresent(editTaskDescriptor::setEndDateTime);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_NEW_TAG))
-                                                                .ifPresent(editTaskDescriptor::addTags);
+                                                                .ifPresent(editTaskDescriptor::setNewTags);
 
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_DELETE_TAG))
                                                                 .ifPresent(editTaskDescriptor::setRemoveTags);
