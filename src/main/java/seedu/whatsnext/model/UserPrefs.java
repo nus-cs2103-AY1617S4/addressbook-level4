@@ -10,7 +10,7 @@ import seedu.whatsnext.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    
+
     private String taskManagerFilePath = "data/whatsnext.xml";
     private String taskManagerName = "MyTaskManager";
 
