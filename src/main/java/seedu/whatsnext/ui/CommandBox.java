@@ -22,6 +22,7 @@ public class CommandBox extends UiPart<Region> {
 
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private final Logic logic;
+    private int i = 0;
 
     @FXML
     private TextField commandTextField;
@@ -32,11 +33,24 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setOnKeyPressed(
             event -> {
                 switch (event.getCode()) {
-                case UP: commandTextField.setText("what is this #$@!");
-                             break;
+                case UP:
+                    if ((logic.getHistory().size() - (i + 1)) >= 0) {
+                        i++;
+                        commandTextField.setText(logic.getHistory().get(logic.getHistory().size() - i));
+                    }
+                    break;
 
-                case DOWN: commandTextField.clear();
-                                break;
+                case DOWN:
+                    if ((i - 1) > 0) {
+                        i--;
+                        commandTextField.setText(logic.getHistory().get(logic.getHistory().size() - i));
+                    }
+                    break;
+
+                case DELETE:
+                    commandTextField.setText("");
+                    i = 0;
+                    break;
 
                 default:
                 }
@@ -52,6 +66,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandSuccess();
             commandTextField.setText("");
             logger.info("Result: " + commandResult.feedbackToUser);
+            i = 0;
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
         } catch (CommandException | ParseException | TagNotFoundException e) {

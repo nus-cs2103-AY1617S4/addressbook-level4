@@ -75,14 +75,14 @@ By: T01-T4	&nbsp;&nbsp;&nbsp;&nbsp;	Since: Jun 2017	&nbsp;&nbsp;&nbsp;&nbsp;	Lic
 
 Author: Lui Sheng Jie
 
-**WhatsNext** is a stand alone CRUD (Create, Read, Update, Delete) Desktop application. 
+**WhatsNext** is a stand alone CRUD (Create, Read, Update, Delete) Desktop application.
 
 <img src="images/Architecture.png" width="600"><br>
 _Figure 2.1.1 : Architecture Diagram_
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
-A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used. 
+A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used.
 Given below is a quick overview of each component.
 
 > Tip: The `.pptx` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder.
@@ -104,7 +104,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**] : The UI of the App. Makes use of the data stored in `Model` to display Tasks.
 * [**`Logic`**] : The command executor. Parse the arguments and calls the respective Command objects.
-* [**`Model`**] : Holds the data of the App in-memory which is used to display the `Ui`. 
+* [**`Model`**] : Holds the data of the App in-memory which is used to display the `Ui`.
 * [**`Storage`**] : Reads data from, and writes data to, the hard disk. This allows the app to retain added tasks even after the program is closed.
 
 Each of the four components

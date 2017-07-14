@@ -1,5 +1,7 @@
 package seedu.whatsnext.logic;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.CommandResult;
@@ -35,5 +37,7 @@ public interface Logic {
      * Returns the filtered task list for reminder pop up window.
      */
     ObservableList<BasicTaskFeatures> getReminderList();
+
+    List<String> getHistory();
 
 }

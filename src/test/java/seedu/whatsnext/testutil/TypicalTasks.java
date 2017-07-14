@@ -46,7 +46,7 @@ public class TypicalTasks {
 =======
     public final BasicTask completeCS2103Assignment, meetJohnForDinner, meetTomForLunch,
                            completeHomework, assignment, cs2103Workshop, camping,
-                           cs2010ProblemSet, fypSelection;
+                           cs2010ProblemSet, fypSelection, tester;
 
     public TypicalTasks() {
         try {
@@ -74,6 +74,8 @@ public class TypicalTasks {
             fypSelection = new TaskBuilder().withName("FYP Selection")
                            .withEndDateTime("Friday")
                            .withTags("HIGH").build();
+            tester = new TaskBuilder().withName("Tester")
+                    .withStatus(true).build();
 
             // Manually added
 >>>>>>> TeamMain/master
@@ -104,7 +106,7 @@ public class TypicalTasks {
 =======
         return new BasicTask[]{completeCS2103Assignment, meetJohnForDinner, meetTomForLunch,
                                completeHomework, assignment, cs2103Workshop, camping,
-                               cs2010ProblemSet, fypSelection};
+                               cs2010ProblemSet, fypSelection, tester};
     }
 
     public TaskManager getTypicalTaskManager() {
