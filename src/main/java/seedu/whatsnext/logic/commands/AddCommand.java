@@ -3,7 +3,7 @@ package seedu.whatsnext.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "Submit assignment "
             + PREFIX_START_DATETIME + "Monday 10AM "
             + PREFIX_END_DATETIME + "Friday 10AM "
-            + PREFIX_TAG + " high";
+            + PREFIX_TAG_CLI + " high";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";

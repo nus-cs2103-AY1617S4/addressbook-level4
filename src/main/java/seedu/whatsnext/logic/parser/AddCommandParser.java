@@ -3,7 +3,7 @@ package seedu.whatsnext.logic.parser;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class AddCommandParser {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
-                        PREFIX_END_DATETIME, PREFIX_TAG);
+                        PREFIX_END_DATETIME, PREFIX_TAG_CLI);
 
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
@@ -43,7 +43,7 @@ public class AddCommandParser {
             Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
             Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
             Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_CLI));
 
             BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
                     startDateTimeValue, endDateTimeValue, tagList);

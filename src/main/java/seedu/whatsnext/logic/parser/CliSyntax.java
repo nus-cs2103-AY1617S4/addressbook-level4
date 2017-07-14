@@ -7,14 +7,11 @@ public class CliSyntax {
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_DATE = new Prefix("d/");
-    //public static final Prefix PREFIX_TIME = new Prefix("t/");
 
     //@@author A0156106M
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("m/");
     public static final Prefix PREFIX_TO = new Prefix("to");
     public static final Prefix PREFIX_ON = new Prefix("on");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_ALL = new Prefix("all");
     public static final Prefix PREFIX_COMPLETED = new Prefix("completed");
     public static final Prefix PREFIX_INCOMPLETE = new Prefix("incomplete");
