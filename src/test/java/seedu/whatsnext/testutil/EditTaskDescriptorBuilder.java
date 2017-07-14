@@ -32,31 +32,32 @@ public class EditTaskDescriptorBuilder {
         descriptor.setIsCompleted(task.getIsCompleted());
         descriptor.setStartDateTime(task.getStartDateTime());
         descriptor.setEndDateTime(task.getEndDateTime());
-        descriptor.setTags(task.getTags());
+        descriptor.setNewTags(task.getTags());
+        descriptor.setDescription(task.getDescription());
     }
 
     public EditTaskDescriptorBuilder withName(String name) throws IllegalValueException {
         ParserUtil.parseName(Optional.of(name)).ifPresent(descriptor::setName);
         return this;
     }
-
-    public EditTaskDescriptorBuilder withPhone(String phone) throws IllegalValueException {
-        ParserUtil.parsePhone(Optional.of(phone)).ifPresent(descriptor::setPhone);
+    
+    public EditTaskDescriptorBuilder withStartDateTime(String startDateTime) throws IllegalValueException {
+        ParserUtil.parseStartDateTime(Optional.of(startDateTime)).ifPresent(descriptor::setStartDateTime);
         return this;
     }
 
-    public EditTaskDescriptorBuilder withEmail(String email) throws IllegalValueException {
-        ParserUtil.parseEmail(Optional.of(email)).ifPresent(descriptor::setEmail);
+    public EditTaskDescriptorBuilder withEndDateTime(String endDateTime) throws IllegalValueException {
+        ParserUtil.parseStartDateTime(Optional.of(endDateTime)).ifPresent(descriptor::setEndDateTime);
         return this;
     }
-
-    public EditTaskDescriptorBuilder withAddress(String address) throws IllegalValueException {
-        ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setAddress);
+    
+    public EditTaskDescriptorBuilder withDescription(String description) throws IllegalValueException {
+        ParserUtil.parseDescription(Optional.of(description)).ifPresent(descriptor::setDescription);
         return this;
     }
 
     public EditTaskDescriptorBuilder withTags(String... tags) throws IllegalValueException {
-        descriptor.setTags(ParserUtil.parseTags(Arrays.asList(tags)));
+        descriptor.setNewTags(ParserUtil.parseTags(Arrays.asList(tags)));
         return this;
     }
 
