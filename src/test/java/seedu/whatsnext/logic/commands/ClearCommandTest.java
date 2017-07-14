@@ -1,6 +1,7 @@
 package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ALL;
 
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class ClearCommandTest {
      * - the address book and filtered person list in {@code model} is empty <br>
      */
     private void assertCommandSuccess(Model model) {
-        ClearCommand command = new ClearCommand();
+        ClearCommand command = new ClearCommand(PREFIX_ALL.toString());
         command.setData(model, new CommandHistory());
         CommandResult result = command.execute();
 

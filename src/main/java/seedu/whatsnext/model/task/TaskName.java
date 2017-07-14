@@ -43,7 +43,6 @@ public class TaskName {
         return test.matches(TASKNAME_VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullTaskName;
