@@ -12,8 +12,8 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.whatsnext.commons.exceptions.DataConversionException;
 import seedu.whatsnext.commons.util.FileUtil;
-import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
+import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.testutil.TypicalTasks;
 
@@ -71,14 +71,14 @@ public class XmlTaskManagerStorageTest {
         assertEquals(original, new TaskManager(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addTask(new BasicTask(td.hoon));
-        original.removeTask(new BasicTask(td.alice));
+        original.addTask(new BasicTask(td.fypSelection));
+        original.removeTask(new BasicTask(td.completeCS2103Assignment));
         xmlTaskManagerStorage.saveTaskManager(original, filePath);
         readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
         assertEquals(original, new TaskManager(readBack));
 
         //Save and read without specifying file path
-        original.addTask(new BasicTask(td.ida));
+        original.addTask(new BasicTask(td.meetJohnForDinner));
         xmlTaskManagerStorage.saveTaskManager(original); //file path not specified
         readBack = xmlTaskManagerStorage.readTaskManager().get(); //file path not specified
         assertEquals(original, new TaskManager(readBack));
