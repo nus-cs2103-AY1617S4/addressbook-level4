@@ -44,6 +44,10 @@ public class BasicTask implements BasicTaskFeatures {
         this (taskName, taskDescription, isCompleted, new DateTime(), new DateTime(), tags);
     }
 
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, Set<Tag> tags) throws IllegalValueException {
+        this (taskName, taskDescription, false, new DateTime(), new DateTime(), tags);
+    }
+
     public BasicTask(TaskName taskName, Set<Tag> tags) throws IllegalValueException {
         this (taskName, new TaskDescription(), false, new DateTime(), new DateTime(), tags);
     }
@@ -52,9 +56,19 @@ public class BasicTask implements BasicTaskFeatures {
      * Constructor for Deadline
      * @throws IllegalValueException
      * */
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, DateTime endDateTime, Set<Tag> tags)
+            throws IllegalValueException {
+        this (taskName, taskDescription, false, new DateTime(), endDateTime, tags);
+    }
+
     public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted, DateTime endDateTime, Set<Tag> tags)
             throws IllegalValueException {
         this (taskName, taskDescription, isCompleted, new DateTime(), endDateTime, tags);
+    }
+
+    public BasicTask(TaskName taskName, TaskDescription taskDescription, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags)
+            throws IllegalValueException {
+        this (taskName, taskDescription, false, startDateTime, endDateTime, tags);
     }
 
     /**
