@@ -31,7 +31,7 @@ public class ListCommandTest {
         model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
-        listCommand = new ListCommand();
+        listCommand = new ListCommand(null);
         listCommand.setData(model, new CommandHistory());
     }
 
