@@ -42,7 +42,7 @@ public class ChangePathCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            File myFoo = new File("data/filepath");
+            File myFoo = new File("filepath");
             FileWriter fooWriter = new FileWriter(myFoo, false);
 
             String stringLocation = toSave.toString();

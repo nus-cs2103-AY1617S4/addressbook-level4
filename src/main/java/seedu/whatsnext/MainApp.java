@@ -70,7 +70,7 @@ public class MainApp extends Application {
         int size = path.length() - texttxtSize;
         path = path.substring(0, size);
         path = path.replace("\\", "/");
-        path = String.format(path).concat("data/filepath");
+        path = String.format(path).concat("filepath");
 
         initFilePath(path);
 
