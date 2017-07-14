@@ -142,15 +142,6 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
-    // @@author A0154986L
-    /**
-     * Returns the filtered task list for reminder pop up window.
-     */
-    @Override
-    public void updateFilteredTaskListForReminder() {
-        updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
-    }
-
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
@@ -171,6 +162,16 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
         updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(isComplete)));
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
+    /**
+     * Returns the filtered task list for reminder pop up window.
+     */
+    @Override
+    public void updateFilteredTaskListForReminder() {
+        updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
         indicateTaskManagerChanged();
     }
 
