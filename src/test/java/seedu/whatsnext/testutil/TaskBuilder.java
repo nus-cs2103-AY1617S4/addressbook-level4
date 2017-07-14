@@ -29,7 +29,8 @@ public class TaskBuilder {
         DateTime defaultStartDateTime = new DateTime();
         DateTime defaultEndDateTime = new DateTime();
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-        this.task = new BasicTask(defaultName, defaultDescription, false, defaultStartDateTime, defaultEndDateTime, defaultTags);
+        this.task = new BasicTask(defaultName, defaultDescription,
+                false, defaultStartDateTime, defaultEndDateTime, defaultTags);
     }
 
     /**
@@ -56,6 +57,11 @@ public class TaskBuilder {
 
     public TaskBuilder withEndDateTime(String endDateTime) throws IllegalValueException {
         this.task.setEndDateTime(new DateTime(endDateTime));
+        return this;
+    }
+
+    public TaskBuilder withStatus(boolean status) throws IllegalValueException {
+        this.task.setCompleted();
         return this;
     }
 

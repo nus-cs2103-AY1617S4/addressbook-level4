@@ -86,9 +86,7 @@ public class SelectCommandTest {
      * Updates {@code model}'s filtered list to show only the first person from the address book.
      */
     private void showFirstTaskOnly(Model model) {
-        BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
-        final String[] splitName = task.getName().fullTaskName.split("\\s+");
-        model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
+        model.updateFilteredTaskListToShowByCompletion(true);
 
         assertTrue(model.getFilteredTaskList().size() == 1);
     }
@@ -102,7 +100,6 @@ public class SelectCommandTest {
 
         SelectCommand selectCommand = prepareCommand(index);
         CommandResult commandResult = selectCommand.execute();
-
         assertEquals(String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, index.getOneBased()),
                 commandResult.feedbackToUser);
         assertEquals(index, eventTargetedJumpIndex);
