@@ -7,7 +7,6 @@ import com.google.common.eventbus.Subscribe;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import seedu.whatsnext.MainApp;
@@ -34,10 +33,11 @@ public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
+    private static MainWindow mainWindow;
     private static Logic logic;
     private Config config;
     private UserPrefs prefs;
-    private static MainWindow mainWindow;
+
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
@@ -77,17 +77,17 @@ public class UiManager extends ComponentManager implements Ui {
     public static String everyTaskName() {
         StringBuilder allText = new StringBuilder("Events:\n");
         int index = 0;
-        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
-            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
+        for (int i = 0; i < logic.getReminderList().size(); i++) {
+            BasicTaskFeatures task = logic.getReminderList().get(i);
             if (task.getTaskType().equals("event")) {
                 allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
             }
         }
+        index = 0;
         allText.append("\nDeadlines:\n");
-        for (int i = 0; i < logic.getFilteredTaskList().size(); i++) {
-            BasicTaskFeatures task = logic.getFilteredTaskList().get(i);
-            index = 0;
+        for (int i = 0; i < logic.getReminderList().size(); i++) {
+            BasicTaskFeatures task = logic.getReminderList().get(i);
             if (task.getTaskType().equals("deadline")) {
                 allText.append(index + 1 + ". " + task.getName().toString() + "\n");
                 index++;
@@ -157,15 +157,25 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     private void findAndScroll(JumpToListRequestEvent event) {
-        if (mainWindow.getEventListPanel().getMap().get(event.targetIndex) != null) {
-            mainWindow.getEventListPanel().scrollTo(
-                    mainWindow.getEventListPanel().getMap().get(event.targetIndex));
-        } else if (mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex) != null) {
-            mainWindow.getDeadlineListPanel().scrollTo(
-                    mainWindow.getDeadlineListPanel().getMap().get(event.targetIndex));
-        } else if (mainWindow.getFloatingListPanel().getMap().get(event.targetIndex) != null) {
-            mainWindow.getFloatingListPanel().scrollTo(
-                    mainWindow.getFloatingListPanel().getMap().get(event.targetIndex));
+        if (mainWindow.getEventListPanel().getEventListView().getItems().size()
+                > event.targetIndex) {
+            mainWindow.getEventListPanel().scrollTo(event.targetIndex);
+            mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+            mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+        } else {
+            if ((mainWindow.getEventListPanel().getEventListView().getItems().size() + mainWindow
+                    .getDeadlineListPanel().getDeadlineListView().getItems().size()) > event.targetIndex) {
+                mainWindow.getDeadlineListPanel().scrollTo(event.targetIndex
+                        - mainWindow.getEventListPanel().getEventListView().getItems().size());
+                mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+                mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+            } else {
+                mainWindow.getFloatingListPanel().scrollTo(event.targetIndex
+                        - ((mainWindow.getEventListPanel().getEventListView().getItems().size()
+                                + mainWindow.getDeadlineListPanel().getDeadlineListView().getItems().size())));
+                mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+                mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+            }
         }
     }
 
@@ -186,6 +196,7 @@ public class UiManager extends ComponentManager implements Ui {
 
     @Subscribe
     public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ResultDisplay.showSelectedTask(event.getNewSelection());
     }
 }

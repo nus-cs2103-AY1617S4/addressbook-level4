@@ -54,8 +54,14 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredTaskList();
     }
   
-    /*@Override
-    public ObservableList<BasicTaskFeatures> getAlertList() {
-        return model.getAlertList();
-    }*/
+    // @@author A0154986L
+    /**
+     * Returns the filtered task list for reminder pop up window.
+     */
+    @Override
+    public ObservableList<BasicTaskFeatures> getReminderList() {
+        return model.getFilteredTaskListForReminder();
+    }
+
+
 }

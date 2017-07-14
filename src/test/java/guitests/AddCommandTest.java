@@ -9,7 +9,7 @@
 //import seedu.whatsnext.logic.commands.AddCommand;
 //import seedu.whatsnext.logic.commands.ClearCommand;
 //import seedu.whatsnext.model.task.Person;
-//import seedu.whatsnext.testutil.PersonUtil;
+//import seedu.whatsnext.testutil.BasicTaskUtil;
 //import seedu.whatsnext.testutil.TestUtil;
 //
 //public class AddCommandTest extends AddressBookGuiTest {
@@ -28,7 +28,7 @@
 //        currentList = TestUtil.addPersonsToList(currentList, personToAdd);
 //
 //        //add duplicate person
-//        commandBox.runCommand(PersonUtil.getAddCommand(td.hoon));
+//        commandBox.runCommand(BasicTaskUtil.getAddCommand(td.hoon));
 //        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 //        assertTrue(personListPanel.isListMatching(currentList));
 //
@@ -42,7 +42,7 @@
 //    }
 //
 //    private void assertAddSuccess(Person personToAdd, Person... currentList) {
-//        commandBox.runCommand(PersonUtil.getAddCommand(personToAdd));
+//        commandBox.runCommand(BasicTaskUtil.getAddCommand(personToAdd));
 //
 //        //confirm the new card contains the right data
 //        PersonCardHandle addedCard = personListPanel.navigateToPerson(personToAdd.getName().fullName);

@@ -86,8 +86,8 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @throws DuplicateTaskException if an equivalent task already exists.
      */
-    public void addTask(BasicTask p) throws DuplicateTaskException {
-        BasicTask newFloating = new BasicTask(p);
+    public void addTask(BasicTask task) throws DuplicateTaskException {
+        BasicTask newFloating = new BasicTask(task);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
         tasks.sort();

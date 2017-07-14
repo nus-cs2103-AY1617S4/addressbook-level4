@@ -13,9 +13,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -103,6 +105,7 @@ public class EditCommand extends Command {
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -111,10 +114,10 @@ public class EditCommand extends Command {
     * @throws CommandException if edited task is invalid
     */
     public void validateEditTask(BasicTask editedTask) throws CommandException {
-        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
-                editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))||
-                (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
-                        editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
+        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
+                && editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))
+                || (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
+                        && editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
         }
     }
@@ -137,7 +140,8 @@ public class EditCommand extends Command {
         DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
 
-        return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
+        return new BasicTask(updatedName, updateDescription, false,
+                updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 
     //@@author A0156106M
@@ -161,7 +165,8 @@ public class EditCommand extends Command {
         } catch (IllegalValueException e) {
             e.printStackTrace();
         }
-        return new BasicTask(updatedName, updatedDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
+        return new BasicTask(updatedName, updatedDescription,
+                updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
     //@@author A0142675B
