@@ -56,7 +56,7 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
-
+    //@@author A0149894H
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing WhatsNext ]===========================");
@@ -89,7 +89,7 @@ public class MainApp extends Application {
 
         initEventsCenter();
     }
-
+    //@@author A0149894H
     public void initFilePath(String path) throws IOException {
         FileReader fr = new FileReader(path);
         BufferedReader textReader = new BufferedReader(fr);
