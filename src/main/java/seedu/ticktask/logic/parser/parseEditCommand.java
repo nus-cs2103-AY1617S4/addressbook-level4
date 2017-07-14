@@ -70,8 +70,9 @@ public class parseEditCommand {
                     System.out.println("End time is edited to: " + endTime);
                 }
             }
-            if (time.isPresent()) {
+             else if (time.isPresent()) {
                 ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
+                System.out.println("TIME is edited to: " + time);
             }
     
             if (startDate.isPresent() || endDate.isPresent()) {
@@ -86,8 +87,9 @@ public class parseEditCommand {
                     System.out.println("End date is edited to: " + endDate);
                 }
             }
-            if (date.isPresent()) {
+             else if (date.isPresent()) {
                 ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
+                System.out.println("SDATE is edited to: " + date);
             }
 
             
