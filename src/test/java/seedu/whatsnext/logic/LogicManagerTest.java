@@ -35,6 +35,7 @@ import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.AddCommand;
+import seedu.whatsnext.logic.commands.ClearCommand;
 import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.DeleteCommand;
@@ -42,6 +43,7 @@ import seedu.whatsnext.logic.commands.ExitCommand;
 import seedu.whatsnext.logic.commands.FindCommand;
 import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.logic.commands.HistoryCommand;
+import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
@@ -186,20 +188,22 @@ public class LogicManagerTest {
         assertCommandSuccess(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, new ModelManager());
     }
 
-//    @Test
-//    public void execute_clear() throws Exception {
-//        TestDataHelper helper = new TestDataHelper();
-//        model.addTask(helper.generateTask(1));
-//        model.addTask(helper.generateTask(2));
-//        model.addTask(helper.generateTask(3));
-//
-//        assertCommandSuccess(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_SUCCESS, new ModelManager());
-//    }
+    //@@author A0156106M
+    @Test
+    public void execute_clear_all() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        model.addTask(helper.generateTask(1));
+        model.addTask(helper.generateTask(2));
+        model.addTask(helper.generateTask(3));
+
+        assertCommandSuccess(ClearCommand.COMMAND_WORD + " "
+                + ClearCommand.CLEAR_ALL, ClearCommand.MESSAGE_SUCCESS, new ModelManager());
+    }
 
 
     //@@author A0156106M
     @Test
-    public void execute_add_invalidArgsFormat() {
+    public void execute_add_invalidTaskData() {
         //String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         String invalidNameErrorMessage = TaskName.MESSAGE_NAME_CONSTRAINTS;
         String inputNameInvalid = AddCommand.COMMAND_WORD + " Invalid Name with **SPECIAL CHARACTERS**!!!@@#  "
@@ -215,8 +219,9 @@ public class LogicManagerTest {
 
     }
 
-    /*@Test
-    public void execute_add_invalidTaskData() {
+    /*
+    @Test
+    public void execute_add_invalidArgsFormat() {
         String invalidNameErrorMessage = TaskName.MESSAGE_NAME_CONSTRAINTS;
         String inputNameInvalid = AddCommand.COMMAND_WORD + " Invalid Name with **SPECIAL CHARACTERS**!!!@@#  "
                 + PREFIX_MESSAGE + "Valid Description";
@@ -232,8 +237,8 @@ public class LogicManagerTest {
                 + PREFIX_MESSAGE + "not_valid_message ",
                 TaskDescription.MESSAGE_NAME_CONSTRAINTS);
     }
- *
- */
+    */
+
 
     @Test
     public void execute_add_successful() throws Exception {
@@ -264,17 +269,29 @@ public class LogicManagerTest {
     }
 
 
-//    @Test
-//    public void execute_list_showsAllTasks() throws Exception {
-//        // prepare expectations
-//        TestDataHelper helper = new TestDataHelper();
-//        Model expectedModel = new ModelManager(helper.generateTaskManager(2), new UserPrefs());
-//
-//        // prepare address book state
-//        helper.addToModel(model, 2);
-//
-//        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
-//    }
+    @Test
+    public void execute_list_showsAllTasks() throws Exception {
+        // prepare expectations
+        TestDataHelper helper = new TestDataHelper();
+        Model expectedModel = new ModelManager(helper.generateTaskManager(2), new UserPrefs());
+
+        // prepare task manager state
+        helper.addToModel(model, 2);
+
+        //assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_COMPLETED,
+        //ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+
+        // Command: "list" - list all incomplete tasks
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+        // Command: "list all" - to list incomplete tasks
+        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_ALL,
+                ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
+        // Command: "list incomplete" - to list all incomplete tasks
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+
+
+
+    }
 
 
     /**
@@ -323,18 +340,19 @@ public class LogicManagerTest {
         assertIndexNotFoundBehaviorForCommand(SelectCommand.COMMAND_WORD);
     }
 
-//    @Test
-//    public void execute_select_jumpsToCorrectTask() throws Exception {
-//        TestDataHelper helper = new TestDataHelper();
-//        List<BasicTask> threeBasicTasks = helper.generateTaskList(3);
-//
-//        Model expectedModel = new ModelManager(helper.generateTaskManger(threeBasicTasks), new UserPrefs());
-//        helper.addToModel(model, threeBasicTasks);
-//        assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
-//                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
-//        assertEquals(INDEX_SECOND_TASK, targetedJumpIndex);
-//        assertEquals(model.getFilteredTaskList().get(1), threeBasicTasks.get(1));
-//    }
+    @Test
+    public void execute_select_jumpsToCorrectTask() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        List<BasicTask> threeBasicTasks = helper.generateTaskList(3);
+
+        Model expectedModel = new ModelManager(helper.generateTaskManger(threeBasicTasks), new UserPrefs());
+        helper.addToModel(model, threeBasicTasks);
+        assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
+                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
+        //assertEquals(INDEX_SECOND_TASK, targetedJumpIndex);
+        assertEquals(model.getFilteredTaskList().get(1), threeBasicTasks.get(1));
+
+    }
 
 
     @Test

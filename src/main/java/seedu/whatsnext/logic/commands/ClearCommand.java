@@ -1,8 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ALL;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_COMPLETED;
 
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
@@ -18,6 +16,9 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String CLEAR_INCOMPLETE = "incomplete";
+    public static final String CLEAR_COMPLETED = "completed";
+    public static final String CLEAR_ALL = "all";
     public static final String MESSAGE_SUCCESS = "Task List has been cleared!";
     public static final Object MESSAGE_USAGE = null;
     private static final boolean COMPLETED_TASKS = false;
@@ -33,10 +34,10 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         requireNonNull(model);
-        if (clearArgument.equals(PREFIX_ALL.toString())) {
+        if (clearArgument.equals(CLEAR_ALL)) {
             model.resetData(new TaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
-        } else if (clearArgument.equals(PREFIX_COMPLETED.toString())) {
+        } else if (clearArgument.equals(CLEAR_COMPLETED)) {
             return clearCompletedOrIncomplete(COMPLETED_TASKS);
         } else {
             return clearCompletedOrIncomplete(INCOMPLETE_TASKS);
