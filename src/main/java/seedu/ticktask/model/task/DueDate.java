@@ -1,6 +1,8 @@
 package seedu.ticktask.model.task;
 
-import static java.util.Objects.requireNonNull;
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -11,10 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.joestelmach.natty.DateGroup;
-import com.joestelmach.natty.Parser;
-
-import seedu.ticktask.commons.exceptions.IllegalValueException;
+import static java.util.Objects.requireNonNull;
 
 //@@author A0138471A
 /**
@@ -89,7 +88,7 @@ public class DueDate {
             extractDate(trimmedDate);
         }
 
-        value = getStartDate() + " " + getEndDate();
+        value = getStartDate() + " - " + getEndDate();
 
     }
 
@@ -128,7 +127,7 @@ public class DueDate {
 
     }
 
-    private String getStartDate() {
+    public String getStartDate() {
         return start_date_string;
     }
 
@@ -151,7 +150,7 @@ public class DueDate {
 
     }
 
-    private String getEndDate() {
+    public String getEndDate() {
 
         return end_date_string;
     }

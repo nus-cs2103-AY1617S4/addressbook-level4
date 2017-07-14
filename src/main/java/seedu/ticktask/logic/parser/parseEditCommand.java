@@ -1,21 +1,18 @@
 package seedu.ticktask.logic.parser;
 
-import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+//@@author A0139964M
 public class parseEditCommand {
 
     public static final String COMMAND_ARGUMENTS_REGEX = "(?=(?<index>\\d+))"
@@ -42,11 +39,11 @@ public class parseEditCommand {
         // mandatory
         final int index = Integer.parseInt(matcher.group("index"));
         //optional
-        final Optional<String> name = Optional.ofNullable(matcher.group("name"));
-        final Optional<String> time = Optional.ofNullable(matcher.group("time"));
+        Optional<String> name = Optional.ofNullable(matcher.group("name"));
+        Optional<String> time = Optional.ofNullable(matcher.group("time"));
         Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));
         Optional<String> endTime = Optional.ofNullable(matcher.group("endTime"));
-        final Optional<String> date = Optional.ofNullable(matcher.group("date"));
+        Optional<String> date = Optional.ofNullable(matcher.group("date"));
         Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
         Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
         Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
@@ -70,7 +67,7 @@ public class parseEditCommand {
                     ParserUtil.parseTime(startTime).ifPresent(editTaskDescriptor::setTime);
                 }
                 if (endTime.isPresent()) {
-                    endTime = Optional.of("end time " + startTime);
+                    endTime = Optional.of("end time " + endTime);
                     ParserUtil.parseTime(endTime).ifPresent(editTaskDescriptor::setTime);
                 }
             }
@@ -78,17 +75,18 @@ public class parseEditCommand {
             if (date.isPresent()) {
                 ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
             }
-            if (!date.isPresent() && (date.isPresent() || endDate.isPresent())) {
+            if (!date.isPresent() && (startDate.isPresent() || endDate.isPresent())) {
 
                 if (startDate.isPresent()) {
                     startDate = Optional.of("start date " + startDate);
                     ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
                 }
                 if (endDate.isPresent()) {
-                    endDate = Optional.of("end date " + endTime);
+                    endDate = Optional.of("end date " + endDate);
                     ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
                 }
             }
+            
             ParserUtil.parseTaskType(Optional.of(" ")).ifPresent(editTaskDescriptor::setTaskType);
             //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
             tagList = createTagList(tags);
@@ -116,4 +114,5 @@ public class parseEditCommand {
         }
         return tagList;
     }
+//@@author A0139964M
 }
