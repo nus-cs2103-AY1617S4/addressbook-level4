@@ -63,4 +63,5 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredTaskListForReminder();
     }
 
+
 }
