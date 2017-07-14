@@ -40,7 +40,7 @@ public class EditTaskDescriptorBuilder {
         ParserUtil.parseName(Optional.of(name)).ifPresent(descriptor::setName);
         return this;
     }
-    
+
     public EditTaskDescriptorBuilder withStartDateTime(String startDateTime) throws IllegalValueException {
         ParserUtil.parseStartDateTime(Optional.of(startDateTime)).ifPresent(descriptor::setStartDateTime);
         return this;
@@ -50,7 +50,7 @@ public class EditTaskDescriptorBuilder {
         ParserUtil.parseStartDateTime(Optional.of(endDateTime)).ifPresent(descriptor::setEndDateTime);
         return this;
     }
-    
+
     public EditTaskDescriptorBuilder withDescription(String description) throws IllegalValueException {
         ParserUtil.parseDescription(Optional.of(description)).ifPresent(descriptor::setDescription);
         return this;
