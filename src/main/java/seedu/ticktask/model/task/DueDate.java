@@ -77,7 +77,7 @@ public class DueDate {
                 }
             }
             if (date.matches(END_DATE_VALIDATION_REGEX)) {
-                end_date = datesArray.get(INDEX_START_DATE);
+                end_date = datesArray.get(INDEX_END_DATE);
                 setEndDate(end_date);
             }
             if (date.matches(START_DATE_VALIDATION_REGEX)) {
@@ -107,6 +107,7 @@ public class DueDate {
         } else {
             setStartDate(null);
             setEndDate(null);
+            //richard test isFloating = true;
         }
         if (datesArray.size() == 2) {
             start_date = datesArray.get(INDEX_START_DATE);

@@ -40,13 +40,13 @@ public class parseEditCommand {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
         // mandatory
-        final int index = Integer.parseInt(matcher.group("index"));
+        int index = Integer.parseInt(matcher.group("index"));
         //optional
-        final Optional<String> name = Optional.ofNullable(matcher.group("name"));
-        final Optional<String> time = Optional.ofNullable(matcher.group("time"));
+        Optional<String> name = Optional.ofNullable(matcher.group("name"));
+        Optional<String> time = Optional.ofNullable(matcher.group("time"));
         Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));
         Optional<String> endTime = Optional.ofNullable(matcher.group("endTime"));
-        final Optional<String> date = Optional.ofNullable(matcher.group("date"));
+        Optional<String> date = Optional.ofNullable(matcher.group("date"));
         Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
         Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
         Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
@@ -70,7 +70,7 @@ public class parseEditCommand {
                     ParserUtil.parseTime(startTime).ifPresent(editTaskDescriptor::setTime);
                 }
                 if (endTime.isPresent()) {
-                    endTime = Optional.of("end time " + startTime);
+                    endTime = Optional.of("end time " + endTime);
                     ParserUtil.parseTime(endTime).ifPresent(editTaskDescriptor::setTime);
                 }
             }
@@ -78,14 +78,14 @@ public class parseEditCommand {
             if (date.isPresent()) {
                 ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
             }
-            if (!date.isPresent() && (date.isPresent() || endDate.isPresent())) {
+            if (!date.isPresent() && (startDate.isPresent() || endDate.isPresent())) {
 
                 if (startDate.isPresent()) {
                     startDate = Optional.of("start date " + startDate);
                     ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
                 }
                 if (endDate.isPresent()) {
-                    endDate = Optional.of("end date " + endTime);
+                    endDate = Optional.of("end date " + endDate);
                     ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
                 }
             }
