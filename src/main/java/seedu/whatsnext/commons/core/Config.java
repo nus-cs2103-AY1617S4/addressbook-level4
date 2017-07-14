@@ -10,7 +10,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 public class Config {
 
     public static final String DEFAULT_CONFIG_FILE = "config.json";
-    private static String taskManagerFilePath = "data/whatsnext.xml";
+    private static String taskManagerFilePath = "";
     private static String taskManagerName = "MyTaskManager";
     // Config values customizable through config file
     private String appTitle = "WhatsNext App";
