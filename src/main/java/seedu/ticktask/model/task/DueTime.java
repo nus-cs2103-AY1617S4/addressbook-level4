@@ -1,6 +1,8 @@
 package seedu.ticktask.model.task;
 
-import static java.util.Objects.requireNonNull;
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
 import java.time.LocalTime;
@@ -10,10 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.joestelmach.natty.DateGroup;
-import com.joestelmach.natty.Parser;
-
-import seedu.ticktask.commons.exceptions.IllegalValueException;
+import static java.util.Objects.requireNonNull;
 
 //@@author A0138471A
 /**
@@ -162,7 +161,7 @@ public class DueTime {
         return end_time;
     }
     
-    public LocalTime getLocalSstartTime() {
+    public LocalTime getLocalStartTime() {
         return start_time;
     }
 
