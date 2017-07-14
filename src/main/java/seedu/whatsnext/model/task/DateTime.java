@@ -97,6 +97,10 @@ public class DateTime {
         return dateTimeFormat.format(dateValue);
     }
 
+    public boolean equals(DateTime other) {
+        return this.toString().equals(other.toString());
+    }
+
     /**
      * @return true if dateValue is before parameter
      * */

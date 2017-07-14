@@ -1,5 +1,6 @@
 package seedu.whatsnext.logic;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -53,7 +54,7 @@ public class LogicManager extends ComponentManager implements Logic {
         model.updateFilteredTaskListForInitialView();
         return model.getFilteredTaskList();
     }
-  
+
     // @@author A0154986L
     /**
      * Returns the filtered task list for reminder pop up window.
@@ -62,6 +63,11 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<BasicTaskFeatures> getReminderList() {
         model.updateFilteredTaskListForReminder();
         return model.getFilteredTaskList();
+    }
+
+    @Override
+    public List<String> getHistory() {
+        return history.getHistory();
     }
 
 }

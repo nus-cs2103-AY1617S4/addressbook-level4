@@ -22,7 +22,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
     14. [Change data file path](#214-change-data-file-path--changepath)
     15. [Save the data](#215-save-the-data)
     16. [Exit the programme](#216-exit-the-programme--exit)
-    
+
 3. [FAQ](#3-faq)
 4. [Command Summary](#4-command-summary)
 
