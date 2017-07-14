@@ -4,6 +4,7 @@ import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
@@ -11,7 +12,10 @@ import seedu.ticktask.commons.core.ComponentManager;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
+import seedu.ticktask.commons.events.model.ViewListChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
+import seedu.ticktask.logic.commands.FindCommand;
+import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
@@ -96,7 +100,7 @@ public class ModelManager extends ComponentManager implements Model {
         futureProgramInstances.clear();
     }
 
-    //@@author A0139819N
+    //@@author 
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
@@ -123,6 +127,11 @@ public class ModelManager extends ComponentManager implements Model {
         saveInstance();
         currentProgramInstance.completeTask(task);
     }
+    //@@author A0138471A
+    private void indicateViewListChanged(String typeOfListView) {
+        raise(new ViewListChangedEvent(typeOfListView));
+    }
+    //@@author
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
@@ -153,6 +162,11 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(null);
         filteredCompletedTasks.setPredicate(null);
     }
+    
+  /*  public void updateFilteredListToShowDeadline()  {
+        filteredTasks.setPredicate();
+        filteredCompletedTasks.setPredicate(null);
+    }*/
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
@@ -164,6 +178,46 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
         filteredCompletedTasks.setPredicate(expression::satisfies);
     }
+    //@@author A0138471A
+   /* @Override
+    public void updateFilteredListToShowAll() {
+        indicateViewListChanged(ListCommand.LIST_ALL);
+        filteredTasks.setPredicate(null);
+    }*/
+
+    /*@Override
+    public void updateFilteredListToShowDeadline() {
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().equals("deadline");
+        });
+        indicateViewListChanged(ListCommand.LIST_DEADLINE);
+    }*/
+
+   /* @Override
+    public void updateFilteredListToShowFloating() {
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+        	return task.getTaskType().equals("floating");
+        });
+        indicateViewListChanged(ListCommand.LIST_FLOATING);
+    }
+
+    @Override
+    public void updateFilteredListToShowEvent() {
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().equals("event");
+        });
+        indicateViewListChanged(ListCommand.LIST_EVENT);
+    }
+
+    @Override
+    public void updateFilteredListToShowToday() {
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().equals("deadline");
+        });
+        indicateViewListChanged(ListCommand.LIST_TODAY);
+    }*/
+    //@@author
+
 
     @Override
     public boolean equals(Object obj) {
