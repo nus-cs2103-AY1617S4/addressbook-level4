@@ -6,7 +6,12 @@ We are a team Engineering students based in the [School of Computing, National U
 **Role**: Team Leader <br>
 **Responsibilities**: Project Coordination & Development <br>
 **Components in charge of:** Logic & Model<br>
-**Features implemented:**<br>
+**Features implemented:**
+* Add Command
+* Mark/Unmark Command
+* Clear Command
+* Parse DateTime
+
 **Code Written:**<br>
 **Other major contributions:**<br>
 

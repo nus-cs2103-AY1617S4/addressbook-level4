@@ -111,6 +111,42 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Set<String> keywords) {
             fail("This method should not be called.");
         }
+
+        @Override
+        public void undoTaskManager() {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void redoTaskManager() {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void saveTaskManager() {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public void updateFilteredTaskListForInitialView() {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
+            // TODO Auto-generated method stub
+
+        }
     }
 
     /**

@@ -13,12 +13,12 @@ import seedu.whatsnext.testutil.TypicalTasks;
 
 public class ModelManagerTest {
 
-    private TypicalTasks typicalPersons = new TypicalTasks();
+    private TypicalTasks typicalTasks = new TypicalTasks();
 
     @Test
     public void equals() throws Exception {
-        TaskManager taskManager = new TaskManagerBuilder().withPerson(typicalPersons.alice)
-                .withPerson(typicalPersons.benson).build();
+        TaskManager taskManager = new TaskManagerBuilder().withPerson(typicalTasks.completeCS2103Assignment)
+                .withPerson(typicalTasks.meetJohnForDinner).build();
         TaskManager differentTaskManager = new TaskManager();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -40,8 +40,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTaskManager, userPrefs)));
 
         // different filteredList -> returns false
-        modelManager.updateFilteredPersonList(new HashSet<>(
-                Arrays.asList(typicalPersons.alice.getName().fullName.split(" "))));
+        modelManager.updateFilteredTaskList(new HashSet<>(
+                Arrays.asList(typicalTasks.completeCS2103Assignment.getName().toString().split(" "))));
         assertFalse(modelManager.equals(new ModelManager(taskManager, userPrefs)));
         modelManager.updateFilteredListToShowAll(); // resets modelManager to initial state for upcoming tests
 

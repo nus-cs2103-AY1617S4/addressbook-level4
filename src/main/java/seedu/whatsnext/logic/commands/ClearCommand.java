@@ -12,7 +12,6 @@ import seedu.whatsnext.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
-//@@author A0156106M
 /**
  * Clears the Task Manager.
  */

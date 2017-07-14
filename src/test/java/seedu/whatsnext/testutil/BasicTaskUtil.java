@@ -1,8 +1,9 @@
 package seedu.whatsnext.testutil;
 
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
 import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.model.task.BasicTask;
@@ -24,12 +25,12 @@ public class BasicTaskUtil {
      */
     private static String getTaskDetails(BasicTask task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.getName().fullTaskName + " ");
-        sb.append(PREFIX_DATE + task.getPhone().value + " ");
-        sb.append(PREFIX_TIME + task.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
+        sb.append(task.getName().fullTaskName + " ");
+        sb.append(PREFIX_MESSAGE + task.getDescription().toString() + " ");
+        sb.append(PREFIX_START_DATETIME + task.getStartDateTime().toString() + " ");
+        sb.append(PREFIX_END_DATETIME + task.getEndDateTime().toString() + " ");
         task.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG_CLI + s.tagName + " ")
         );
         return sb.toString();
     }

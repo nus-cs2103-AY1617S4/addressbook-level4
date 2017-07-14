@@ -13,7 +13,13 @@ public class Tag {
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public static final String[] RESERVEREDTAGS = {"HIGH", "MEDIUM", "LOW", "OVERLAP"};
+    public static final String RESERVED_TAG_HIGH = "HIGH";
+    public static final String RESERVED_TAG_MEDIUM = "MEDIUM";
+    public static final String RESEVERD_TAG_LOW = "LOW";
+    public static final String RESERVED_TAG_OVERLAP = "OVERLAP";
+
+    public static final String[] RESERVEREDTAGS = {RESERVED_TAG_HIGH, RESERVED_TAG_MEDIUM, RESEVERD_TAG_LOW};
+
 
     public final String tagName;
 
@@ -53,6 +59,7 @@ public class Tag {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
     }
