@@ -22,6 +22,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="/Users/luishengjie/Documents/cs2103/cs2103_project/main/lib/prettytime.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ACER V3-575G-52GE/Documents/Special Term II/CS2103/main/lib/prettytime.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
