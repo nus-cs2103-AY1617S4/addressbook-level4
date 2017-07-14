@@ -104,26 +104,23 @@ public class DueDate {
                 local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
                 datesArray.add(local_date);
             }
-        }
-        else{
+        } else {
             setStartDate(null);
             setEndDate(null);
         }
-        if (datesArray.size()==2) {
+        if (datesArray.size() == 2) {
             start_date = datesArray.get(INDEX_START_DATE);
             end_date = datesArray.get(INDEX_END_DATE);
             setStartDate(start_date);
             setEndDate(end_date);
             isRange = true;
-        }
-        else if (datesArray.size() == 1) {
+        } else if (datesArray.size() == 1) {
             start_date = datesArray.get(INDEX_START_DATE);
             setStartDate(start_date);
             setEndDate(null);
             isDeadline = true;
 
-        }
-        else{
+        } else {
             setStartDate(null);
             setEndDate(null);
             isFloating = true;
@@ -139,7 +136,7 @@ public class DueDate {
         if (end_date2 == null) {
             end_date_string =  "";
         }
-        else{
+        else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
         }
 
@@ -148,7 +145,7 @@ public class DueDate {
         if (start_date2 == null) {
             start_date_string =  "";
         }
-        else{
+        else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
         }
 
@@ -161,22 +158,22 @@ public class DueDate {
 
     /**
      * Returns true if a given date is an empty string or invalid string
-     */    
-    public boolean isFloating(){
+     * */
+    public boolean isFloating() {
         return isFloating;
     }
 
     /**
      * Returns true if a given date only has a start date
-     */    
-    public boolean isDeadline(){
+     * */
+    public boolean isDeadline() {
         return isDeadline;
     }
 
     /**
      * Returns true if a given date has both start and end date
-     */    
-    public boolean isRange(){
+     */
+    public boolean isRange() {
         return isRange;
     }
 
