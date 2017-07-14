@@ -27,7 +27,7 @@ public class TaskUtil {
     private static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
-        sb.append(PREFIX_TIME + task.getTime().toString() + " ");
+        sb.append(PREFIX_TIME + task.getTime().value + " ");
         sb.append(PREFIX_TASK_TYPE + task.getTaskType().value + " ");
 
         sb.append(PREFIX_DATE + task.getDate().toString() + " ");

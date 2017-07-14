@@ -42,19 +42,7 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show all tasks*/
     void updateFilteredListToShowAll();
-    //@@author A0138471A
-    /** Updates the filter of the filtered task list to show today*/
-	void updateFilteredListToShowToday();
-	
-	/** Updates the filter of the filtered task list to show event*/
-	void updateFilteredListToShowEvent();
-	
-	/** Updates the filter of the filtered task list to show deadline*/
-	void updateFilteredListToShowDeadline();
-	
-	/** Updates the filter of the filtered task list to show floating*/
-	void updateFilteredListToShowFloating();
-	//@@author
+
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
@@ -67,6 +55,4 @@ public interface Model {
 
     /**Redo a previously undone action on the TickTask program*/
     void redoUndoneCommand() throws EmptyStackException;
-
-
 }

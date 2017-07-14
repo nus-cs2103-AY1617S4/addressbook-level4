@@ -83,7 +83,7 @@ public class Task implements ReadOnlyTask {
             type.setValue(TaskType.TASK_TYPE_DEADLINE);
         }
     }
-    //@@author
+    //@@author A0139819N
 
     @Override
     public TaskType getTaskType() {
