@@ -24,6 +24,9 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 import seedu.whatsnext.testutil.TaskBuilder;
 
 //@@author A0149894H
+/**
+ * A class to test add command
+ */
 public class AddCommandTest {
 
     @Rule
