@@ -1,5 +1,8 @@
 package seedu.whatsnext;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -11,6 +14,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.whatsnext.commons.core.Config;
+import seedu.whatsnext.commons.core.Config.RepeatTaskManagerFilePathException;
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Version;
@@ -43,6 +47,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(1, 0, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static String path;
 
     protected Ui ui;
     protected Logic logic;
@@ -51,7 +56,7 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
-
+    //@@author A0149894H
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing WhatsNext ]===========================");
@@ -86,6 +91,18 @@ public class MainApp extends Application {
         ui = new UiManager(logic, config, userPrefs);
 
         initEventsCenter();
+    }
+    //@@author A0149894H
+    public void initFilePath(String path) throws IOException {
+        FileReader fr = new FileReader(path);
+        BufferedReader textReader = new BufferedReader(fr);
+        String filepath = textReader.readLine();
+        try {
+            config.setTaskManagerFilePath(filepath);
+        } catch (RepeatTaskManagerFilePathException e) {
+            e.printStackTrace();
+        }
+        textReader.close();
     }
 
     private String getApplicationParameter(String parameterName) {
