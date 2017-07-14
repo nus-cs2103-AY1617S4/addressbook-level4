@@ -72,6 +72,9 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
+        
+        // https://mvnrepository.com/artifact/com.joestelmach/natty
+        compile group: 'com.joestelmach', name: 'natty', version: '0.13'
     }
 
     sourceSets {

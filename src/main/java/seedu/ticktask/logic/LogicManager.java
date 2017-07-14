@@ -10,7 +10,6 @@ import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.Parser;
-import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.task.ReadOnlyTask;
 
@@ -46,10 +45,10 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
         return model.getFilteredTaskList();
     }
-    
+
     @Override
     public ObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
         return model.getFilteredCompletedTaskList();
     }
-  
+
 }

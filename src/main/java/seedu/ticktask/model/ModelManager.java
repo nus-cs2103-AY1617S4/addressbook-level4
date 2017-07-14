@@ -3,8 +3,8 @@ package seedu.ticktask.model;
 import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.Stack;
+import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.ComponentManager;
@@ -66,45 +66,45 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new TickTaskChangedEvent(currentProgramInstance));
     }
     //@@author A0139819N
-    
-    /**Reverses the previous command executed by the user 
+
+    /**Reverses the previous command executed by the user
      * Restores the TickTask client to one state before the previous command was executed
      * */
-    public void undoPreviousCommand(){
+    public void undoPreviousCommand() {
         TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
         currentProgramInstance.resetData(previousProgramInstances.pop());
         futureProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-    
-    /**Redo an existing command that was previously undone by the user 
+
+    /**Redo an existing command that was previously undone by the user
      * Restores the TickTask client to one state after the undone command was executed
      * User can only use redo command after an undo command was previously executed
      */
-    public void redoUndoneCommand(){
+    public void redoUndoneCommand() {
         TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
         currentProgramInstance.resetData(futureProgramInstances.pop());
         previousProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-    
+
     /**Saves the current instance of the TickTask program before any data is modified
      * so that the program can return to previous instances if desired
      */
-    private void saveInstance(){
+    private void saveInstance() {
         previousProgramInstances.push(new TickTask(currentProgramInstance));
-        futureProgramInstances.clear();      
+        futureProgramInstances.clear();
     }
-    
+
     //@@author A0139819N
-    
+
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.removeTask(target);
         indicateTickTaskModelChanged();
     }
-    
+
     public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
         currentProgramInstance.removeCompletedTask(target);
         indicateTickTaskModelChanged();
@@ -117,7 +117,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateTickTaskModelChanged();
     }
-    
+
     @Override
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
         saveInstance();
@@ -142,7 +142,7 @@ public class ModelManager extends ComponentManager implements Model {
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
-    
+
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
         return new UnmodifiableObservableList<>(filteredCompletedTasks);
@@ -157,7 +157,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
-        
+
     }
 
     private void updateFilteredTaskList(Expression expression) {

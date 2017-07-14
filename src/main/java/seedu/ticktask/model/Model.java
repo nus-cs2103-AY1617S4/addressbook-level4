@@ -20,7 +20,7 @@ public interface Model {
 
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
-    
+
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
 
@@ -46,13 +46,13 @@ public interface Model {
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
-	UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 
-	void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
-	
-	/** Undo a previously completed action on the TickTask program*/
-	void undoPreviousCommand() throws EmptyStackException;
-	
-	/**Redo a previously undone action on the TickTask program*/
-	void redoUndoneCommand() throws EmptyStackException;
+    void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
+
+    /** Undo a previously completed action on the TickTask program*/
+    void undoPreviousCommand() throws EmptyStackException;
+
+    /**Redo a previously undone action on the TickTask program*/
+    void redoUndoneCommand() throws EmptyStackException;
 }
