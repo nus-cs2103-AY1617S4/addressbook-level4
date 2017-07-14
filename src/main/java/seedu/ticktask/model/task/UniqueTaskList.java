@@ -134,10 +134,11 @@ public class UniqueTaskList implements Iterable<Task> {
         //    throw new DuplicateTaskException();
         //}
 
+        //@@author A0139964M
         if(!isChornological(editedTask)){
             throw new DuplicateTaskException();
         }
-    
+        //@@author
     
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
@@ -202,16 +203,19 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public boolean isChornological(ReadOnlyTask task) {
         LocalDate currDate = LocalDate.now();
-        LocalDate taskDate = task.getDate().getLocalStartDate();
         //System.out.println("localDate: " + currDate);
         //System.out.println("TaskDate: " + taskDate);
         
         if(task.getDate().getLocalStartDate() == null){
+            System.out.println("i went in here");
             //No date either means today or no time, if no time or time is chornological just add
             if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
+                System.out.println("I returned true");
                 return true;
             }
+            else return false;
         }
+        LocalDate taskDate = task.getDate().getLocalStartDate();
         //Check if task's is today.
         if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
             if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
