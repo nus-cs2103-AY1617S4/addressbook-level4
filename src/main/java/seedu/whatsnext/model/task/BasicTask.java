@@ -90,8 +90,8 @@ public class BasicTask implements BasicTaskFeatures {
 
     @Override
     public boolean eventTaskOverlap(BasicTaskFeatures task) {
-        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT) 
-                && this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime()) 
+        return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT)
+                && this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime())
                 && task.getStartDateTime().isBeforeOrEqual(this.getEndDateTime()));
 
     }
@@ -226,6 +226,10 @@ public class BasicTask implements BasicTaskFeatures {
             }
         }
         return -1;
+    }
+
+    public boolean containsOverlapTag() throws IllegalValueException  {
+        return tags.containsOverlapTag();
     }
 
 }

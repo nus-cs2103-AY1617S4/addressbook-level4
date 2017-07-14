@@ -92,7 +92,7 @@ public class EditCommand extends Command {
             // Check overlapping tasks still exist
             int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
             if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
-                editedTask = EditCommand.createOverlappingTask(editedTask);
+                editedTask = EditCommand.createOverlapTask(editedTask);
             } else {
                 // REMOVE OVERLAP TAG
             }
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
      * Creates a new overlapping BasicTask based on @param taskToMark
      * @return marked BasicTask
      * */
-    static BasicTask createOverlappingTask(BasicTaskFeatures taskToMark) {
+    static BasicTask createOverlapTask(BasicTaskFeatures taskToMark) {
         assert taskToMark != null;
         BasicTask toCopy = new BasicTask(taskToMark);
         TaskName updatedName = toCopy.getName();
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = new HashSet<Tag>(copyTags);
 
         try {
-            updatedTags.add(new Tag("Overlapping"));
+            updatedTags.add(new Tag(Tag.RESERVED_TAG_OVERLAP));
         } catch (IllegalValueException e) {
             e.printStackTrace();
         }

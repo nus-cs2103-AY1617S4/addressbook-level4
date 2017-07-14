@@ -143,14 +143,23 @@ public class UniqueTagList implements Iterable<Tag> {
         return internalList.contains(toCheck);
     }
 
+    //@@author A0156106M
+    /**
+     * Returns true if the list contains priority "OVERLAP" tag
+     * */
+    public boolean containsOverlapTag() throws IllegalValueException {
+        final Tag overlapTag = new Tag(Tag.RESERVED_TAG_OVERLAP);
+        return internalList.contains(overlapTag);
+    }
+
     //@@author A0142675B
     /**
      * Returns true if the list contains a priority tag, i.e. "HIGH", "MEDIUM", "LOW".
      */
     public boolean containsPriorityTag() throws IllegalValueException {
-        final Tag highPriority = new Tag("HIGH");
-        final Tag mediumPriority = new Tag("MEDIUM");
-        final Tag lowPriority = new Tag("LOW");
+        final Tag highPriority = new Tag(Tag.RESERVED_TAG_HIGH);
+        final Tag mediumPriority = new Tag(Tag.RESERVED_TAG_MEDIUM);
+        final Tag lowPriority = new Tag(Tag.RESEVERD_TAG_LOW);
         return internalList.contains(highPriority)
               || internalList.contains(mediumPriority)
               || internalList.contains(lowPriority);

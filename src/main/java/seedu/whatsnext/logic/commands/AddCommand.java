@@ -9,6 +9,7 @@ import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
@@ -32,6 +33,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
     public static final String INVALID_TASK_CREATED = "Invalid Task Format";
+    public static final String MESSAGE_OVERLAP_TASK = "This Task causes an overlapping Event Task.";
     private final BasicTask toAdd;
 
     /**
@@ -43,7 +45,7 @@ public class AddCommand extends Command {
 
     //@@author A0156106M
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute() throws CommandException, IllegalValueException {
         requireNonNull(model);
         UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
         try {
@@ -51,12 +53,18 @@ public class AddCommand extends Command {
             if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
                 //BasicTaskFeatures taskToEdit = taskList.get(overlapTaskIndex);
                 //model.updateTask(taskToEdit, EditCommand.createOverlappingTask(taskToEdit));
-                model.addTask(EditCommand.createOverlappingTask(toAdd));
+                model.addTask(EditCommand.createOverlapTask(toAdd));
             } else {
                 model.addTask(toAdd);
             }
             Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
             EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
+            if (toAdd.containsOverlapTag()){
+
+                String displayString = String.format(MESSAGE_SUCCESS, toAdd) + MESSAGE_OVERLAP_TASK;
+                return new CommandResult(displayString);
+            }
+
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
