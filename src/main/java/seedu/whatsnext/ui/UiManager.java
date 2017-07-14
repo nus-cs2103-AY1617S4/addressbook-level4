@@ -197,6 +197,16 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     public void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        if (event.getNewSelection().getTaskType().equals("event")) {
+            mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+            mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+        } else if (event.getNewSelection().getTaskType().equals("deadline")) {
+            mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+            mainWindow.getFloatingListPanel().getFloatingListView().getSelectionModel().clearSelection();
+        } else if (event.getNewSelection().getTaskType().equals("floating")) {
+            mainWindow.getDeadlineListPanel().getDeadlineListView().getSelectionModel().clearSelection();
+            mainWindow.getEventListPanel().getEventListView().getSelectionModel().clearSelection();
+        }
         ResultDisplay.showSelectedTask(event.getNewSelection());
     }
 }

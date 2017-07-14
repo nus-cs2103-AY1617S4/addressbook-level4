@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Region> {
     private EventListPanel eventListPanel;
     private Config config;
     private UserPrefs prefs;
+    private ResultDisplay resultDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -128,7 +129,7 @@ public class MainWindow extends UiPart<Region> {
         deadlineListPanel = new DeadlineListPanel(logic.getFilteredTaskList());
         deadlineListPanelPlaceholder.getChildren().add(deadlineListPanel.getRoot());
 
-        ResultDisplay resultDisplay = new ResultDisplay();
+        resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(config.getTaskManagerFilePath());
@@ -208,5 +209,4 @@ public class MainWindow extends UiPart<Region> {
     public DeadlineListPanel getDeadlineListPanel() {
         return this.deadlineListPanel;
     }
-
 }
