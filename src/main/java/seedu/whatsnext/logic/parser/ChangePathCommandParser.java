@@ -35,7 +35,7 @@ public class ChangePathCommandParser {
             stringSaveLocation += "/";
         }
 
-        stringSaveLocation += "whatsnext.xml";
+        stringSaveLocation += "WhatsNext.xml";
 
         File newLocation = new File(stringSaveLocation.trim());
 

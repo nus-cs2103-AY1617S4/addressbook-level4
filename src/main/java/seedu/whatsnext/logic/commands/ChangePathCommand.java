@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -30,27 +29,18 @@ public class ChangePathCommand extends Command {
     private static String toDelete = Config.getTaskManagerFilePath();
 
 
-    private static File toSave;
-
-
+    private final File toSave;
 
 
     public ChangePathCommand(File filePath) {
-        toSave = filePath;
+        this.toSave = filePath;
     }
 
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            File myFoo = new File("data/filepath");
-            FileWriter fooWriter = new FileWriter(myFoo, false);
-
-            String stringLocation = toSave.toString();
-            fooWriter.write(stringLocation);
-            fooWriter.close();
-
             Config config = new Config();
-            config.setTaskManagerFilePath(stringLocation);
+            config.setTaskManagerFilePath(toSave.toString());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
             File f = new File("test.txt");
             String string = f.getAbsolutePath();
