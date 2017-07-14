@@ -57,9 +57,15 @@ public class AddCommand extends Command {
             } else {
                 model.addTask(toAdd);
             }
-            Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
-            EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
-            if (toAdd.containsOverlapTag()){
+            int index = 0;
+            for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
+                if (toAdd.equals(model.getFilteredTaskList().get(i))) {
+                    index = i;
+                    break;
+                }
+            }
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(new Index(index)));
+            if (toAdd.containsOverlapTag()) {
 
                 String displayString = String.format(MESSAGE_SUCCESS, toAdd) + MESSAGE_OVERLAP_TASK;
                 return new CommandResult(displayString);
