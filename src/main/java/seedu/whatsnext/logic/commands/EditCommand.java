@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
+import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.CollectionUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -22,6 +25,7 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
@@ -70,6 +74,7 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
+    //@@author A0156106M
     @Override
     public CommandResult execute() throws CommandException, TagNotFoundException, IllegalValueException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
@@ -80,15 +85,41 @@ public class EditCommand extends Command {
 
         BasicTaskFeatures taskToEdit = lastShownList.get(index.getZeroBased());
         BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        validateEditTask(editedTask);
+
+        UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
 
         try {
+
+            // Check overlapping tasks still exist
+            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
+            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+                editedTask = EditCommand.createOverlappingTask(editedTask);
+            } else {
+                // REMOVE OVERLAP TAG
+            }
             model.updateTask(taskToEdit, editedTask);
+
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+    }
+
+    /**
+    * Checks the new editedTask created to ensure that the edited task value(s) is/are valid
+    * @throws CommandException if edited task is invalid
+    */
+    public void validateEditTask(BasicTask editedTask) throws CommandException {
+        if ((editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
+                editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))||
+                (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) &&
+                        editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
+        }
     }
 
     //@@author A0142675B
@@ -104,10 +135,36 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskDescription updateDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         DateTime updatedStartDateTime = editTaskDescriptor.getStartDateTime().orElse(taskToEdit.getStartDateTime());
         DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
-        return new BasicTask(updatedName, updatedStartDateTime, updatedEndDateTime, updatedTags);
+
+        return new BasicTask(updatedName, updateDescription, false, updatedStartDateTime, updatedEndDateTime, updatedTags);
+    }
+
+    //@@author A0156106M
+    /**
+     * Creates a new overlapping BasicTask based on @param taskToMark
+     * @return marked BasicTask
+     * */
+    static BasicTask createOverlappingTask(BasicTaskFeatures taskToMark) {
+        assert taskToMark != null;
+        BasicTask toCopy = new BasicTask(taskToMark);
+        TaskName updatedName = toCopy.getName();
+        TaskDescription updatedDescription = toCopy.getDescription();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> copyTags = toCopy.getTags();
+        Set<Tag> updatedTags = new HashSet<Tag>(copyTags);
+
+        try {
+            updatedTags.add(new Tag("Overlapping"));
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+        return new BasicTask(updatedName, updatedDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
     //@@author A0142675B
@@ -197,6 +254,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private TaskName name;
+        private TaskDescription description;
         private boolean isCompleted;
         private DateTime startDateTime;
         private DateTime endDateTime;
@@ -207,6 +265,7 @@ public class EditCommand extends Command {
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.name;
+            this.description = toCopy.description;
             this.isCompleted = toCopy.isCompleted;
             this.startDateTime = toCopy.startDateTime;
             this.endDateTime = toCopy.endDateTime;
@@ -219,6 +278,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name,
+                                               this.description,
                                                this.isCompleted,
                                                this.startDateTime,
                                                this.endDateTime,
@@ -233,7 +293,16 @@ public class EditCommand extends Command {
         public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
+        //@@author A0156106M
+        public void setDescription(TaskDescription description) {
+            this.description = description;
+        }
 
+        public Optional<TaskDescription> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        //@@author A0142675B
         public void setIsCompleted(boolean isCompleted) {
             this.isCompleted = isCompleted;
         }

@@ -1,6 +1,5 @@
 package seedu.whatsnext.ui;
 
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -24,9 +23,6 @@ public class EventListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Pair<BasicTaskFeatures, Integer>> eventListView;
-
-    private HashMap<Integer, Integer> eventMap = new HashMap<Integer, Integer>();
-    private int scrollIndex = 0;
 
     public EventListPanel(ObservableList<BasicTaskFeatures> taskList) {
         super(FXML);
@@ -86,18 +82,13 @@ public class EventListPanel extends UiPart<Region> {
             ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> eventList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
-            BasicTaskFeatures taskToDelete = taskList.get(index);
-            if (taskToDelete.getTaskType().equals("event")) {
-                Pair<BasicTaskFeatures, Integer> eventTask = new Pair<BasicTaskFeatures, Integer>(taskToDelete, index);
+            BasicTaskFeatures taskToConsider = taskList.get(index);
+            if (taskToConsider.getTaskType().equals("event")) {
+                Pair<BasicTaskFeatures, Integer> eventTask =
+                        new Pair<BasicTaskFeatures, Integer>(taskToConsider, index);
                 eventList.add(eventTask);
-                eventMap.put(index, scrollIndex);
-                scrollIndex++;
             }
         }
         return eventList;
-    }
-
-    public HashMap<Integer, Integer> getMap() {
-        return eventMap;
     }
 }

@@ -29,6 +29,19 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(Logic logic) {
         super(FXML);
         this.logic = logic;
+        commandTextField.setOnKeyPressed(
+            event -> {
+                switch (event.getCode()) {
+                case UP: commandTextField.setText("what is this #$@!");
+                             break;
+
+                case DOWN: commandTextField.clear();
+                                break;
+
+                default:
+                }
+            }
+        );
     }
 
     @FXML

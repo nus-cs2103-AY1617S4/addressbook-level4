@@ -86,10 +86,11 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @throws DuplicateTaskException if an equivalent task already exists.
      */
-    public void addTask(BasicTask p) throws DuplicateTaskException {
-        BasicTask newFloating = new BasicTask(p);
+    public void addTask(BasicTask task) throws DuplicateTaskException {
+        BasicTask newFloating = new BasicTask(task);
         syncMasterTagListWith(newFloating);
         tasks.add(newFloating);
+        tasks.sort();
     }
 
     /**
@@ -107,13 +108,12 @@ public class TaskManager implements ReadOnlyTaskManager {
         requireNonNull(editedReadOnlyTask);
 
         BasicTask editedTask = new BasicTask(editedReadOnlyTask);
-        System.out.println(editedTask.getStartDateTime().toString());
-        System.out.println(editedTask.getEndDateTime().toString());
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any task
         // in the task list.
         tasks.updateTask(target, editedTask);
+        tasks.sort();
     }
 
 
@@ -149,6 +149,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public boolean removeTask(BasicTaskFeatures key) throws TaskNotFoundException {
         if (tasks.remove(key)) {
+            tasks.sort();
             return true;
         } else {
             throw new TaskNotFoundException();

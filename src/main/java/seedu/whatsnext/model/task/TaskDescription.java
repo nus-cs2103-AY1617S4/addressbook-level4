@@ -11,6 +11,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
  */
 
 public class TaskDescription {
+    public static final String INIT_DECRIPTION_VALUE = "Empty";
     public static final String MESSAGE_NAME_CONSTRAINTS =
             "Task description should only contain alphanumeric characters and spaces";
     /*
@@ -18,8 +19,11 @@ public class TaskDescription {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String TASK_DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
     public final String fullTaskDescription;
+
+    public TaskDescription() throws IllegalValueException {
+        this (INIT_DECRIPTION_VALUE);
+    }
 
     /**
      * Validates given Description.

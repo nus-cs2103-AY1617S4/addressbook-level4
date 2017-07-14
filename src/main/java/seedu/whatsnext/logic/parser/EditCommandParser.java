@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
@@ -35,6 +36,7 @@ public class EditCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                                           PREFIX_MESSAGE,
                                            PREFIX_START_DATETIME,
                                            PREFIX_END_DATETIME,
                                            PREFIX_NEW_TAG,
@@ -52,6 +54,9 @@ public class EditCommandParser {
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME))
                                                                 .ifPresent(editTaskDescriptor::setName);
+
+            ParserUtil.parseDescription(argMultimap.getValue(PREFIX_MESSAGE))
+                                                                .ifPresent(editTaskDescriptor::setDescription);
 
             ParserUtil.parseStartDateTime(argMultimap.getValue(PREFIX_START_DATETIME))
                                                                 .ifPresent(editTaskDescriptor::setStartDateTime);

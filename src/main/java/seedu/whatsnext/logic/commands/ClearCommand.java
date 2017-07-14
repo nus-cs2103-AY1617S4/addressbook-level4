@@ -21,6 +21,8 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Task List has been cleared!";
     public static final Object MESSAGE_USAGE = null;
+    private static final boolean COMPLETED_TASKS = false;
+    private static final boolean INCOMPLETE_TASKS = false;
 
     public final String clearArgument;
 
@@ -36,13 +38,17 @@ public class ClearCommand extends Command {
             model.resetData(new TaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
         } else if (clearArgument.equals(PREFIX_COMPLETED.toString())) {
-            return clearCompletedOrIncomplete(false);
+            return clearCompletedOrIncomplete(COMPLETED_TASKS);
         } else {
-            return clearCompletedOrIncomplete(true);
+            return clearCompletedOrIncomplete(INCOMPLETE_TASKS);
         }
     }
 
     //@@author A0156106M
+    /**
+     * Clears all completed/incomplete task based on the input parameter
+     *
+     * */
     private CommandResult clearCompletedOrIncomplete(boolean isCompletedOrIncomplete) {
         ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
         ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();

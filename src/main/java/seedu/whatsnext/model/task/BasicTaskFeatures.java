@@ -13,6 +13,7 @@ import seedu.whatsnext.model.tag.Tag;
 public interface BasicTaskFeatures {
 
     TaskName getName();
+    TaskDescription getDescription();
     Set<Tag> getTags();
     boolean getIsCompleted();
     void setCompleted();
@@ -23,6 +24,7 @@ public interface BasicTaskFeatures {
     DateTime getEndDateTime();
     String getTaskType();
     String getStatusString();
+    String getTaskDetails();
 
 
     /**
@@ -35,7 +37,7 @@ public interface BasicTaskFeatures {
     }
 
     /**
-     * Formats the task as text, showing all contact details.
+     * Formats the task as text, showing all task details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
@@ -65,6 +67,7 @@ public interface BasicTaskFeatures {
 
         return builder.toString();
     }
+    boolean eventTaskOverlap(BasicTaskFeatures task);
 
 
 }

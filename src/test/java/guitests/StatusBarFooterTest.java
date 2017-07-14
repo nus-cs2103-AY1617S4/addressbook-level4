@@ -16,7 +16,7 @@
 //import org.junit.Test;
 //
 //import seedu.whatsnext.logic.commands.ListCommand;
-//import seedu.whatsnext.testutil.PersonUtil;
+//import seedu.whatsnext.testutil.BasicTaskUtil;
 //import seedu.whatsnext.ui.StatusBarFooter;
 //
 //public class StatusBarFooterTest extends AddressBookGuiTest {
@@ -45,7 +45,7 @@
 //    public void syncStatus_mutatingCommandSucceeds_syncStatusUpdated() {
 //        String timestamp = new Date(injectedClock.millis()).toString();
 //        String expected = String.format(SYNC_STATUS_UPDATED, timestamp);
-//        assertTrue(commandBox.runCommand(PersonUtil.getAddCommand(td.hoon))); // mutating command succeeds
+//        assertTrue(commandBox.runCommand(BasicTaskUtil.getAddCommand(td.hoon))); // mutating command succeeds
 //        assertEquals(expected, statusBarFooter.getSyncStatus());
 //    }
 //

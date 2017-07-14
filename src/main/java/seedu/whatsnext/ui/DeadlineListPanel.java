@@ -1,6 +1,5 @@
 package seedu.whatsnext.ui;
 
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -26,9 +25,6 @@ public class DeadlineListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Pair<BasicTaskFeatures, Integer>> deadlineListView;
-
-    private HashMap<Integer, Integer> deadlineMap = new HashMap<Integer, Integer>();
-    private int scrollIndex = 0;
 
     public DeadlineListPanel(ObservableList<BasicTaskFeatures> taskList) {
         super(FXML);
@@ -87,19 +83,13 @@ public class DeadlineListPanel extends UiPart<Region> {
             ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> deadlineList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
-            BasicTaskFeatures taskToDelete = taskList.get(index);
-            if (taskToDelete.getTaskType().equals("deadline")) {
+            BasicTaskFeatures taskToConsider = taskList.get(index);
+            if (taskToConsider.getTaskType().equals("deadline")) {
                 Pair<BasicTaskFeatures, Integer> deadlineTask =
-                        new Pair<BasicTaskFeatures, Integer>(taskToDelete, index);
+                        new Pair<BasicTaskFeatures, Integer>(taskToConsider, index);
                 deadlineList.add(deadlineTask);
-                deadlineMap.put(index, scrollIndex);
-                scrollIndex++;
             }
         }
         return deadlineList;
-    }
-
-    public HashMap<Integer, Integer> getMap() {
-        return deadlineMap;
     }
 }

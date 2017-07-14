@@ -2,6 +2,8 @@ package seedu.whatsnext.model;
 
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
@@ -24,7 +26,6 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final UserPrefs userPrefs;
     private final TaskManager taskManager;
     private final FilteredList<BasicTask> filteredTasks;
 
@@ -39,7 +40,6 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(taskManager, userPrefs);
 
         logger.fine("Initializing with Task Manager: " + taskManager + " and user prefs " + userPrefs);
-        this.userPrefs = userPrefs;
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         undoTaskManager = new Stack<TaskManager>();
@@ -139,15 +139,24 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
+        filteredTasks.setPredicate(null);
+        return new UnmodifiableObservableList<>(filteredTasks);
+    }
+
+    // @@author A0154986L
+    /**
+     * Returns the filtered task list for reminder pop up window.
+     */
+    @Override
+    public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
+        updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
     @Override
     public void updateFilteredListToShowAll() {
-
         filteredTasks.setPredicate(null);
         indicateTaskManagerChanged();
-
     }
 
     @Override
@@ -244,9 +253,42 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    // @@author A0154986L
+    /*
+     * Finds the tasks for reminder pop up window.
+     */
+    private class ReminderQualifier implements Qualifier {
+
+        Date remindStart = new Date();
+        Date remindEnd = new Date();
+        Calendar cal = Calendar.getInstance();
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            cal.setTime(remindStart);
+            remindStart = cal.getTime();
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
+            return (basicTaskFeatures.getTaskType().equals("event")
+                    && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
+                    && basicTaskFeatures.getStartDateTime().isBefore(remindEnd))
+                    || (basicTaskFeatures.getTaskType().equals("deadline")
+                            && !basicTaskFeatures.getEndDateTime().isBefore(remindStart)
+                            && basicTaskFeatures.getEndDateTime().isBefore(remindEnd));
+        }
+
+        @Override
+        public String toString() {
+            cal.setTime(remindStart);
+            cal.add(Calendar.DATE, 3);
+            remindEnd = cal.getTime();
+            return remindEnd.toString();
+        }
+    }
+
     //@@author A0142675B
     /**
-     * Find the task either by name or tag.
+     * Finds the tasks either by name or tag.
      */
     private class NameAndTagQualifier implements Qualifier {
         private Set<String> keyWords;

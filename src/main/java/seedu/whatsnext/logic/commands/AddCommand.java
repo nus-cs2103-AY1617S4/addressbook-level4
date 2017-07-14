@@ -6,6 +6,7 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.whatsnext.commons.core.EventsCenter;
+import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -40,18 +41,28 @@ public class AddCommand extends Command {
         toAdd = new BasicTask(task);
     }
 
+    //@@author A0156106M
     @Override
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
+        UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
         try {
-            model.addTask(toAdd);
+            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(toAdd, taskList);
+            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+                //BasicTaskFeatures taskToEdit = taskList.get(overlapTaskIndex);
+                //model.updateTask(taskToEdit, EditCommand.createOverlappingTask(taskToEdit));
+                model.addTask(EditCommand.createOverlappingTask(toAdd));
+            } else {
+                model.addTask(toAdd);
+            }
             Index targetIndex = new Index(model.getFilteredTaskList().size() - 1);
             EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
     }
+
+
 
 }

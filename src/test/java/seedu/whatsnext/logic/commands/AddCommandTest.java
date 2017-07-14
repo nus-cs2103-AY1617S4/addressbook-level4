@@ -23,10 +23,13 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 import seedu.whatsnext.testutil.TaskBuilder;
 
+<<<<<<< HEAD
 //@@author A0149894H
 /**
  * A class to test add command
  */
+=======
+>>>>>>> TeamMain/master
 public class AddCommandTest {
 
     @Rule
@@ -61,7 +64,11 @@ public class AddCommandTest {
     }
 
     /**
+<<<<<<< HEAD
      * Generates a new AddCommand with the details of the given task.
+=======
+     * Generates a new AddCommand with the details of the given person.
+>>>>>>> TeamMain/master
      */
     private AddCommand getAddCommandForTask(BasicTask task, Model model) throws IllegalValueException {
         AddCommand command = new AddCommand(task);
@@ -74,7 +81,11 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
+<<<<<<< HEAD
         public void addTask(BasicTask task) throws DuplicateTaskException {
+=======
+        public void addTask(BasicTask basicTask) throws DuplicateTaskException {
+>>>>>>> TeamMain/master
             fail("This method should not be called.");
         }
 
@@ -83,11 +94,19 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+<<<<<<< HEAD
         /*@Override
         public BasicTaskFeatures getTask() {
             fail("This method should not be called.");
             return null;
         }*/
+=======
+        @Override
+        public ReadOnlyTaskManager getTaskManager() {
+            fail("This method should not be called.");
+            return null;
+        }
+>>>>>>> TeamMain/master
 
         @Override
         public void deleteTask(BasicTaskFeatures target) throws TaskNotFoundException {
@@ -95,7 +114,11 @@ public class AddCommandTest {
         }
 
         @Override
+<<<<<<< HEAD
         public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
+=======
+        public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedPerson)
+>>>>>>> TeamMain/master
                 throws DuplicateTaskException {
             fail("This method should not be called.");
         }
@@ -115,6 +138,7 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Set<String> keywords) {
             fail("This method should not be called.");
         }
+<<<<<<< HEAD
 
         @Override
         public ReadOnlyTaskManager getTaskManager() {
@@ -145,6 +169,8 @@ public class AddCommandTest {
         public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
             fail("This method should not be called.");
         }
+=======
+>>>>>>> TeamMain/master
     }
 
     /**

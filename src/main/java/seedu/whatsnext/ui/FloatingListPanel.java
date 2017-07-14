@@ -1,6 +1,5 @@
 package seedu.whatsnext.ui;
 
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -25,9 +24,6 @@ public class FloatingListPanel extends UiPart<Region> {
     @FXML
     private ListView<Pair<BasicTaskFeatures, Integer>> floatingListView;
 
-    private HashMap<Integer, Integer> floatingMap = new HashMap<Integer, Integer>();
-    private int scrollIndex = 0;
-
     public FloatingListPanel(ObservableList<BasicTaskFeatures> taskList) {
         super(FXML);
         setConnections(taskList);
@@ -44,12 +40,11 @@ public class FloatingListPanel extends UiPart<Region> {
             ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> floatingTaskList = FXCollections.observableArrayList();
         for (int index = 0; taskList.size() != index; index++) {
-            BasicTaskFeatures taskToFloat = taskList.get(index);
-            if (taskToFloat.getTaskType().equals("floating")) {
-                Pair<BasicTaskFeatures, Integer> floatTask = new Pair<BasicTaskFeatures, Integer>(taskToFloat, index);
+            BasicTaskFeatures taskToConsider = taskList.get(index);
+            if (taskToConsider.getTaskType().equals("floating")) {
+                Pair<BasicTaskFeatures, Integer> floatTask =
+                        new Pair<BasicTaskFeatures, Integer>(taskToConsider, index);
                 floatingTaskList.add(floatTask);
-                floatingMap.put(index, scrollIndex);
-                scrollIndex++;
             }
         }
         return floatingTaskList;
@@ -91,9 +86,5 @@ public class FloatingListPanel extends UiPart<Region> {
                 setGraphic(new FloatingTaskCard(task.getKey(), task.getValue() + 1).getRoot());
             }
         }
-    }
-
-    public HashMap<Integer, Integer> getMap() {
-        return floatingMap;
     }
 }
