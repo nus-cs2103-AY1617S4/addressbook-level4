@@ -162,7 +162,7 @@ public class DueTime {
         return end_time;
     }
     
-    public LocalTime getLocalSstartTime() {
+    public LocalTime getLocalStartTime() {
         return start_time;
     }
 
