@@ -47,6 +47,11 @@ public class CommandBox extends UiPart<Region> {
                     }
                     break;
 
+                case DELETE:
+                    commandTextField.setText("");
+                    i = 0;
+                    break;
+
                 default:
                 }
             }
@@ -61,6 +66,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandSuccess();
             commandTextField.setText("");
             logger.info("Result: " + commandResult.feedbackToUser);
+            i = 0;
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
         } catch (CommandException | ParseException | TagNotFoundException e) {
