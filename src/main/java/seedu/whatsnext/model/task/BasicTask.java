@@ -228,4 +228,28 @@ public class BasicTask implements BasicTaskFeatures {
         return -1;
     }
 
+    @Override
+    public String getTaskDetails() {
+        StringBuilder details = new StringBuilder();
+        if (this.getTaskType().equals("event")) {
+            details.append("Task name: " + this.getName() + "\n"
+                + "Tags: " + this.getAllTags() + "\n"
+                + "Status: " + this.getStatusString() + "\n"
+                + "From: " + this.getStartDateTime().toString() + " "
+                + "To: " + this.getEndDateTime().toString() + "\n"
+                + "Description: " + this.getDescription().toString());
+        } else if (this.getTaskType().equals("deadline")) {
+            details.append("Task name: " + this.getName() + "\n"
+                    + "Tags: " + this.getAllTags() + "\n"
+                    + "Status: " + this.getStatusString() + "\n"
+                    + "Due by: " + this.getEndDateTime().toString() + "\n"
+                    + "Description: " + this.getDescription().toString());
+        } else if (this.getTaskType().equals("floating")) {
+            details.append("Task name: " + this.getName() + "\n"
+                    + "Tags: " + this.getAllTags() + "\n"
+                    + "Status: " + this.getStatusString() + "\n"
+                    + "Description: " + this.getDescription().toString());
+        }
+        return details.toString();
+    }
 }
