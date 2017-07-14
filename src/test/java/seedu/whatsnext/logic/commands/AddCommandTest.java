@@ -114,37 +114,37 @@ public class AddCommandTest {
 
         @Override
         public void undoTaskManager() {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
 
         }
 
         @Override
         public void redoTaskManager() {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
 
         }
 
         @Override
         public void saveTaskManager() {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
 
         }
 
         @Override
         public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
             return null;
         }
 
         @Override
         public void updateFilteredTaskListForInitialView() {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
 
         }
 
         @Override
         public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
-            // TODO Auto-generated method stub
+            fail("This method should not be called.");
 
         }
     }
@@ -159,6 +159,7 @@ public class AddCommandTest {
         }
     }
 
+    //@@author A0156106M
     /**
      * A Model stub that always accept the person being added.
      */
