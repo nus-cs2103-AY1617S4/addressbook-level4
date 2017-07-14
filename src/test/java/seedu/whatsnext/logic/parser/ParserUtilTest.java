@@ -3,7 +3,6 @@ package seedu.whatsnext.logic.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import static seedu.whatsnext.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 
@@ -18,9 +17,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-import seedu.whatsnext.model.task.DateTime;
-import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.TaskName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -80,8 +78,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValue_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        Optional<Name> actualName = ParserUtil.parseName(Optional.of(VALID_NAME));
+        TaskName expectedName = new TaskName(VALID_NAME);
+        Optional<TaskName> actualName = ParserUtil.parseName(Optional.of(VALID_NAME));
 
         assertEquals(expectedName, actualName.get());
     }
