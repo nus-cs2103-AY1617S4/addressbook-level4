@@ -16,10 +16,10 @@ import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 public class parseEditCommand {
 
     public static final String COMMAND_ARGUMENTS_REGEX = "(?=(?<index>\\d+))"
-            + "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end))?))?"
-            + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|start|end))?))?"
-            + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R|end))?))?"
-            + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R))?))?"
+            + "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end|date|time))?))?"
+            + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|start|end|time))?))?"
+            + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R|end|time|start))?))?"
+            + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R|time|start|end))?))?"
             + "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R|start|end))?))?"
             + "(?:(?=.*start time(?:(?<startTime>.+?)(?:,|$|\\R|end))?))?"
             + "(?:(?=.*end time(?:(?<endTime>.+?)(?:,|$|\\R|start|end))?))?"
