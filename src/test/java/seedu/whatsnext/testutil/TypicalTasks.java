@@ -22,7 +22,7 @@ public class TypicalTasks {
         try {
             meetJohnForDinner = new TaskBuilder().withName("Meet John for dinner")
                                 .withTags("DINNER").build();
-            completeCS2103Assignment = new TaskBuilder().withName("Complete CS2103 Assignment")
+            completeCS2103Assignment = new TaskBuilder().withName("Complete")
                     .withStartDateTime("10 Dec 2017 6pm")
                     .withEndDateTime("13 Dec 12pm")
                     .withTags("HIGH", "CS2103").build();
