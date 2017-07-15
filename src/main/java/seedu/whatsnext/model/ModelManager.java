@@ -258,9 +258,9 @@ public class ModelManager extends ComponentManager implements Model {
      */
     private class ReminderQualifier implements Qualifier {
 
-        Date remindStart = new Date();
-        Date remindEnd = new Date();
-        Calendar cal = Calendar.getInstance();
+        private Date remindStart = new Date();
+        private Date remindEnd = new Date();
+        private Calendar cal = Calendar.getInstance();
 
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
