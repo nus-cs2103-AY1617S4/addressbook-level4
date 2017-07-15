@@ -90,7 +90,7 @@ public class UniqueTaskList implements Iterable<Task> {
             LocalTime currStartTime = curr.getTime().getLocalStartTime();
             LocalTime currEndTime = curr.getTime().getLocalEndTime();
 
-            if (toCheckEndDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
+            if (toCheckEndDate.isBefore(currStartDate) || toCheckStartDate.isAfter(currEndDate)) {
                 continue;
             } else if (toCheckStartDate.equals(currEndDate) && toCheckStartTime.isAfter(currEndTime)) {
                 continue;
