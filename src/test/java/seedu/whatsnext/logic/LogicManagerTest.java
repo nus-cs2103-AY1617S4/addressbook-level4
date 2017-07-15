@@ -259,10 +259,8 @@ public class LogicManagerTest {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         BasicTask toBeAdded = helper.sampleTask();
-
         // setup starting state
         model.addTask(toBeAdded); // person already in internal task manager
-
         // execute command and verify result
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
@@ -289,8 +287,6 @@ public class LogicManagerTest {
         // Command: "list incomplete" - to list all incomplete tasks
         assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
 
-
-
     }
 
 
@@ -309,6 +305,7 @@ public class LogicManagerTest {
         assertParseException(commandWord + " not_a_number", expectedMessage);
     }
 
+    //@@author
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
      * targeting a single person in the shown list, using visible index.
@@ -340,6 +337,7 @@ public class LogicManagerTest {
         assertIndexNotFoundBehaviorForCommand(SelectCommand.COMMAND_WORD);
     }
 
+    //@@author A0156106M
     @Test
     public void execute_select_jumpsToCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -354,7 +352,7 @@ public class LogicManagerTest {
 
     }
 
-
+    //@@author
     @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
@@ -509,8 +507,8 @@ public class LogicManagerTest {
 
             cmd.append(" " + basicTask.getName());
             cmd.append(" " + PREFIX_MESSAGE.getPrefix()).append(basicTask.getDescription());
-            cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime());
-            cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime());
+            cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime().displayDateTime());
+            cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime().displayDateTime());
 
             Set<Tag> tags = basicTask.getTags();
             for (Tag t: tags) {
