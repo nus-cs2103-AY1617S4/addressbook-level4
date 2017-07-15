@@ -1,12 +1,11 @@
 package seedu.ticktask.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Adds a Task to the TickTask.
@@ -23,6 +22,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program";
+    public static final String MESSAGE_PAST_TASK = "This task is already passed the current date/time";
 
     private final Task toAdd;
 
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
         try {
-            model.addTask(toAdd);
+                model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -46,3 +46,5 @@ public class AddCommand extends Command {
     }
 
 }
+
+

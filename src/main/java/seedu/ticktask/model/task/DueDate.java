@@ -1,6 +1,8 @@
 package seedu.ticktask.model.task;
 
-import static java.util.Objects.requireNonNull;
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -11,10 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.joestelmach.natty.DateGroup;
-import com.joestelmach.natty.Parser;
-
-import seedu.ticktask.commons.exceptions.IllegalValueException;
+import static java.util.Objects.requireNonNull;
 
 //@@author A0138471A
 /**
@@ -33,7 +32,7 @@ public class DueDate {
     public static final String START_DATE_VALIDATION_REGEX = "start date.*";
     public static final String END_DATE_VALIDATION_REGEX = "end date.*";
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(START_DATE_VALIDATION_REGEX);
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/uuuu");
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
@@ -98,7 +97,9 @@ public class DueDate {
             extractDate(trimmedDate);
         }
 
-        value = getStartDate() + "" + getEndDate();
+
+        value = getStartDate() + " - " + getEndDate();
+
 
     }
 
@@ -137,6 +138,7 @@ public class DueDate {
 
     }
 
+
     //@@author A0139819N
     private String convertDateFormat(String trimmedDate) {
         
@@ -159,34 +161,52 @@ public class DueDate {
 
         return trimmedDate;
     }
-    //@@author A0139819N
+    //@@author
 
     private String getStartDate() {
         return start_date_string;
     }
 
-    private void setEndDate(LocalDate end_date2) {
+    public void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
+
         }
         else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
+            value = getStartDate() + " - " + getEndDate();
+            end_date = end_date2;
+
         }
 
     }
-    private void setStartDate(LocalDate start_date2) {
+
+    public void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
+
         }
         else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
+            value = getStartDate() + " - " + getEndDate();
+            start_date = start_date2;
+
+
         }
 
     }
 
-    private String getEndDate() {
+    public String getEndDate() {
 
         return end_date_string;
+    }
+    
+    public LocalDate getLocalStartDate() {
+        return start_date;
+    }
+    
+    public LocalDate getLocalEndDate() {
+        return end_date;
     }
 
     /**

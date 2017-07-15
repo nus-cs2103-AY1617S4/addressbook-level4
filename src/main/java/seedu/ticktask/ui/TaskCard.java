@@ -40,13 +40,14 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         if(task.getTime().isRange()){
         	time.setText(task.getTime().toString());
-        	        //.getStartTime() + " - " + task.getTime().getEndTime());
         }
         else{
-            time.setText(task.getTime().getStartTime());
+            time.setText(task.getTime().toString());
         }
-        
+
         date.setText(task.getDate().toString());
+        
+
         taskType.setText(task.getTaskType().value);
         if (task.getTaskType().getValue().equals("event")){
             cardPane.setStyle("-fx-background-color: #201b42");

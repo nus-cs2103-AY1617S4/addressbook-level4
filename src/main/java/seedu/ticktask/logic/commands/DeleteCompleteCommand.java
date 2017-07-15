@@ -1,3 +1,5 @@
+//@@author A0147928N
+
 package seedu.ticktask.logic.commands;
 
 import seedu.ticktask.commons.core.Messages;
@@ -40,5 +42,5 @@ public class DeleteCompleteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToMark ));
     }
-
 }
+//@@author

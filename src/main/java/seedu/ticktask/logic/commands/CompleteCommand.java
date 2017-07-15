@@ -1,3 +1,5 @@
+//@@author A0147928N
+
 package seedu.ticktask.logic.commands;
 
 import seedu.ticktask.commons.core.Messages;
@@ -15,7 +17,7 @@ public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number as being completed. Task is moved to archive. \n"
+            + ": Marks the task identified by the index number as being completed. Task is moved to completed list. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -47,5 +49,5 @@ public class CompleteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, taskCompleted ));
     }
-
 }
+//@@author
