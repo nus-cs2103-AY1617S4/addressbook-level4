@@ -30,7 +30,6 @@ public class ClearCommandTest {
         assertCommandSuccess(model);
     }
 
-<<<<<<< HEAD
     @Test
     public void execute_clearIncompletedTasks_success() throws DuplicateTaskException {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
@@ -42,8 +41,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         assertCompletedCommandSuccess(model);
     }
-=======
->>>>>>> TeamMain/master
+
     /**
      * Executes {@code ClearCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
@@ -73,7 +71,10 @@ public class ClearCommandTest {
         CommandResult result = command.execute();
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertEquals(modelIncomplete, model);
+        assertEquals(modelIncomplete.getFilteredTaskList().size(), model.getFilteredTaskList().size());
+        for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
+            assertEquals(model.getFilteredTaskList().get(i), modelIncomplete.getFilteredTaskList().get(i));
+        }
 
     }
 
@@ -92,7 +93,10 @@ public class ClearCommandTest {
         CommandResult result = command.execute();
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertEquals(modelComplete, model);
+        assertEquals(modelComplete.getFilteredTaskList().size(), model.getFilteredTaskList().size());
+        for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
+            assertEquals(model.getFilteredTaskList().get(i), modelComplete.getFilteredTaskList().get(i));
+        }
     }
 
 }
