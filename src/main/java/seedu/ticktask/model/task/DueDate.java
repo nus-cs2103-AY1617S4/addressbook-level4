@@ -2,6 +2,8 @@ package seedu.ticktask.model.task;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
@@ -122,6 +124,7 @@ public class DueDate {
             setEndDate(null);
         }
         if (datesArray.size() == 2) {
+            Collections.sort(datesArray);
             start_date = datesArray.get(INDEX_START_DATE);
             end_date = datesArray.get(INDEX_END_DATE);
             setStartDate(start_date);
