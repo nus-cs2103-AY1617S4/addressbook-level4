@@ -20,20 +20,20 @@
         <tagged>CAMPING</tagged>
     </tasks>
     <tasks>
-        <name>CS2010 Problem Set</name>
-        <isCompleted>false</isCompleted>
-        <endDateTime>Thu, 20 Jul 2017 11:59 PM</endDateTime>
-        <taskType>deadline</taskType>
-        <taskDescription>Empty</taskDescription>
-        <tagged>CS2010</tagged>
-        <tagged>HIGH</tagged>
-    </tasks>
-    <tasks>
         <name>FYP Selection</name>
         <isCompleted>false</isCompleted>
         <endDateTime>Fri, 21 Jul 2017 11:59 PM</endDateTime>
         <taskType>deadline</taskType>
         <taskDescription>Empty</taskDescription>
+        <tagged>HIGH</tagged>
+    </tasks>
+    <tasks>
+        <name>CS2010 Problem Set</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Thu, 27 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>CS2010</tagged>
         <tagged>HIGH</tagged>
     </tasks>
     <tasks>
