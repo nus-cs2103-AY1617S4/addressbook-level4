@@ -4,9 +4,13 @@ import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.whatsnext.commons.core.ComponentManager;
@@ -18,6 +22,7 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
+import seedu.whatsnext.ui.UiManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -172,7 +177,6 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredTaskListForReminder() {
         updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
-        //indicateTaskManagerChanged();
     }
 
     @Override
@@ -262,12 +266,37 @@ public class ModelManager extends ComponentManager implements Model {
         Date remindEnd = new Date();
         Calendar cal = Calendar.getInstance();
 
+        String reminderSetting = UiManager.getReminderSetting();
+        Pattern p = Pattern.compile("(\\d+)\\s+(.*?)s?");
+
+        @SuppressWarnings("serial")
+        Map<String, Integer> fields = new HashMap<String, Integer>() {{
+            put("minute", Calendar.MINUTE);
+            put("hour",   Calendar.HOUR);
+            put("day",    Calendar.DATE);
+            put("week",   Calendar.WEEK_OF_YEAR);
+            put("month",  Calendar.MONTH);
+            put("year",   Calendar.YEAR);
+        }};
+
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             cal.setTime(remindStart);
             remindStart = cal.getTime();
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
+
+            if (reminderSetting == null || reminderSetting == "3 day") {
+                cal.add(Calendar.DATE, 3);
+                remindEnd = cal.getTime();
+            } else {
+                Matcher m = p.matcher(reminderSetting);
+                if (m.matches()) {
+                    int amount = Integer.parseInt(m.group(1));
+                    String unit = m.group(2);
+                    cal.add(fields.get(unit), amount);
+                    remindEnd = cal.getTime();
+                }
+            }
+
             return (basicTaskFeatures.getTaskType().equals("event")
                     && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
                     && basicTaskFeatures.getStartDateTime().isBefore(remindEnd))
@@ -278,9 +307,18 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public String toString() {
-            cal.setTime(remindStart);
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
+            if (reminderSetting == null || reminderSetting == "3 day") {
+                cal.add(Calendar.DATE, 3);
+                remindEnd = cal.getTime();
+            } else {
+                Matcher m = p.matcher(reminderSetting);
+                if (m.matches()) {
+                    int amount = Integer.parseInt(m.group(1));
+                    String unit = m.group(2);
+                    cal.add(fields.get(unit), amount);
+                    remindEnd = cal.getTime();
+                }
+            }
             return remindEnd.toString();
         }
     }

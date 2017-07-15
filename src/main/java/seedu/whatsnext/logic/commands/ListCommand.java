@@ -7,8 +7,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 
 //@@author A0154986L
 /**
- * Lists all uncompleted/ completed/ all tasks in the task manager to the user.
- * It can also list tasks by type only.
+ * Lists all incomplete/ completed/ all tasks in the task manager to the user.
  */
 public class ListCommand extends Command {
 
@@ -17,12 +16,11 @@ public class ListCommand extends Command {
     public static final String LIST_COMPLETED = "completed";
     public static final String LIST_ALL = "all";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Listed all incomplete tasks. "
-            + "Parameters: "
-            + "complete/all: List all complete/all tasks ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all incomplete/completed/all tasks\n"
+            + "Parameters: {}/incomplete/completed/all";
 
     public static final String MESSAGE_SUCCESS_INCOMPLETE = "Listed all incomplete tasks";
-    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all complete tasks";
+    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all completed tasks";
     public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
 
     private final Set<String> keywords;
@@ -45,7 +43,8 @@ public class ListCommand extends Command {
             model.updateFilteredListToShowAll();
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_LIST_COMMAND);
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_COMMAND + "\n"
+                    + MESSAGE_USAGE);
         }
     }
 }
