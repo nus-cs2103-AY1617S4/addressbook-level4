@@ -30,7 +30,7 @@ import seedu.whatsnext.testutil.TypicalTasks;
 public class MarkCommandTest {
 
     private Model model;
-
+    //@@author A0154987J
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
