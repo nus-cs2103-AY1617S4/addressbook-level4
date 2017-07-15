@@ -242,9 +242,19 @@ public class BasicTask implements BasicTaskFeatures {
         return -1;
     }
 
-    public boolean containsOverlapTag() throws IllegalValueException  {
-        return tags.containsOverlapTag();
+//    public boolean containsOverlapTag() throws IllegalValueException  {
+//        return tags.containsOverlapTag();
+//    }
+    public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
+        for (BasicTaskFeatures task : taskList) {
+            if (this.eventTaskOverlap(task) && (!this.equals(task))) {
+                return true;
+            }
+        }
+        return false;
     }
+
+
 
     @Override
     public String getTaskDetails() {
