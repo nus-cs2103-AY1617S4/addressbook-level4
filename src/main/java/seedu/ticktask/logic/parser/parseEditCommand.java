@@ -58,7 +58,7 @@ public class parseEditCommand {
         try {
             ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
     
-            if (startTime.isPresent() || endDate.isPresent()) {
+            if (startTime.isPresent() || endTime.isPresent()) {
                 if (startTime.isPresent()) {
                     startTime = Optional.of("start time " + startTime);
                     ParserUtil.parseTime(startTime).ifPresent(editTaskDescriptor::setTime);
