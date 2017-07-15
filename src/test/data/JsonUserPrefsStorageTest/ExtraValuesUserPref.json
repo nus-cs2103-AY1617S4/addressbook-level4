@@ -9,6 +9,6 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "addressbook.xml",
-  "addressBookName" : "TypicalAddressBookName"
+  "taskManagerFilePath" : "whatsnext.xml",
+  "taskManagerName" : "WhatsNext"
 }
