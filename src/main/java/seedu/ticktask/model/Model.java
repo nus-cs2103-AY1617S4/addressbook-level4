@@ -42,7 +42,21 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show all tasks*/
     void updateFilteredListToShowAll();
-
+    
+    //@@author A0138471A
+    /** Updates the filter of the filtered task list to show all event tasks*/
+    void updateFilteredListToShowEvent();
+    
+    /** Updates the filter of the filtered task list to show all deadline tasks*/
+    void updateFilteredListToShowDeadline();
+    
+    /** Updates the filter of the filtered task list to show all floating tasks*/
+    void updateFilteredListToShowFloating();
+    
+    /** Updates the filter of the filtered task list to show all today's tasks*/
+    void updateFilteredListToShowToday();
+    //@@author
+    
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 

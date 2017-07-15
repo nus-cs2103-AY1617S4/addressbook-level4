@@ -131,7 +131,7 @@ public class DueDate {
         return start_date_string;
     }
 
-    private void setEndDate(LocalDate end_date2) {
+    public void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
         }
@@ -140,7 +140,7 @@ public class DueDate {
         }
 
     }
-    private void setStartDate(LocalDate start_date2) {
+    public void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
         }
