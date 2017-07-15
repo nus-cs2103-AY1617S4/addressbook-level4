@@ -50,10 +50,6 @@ public class UniqueTaskList implements Iterable<Task> {
         if(!isChornological(toAdd)){
             throw new DuplicateTaskException();
         }
-
-        //if (eventClash(toAdd)) {
-        //    throw new DuplicateTaskException();
-        //}
         
         toAdd.resetTaskType();
         internalList.add(new Task(toAdd));
@@ -130,9 +126,6 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         
-        //if (eventClash(editedTask)) {
-        //    throw new DuplicateTaskException();
-        //}
 
         //@@author A0139964M
         if(!isChornological(editedTask)){
