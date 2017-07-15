@@ -60,7 +60,7 @@ public class XmlTaskManagerStorageTest {
 
     @Test
     public void readAndSaveTaskManager_allInOrder_success() throws Exception {
-        String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
+        String filePath = testFolder.getRoot().getPath() + "tempWhatsNext.xml";
         TypicalTasks td = new TypicalTasks();
         TaskManager original = td.getTypicalTaskManager();
         XmlTaskManagerStorage xmlTaskManagerStorage = new XmlTaskManagerStorage(filePath);
@@ -86,17 +86,17 @@ public class XmlTaskManagerStorageTest {
     }
 
     @Test
-    public void saveTaskManager_nullAddressBook_throwsNullPointerException() throws IOException {
+    public void saveTaskManager_nullTaskManager_throwsNullPointerException() throws IOException {
         thrown.expect(NullPointerException.class);
         saveTaskManager(null, "SomeFile.xml");
     }
 
-    private void saveTaskManager(ReadOnlyTaskManager addressBook, String filePath) throws IOException {
-        new XmlTaskManagerStorage(filePath).saveTaskManager(addressBook, addToTestDataPathIfNotNull(filePath));
+    private void saveTaskManager(ReadOnlyTaskManager taskManager, String filePath) throws IOException {
+        new XmlTaskManagerStorage(filePath).saveTaskManager(taskManager, addToTestDataPathIfNotNull(filePath));
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() throws IOException {
+    public void saveTaskManager_nullFilePath_throwsNullPointerException() throws IOException {
         thrown.expect(NullPointerException.class);
         saveTaskManager(new TaskManager(), null);
     }
