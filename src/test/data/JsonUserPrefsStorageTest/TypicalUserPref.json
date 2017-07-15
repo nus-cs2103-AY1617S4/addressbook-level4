@@ -7,6 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.xml",
-  "addressBookName" : "TypicalAddressBookName"
+  "taskManagerFilePath" : "whatsnext.xml",
+  "taskManagerName" : "WhatsNext"
 }
