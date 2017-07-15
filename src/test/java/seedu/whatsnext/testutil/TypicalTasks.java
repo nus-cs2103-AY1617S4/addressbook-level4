@@ -15,28 +15,19 @@ public class TypicalTasks {
     public static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_TASK = Index.fromOneBased(3);
 
-    public final BasicTask completeCS2103Assignment, meetJohnForDinner, meetTomForLunch,
-                           completeHomework, assignment, cs2103Workshop, camping,
-                           cs2010ProblemSet, fypSelection, tester;
+    public final BasicTask completeCS2103Assignment, meetJohnForDinner, meetTomForLunch, camping,
+                           cs2010ProblemSet, fypSelection, tester, readaBook;
 
     public TypicalTasks() {
         try {
-            completeCS2103Assignment = new TaskBuilder().withName("Complete CS2103 Assignment")
-                                       .withStartDateTime("10 Dec 2017 6pm")
-                                       .withEndDateTime("13 Dec 12pm")
-                                       .withTags("HIGH", "CS2103").build();
             meetJohnForDinner = new TaskBuilder().withName("Meet John for dinner")
                                 .withTags("DINNER").build();
+            completeCS2103Assignment = new TaskBuilder().withName("Complete CS2103 Assignment")
+                    .withStartDateTime("10 Dec 2017 6pm")
+                    .withEndDateTime("13 Dec 12pm")
+                    .withTags("HIGH", "CS2103").build();
             meetTomForLunch = new TaskBuilder().withName("Meet Tom for lunch")
                               .withTags("LUNCH").build();
-            completeHomework = new TaskBuilder().withName("Complete Homework")
-                               .withTags("HOMEWORK").build();
-            assignment = new TaskBuilder().withName("Assignment")
-                         .withTags("HOMEWORK").build();
-            cs2103Workshop = new TaskBuilder().withName("CS2103 workshop")
-                             .withStartDateTime("12 Dec 2017 10am")
-                             .withEndDateTime("12 Dec 2017 4pm")
-                             .withTags("WORKSHOP").build();
             camping = new TaskBuilder().withName("Camping")
                       .withStartDateTime("10 Dec 2017 6pm")
                       .withEndDateTime("13 Dec 12pm")
@@ -47,6 +38,7 @@ public class TypicalTasks {
             fypSelection = new TaskBuilder().withName("FYP Selection")
                            .withEndDateTime("Friday")
                            .withTags("HIGH").build();
+            readaBook = new TaskBuilder().withName("Read a Book").build();
             tester = new TaskBuilder().withName("Tester")
                     .withStatus(true).build();
 
@@ -67,9 +59,8 @@ public class TypicalTasks {
     }
 
     public BasicTask[] getTypicalTasks() {
-        return new BasicTask[]{completeCS2103Assignment, meetJohnForDinner, meetTomForLunch,
-                               completeHomework, assignment, cs2103Workshop, camping,
-                               cs2010ProblemSet, fypSelection, tester};
+        return new BasicTask[]{cs2010ProblemSet, meetJohnForDinner, completeCS2103Assignment,
+                               meetTomForLunch, camping, fypSelection, tester};
     }
 
     public TaskManager getTypicalTaskManager() {

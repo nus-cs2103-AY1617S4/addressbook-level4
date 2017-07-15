@@ -34,7 +34,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Initializes the TaskBuilder with the data of {@code personToCopy}.
+     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(BasicTaskFeatures taskToCopy) {
         this.task = new BasicTask(taskToCopy);
@@ -62,6 +62,11 @@ public class TaskBuilder {
 
     public TaskBuilder withStatus(boolean status) throws IllegalValueException {
         this.task.setCompleted();
+        return this;
+    }
+    
+    public TaskBuilder withDescription(String description) throws IllegalValueException {
+        this.task.setDescription(new TaskDescription(description));
         return this;
     }
 
