@@ -27,7 +27,7 @@ public class ChangePathCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Save location changed to: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(ChangePathCommand.class);
-    private static String toDelete = Config.getTaskManagerFilePath();
+
 
 
     private static File toSave;
@@ -42,28 +42,34 @@ public class ChangePathCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            File myFoo = new File("data/filepath");
+            File f = new File("test.txt");
+            String string = f.getAbsolutePath();
+            int texttxtSize = 8;
+            int size = string.length() - texttxtSize;
+            string = string.substring(0, size);
+            String deleteLocation = String.format(string).concat(Config.getTaskManagerFilePath());
+            deleteLocation = deleteLocation.replace("\\", "/");
+            //delete
+            File toDeleteFilePath = new File(deleteLocation);
+            toDeleteFilePath.delete();
+
+            //overwrite filepath
+            File myFoo = new File("filepath");
             FileWriter fooWriter = new FileWriter(myFoo, false);
 
             String stringLocation = toSave.toString();
             fooWriter.write(stringLocation);
             fooWriter.close();
 
+            //set new file path in config
             Config config = new Config();
             config.setTaskManagerFilePath(stringLocation);
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
-            File f = new File("test.txt");
-            String string = f.getAbsolutePath();
-            int texttxtSize = 8;
-            int size = string.length() - texttxtSize;
-            string = string.substring(0, size);
-            string = string.replace("\\", "/");
-            String deleteLocation = String.format(string).concat(toDelete);
-            File filePath = new File(deleteLocation);
-            filePath.delete();
 
 
-            XmlTaskManagerStorage.changeTaskManagerFilePath(toSave.toString());
+
+
+            XmlTaskManagerStorage.changeTaskManagerFilePath(stringLocation);
             model.saveTaskManager();
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toSave));

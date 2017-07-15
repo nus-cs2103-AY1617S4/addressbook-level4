@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
         config = initConfig(getApplicationParameter("config"));
 
-<<<<<<< HEAD
+
         File f = new File("test.txt");
         path = f.getAbsolutePath();
         int texttxtSize = 8;
@@ -75,8 +75,7 @@ public class MainApp extends Application {
 
         initFilePath(path);
 
-=======
->>>>>>> TeamMain/master
+
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
         TaskManagerStorage taskManagerStorage = new XmlTaskManagerStorage(config.getTaskManagerFilePath());
