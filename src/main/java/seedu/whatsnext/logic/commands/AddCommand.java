@@ -5,13 +5,10 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
-<<<<<<< HEAD
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
-=======
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
->>>>>>> 35f1e675ef2b668aa82ad56fcded82ac28b939ce
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTask;
@@ -55,7 +52,6 @@ public class AddCommand extends Command {
             toAdd = EditCommand.createOverlapTask(toAdd);
         }
         try {
-<<<<<<< HEAD
  //           int overlapTaskIndex = BasicTask.getOverlapTaskIndex(toAdd, taskList);
 //            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
                 //BasicTaskFeatures taskToEdit = taskList.get(overlapTaskIndex);
@@ -78,9 +74,9 @@ public class AddCommand extends Command {
 //                return new CommandResult(displayString);
 //            }
 
-=======
-            model.addTask(toAdd);
->>>>>>> 35f1e675ef2b668aa82ad56fcded82ac28b939ce
+
+
+
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
