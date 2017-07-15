@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskManager>
+    <tasks>
+        <name>event</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>2017/17/07 23:59</startDateTime>
+        <endDateTime>2017/18/07 23:59</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+    </tasks>
+    <tasks>
+        <name>new studd</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>2017/17/07 23:59</startDateTime>
+        <endDateTime>2017/21/07 23:59</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>OVERLAP</tagged>
+    </tasks>
+    <tags>OVERLAP</tags>
+</taskManager>

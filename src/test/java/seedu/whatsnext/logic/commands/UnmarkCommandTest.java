@@ -19,7 +19,6 @@ import com.google.common.eventbus.Subscribe;
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
-import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.Model;
@@ -29,19 +28,13 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code SelectCommand}.
+ * Contains integration tests (interaction with the Model) for {@code UnmarkCommand}.
  */
-public class SelectCommandTest {
+public class UnmarkCommandTest {
 
     private Model model;
 
-    private Index eventTargetedJumpIndex;
-
-    @Subscribe
-    private void recordJumpToListRequestEvent(JumpToListRequestEvent je) {
-        eventTargetedJumpIndex = Index.fromZeroBased(je.targetIndex);
-    }
-
+    //@@author A0154987J
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
@@ -53,8 +46,11 @@ public class SelectCommandTest {
         Index lastPersonIndex = Index.fromOneBased(model.getFilteredTaskList().size());
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
+        assertUnmarkedSuccess(INDEX_FIRST_TASK);
         assertExecutionSuccess(INDEX_THIRD_TASK);
+        assertUnmarkedSuccess(INDEX_SECOND_TASK);
         assertExecutionSuccess(lastPersonIndex);
+        assertUnmarkedSuccess(lastPersonIndex);
     }
 
     @Test
@@ -69,6 +65,7 @@ public class SelectCommandTest {
         showFirstTaskOnly(model);
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
+        assertUnmarkedSuccess(INDEX_FIRST_TASK);
     }
 
     @Test
@@ -76,7 +73,7 @@ public class SelectCommandTest {
         showFirstTaskOnly(model);
 
         Index outOfBoundsIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of task manager list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getTaskManager().getTaskList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -93,44 +90,44 @@ public class SelectCommandTest {
         assertTrue(model.getFilteredTaskList().size() == 1);
     }
 
+    private void assertUnmarkedSuccess(Index index) throws Exception {
+        BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
+        assertEquals(task.getStatusString(), "Incomplete");
+    }
     /**
-     * Executes a {@code SelectCommand} with the given {@code index}, and checks that {@code JumpToListRequestEvent}
+     * Executes a {@code UnmarkCommand} with the given {@code index}, and checks that {@code JumpToListRequestEvent}
      * is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index) throws Exception {
-        eventTargetedJumpIndex = null;
-
-        SelectCommand selectCommand = prepareCommand(index);
-        CommandResult commandResult = selectCommand.execute();
-        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, index.getOneBased()),
+        BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
+        UnmarkCommand unmarkCommand = prepareCommand(index);
+        CommandResult commandResult = unmarkCommand.execute();
+        assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, task),
                 commandResult.feedbackToUser);
-        assertEquals(index, eventTargetedJumpIndex);
     }
 
     /**
-     * Executes a {@code SelectCommand} with the given {@code index}, and checks that a {@code CommandException}
+     * Executes a {@code UnmarkCommand} with the given {@code index}, and checks that a {@code CommandException}
      * is thrown with the {@code expectedMessage}.
      */
     private void assertExecutionFailure(Index index, String expectedMessage) {
-        eventTargetedJumpIndex = null;
 
-        SelectCommand selectCommand = prepareCommand(index);
+        UnmarkCommand unmarkCommand = prepareCommand(index);
 
         try {
-            selectCommand.execute();
+            unmarkCommand.execute();
             fail("The expected CommandException was not thrown.");
         } catch (CommandException ce) {
             assertEquals(expectedMessage, ce.getMessage());
-            assertNull(eventTargetedJumpIndex);
         }
     }
 
     /**
-     * Returns a {@code SelectCommand} with parameters {@code index}.
+     * Returns a {@code UnmarkCommand} with parameters {@code index}.
      */
-    private SelectCommand prepareCommand(Index index) {
-        SelectCommand selectCommand = new SelectCommand(index);
-        selectCommand.setData(model, new CommandHistory());
-        return selectCommand;
+    private UnmarkCommand prepareCommand(Index index) {
+        UnmarkCommand unmarkCommand = new UnmarkCommand(index);
+        unmarkCommand.setData(model, new CommandHistory());
+        return unmarkCommand;
     }
 }
