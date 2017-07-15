@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
@@ -14,12 +13,9 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.eventbus.Subscribe;
-
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
-import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.Model;
@@ -29,19 +25,12 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code SelectCommand}.
+ * Contains integration tests (interaction with the Model) for {@code MarkCommand}.
  */
-public class SelectCommandTest {
+public class MarkCommandTest {
 
     private Model model;
-
-    private Index eventTargetedJumpIndex;
-
-    @Subscribe
-    private void recordJumpToListRequestEvent(JumpToListRequestEvent je) {
-        eventTargetedJumpIndex = Index.fromZeroBased(je.targetIndex);
-    }
-
+    //@@author A0154987J
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
@@ -50,11 +39,9 @@ public class SelectCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Index lastPersonIndex = Index.fromOneBased(model.getFilteredTaskList().size());
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
-        assertExecutionSuccess(INDEX_THIRD_TASK);
-        assertExecutionSuccess(lastPersonIndex);
+        assertMarkedSuccess(INDEX_FIRST_TASK);
     }
 
     @Test
@@ -69,6 +56,7 @@ public class SelectCommandTest {
         showFirstTaskOnly(model);
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
+        assertMarkedSuccess(INDEX_FIRST_TASK);
     }
 
     @Test
@@ -76,7 +64,7 @@ public class SelectCommandTest {
         showFirstTaskOnly(model);
 
         Index outOfBoundsIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of task manager list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getTaskManager().getTaskList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -93,44 +81,44 @@ public class SelectCommandTest {
         assertTrue(model.getFilteredTaskList().size() == 1);
     }
 
+    private void assertMarkedSuccess(Index index) throws Exception {
+        BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
+        assertEquals(task.getStatusString(), "Completed");
+    }
     /**
-     * Executes a {@code SelectCommand} with the given {@code index}, and checks that {@code JumpToListRequestEvent}
+     * Executes a {@code MarkCommand} with the given {@code index}, and checks that {@code JumpToListRequestEvent}
      * is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index) throws Exception {
-        eventTargetedJumpIndex = null;
-
-        SelectCommand selectCommand = prepareCommand(index);
-        CommandResult commandResult = selectCommand.execute();
-        assertEquals(String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, index.getOneBased()),
+        BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
+        MarkCommand markCommand = prepareCommand(index);
+        CommandResult commandResult = markCommand.execute();
+        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, task),
                 commandResult.feedbackToUser);
-        assertEquals(index, eventTargetedJumpIndex);
     }
 
     /**
-     * Executes a {@code SelectCommand} with the given {@code index}, and checks that a {@code CommandException}
+     * Executes a {@code MarkCommand} with the given {@code index}, and checks that a {@code CommandException}
      * is thrown with the {@code expectedMessage}.
      */
     private void assertExecutionFailure(Index index, String expectedMessage) {
-        eventTargetedJumpIndex = null;
 
-        SelectCommand selectCommand = prepareCommand(index);
+        MarkCommand markCommand = prepareCommand(index);
 
         try {
-            selectCommand.execute();
+            markCommand.execute();
             fail("The expected CommandException was not thrown.");
         } catch (CommandException ce) {
             assertEquals(expectedMessage, ce.getMessage());
-            assertNull(eventTargetedJumpIndex);
         }
     }
 
     /**
-     * Returns a {@code SelectCommand} with parameters {@code index}.
+     * Returns a {@code MarkCommand} with parameters {@code index}.
      */
-    private SelectCommand prepareCommand(Index index) {
-        SelectCommand selectCommand = new SelectCommand(index);
-        selectCommand.setData(model, new CommandHistory());
-        return selectCommand;
+    private MarkCommand prepareCommand(Index index) {
+        MarkCommand markCommand = new MarkCommand(index);
+        markCommand.setData(model, new CommandHistory());
+        return markCommand;
     }
 }
