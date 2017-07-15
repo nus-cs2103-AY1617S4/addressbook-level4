@@ -47,6 +47,11 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
+
+        if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd, null)) {
+          throw new DuplicateTaskException();
+        }
+      
         if(!isChornological(toAdd)){
             throw new DuplicateTaskException();
         }
@@ -55,6 +60,51 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.add(new Task(toAdd));
     }
 
+
+    //@@author A0147928N
+    /**
+     * This predicate will be used to filter the list of tasks in eventClash();
+     */
+    public static Predicate<Task> isEvent() {
+        return p-> p.getTaskType().toString().equals("event");
+    }
+    //@@author
+
+    //@@author A0147928N
+    /**
+     * Returns true if the list contains a task within the same time frame as the given argument.
+     * Will also prevent the creation of events with the same name
+     */
+    public boolean eventClash(ReadOnlyTask toCheck, ReadOnlyTask exclude) {
+        FilteredList<Task> eventList = internalList.filtered(isEvent());
+
+        LocalDate toCheckStartDate = toCheck.getDate().getLocalStartDate();
+        LocalDate toCheckEndDate = toCheck.getDate().getLocalEndDate();
+        LocalTime toCheckStartTime = toCheck.getTime().getLocalStartTime();
+        LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
+
+        for (ReadOnlyTask curr : eventList) {
+            if (curr.isSameStateAs(exclude)) continue;
+            LocalDate currStartDate = curr.getDate().getLocalStartDate();
+            LocalDate currEndDate = curr.getDate().getLocalEndDate();
+            LocalTime currStartTime = curr.getTime().getLocalStartTime();
+            LocalTime currEndTime = curr.getTime().getLocalEndTime();
+
+            if (toCheckEndDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
+                continue;
+            } else if (toCheckStartDate.equals(currEndDate) && toCheckStartTime.isAfter(currEndTime)) {
+                continue;
+            } else if (toCheckEndDate.equals(currStartDate) && toCheckEndTime.isBefore(currStartTime)) {
+                continue;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+    //@@author
+    
+=======
    
     //@@author A0147928N
     /**
@@ -88,6 +138,9 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         
+        if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, null)) {
+          throw new DuplicateTaskException();
+        }
 
         //@@author A0139964M
         if(!isChornological(editedTask)){
