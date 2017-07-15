@@ -65,13 +65,7 @@ public class MainApp extends Application {
         config = initConfig(getApplicationParameter("config"));
 
 
-        File f = new File("test.txt");
-        path = f.getAbsolutePath();
-        int texttxtSize = 8;
-        int size = path.length() - texttxtSize;
-        path = path.substring(0, size);
-        path = path.replace("\\", "/");
-        path = String.format(path).concat("filepath");
+        setUpFilePath();
 
         initFilePath(path);
 
@@ -90,6 +84,17 @@ public class MainApp extends Application {
         ui = new UiManager(logic, config, userPrefs);
 
         initEventsCenter();
+    }
+    
+    //@@author A0149894H
+    private void setUpFilePath() {
+        File f = new File("test.txt");
+        path = f.getAbsolutePath();
+        int texttxtSize = 8;
+        int size = path.length() - texttxtSize;
+        path = path.substring(0, size);
+        path = path.replace("\\", "/");
+        path = String.format(path).concat("filepath");
     }
     //@@author A0149894H
     public void initFilePath(String path) throws IOException {

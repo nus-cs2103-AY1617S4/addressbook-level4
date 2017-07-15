@@ -42,31 +42,16 @@ public class ChangePathCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         try {
-            File f = new File("test.txt");
-            String string = f.getAbsolutePath();
-            int texttxtSize = 8;
-            int size = string.length() - texttxtSize;
-            string = string.substring(0, size);
-            String deleteLocation = String.format(string).concat(Config.getTaskManagerFilePath());
-            deleteLocation = deleteLocation.replace("\\", "/");
             //delete
-            File toDeleteFilePath = new File(deleteLocation);
-            toDeleteFilePath.delete();
+            deleteOldFile();
 
             //overwrite filepath
-            File myFoo = new File("filepath");
-            FileWriter fooWriter = new FileWriter(myFoo, false);
-
-            String stringLocation = toSave.toString();
-            fooWriter.write(stringLocation);
-            fooWriter.close();
+            String stringLocation = overwriteFilePath();
 
             //set new file path in config
             Config config = new Config();
             config.setTaskManagerFilePath(stringLocation);
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
-
-
 
 
             XmlTaskManagerStorage.changeTaskManagerFilePath(stringLocation);
@@ -80,6 +65,28 @@ public class ChangePathCommand extends Command {
             throw new CommandException(MESSAGE_CREATED_NEW_CONFIG_FILE);
         }
 
+    }
+
+    private String overwriteFilePath() throws IOException {
+        File myFoo = new File("filepath");
+        FileWriter fooWriter = new FileWriter(myFoo, false);
+
+        String stringLocation = toSave.toString();
+        fooWriter.write(stringLocation);
+        fooWriter.close();
+        return stringLocation;
+    }
+
+    private void deleteOldFile() {
+        File f = new File("test.txt");
+        String string = f.getAbsolutePath();
+        int texttxtSize = 8;
+        int size = string.length() - texttxtSize;
+        string = string.substring(0, size);
+        String deleteLocation = String.format(string).concat(Config.getTaskManagerFilePath());
+        deleteLocation = deleteLocation.replace("\\", "/");
+        File toDeleteFilePath = new File(deleteLocation);
+        toDeleteFilePath.delete();
     }
 
 
