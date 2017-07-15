@@ -172,7 +172,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredTaskListForReminder() {
         updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
-        indicateTaskManagerChanged();
+        //indicateTaskManagerChanged();
     }
 
     @Override
