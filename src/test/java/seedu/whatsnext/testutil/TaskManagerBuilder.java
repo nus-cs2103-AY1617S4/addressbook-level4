@@ -2,9 +2,10 @@ package seedu.whatsnext.testutil;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.TaskManager;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
-import seedu.whatsnext.model.tag.Tag;
+
 
 /**
  * A utility class to help with building TaskManager objects.

@@ -40,7 +40,8 @@ public class BasicTask implements BasicTaskFeatures {
      * Constructor for Floating
      * @throws IllegalValueException
      * */
-    public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted, Set<Tag> tags) throws IllegalValueException {
+    public BasicTask(TaskName taskName, TaskDescription taskDescription,
+            boolean isCompleted, Set<Tag> tags) throws IllegalValueException {
         this (taskName, taskDescription, isCompleted, new DateTime(), new DateTime(), tags);
     }
 
@@ -61,12 +62,14 @@ public class BasicTask implements BasicTaskFeatures {
         this (taskName, taskDescription, false, new DateTime(), endDateTime, tags);
     }
 
-    public BasicTask(TaskName taskName, TaskDescription taskDescription, boolean isCompleted, DateTime endDateTime, Set<Tag> tags)
+    public BasicTask(TaskName taskName, TaskDescription taskDescription,
+            boolean isCompleted, DateTime endDateTime, Set<Tag> tags)
             throws IllegalValueException {
         this (taskName, taskDescription, isCompleted, new DateTime(), endDateTime, tags);
     }
 
-    public BasicTask(TaskName taskName, TaskDescription taskDescription, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags)
+    public BasicTask(TaskName taskName, TaskDescription taskDescription,
+            DateTime startDateTime, DateTime endDateTime, Set<Tag> tags)
             throws IllegalValueException {
         this (taskName, taskDescription, false, startDateTime, endDateTime, tags);
     }
@@ -107,7 +110,6 @@ public class BasicTask implements BasicTaskFeatures {
         return (this.getTaskType().equals(TASK_TYPE_EVENT) && task.getTaskType().equals(TASK_TYPE_EVENT)
                 && this.getStartDateTime().isBeforeOrEqual(task.getEndDateTime())
                 && task.getStartDateTime().isBeforeOrEqual(this.getEndDateTime()));
-
     }
 
     public void setName(TaskName name) {
@@ -228,11 +230,8 @@ public class BasicTask implements BasicTaskFeatures {
         return taskDescription;
     }
 
-    public static boolean eventTaskOverlap(int overlapIndex) {
-        return overlapIndex != -1;
-    }
-
-    public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit, UnmodifiableObservableList<BasicTaskFeatures> taskList) {
+    public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit,
+            UnmodifiableObservableList<BasicTaskFeatures> taskList) {
         int index = 0;
         for (BasicTaskFeatures task : taskList) {
             if (taskToEdit.eventTaskOverlap(task) && (!taskToEdit.equals(task))) {
@@ -242,9 +241,6 @@ public class BasicTask implements BasicTaskFeatures {
         return -1;
     }
 
-//    public boolean containsOverlapTag() throws IllegalValueException  {
-//        return tags.containsOverlapTag();
-//    }
     public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
         for (BasicTaskFeatures task : taskList) {
             if (this.eventTaskOverlap(task) && (!this.equals(task))) {
@@ -253,8 +249,6 @@ public class BasicTask implements BasicTaskFeatures {
         }
         return false;
     }
-
-
 
     @Override
     public String getTaskDetails() {

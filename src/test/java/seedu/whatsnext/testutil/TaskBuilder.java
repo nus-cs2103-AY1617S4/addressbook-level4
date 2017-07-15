@@ -64,7 +64,7 @@ public class TaskBuilder {
         this.task.setCompleted();
         return this;
     }
-    
+
     public TaskBuilder withDescription(String description) throws IllegalValueException {
         this.task.setDescription(new TaskDescription(description));
         return this;

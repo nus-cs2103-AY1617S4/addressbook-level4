@@ -71,7 +71,8 @@ public class MarkCommand extends Command {
         toCopy.setCompleted();
         boolean updateIsComplete = toCopy.getIsCompleted();
         Set<Tag> updatedTags = toCopy.getTags();
-        return new BasicTask(updatedName, updatedDescription, updateIsComplete, startDateTime, endDateTime, updatedTags);
+        return new BasicTask(updatedName, updatedDescription,
+                updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
 }

@@ -92,12 +92,13 @@ public class EditCommand extends Command {
         try {
 
             // Check overlapping tasks still exist
-//            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
-//            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
-//                editedTask = EditCommand.createOverlapTask(editedTask);
-//            } else {
-//                // REMOVE OVERLAP TAG
-//            }
+            /*
+            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
+            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+                editedTask = EditCommand.createOverlapTask(editedTask);
+            } else {
+                // REMOVE OVERLAP TAG
+            }*/
             model.updateTask(taskToEdit, editedTask);
 
         } catch (DuplicateTaskException dpe) {
