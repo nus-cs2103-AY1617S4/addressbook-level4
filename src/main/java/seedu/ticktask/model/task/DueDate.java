@@ -36,6 +36,10 @@ public class DueDate {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
+    //author A0139819N
+    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
+    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
+    //author
 
     private final Parser parser = new Parser();
     //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,7 +56,9 @@ public class DueDate {
     private boolean isFloating = false;
     private boolean isRange = false;
     private boolean isDeadline = false;
-
+    
+    
+    
 
     /**
      * Validates given due date.
@@ -63,7 +69,10 @@ public class DueDate {
         requireNonNull(date);
 
         String trimmedDate = date.trim();
-
+        //author A0139819N
+        trimmedDate = convertDateFormat(trimmedDate);
+        //author
+          
         if (((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))) {
             List<DateGroup> dateGroups = parser.parse(trimmedDate);
             /*if(dateGroups.isEmpty()){
@@ -88,7 +97,9 @@ public class DueDate {
             extractDate(trimmedDate);
         }
 
+
         value = getStartDate() + " - " + getEndDate();
+
 
     }
 
@@ -127,7 +138,32 @@ public class DueDate {
 
     }
 
-    public String getStartDate() {
+
+    //@@author A0139819N
+    private String convertDateFormat(String trimmedDate) {
+        
+        System.out.println("OLD Trimmed date string: " + trimmedDate);
+        
+        DateTimeFormatter internationalDateParser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter americanDateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        //LocalDate inDate = LocalDate.parse(trimmedDate, internationalDateParser);
+
+        if(trimmedDate.matches(DATE_REGEX_SINGLE)){
+            trimmedDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate));
+        }
+        else if (trimmedDate.matches(DATE_REGEX_RANGE)){
+            String startDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(0,10)));
+            String endDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(11,21)));
+            System.out.println("START: " + startDate + "END: " + endDate);
+            trimmedDate = startDate + " " + endDate;
+        }
+        System.out.println("NEW trimmed date string: " + trimmedDate);
+
+        return trimmedDate;
+    }
+    //@@author
+
+    private String getStartDate() {
         return start_date_string;
     }
 

@@ -36,7 +36,6 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIME + "TIME] "
-
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -133,11 +132,19 @@ public class EditCommand extends Command {
         public EditTaskDescriptor() {}
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+            /*Why doen't this work?
+            setName(toCopy.name);
+            setTime(toCopy.time);
+            setTaskType(toCopy.type);
+            setDate(toCopy.date);
+            setTags(toCopy.tags);
+            */
             this.name = toCopy.name;
             this.time = toCopy.time;
             this.type = toCopy.type;
             this.date = toCopy.date;
             this.tags = toCopy.tags;
+            
         }
 
         /**

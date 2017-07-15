@@ -37,7 +37,7 @@ public class parseEditCommand {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
         // mandatory
-        final int index = Integer.parseInt(matcher.group("index"));
+        int index = Integer.parseInt(matcher.group("index"));
         //optional
         Optional<String> name = Optional.ofNullable(matcher.group("name"));
         Optional<String> time = Optional.ofNullable(matcher.group("time"));
@@ -74,8 +74,10 @@ public class parseEditCommand {
                 ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
                 System.out.println("TIME is edited to: " + time);
             }
+
     
             if (startDate.isPresent() || endDate.isPresent()) {
+
                 if (startDate.isPresent()) {
                     startDate = Optional.of("start date " + startDate);
                     ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
