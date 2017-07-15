@@ -31,7 +31,7 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
-    private final Index targetIndex;
+    public final Index targetIndex;
 
     public MarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

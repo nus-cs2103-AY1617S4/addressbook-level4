@@ -230,6 +230,7 @@ public class BasicTask implements BasicTaskFeatures {
         return taskDescription;
     }
 
+    /*
     public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit,
             UnmodifiableObservableList<BasicTaskFeatures> taskList) {
         int index = 0;
@@ -239,7 +240,7 @@ public class BasicTask implements BasicTaskFeatures {
             }
         }
         return -1;
-    }
+    }*/
 
     public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
         for (BasicTaskFeatures task : taskList) {
