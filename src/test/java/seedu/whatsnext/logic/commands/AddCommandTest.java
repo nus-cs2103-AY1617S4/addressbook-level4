@@ -34,17 +34,22 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
+    //@@author A0156106M
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
 
+        String addCommand = String.format(AddCommand.MESSAGE_SUCCESS, validTask);
+        System.out.print("ADD COMMAND " + addCommand);
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+        System.out.println(commandResult);
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
+    //@@author
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
         ModelStub modelStub = new ModelStubThrowingDuplicateTaskException();
@@ -131,12 +136,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskListForReminder() {
-            fail("This method should not be called.");
-            return null;
-        }
-
-        @Override
         public void updateFilteredTaskListForInitialView() {
             fail("This method should not be called.");
 
@@ -144,6 +143,12 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
+            fail("This method should not be called.");
+
+        }
+
+        @Override
+        public void updateFilteredTaskListForReminder() {
             fail("This method should not be called.");
 
         }
