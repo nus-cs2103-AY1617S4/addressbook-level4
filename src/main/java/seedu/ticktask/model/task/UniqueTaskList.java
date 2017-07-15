@@ -55,45 +55,7 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.add(new Task(toAdd));
     }
 
-    //@@author A0147928N
-    /**
-     * This predicate will be used to filter the list of tasks in eventClash();
-     */
-    public static Predicate<Task> isEvent() {
-        return p-> p.getTaskType().toString().equals("event");
-    }
-    
-    /**
-     * Returns true if the list contains a task within the same time frame as the given argument.
-     */
-    public boolean eventClash(ReadOnlyTask toCheck) {
-        FilteredList<Task> eventList = internalList.filtered(isEvent());
-
-        LocalDate toCheckStartDate = toCheck.getDate().getLocalStartDate();
-        LocalDate toCheckendDate = toCheck.getDate().getLocalEndDate();
-        LocalTime toCheckStartTime = toCheck.getTime().getLocalStartTime();
-        LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
-
-        for (Task curr : eventList) {
-            LocalDate currStartDate = curr.getDate().getLocalStartDate();
-            LocalDate currEndDate = curr.getDate().getLocalEndDate();
-            LocalTime currStartTime = curr.getTime().getLocalStartTime();
-            LocalTime currEndTime = curr.getTime().getLocalEndTime();
-
-            if (toCheckendDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
-                continue;
-            } else if (toCheckStartDate.equals(currStartDate) && toCheckStartTime.isBefore(currStartTime)) {
-                continue;
-            } else if (toCheckendDate.equals(currEndDate) && toCheckEndTime.isAfter(currEndTime)) {
-                continue;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-    //@@author
-    
+   
     //@@author A0147928N
     /**
      * Archives the task into the internalList
