@@ -2,13 +2,13 @@ package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_AMY;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_BOB;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_BOB;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DATE_BOB;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HUSBAND;
+
+import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.DESC_PROJECTMEETING;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_DESCRIPTION_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_ENDDATETIME_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTDEMO;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
 
 import org.junit.Test;
 
@@ -20,39 +20,39 @@ public class EditTaskDescriptorTest {
     @Test
     public void equals() throws Exception {
         // same values -> returns true
-        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_PROJECTMEETING);
+        assertTrue(DESC_PROJECTMEETING.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_PROJECTMEETING.equals(DESC_PROJECTMEETING));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_PROJECTMEETING.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_PROJECTMEETING.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_PROJECTMEETING.equals(DESC_PROJECTDEMO));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditTaskDescriptor editedProjectMeeting =
+                new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withName(VALID_NAME_PROJECTDEMO).build();
+        assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
 
-        // different phone -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withPhone(VALID_DATE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different DateTime -> returns false
+        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING)
+                               .withEndDateTime(VALID_ENDDATETIME_PROJECTDEMO).build();
+        assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
 
-        // different email -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different description -> returns false
+        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING)
+                               .withDescription(VALID_DESCRIPTION_PROJECTDEMO).build();
+        assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
 
-        // different address -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withTags(VALID_TAG_HIGH).build();
+        assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
     }
 }
