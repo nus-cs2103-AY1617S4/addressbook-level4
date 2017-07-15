@@ -42,7 +42,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
-        BasicTask taskInList = new BasicTask(model.getTaskManager().getTaskList().get(0));
+        BasicTask taskInList = new BasicTask(model.getTaskManager().getTaskList().get(7));
 
         Model expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
 
