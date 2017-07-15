@@ -94,7 +94,7 @@ public class DeleteCommandTest {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
         final String[] splitName = {task.getName().toString()};
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
-
+        System.out.println(model.getFilteredTaskList().size());
         assert model.getFilteredTaskList().size() == 1;
 
     }
