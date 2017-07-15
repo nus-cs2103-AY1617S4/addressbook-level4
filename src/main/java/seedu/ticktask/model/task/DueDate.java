@@ -42,7 +42,7 @@ public class DueDate {
     //author
 
     private final Parser parser = new Parser();
-    //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+    //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 
     private String value;
     private LocalDate local_date;
@@ -70,7 +70,7 @@ public class DueDate {
 
         String trimmedDate = date.trim();
         //author A0139819N
-        trimmedDate = convertDateFormat(trimmedDate);
+        //trimmedDate = convertDateFormat(trimmedDate);
         //author
           
         if (((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))) {
@@ -97,8 +97,11 @@ public class DueDate {
             extractDate(trimmedDate);
         }
 
-
-        value = getStartDate() + " - " + getEndDate();
+        if (end_date != null){
+            value = getStartDate() + " - " + getEndDate();
+        }else{
+            value = getStartDate();
+        }
 
 
     }
@@ -140,6 +143,9 @@ public class DueDate {
 
 
     //@@author A0139819N
+    /*
+     * Method used to convert date input by user f
+     */
     private String convertDateFormat(String trimmedDate) {
         
         System.out.println("OLD Trimmed date string: " + trimmedDate);
@@ -150,8 +156,7 @@ public class DueDate {
 
         if(trimmedDate.matches(DATE_REGEX_SINGLE)){
             trimmedDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate));
-        }
-        else if (trimmedDate.matches(DATE_REGEX_RANGE)){
+        }else if (trimmedDate.matches(DATE_REGEX_RANGE)){
             String startDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(0,10)));
             String endDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(11,21)));
             System.out.println("START: " + startDate + "END: " + endDate);
@@ -163,7 +168,7 @@ public class DueDate {
     }
     //@@author
 
-    private String getStartDate() {
+    public String getStartDate() {
         return start_date_string;
     }
 

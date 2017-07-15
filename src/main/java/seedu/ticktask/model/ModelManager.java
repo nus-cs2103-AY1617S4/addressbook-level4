@@ -25,7 +25,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/uuuu");
     private TickTask currentProgramInstance;
     private Stack<TickTask> previousProgramInstances;
     private Stack<TickTask> futureProgramInstances;

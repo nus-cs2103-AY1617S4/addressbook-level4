@@ -78,8 +78,13 @@ public class DueTime {
         else {
             extractTime(trimmedTime);
         }
-
-        value = getStartTime() + " - " + getEndTime();
+        
+        if (end_time != null){
+            value = getStartTime() + " - " + getEndTime();
+        }else{
+            value = getStartTime();
+        }
+        
     }
 
 
