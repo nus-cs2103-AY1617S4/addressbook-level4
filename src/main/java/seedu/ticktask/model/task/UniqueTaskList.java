@@ -104,7 +104,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
     //@@author
     
-=======
+
    
     //@@author A0147928N
     /**
@@ -134,19 +134,23 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         Task taskToUpdate = internalList.get(index);
+        
         if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
         
-        if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, null)) {
+        if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, target)) {
           throw new DuplicateTaskException();
         }
-
+        
+        
         //@@author A0139964M
         if(!isChornological(editedTask)){
             throw new DuplicateTaskException();
         }
         //@@author
+         
+         
     
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
