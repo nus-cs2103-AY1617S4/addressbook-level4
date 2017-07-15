@@ -9,6 +9,10 @@ import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.ui.UiManager;
 
+//@@author A0154986L
+/**
+* Adjusts the reminder setting of the task manager.
+*/
 public class RemindCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(RemindCommand.class);
 
