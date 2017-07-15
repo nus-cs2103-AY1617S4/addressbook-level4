@@ -1,6 +1,8 @@
 package seedu.ticktask.model.task;
 
-import static java.util.Objects.requireNonNull;
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
 import java.time.LocalTime;
@@ -10,10 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.joestelmach.natty.DateGroup;
-import com.joestelmach.natty.Parser;
-
-import seedu.ticktask.commons.exceptions.IllegalValueException;
+import static java.util.Objects.requireNonNull;
 
 //@@author A0138471A
 /**
@@ -27,7 +26,7 @@ public class DueTime {
     public static final String START_TIME_VALIDATION_REGEX = "start time.*";
     public static final String END_TIME_VALIDATION_REGEX = "end time.*";
     private static final String MESSAGE_END_TIME_CONSTRAINTS = "End time does not exist";
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mma");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
@@ -67,12 +66,10 @@ public class DueTime {
                 }
             }
             if (time.matches(END_TIME_VALIDATION_REGEX)) {
-                System.out.println("This SHOILD run" + time);
                 end_time = timesArray.get(INDEX_START_TIME);
                 setEndTime(end_time);
             }
             if (time.matches(START_TIME_VALIDATION_REGEX)) {
-                System.out.println("This should not run" + time);
                 start_time = timesArray.get(INDEX_START_TIME);
                 setStartTime(start_time);
             }
@@ -156,6 +153,14 @@ public class DueTime {
 
         return start_time_string;
 
+    }
+    
+    public LocalTime getLocalEndTime() {
+        return end_time;
+    }
+    
+    public LocalTime getLocalStartTime() {
+        return start_time;
     }
 
     /**

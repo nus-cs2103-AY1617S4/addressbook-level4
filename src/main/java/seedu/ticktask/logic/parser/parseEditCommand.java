@@ -1,31 +1,28 @@
 package seedu.ticktask.logic.parser;
 
-import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+//@@author A0139964M
 public class parseEditCommand {
 
     public static final String COMMAND_ARGUMENTS_REGEX = "(?=(?<index>\\d+))"
-            + "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end))?))?"
-            + "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R))?))?"
-            + "(?:(?=.*start time(?:(?<startTime>.+?)(?:,|$|\\R))?))?"
+            + "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end|date|time))?))?"
+            + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|start|end|time))?))?"
+            + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R|end|time|start))?))?"
+            + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R|time|start|end))?))?"
+            + "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R|start|end))?))?"
+            + "(?:(?=.*start time(?:(?<startTime>.+?)(?:,|$|\\R|end))?))?"
             + "(?:(?=.*end time(?:(?<endTime>.+?)(?:,|$|\\R|start|end))?))?"
-            + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R))?))?"
-            + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R))?))?"
-            + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R))?))?"
             + "((?=.*#(?<tags>.+)))?"
             + ".+";
 
@@ -42,11 +39,11 @@ public class parseEditCommand {
         // mandatory
         final int index = Integer.parseInt(matcher.group("index"));
         //optional
-        final Optional<String> name = Optional.ofNullable(matcher.group("name"));
-        final Optional<String> time = Optional.ofNullable(matcher.group("time"));
+        Optional<String> name = Optional.ofNullable(matcher.group("name"));
+        Optional<String> time = Optional.ofNullable(matcher.group("time"));
         Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));
         Optional<String> endTime = Optional.ofNullable(matcher.group("endTime"));
-        final Optional<String> date = Optional.ofNullable(matcher.group("date"));
+        Optional<String> date = Optional.ofNullable(matcher.group("date"));
         Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
         Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
         Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
@@ -60,35 +57,42 @@ public class parseEditCommand {
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
         try {
             ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
-            if (time.isPresent()) {
-                ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
-            }
-            if (!time.isPresent() && (startTime.isPresent() || endDate.isPresent())) {
-
+    
+            if (startTime.isPresent() || endDate.isPresent()) {
                 if (startTime.isPresent()) {
                     startTime = Optional.of("start time " + startTime);
                     ParserUtil.parseTime(startTime).ifPresent(editTaskDescriptor::setTime);
+                    System.out.println("Start time is edited to: " + startTime);
                 }
                 if (endTime.isPresent()) {
-                    endTime = Optional.of("end time " + startTime);
+                    endTime = Optional.of("end time " + endTime);
                     ParserUtil.parseTime(endTime).ifPresent(editTaskDescriptor::setTime);
+                    System.out.println("End time is edited to: " + endTime);
                 }
             }
-
-            if (date.isPresent()) {
-                ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
+             else if (time.isPresent()) {
+                ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
+                System.out.println("TIME is edited to: " + time);
             }
-            if (!date.isPresent() && (date.isPresent() || endDate.isPresent())) {
-
+    
+            if (startDate.isPresent() || endDate.isPresent()) {
                 if (startDate.isPresent()) {
                     startDate = Optional.of("start date " + startDate);
                     ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
+                    System.out.println("Start date is edited to: " + startDate);
                 }
                 if (endDate.isPresent()) {
-                    endDate = Optional.of("end date " + endTime);
+                    endDate = Optional.of("end date " + endDate);
                     ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
+                    System.out.println("End date is edited to: " + endDate);
                 }
             }
+             else if (date.isPresent()) {
+                ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
+                System.out.println("SDATE is edited to: " + date);
+            }
+
+            
             ParserUtil.parseTaskType(Optional.of(" ")).ifPresent(editTaskDescriptor::setTaskType);
             //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
             tagList = createTagList(tags);
@@ -116,4 +120,5 @@ public class parseEditCommand {
         }
         return tagList;
     }
+//@@author A0139964M
 }
