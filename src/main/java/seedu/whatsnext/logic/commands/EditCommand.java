@@ -390,7 +390,8 @@ public class EditCommand extends Command {
                     && startDateTimeIsEqual
                     && endDateTimeIsEqual
                     && getNewTags().equals(e.getNewTags())
-                    && getRemoveTags().equals(e.getRemoveTags());
+                    && getRemoveTags().equals(e.getRemoveTags())
+                    && getDescription().equals(e.getDescription());
         }
     }
 }
