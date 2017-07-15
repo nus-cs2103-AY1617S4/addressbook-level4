@@ -26,7 +26,7 @@ public class DueTime {
     public static final String START_TIME_VALIDATION_REGEX = "start time.*";
     public static final String END_TIME_VALIDATION_REGEX = "end time.*";
     private static final String MESSAGE_END_TIME_CONSTRAINTS = "End time does not exist";
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mma");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
@@ -66,12 +66,10 @@ public class DueTime {
                 }
             }
             if (time.matches(END_TIME_VALIDATION_REGEX)) {
-                System.out.println("This SHOILD run" + time);
                 end_time = timesArray.get(INDEX_START_TIME);
                 setEndTime(end_time);
             }
             if (time.matches(START_TIME_VALIDATION_REGEX)) {
-                System.out.println("This should not run" + time);
                 start_time = timesArray.get(INDEX_START_TIME);
                 setStartTime(start_time);
             }

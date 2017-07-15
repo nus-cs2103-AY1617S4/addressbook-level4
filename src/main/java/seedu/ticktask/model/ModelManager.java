@@ -2,8 +2,11 @@ package seedu.ticktask.model;
 
 import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
@@ -22,7 +25,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu");
     private TickTask currentProgramInstance;
     private Stack<TickTask> previousProgramInstances;
     private Stack<TickTask> futureProgramInstances;
@@ -153,6 +156,58 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(null);
         filteredCompletedTasks.setPredicate(null);
     }
+    
+    //@@author A0138471A
+    @Override
+    public void updateFilteredListToShowEvent() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("event");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("event");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowDeadline() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("deadline");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("deadline");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowFloating() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("floating");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("floating");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowToday() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return ((task.getDate().getEndDate().equals(LocalDate.now().format(DATE_FORMAT).toString())) || 
+            		(task.getDate().getStartDate().equals(LocalDate.now().format(DATE_FORMAT).toString())));
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return ((task.getDate().getEndDate().equals(LocalDate.now().format(DATE_FORMAT).toString())) || 
+            		(task.getDate().getStartDate().equals(LocalDate.now().format(DATE_FORMAT).toString())));
+        });
+
+    }
+    //@@author
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {

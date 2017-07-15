@@ -5,9 +5,6 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -40,71 +37,14 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         requireNonNull(model);
         try {
-            if(isChornological(toAdd)){
                 model.addTask(toAdd);
-            }
-            else{
-                throw new CommandException(MESSAGE_PAST_TASK);
-            }
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
     }
-    //@@author A0139964M
-    /**
-     * Checks if the task added is in the past.
-     * @param task
-     * @return boolean
-     */
-    public boolean isChornological(ReadOnlyTask task) {
-        LocalDate currDate = LocalDate.now();
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        System.out.println("localDate: " + currDate);
-        System.out.println("TaskDate: " + taskDate);
-        
-        if(task.getDate().getLocalStartDate() == null){
-            //No date either means today or no time, if no time or time is chornological just add
-            if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
-                return true;
-            }
-        }
-        //Check if task's is today.
-        if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
-            if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
-                return true;
-            } else {
-                return false;
-            }
-        }
-        //If date exist, but it is in the future, i dont need to check the time.
-        if(isDateChornological(task)){
-            return true;
-        } else{
-            return false;
-        }
-    }
-    
-    public boolean isTimeChornological(ReadOnlyTask task) {
-        LocalTime currTime = LocalTime.now();
-        LocalTime taskTime = task.getTime().getLocalStartTime();
-        if (taskTime.isBefore(currTime)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    public boolean isDateChornological(ReadOnlyTask task){
-        LocalDate currDate = LocalDate.now();
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        if(taskDate.isBefore(currDate)){
-            return false;
-        } else {
-            return true;
-        }
-    }
+
 }
-    //@@author
+
 
