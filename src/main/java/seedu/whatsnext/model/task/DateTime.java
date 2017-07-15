@@ -72,10 +72,10 @@ public class DateTime {
         if (timeFormat.format(today).equals(getTime())) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dateValue);
-            calendar.set(Calendar.HOUR_OF_DAY,23);
-            calendar.set(Calendar.MINUTE,59);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MILLISECOND,0);
+            calendar.set(Calendar.HOUR_OF_DAY, 23);
+            calendar.set(Calendar.MINUTE, 59);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
             dateValue = calendar.getTime();
         }
     }
@@ -100,7 +100,7 @@ public class DateTime {
         return dateTimeFormat.format(dateValue);
     }
 
-    public String displayDateTime(){
+    public String displayDateTime() {
         return dateTimeFormatDisplay.format(dateValue);
     }
 

@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
@@ -13,8 +12,6 @@ import java.util.HashSet;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.common.eventbus.Subscribe;
 
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.Messages;

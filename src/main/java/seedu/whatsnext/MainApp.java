@@ -85,7 +85,7 @@ public class MainApp extends Application {
 
         initEventsCenter();
     }
-    
+
     //@@author A0149894H
     private void setUpFilePath() {
         File f = new File("test.txt");

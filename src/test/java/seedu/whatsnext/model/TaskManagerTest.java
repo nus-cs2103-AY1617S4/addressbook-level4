@@ -48,7 +48,8 @@ public class TaskManagerTest {
     public void resetData_withDuplicatePersons_throwsAssertionError() {
         TypicalTasks td = new TypicalTasks();
         // Repeat td.alice twice
-        List<BasicTask> newPersons = Arrays.asList(new BasicTask(td.completeCS2103Assignment), new BasicTask(td.completeCS2103Assignment));
+        List<BasicTask> newPersons = Arrays.asList(new BasicTask(td.completeCS2103Assignment),
+                new BasicTask(td.completeCS2103Assignment));
         List<Tag> newTags = new ArrayList<>(td.completeCS2103Assignment.getTags());
         TaskManagerStub newData = new TaskManagerStub(newPersons, newTags);
 

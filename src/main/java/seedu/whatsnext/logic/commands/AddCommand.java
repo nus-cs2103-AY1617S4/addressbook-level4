@@ -49,7 +49,7 @@ public class AddCommand extends Command {
             toAdd = EditCommand.createOverlapTask(toAdd);
         }
         try {
-                model.addTask(toAdd);
+            model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

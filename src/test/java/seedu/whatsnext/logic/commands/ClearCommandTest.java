@@ -30,6 +30,7 @@ public class ClearCommandTest {
         assertCommandSuccess(model);
     }
 
+<<<<<<< HEAD
     @Test
     public void execute_clearIncompletedTasks_success() throws DuplicateTaskException {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
@@ -41,6 +42,8 @@ public class ClearCommandTest {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         assertCompletedCommandSuccess(model);
     }
+=======
+>>>>>>> TeamMain/master
     /**
      * Executes {@code ClearCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
