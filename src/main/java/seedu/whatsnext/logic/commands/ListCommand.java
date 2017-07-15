@@ -7,8 +7,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 
 //@@author A0154986L
 /**
- * Lists all uncompleted/ completed/ all tasks in the task manager to the user.
- * It can also list tasks by type only.
+ * Lists all incomplete/ completed/ all tasks in the task manager to the user.
  */
 public class ListCommand extends Command {
 
