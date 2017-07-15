@@ -15,7 +15,7 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditTaskDescriptorTest {
 
     @Test
     public void equals() throws Exception {
