@@ -23,7 +23,6 @@ public class ClearCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
         return new ClearCommand(clearArgument);
-
     }
 
     private boolean isArgumentValidPrefixesPresent(String clearArgument) {

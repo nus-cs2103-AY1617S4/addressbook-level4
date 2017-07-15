@@ -17,9 +17,10 @@ import seedu.whatsnext.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TASKNAME = "CS2103 Exam";
-    public static final String DEFAULT_START_DATETIME = DateTime.INIT_DATETIME_VALUE;
-    public static final String DEFAULT_END_DATETIME = DateTime.INIT_DATETIME_VALUE;
+    public static final String DEFAULT_START_DATETIME = "Oct 28 2019";
+    public static final String DEFAULT_END_DATETIME = "Oct 30 2019";
     public static final String DEFAULT_TAGS = "HIGH";
+
 
     private BasicTask task;
 
@@ -31,6 +32,24 @@ public class TaskBuilder {
         Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
         this.task = new BasicTask(defaultName, defaultDescription,
                 false, defaultStartDateTime, defaultEndDateTime, defaultTags);
+    }
+
+    public TaskBuilder(String taskType) throws IllegalValueException {
+        TaskName defaultName = new TaskName(DEFAULT_TASKNAME);
+        TaskDescription defaultDescription = new TaskDescription(TaskDescription.INIT_DECRIPTION_VALUE);
+        Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
+        if (taskType.equals(BasicTask.TASK_TYPE_FLOATING)) {
+            this.task = new BasicTask(defaultName, defaultDescription, defaultTags);
+        } else if (taskType.equals(BasicTask.TASK_TYPE_DEADLINE)) {
+            DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
+            this.task = new BasicTask(defaultName, defaultDescription, defaultEndDateTime, defaultTags);
+        } else {
+            DateTime defaultStartDateTime = new DateTime(DEFAULT_START_DATETIME);
+            DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
+            this.task = new BasicTask(defaultName, defaultDescription,
+                    false, defaultStartDateTime, defaultEndDateTime, defaultTags);
+        }
+
     }
 
     /**
