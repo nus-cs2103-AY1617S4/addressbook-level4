@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
-import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_TASK;
 
 import java.util.Arrays;
 import java.util.HashSet;

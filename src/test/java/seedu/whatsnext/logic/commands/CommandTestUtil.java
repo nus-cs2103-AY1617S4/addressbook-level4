@@ -40,7 +40,8 @@ public class CommandTestUtil {
      * @throws IllegalValueException
      * @throws TagNotFoundException
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) throws TagNotFoundException, IllegalValueException {
+    public static void assertCommandFailure(Command command, Model actualModel,
+            String expectedMessage) throws TagNotFoundException, IllegalValueException {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TaskManager expectedTaskManager = new TaskManager(actualModel.getTaskManager());

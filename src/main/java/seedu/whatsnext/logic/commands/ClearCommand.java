@@ -22,7 +22,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Task List has been cleared!";
     public static final Object MESSAGE_USAGE = null;
     private static final boolean COMPLETED_TASKS = false;
-    private static final boolean INCOMPLETE_TASKS = false;
+    private static final boolean INCOMPLETE_TASKS = true;
 
     public final String clearArgument;
 

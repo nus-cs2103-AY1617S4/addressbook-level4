@@ -11,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.CommandHistory;
@@ -39,12 +41,7 @@ public class AddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder().build();
-
-
-        String addCommand = String.format(AddCommand.MESSAGE_SUCCESS, validTask);
-        System.out.print("ADD COMMAND " + addCommand);
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
-        System.out.println(commandResult);
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
@@ -120,40 +117,35 @@ public class AddCommandTest {
         @Override
         public void undoTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void redoTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void saveTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListForInitialView() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListForReminder() {
             fail("This method should not be called.");
-
         }
     }
 
+    //@@author A0156106M
     /**
      * A Model stub that always throw a DuplicatePersonException when trying to add a person.
      */
@@ -162,6 +154,15 @@ public class AddCommandTest {
         public void addTask(BasicTask task) throws DuplicateTaskException {
             throw new DuplicateTaskException();
         }
+
+        @Override
+        public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
+            final ArrayList<BasicTask> tasksAdded = new ArrayList<>();
+            ObservableList<BasicTask> observableList = FXCollections.observableArrayList(tasksAdded);
+            return new UnmodifiableObservableList<BasicTaskFeatures>(observableList);
+
+        }
+
     }
 
     //@@author A0156106M
@@ -175,6 +176,14 @@ public class AddCommandTest {
         public void addTask(BasicTask task) throws DuplicateTaskException {
             tasksAdded.add(new BasicTask(task));
         }
+
+        @Override
+        public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
+            ObservableList<BasicTask> observableList = FXCollections.observableArrayList(tasksAdded);
+            return new UnmodifiableObservableList<BasicTaskFeatures>(observableList);
+        }
+
+
     }
 
 }
