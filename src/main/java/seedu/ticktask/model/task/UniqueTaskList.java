@@ -48,7 +48,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
 
-        if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd)) {
+        if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd, null)) {
             throw new DuplicateTaskException();
         }
         toAdd.resetTaskType();
@@ -67,8 +67,9 @@ public class UniqueTaskList implements Iterable<Task> {
     //@@author A0147928N
     /**
      * Returns true if the list contains a task within the same time frame as the given argument.
+     * Will also prevent the creation of events with the same name
      */
-    public boolean eventClash(ReadOnlyTask toCheck) {
+    public boolean eventClash(ReadOnlyTask toCheck, ReadOnlyTask exclude) {
         FilteredList<Task> eventList = internalList.filtered(isEvent());
 
         LocalDate toCheckStartDate = toCheck.getDate().getLocalStartDate();
@@ -77,16 +78,13 @@ public class UniqueTaskList implements Iterable<Task> {
         LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
 
         for (ReadOnlyTask curr : eventList) {
+            if (curr.isSameStateAs(exclude)) continue;
             LocalDate currStartDate = curr.getDate().getLocalStartDate();
             LocalDate currEndDate = curr.getDate().getLocalEndDate();
             LocalTime currStartTime = curr.getTime().getLocalStartTime();
             LocalTime currEndTime = curr.getTime().getLocalEndTime();
 
             if (toCheckEndDate.isBefore(currStartDate) && toCheckStartDate.isAfter(currEndDate)) {
-                continue;
-            } else if (toCheckStartDate.equals(currStartDate) && toCheckStartTime.isBefore(currStartTime)) {
-                continue;
-            } else if (toCheckEndDate.equals(currEndDate) && toCheckEndTime.isAfter(currEndTime)) {
                 continue;
             } else if (toCheckStartDate.equals(currEndDate) && toCheckStartTime.isAfter(currEndTime)) {
                 continue;
@@ -132,7 +130,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         
-        if (eventClash(editedTask)) {
+        if (eventClash(editedTask, target)) {
             throw new DuplicateTaskException();
         }
 
