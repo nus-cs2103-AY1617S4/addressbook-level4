@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.logic.commands.CommandResult;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
-import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.ui.UiManager;
 
 public class RemindCommand extends Command {
@@ -32,10 +31,11 @@ public class RemindCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         requireNonNull(reminderString);
-
-        if (reminderString.equals(UiManager.getReminderSetting())) {
+        String currentReminderSetting = UiManager.getReminderSetting();
+        
+        if (reminderString.equals(currentReminderSetting)) {
             logger.info(MESSAGE_NO_CHANGE_IN_REMINDER_SETTING);
-            throw new CommandException(MESSAGE_NO_CHANGE_IN_REMINDER_SETTING + UiManager.getReminderSetting());
+            throw new CommandException(MESSAGE_NO_CHANGE_IN_REMINDER_SETTING + currentReminderSetting);
         } else {
             UiManager.setReminderString(reminderString);
             logger.fine(MESSAGE_SUCCESS + reminderString);

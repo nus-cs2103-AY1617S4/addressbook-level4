@@ -36,7 +36,7 @@ public class UserPrefs {
 
     //@@author A0154986L
     public String getReminderSetting() {
-        return reminderSetting == null ? DEFAULT_REMINDER : reminderSetting;
+        return reminderSetting;
     }
 
     //@@author A0154986L

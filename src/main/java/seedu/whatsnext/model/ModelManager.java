@@ -307,7 +307,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public String toString() {
-            if (reminderSetting == null) {
+            if (reminderSetting == null || reminderSetting == "3 day") {
                 cal.add(Calendar.DATE, 3);
                 remindEnd = cal.getTime();
             } else {

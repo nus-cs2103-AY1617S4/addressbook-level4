@@ -39,14 +39,13 @@ public class UiManager extends ComponentManager implements Ui {
     private static UserPrefs prefs;
 
     private static String reminderString;
-    private static final String DEFAULT_REMINDER = "3 day";
 
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
-        UiManager.logic = logic;
+        this.logic = logic;
         this.config = config;
-        UiManager.prefs = prefs;
+        this.prefs = prefs;
     }
 
     @Override
@@ -106,13 +105,18 @@ public class UiManager extends ComponentManager implements Ui {
 
     //@@author A0154986L
     public static String getReminderSetting() {
-        return prefs.getReminderSetting() == null ? DEFAULT_REMINDER : prefs.getReminderSetting();
+        return prefs.getReminderSetting();
     }
 
     @Override
     public void stop() {
         prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
-        prefs.updateLastUsedReminderSetting(reminderString);
+        // updates the UserPrefs json file
+        if (reminderString == null) {
+            prefs.updateLastUsedReminderSetting(prefs.getReminderSetting());
+        } else {
+            prefs.updateLastUsedReminderSetting(reminderString);
+        }
         mainWindow.hide();
     }
 
