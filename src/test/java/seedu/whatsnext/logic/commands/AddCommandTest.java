@@ -41,12 +41,7 @@ public class AddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder().build();
-
-
-        String addCommand = String.format(AddCommand.MESSAGE_SUCCESS, validTask);
-        System.out.print("ADD COMMAND " + addCommand);
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
-        System.out.println(commandResult);
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
@@ -122,37 +117,31 @@ public class AddCommandTest {
         @Override
         public void undoTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void redoTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void saveTaskManager() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListForInitialView() {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
             fail("This method should not be called.");
-
         }
 
         @Override
         public void updateFilteredTaskListForReminder() {
             fail("This method should not be called.");
-
         }
     }
 
@@ -192,7 +181,6 @@ public class AddCommandTest {
         public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
             ObservableList<BasicTask> observableList = FXCollections.observableArrayList(tasksAdded);
             return new UnmodifiableObservableList<BasicTaskFeatures>(observableList);
-
         }
 
 

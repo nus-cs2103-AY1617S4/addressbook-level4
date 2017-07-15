@@ -22,6 +22,8 @@ public class TypicalTasks {
     public TypicalTasks() {
         try {
             completeCS2103Assignment = new TaskBuilder().withName("Complete CS2103 Assignment")
+                                       .withStartDateTime("10 Dec 2017 6pm")
+                                       .withEndDateTime("13 Dec 12pm")
                                        .withTags("HIGH", "CS2103").build();
             meetJohnForDinner = new TaskBuilder().withName("Meet John for dinner")
                                 .withTags("DINNER").build();
@@ -32,12 +34,12 @@ public class TypicalTasks {
             assignment = new TaskBuilder().withName("Assignment")
                          .withTags("HOMEWORK").build();
             cs2103Workshop = new TaskBuilder().withName("CS2103 workshop")
-                             .withStartDateTime("12 Jun 2017 10am")
-                             .withEndDateTime("12 Jun 2017 4pm")
+                             .withStartDateTime("12 Dec 2017 10am")
+                             .withEndDateTime("12 Dec 2017 4pm")
                              .withTags("WORKSHOP").build();
             camping = new TaskBuilder().withName("Camping")
-                      .withStartDateTime("10 July 2017 6pm")
-                      .withEndDateTime("13 July 12pm")
+                      .withStartDateTime("10 Dec 2017 6pm")
+                      .withEndDateTime("13 Dec 12pm")
                       .withTags("CAMPING").build();
             cs2010ProblemSet = new TaskBuilder().withName("CS2010 Problem Set")
                                .withEndDateTime("next thursday")

@@ -53,10 +53,10 @@ public class XmlAdaptedTask {
         tagged = new ArrayList<>();
         taskDescription = source.getDescription().toString();
         if (!source.getStartDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)) {
-            startDateTime = source.getStartDateTime().toString();
+            startDateTime = source.getStartDateTime().displayDateTime();
         }
         if (!source.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)) {
-            endDateTime = source.getEndDateTime().toString();
+            endDateTime = source.getEndDateTime().displayDateTime();
         }
 
         taskType = source.getTaskType();
