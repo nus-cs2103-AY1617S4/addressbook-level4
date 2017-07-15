@@ -38,9 +38,29 @@ public class AddCommandTest {
 
     //@@author A0156106M
     @Test
-    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_floating_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        BasicTask validTask = new TaskBuilder().build();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    //@@author A0156106M
+    @Test
+    public void execute_deadline_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    //@@author A0156106M
+    @Test
+    public void execute_event_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_EVENT).build();
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
