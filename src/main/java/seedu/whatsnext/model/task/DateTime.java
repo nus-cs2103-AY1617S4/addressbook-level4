@@ -1,8 +1,8 @@
 package seedu.whatsnext.model.task;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +56,7 @@ public class DateTime {
             }
             dateValue = dateInputList.get(0);
             validateDateTime();
+
         }
     }
 
@@ -65,16 +66,17 @@ public class DateTime {
      * */
     private void validateDateTime() throws IllegalValueException {
         Date today = new Date();
+        if (isBefore(today)) {
+            throw new IllegalValueException(MESSAGE_DATE_INVALID);
+        }
         if (timeFormat.format(today).equals(getTime())) {
-            String tempDateValue = getDate() + DEFAULT_TIME_VALUE;
-            try {
-                dateValue = dateTimeFormat.parse(tempDateValue);
-                if (isBefore(today)) {
-                    throw new IllegalValueException(MESSAGE_DATE_INVALID);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateValue);
+            calendar.set(Calendar.HOUR_OF_DAY,23);
+            calendar.set(Calendar.MINUTE,59);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MILLISECOND,0);
+            dateValue = calendar.getTime();
         }
     }
 

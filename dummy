@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskManager>
     <tasks>
+        <name>Complete CS2103 Assignment</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Sun, 10 Dec 2017 06:00 PM</startDateTime>
+        <endDateTime>Wed, 13 Dec 2017 12:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>HIGH</tagged>
+        <tagged>CS2103</tagged>
+    </tasks>
+    <tasks>
         <name>Camping</name>
         <isCompleted>false</isCompleted>
-        <startDateTime>2017/10/07 18:00</startDateTime>
-        <endDateTime>2017/13/07 12:00</endDateTime>
+        <startDateTime>Sun, 10 Dec 2017 06:00 PM</startDateTime>
+        <endDateTime>Wed, 13 Dec 2017 12:00 PM</endDateTime>
         <taskType>event</taskType>
         <taskDescription>Empty</taskDescription>
         <tagged>CAMPING</tagged>
@@ -12,8 +22,8 @@
     <tasks>
         <name>CS2103 workshop</name>
         <isCompleted>false</isCompleted>
-        <startDateTime>2017/12/06 10:00</startDateTime>
-        <endDateTime>2017/12/06 16:00</endDateTime>
+        <startDateTime>Tue, 12 Dec 2017 10:00 AM</startDateTime>
+        <endDateTime>Tue, 12 Dec 2017 04:00 PM</endDateTime>
         <taskType>event</taskType>
         <taskDescription>Empty</taskDescription>
         <tagged>WORKSHOP</tagged>
@@ -21,7 +31,7 @@
     <tasks>
         <name>CS2010 Problem Set</name>
         <isCompleted>false</isCompleted>
-        <endDateTime>2017/20/07 23:59</endDateTime>
+        <endDateTime>Thu, 20 Jul 2017 11:59 PM</endDateTime>
         <taskType>deadline</taskType>
         <taskDescription>Empty</taskDescription>
         <tagged>CS2010</tagged>
@@ -30,18 +40,10 @@
     <tasks>
         <name>FYP Selection</name>
         <isCompleted>false</isCompleted>
-        <endDateTime>2017/21/07 23:59</endDateTime>
+        <endDateTime>Fri, 21 Jul 2017 11:59 PM</endDateTime>
         <taskType>deadline</taskType>
         <taskDescription>Empty</taskDescription>
         <tagged>HIGH</tagged>
-    </tasks>
-    <tasks>
-        <name>Complete CS2103 Assignment</name>
-        <isCompleted>false</isCompleted>
-        <taskType>floating</taskType>
-        <taskDescription>Empty</taskDescription>
-        <tagged>HIGH</tagged>
-        <tagged>CS2103</tagged>
     </tasks>
     <tasks>
         <name>Tester</name>
