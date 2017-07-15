@@ -44,12 +44,9 @@ public class TaskCard extends UiPart<Region> {
         else{
             time.setText(task.getTime().toString());
         }
-        if(task.getDate().isRange()){
-            date.setText(task.getDate().toString());
-        }
-        else{
-            date.setText(task.getDate().toString());
-        }
+
+        date.setText(task.getDate().toString());
+        
 
         taskType.setText(task.getTaskType().value);
         if (task.getTaskType().getValue().equals("event")){
