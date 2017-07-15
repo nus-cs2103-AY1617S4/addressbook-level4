@@ -162,10 +162,8 @@ public class UniqueTaskList implements Iterable<Task> {
         //System.out.println("TaskDate: " + taskDate);
         
         if(task.getDate().getLocalStartDate() == null){
-            System.out.println("i went in here");
             //No date either means today or no time, if no time or time is chornological just add
             if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
-                System.out.println("I returned true");
                 return true;
             }
             else return false;
