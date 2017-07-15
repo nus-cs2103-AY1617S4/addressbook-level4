@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskManager>
     <tasks>
-        <name>Complete CS2103 Assignment</name>
+        <name>Complete</name>
         <isCompleted>false</isCompleted>
         <startDateTime>Sun, 10 Dec 2017 06:00 PM</startDateTime>
         <endDateTime>Wed, 13 Dec 2017 12:00 PM</endDateTime>

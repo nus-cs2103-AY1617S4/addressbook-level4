@@ -91,10 +91,11 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show only the first person from the address book.
      */
     private void showFirstTaskOnly(Model model) {
+
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
         final String[] splitName = {task.getName().toString()};
+
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
-        System.out.println(model.getFilteredTaskList().size());
         assert model.getFilteredTaskList().size() == 1;
 
     }
