@@ -103,8 +103,8 @@ public class ParserUtilTest {
     @Test
     public void parseDescription_validValue_returnsName() throws Exception {
         TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
-        Optional<TaskDescription> actualDescription = ParserUtil.parseDescription(Optional.of(VALID_NAME));
-
+        Optional<TaskDescription> actualDescription = ParserUtil.parseDescription(Optional.of(VALID_DESCRIPTION));
+        System.out.println(actualDescription.get());
         assertEquals(expectedDescription, actualDescription.get());
     }
 

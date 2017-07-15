@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
     public static final String LIST_INCOMPLETE = "incomplete";
-    public static final String LIST_COMPLETE = "completed";
+    public static final String LIST_COMPLETED = "completed";
     public static final String LIST_ALL = "all";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Listed all incomplete tasks. "
@@ -22,7 +22,7 @@ public class ListCommand extends Command {
             + "complete/all: List all complete/all tasks ";
 
     public static final String MESSAGE_SUCCESS_INCOMPLETE = "Listed all incomplete tasks";
-    public static final String MESSAGE_SUCCESS_COMPLETE = "Listed all complete tasks";
+    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all complete tasks";
     public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
 
     private final Set<String> keywords;
@@ -37,10 +37,10 @@ public class ListCommand extends Command {
             boolean isComplete = false;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_INCOMPLETE);
-        } else if (keywords.contains(LIST_COMPLETE)) {
+        } else if (keywords.contains(LIST_COMPLETED)) {
             boolean isComplete = true;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
-            return new CommandResult(MESSAGE_SUCCESS_COMPLETE);
+            return new CommandResult(MESSAGE_SUCCESS_COMPLETED);
         } else if (keywords.contains(LIST_ALL)) {
             model.updateFilteredListToShowAll();
             return new CommandResult(MESSAGE_SUCCESS_ALL);
