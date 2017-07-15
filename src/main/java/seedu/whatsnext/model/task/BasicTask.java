@@ -246,6 +246,7 @@ public class BasicTask implements BasicTaskFeatures {
         return tags.containsOverlapTag();
     }
 
+    //author A0154987J
     @Override
     public String getTaskDetails() {
         StringBuilder details = new StringBuilder();

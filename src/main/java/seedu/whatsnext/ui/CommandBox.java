@@ -30,6 +30,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(Logic logic) {
         super(FXML);
         this.logic = logic;
+        //author A0154987J
         commandTextField.setOnKeyPressed(
             event -> {
                 switch (event.getCode()) {

@@ -60,7 +60,7 @@ public class AddCommand extends Command {
 //                    break;
 //                }
 //            }
-//            EventsCenter.getInstance().post(new JumpToListRequestEvent(new Index(index)));
+//           EventsCenter.getInstance().post(new JumpToListRequestEvent(new Index(index)));
 //            if (toAdd.containsOverlapTag()) {
 //
 //                String displayString = String.format(MESSAGE_SUCCESS, toAdd) + MESSAGE_OVERLAP_TASK;
