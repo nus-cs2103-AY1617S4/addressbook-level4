@@ -37,7 +37,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute() throws CommandException, DuplicateTaskException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -49,8 +49,6 @@ public class UnmarkCommand extends Command {
             model.updateTask(taskToMark, markedTask);
         } catch (TaskNotFoundException e) {
             throw new AssertionError("The target task cannot be missing");
-        } catch (DuplicateTaskException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }
