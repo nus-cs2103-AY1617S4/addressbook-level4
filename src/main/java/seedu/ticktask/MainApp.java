@@ -25,6 +25,7 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
+import seedu.ticktask.model.task.exceptions.EventClashException;
 import seedu.ticktask.model.util.SampleDataUtil;
 import seedu.ticktask.storage.JsonUserPrefsStorage;
 import seedu.ticktask.storage.Storage;
@@ -95,7 +96,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TickTask program");
             initialData = new TickTask();
-        }
+        } 
 
         return new ModelManager(initialData, userPrefs);
     }
