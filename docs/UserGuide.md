@@ -18,10 +18,11 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
     10. [Clear tasks](#210-clear-tasks--clear)
     11. [Mark tasks](#211-mark-tasks--mark)
     12. [Unmark tasks](#212-unmark-tasks--unmark)
-    13. [View current data file path](#213-view-current-data-file-path--filepath)
-    14. [Change data file path](#214-change-data-file-path--changepath)
-    15. [Save the data](#215-save-the-data)
-    16. [Exit the programme](#216-exit-the-programme--exit)
+    13. [Set reminder period](#213-set-reminder-period--remind)
+    14. [View current data file path](#214-view-current-data-file-path--filepath)
+    15. [Change data file path](#215-change-data-file-path--changepath)
+    16. [Save the data](#216-save-the-data)
+    17. [Exit the programme](#217-exit-the-programme--exit)
 
 3. [FAQ](#3-faq)
 4. [Command Summary](#4-command-summary)
@@ -67,6 +68,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd` or the keyword `help`
+> Help information will be displayed in commandbox of the UI.
 
 ### 2.2. Adding a task: `add` <br>
 
@@ -223,7 +225,20 @@ Examples:
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
 
-### 2.13. View current data file path : `filepath`
+### 2.13. Set reminder period : `remind`
+The app will automatically display all events and deadlines within the period specified by the user when the app starts. <br>
+The command allows the user to specify the time period.
+Format: `remind TIMEPERIOD`
+> Set the time period for the reminder on startup.
+> The time unit must be sigular, i.e. "week" instead of "weeks"
+Examples:
+
+* `remind 3 days`<br>
+  Display all deadlines and events within 3 days upon startup.
+* `remind 2 week`<br>
+  Display all deadlines and events within 2 weeks upon startup.
+
+### 2.14. View current data file path : `filepath`
 
 View data file directory path. <br>
 Format: `filepath`
@@ -236,12 +251,12 @@ Format: `changepath [Path Directory]`
 > Changes the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
 
-### 2.15. Save the data
+### 2.16. Save the data
 
 Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
-### 2.16. Exit the programme : `exit`
+### 2.17. Exit the programme : `exit`
 
 Exits the program.<br>
 Format: `exit`
@@ -273,6 +288,7 @@ Undo the last action | `undo` |
 Redo the last undo | `redo` |
 Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
+Set reminder period | `remind TIMEPERIOD` | `remind 2 day`
 Select and view tasks | `select INDEX` | `select 1`
 Check file path of the storage file | `filepath` |
 Change the path of the storage file | `changepath [path_directory]` | `changepath \User\tasks.xml`
