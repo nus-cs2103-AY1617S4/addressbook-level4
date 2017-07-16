@@ -132,19 +132,11 @@ public class EditCommand extends Command {
         public EditTaskDescriptor() {}
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            /*Why doen't this work?
-            setName(toCopy.name);
-            setTime(toCopy.time);
-            setTaskType(toCopy.type);
-            setDate(toCopy.date);
-            setTags(toCopy.tags);
-            */
             this.name = toCopy.name;
             this.time = toCopy.time;
             this.type = toCopy.type;
             this.date = toCopy.date;
             this.tags = toCopy.tags;
-            
         }
 
         /**
