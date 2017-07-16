@@ -2,9 +2,12 @@ package seedu.ticktask.model;
 
 import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.Stack;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.ComponentManager;
@@ -14,6 +17,8 @@ import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -22,7 +27,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/uuuu");
     private TickTask currentProgramInstance;
     private Stack<TickTask> previousProgramInstances;
     private Stack<TickTask> futureProgramInstances;
@@ -66,67 +71,69 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new TickTaskChangedEvent(currentProgramInstance));
     }
     //@@author A0139819N
-    
-    /**Reverses the previous command executed by the user 
+
+    /**Reverses the previous command executed by the user
      * Restores the TickTask client to one state before the previous command was executed
      * */
-    public void undoPreviousCommand(){
+    public void undoPreviousCommand() {
         TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
         currentProgramInstance.resetData(previousProgramInstances.pop());
         futureProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-    
-    /**Redo an existing command that was previously undone by the user 
+
+    /**Redo an existing command that was previously undone by the user
      * Restores the TickTask client to one state after the undone command was executed
      * User can only use redo command after an undo command was previously executed
      */
-    public void redoUndoneCommand(){
+    public void redoUndoneCommand() {
         TickTask currentTickTaskInstance = new TickTask(currentProgramInstance);
         currentProgramInstance.resetData(futureProgramInstances.pop());
         previousProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-    
+
     /**Saves the current instance of the TickTask program before any data is modified
      * so that the program can return to previous instances if desired
      */
-    private void saveInstance(){
+    private void saveInstance() {
         previousProgramInstances.push(new TickTask(currentProgramInstance));
-        futureProgramInstances.clear();      
+        futureProgramInstances.clear();
     }
-    
+
     //@@author A0139819N
-    
+
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.removeTask(target);
         indicateTickTaskModelChanged();
     }
-    
+
     public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
         currentProgramInstance.removeCompletedTask(target);
         indicateTickTaskModelChanged();
     }
 
     @Override
-    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
+    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException{
         saveInstance();
         currentProgramInstance.addTask(task);
         updateFilteredListToShowAll();
         indicateTickTaskModelChanged();
     }
     
+    //@@author A0147928N
     @Override
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.completeTask(task);
     }
+    //@@author
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException {
+            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
         requireAllNonNull(target, editedTask);
         saveInstance();
         currentProgramInstance.updateTask(target, editedTask);
@@ -142,7 +149,7 @@ public class ModelManager extends ComponentManager implements Model {
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
-    
+
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
         return new UnmodifiableObservableList<>(filteredCompletedTasks);
@@ -153,11 +160,67 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(null);
         filteredCompletedTasks.setPredicate(null);
     }
+    
+    //@@author A0138471A
+    @Override
+    public void updateFilteredListToShowEvent() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("event");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("event");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowDeadline() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("deadline");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("deadline");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowFloating() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("floating");
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return task.getTaskType().toString().equals("floating");
+        });
+
+    }
+    
+    @Override
+    public void updateFilteredListToShowToday() {      
+    	
+        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return ((task.getDate().getEndDate().equals(LocalDate.now().format(DATE_FORMAT).toString())) || 
+            		(task.getDate().getStartDate().equals(LocalDate.now().format(DATE_FORMAT).toString())));
+        });
+        filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+            return ((task.getDate().getEndDate().equals(LocalDate.now().format(DATE_FORMAT).toString())) || 
+            		(task.getDate().getStartDate().equals(LocalDate.now().format(DATE_FORMAT).toString())));
+        });
+
+    }
+    
+    public void saveTickTask(){
+    	indicateTickTaskModelChanged();
+    }
+    //@@author
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
-        
+
     }
 
     private void updateFilteredTaskList(Expression expression) {

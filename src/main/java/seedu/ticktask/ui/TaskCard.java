@@ -39,20 +39,22 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         if(task.getTime().isRange()){
-        	time.setText(task.getTime().getStartTime() + " - " + task.getTime().getEndTime());
+        	time.setText(task.getTime().toString());
         }
         else{
-            time.setText(task.getTime().getStartTime());
+            time.setText(task.getTime().toString());
         }
-        
+
         date.setText(task.getDate().toString());
-        taskType.setText(task.getTaskType().value);
+        
+
+        taskType.setText(task.getTaskType().value.toUpperCase());
         if (task.getTaskType().getValue().equals("event")){
-            cardPane.setStyle("-fx-background-color: #201b42");
+            cardPane.setStyle("-fx-background-color: #ffe3b5;-fx-font-size: 9pt;-fx-text-fill: #010504;");
         } else if (task.getTaskType().getValue().equals("deadline")){
-            cardPane.setStyle("-fx-background-color: #421b25");
+            cardPane.setStyle("-fx-background-color: #deffc4;-fx-font-size: 9pt;-fx-text-fill: #010504;");
         } else if (task.getTaskType().getValue().equals("floating")){
-            cardPane.setStyle("-fx-background-color: #1b4233");
+            cardPane.setStyle("-fx-background-color: #ccecff; -fx-font-size: 9pt;-fx-text-fill: #0083d1;");
         }
         
         initTags(task);

@@ -11,17 +11,18 @@ import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CompleteCommand;
+import seedu.ticktask.logic.commands.ConfirmCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
-import seedu.ticktask.logic.commands.DeleteCompleteCommand;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.ExitCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.commands.HelpCommand;
 import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
-import seedu.ticktask.logic.commands.SelectCommand;
-import seedu.ticktask.logic.commands.UndoCommand;
 import seedu.ticktask.logic.commands.RedoCommand;
+import seedu.ticktask.logic.commands.SelectCommand;
+import seedu.ticktask.logic.commands.StorageCommand;
+import seedu.ticktask.logic.commands.UndoCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,7 +40,7 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Command parseCommand(String userInput) throws IllegalValueException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -49,7 +50,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -57,22 +58,24 @@ public class Parser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-            
+
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
+        
+        case ConfirmCommand.COMMAND_WORD:
+            return new ConfirmCommandParser().parse(commandWord);
+        
+        case ConfirmCommand.COMMAND_WORD1:
+            return new ConfirmCommandParser().parse(commandWord);
             
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-        
-        /*case DeleteCompleteCommand.COMMAND_WORD:
-            return new DeleteCompleteCommandParser().parse(arguments);*/
-            
+
         case EditCommand.COMMAND_WORD:
             return new parseEditCommand().parse(arguments);
-            
+
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-            
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
@@ -81,16 +84,20 @@ public class Parser {
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
-        
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
             
+        //@@author A0138471A
+        case ListCommand.COMMAND_WORD:
+        	return new ListCommandParser().parse(arguments);
+        	
+        case StorageCommand.COMMAND_WORD:
+            return new StorageCommandParser().parse(arguments);
+        //@@author
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
-            
+
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
-            
+
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 

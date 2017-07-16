@@ -3,6 +3,8 @@ package seedu.ticktask.commons.core;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import seedu.ticktask.commons.exceptions.DuplicateDataException;
+
 /**
  * Config values used by the app
  */
@@ -14,6 +16,7 @@ public class Config {
     private String appTitle = "TickTask App";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
+    private String tickTaskFilePath = "data/ticktask.xml";
 
     public String getAppTitle() {
         return appTitle;
@@ -38,6 +41,22 @@ public class Config {
     public void setUserPrefsFilePath(String userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
+
+    //@@author A0138471A
+    public String getTickTaskFilePath() {
+        return tickTaskFilePath;
+    }
+
+    public void setTickTaskFilePath(String tickTaskFilePath) throws DuplicateTickTaskFilePathException {
+        this.tickTaskFilePath = tickTaskFilePath;
+    }
+
+    public static class DuplicateTickTaskFilePathException extends DuplicateDataException {
+        protected DuplicateTickTaskFilePathException() {
+            super("Duplicate File Path");
+        }
+    }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

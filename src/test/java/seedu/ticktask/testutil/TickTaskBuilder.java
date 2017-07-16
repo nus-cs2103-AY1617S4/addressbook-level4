@@ -5,6 +5,8 @@ import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 /**
  * A utility class to help with building TickTask objects.
@@ -23,7 +25,7 @@ public class TickTaskBuilder {
         this.tickTask = ticktask;
     }
 
-    public TickTaskBuilder withTask(Task task) throws DuplicateTaskException {
+    public TickTaskBuilder withTask(Task task) throws DuplicateTaskException, PastTaskException, EventClashException {
         tickTask.addTask(task);
         return this;
     }

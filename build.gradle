@@ -19,7 +19,6 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
     apply plugin: 'jacoco'
-    apply plugin: 'checkstyle'
 
 
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -42,13 +41,8 @@ allprojects {
         junitVersion = '4.12'
         testFxVersion = '4.0.5-alpha'
         monocleVersion = '1.8.0_20'
-        checkstyleVersion = '7.2'
 
         libDir = 'lib'
-    }
-
-    checkstyle {
-        toolVersion = "$checkstyleVersion"
     }
 
     jacocoTestReport {
@@ -72,6 +66,9 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
+        
+        // https://mvnrepository.com/artifact/com.joestelmach/natty
+        compile group: 'com.joestelmach', name: 'natty', version: '0.13'
     }
 
     sourceSets {

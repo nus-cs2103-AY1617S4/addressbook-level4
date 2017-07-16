@@ -140,6 +140,36 @@ public class AddCommandTest {
 			fail("This method should not be called.");
 			
 		}
+
+		@Override
+		public void updateFilteredListToShowEvent() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void updateFilteredListToShowDeadline() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void updateFilteredListToShowFloating() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void updateFilteredListToShowToday() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void saveTickTask() {
+			// TODO Auto-generated method stub
+			
+		}
     }
 
     /**
