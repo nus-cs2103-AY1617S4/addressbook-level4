@@ -4,16 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.ocpsoft.prettytime.shade.edu.emory.mathcs.backport.java.util.Collections;
-
 import guitests.GuiRobot;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -29,6 +24,7 @@ import seedu.whatsnext.testutil.TestUtil;
  */
 public class DeadlineListPanelHandle extends GuiHandle {
 
+    //author A0154987J
     public static final int NOT_FOUND = -1;
     public static final String CARD_PANE_ID = "#cardPane";
 
@@ -70,27 +66,19 @@ public class DeadlineListPanelHandle extends GuiHandle {
      */
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
         List<BasicTaskFeatures> deadlineTasks = new ArrayList<>(Arrays.asList(tasks));
-        ObservableList<BasicTaskFeatures> taskList = FXCollections.observableArrayList();
         for (int index = 0; index < deadlineTasks.size(); index++) {
-            if (deadlineTasks.get(index).getTaskType().equals("deadline")) {
-                taskList.add(deadlineTasks.get(index));
+            if (!deadlineTasks.get(index).getTaskType().equals("deadline")) {
+                deadlineTasks.remove(index);
+                index--;
             }
         }
-
-        Collections.sort(taskList, new TaskNameComparator());
-        Collections.sort(taskList, new EndDateTimeComparator());
-
-
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(taskList.get(i).getName().toString());
-        }
-
-        if (taskList.size() + startPosition != getDeadlineListView().getItems().size()) {
+        if (deadlineTasks.size() + startPosition != getDeadlineListView().getItems().size()) {
             throw new IllegalArgumentException(
                     "List size mismatched\n" + "Expected " + (getDeadlineListView().getItems().size() - 1) + " tasks");
         }
-        assertTrue(this.containsInOrder(startPosition, taskList));
-        for (int i = 0; i < taskList.size(); i++) {
+        BasicTaskFeatures[] taskArray = deadlineTasks.toArray(new BasicTaskFeatures[deadlineTasks.size()]);
+        assertTrue(this.containsInOrder(startPosition, taskArray));
+        for (int i = 0; i < deadlineTasks.size(); i++) {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getDeadlineListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
@@ -101,19 +89,6 @@ public class DeadlineListPanelHandle extends GuiHandle {
         return true;
     }
 
-    class TaskNameComparator implements Comparator<BasicTask> {
-        public int compare(BasicTask c1, BasicTask c2) {
-            return c2.getName().toString().compareTo(c1.getName().toString());
-        }
-    }
-    class EndDateTimeComparator implements Comparator<BasicTask> {
-        public int compare(BasicTask c1, BasicTask c2) {
-            if (c1.getEndDateTime().isBefore(c2.getEndDateTime()) == true) {
-                return -1;
-            }
-            return 1;
-        }
-    }
     /**
      * Clicks on the ListView.
      */
@@ -126,19 +101,19 @@ public class DeadlineListPanelHandle extends GuiHandle {
      * Returns true if the {@code tasks} appear as the sub list (in that order)
      * at position {@code startPosition}.
      */
-    public boolean containsInOrder(int startPosition, ObservableList<BasicTaskFeatures> taskList) {
+    public boolean containsInOrder(int startPosition, BasicTaskFeatures... tasks) {
         List<Pair<BasicTaskFeatures, Integer>> tasksInList = getDeadlineListView().getItems();
 
         // Return false if the list in panel is too short to contain the given
         // list
-        if (startPosition + taskList.size() > tasksInList.size()) {
+        if (startPosition + tasks.length > tasksInList.size()) {
             return false;
         }
 
         // Return false if any of the persons doesn't match
-        for (int i = 0; i < taskList.size(); i++) {
-            if (!tasksInList.get(startPosition + i).getKey().getName().toString()
-                    .equals(taskList.get(i).getName().toString())) {
+        for (int i = 0; i < tasks.length; i++) {
+            if (!tasksInList.get(startPosition + i).getKey().getName().fullTaskName
+                    .equals(tasks[i].getName().fullTaskName)) {
                 return false;
             }
         }

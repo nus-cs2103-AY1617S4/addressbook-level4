@@ -4,16 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.ocpsoft.prettytime.shade.edu.emory.mathcs.backport.java.util.Collections;
-
 import guitests.GuiRobot;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -23,7 +18,7 @@ import seedu.whatsnext.TestApp;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TestUtil;
-
+//author A0154987J
 /**
  * Provides a handle for the panel containing the task list.
  */
@@ -70,47 +65,27 @@ public class EventListPanelHandle extends GuiHandle {
      */
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
         List<BasicTaskFeatures> eventTasks = new ArrayList<>(Arrays.asList(tasks));
-        ObservableList<BasicTaskFeatures> taskList = FXCollections.observableArrayList();
         for (int index = 0; index < eventTasks.size(); index++) {
-            if (eventTasks.get(index).getTaskType().equals("event")) {
-                taskList.add(eventTasks.get(index));
+            if (!eventTasks.get(index).getTaskType().equals("event")) {
+                eventTasks.remove(index);
+                index--;
             }
         }
-
-        Collections.sort(taskList, new EndDateTimeComparator());
-        Collections.sort(taskList, new StartDateTimeComparator());
-
-        if (taskList.size() + startPosition != getEventListView().getItems().size()) {
+        BasicTaskFeatures[] taskArray = eventTasks.toArray(new BasicTaskFeatures[eventTasks.size()]);
+        if (taskArray.length + startPosition != getEventListView().getItems().size()) {
             throw new IllegalArgumentException(
                     "List size mismatched\n" + "Expected " + (getEventListView().getItems().size() - 1) + " tasks");
         }
-        assertTrue(this.containsInOrder(startPosition, taskList));
-        for (int i = 0; i < taskList.size(); i++) {
+        assertTrue(this.containsInOrder(startPosition, taskArray));
+        for (int i = 0; i < taskArray.length; i++) {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getEventListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
-            if (!TestUtil.compareCardAndTask(getEventTaskCardHandle(startPosition + i), taskList.get(i))) {
+            if (!TestUtil.compareCardAndTask(getEventTaskCardHandle(startPosition + i), taskArray[i])) {
                 return false;
             }
         }
         return true;
-    }
-
-    class StartDateTimeComparator implements Comparator<BasicTask> {
-        public int compare(BasicTask c1, BasicTask c2) {
-            if (c1.getStartDateTime().isBefore(c2.getStartDateTime()) == true) {
-                return -1;
-            }
-            return 1;
-        }
-    }
-    class EndDateTimeComparator implements Comparator<BasicTask> {
-        public int compare(BasicTask c1, BasicTask c2) {
-            if (c1.getEndDateTime().isBefore(c2.getEndDateTime()) == true) {
-                return -1;
-            }
-            return 1;
-        }
     }
 
     /**
@@ -125,19 +100,19 @@ public class EventListPanelHandle extends GuiHandle {
      * Returns true if the {@code tasks} appear as the sub list (in that order)
      * at position {@code startPosition}.
      */
-    public boolean containsInOrder(int startPosition, ObservableList<BasicTaskFeatures> taskList) {
+    public boolean containsInOrder(int startPosition, BasicTaskFeatures... tasks) {
         List<Pair<BasicTaskFeatures, Integer>> tasksInList = getEventListView().getItems();
 
         // Return false if the list in panel is too short to contain the given
         // list
-        if (startPosition + taskList.size() > tasksInList.size()) {
+        if (startPosition + tasks.length > tasksInList.size()) {
             return false;
         }
 
         // Return false if any of the persons doesn't match
-        for (int i = 0; i < taskList.size(); i++) {
+        for (int i = 0; i < tasks.length; i++) {
             if (!tasksInList.get(startPosition + i).getKey().getName().toString()
-                    .equals(taskList.get(i).getName().toString())) {
+                    .equals(tasks[i].getName().toString())) {
                 return false;
             }
         }

@@ -35,8 +35,8 @@ public class EventTaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
         status.setText(task.getStatusString());
-        from.setText("From: " + task.getStartDateTime().displayDateTime());
-        to.setText("To: " + task.getEndDateTime().displayDateTime());
+        from.setText("From: " + task.getStartDateTime().toString());
+        to.setText("To: " + task.getEndDateTime().toString());
         setPriorityColors(task);
         initTags(task);
     }

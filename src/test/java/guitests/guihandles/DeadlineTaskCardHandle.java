@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.whatsnext.model.tag.UniqueTagList;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
-
+//author A0154987J
 /**
  * Provides a handle to a task card in the task list panel.
  */
@@ -71,7 +71,8 @@ public class DeadlineTaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(BasicTaskFeatures task) {
         return task != null || this == task && getName().equals(task.getName().toString())
-                && getEndDate().equals(task.getEndDateTime().displayDateTime())
+                && getEndDate().equals(task.getEndDateTime().toString())
+                && getEndTime().equals(task.getEndDateTime().toString())
                 && getIsMarkedAsCompleted().equals(task.getStatusString())
                 && getTags().equals(getTags());
     }
