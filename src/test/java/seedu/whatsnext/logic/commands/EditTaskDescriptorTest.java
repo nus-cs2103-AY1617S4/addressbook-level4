@@ -52,7 +52,7 @@ public class EditTaskDescriptorTest {
 
 
         // different tags -> returns false
-        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withTags(VALID_TAG_HIGH).build();
+        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withNewTags(VALID_TAG_HIGH).build();
         assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
     }
 }
