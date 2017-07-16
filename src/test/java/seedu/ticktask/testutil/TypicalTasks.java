@@ -5,6 +5,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class TypicalTasks {
         }
     }
 
-    public static void loadTickTaskWithSampleData(TickTask ab) {
+    public static void loadTickTaskWithSampleData(TickTask ab) throws PastTaskException {
         for (Task task : new TypicalTasks().getTypicalTasks()) {
             try {
                 ab.addTask(new Task(task));
@@ -50,7 +51,7 @@ public class TypicalTasks {
         return new Task[]{washdog, dotutorial, meetgirlfriend};
     }
 
-    public TickTask getTypicalTickTask() {
+    public TickTask getTypicalTickTask() throws PastTaskException {
         TickTask ab = new TickTask();
         loadTickTaskWithSampleData(ab);
         return ab;

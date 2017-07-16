@@ -9,9 +9,11 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.logic.parser.Parser;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.EventClashException;
 
 /**
  * The main LogicManager of the app.
@@ -30,13 +32,15 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, IllegalValueException {
+    public CommandResult execute(String commandText) throws CommandException, IllegalValueException, WarningException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
             Command command = parser.parseCommand(commandText);
             command.setData(model, history);
             return command.execute();
-        } finally {
+        } 
+            
+        finally {
             history.add(commandText);
         }
     }

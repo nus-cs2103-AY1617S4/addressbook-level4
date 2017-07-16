@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
+import seedu.ticktask.storage.XmlTickTaskStorage;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
@@ -76,5 +77,9 @@ public class StatusBarFooter extends UiPart<Region> {
         String lastUpdated = new Date(now).toString();
         logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
         setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+        //@@author A0138471A
+
+        setSaveLocation(XmlTickTaskStorage.newTickTaskFilePath());
+        //@@author
     }
 }
