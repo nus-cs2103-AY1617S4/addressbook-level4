@@ -98,7 +98,6 @@ public class MainApp extends Application {
     }
 
     //@@author A0149894H
-    //@@author A0156106M
     public void initFilePath(String path) throws IOException {
         InputStream resourceStream = this.getClass().getResourceAsStream("/filepath/filepath");
         InputStreamReader streamReader = new InputStreamReader(resourceStream);
@@ -111,7 +110,6 @@ public class MainApp extends Application {
         } catch (RepeatTaskManagerFilePathException e) {
             e.printStackTrace();
         }
-
     }
 
     private String getApplicationParameter(String parameterName) {
