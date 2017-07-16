@@ -203,9 +203,9 @@ The `Model`,
 * does not depend on any of the other three components.
 
 **Undo/Redo functions** <br>
-While the overall structure and architect of model is retained, there is a very important and useful addition through the implementation of Undo and Redo functions. It is implemented using two stacks: `undoTaskManager` and `redoTaskManager`.<br>
+Undo and Redo functions are implemented using two stacks: `undoTaskManager` and `redoTaskManager`.<br>
 
-`UndoTaskManagers` stores the instances of TaskManager data when data changes are made. Before the data-mutating commands, namely `add`, `edit`, `clear`, `delete`, `mark`/`unmark`, take effect, the current instance of TaskManager data is pushed into UndoTaskManagers stack. It enables user to undo multiple data-mutating commands by restoring the instances of the data in the stack. Non-data-mutating commands, such as `list`, `find`, will not lead to any actions in the undoTaskManager stack.  As the stack is initialized as empty when the app starts to run, tt will only undo the changes in the current session. <br>
+`UndoTaskManagers` stores the instances of TaskManager data when data changes are made. Before the data-mutating commands, namely `add`, `edit`, `clear`, `delete`, `mark`/`unmark`, take effect, the current instance of TaskManager data is pushed into UndoTaskManagers stack. It enables user to undo multiple data-mutating commands by restoring the instances of the data in the stack. Non-data-mutating commands, such as `list`, `find`, will not lead to any actions in the undoTaskManager stack.  As the stack is initialized as empty when the app starts to run, it will only undo the changes in the current session. <br>
 `RedoTaskManagers` also stores instances of TaskManager data, but only when undo commands are called. Functioning in the same way as undoTaskManager, it restores previous instances of data before the undo commands. It is an empty stack during initialization and will only redo the undo commands in the current session. <br>
 
 **Reserved Tags** <br>
@@ -361,16 +361,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | new user | see command instructions | refer to instructions when I forget how to use the App
-`* * *` | user | create a new task |
+`* * *` | user | create a event | keep track of task with both start and end time
+`* * *` | user | create a deadline task | keep track of deadline I have to meet
+`* * *` | user | create a new task which does not have time constrains | keep track of tasks without particular schedule, such as reading a novel
 `* * *` | user | delete an existing task | no longer keep track of tasks I do not care about
 `* * *` | user | search a task by name or by tag | locate task without having to go through the entire list
-`* * *` | user | view all task in a particular time |
 `* * *` | user | undo a recent action | remove my mistakes
+`* * *` | user | redo the recent undo | revert any accidental undo
 `* * *` | user | add priority marks to a task | know which tasks require more attention
 `* * *` | user | list my completed tasks | review details of previous tasks
 `* * *` | user | specify a storage folder | know where my data will be saved
 `* * *` | user | see conflicts in events | resolve them earlier
-`* * ` | user | set periodic reminders | automatically be reminded about recurring events
+`* * ` | user | set reminders | see all the tasks due in the period I set upon starting the app
 `* *` | user | see the calendar on command | check out the dates
 `* *` | advanced user | use shortcut commands | utilize the app faster
 `* *` | user | color code my tasks | differentiate the tasks easier
@@ -384,12 +386,12 @@ Priority | As a ... | I want to ... | So that I can...
 
 (For all use cases below, the **System** is the `WhatsNext` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Add task
+#### Use case: Add event task
 
 **MSS**
 
-1.	User requests to create task.
-2.	System creates the task.<br>
+1.	User requests to create event task by specifying both start and end DateTime.
+2.	System creates the event task and list it under the event task on UI.<br>
 Use case ends.
 
 **Extensions**
@@ -398,6 +400,41 @@ Use case ends.
 
 > 2a1. System will tag the overlapping events with reserved tag `OVERLAP`<br>
 > Use case ends
+
+2b. The user input is not in the valid command format. 
+
+> 2b1. System will indicate to user that the input is invalid and display help information. <br>
+> Use case resumes at step 1. 
+
+#### Use case: Add deadline task
+
+**MSS**
+
+1.	User requests to create event task by specifying end DateTime.
+2.	System creates the deadline task and list it under the deadline task on UI.<br>
+Use case ends.
+
+**Extensions**
+
+2a. The user input is not in the valid command format. 
+
+> 2a1. System will indicate to user that the input is invalid and display help information. <br>
+> Use case resumes at step 1. 
+
+#### Use case: Add floating task
+
+**MSS**
+
+1.	User requests to create floating task by not specifying any date or time.
+2.	System creates the floating task and list it under the floating task on UI.<br>
+Use case ends.
+
+**Extensions**
+
+2a. The user input is not in the valid command format. 
+
+> 2a1. System will indicate to user that the input is invalid and display help information. <br>
+> Use case resumes at step 1. 
 
 #### Use case: Delete task
 
@@ -479,11 +516,26 @@ Use case ends.
 > 2a1. System shows a "No actions to undo" message <br>
 > Use case ends
 
-#### Use case: List tasks by type
+#### Use Case: Redo last Undo
 
 **MSS**
 
-1.	User requests to view tasks by type.
+1.  User request to redo the action reverted by undo.
+2.  System revert back to the state before undo command. <br>
+Use case ends.
+
+**Extensions**
+
+2a. There is no previous undo action done.
+
+> 2a1. System shows a "Nothing to redo" message <br>
+> Use case ends
+
+#### Use case: List tasks by status (completed, incomplete or all)
+
+**MSS**
+
+1.	User requests to view tasks by status (completed, incomplete or all).
 2.	System lists all tasks of the type.<br>
 Use case ends.
 
@@ -518,16 +570,14 @@ Use case ends.
 
 **MSS**
 
-1. User request the current file path of the storage.
-2. System display the current file path of the storage.
-3. User request the storage file to be in a new file path.
-4. System change the file path and delete the storage in the original path.
+1. User request the storage file to be in a new file path.
+2. System change the file path and delete the storage in the original path.
 
 **Extensions**
 
-3a. The new file path is invalid.
+1a. The new file path is invalid.
 
-> 3a1. System display error message <br>
+> 1a1. System display error message <br>
 > Use case resumes at step 2
 
 
@@ -543,12 +593,10 @@ Use case ends.
 ## Appendix C : Non Functional Requirements
 
 1. Should work on any [mainstream OS] (#mainstream-os) as long as it has Java `1.8.0.131` or higher installed.
-2. Should be able to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+2. Should be able to store and process 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should come with automated unit tests and open source code.
 5. Should favor DOS style commands over Unix-style commands.
-
-{More to be added}
 
 ## Appendix D : Glossary
 
@@ -668,7 +716,6 @@ Pros:
 Cons:
 
 * Cannot sync with google calendar on android phones
-* Can be slow on the web app
 
 ---
 
