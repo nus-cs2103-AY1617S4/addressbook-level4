@@ -9,6 +9,7 @@ import java.util.List;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.ReadOnlyTask;
@@ -22,9 +23,10 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - the result message matches {@code expectedMessage} <br>
      * - the {@code actualModel} matches {@code expectedModel}
+     * @throws WarningException 
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) throws CommandException {
+            Model expectedModel) throws CommandException, WarningException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, actualModel);
@@ -35,8 +37,9 @@ public class CommandTestUtil {
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the tick task and the filtered task list in the {@code actualModel} remain unchanged
+     * @throws WarningException 
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) throws WarningException {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TickTask expectedTickTask = new TickTask(actualModel.getTickTask());
@@ -51,6 +54,7 @@ public class CommandTestUtil {
             assertEquals(expectedTickTask, actualModel.getTickTask());
             assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
             assertEquals(expectedFilteredCompletedList, actualModel.getFilteredCompletedTaskList());
-        }
+        } 
+        
     }
 }
