@@ -19,7 +19,7 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TestUtil;
 
-// @@author A0142418L
+// @@author A0154987J
 /**
  * Provides a handle for the panel containing the task list.
  */
