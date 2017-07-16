@@ -84,8 +84,10 @@ public class EventTaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(BasicTaskFeatures task) {
         return task != null || this == task && getName().equals(task.getName().toString())
-                && getStartDate().equals(task.getStartDateTime().toString()) && getStartTime().equals(task.getStartDateTime().toString())
-                && getEndDate().equals(task.getEndDateTime().toString()) && getEndTime().equals(task.getEndDateTime().toString())
+                && getStartDate().equals(task.getStartDateTime().toString())
+                && getStartTime().equals(task.getStartDateTime().toString())
+                && getEndDate().equals(task.getEndDateTime().toString())
+                && getEndTime().equals(task.getEndDateTime().toString())
                 && getIsMarkedAsCompleted().equals(task.getStatusString())
                 && getTags().equals(getTags());
     }

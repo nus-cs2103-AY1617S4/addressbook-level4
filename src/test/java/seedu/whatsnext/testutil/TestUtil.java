@@ -153,7 +153,7 @@ public class TestUtil {
 
     public static boolean compareCardAndTask(DeadlineTaskCardHandle card, BasicTaskFeatures task) {
         return card.isSameTask(task);
-    } 
+    }
 
     public static boolean compareCardAndTask(EventTaskCardHandle card, BasicTaskFeatures task) {
         return card.isSameTask(task);

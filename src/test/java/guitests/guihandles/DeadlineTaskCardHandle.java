@@ -71,7 +71,8 @@ public class DeadlineTaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(BasicTaskFeatures task) {
         return task != null || this == task && getName().equals(task.getName().toString())
-                && getEndDate().equals(task.getEndDateTime().toString()) && getEndTime().equals(task.getEndDateTime().toString())
+                && getEndDate().equals(task.getEndDateTime().toString())
+                && getEndTime().equals(task.getEndDateTime().toString())
                 && getIsMarkedAsCompleted().equals(task.getStatusString())
                 && getTags().equals(getTags());
     }
