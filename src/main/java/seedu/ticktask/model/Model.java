@@ -55,6 +55,8 @@ public interface Model {
     
     /** Updates the filter of the filtered task list to show all today's tasks*/
     void updateFilteredListToShowToday();
+    
+    public void saveTickTask();
     //@@author
     
     /** Updates the filter of the filtered task list to filter by the given keywords*/
