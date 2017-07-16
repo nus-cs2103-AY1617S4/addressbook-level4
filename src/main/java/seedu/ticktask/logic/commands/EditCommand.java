@@ -73,7 +73,7 @@ public class EditCommand extends Command {
 
     @Override
 
-    public CommandResult execute() throws CommandException, WarningException {
+    public CommandResult execute() throws CommandException, WarningException, IllegalValueException {
 
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
