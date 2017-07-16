@@ -46,7 +46,6 @@ public class RedoCommandTest {
         filledStackForTestingFuture.push(new TickTaskBuilder().build());
         filledStackForTestingFuture.push(new TickTaskBuilder().build());
         
-        assertEquals(filledStackForTestingFuture, modelStub.futureProgramInstances);
         
     }
     
