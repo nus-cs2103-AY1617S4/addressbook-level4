@@ -5,6 +5,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
 import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 /**
@@ -18,17 +19,17 @@ public class TypicalTasks {
 
     public final Task washdog, dotutorial, meetgirlfriend;
 
-    public TypicalTasks() {
+    public TypicalTasks(){
         try {
             washdog = new TaskBuilder().withName("wash dog")
-                    .withDate("01/01").withType("deadline")
+                    .withDate("01/01/2020").withType("deadline")
                     .withTime("2200")
                     .withTags("cleaning").build();
-            dotutorial = new TaskBuilder().withName("do tutorial").withDate("23/03/19")
+            dotutorial = new TaskBuilder().withName("do tutorial").withDate("03/22/19")
                     .withType("deadline").withTime("2300")
                     .withTags("school", "homework").build();
             meetgirlfriend = new TaskBuilder().withName("meet girlfriend").withTime("0800")
-                    .withType("deadline").withDate("23/02").build();
+                    .withType("deadline").withDate("02/23/2023").build();
 
             
           
@@ -37,7 +38,7 @@ public class TypicalTasks {
         }
     }
 
-    public static void loadTickTaskWithSampleData(TickTask ab) throws PastTaskException {
+    public static void loadTickTaskWithSampleData(TickTask ab) throws PastTaskException, EventClashException {
         for (Task task : new TypicalTasks().getTypicalTasks()) {
             try {
                 ab.addTask(new Task(task));
@@ -53,7 +54,12 @@ public class TypicalTasks {
 
     public TickTask getTypicalTickTask() throws PastTaskException {
         TickTask ab = new TickTask();
-        loadTickTaskWithSampleData(ab);
+        try {
+            loadTickTaskWithSampleData(ab);
+        } catch (EventClashException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return ab;
     }
 }

@@ -17,6 +17,8 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 
 /**
@@ -25,6 +27,9 @@ import seedu.ticktask.testutil.TypicalTasks;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
+    
+    public DeleteCommandTest() throws PastTaskException, EventClashException {    
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {

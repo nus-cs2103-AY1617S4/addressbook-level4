@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     public static final String LIST_TODAY = "today";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_SUCCESS_VIEW_ALL_TASKS = "List All Tasks";
+    public static final String MESSAGE_SUCCESS_VIEW_ALL_TASKS = "Listed all tasks";
     public static final String MESSAGE_SUCCESS_VIEW_EVENT_TASKS = "List all Event Tasks";
     public static final String MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS = "List all Deadline Tasks";
     public static final String MESSAGE_SUCCESS_VIEW_FLOATING_TASKS = "List all Floating Tasks";

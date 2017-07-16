@@ -25,7 +25,7 @@ public class StringUtil {
     public static boolean containsStringIgnoreCase(String sentence, String string) {
         requireNonNull(sentence);
         requireNonNull(string);
-        
+
         //@@author A0147928N (power search)
         String preppedWord = string.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
@@ -33,7 +33,9 @@ public class StringUtil {
 
         String preppedSentence = sentence.replaceAll("\\s", "");
 
-        if (preppedSentence.toLowerCase().contains(preppedWord)) return true;
+        if (preppedSentence.toLowerCase().contains(preppedWord)) {
+            return true;
+        }
         //@@author
         return false;
     }
