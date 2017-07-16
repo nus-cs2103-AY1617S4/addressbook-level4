@@ -39,6 +39,7 @@ public class ListCommandTest {
         listCommand.setData(model, new CommandHistory());
     }
 
+
     @Test
     public void execute_listIsNotFiltered_showsSameList() throws Exception {
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
@@ -49,6 +50,7 @@ public class ListCommandTest {
         showFirstTaskOnly(model);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
+
 
     /**
      * Updates the filtered list to show only the first person in the {@code model}'s address book.
