@@ -10,9 +10,9 @@ We are a team Engineering students based in the [School of Computing, National U
 * [Add Command](UserGuide.md#22-adding-a-task-add-)
 * [Mark Command](UserGuide.md#211-mark-tasks--mark)
 * [Unmark Command](UserGuide.md#212-unmark-tasks--unmark)
-* Clear Command
+* [Clear Command](UserGuide.md#210-clear-tasks--clear)
 * Parse DateTime
-* Help Command
+* [Help Command](UserGuide.md#21-viewing-help--help)
 
 **Code Written:**
 * [Functional Code](../collated/main/A0156106M.md)
@@ -30,7 +30,10 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Components in charge of:** Logic<br>
 
-**Features implemented:**<br>
+**Features implemented:**
+* [Find Command](UserGuide.md#25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find)
+* [Edit Command](UserGuide.md#24-editing-a-task--edit)
+* Reserve and Priority Tags
 
 **Code Written:**
 * [Functional Code](../collated/main/A0142675B.md)
@@ -48,8 +51,8 @@ We are a team Engineering students based in the [School of Computing, National U
 **Components in charge of:** Storage & Google Calendar<br>
 
 **Features implemented:**
-* Filepath Command
-* Changepath Command
+* [Filepath Commane](UserGuide.md#214-view-current-data-file-path--filepath)
+* [Changepath command](UserGuide.md#215-change-data-file-path--changepath)
 
 
 **Code Written:**
@@ -67,9 +70,9 @@ We are a team Engineering students based in the [School of Computing, National U
 **Components in charge of:** Logic<br>
 
 **Features implemented:**
-* List Command
-* Undo/Redo Command
-* Remind Command
+* [List Command](UserGuide.md#23-listing-tasks--list)
+* [Undo Command](UserGuide.md#28-undo-last-action--undo)
+* [Redo Command](UserGuide.md#29-redo-last-action--redo)
 * Sorting
 
 **Code Written:**
@@ -77,6 +80,7 @@ We are a team Engineering students based in the [School of Computing, National U
 * [Test Code](../collated/test/A01549886L.md)
 
 **Other major contributions:**
+* Debugging 
 
 -----
 #### [Aung Swumm Htet Pyi Aye](https://github.com/ashpa)
@@ -88,6 +92,7 @@ We are a team Engineering students based in the [School of Computing, National U
 **Features implemented:**
 * Ui display
 * Select Command
+* Command History Navigation
 
 **Code Written:**
 * [Functional Code](../collated/main/A0154987J.md)
