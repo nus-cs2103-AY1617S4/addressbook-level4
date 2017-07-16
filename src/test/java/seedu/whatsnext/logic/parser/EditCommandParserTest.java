@@ -21,6 +21,7 @@ import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTMEE
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_READBORNACRIME;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_STARTDATETIME_PROJECTMEETING;
 
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2010;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_LOW;
@@ -62,10 +63,17 @@ public class EditCommandParserTest {
     private static final String DESCRIPTION_DESC_READBORNACRIME =
                                         " " + PREFIX_MESSAGE + VALID_DESCRIPTION_READBORNACRIME;
 
-    private static final String TAG_DESC_CS2103 = " " +  PREFIX_NEW_TAG + VALID_TAG_CS2103;
-    private static final String TAG_DESC_HIGH = " " + PREFIX_NEW_TAG + VALID_TAG_HIGH;
-    private static final String TAG_DESC_MEDIUM = " " + PREFIX_NEW_TAG + VALID_TAG_MEDIUM;
-    private static final String TAG_DESC_LOW = " " + PREFIX_NEW_TAG + VALID_TAG_LOW;
+    private static final String NEWTAG_DESC_CS2010 = " " + PREFIX_NEW_TAG + VALID_TAG_CS2010;
+    private static final String NEWTAG_DESC_CS2103 = " " +  PREFIX_NEW_TAG + VALID_TAG_CS2103;
+    private static final String NEWTAG_DESC_HIGH = " " + PREFIX_NEW_TAG + VALID_TAG_HIGH;
+    private static final String NEWTAG_DESC_MEDIUM = " " + PREFIX_NEW_TAG + VALID_TAG_MEDIUM;
+    private static final String NEWTAG_DESC_LOW = " " + PREFIX_NEW_TAG + VALID_TAG_LOW;
+
+    private static final String REMOVETAG_DESC_CS2010 = " " + PREFIX_DELETE_TAG + VALID_TAG_CS2010;
+    private static final String REMOVETAG_DESC_CS2103 = " " +  PREFIX_DELETE_TAG + VALID_TAG_CS2103;
+    private static final String REMOVETAG_DESC_HIGH = " " + PREFIX_DELETE_TAG + VALID_TAG_HIGH;
+    private static final String REMOVETAG_DESC_MEDIUM = " " + PREFIX_DELETE_TAG + VALID_TAG_MEDIUM;
+    private static final String REMOVETAG_DESC_LOW = " " + PREFIX_DELETE_TAG + VALID_TAG_LOW;
 
     private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Problem Set 4:SubTask D";
     private static final String INVALID_STARTDATETIME_DESC = " " + PREFIX_START_DATETIME + "neqp";
@@ -118,7 +126,7 @@ public class EditCommandParserTest {
                 TaskDescription.MESSAGE_NAME_CONSTRAINTS); // invalid description
 
         // invalid DateTime followed by valid tags
-        assertParseFailure("1" + INVALID_STARTDATETIME_DESC + TAG_DESC_HIGH, DateTime.MESSAGE_DATE_CONSTRAINT);
+        assertParseFailure("1" + INVALID_STARTDATETIME_DESC + NEWTAG_DESC_HIGH, DateTime.MESSAGE_DATE_CONSTRAINT);
 
         // valid DateTime followed by invalid DateTime. The test case for invalid DateTime followed by valid DateTime
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -126,7 +134,7 @@ public class EditCommandParserTest {
                 DateTime.MESSAGE_DATE_CONSTRAINT);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure("1" + INVALID_NAME_DESC + INVALID_STARTDATETIME_DESC + TAG_DESC_LOW,
+        assertParseFailure("1" + INVALID_NAME_DESC + INVALID_STARTDATETIME_DESC + NEWTAG_DESC_LOW,
                 TaskName.MESSAGE_NAME_CONSTRAINTS);
     }
 
@@ -135,11 +143,13 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_TASK;
 
         String userInput = targetIndex.getOneBased() + NAME_DESC_PROJECTMEETING + STARTDATETIME_DESC_PROJECTMEETING
-                + ENDDATETIME_DESC_PROJECTMEETING + TAG_DESC_CS2103 + TAG_DESC_MEDIUM + DESCRIPTION_DESC_PROJECTMEETING;
+                + ENDDATETIME_DESC_PROJECTMEETING + NEWTAG_DESC_CS2103 + NEWTAG_DESC_MEDIUM
+                + REMOVETAG_DESC_CS2010 + DESCRIPTION_DESC_PROJECTMEETING;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_PROJECTMEETING)
                 .withStartDateTime(VALID_STARTDATETIME_PROJECTMEETING).withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING)
-                .withTags(VALID_TAG_MEDIUM, VALID_TAG_CS2103).withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
+                .withNewTags(VALID_TAG_MEDIUM, VALID_TAG_CS2103).withRemoveTags(VALID_TAG_CS2010)
+                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
 
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -149,10 +159,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() throws Exception {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_CS2103 + DESCRIPTION_DESC_PROJECTMEETING;
+        String userInput = targetIndex.getOneBased()
+                           + NEWTAG_DESC_CS2103
+                           + REMOVETAG_DESC_LOW
+                           + DESCRIPTION_DESC_PROJECTMEETING;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_CS2103)
-                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withNewTags(VALID_TAG_CS2103)
+                .withRemoveTags(VALID_TAG_LOW).withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(userInput, expectedCommand);
@@ -185,9 +198,15 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(userInput, expectedCommand);
 
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_CS2103;
-        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_CS2103).build();
+        // newtags
+        userInput = targetIndex.getOneBased() + NEWTAG_DESC_CS2010;
+        descriptor = new EditTaskDescriptorBuilder().withNewTags(VALID_TAG_CS2010).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(userInput, expectedCommand);
+
+        // removetags
+        userInput = targetIndex.getOneBased() + REMOVETAG_DESC_CS2103 + REMOVETAG_DESC_MEDIUM;
+        descriptor = new EditTaskDescriptorBuilder().withRemoveTags(VALID_TAG_CS2103, VALID_TAG_MEDIUM).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(userInput, expectedCommand);
     }
@@ -234,9 +253,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_multiplePriorityTags_acceptsFirst() throws Exception {
         Index targetIndex = INDEX_THIRD_TASK;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_HIGH + TAG_DESC_MEDIUM + TAG_DESC_LOW;
+        String userInput = targetIndex.getOneBased() + NEWTAG_DESC_HIGH + NEWTAG_DESC_MEDIUM + NEWTAG_DESC_LOW;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_HIGH).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withNewTags(VALID_TAG_HIGH).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(userInput, expectedCommand);

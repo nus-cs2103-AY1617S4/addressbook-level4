@@ -14,6 +14,7 @@ public class EditCommandTestUtil {
     public static final String VALID_STARTDATETIME_PROJECTMEETING = "this saturday 10am";
     public static final String VALID_ENDDATETIME_PROJECTMEETING = "this saturday 10pm";
     public static final String VALID_ENDDATETIME_PROJECTDEMO = "next monday";
+    public static final String VALID_TAG_CS2010 = "CS2010";
     public static final String VALID_TAG_CS2103 = "CS2103";
     public static final String VALID_TAG_HIGH = "HIGH";
     public static final String VALID_TAG_MEDIUM = "MEDIUM";
@@ -32,14 +33,14 @@ public class EditCommandTestUtil {
             DESC_PROJECTMEETING = new EditTaskDescriptorBuilder().withName(VALID_NAME_PROJECTMEETING)
                     .withStartDateTime(VALID_STARTDATETIME_PROJECTMEETING)
                     .withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING)
-                    .withTags(VALID_TAG_CS2103)
+                    .withNewTags(VALID_TAG_CS2103)
                     .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
             DESC_PROJECTDEMO = new EditTaskDescriptorBuilder().withName(VALID_NAME_PROJECTDEMO)
                     .withEndDateTime(VALID_ENDDATETIME_PROJECTDEMO)
-                    .withTags(VALID_TAG_CS2103, VALID_TAG_HIGH)
+                    .withNewTags(VALID_TAG_CS2103, VALID_TAG_HIGH)
                     .withDescription(VALID_DESCRIPTION_PROJECTDEMO).build();
             DESC_READBORNACRIME = new EditTaskDescriptorBuilder().withName(VALID_NAME_READBORNACRIME)
-                    .withTags(VALID_TAG_LOW)
+                    .withNewTags(VALID_TAG_LOW)
                     .withDescription(VALID_DESCRIPTION_READBORNACRIME).build();
         } catch (IllegalValueException ive) {
             throw new AssertionError("Method should not fail.");
