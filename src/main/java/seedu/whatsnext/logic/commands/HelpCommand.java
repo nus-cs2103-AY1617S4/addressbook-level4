@@ -38,7 +38,6 @@ public class HelpCommand extends Command {
         if (displayWindow == OPEN_WINDOW) {
             EventsCenter.getInstance().post(new ShowHelpRequestEvent());
         }
-
         return new CommandResult(helpMessage);
     }
 
