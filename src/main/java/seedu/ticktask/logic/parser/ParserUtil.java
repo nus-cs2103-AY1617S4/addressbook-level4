@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.List;
 
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
@@ -15,6 +16,8 @@ import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.TaskType;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes
@@ -89,5 +92,23 @@ public class ParserUtil {
         }
         return data;
     }
+
+    //@@author A0131884B
+
+    /**
+    * Return prefix that has arguments mapped to it, and remove prefixes that are not mapped to anything in argMultimap
+    */
+    public static Prefix getListPrefix(ArgumentMultimap argMultimap, Prefix... prefixes) {
+         List<Prefix> temp = Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
+            assert (temp.size() <= 1) : "invalid flag combination not catched beforehand or no Prefixes found!";return temp.get(0);
+    }
+
+    /**
+    * Returns true if any of the prefixes contain non-empty values in argMultimap
+    */
+    public static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+ //@@author
 }
 //@@author

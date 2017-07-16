@@ -162,22 +162,51 @@ public class TickTask implements ReadOnlyTickTask {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removeTask(ReadOnlyTask key) throws TaskNotFoundException {
-        if (tasks.remove(key)) {
+    //@@author A0131884B
+
+    /**
+     * Removes an task from the task list using find task name method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeFindTask(ReadOnlyTask key) throws TaskNotFoundException {
+         if (completedTasks.contains(key)) {
+             return completedTasks.remove(key);
+         } else if (tasks.contains(key)) {
+             return tasks.remove(key);
+         } else {
+             throw new TaskNotFoundException();
+         }
+    }
+
+    /**
+     * Removes an task from the active task list using find task index method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeIndexActiveTask(ReadOnlyTask key) throws TaskNotFoundException {
+        if (tasks.remove(key)){
             return true;
         } else {
             throw new TaskNotFoundException();
         }
     }
 
-    public boolean removeCompletedTask(ReadOnlyTask key) throws TaskNotFoundException {
-        if (completedTasks.remove(key)) {
+    /**
+     * Removes an task from the complete task list using find task index method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeIndexCompleteTask(ReadOnlyTask key) throws TaskNotFoundException {
+                if (completedTasks.remove(key)){
             return true;
         } else {
             throw new TaskNotFoundException();
         }
     }
-    
+
+    //@@author
+
     //@@author A0147928N
     /**
      * Adds the task to the list of completed tasks and removes it from the tasks list.

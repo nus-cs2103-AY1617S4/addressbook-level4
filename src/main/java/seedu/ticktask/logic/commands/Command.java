@@ -2,11 +2,12 @@ package seedu.ticktask.logic.commands;
 
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
+import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
-
+import seedu.ticktask.model.task.ReadOnlyTask;
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
@@ -30,8 +31,9 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute() throws CommandException, WarningException, IllegalValueException;
-
+    //@@author A0131884B
+    public abstract CommandResult execute() throws CommandException, WarningException, IllegalValueException, DuplicateTaskException;;
+    //@@author
     /**
      * Provides any needed dependencies to the command.
      * Commands making use of any of these should override this method to gain
