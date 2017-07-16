@@ -51,7 +51,7 @@ public class AddCommandParser {
                     startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
         } catch (IllegalValueException ive) {
-            throw new ParseException(ive.getMessage(), ive);
+            throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
     }
 
