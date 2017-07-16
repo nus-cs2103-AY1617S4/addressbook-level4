@@ -15,6 +15,7 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
+//@@author A0142675B
 public class EditTaskDescriptorTest {
 
     @Test

@@ -44,6 +44,7 @@ import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
+//@@author A0142675B
 public class EditCommandParserTest {
 
     private static final String NAME_DESC_PROJECTMEETING = " " + PREFIX_NAME + VALID_NAME_PROJECTMEETING;
