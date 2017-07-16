@@ -26,6 +26,14 @@ public interface Model {
     /** Redo previous action of task manager. */
     void redoTaskManager();
 
+    // @@author A0154986L
+    /** Returns current reminder setting. */
+    String getReminderSetting();
+
+    // @@author A0154986L
+    /** Sets new reminder setting. */
+    void setReminderSetting(String newReminderSetting);
+
     /** Re-saves data when file path is changed. */
     void saveTaskManager();
 
@@ -64,10 +72,8 @@ public interface Model {
 
     // @@author A0154986L
     /**
-     * Returns the filtered event task list for reminder pop up window.
+     * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     void updateFilteredTaskListForReminder();
-
-
 
 }

@@ -42,6 +42,7 @@ public class TypicalTasks {
             tester = new TaskBuilder().withName("Tester")
                     .withStatus(true).build();
 
+
             // Manually added
         } catch (IllegalValueException e) {
             throw new AssertionError("Sample data cannot be invalid", e);
