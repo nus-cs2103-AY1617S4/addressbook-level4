@@ -66,6 +66,7 @@ public class EventListPanelHandle extends GuiHandle {
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
         List<BasicTaskFeatures> eventTasks = new ArrayList<>(Arrays.asList(tasks));
         for (int index = 0; index < eventTasks.size(); index++) {
+            //System.out.println(eventTasks.get(index).getName());
             if (!eventTasks.get(index).getTaskType().equals("event")) {
                 eventTasks.remove(index);
                 index--;
@@ -111,8 +112,10 @@ public class EventListPanelHandle extends GuiHandle {
 
         // Return false if any of the persons doesn't match
         for (int i = 0; i < tasks.length; i++) {
-            if (!tasksInList.get(startPosition + i).getKey().getName().fullTaskName
-                    .equals(tasks[i].getName().fullTaskName)) {
+            //System.out.println(tasks[i].getName().toString());
+            //System.out.println(tasksInList.get(startPosition + i).getKey().getName().toString());
+            if (!tasksInList.get(startPosition + i).getKey().getName().toString()
+                    .equals(tasks[i].getName().toString())) {
                 return false;
             }
         }
