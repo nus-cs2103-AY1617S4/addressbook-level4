@@ -401,10 +401,10 @@ Use case ends.
 > 2a1. System will tag the overlapping events with reserved tag `OVERLAP`<br>
 > Use case ends
 
-2b. The user input is not in the valid command format. 
+2b. The user input is not in the valid command format.
 
 > 2b1. System will indicate to user that the input is invalid and display help information. <br>
-> Use case resumes at step 1. 
+> Use case resumes at step 1.
 
 #### Use case: Add deadline task
 
@@ -416,10 +416,10 @@ Use case ends.
 
 **Extensions**
 
-2a. The user input is not in the valid command format. 
+2a. The user input is not in the valid command format.
 
 > 2a1. System will indicate to user that the input is invalid and display help information. <br>
-> Use case resumes at step 1. 
+> Use case resumes at step 1.
 
 #### Use case: Add floating task
 
@@ -431,10 +431,10 @@ Use case ends.
 
 **Extensions**
 
-2a. The user input is not in the valid command format. 
+2a. The user input is not in the valid command format.
 
 > 2a1. System will indicate to user that the input is invalid and display help information. <br>
-> Use case resumes at step 1. 
+> Use case resumes at step 1.
 
 #### Use case: Delete task
 

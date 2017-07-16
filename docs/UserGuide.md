@@ -224,12 +224,12 @@ Examples:
 * `find CS2103`<br>
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
-  
+
 ### 2.13. Set reminder period : `remind`
 The app will automatically display all events and deadlines within the period specified by the user when the app starts. <br>
-The command allows the user to specify the time period. 
+The command allows the user to specify the time period.
 Format: `remind TIMEPERIOD`
-> Set the time period for the reminder on startup. 
+> Set the time period for the reminder on startup.
 > The time unit must be sigular, i.e. "week" instead of "weeks"
 Examples:
 
