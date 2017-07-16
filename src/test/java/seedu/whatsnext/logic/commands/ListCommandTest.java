@@ -20,6 +20,7 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 import seedu.whatsnext.testutil.TypicalTasks;
 
+//@@author A0142675B
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
@@ -33,27 +34,97 @@ public class ListCommandTest {
     public void setUp() {
         model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_ALL);
-        listCommand = new ListCommand(commandSet);
-        listCommand.setData(model, new CommandHistory());
     }
 
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() throws Exception {
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_ALL);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() throws Exception {
         showFirstTaskOnly(model);
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_ALL);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
+    @Test
+    public void execute_listIsNotFiltered_showsIncompleteList() throws Exception {
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_INCOMPLETE);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = false;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsIncompleteList() throws Exception {
+        showFirstTaskOnly(model);
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_INCOMPLETE);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = false;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsList() throws Exception {
+        Set<String> commandSet = new HashSet<String>();
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = false;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsList() throws Exception {
+        showFirstTaskOnly(model);
+        Set<String> commandSet = new HashSet<String>();
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = false;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsCompletedList() throws Exception {
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_COMPLETED);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = true;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsCompletedList() throws Exception {
+        showFirstTaskOnly(model);
+        Set<String> commandSet = new HashSet<String>();
+        commandSet.add(ListCommand.LIST_COMPLETED);
+        listCommand = new ListCommand(commandSet);
+        listCommand.setData(model, new CommandHistory());
+        boolean isCompleted = true;
+        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+    }
 
     /**
-     * Updates the filtered list to show only the first person in the {@code model}'s address book.
+     * Updates the filtered list to show only the first person in the {@code model}'s task manager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
