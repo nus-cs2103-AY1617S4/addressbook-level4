@@ -164,6 +164,12 @@ public class AddCommandTest {
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void saveTickTask() {
+			// TODO Auto-generated method stub
+			
+		}
     }
 
     /**
