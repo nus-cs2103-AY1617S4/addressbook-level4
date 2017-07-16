@@ -9,6 +9,7 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
@@ -61,9 +62,10 @@ public class ListCommandTest {
      * Executes the given {@code command}, confirms that <br>
      * - the result message matches {@code expectedMessage} <br>
      * - the TickTask and the filtered task list in the {@code model} matches that of {@code expectedModel}
+     * @throws IllegalValueException 
      */
     public static void assertCommandSuccess(Command command, Model model, String expectedMessage, Model expectedModel)
-            throws CommandException {
+            throws CommandException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);

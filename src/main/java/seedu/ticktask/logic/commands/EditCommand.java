@@ -1,6 +1,7 @@
 package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
@@ -12,8 +13,10 @@ import java.util.Set;
 
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
@@ -45,7 +48,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
-
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -62,7 +64,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute() throws CommandException, IllegalValueException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -71,12 +73,6 @@ public class EditCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-        //author A0139819N
-        if (editedTask.getTaskType().getValue().equals(TaskType.TASK_TYPE_FLOATING)){
-            System.out.println("Haha!");
-            editedTask.setToFloating();
-        }
-        //author
 
         try {
             model.updateTask(taskToEdit, editedTask);
@@ -84,6 +80,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
+        }catch(IllegalValueException ive){
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
@@ -92,10 +90,13 @@ public class EditCommand extends Command {
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
+     * @throws IllegalValueException 
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-            EditTaskDescriptor editTaskDescriptor) {
+            EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
+        
+        final String EDIT_TASK_DESCRIPTOR_TYPE_FLOATING = "Optional[floating]";
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         TaskType updatedTaskType = editTaskDescriptor.getTaskType().orElse(taskToEdit.getTaskType());
@@ -103,6 +104,17 @@ public class EditCommand extends Command {
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
        
+        //author A0139819N
+        if (editTaskDescriptor.getTaskType().toString().equals(EDIT_TASK_DESCRIPTOR_TYPE_FLOATING)){
+
+            if(taskToEdit.getTaskType().getValue().equals("floating")){
+                throw new ParseException("Task is already floating!");
+            }else{
+                updatedTime = new DueTime("");
+                updatedDate = new DueDate("");  
+            }
+        }
+        //author
         return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 
