@@ -70,17 +70,17 @@ public class Version implements Comparable<Version> {
     }
 
     @Override
-    public int compareTo(Version other) {
-        if (this.major != other.major) {
-            return this.major - other.major;
+    public int compareTo(Version another) {
+        if (this.major != another.major) {
+            return this.major - another.major;
         }
-        if (this.minor != other.minor) {
-            return this.minor - other.minor;
+        if (this.minor != another.minor) {
+            return this.minor - another.minor;
         }
-        if (this.patch != other.patch) {
-            return this.patch - other.patch;
+        if (this.patch != another.patch) {
+            return this.patch - another.patch;
         }
-        if (this.isEarlyAccess == other.isEarlyAccess()) {
+        if (this.isEarlyAccess == another.isEarlyAccess()) {
             return 0;
         }
         if (this.isEarlyAccess) {
