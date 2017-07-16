@@ -32,8 +32,8 @@ public class EventTaskCard extends UiPart<Region> {
     private Label to;
     @FXML
     private FlowPane tags;
-    //@FXML
-    //private ImageView sign;
+    @FXML
+    private ImageView sign;
 
     public EventTaskCard(BasicTaskFeatures task, int displayedIndex) {
         super(FXML);
@@ -44,10 +44,10 @@ public class EventTaskCard extends UiPart<Region> {
         to.setText("To: " + task.getEndDateTime().toString());
         setPriorityColors(task);
         initTags(task);
-        //sign.setImage(new Image(ICON));
-        //if (!task.getAllTags().contains("OVERLAPPING")) {
-        //    sign.setVisible(false);
-        //}
+        sign.setImage(new Image(ICON));
+        if (!task.getAllTags().contains("OVERLAPPING")) {
+            sign.setVisible(false);
+        }
     }
 
     private void initTags(BasicTaskFeatures task) {
