@@ -13,6 +13,7 @@ import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
 import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 public class SampleDataUtil {
@@ -41,6 +42,9 @@ public class SampleDataUtil {
             throw new AssertionError("sample data cannot contain duplicate tasks", e);
         } catch (PastTaskException e) {
             throw new AssertionError("sample data cannot contain tasks in the past", e);
+        } catch (EventClashException e) {
+            throw new AssertionError("sample data cannot contain conflicted events", e);
+
         }
     }
 
