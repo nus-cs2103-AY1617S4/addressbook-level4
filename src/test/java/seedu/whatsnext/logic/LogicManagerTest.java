@@ -550,9 +550,11 @@ public class LogicManagerTest {
             cmd.append(" " + basicTask.getName());
             cmd.append(" " + PREFIX_MESSAGE.getPrefix()).append(basicTask.getDescription());
             if (basicTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)) {
-                cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime().displayDateTime());
+                cmd.append(" " + PREFIX_START_DATETIME.getPrefix())
+                    .append(basicTask.getStartDateTime().displayDateTime());
             }
-            if (basicTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) || basicTask.getTaskType().equals(BasicTask.TASK_TYPE_DEADLINE)) {
+            if (basicTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
+                    || basicTask.getTaskType().equals(BasicTask.TASK_TYPE_DEADLINE)) {
                 cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime().displayDateTime());
             }
             Set<Tag> tags = basicTask.getTags();
