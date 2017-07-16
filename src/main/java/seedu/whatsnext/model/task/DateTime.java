@@ -101,7 +101,6 @@ public class DateTime {
     }
 
     public String displayDateTime() {
-        System.out.println(dateTimeFormatDisplay.format(dateValue));
         return dateTimeFormatDisplay.format(dateValue);
     }
 

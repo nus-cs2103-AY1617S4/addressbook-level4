@@ -1,63 +1,96 @@
-//package guitests;
-//
-//import static org.junit.Assert.assertEquals;
-//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
-//
-//import org.junit.Test;
-//
-//import seedu.whatsnext.commons.core.index.Index;
-//import seedu.whatsnext.logic.commands.ClearCommand;
-//import seedu.whatsnext.logic.commands.SelectCommand;
-//import seedu.whatsnext.model.task.ReadOnlyPerson;
-//
-//public class SelectCommandTest extends AddressBookGuiTest {
-//
-//
-//    @Test
-//    public void selectPerson_nonEmptyList() {
-//
-//        assertSelectionInvalid(Index.fromOneBased(10)); // invalid index
-//        assertNoPersonSelected();
-//
-//        assertSelectionSuccess(INDEX_FIRST_PERSON); // first person in the list
-//        Index personCount = Index.fromOneBased(td.getTypicalPersons().length);
-//        assertSelectionSuccess(personCount); // last person in the list
-//        Index middleIndex = Index.fromOneBased(personCount.getOneBased() / 2);
-//        assertSelectionSuccess(middleIndex); // a person in the middle of the list
-//
-//        assertSelectionInvalid(Index.fromOneBased(personCount.getOneBased() + 1)); // invalid index
-//        assertPersonSelected(middleIndex); // assert previous selection remains
-//
-//        /* Testing other invalid indexes such as -1 should be done when testing the SelectCommand */
-//    }
-//
-//    @Test
-//    public void selectPerson_emptyList() {
-//        commandBox.runCommand(ClearCommand.COMMAND_WORD);
-//        assertListSize(0);
-//        assertSelectionInvalid(INDEX_FIRST_PERSON); //invalid index
-//    }
-//
-//    private void assertSelectionInvalid(Index index) {
-//        commandBox.runCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
-//        assertResultMessage("The person index provided is invalid");
-//    }
-//
-//    private void assertSelectionSuccess(Index index) {
-//        commandBox.runCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
-//        assertResultMessage("Selected Person: " + index.getOneBased());
-//        assertPersonSelected(index);
-//    }
-//
-//    private void assertPersonSelected(Index index) {
-//        assertEquals(personListPanel.getSelectedPersons().size(), 1);
-//        ReadOnlyPerson selectedPerson = personListPanel.getSelectedPersons().get(0);
-//        assertEquals(personListPanel.getPerson(index.getZeroBased()), selectedPerson);
-//        //TODO: confirm the correct page is loaded in the Browser Panel
-//    }
-//
-//    private void assertNoPersonSelected() {
-//        assertEquals(personListPanel.getSelectedPersons().size(), 0);
-//    }
-//
-//}
+package guitests;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import seedu.whatsnext.model.task.BasicTaskFeatures;
+
+public class SelectCommandTest extends TaskManagerGuiTest {
+
+    @Test
+    public void selectTask_nonEmptyList() {
+
+        assertSelectionInvalid(51); // invalid index
+        assertNoTaskSelected();
+
+        assertSelectionSuccess(1); // first task in the list
+        int taskCount = td.getTypicalTasks().length;
+        assertSelectionSuccess(taskCount); // last task in the list
+        int middleIndex = taskCount / 2;
+        assertSelectionSuccess(middleIndex); // a task in the middle of the list
+
+        //assertSelectionInvalid(taskCount  1); // invalid index
+        assertTaskSelected(middleIndex); // assert previous selection remains
+
+        /*
+         * Testing other invalid indexes such as -1 should be done when testing
+         * the SelectCommand
+         */
+    }
+
+    @Test
+    public void selectTask_emptyList() {
+        commandBox.runCommand("clear all");
+        assertListSize(0);
+        assertSelectionInvalid(1); // invalid index
+        commandBox.runCommand("undo");
+    }
+
+    private void assertSelectionInvalid(int index) {
+        commandBox.runCommand("select " + index);
+        assertResultMessage("The task index provided is invalid");
+    }
+
+    private void assertSelectionSuccess(int index) {
+        commandBox.runCommand("select " + index);
+        assertTaskSelected(index);
+    }
+
+    private void assertTaskSelected(int index) {
+        if (eventListPanel.getNumberOfTask() > index) {
+            assertEquals(eventListPanel.getSelectedTasks().size(), 1);
+            assertNoDeadlineTaskSelected();
+            assertNoFloatingTaskSelected();
+            BasicTaskFeatures selectedTask = eventListPanel.getSelectedTasks().get(0).getKey();
+            assertEquals(eventListPanel.getEventTask(index - 1), selectedTask);
+        } else {
+            if ((eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()) > index) {
+                assertEquals(deadlineListPanel.getSelectedTasks().size(), 1);
+                assertNoEventTaskSelected();
+                assertNoFloatingTaskSelected();
+                BasicTaskFeatures selectedTask = deadlineListPanel.getSelectedTasks().get(0).getKey();
+                assertEquals(deadlineListPanel.getDeadlineTask(index - eventListPanel.getNumberOfTask()
+                        - 1), selectedTask);
+
+            } else {
+                assertEquals(floatingListPanel.getSelectedTasks().size(), 1);
+                assertNoDeadlineTaskSelected();
+                assertNoEventTaskSelected();
+                BasicTaskFeatures selectedTask = floatingListPanel.getSelectedTasks().get(0).getKey();
+                assertEquals(floatingListPanel.getFloatingTask(
+                        index - eventListPanel.getNumberOfTask() - deadlineListPanel.getNumberOfTask()
+                        - 1), selectedTask);
+            }
+        }
+    }
+
+    private void assertNoTaskSelected() {
+        assertNoEventTaskSelected();
+        assertNoDeadlineTaskSelected();
+        assertNoFloatingTaskSelected();
+    }
+
+    private void assertNoEventTaskSelected() {
+        assertEquals(eventListPanel.getSelectedTasks().size(), 0);
+    }
+
+    private void assertNoDeadlineTaskSelected() {
+        assertEquals(deadlineListPanel.getSelectedTasks().size(), 0);
+    }
+
+    private void assertNoFloatingTaskSelected() {
+        assertEquals(floatingListPanel.getSelectedTasks().size(), 0);
+    }
+
+}

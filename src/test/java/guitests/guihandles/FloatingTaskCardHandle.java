@@ -1,4 +1,4 @@
-/*package guitests.guihandles;
+package guitests.guihandles;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.taskmanager.model.category.UniqueTagList;
-import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.whatsnext.model.tag.UniqueTagList;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
-*//**
+/**
  * Provides a handle to a task card in the task list panel.
- *//*
+ */
 public class FloatingTaskCardHandle extends GuiHandle {
     private static final String TASKNAME_FIELD_ID = "#taskName";
     private static final String COMPLETED_FIELD_ID = "#completed";
@@ -30,7 +30,7 @@ public class FloatingTaskCardHandle extends GuiHandle {
         return getTextFromLabel(fieldId, node);
     }
 
-    public String getTaskName() {
+    public String getName() {
         return getTextFromLabel(TASKNAME_FIELD_ID);
     }
 
@@ -48,7 +48,7 @@ public class FloatingTaskCardHandle extends GuiHandle {
     }
 
     private List<String> getTags(UniqueTagList tags) {
-        return tags.asObservableList().stream().map(category -> category.categoryName)
+        return tags.asObservableList().stream().map(tag -> tag.tagName)
                 .collect(Collectors.toList());
     }
 
@@ -56,17 +56,17 @@ public class FloatingTaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(CATEGORIES_FIELD_ID).query();
     }
 
-    public boolean isSameTask(ReadOnlyTask task) {
-        return task != null || this == task && getTaskName().equals(task.getTaskName())
-                && getIsMarkedAsCompleted().equals(task.getIsMarkedAsComplete())
-                && getTags().equals(getTags(task.getTags()));
+    public boolean isSameTask(BasicTaskFeatures task) {
+        return task != null || this == task && getName().equals(task.getName().toString())
+                && getIsMarkedAsCompleted().equals(task.getStatusString())
+                && getTags().equals(getTags());
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FloatingTaskCardHandle) {
             FloatingTaskCardHandle handle = (FloatingTaskCardHandle) obj;
-            return getTaskName().equals(handle.getTaskName())
+            return getName().equals(handle.getName())
                     && getIsMarkedAsCompleted().equals(handle.getIsMarkedAsCompleted())
                     && getTags().equals(handle.getTags());
         }
@@ -75,7 +75,7 @@ public class FloatingTaskCardHandle extends GuiHandle {
 
     @Override
     public String toString() {
-        return getTaskName();
+        return getName();
     }
 }
-*/
+

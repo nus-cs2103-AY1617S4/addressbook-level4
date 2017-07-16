@@ -6,7 +6,6 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
-
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
