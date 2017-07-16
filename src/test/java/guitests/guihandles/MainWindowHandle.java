@@ -3,7 +3,7 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.stage.Stage;
 import seedu.whatsnext.TestApp;
-
+//author A0154987J
 /**
  * Provides a handle for {@code MainWindow}.
  */
