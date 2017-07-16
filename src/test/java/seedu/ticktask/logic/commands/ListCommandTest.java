@@ -11,10 +11,13 @@ import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 
 /**
@@ -27,11 +30,11 @@ public class ListCommandTest {
     private ListCommand listCommand;
 
     @Before
-    public void setUp() {
+    public void setUp() throws PastTaskException, EventClashException {
         model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
-        listCommand = new ListCommand(null);
+        listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
     }
 
@@ -61,9 +64,10 @@ public class ListCommandTest {
      * Executes the given {@code command}, confirms that <br>
      * - the result message matches {@code expectedMessage} <br>
      * - the TickTask and the filtered task list in the {@code model} matches that of {@code expectedModel}
+     * @throws WarningException 
      */
     public static void assertCommandSuccess(Command command, Model model, String expectedMessage, Model expectedModel)
-            throws CommandException {
+            throws CommandException, WarningException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);
