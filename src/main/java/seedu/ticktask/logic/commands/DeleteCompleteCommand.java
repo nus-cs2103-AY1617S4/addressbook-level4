@@ -1,4 +1,3 @@
-//@@author A0147928N
 
 package seedu.ticktask.logic.commands;
 
@@ -9,6 +8,7 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
+//@@author A0147928N
 /**
  * Deletes a task identified using it's last displayed index from the TickTask.
  */

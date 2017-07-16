@@ -80,6 +80,8 @@ public class ParserUtil {
         }
         return tagSet;
     }
+    
+//@@author A0147928N
     public static Optional<String> setNullToString(Optional<String> data) {
         String string = " ";
         if (!data.isPresent()) {
@@ -88,3 +90,4 @@ public class ParserUtil {
         return data;
     }
 }
+//@@author

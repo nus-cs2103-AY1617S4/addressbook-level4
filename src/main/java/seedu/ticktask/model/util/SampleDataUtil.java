@@ -18,15 +18,16 @@ import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
+        //@@author A0147928N
         try {
             return new Task[] {
-
                 new Task(new Name("Sample"), new DueTime("2200"), new TaskType("deadline"),
                     new DueDate("christmas"),
                     getTagSet("friends")),
                 
             };
-        } catch (IllegalValueException e) {
+        } //@@author
+        catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         }
     }

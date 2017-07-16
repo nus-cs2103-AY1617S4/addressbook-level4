@@ -1,3 +1,5 @@
+//@@author A0147928N
+
 package seedu.ticktask.logic.commands.exceptions;
 
 /**
@@ -8,3 +10,5 @@ public class WarningException extends Exception {
         super(message + "\nAre you sure you would like to coninue? (yes/no)");
     }
 }
+
+//@@author

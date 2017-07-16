@@ -12,14 +12,12 @@ import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.DeleteCompleteCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
-
+//@@author A0147928N
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-
-
 public class DeleteCommandParser {
-
+    
     //Pattern if user specifies list to delete from
     public static final Pattern LIST_SPECIFIED_DELETE_COMMAND_FORMAT =
             Pattern.compile("(\\p{Alpha}+)(\\s)(\\p{Digit}+)");
@@ -29,17 +27,17 @@ public class DeleteCommandParser {
 
     public static final String ACTIVE_TASKS_STRING = "active";
     public static final String COMPLETE_TASKS_STRING = "complete";
-
-
+    
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns an DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parse(String args) throws ParseException {
-
+        
         Matcher matcherIfListSpecified = LIST_SPECIFIED_DELETE_COMMAND_FORMAT.matcher(args.trim());
         Matcher matcherNoListSpecified = LIST_UNSPECIFIED_DELETE_COMMAND_FORMAT.matcher(args.trim());
+        
 
         try {
 
@@ -68,5 +66,6 @@ public class DeleteCommandParser {
         }
     }
 }
+//@@author
 
 

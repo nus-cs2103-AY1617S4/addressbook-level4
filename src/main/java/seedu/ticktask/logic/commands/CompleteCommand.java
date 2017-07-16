@@ -1,4 +1,3 @@
-//@@author A0147928N
 
 package seedu.ticktask.logic.commands;
 
@@ -8,6 +7,8 @@ import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
+
+//@@author A0147928N
 
 /**
  * Marks a task identified using it's last displayed index as complete.
