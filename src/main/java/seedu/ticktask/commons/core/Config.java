@@ -41,23 +41,23 @@ public class Config {
     public void setUserPrefsFilePath(String userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
-    
+
     //@@author A0138471A
     public String getTickTaskFilePath() {
-    	return tickTaskFilePath;
+        return tickTaskFilePath;
     }
-    
-    public void setTickTaskFilePath(String tickTaskFilePath) throws DuplicateTickTaskFilePathException{
-    	this.tickTaskFilePath = tickTaskFilePath;
+
+    public void setTickTaskFilePath(String tickTaskFilePath) throws DuplicateTickTaskFilePathException {
+        this.tickTaskFilePath = tickTaskFilePath;
     }
-    
-    public static class DuplicateTickTaskFilePathException extends DuplicateDataException{
-    	protected DuplicateTickTaskFilePathException() {
-    		super("Duplicate File Path");
-    	}
+
+    public static class DuplicateTickTaskFilePathException extends DuplicateDataException {
+        protected DuplicateTickTaskFilePathException() {
+            super("Duplicate File Path");
+        }
     }
     //@@author
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
