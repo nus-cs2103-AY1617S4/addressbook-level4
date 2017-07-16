@@ -28,4 +28,5 @@
 
 * This code is developed from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4) by a [team](https://github.com/se-edu) from National University of Singapore, School of Computing for students learning Software Engineering.
 * Some parts of this sample application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
+
 #### Licence : [MIT](LICENSE)
