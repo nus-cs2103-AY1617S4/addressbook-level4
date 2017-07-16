@@ -47,10 +47,12 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-
+        
+        //@@author A0147928N
         if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd, null)) {
           throw new DuplicateTaskException();
         }
+        //@@author
       
         if(!isChornological(toAdd)){
             throw new DuplicateTaskException();
@@ -108,7 +110,7 @@ public class UniqueTaskList implements Iterable<Task> {
    
     //@@author A0147928N
     /**
-     * Archives the task into the internalList
+     * Archives the task into the internalList and marks the task as complete
      */
     public void archive(ReadOnlyTask toAdd) {
         toAdd.setCompleted(true);
@@ -139,9 +141,11 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         
+        //@@author A0147928N
         if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, target)) {
           throw new DuplicateTaskException();
         }
+        //@@author
         
         
         //@@author A0139964M

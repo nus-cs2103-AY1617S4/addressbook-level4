@@ -120,12 +120,14 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateTickTaskModelChanged();
     }
-
+    
+    //@@author A0147928N
     @Override
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.completeTask(task);
     }
+    //@@author
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)

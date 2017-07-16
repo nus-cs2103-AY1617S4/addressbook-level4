@@ -116,10 +116,6 @@ public class parseEditCommand {
             HashSet<String> tagsList = new HashSet<>(tagCollection);
             tagList = ParserUtil.parseTags(tagsList);
         }
-        else {
-            HashSet<String> emptyTagList = new HashSet<String>();
-            tagList = ParserUtil.parseTags(emptyTagList);
-        }
         return tagList;
     }
 //@@author A0139964M

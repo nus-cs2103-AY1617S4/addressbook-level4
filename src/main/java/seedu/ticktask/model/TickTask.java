@@ -27,7 +27,9 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class TickTask implements ReadOnlyTickTask {
 
     private final UniqueTaskList tasks;
+    //@@author A0147928N
     private final UniqueTaskList completedTasks;
+    //@@author
     private final UniqueTagList tags;
 
     /*
@@ -164,6 +166,8 @@ public class TickTask implements ReadOnlyTickTask {
             throw new TaskNotFoundException();
         }
     }
+    
+    //@@author A0147928N
     /**
      * Adds the task to the list of completed tasks and removes it from the tasks list.
      */
@@ -171,14 +175,12 @@ public class TickTask implements ReadOnlyTickTask {
         if (tasks.contains(key)) {
             completedTasks.archive(key);
             tasks.remove(key);
-
             return true;
-        }
-
-        else {
+        } else {
             throw new TaskNotFoundException();
         }
     }
+    //@@author
 
     //// tag-level operations
 
