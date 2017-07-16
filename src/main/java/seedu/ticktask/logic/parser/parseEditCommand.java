@@ -37,9 +37,9 @@ public class parseEditCommand {
 		if (!matcher.matches()) {
 			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 		}
-		// mandatory
+		
 		int index = Integer.parseInt(matcher.group("index"));
-		//optional
+
 		Optional<String> name = Optional.ofNullable(matcher.group("name"));
 		Optional<String> time = Optional.ofNullable(matcher.group("time"));
 		Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));

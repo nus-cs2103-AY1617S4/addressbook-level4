@@ -47,6 +47,10 @@ public class CommandBox extends UiPart<Region> {
 	}
 
 	//@@author A0139964M
+	/**
+	 * Method that handles arrow up and down to cycle between commands
+	 * @param event
+	 */
 	@FXML
 	private void handleKeyPress(KeyEvent event){
 		KeyCode key = event.getCode();
@@ -84,6 +88,9 @@ public class CommandBox extends UiPart<Region> {
 	private void updatePrevCommand(String commandText){
 		prevCommandsHistory.push(commandText);
 	}
+	/**
+	 * Method that pops up an auto complete when a suitable keyword is inputted
+	 */
 
 	public void autoComplete(){
 		buildCommandsIntoHashSet();
@@ -111,7 +118,6 @@ public class CommandBox extends UiPart<Region> {
 			while(!nextCommandsHistory.isEmpty()){
 				prevCommandsHistory.push(nextCommandsHistory.pop());
 			}
-
 			updatePrevCommand(commandText);
 			//@@author
 
