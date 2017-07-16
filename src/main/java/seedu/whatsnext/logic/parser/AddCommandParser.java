@@ -33,10 +33,12 @@ public class AddCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
                         PREFIX_END_DATETIME, PREFIX_TAG_CLI);
 
+        // First argument would always be for name
+        /*
         if (!arePrefixesPresent(argMultimap)) {
             System.out.println("ARGUMENT = " + args);
             throw new ParseException(String.format("testing", AddCommand.MESSAGE_USAGE));
-        }
+        }*/
 
         try {
             TaskName taskName = new TaskName(argMultimap.getPreamble());
@@ -49,7 +51,7 @@ public class AddCommandParser {
                     startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
         } catch (IllegalValueException ive) {
-            throw new ParseException(ive.getMessage(), ive);
+            throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
     }
 

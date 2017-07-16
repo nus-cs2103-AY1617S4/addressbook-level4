@@ -17,9 +17,12 @@ import seedu.whatsnext.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TASKNAME = "CS2103 Exam";
-    public static final String DEFAULT_START_DATETIME = DateTime.INIT_DATETIME_VALUE;
-    public static final String DEFAULT_END_DATETIME = DateTime.INIT_DATETIME_VALUE;
+    public static final String DEFAULT_START_DATETIME = "Oct 28 2019";
+    public static final String DEFAULT_END_DATETIME = "Oct 30 2019";
     public static final String DEFAULT_TAGS = "HIGH";
+    public static final boolean COMPLETED_TASK = true;
+    public static final boolean INCOMPLETE_TASK = false;
+
 
     private BasicTask task;
 
@@ -32,6 +35,42 @@ public class TaskBuilder {
         this.task = new BasicTask(defaultName, defaultDescription,
                 false, defaultStartDateTime, defaultEndDateTime, defaultTags);
     }
+
+    public TaskBuilder(String taskType) throws IllegalValueException {
+        TaskName defaultName = new TaskName(DEFAULT_TASKNAME);
+        TaskDescription defaultDescription = new TaskDescription(TaskDescription.INIT_DECRIPTION_VALUE);
+        Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
+        if (taskType.equals(BasicTask.TASK_TYPE_FLOATING)) {
+            this.task = new BasicTask(defaultName, defaultDescription, defaultTags);
+        } else if (taskType.equals(BasicTask.TASK_TYPE_DEADLINE)) {
+            DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
+            this.task = new BasicTask(defaultName, defaultDescription, defaultEndDateTime, defaultTags);
+        } else {
+            DateTime defaultStartDateTime = new DateTime(DEFAULT_START_DATETIME);
+            DateTime defaultEndDateTime = new DateTime(DEFAULT_END_DATETIME);
+            this.task = new BasicTask(defaultName, defaultDescription,
+                    false, defaultStartDateTime, defaultEndDateTime, defaultTags);
+        }
+    }
+
+    public TaskBuilder(boolean isCompleted) throws IllegalValueException {
+        TaskName defaultName = new TaskName(DEFAULT_TASKNAME);
+        TaskDescription defaultDescription = new TaskDescription(TaskDescription.INIT_DECRIPTION_VALUE);
+        DateTime defaultStartDateTime = new DateTime();
+        DateTime defaultEndDateTime = new DateTime();
+        Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
+
+        if (isCompleted == COMPLETED_TASK) {
+            this.task = new BasicTask(defaultName, defaultDescription,
+                    true, defaultStartDateTime, defaultEndDateTime, defaultTags);
+
+        } else {
+            this.task = new BasicTask(defaultName, defaultDescription,
+                    false, defaultStartDateTime, defaultEndDateTime, defaultTags);
+        }
+    }
+
+
 
     /**
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.

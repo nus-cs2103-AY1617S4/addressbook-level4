@@ -2,6 +2,8 @@ package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +19,7 @@ import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
+import seedu.whatsnext.logic.parser.AddCommandParser;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.task.BasicTask;
@@ -36,11 +39,55 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
+    public void execute_floatingTaskAcceptedByModel_parseSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask floatingTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
+        String validFloatingCommand = AddCommand.COMMAND_WORD + " " + floatingTask.getName()
+                + " " + PREFIX_MESSAGE + floatingTask.getDescription();
+        AddCommandParser parser = new AddCommandParser();
+        AddCommand command = parser.parse(validFloatingCommand);
+        AddCommand commandResult = getAddCommandForTask(floatingTask, modelStub);
+        assertEquals(Arrays.asList(command), commandResult);
+    }
+
+    public void execute_deadlineTaskAcceptedByModel_parseSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask deadlineTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
+        String validFloatingCommand = AddCommand.COMMAND_WORD + " " + deadlineTask.getName()
+                + " " + PREFIX_MESSAGE + deadlineTask.getDescription() + " " + PREFIX_END_DATETIME
+                + deadlineTask.getEndDateTime();
+        AddCommandParser parser = new AddCommandParser();
+        AddCommand command = parser.parse(validFloatingCommand);
+        AddCommand commandResult = getAddCommandForTask(deadlineTask, modelStub);
+        assertEquals(Arrays.asList(command), commandResult);
+    }
+
     //@@author A0156106M
     @Test
-    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_floatingTaskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        BasicTask validTask = new TaskBuilder().build();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    //@@author A0156106M
+    @Test
+    public void execute_deadlineTaskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+
+    //@@author A0156106M
+    @Test
+    public void execute_eventTaskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_EVENT).build();
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
@@ -141,6 +188,17 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskListForReminder() {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public String getReminderSetting() {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
+        public void setReminderSetting(String newReminderSetting) {
             fail("This method should not be called.");
         }
     }

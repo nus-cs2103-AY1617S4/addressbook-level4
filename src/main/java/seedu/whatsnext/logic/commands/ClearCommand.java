@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
-import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
@@ -20,7 +18,9 @@ public class ClearCommand extends Command {
     public static final String CLEAR_COMPLETED = "completed";
     public static final String CLEAR_ALL = "all";
     public static final String MESSAGE_SUCCESS = "Task List has been cleared!";
-    public static final Object MESSAGE_USAGE = null;
+    public static final String MESSAGE_USAGE = "To clear incomplete tasks: clear incomplete\n"
+            + "To clear completed tasks: clear completed\n"
+            + "To clear all tasks: clear all\n";
     private static final boolean COMPLETED_TASKS = false;
     private static final boolean INCOMPLETE_TASKS = true;
 
@@ -51,7 +51,6 @@ public class ClearCommand extends Command {
      * */
     private CommandResult clearCompletedOrIncomplete(boolean isCompletedOrIncomplete) {
         ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
-        ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
         ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
         TaskManager taskManager = new TaskManager();
         for (BasicTask basicTask: taskList) {
@@ -64,11 +63,7 @@ public class ClearCommand extends Command {
             }
         }
 
-        try {
-            taskManager.setTags(tagList);
-        } catch (DuplicateTagException e) {
-            e.printStackTrace();
-        }
+        taskManager.syncMasterTagListWith(taskManager.getTasks());
         model.resetData(taskManager);
         return new CommandResult(MESSAGE_SUCCESS);
 

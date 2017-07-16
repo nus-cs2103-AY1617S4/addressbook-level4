@@ -3,6 +3,7 @@ package seedu.whatsnext.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
@@ -43,9 +44,10 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_MESSAGE + "MESSAGE] "
             + "[" + PREFIX_START_DATETIME + "DATE] "
             + "[" + PREFIX_END_DATETIME + "TIME] "
-            + "[" + PREFIX_NEW_TAG  + "TAG]...\n"
+            + "[" + PREFIX_NEW_TAG  + "TAG]... "
             + "[" + PREFIX_DELETE_TAG + "TAG]...\n"
             + "Example 1 : " + COMMAND_WORD + " 1 "
             + PREFIX_START_DATETIME + " 10 July 10PM"
@@ -358,6 +360,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(removeTags);
         }
 
+        //@@author A0142675B
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

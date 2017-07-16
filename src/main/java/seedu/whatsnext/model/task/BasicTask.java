@@ -230,6 +230,7 @@ public class BasicTask implements BasicTaskFeatures {
         return taskDescription;
     }
 
+    /*
     public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit,
             UnmodifiableObservableList<BasicTaskFeatures> taskList) {
         int index = 0;
@@ -239,7 +240,7 @@ public class BasicTask implements BasicTaskFeatures {
             }
         }
         return -1;
-    }
+    }*/
 
     public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
         for (BasicTaskFeatures task : taskList) {
@@ -258,14 +259,14 @@ public class BasicTask implements BasicTaskFeatures {
             details.append("Task name: " + this.getName() + "\n"
                 + "Tags: " + this.getAllTags() + "\n"
                 + "Status: " + this.getStatusString() + "\n"
-                + "From: " + this.getStartDateTime().toString() + " "
-                + "To: " + this.getEndDateTime().toString() + "\n"
+                + "From: " + this.getStartDateTime().displayDateTime() + " "
+                + "To: " + this.getEndDateTime().displayDateTime() + "\n"
                 + "Description: " + this.getDescription().toString());
         } else if (this.getTaskType().equals("deadline")) {
             details.append("Task name: " + this.getName() + "\n"
                     + "Tags: " + this.getAllTags() + "\n"
                     + "Status: " + this.getStatusString() + "\n"
-                    + "Due by: " + this.getEndDateTime().toString() + "\n"
+                    + "Due by: " + this.getEndDateTime().displayDateTime() + "\n"
                     + "Description: " + this.getDescription().toString());
         } else if (this.getTaskType().equals("floating")) {
             details.append("Task name: " + this.getName() + "\n"

@@ -2,6 +2,7 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
@@ -23,12 +24,14 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager.\n"
             + "Parameters: "
-            + "Submit assignment "
-            + PREFIX_START_DATETIME + "Monday 10AM "
-            + PREFIX_END_DATETIME + "Friday 10AM "
-            + PREFIX_TAG_CLI + " high";
+            + "TASKNAME "
+            + "[" + PREFIX_MESSAGE + "DESCRIPTIONS] "
+            + "[" + PREFIX_START_DATETIME + "START_DATETIME] "
+            + "[" + PREFIX_END_DATETIME + "END_DATETIME] "
+            + "[" + PREFIX_TAG_CLI + "TAG] \n"
+            + "Example: add Task1 m/this is an example s/today e/tomorrow 10pm t/tag ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";

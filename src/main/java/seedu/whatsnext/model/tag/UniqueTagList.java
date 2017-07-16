@@ -3,12 +3,9 @@ package seedu.whatsnext.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -39,6 +36,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * Creates a UniqueTagList using given String tags.
      * Enforces no nulls or duplicates.
      */
+    /*
     public UniqueTagList(String... tags) throws DuplicateTagException, IllegalValueException {
         final List<Tag> tagList = new ArrayList<Tag>();
         for (String tag : tags) {
@@ -47,12 +45,13 @@ public class UniqueTagList implements Iterable<Tag> {
         setTags(tagList);
 
         assert CollectionUtil.elementsAreUnique(internalList);
-    }
+    }*/
 
     /**
      * Creates a UniqueTagList using given tags.
      * Enforces no nulls or duplicates.
      */
+    /*
     public UniqueTagList(Tag... tags) throws DuplicateTagException {
         requireAllNonNull((Object[]) tags);
         final List<Tag> initialTags = Arrays.asList(tags);
@@ -62,18 +61,19 @@ public class UniqueTagList implements Iterable<Tag> {
         internalList.addAll(initialTags);
 
         assert CollectionUtil.elementsAreUnique(internalList);
-    }
+    }*/
 
     /**
      * Creates a UniqueTagList using given tags.
      * Enforces no null or duplicate elements.
      */
+    /*
     public UniqueTagList(Collection<Tag> tags) throws DuplicateTagException {
         this();
         setTags(tags);
 
         assert CollectionUtil.elementsAreUnique(internalList);
-    }
+    }*/
 
     /**
      * Creates a UniqueTagList using given tags.
@@ -90,11 +90,12 @@ public class UniqueTagList implements Iterable<Tag> {
      * Creates a copy of the given list.
      * Insulates from changes in source.
      */
+    /*
     public UniqueTagList(UniqueTagList source) {
         internalList.addAll(source.internalList); // insulate internal list from changes in argument
 
         assert CollectionUtil.elementsAreUnique(internalList);
-    }
+    }*/
 
     /**
      * Returns all tags in this list as a Set.
@@ -171,14 +172,16 @@ public class UniqueTagList implements Iterable<Tag> {
      * If the tag is a priority tag,
      * the existing priority tag inside the list will be removed and replaced with the new priority tag.
      * @throws IllegalValueException
+     * @throws DuplicateTagException
      */
-    public void add(Tag toAdd) throws IllegalValueException {
+    public void add(Tag toAdd) throws IllegalValueException, DuplicateTagException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTagException();
         }
 
-        if (!toAdd.isPriorityTag()) {
+        internalList.add(toAdd);
+        /*if (!toAdd.isPriorityTag()) {
             internalList.add(toAdd);
         } else if (toAdd.isPriorityTag() && !containsPriorityTag()) {
             internalList.add(toAdd);
@@ -190,7 +193,7 @@ public class UniqueTagList implements Iterable<Tag> {
             internalList.remove(mediumPriority);
             internalList.remove(lowPriority);
             internalList.add(toAdd);
-        }
+        }*/
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
