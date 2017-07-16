@@ -24,7 +24,7 @@ public class TypicalTasks {
                     .withDate("01/01").withType("deadline")
                     .withTime("2200")
                     .withTags("cleaning").build();
-            dotutorial = new TaskBuilder().withName("do tutorial").withDate("23/03/19")
+            dotutorial = new TaskBuilder().withName("do tutorial").withDate("03/23/19")
                     .withType("deadline").withTime("2300")
                     .withTags("school", "homework").build();
             meetgirlfriend = new TaskBuilder().withName("meet girlfriend").withTime("0800")
