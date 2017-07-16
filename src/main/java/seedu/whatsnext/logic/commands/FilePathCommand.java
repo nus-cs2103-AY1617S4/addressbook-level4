@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
+//import static java.util.Objects.requireNonNull;
 import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 /**
