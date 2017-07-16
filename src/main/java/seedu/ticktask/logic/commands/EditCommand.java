@@ -71,6 +71,12 @@ public class EditCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        //author A0139819N
+        if (editedTask.getTaskType().getValue().equals(TaskType.TASK_TYPE_FLOATING)){
+            System.out.println("Haha!");
+            editedTask.setToFloating();
+        }
+        //author
 
         try {
             model.updateTask(taskToEdit, editedTask);
@@ -92,11 +98,11 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         TaskType updatedTaskType = editTaskDescriptor.getTaskType().orElse(taskToEdit.getTaskType());
+        DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
-
+       
         return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 
@@ -132,19 +138,11 @@ public class EditCommand extends Command {
         public EditTaskDescriptor() {}
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            /*Why doen't this work?
-            setName(toCopy.name);
-            setTime(toCopy.time);
-            setTaskType(toCopy.type);
-            setDate(toCopy.date);
-            setTags(toCopy.tags);
-            */
             this.name = toCopy.name;
             this.time = toCopy.time;
             this.type = toCopy.type;
             this.date = toCopy.date;
             this.tags = toCopy.tags;
-            
         }
 
         /**

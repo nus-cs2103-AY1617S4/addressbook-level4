@@ -17,6 +17,7 @@ public class parseEditCommand {
 
     public static final String COMMAND_ARGUMENTS_REGEX = "(?=(?<index>\\d+))"
             + "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end|date|time))?))?"
+            + "(?:(?=.*type (?:(?<type>.+?)(?:,|$|\\R|start|end|date|time))?))?"
             + "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|start|end|time))?))?"
             + "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R|end|time|start))?))?"
             + "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R|time|start|end))?))?"
@@ -47,6 +48,7 @@ public class parseEditCommand {
         Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
         Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
         Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
+        Optional<String> type = Optional.ofNullable(matcher.group("type"));
 
 
         //Optional<Set<String>> tagSet = Optional.empty();
@@ -57,6 +59,7 @@ public class parseEditCommand {
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
         try {
             ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
+            ParserUtil.parseTaskType(type).ifPresent(editTaskDescriptor::setTaskType);
     
             if (startTime.isPresent() || endTime.isPresent()) {
                 if (startTime.isPresent()) {
@@ -95,7 +98,7 @@ public class parseEditCommand {
             }
 
             
-            ParserUtil.parseTaskType(Optional.of(" ")).ifPresent(editTaskDescriptor::setTaskType);
+            //ParserUtil.parseTaskType(Optional.of(" ")).ifPresent(editTaskDescriptor::setTaskType);
             //ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
             tagList = createTagList(tags);
             editTaskDescriptor.setTags(tagList);

@@ -27,6 +27,7 @@ public class TaskType {
     public TaskType(String taskType) throws IllegalValueException {
         requireNonNull(taskType);
         String trimmedType = taskType.trim();
+        System.out.println(trimmedType);
         if (!trimmedType.equals("")) {
             if (!isValidTaskType(trimmedType)) {
                 throw new IllegalValueException(MESSAGE_TASK_TYPE_CONSTRAINTS);

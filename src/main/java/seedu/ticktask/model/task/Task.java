@@ -44,6 +44,22 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
+    
+    //author A0139819N
+    public void setToFloating(){
+        this.time.setValue(null);
+        this.time.setStartTime(null);
+        this.time.setEndTime(null);
+        this.time.setFloating();
+        
+        this.date.setValue(null);
+        this.date.setStartDate(null);
+        this.date.setEndDate(null);
+        this.date.setFloating();
+        
+        this.type.setValue(TaskType.TASK_TYPE_FLOATING);
+    }
+    //author
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
