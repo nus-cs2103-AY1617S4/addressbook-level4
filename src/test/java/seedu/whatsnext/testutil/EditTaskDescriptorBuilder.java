@@ -60,7 +60,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setNewTags(ParserUtil.parseTags(Arrays.asList(tags)));
         return this;
     }
-    
+
     public EditTaskDescriptorBuilder withRemoveTags(String... tags) throws IllegalValueException {
         descriptor.setRemoveTags(ParserUtil.parseTags(Arrays.asList(tags)));
         return this;
