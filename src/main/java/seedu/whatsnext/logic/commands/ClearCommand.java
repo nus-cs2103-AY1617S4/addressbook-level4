@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.tag.Tag;
-import seedu.whatsnext.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
@@ -64,11 +63,8 @@ public class ClearCommand extends Command {
             }
         }
 
-        try {
-            taskManager.setTags(tagList);
-        } catch (DuplicateTagException e) {
-            e.printStackTrace();
-        }
+        taskManager.syncMasterTagListWith(taskManager.getTasks());
+        //taskManager.setTags(tagList);
         model.resetData(taskManager);
         return new CommandResult(MESSAGE_SUCCESS);
 

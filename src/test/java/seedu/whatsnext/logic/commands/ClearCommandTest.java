@@ -71,10 +71,8 @@ public class ClearCommandTest {
         CommandResult result = command.execute();
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertEquals(modelIncomplete.getFilteredTaskList().size(), model.getFilteredTaskList().size());
-        for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
-            assertEquals(model.getFilteredTaskList().get(i), modelIncomplete.getFilteredTaskList().get(i));
-        }
+        assertEquals(modelIncomplete, model);
+
 
     }
 
@@ -93,10 +91,8 @@ public class ClearCommandTest {
         CommandResult result = command.execute();
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertEquals(modelComplete.getFilteredTaskList().size(), model.getFilteredTaskList().size());
-        for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
-            assertEquals(model.getFilteredTaskList().get(i), modelComplete.getFilteredTaskList().get(i));
-        }
+        assertEquals(modelComplete, model);
+
     }
 
 }

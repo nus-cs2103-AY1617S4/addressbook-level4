@@ -53,6 +53,9 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     //// list overwrite operations
+    public UniqueTaskList getTasks() {
+        return tasks;
+    }
 
     public void setTasks(List<? extends BasicTaskFeatures> tasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
@@ -122,7 +125,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncMasterTagListWith(BasicTask task) {
+    public void syncMasterTagListWith(BasicTask task) {
         final UniqueTagList taskTags = new UniqueTagList(task.getTags());
         tags.mergeFrom(taskTags);
 
@@ -143,7 +146,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *  - points to a Tag object in the master list
      *  @see #syncMasterTagListWith(BasicTask)
      */
-    private void syncMasterTagListWith(UniqueTaskList tasks) {
+    public void syncMasterTagListWith(UniqueTaskList tasks) {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
