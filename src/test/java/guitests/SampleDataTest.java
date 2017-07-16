@@ -24,7 +24,7 @@ package guitests;
  
      @Test
      public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
-         BasicTask[] expectedList = SampleDataUtil.getSamplePersons();
+         BasicTask[] expectedList = SampleDataUtil.getSampleTasks();
          assertTrue(eventListPanel.isListMatching(expectedList));
          assertTrue(deadlineListPanel.isListMatching(expectedList));
          assertTrue(floatingListPanel.isListMatching(expectedList));
