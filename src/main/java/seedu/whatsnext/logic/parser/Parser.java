@@ -20,6 +20,7 @@ import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.MarkCommand;
 import seedu.whatsnext.logic.commands.RedoCommand;
+import seedu.whatsnext.logic.commands.RemindCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.commands.UndoCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
@@ -99,6 +100,10 @@ public class Parser {
         //@@author A0154986L
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        //@@author A0154986L
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
