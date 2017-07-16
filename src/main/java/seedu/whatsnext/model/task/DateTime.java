@@ -60,6 +60,7 @@ public class DateTime {
         }
     }
 
+    //@@author A0156106M
     /**
      * Prevents User from setting Tasks before today
      * @throws IllegalValueException when dateValue is before today's date
@@ -101,7 +102,6 @@ public class DateTime {
     }
 
     public String displayDateTime() {
-        System.out.println(dateTimeFormatDisplay.format(dateValue));
         return dateTimeFormatDisplay.format(dateValue);
     }
 

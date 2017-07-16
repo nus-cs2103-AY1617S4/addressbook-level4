@@ -15,6 +15,8 @@ public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Previous action has been redone.";
     public static final String MESSAGE_FAILURE = "Nothing to redo.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redo previous command.\n"
+            + "Example: redo ";
 
     @Override
     public CommandResult execute() throws CommandException {

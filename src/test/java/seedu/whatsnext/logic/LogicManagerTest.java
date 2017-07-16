@@ -240,7 +240,7 @@ public class LogicManagerTest {
     }
     */
 
-
+    //@@author A0156106M
     @Test
     public void execute_addEvent_successful() throws Exception {
         // setup expectations
@@ -254,6 +254,7 @@ public class LogicManagerTest {
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
     }
 
+    //@@author A0156106M
     @Test
     public void execute_addDeadline_successful() throws Exception {
         // setup expectations
@@ -267,6 +268,7 @@ public class LogicManagerTest {
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
     }
 
+    //@@author A0156106M
     @Test
     public void execute_addFloating_successful() throws Exception {
         // setup expectations
@@ -292,7 +294,7 @@ public class LogicManagerTest {
 
     }
 
-
+    //@@author
     @Test
     public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
@@ -492,6 +494,7 @@ public class LogicManagerTest {
      * A utility class to generate test data.
      */
     class TestDataHelper {
+
         BasicTask sampleEventTask() throws Exception {
             TaskName taskName = new TaskName("Sample Event Task");
             TaskDescription taskDescription = new TaskDescription("More information on Sample Event Task");
@@ -501,6 +504,7 @@ public class LogicManagerTest {
             Set<Tag> tags = getTagSet("high", "event");
             return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
         }
+
         BasicTask sampleFloatingTask() throws Exception {
             TaskName taskName = new TaskName("Sample Floating Task");
             TaskDescription taskDescription = new TaskDescription("More information on Sample Floating Task");
@@ -510,6 +514,7 @@ public class LogicManagerTest {
             Set<Tag> tags = getTagSet("high");
             return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
         }
+
         BasicTask sampleDeadlineTask() throws Exception {
             TaskName taskName = new TaskName("Sample Deadline Task");
             TaskDescription taskDescription = new TaskDescription("More information on Sample Deadline Task");
