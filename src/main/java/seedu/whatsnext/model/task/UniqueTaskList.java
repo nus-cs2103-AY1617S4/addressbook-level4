@@ -199,7 +199,10 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      */
     static class StartDateTimeComparator implements Comparator<BasicTask> {
         public int compare(BasicTask c1, BasicTask c2) {
-            return c1.getStartDateTime().toString().compareTo(c2.getStartDateTime().toString());
+            if (c1.getStartDateTime().isBefore(c2.getStartDateTime()) == true) {
+                return -1;
+            }
+            return 1;
         }
     }
 
@@ -209,7 +212,10 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      */
     static class EndDateTimeComparator implements Comparator<BasicTask> {
         public int compare(BasicTask c1, BasicTask c2) {
-            return c1.getEndDateTime().toString().compareTo(c2.getEndDateTime().toString());
+            if (c1.getEndDateTime().isBefore(c2.getEndDateTime()) == true) {
+                return -1;
+            }
+            return 1;
         }
     }
 

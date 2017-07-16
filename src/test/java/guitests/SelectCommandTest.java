@@ -20,7 +20,7 @@ public class SelectCommandTest extends TaskManagerGuiTest {
         int middleIndex = taskCount / 2;
         assertSelectionSuccess(middleIndex); // a task in the middle of the list
 
-        //assertSelectionInvalid(taskCount  1); // invalid index
+        //assertSelectionInvalid(taskCount); // invalid index
         assertTaskSelected(middleIndex); // assert previous selection remains
 
         /*

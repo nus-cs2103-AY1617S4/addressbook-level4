@@ -33,7 +33,7 @@ public class DeadlineTaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ".");
         name.setText(task.getName().fullTaskName);
         status.setText(task.getStatusString());
-        dueBy.setText("Due by: " + task.getEndDateTime().toString());
+        dueBy.setText("Due by: " + task.getEndDateTime().displayDateTime());
         setPriorityColors(task);
         initTags(task);
     }
