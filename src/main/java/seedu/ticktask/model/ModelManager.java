@@ -17,6 +17,8 @@ import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -114,7 +116,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
+    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException{
         saveInstance();
         currentProgramInstance.addTask(task);
         updateFilteredListToShowAll();
@@ -131,7 +133,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException {
+            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
         requireAllNonNull(target, editedTask);
         saveInstance();
         currentProgramInstance.updateTask(target, editedTask);

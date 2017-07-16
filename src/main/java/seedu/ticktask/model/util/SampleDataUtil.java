@@ -13,6 +13,7 @@ import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
@@ -38,6 +39,8 @@ public class SampleDataUtil {
             return sampleAb;
         } catch (DuplicateTaskException e) {
             throw new AssertionError("sample data cannot contain duplicate tasks", e);
+        } catch (PastTaskException e) {
+            throw new AssertionError("sample data cannot contain tasks in the past", e);
         }
     }
 
