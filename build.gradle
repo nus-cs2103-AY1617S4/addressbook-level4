@@ -13,13 +13,12 @@ plugins {
 }
 
 // Specifies the entry point of the application
-mainClassName = 'seedu.address.MainApp'
+mainClassName = 'seedu.ticktask.MainApp'
 
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
     apply plugin: 'jacoco'
-    apply plugin: 'checkstyle'
 
 
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -42,13 +41,8 @@ allprojects {
         junitVersion = '4.12'
         testFxVersion = '4.0.5-alpha'
         monocleVersion = '1.8.0_20'
-        checkstyleVersion = '7.2'
 
         libDir = 'lib'
-    }
-
-    checkstyle {
-        toolVersion = "$checkstyleVersion"
     }
 
     jacocoTestReport {
@@ -72,6 +66,9 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
+        
+        // https://mvnrepository.com/artifact/com.joestelmach/natty
+        compile group: 'com.joestelmach', name: 'natty', version: '0.13'
     }
 
     sourceSets {
@@ -86,7 +83,7 @@ allprojects {
     }
 
     shadowJar {
-        archiveName = "addressbook.jar"
+        archiveName = "ticktask.jar"
 
         destinationDir = file("${buildDir}/jar/")
     }
@@ -121,8 +118,8 @@ tasks.coveralls {
     onlyIf { System.env.'CI' }
 }
 
-class AddressBookTest extends Test {
-    public AddressBookTest() {
+class TickTaskTest extends Test {
+    public TickTaskTest() {
     	  forkEvery = 1
         systemProperty 'testfx.setup.timeout', '60000'
 
@@ -147,7 +144,7 @@ class AddressBookTest extends Test {
     }
 }
 
-task guiTests(type: AddressBookTest) {
+task guiTests(type: TickTaskTest) {
     include 'guitests/**'
 
     jacoco {
@@ -156,8 +153,8 @@ task guiTests(type: AddressBookTest) {
 }
 
 
-task nonGuiTests(type: AddressBookTest) {
-    include 'seedu/address/**'
+task nonGuiTests(type: TickTaskTest) {
+    include 'seedu/ticktask/**'
 
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
@@ -165,7 +162,7 @@ task nonGuiTests(type: AddressBookTest) {
 }
 
 // Test mode depends on whether headless task has been run
-task allTests(type: AddressBookTest) {
+task allTests(type: TickTaskTest) {
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
     }

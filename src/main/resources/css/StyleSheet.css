@@ -1,0 +1,89 @@
+/*@@author A0138471A*/
+
+.root {
+	-fx-body-color : #F5F5F5;
+	-fx-outer-border : #cecece;
+	-fx-font-family: "Century Gothic, sans-serif";
+	
+}
+.text-field {
+	-fx-font-size: 12pt;
+    -fx-font-family: "Century Gothic, sans-serif";
+}
+
+.cell_big_label {
+    -fx-font-family: "Century Gothic, sans-serif";
+    -fx-font-size: 12px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label {
+    -fx-font-family: "Century Gothic, sans-serif";
+    -fx-font-size: 11px;
+    -fx-text-fill: #010504;
+}
+.label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Century Gothic, sans-serif";
+    -fx-text-fill: #333333;
+    -fx-opacity: 0.9;
+}
+
+
+.anchor-pane {
+     -fx-font-size: 10pt;
+    -fx-font-family: "Century Gothic, sans-serif";
+}
+
+.grid-pane {
+     -fx-background-color: #d6d6d6;
+}
+.status-bar {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Century Gothic, sans-serif";
+    -fx-text-fill: black;
+}
+
+
+#resultDisplay{
+	-fx-font-size: 10pt;
+    -fx-text-fill: #595959;
+}
+#resultDisplay .content {
+    -fx-background-color: transparent, #c9c9c9, transparent, #c9c9c9;
+    -fx-background-radius: 0;
+    
+}
+
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Century Gothic, sans-serif";
+    -fx-text-fill: #333333;
+    -fx-opacity: 1;
+}
+
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+
+#tags .label {
+
+    -fx-font-size: 11;
+}
+
+#tags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+.check-box:pressed > .box,
+.radio-button:pressed > .radio {
+	-fx-background-color: #50c0e2;
+}
