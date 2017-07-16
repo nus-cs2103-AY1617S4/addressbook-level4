@@ -21,7 +21,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.TaskType;
 
-//@@A0139964M
+//@@author A0139964M
 /**
  * Parses input arguments and creates a new AddCommand object
  */
