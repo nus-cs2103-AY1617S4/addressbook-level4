@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
-import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
@@ -50,7 +49,6 @@ public class ClearCommand extends Command {
      * */
     private CommandResult clearCompletedOrIncomplete(boolean isCompletedOrIncomplete) {
         ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
-        ObservableList<Tag> tagList = readOnlyTaskManager.getTagList();
         ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
         TaskManager taskManager = new TaskManager();
         for (BasicTask basicTask: taskList) {
@@ -64,7 +62,6 @@ public class ClearCommand extends Command {
         }
 
         taskManager.syncMasterTagListWith(taskManager.getTasks());
-        //taskManager.setTags(tagList);
         model.resetData(taskManager);
         return new CommandResult(MESSAGE_SUCCESS);
 

@@ -63,7 +63,6 @@ public class ClearCommandTest {
     //@@author A0149894H
     private void assertIncompleteCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerIncomplete = new TaskManager();
-        //insert loop here to add shit into taskManagerIncomplete
         for (BasicTask task: model.getTaskManager().getTaskList()) {
             if (task.getIsCompleted()) {
                 taskManagerIncomplete.addTask(task);
@@ -82,8 +81,7 @@ public class ClearCommandTest {
     }
     //@@author A0149894H
     private void assertCompletedCommandSuccess(Model model) throws DuplicateTaskException {
-        TaskManager taskManagerComplete = new TaskManager(); //creates empty task manager
-        //insert loop here to add shit into taskManagerIncomplete
+        TaskManager taskManagerComplete = new TaskManager(); 
         for (BasicTask task: model.getTaskManager().getTaskList()) {
             if (!task.getIsCompleted()) {
                 taskManagerComplete.addTask(task);
