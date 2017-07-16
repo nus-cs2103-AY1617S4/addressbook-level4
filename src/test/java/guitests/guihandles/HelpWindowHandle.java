@@ -2,7 +2,7 @@ package guitests.guihandles;
 
 import guitests.GuiRobot;
 import javafx.stage.Stage;
-
+//author A0154987J
 /**
  * Provides a handle to the help window of the app.
  */

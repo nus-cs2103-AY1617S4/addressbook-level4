@@ -18,7 +18,7 @@ import seedu.whatsnext.TestApp;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TestUtil;
-
+//author A0154987J
 /**
  * Provides a handle for the panel containing the task list.
  */
@@ -66,7 +66,6 @@ public class EventListPanelHandle extends GuiHandle {
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
         List<BasicTaskFeatures> eventTasks = new ArrayList<>(Arrays.asList(tasks));
         for (int index = 0; index < eventTasks.size(); index++) {
-            //System.out.println(eventTasks.get(index).getName());
             if (!eventTasks.get(index).getTaskType().equals("event")) {
                 eventTasks.remove(index);
                 index--;
@@ -112,8 +111,6 @@ public class EventListPanelHandle extends GuiHandle {
 
         // Return false if any of the persons doesn't match
         for (int i = 0; i < tasks.length; i++) {
-            //System.out.println(tasks[i].getName().toString());
-            //System.out.println(tasksInList.get(startPosition + i).getKey().getName().toString());
             if (!tasksInList.get(startPosition + i).getKey().getName().toString()
                     .equals(tasks[i].getName().toString())) {
                 return false;

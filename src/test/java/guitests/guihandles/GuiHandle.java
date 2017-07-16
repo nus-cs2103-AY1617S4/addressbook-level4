@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.whatsnext.TestApp;
 import seedu.whatsnext.commons.core.LogsCenter;
-
+//author A0154987J
 /**
  * Base class for all GUI Handles used in testing.
  */
