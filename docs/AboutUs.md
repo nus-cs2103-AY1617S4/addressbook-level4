@@ -46,13 +46,17 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Components in charge of:** Storage & Google Calendar<br>
 
-**Features implemented:**<br>
+**Features implemented:**
+* Filepath Command
+* Changepath Command
+
 
 **Code Written:**
 * [Functional Code](../collated/main/A0149894H.md)
 * [Test Code](../collated/test/A0149894H.md)
 
 **Other major contributions:**
+* Debugging (config, Clear Command)
 
 -----
 #### [Tay Chi Shien](https://github.com/chishien)
@@ -61,9 +65,15 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Components in charge of:** Logic<br>
 
-**Features implemented:**<br>
+**Features implemented:**
+* List Command
+* Undo/Redo Command
+* Remind Command
+* Sorting
 
-**Code Written:**<br>
+**Code Written:**
+* [Functional Code](../collated/main/A01549886L.md)
+* [Test Code](../collated/test/A01549886L.md)
 
 **Other major contributions:**
 
@@ -75,12 +85,15 @@ We are a team Engineering students based in the [School of Computing, National U
 **Components in charge of:** Ui & Ux
 
 **Features implemented:**
+* Ui display
+* Select Command
 
 **Code Written:**
 * [Functional Code](../collated/main/A0154987J.md)
 * [Test Code](../collated/test/A0154987J.md)
 
 **Other major contributions:**
+* Refactor of GuiTest code
 
 -----
 # Contributors
