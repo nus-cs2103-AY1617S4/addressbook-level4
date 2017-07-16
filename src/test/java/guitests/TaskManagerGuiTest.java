@@ -44,6 +44,8 @@ public abstract class TaskManagerGuiTest {
      */
     @Rule
     public TestName name = new TestName();
+    protected TestApp testApp;
+
 
     /*
      * Handles to GUI elements present at the start up are created in advance
@@ -58,7 +60,6 @@ public abstract class TaskManagerGuiTest {
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
     private Stage stage;
-    TestApp testApp;
 
     @BeforeClass
     public static void setupSpec() {
