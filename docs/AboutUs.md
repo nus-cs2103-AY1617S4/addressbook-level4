@@ -7,8 +7,9 @@ We are a team Engineering students based in the [School of Computing, National U
 **Responsibilities**: Project Coordination & Development <br>
 **Components in charge of:** Logic & Model<br>
 **Features implemented:**
-* Add Command
-* Mark/Unmark Command
+* [Add Command](UserGuide.md#22-adding-a-task-add-)
+* [Mark Command](UserGuide.md#211-mark-tasks--mark)
+* [Unmark Command](UserGuide.md#212-unmark-tasks--unmark)
 * Clear Command
 * Parse DateTime
 * Help Command
