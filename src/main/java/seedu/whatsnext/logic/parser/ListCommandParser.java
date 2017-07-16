@@ -21,7 +21,7 @@ public class ListCommandParser {
     private static final String ARGUMENT_COMPLETED = "[complete]";
     private static final String ARGUMENT_INCOMPLETE = "[incomplete]";
     private static final String ARGUMENT_ALL = "[all]";
-    
+
     public ListCommand parse(String args) throws ParseException {
 
         Set<String> keyWordSet = Collections.emptySet();
@@ -37,8 +37,8 @@ public class ListCommandParser {
         keyWordArray = new String[] { args.trim() };
         keyWordSet = new HashSet<>(Arrays.asList(keyWordArray));
         if (!(keyWordSet.toString().equals(ARGUMENT_COMPLETED)
-           || keyWordSet.toString().equals(ARGUMENT_INCOMPLETE)
-           || keyWordSet.toString().equals(ARGUMENT_ALL))) {
+            || keyWordSet.toString().equals(ARGUMENT_INCOMPLETE)
+            || keyWordSet.toString().equals(ARGUMENT_ALL))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
         return new ListCommand(keyWordSet);
