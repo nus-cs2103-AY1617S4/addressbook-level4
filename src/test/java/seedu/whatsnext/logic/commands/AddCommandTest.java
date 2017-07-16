@@ -38,7 +38,7 @@ public class AddCommandTest {
 
     //@@author A0156106M
     @Test
-    public void execute_floating_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_floatingTaskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
@@ -48,7 +48,7 @@ public class AddCommandTest {
 
     //@@author A0156106M
     @Test
-    public void execute_deadline_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_deadlineTaskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
@@ -58,7 +58,7 @@ public class AddCommandTest {
 
     //@@author A0156106M
     @Test
-    public void execute_event_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_eventTaskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask validTask = new TaskBuilder(BasicTask.TASK_TYPE_EVENT).build();
         CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();

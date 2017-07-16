@@ -22,6 +22,7 @@ import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ModelManager;
 import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 /**
@@ -114,7 +115,7 @@ public class UnmarkCommandTest {
         try {
             unmarkCommand.execute();
             fail("The expected CommandException was not thrown.");
-        } catch (CommandException ce) {
+        } catch (CommandException | DuplicateTaskException ce) {
             assertEquals(expectedMessage, ce.getMessage());
         }
     }
