@@ -24,7 +24,7 @@ public class TaskManagerBuilder {
         this.taskManger = addressBook;
     }
 
-    public TaskManagerBuilder withPerson(BasicTask task) throws DuplicateTaskException {
+    public TaskManagerBuilder withTask(BasicTask task) throws DuplicateTaskException {
         taskManger.addTask(task);
         return this;
     }
