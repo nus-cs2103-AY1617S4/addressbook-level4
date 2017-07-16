@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import guitests.guihandles.DeadlineTaskCardHandle;
+import guitests.guihandles.EventTaskCardHandle;
+import guitests.guihandles.FloatingTaskCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -17,6 +20,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.commons.util.FileUtil;
 import seedu.whatsnext.commons.util.XmlUtil;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
@@ -147,10 +151,16 @@ public class TestUtil {
         return list;
     }
 
-    /*
-    public static boolean compareCardAndPerson(TaskCardHandle card, BasicTaskFeatures task) {
+    public static boolean compareCardAndTask(DeadlineTaskCardHandle card, BasicTaskFeatures task) {
+        return card.isSameTask(task);
+    } 
+
+    public static boolean compareCardAndTask(EventTaskCardHandle card, BasicTaskFeatures task) {
         return card.isSameTask(task);
     }
-  */
+
+    public static boolean compareCardAndTask(FloatingTaskCardHandle card, BasicTaskFeatures task) {
+        return card.isSameTask(task);
+    }
 
 }

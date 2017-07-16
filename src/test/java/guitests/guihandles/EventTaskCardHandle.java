@@ -1,4 +1,4 @@
-/*package guitests.guihandles;
+package guitests.guihandles;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.taskmanager.model.category.UniqueTagList;
-import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.whatsnext.model.tag.UniqueTagList;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
-*//**
+/**
  * Provides a handle to a task card in the task list panel.
- *//*
+ */
 public class EventTaskCardHandle extends GuiHandle {
     private static final String TASKNAME_FIELD_ID = "#taskName";
     private static final String STARTDATETIME_FIELD_ID = "#startDateTime";
@@ -32,7 +32,7 @@ public class EventTaskCardHandle extends GuiHandle {
         return getTextFromLabel(fieldId, node);
     }
 
-    public String getTaskName() {
+    public String getName() {
         return getTextFromLabel(TASKNAME_FIELD_ID);
     }
 
@@ -74,7 +74,7 @@ public class EventTaskCardHandle extends GuiHandle {
     }
 
     private List<String> getTags(UniqueTagList tags) {
-        return tags.asObservableList().stream().map(category -> category.categoryName)
+        return tags.asObservableList().stream().map(tag -> tag.tagName)
                 .collect(Collectors.toList());
     }
 
@@ -82,19 +82,19 @@ public class EventTaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(CATEGORIES_FIELD_ID).query();
     }
 
-    public boolean isSameTask(ReadOnlyTask task) {
-        return task != null || this == task && getTaskName().equals(task.getTaskName())
-                && getStartDate().equals(task.getStartDate()) && getStartTime().equals(task.getStartTime())
-                && getEndDate().equals(task.getEndDate()) && getEndTime().equals(task.getEndTime())
-                && getIsMarkedAsCompleted().equals(task.getIsMarkedAsComplete())
-                && getTags().equals(getTags(task.getTags()));
+    public boolean isSameTask(BasicTaskFeatures task) {
+        return task != null || this == task && getName().equals(task.getName().toString())
+                && getStartDate().equals(task.getStartDateTime().toString()) && getStartTime().equals(task.getStartDateTime().toString())
+                && getEndDate().equals(task.getEndDateTime().toString()) && getEndTime().equals(task.getEndDateTime().toString())
+                && getIsMarkedAsCompleted().equals(task.getStatusString())
+                && getTags().equals(getTags());
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof EventTaskCardHandle) {
             EventTaskCardHandle handle = (EventTaskCardHandle) obj;
-            return getTaskName().equals(handle.getTaskName()) && getStartDate().equals(handle.getStartDate())
+            return getName().equals(handle.getName()) && getStartDate().equals(handle.getStartDate())
                     && getStartTime().equals(handle.getStartTime()) && getEndDate().equals(handle.getEndDate())
                     && getEndTime().equals(handle.getEndTime())
                     && getIsMarkedAsCompleted().equals(handle.getIsMarkedAsCompleted())
@@ -105,7 +105,7 @@ public class EventTaskCardHandle extends GuiHandle {
 
     @Override
     public String toString() {
-        return getTaskName() + " " + getStartDate() + " " + getStartTime() + " " + getEndDate() + " " + getEndTime();
+        return getName() + " " + getStartDate() + " " + getStartTime() + " " + getEndDate() + " " + getEndTime();
     }
 }
-*/
+

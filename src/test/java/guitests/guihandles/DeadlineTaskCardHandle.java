@@ -1,4 +1,4 @@
-/*package guitests.guihandles;
+package guitests.guihandles;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.whatsnext.model.tag.UniqueTagList;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
 
-*//**
+/**
  * Provides a handle to a task card in the task list panel.
- *//*
+ */
 public class DeadlineTaskCardHandle extends GuiHandle {
     private static final String TASKNAME_FIELD_ID = "#taskName";
     private static final String DUEDATETIME_FIELD_ID = "#dueDateTime";
@@ -31,7 +31,7 @@ public class DeadlineTaskCardHandle extends GuiHandle {
         return getTextFromLabel(fieldId, node);
     }
 
-    public String getTaskName() {
+    public String getName() {
         return getTextFromLabel(TASKNAME_FIELD_ID);
     }
 
@@ -69,18 +69,18 @@ public class DeadlineTaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(CATEGORIES_FIELD_ID).query();
     }
 
-    public boolean isSameTask(ReadOnlyTask task) {
-        return task != null || this == task && getTaskName().equals(task.getTaskName())
-                && getEndDate().equals(task.getEndDate()) && getEndTime().equals(task.getEndTime())
-                && getIsMarkedAsCompleted().equals(task.getIsMarkedAsComplete())
-                && getTags().equals(getTags(task.getTags()));
+    public boolean isSameTask(BasicTaskFeatures task) {
+        return task != null || this == task && getName().equals(task.getName().toString())
+                && getEndDate().equals(task.getEndDateTime().toString()) && getEndTime().equals(task.getEndDateTime().toString())
+                && getIsMarkedAsCompleted().equals(task.getStatusString())
+                && getTags().equals(getTags());
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof DeadlineTaskCardHandle) {
             DeadlineTaskCardHandle handle = (DeadlineTaskCardHandle) obj;
-            return getTaskName().equals(handle.getTaskName()) && getEndDate().equals(handle.getEndDate())
+            return getName().equals(handle.getName()) && getEndDate().equals(handle.getEndDate())
                     && getEndTime().equals(handle.getEndTime())
                     && getIsMarkedAsCompleted().equals(handle.getIsMarkedAsCompleted())
                     && getTags().equals(handle.getTags());
@@ -90,7 +90,7 @@ public class DeadlineTaskCardHandle extends GuiHandle {
 
     @Override
     public String toString() {
-        return getTaskName() + " " + getEndDate() + " " + getEndTime();
+        return getName() + " " + getEndDate() + " " + getEndTime();
     }
 }
-*/
+
