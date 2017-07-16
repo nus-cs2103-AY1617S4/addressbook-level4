@@ -5,10 +5,11 @@ import java.util.Set;
 
 import seedu.whatsnext.model.tag.Tag;
 
+//@@author A0156106M
 /**
  * A read-only immutable interface for a task in the WhatsNext application.
  * Implementations should guarantee: details are present and not null, field values are validated.
- * @@author A0156106M
+ *
  */
 public interface BasicTaskFeatures {
 

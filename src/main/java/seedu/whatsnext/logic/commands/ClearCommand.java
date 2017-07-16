@@ -9,7 +9,7 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
- * Clears the Task Manager.
+ * Clears incomplete, completed or all BasicTasks in the Task Manager.
  */
 public class ClearCommand extends Command {
 

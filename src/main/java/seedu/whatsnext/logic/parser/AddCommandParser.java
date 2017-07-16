@@ -21,6 +21,7 @@ import seedu.whatsnext.model.task.TaskName;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
+
     //@@author A0156106M
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -87,6 +88,10 @@ public class AddCommandParser {
         return task;
     }
 
+    /**
+     * Ensures that the startDateTime is not after the endDateTime
+     * @throws IllegalValueException
+     * */
     private void validateStartEndDateTime(DateTime startDateTime, DateTime endDateTime) throws IllegalValueException {
         if (!startDateTime.isBefore(endDateTime)) {
             throw new IllegalValueException(AddCommand.INVALID_TASK_CREATED);

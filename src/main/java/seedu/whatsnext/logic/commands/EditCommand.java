@@ -112,6 +112,7 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
+    //@@author
     /**
     * Checks the new editedTask created to ensure that the edited task value(s) is/are valid
     * @throws CommandException if edited task is invalid
