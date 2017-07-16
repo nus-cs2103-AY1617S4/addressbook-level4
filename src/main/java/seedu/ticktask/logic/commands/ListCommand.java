@@ -16,7 +16,6 @@ public class ListCommand extends Command {
     public static final String LIST_DEADLINE = "deadline";
     public static final String LIST_FLOATING = "floating";
     public static final String LIST_TODAY = "today";
-    
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_SUCCESS_VIEW_ALL_TASKS = "Listed all tasks";
@@ -24,27 +23,29 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS = "List all Deadline Tasks";
     public static final String MESSAGE_SUCCESS_VIEW_FLOATING_TASKS = "List all Floating Tasks";
     public static final String MESSAGE_SUCCESS_VIEW_TODAY_TASKS = "List all Today's Tasks";
-    
-    private final String list_command_type;
-
-    private static ArrayList<String> list_command_array = new ArrayList<String>(Arrays.asList(
-            LIST_ALL, LIST_ALL_FULL, LIST_EVENT, LIST_EVENT, LIST_DEADLINE, LIST_FLOATING, LIST_TODAY));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": List a type of specified tasks.\n"
             + "Example: " + COMMAND_WORD + " " + LIST_DEADLINE;
+
+    private static ArrayList<String> list_command_array = new ArrayList<String>(Arrays.asList(
+            LIST_ALL, LIST_ALL_FULL, LIST_EVENT, LIST_EVENT, LIST_DEADLINE, LIST_FLOATING, LIST_TODAY));
     
+    private String listCommandType;
+
+
+
     public ListCommand(String list) {
-        this.list_command_type = list;
+        this.listCommandType = list;
     }
-    
+
     public static boolean isValidCommand(String command) {
         return list_command_array.contains(command);
     }
 
     @Override
     public CommandResult execute() {
-    	switch(list_command_type) {
+        switch(listCommandType) {
         case LIST_ALL:
         case LIST_ALL_FULL:
             model.updateFilteredListToShowAll();
@@ -58,12 +59,12 @@ public class ListCommand extends Command {
         case LIST_FLOATING:
             model.updateFilteredListToShowFloating();
             return new CommandResult(MESSAGE_SUCCESS_VIEW_FLOATING_TASKS);
-       case LIST_TODAY:
+        case LIST_TODAY:
             model.updateFilteredListToShowToday();
             return new CommandResult(MESSAGE_SUCCESS_VIEW_TODAY_TASKS);
-    	default:
-	        model.updateFilteredListToShowAll();
-	        return new CommandResult(MESSAGE_SUCCESS);
-    	}
+        default:
+            model.updateFilteredListToShowAll();
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

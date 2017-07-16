@@ -47,6 +47,8 @@ public class DueDate {
     //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 
     private String value;
+    
+
     private LocalDate local_date;
 
     private ArrayList<LocalDate> datesArray = new ArrayList<LocalDate>();
@@ -170,7 +172,16 @@ public class DueDate {
         return trimmedDate;
     }
     //@@author
+    
+    public String getValue() {
+        return value;
+    }
 
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+    
     public String getStartDate() {
         return start_date_string;
     }
@@ -223,7 +234,16 @@ public class DueDate {
     public boolean isFloating() {
         return isFloating;
     }
-
+    
+    /**
+     * Sets the date to floating
+     */
+    public void setFloating(){
+        isFloating = true;
+        isDeadline = false;
+        isRange = false;
+    }
+    
     /**
      * Returns true if a given date only has a start date
      * */
@@ -232,10 +252,29 @@ public class DueDate {
     }
 
     /**
+     * Sets the date to floating
+     */
+    public void setDeadline(){
+        isFloating = false;
+        isDeadline = true;
+        isRange = false;
+    }
+    
+    
+    /**
      * Returns true if a given date has both start and end date
      */
     public boolean isRange() {
         return isRange;
+    }
+    
+    /**
+     * Sets the date to range
+     */
+    public void setRange(){
+        isFloating = false;
+        isDeadline = false;
+        isRange = true;
     }
 
     /**

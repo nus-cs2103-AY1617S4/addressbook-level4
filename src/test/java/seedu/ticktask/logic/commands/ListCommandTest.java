@@ -9,6 +9,7 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.commands.exceptions.WarningException;

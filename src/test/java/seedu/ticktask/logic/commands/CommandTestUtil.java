@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
@@ -40,6 +41,7 @@ public class CommandTestUtil {
      * @throws WarningException 
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) throws WarningException {
+
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TickTask expectedTickTask = new TickTask(actualModel.getTickTask());
