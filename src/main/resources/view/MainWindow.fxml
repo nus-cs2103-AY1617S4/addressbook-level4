@@ -12,8 +12,8 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@DarkTheme.css" />
-    <URL value="@Extensions.css" />
+    <URL value="@../css/StyleSheet.css" />
+    <URL value="@../css/Extensions.css" />
   </stylesheets>
 
   <MenuBar VBox.vgrow="NEVER">
@@ -30,7 +30,7 @@
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
       </padding>
-         <TextField alignment="CENTER" editable="false" style="-fx-background-color: grey;" text="My Schedule" />
+         <TextField alignment="CENTER" editable="false" style="-fx-background-color: #4f9eff; -fx-font-size: 13pt; -fx-font-weight: bold;" text="My Schedule" />
       <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
     </VBox>
       <VBox fx:id="taskList1" layoutX="10.0" layoutY="10.0" minWidth="340.0" prefWidth="340.0">
@@ -38,7 +38,7 @@
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
          <children>
-            <TextField alignment="CENTER" editable="false" style="-fx-background-color: grey;" text="Completed Tasks" />
+            <TextField alignment="CENTER" editable="false" style="-fx-background-color: #4f9eff; -fx-font-size: 13pt; -fx-font-weight: bold;"  text="Completed Tasks" />
             <StackPane fx:id="browserPlaceholder" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
