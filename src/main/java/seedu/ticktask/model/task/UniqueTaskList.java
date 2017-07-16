@@ -57,10 +57,11 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         //@@author
         
+        //@@author A0139964M
         if(!isChornological(toAdd)){
             throw new PastTaskException();
         }
-        
+        //@@author
         toAdd.resetTaskType();
         internalList.add(new Task(toAdd));
     }
