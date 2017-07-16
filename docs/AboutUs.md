@@ -80,12 +80,12 @@ We are a team Engineering students based in the [School of Computing, National U
 * [Test Code](../collated/test/A01549886L.md)
 
 **Other major contributions:**
-* Debugging 
+* Debugging
 
 -----
 #### [Aung Swumm Htet Pyi Aye](https://github.com/ashpa)
 <img src="images/aung.png" width="150">
-**Role:** Developer 
+**Role:** Developer
 
 **Components in charge of:** Ui & Ux
 
