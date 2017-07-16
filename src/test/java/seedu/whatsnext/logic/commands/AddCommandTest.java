@@ -49,7 +49,7 @@ public class AddCommandTest {
         AddCommand commandResult = getAddCommandForTask(floatingTask, modelStub);
         assertEquals(Arrays.asList(command), commandResult);
     }
-    
+
     public void execute_deadlineTaskAcceptedByModel_parseSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask deadlineTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
@@ -188,6 +188,17 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskListForReminder() {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public String getReminderSetting() {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
+        public void setReminderSetting(String newReminderSetting) {
             fail("This method should not be called.");
         }
     }

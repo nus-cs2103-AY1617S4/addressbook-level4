@@ -4,9 +4,13 @@ import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.whatsnext.commons.core.ComponentManager;
@@ -32,6 +36,8 @@ public class ModelManager extends ComponentManager implements Model {
     private Stack<TaskManager> undoTaskManager;
     private Stack<TaskManager> redoTaskManager;
 
+    private UserPrefs userPrefs;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -44,6 +50,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         undoTaskManager = new Stack<TaskManager>();
         redoTaskManager = new Stack<TaskManager>();
+        this.userPrefs = userPrefs;
     }
 
     public ModelManager() {
@@ -86,6 +93,20 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    // @@author A0154986L
+    /** Returns current reminder setting. */
+    @Override
+    public String getReminderSetting() {
+        return userPrefs.getReminderSetting();
+    }
+
+    // @@author A0154986L
+    /** Sets new reminder setting. */
+    @Override
+    public void setReminderSetting(String newReminderSetting) {
+        userPrefs.updateLastUsedReminderSetting(newReminderSetting);
+    }
+
     @Override
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
@@ -115,11 +136,6 @@ public class ModelManager extends ComponentManager implements Model {
         saveInstance();
         taskManager.addTask(task);
         indicateTaskManagerChanged();
-    }
-
-    @Override
-    public void updateFilteredTaskListForInitialView() {
-        updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(false)));
     }
 
     @Override
@@ -158,6 +174,11 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
+    @Override
+    public void updateFilteredTaskListForInitialView() {
+        updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(false)));
+    }
+
     // @@author A0154986L
     @Override
     public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
@@ -167,12 +188,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /**
-     * Returns the filtered task list for reminder pop up window.
+     * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     @Override
     public void updateFilteredTaskListForReminder() {
         updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
-        //indicateTaskManagerChanged();
     }
 
     @Override
@@ -262,12 +282,38 @@ public class ModelManager extends ComponentManager implements Model {
         private Date remindEnd = new Date();
         private Calendar cal = Calendar.getInstance();
 
+        private Pattern p = Pattern.compile("(\\d+)\\s+(.*?)s?");
+
+        @SuppressWarnings("serial")
+        private Map<String, Integer> fields = new HashMap<String, Integer>() {
+            {
+                put("minute", Calendar.MINUTE);
+                put("hour",   Calendar.HOUR);
+                put("day",    Calendar.DATE);
+                put("week",   Calendar.WEEK_OF_YEAR);
+                put("month",  Calendar.MONTH);
+                put("year",   Calendar.YEAR);
+            }
+        };
+
         @Override
         public boolean run(BasicTaskFeatures basicTaskFeatures) {
             cal.setTime(remindStart);
             remindStart = cal.getTime();
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
+
+            if (getReminderSetting() == null || getReminderSetting() == "3 day") {
+                cal.add(Calendar.DATE, 3);
+                remindEnd = cal.getTime();
+            } else {
+                Matcher m = p.matcher(getReminderSetting());
+                if (m.matches()) {
+                    int amount = Integer.parseInt(m.group(1));
+                    String unit = m.group(2);
+                    cal.add(fields.get(unit), amount);
+                    remindEnd = cal.getTime();
+                }
+            }
+
             return (basicTaskFeatures.getTaskType().equals("event")
                     && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
                     && basicTaskFeatures.getStartDateTime().isBefore(remindEnd))
@@ -278,9 +324,18 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public String toString() {
-            cal.setTime(remindStart);
-            cal.add(Calendar.DATE, 3);
-            remindEnd = cal.getTime();
+            if (getReminderSetting() == null || getReminderSetting() == "3 day") {
+                cal.add(Calendar.DATE, 3);
+                remindEnd = cal.getTime();
+            } else {
+                Matcher m = p.matcher(getReminderSetting());
+                if (m.matches()) {
+                    int amount = Integer.parseInt(m.group(1));
+                    String unit = m.group(2);
+                    cal.add(fields.get(unit), amount);
+                    remindEnd = cal.getTime();
+                }
+            }
             return remindEnd.toString();
         }
     }

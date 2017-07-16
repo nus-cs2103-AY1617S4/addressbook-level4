@@ -10,12 +10,16 @@ import seedu.whatsnext.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
+    private String reminderSetting;
 
     private String taskManagerFilePath = "data/whatsnext.xml";
     private String taskManagerName = "MyTaskManager";
 
+    private final String defaultReminderSetting = "3 day";
+
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
+        this.setReminderSetting(defaultReminderSetting);
     }
 
     public GuiSettings getGuiSettings() {
@@ -28,6 +32,21 @@ public class UserPrefs {
 
     public void setGuiSettings(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
+    }
+
+    //@@author A0154986L
+    public String getReminderSetting() {
+        return reminderSetting;
+    }
+
+    //@@author A0154986L
+    public void updateLastUsedReminderSetting(String reminderSetting) {
+        this.reminderSetting = reminderSetting;
+    }
+
+    //@@author A0154986L
+    public void setReminderSetting(String newReminderSetting) {
+        this.reminderSetting = newReminderSetting;
     }
 
     public String getTaskManagerFilePath() {

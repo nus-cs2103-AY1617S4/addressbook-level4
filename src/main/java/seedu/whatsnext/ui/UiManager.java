@@ -99,6 +99,7 @@ public class UiManager extends ComponentManager implements Ui {
     @Override
     public void stop() {
         prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
+        prefs.updateLastUsedReminderSetting(prefs.getReminderSetting());
         mainWindow.hide();
     }
 
