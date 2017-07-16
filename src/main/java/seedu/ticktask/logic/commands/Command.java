@@ -1,6 +1,7 @@
 package seedu.ticktask.logic.commands;
 
 import seedu.ticktask.commons.core.Messages;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.commands.exceptions.WarningException;
@@ -28,9 +29,8 @@ public abstract class Command {
      *
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
-     * @throws WarningException 
-     */
-    public abstract CommandResult execute() throws CommandException, WarningException;
+
+    public abstract CommandResult execute() throws CommandException, WarningException, IllegalValueException;
 
     /**
      * Provides any needed dependencies to the command.
