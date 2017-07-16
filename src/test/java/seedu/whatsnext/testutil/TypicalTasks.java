@@ -52,7 +52,7 @@ public class TypicalTasks {
     public static void loadTaskManagerWithSampleData(TaskManager ab) {
         for (BasicTask task : new TypicalTasks().getTypicalTasks()) {
             try {
-                ab.addTask(new BasicTask(task));
+                ab.addTask(task);
             } catch (DuplicateTaskException e) {
                 assert false : "not possible";
             }

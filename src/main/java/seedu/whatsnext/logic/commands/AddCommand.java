@@ -6,6 +6,9 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
+import seedu.whatsnext.commons.core.EventsCenter;
+import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -52,7 +55,31 @@ public class AddCommand extends Command {
             toAdd = EditCommand.createOverlapTask(toAdd);
         }
         try {
+ //           int overlapTaskIndex = BasicTask.getOverlapTaskIndex(toAdd, taskList);
+//            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+                //BasicTaskFeatures taskToEdit = taskList.get(overlapTaskIndex);
+                //model.updateTask(taskToEdit, EditCommand.createOverlappingTask(taskToEdit));
+//                model.addTask(EditCommand.createOverlapTask(toAdd));
+//            } else {
             model.addTask(toAdd);
+//            }
+            int i;
+            for (i = 0; i < model.getFilteredTaskList().size(); i++) {
+                if (toAdd.equals(model.getFilteredTaskList().get(i))) {
+                    break;
+                }
+            }
+            Index newTaskIndex = new Index(i);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(newTaskIndex));
+//            if (toAdd.containsOverlapTag()) {
+//
+//                String displayString = String.format(MESSAGE_SUCCESS, toAdd) + MESSAGE_OVERLAP_TASK;
+//                return new CommandResult(displayString);
+//            }
+
+
+
+
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

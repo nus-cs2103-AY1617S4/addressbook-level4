@@ -20,7 +20,7 @@
       <children>
          <HBox prefHeight="75.0" prefWidth="150.0">
             <children>
-               <Label fx:id="id" minWidth="20.0" text="Label">
+               <Label fx:id="id" minWidth="27.0" text="Label">
                   <padding>
                      <Insets left="5.0" />
                   </padding>

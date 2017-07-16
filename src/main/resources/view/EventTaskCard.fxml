@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -21,7 +22,7 @@
          <children>
             <HBox prefHeight="75.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="id" minWidth="20.0" text="Label">
+                  <Label fx:id="id" minWidth="25.0" text="Label">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -35,6 +36,7 @@
                   <FlowPane fx:id="tags" layoutX="20.0" layoutY="75.0" prefHeight="20.0" prefWidth="110.0" />
                   <Label fx:id="from" layoutX="20.0" layoutY="41.0" text="Label" />
                   <Label fx:id="to" layoutX="20.0" layoutY="58.0" text="Label" />
+                  <ImageView fx:id="sign" fitHeight="20.0" fitWidth="18.0" layoutX="127.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
          </children>
