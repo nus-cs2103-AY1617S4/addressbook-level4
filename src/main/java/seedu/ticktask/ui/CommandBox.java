@@ -1,21 +1,21 @@
 package seedu.ticktask.ui;
 
-import java.util.Stack;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.ui.NewResultAvailableEvent;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.Logic;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
+
+import java.util.Stack;
+import java.util.logging.Logger;
 
 public class CommandBox extends UiPart<Region> {
 
@@ -47,7 +47,7 @@ public class CommandBox extends UiPart<Region> {
                 commandTextField.setText(prevCommand);
                 return;
             case DOWN:
-                String nextCommand = getNextCommand(currentShownCommand);
+                String nextCommand = getNextCommand();
                 commandTextField.setText(nextCommand);
                 return;
         }
@@ -61,13 +61,13 @@ public class CommandBox extends UiPart<Region> {
         }
         return lastPrev;
     }
-    public String getNextCommand(String shownCommand){
+    public String getNextCommand(){
         if(!nextCommandsHistory.isEmpty()) {
             String nextCommand = nextCommandsHistory.pop();
             prevCommandsHistory.push(nextCommand);
             return nextCommand;
         } else {
-            return shownCommand;
+            return "";
         }
     }
     
