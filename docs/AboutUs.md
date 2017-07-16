@@ -51,7 +51,7 @@ We are a team Engineering students based in the [School of Computing, National U
 **Components in charge of:** Storage & Google Calendar<br>
 
 **Features implemented:**
-* [Filepath Commane](UserGuide.md#214-view-current-data-file-path--filepath)
+* [Filepath Command](UserGuide.md#214-view-current-data-file-path--filepath)
 * [Changepath command](UserGuide.md#215-change-data-file-path--changepath)
 
 
