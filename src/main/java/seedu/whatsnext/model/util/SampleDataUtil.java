@@ -14,7 +14,7 @@ import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 public class SampleDataUtil {
-    public static BasicTask[] getSamplePersons() {
+    public static BasicTask[] getSampleTasks() {
         try {
             return getSampleData();
         } catch (IllegalValueException e) {
@@ -24,13 +24,13 @@ public class SampleDataUtil {
 
     public static ReadOnlyTaskManager getSampleTaskManager() {
         try {
-            TaskManager sampleAb = new TaskManager();
-            for (BasicTask samplePerson : getSamplePersons()) {
-                sampleAb.addTask(samplePerson);
+            TaskManager sampleTm = new TaskManager();
+            for (BasicTask sampleTasks : getSampleTasks()) {
+                sampleTm.addTask(sampleTasks);
             }
-            return sampleAb;
+            return sampleTm;
         } catch (DuplicateTaskException e) {
-            throw new AssertionError("sample data cannot contain duplicate persons", e);
+            throw new AssertionError("sample data cannot contain duplicate tasks", e);
         }
     }
 

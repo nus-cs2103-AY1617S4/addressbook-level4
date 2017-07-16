@@ -15,6 +15,7 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
+//@@author A0142675B
 public class EditTaskDescriptorTest {
 
     @Test
@@ -52,7 +53,7 @@ public class EditTaskDescriptorTest {
 
 
         // different tags -> returns false
-        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withTags(VALID_TAG_HIGH).build();
+        editedProjectMeeting = new EditTaskDescriptorBuilder(DESC_PROJECTMEETING).withNewTags(VALID_TAG_HIGH).build();
         assertFalse(DESC_PROJECTMEETING.equals(editedProjectMeeting));
     }
 }
