@@ -13,7 +13,6 @@ import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.logic.parser.Parser;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.EventClashException;
 
 /**
  * The main LogicManager of the app.
@@ -38,8 +37,7 @@ public class LogicManager extends ComponentManager implements Logic {
             Command command = parser.parseCommand(commandText);
             command.setData(model, history);
             return command.execute();
-        } 
-            
+        }
         finally {
             history.add(commandText);
         }

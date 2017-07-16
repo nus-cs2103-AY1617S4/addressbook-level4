@@ -23,131 +23,137 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 public class CommandBox extends UiPart<Region> {
-    
-    public static final String ERROR_STYLE_CLASS = "error";
-    private static final String FXML = "CommandBox.fxml";
-    private Stack<String>prevCommandsHistory = new Stack<String>();
-    private Stack<String>nextCommandsHistory = new Stack<String>();
-    private String currentShownCommand;
-    private String lastPrev = "";
-    private final Logger logger = LogsCenter.getLogger(CommandBox.class);
-    private final Logic logic;
-    private AutoCompletionBinding<String> autoCompletionBinding;
-    
-    Set listOfCommands = new HashSet<>();
-    String[] commands = { "add", "delete", "edit", "clear", "help", "undo", "redo", "find", "exit", "delete" };
-    
-    @FXML
-    private TextField commandTextField;
-    
-    public CommandBox(Logic logic) {
-        super(FXML);
-        this.logic = logic;
-        autoComplete();
-    }
-    
-    //@@author A0139964M
-    @FXML
-    private void handleKeyPress(KeyEvent event){
-        KeyCode key = event.getCode();
-        switch (key) {
-            case UP:
-                String prevCommand = getPrevCommand(lastPrev);
-                lastPrev = prevCommand;
-                commandTextField.setText(prevCommand);
-                return;
-            case DOWN:
-                String nextCommand = getNextCommand();
-                commandTextField.setText(nextCommand);
-                return;
-        }
-    }
-    
-    public String getPrevCommand(String lastPrev){
-        if(!prevCommandsHistory.isEmpty()) {
-            String prevCommand = prevCommandsHistory.pop();
-            nextCommandsHistory.push(prevCommand);
-            return prevCommand;
-        }
-        return lastPrev;
-    }
-    public String getNextCommand(){
-        if(!nextCommandsHistory.isEmpty()) {
-            String nextCommand = nextCommandsHistory.pop();
-            prevCommandsHistory.push(nextCommand);
-            return nextCommand;
-        } else {
-            return "";
-        }
-    }
-    
-    
-    
-    private void updatePrevCommand(String commandText){
-        prevCommandsHistory.push(commandText);
-    }
-    
-    public void autoComplete(){
-        buildCommandsIntoHashSet();
-        autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
-        autoCompletionBinding.setPrefWidth(300);
-        autoCompletionBinding.setVisibleRowCount(1);
-        autoCompletionBinding.setHideOnEscape(true);
-    }
-    
-    public void buildCommandsIntoHashSet(){
-        for(int i = 0; i < commands.length; i++){
-            listOfCommands.add(commands[i]);
-        }
-    }
-    //@@author
-    
-    @FXML
-    private void handleCommandInputChanged() throws IllegalValueException, WarningException {
-        try {
-            String commandText = commandTextField.getText();
-            currentShownCommand = commandText;
-            CommandResult commandResult = logic.execute(commandText);
-            
-            while(!nextCommandsHistory.isEmpty()){
-                prevCommandsHistory.push(nextCommandsHistory.pop());
-            }
-            
-            updatePrevCommand(commandText);
-            
-            // process result of the command
-            setStyleToIndicateCommandSuccess();
-            commandTextField.setText("");
-            logger.info("Result: " + commandResult.feedbackToUser);
-            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
-            
-        } catch (CommandException | ParseException e) {
-            // handle command failure
-            setStyleToIndicateCommandFailure();
-            logger.info("Invalid command: " + commandTextField.getText());
-            raise(new NewResultAvailableEvent(e.getMessage()));
-        }
-    }
-    
-    
-    /**
-     * Sets the command box style to indicate a successful command.
-     */
-    private void setStyleToIndicateCommandSuccess() {
-        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-    }
-    
-    /**
-     * Sets the command box style to indicate a failed command.
-     */
-    private void setStyleToIndicateCommandFailure() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-        
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
-        }
-        
-        styleClass.add(ERROR_STYLE_CLASS);
-    }
-    
+
+	public static final String ERROR_STYLE_CLASS = "error";
+	private static final String FXML = "CommandBox.fxml";
+	private Stack<String>prevCommandsHistory = new Stack<String>();
+	private Stack<String>nextCommandsHistory = new Stack<String>();
+	private String currentShownCommand;
+	private String lastPrev = "";
+	private final Logger logger = LogsCenter.getLogger(CommandBox.class);
+	private final Logic logic;
+	private AutoCompletionBinding<String> autoCompletionBinding;
+
+	Set listOfCommands = new HashSet<>();
+	String[] commands = { "add", "delete", "edit", "clear", "help", "undo", "redo", "find", "exit", "delete" };
+
+	@FXML
+	private TextField commandTextField;
+
+	public CommandBox(Logic logic) {
+		super(FXML);
+		this.logic = logic;
+		autoComplete();
+	}
+
+	//@@author A0139964M
+	/**
+	 * Method that handles arrow up and down to cycle between commands
+	 * @param event
+	 */
+	@FXML
+	private void handleKeyPress(KeyEvent event){
+		KeyCode key = event.getCode();
+		switch (key) {
+		case UP:
+			String prevCommand = getPrevCommand(lastPrev);
+			lastPrev = prevCommand;
+			commandTextField.setText(prevCommand);
+			return;
+		case DOWN:
+			String nextCommand = getNextCommand();
+			commandTextField.setText(nextCommand);
+			return;
+		}
+	}
+
+	public String getPrevCommand(String lastPrev){
+		if(!prevCommandsHistory.isEmpty()) {
+			String prevCommand = prevCommandsHistory.pop();
+			nextCommandsHistory.push(prevCommand);
+			return prevCommand;
+		}
+		return lastPrev;
+	}
+	public String getNextCommand(){
+		if(!nextCommandsHistory.isEmpty()) {
+			String nextCommand = nextCommandsHistory.pop();
+			prevCommandsHistory.push(nextCommand);
+			return nextCommand;
+		} else {
+			return "";
+		}
+	}
+
+	private void updatePrevCommand(String commandText){
+		prevCommandsHistory.push(commandText);
+	}
+	/**
+	 * Method that pops up an auto complete when a suitable keyword is inputted
+	 */
+
+	public void autoComplete(){
+		buildCommandsIntoHashSet();
+		autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
+		autoCompletionBinding.setPrefWidth(300);
+		autoCompletionBinding.setVisibleRowCount(1);
+		autoCompletionBinding.setHideOnEscape(true);
+	}
+
+	public void buildCommandsIntoHashSet(){
+		for(int i = 0; i < commands.length; i++){
+			listOfCommands.add(commands[i]);
+		}
+	}
+	//@@author
+
+	@FXML
+	private void handleCommandInputChanged() throws IllegalValueException, WarningException {
+		try {
+			String commandText = commandTextField.getText();
+			currentShownCommand = commandText;
+			CommandResult commandResult = logic.execute(commandText);
+		
+			//@@author A0139964M
+			while(!nextCommandsHistory.isEmpty()){
+				prevCommandsHistory.push(nextCommandsHistory.pop());
+			}
+			updatePrevCommand(commandText);
+			//@@author
+
+			// process result of the command
+			setStyleToIndicateCommandSuccess();
+			commandTextField.setText("");
+			logger.info("Result: " + commandResult.feedbackToUser);
+			raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
+
+		} catch (CommandException | ParseException e) {
+			// handle command failure
+			setStyleToIndicateCommandFailure();
+			logger.info("Invalid command: " + commandTextField.getText());
+			raise(new NewResultAvailableEvent(e.getMessage()));
+		}
+	}
+
+
+	/**
+	 * Sets the command box style to indicate a successful command.
+	 */
+	private void setStyleToIndicateCommandSuccess() {
+		commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+	}
+
+	/**
+	 * Sets the command box style to indicate a failed command.
+	 */
+	private void setStyleToIndicateCommandFailure() {
+		ObservableList<String> styleClass = commandTextField.getStyleClass();
+
+		if (styleClass.contains(ERROR_STYLE_CLASS)) {
+			return;
+		}
+
+		styleClass.add(ERROR_STYLE_CLASS);
+	}
+
 }

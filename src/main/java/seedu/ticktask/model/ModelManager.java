@@ -110,10 +110,12 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTickTaskModelChanged();
     }
 
+    //@@author A0147928N
     public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
         currentProgramInstance.removeCompletedTask(target);
         indicateTickTaskModelChanged();
     }
+    //@@author
 
     @Override
     public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException{

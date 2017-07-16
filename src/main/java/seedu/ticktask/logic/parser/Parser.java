@@ -58,7 +58,8 @@ public class Parser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
+        
+        //@@author A0147928N
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
         
@@ -70,7 +71,8 @@ public class Parser {
             
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
+        //@@author
+            
         case EditCommand.COMMAND_WORD:
             return new parseEditCommand().parse(arguments);
 
