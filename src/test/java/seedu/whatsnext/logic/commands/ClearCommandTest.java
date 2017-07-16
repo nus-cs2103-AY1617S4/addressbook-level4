@@ -81,7 +81,7 @@ public class ClearCommandTest {
     }
     //@@author A0149894H
     private void assertCompletedCommandSuccess(Model model) throws DuplicateTaskException {
-        TaskManager taskManagerComplete = new TaskManager(); 
+        TaskManager taskManagerComplete = new TaskManager();
         for (BasicTask task: model.getTaskManager().getTaskList()) {
             if (!task.getIsCompleted()) {
                 taskManagerComplete.addTask(task);

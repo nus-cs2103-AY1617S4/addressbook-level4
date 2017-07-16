@@ -1,5 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -12,6 +13,8 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
  *contains integration tests and unit tests for FilePathCommand
  */
 //@@author A0149894H
+=======
+>>>>>>> TeamMain/master
 public class FilePathCommandTest {
     public static final String TEST_ORIGINAL_LOCATION = "data";
     public static final String TEST_SECOND_LOCATION = "data/test";

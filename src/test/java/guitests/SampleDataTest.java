@@ -1,30 +1,32 @@
-//package guitests;
-//
+package guitests;
+
 //import static org.junit.Assert.assertTrue;
-//
-//import org.junit.Test;
-//
-//import seedu.whatsnext.model.AddressBook;
-//import seedu.whatsnext.model.task.Person;
-//import seedu.whatsnext.model.util.SampleDataUtil;
-//import seedu.whatsnext.testutil.TestUtil;
-//
-//public class SampleDataTest extends AddressBookGuiTest {
-//    @Override
-//    protected AddressBook getInitialData() {
-//        // return null to force test app to load data from file only
-//        return null;
-//    }
-//
-//    @Override
-//    protected String getDataFileLocation() {
-//        // return a non-existent file location to force test app to load sample data
-//        return TestUtil.getFilePathInSandboxFolder("SomeFileThatDoesNotExist1234567890.xml");
-//    }
-//
-//    @Test
-//    public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
-//        Person[] expectedList = SampleDataUtil.getSamplePersons();
-//        assertTrue(personListPanel.isListMatching(expectedList));
-//    }
-//}
+
+import org.junit.Test;
+
+import seedu.whatsnext.model.TaskManager;
+import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.util.SampleDataUtil;
+import seedu.whatsnext.testutil.TestUtil;
+
+public class SampleDataTest extends TaskManagerGuiTest {
+    @Override
+    protected TaskManager getInitialData() {
+        //return null to force test app to load data from file only
+        return null;
+    }
+
+    @Override
+    protected String getDataFileLocation() {
+        //return a non-existent file location to force test app to load sample data
+        return TestUtil.getFilePathInSandboxFolder("SomeFileThatDoesNotExist1234567890.xml");
+    }
+
+    @Test
+    public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
+        BasicTask[] expectedList = SampleDataUtil.getSampleTasks();
+        //assertTrue(eventListPanel.isListMatching(expectedList));
+        //assertTrue(deadlineListPanel.isListMatching(expectedList));
+        //assertTrue(floatingListPanel.isListMatching(expectedList));
+    }
+}

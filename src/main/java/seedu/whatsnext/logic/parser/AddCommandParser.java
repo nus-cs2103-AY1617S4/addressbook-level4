@@ -7,7 +7,6 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.AddCommand;
@@ -51,7 +50,7 @@ public class AddCommandParser {
                     startDateTimeValue, endDateTimeValue, tagList);
             return new AddCommand(task);
         } catch (IllegalValueException ive) {
-            throw new ParseException(ive.getMessage(), ive);
+            throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
     }
 
@@ -98,8 +97,9 @@ public class AddCommandParser {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
+    /*
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+    }*/
 
 }

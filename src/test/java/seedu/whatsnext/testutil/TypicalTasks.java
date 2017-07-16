@@ -6,6 +6,7 @@ import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
+//@@author A0142675B
 /**
  *
  */
@@ -41,6 +42,7 @@ public class TypicalTasks {
             readaBook = new TaskBuilder().withName("Read a Book").build();
             tester = new TaskBuilder().withName("Tester")
                     .withStatus(true).build();
+
 
             // Manually added
         } catch (IllegalValueException e) {

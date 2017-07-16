@@ -77,19 +77,19 @@ Floating task do not have date or time. <br>
 
 #### 2.2.1 Adding a event <br>
 Format: <br>
-* `add TASK_NAME s/ START_DATE_TIME to e/ END_DATE_TIME t/ TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME s/ START_DATE_TIME to e/ END_DATE_TIME [t/ TAG1 t/ TAG2...]` <br>
 Examples: <br>
 * `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
 
 #### 2.2.2 Adding a deadline <br>
 Format: <br>
-* `add TASK_NAME e/ DATETIME t/ TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME e/ DATETIME [t/ TAG1 t/ TAG2...]` <br>
 Examples:<br>
 * `add project e/ July 10 6pm t/ meeting` <br>
 
 #### 2.2.3 Adding a floating <br>
 Format: <br>
-* `add TASK_NAME t/ TAG1 [tag TAG2...]` <br>
+* `add TASK_NAME [t/ TAG1 t/ TAG2...]` <br>
 Examples:<br>
 * `add project t/ meeting`
 
@@ -257,9 +257,9 @@ Format: `exit`
 Function | Format | Examples
 -------- | ------ | --------
 Get Help infomation | `help` |
-Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG]...` | `add Project metting s/ July 5 18 e/ July 5 19`
-Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1]...` | `add Project submission e/ July 5 20`
-Add a floating | `add TASK_NAME [t/ TAG]...` | `add CS2103 exam t/ HIGH`
+Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]` | `add Project metting s/ July 5 18 e/ July 5 19`
+Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]` | `add Project submission e/ July 5 20`
+Add a floating | `add TASK_NAME [t/ TAG...]` | `add CS2103 exam t/ HIGH`
 List all tasks | `list all` |
 List incomplete tasks | `list incomplete` |
 List complete tasks | `list complete` |

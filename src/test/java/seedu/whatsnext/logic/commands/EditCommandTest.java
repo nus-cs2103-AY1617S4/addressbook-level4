@@ -11,7 +11,7 @@ import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTMEE
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_READBORNACRIME;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_STARTDATETIME_PROJECTMEETING;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
-import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_MEDIUM;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 
@@ -34,6 +34,7 @@ import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 import seedu.whatsnext.testutil.TaskBuilder;
 import seedu.whatsnext.testutil.TypicalTasks;
 
+//@@author A0142675B
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -46,9 +47,10 @@ public class EditCommandTest {
         BasicTask editedTask = new TaskBuilder().withName(VALID_NAME_PROJECTMEETING)
                                .withStartDateTime(VALID_STARTDATETIME_PROJECTMEETING)
                                .withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING)
-                               .withTags(VALID_TAG_CS2103, VALID_TAG_MEDIUM)
+                               .withTags(VALID_TAG_HIGH)
                                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withNewTags(VALID_TAG_HIGH)
+                                        .withRemoveTags(VALID_TAG_CS2103).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -70,7 +72,7 @@ public class EditCommandTest {
                 .withTags(VALID_TAG_LOW).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_READBORNACRIME)
-                .withTags(VALID_TAG_LOW).build();
+                .withNewTags(VALID_TAG_LOW).build();
         EditCommand editCommand = prepareCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -143,7 +145,7 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of task manager
      */
     @Test
     public void execute_invalidTaskIndexFilteredList_failure() throws Exception {
