@@ -1,4 +1,5 @@
 package guitests.guihandles;
+/*package guitests.guihandles;
 
 import static org.junit.Assert.assertTrue;
 
@@ -14,14 +15,14 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-import seedu.whatsnext.TestApp;
-import seedu.whatsnext.model.task.BasicTask;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
-import seedu.whatsnext.testutil.TestUtil;
+import seedu.taskmanager.TestApp;
+import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.testutil.TestUtil;
 
-/**
+*//**
  * Provides a handle for the panel containing the task list.
- */
+ *//*
 public class FloatingListPanelHandle extends GuiHandle {
 
     public static final int NOT_FOUND = -1;
@@ -33,28 +34,28 @@ public class FloatingListPanelHandle extends GuiHandle {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
     }
 
-    public List<Pair<BasicTaskFeatures, Integer>> getSelectedTasks() {
-        ListView<Pair<BasicTaskFeatures, Integer>> taskList = getFloatingListView();
+    public List<Pair<ReadOnlyTask, Integer>> getSelectedTasks() {
+        ListView<Pair<ReadOnlyTask, Integer>> taskList = getFloatingListView();
         return taskList.getSelectionModel().getSelectedItems();
     }
 
-    public ListView<Pair<BasicTaskFeatures, Integer>> getFloatingListView() {
-        ListView<Pair<BasicTaskFeatures, Integer>> floatingListView = getNode(FLOATING_TASK_LIST_VIEW_ID);
+    public ListView<Pair<ReadOnlyTask, Integer>> getFloatingListView() {
+        ListView<Pair<ReadOnlyTask, Integer>> floatingListView = getNode(FLOATING_TASK_LIST_VIEW_ID);
         return floatingListView;
     }
 
-    /**
+    *//**
      * Returns true if the list is showing the task details correctly and in
      * correct order.
      *
      * @param tasks
      *            A list of tasks in the correct order.
-     */
-    public boolean isListMatching(BasicTaskFeatures... tasks) {
+     *//*
+    public boolean isListMatching(ReadOnlyTask... tasks) {
         return this.isListMatching(0, tasks);
     }
 
-    /**
+    *//**
      * Returns true if the list is showing the task details correctly and in
      * correct order.
      *
@@ -62,16 +63,16 @@ public class FloatingListPanelHandle extends GuiHandle {
      *            The starting position of the sub list.
      * @param persons
      *            A list of task in the correct order.
-     */
-    public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
-        List<BasicTaskFeatures> floatingTasks = new ArrayList<>(Arrays.asList(tasks));
+     *//*
+    public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException {
+        List<ReadOnlyTask> floatingTasks = new ArrayList<>(Arrays.asList(tasks));
         for (int index = 0; index < floatingTasks.size(); index++) {
-            if (!floatingTasks.get(index).getTaskType().equals("floating")) {
+            if (!floatingTasks.get(index).isFloatingTask()) {
                 floatingTasks.remove(index);
                 index--;
             }
         }
-        BasicTaskFeatures[] taskArray = floatingTasks.toArray(new BasicTaskFeatures[floatingTasks.size()]);
+        ReadOnlyTask[] taskArray = floatingTasks.toArray(new ReadOnlyTask[floatingTasks.size()]);
         if (taskArray.length + startPosition != getFloatingListView().getItems().size()) {
             throw new IllegalArgumentException(
                     "List size mismatched\n" + "Expected " + (getFloatingListView().getItems().size() - 1) + " tasks");
@@ -88,20 +89,20 @@ public class FloatingListPanelHandle extends GuiHandle {
         return true;
     }
 
-    /**
+    *//**
      * Clicks on the ListView.
-     */
+     *//*
     public void clickOnListView() {
         Point2D point = TestUtil.getScreenMidPoint(getFloatingListView());
         guiRobot.clickOn(point.getX(), point.getY());
     }
 
-    /**
+    *//**
      * Returns true if the {@code tasks} appear as the sub list (in that order)
      * at position {@code startPosition}.
-     */
-    public boolean containsInOrder(int startPosition, BasicTaskFeatures... tasks) {
-        List<Pair<BasicTaskFeatures, Integer>> tasksInList = getFloatingListView().getItems();
+     *//*
+    public boolean containsInOrder(int startPosition, ReadOnlyTask... tasks) {
+        List<Pair<ReadOnlyTask, Integer>> tasksInList = getFloatingListView().getItems();
 
         // Return false if the list in panel is too short to contain the given
         // list
@@ -111,8 +112,8 @@ public class FloatingListPanelHandle extends GuiHandle {
 
         // Return false if any of the persons doesn't match
         for (int i = 0; i < tasks.length; i++) {
-            if (!tasksInList.get(startPosition + i).getKey().getName().fullTaskName
-                    .equals(tasks[i].getName().fullTaskName)) {
+            if (!tasksInList.get(startPosition + i).getKey().getTaskName().fullTaskName
+                    .equals(tasks[i].getTaskName().fullTaskName)) {
                 return false;
             }
         }
@@ -122,8 +123,8 @@ public class FloatingListPanelHandle extends GuiHandle {
 
     public FloatingTaskCardHandle navigateToFloatingTask(String taskname) {
         guiRobot.sleep(500); // Allow a bit of time for the list to be updated
-        final Optional<Pair<BasicTaskFeatures, Integer>> task = getFloatingListView().getItems().stream()
-                .filter(p -> p.getKey().getName().toString().equals(taskname)).findAny();
+        final Optional<Pair<ReadOnlyTask, Integer>> task = getFloatingListView().getItems().stream()
+                .filter(p -> p.getKey().getTaskName().toString().equals(taskname)).findAny();
         if (!task.isPresent()) {
             throw new IllegalStateException("Task name not found: " + taskname);
         }
@@ -131,10 +132,10 @@ public class FloatingListPanelHandle extends GuiHandle {
         return navigateToFloatingTask(task.get().getKey());
     }
 
-    /**
+    *//**
      * Navigates the listview to display and select the task.
-     */
-    public FloatingTaskCardHandle navigateToFloatingTask(BasicTaskFeatures task) {
+     *//*
+    public FloatingTaskCardHandle navigateToFloatingTask(ReadOnlyTask task) {
         int index = getFloatingTaskIndex(task);
 
         guiRobot.interact(() -> {
@@ -146,32 +147,32 @@ public class FloatingListPanelHandle extends GuiHandle {
         return getFloatingTaskCardHandle(task);
     }
 
-    /**
+    *//**
      * Returns the position of the person given, {@code NOT_FOUND} if not found
      * in the list.
-     */
-    public int getFloatingTaskIndex(BasicTaskFeatures targetTask) {
-        List<Pair<BasicTaskFeatures, Integer>> tasksInList = getFloatingListView().getItems();
+     *//*
+    public int getFloatingTaskIndex(ReadOnlyTask targetTask) {
+        List<Pair<ReadOnlyTask, Integer>> tasksInList = getFloatingListView().getItems();
         for (int i = 0; i < tasksInList.size(); i++) {
-            if (tasksInList.get(i).getKey().getName().equals(targetTask.getName())) {
+            if (tasksInList.get(i).getKey().getTaskName().equals(targetTask.getTaskName())) {
                 return i;
             }
         }
         return NOT_FOUND;
     }
 
-    /**
+    *//**
      * Gets a person from the list by index
-     */
-    public BasicTaskFeatures getFloatingTask(int index) {
+     *//*
+    public ReadOnlyTask getFloatingTask(int index) {
         return getFloatingListView().getItems().get(index).getKey();
     }
 
     public FloatingTaskCardHandle getFloatingTaskCardHandle(int index) {
-        return getFloatingTaskCardHandle(new BasicTask(getFloatingListView().getItems().get(index).getKey()));
+        return getFloatingTaskCardHandle(new Task(getFloatingListView().getItems().get(index).getKey()));
     }
 
-    public FloatingTaskCardHandle getFloatingTaskCardHandle(BasicTaskFeatures task) {
+    public FloatingTaskCardHandle getFloatingTaskCardHandle(ReadOnlyTask task) {
         Set<Node> nodes = getAllCardNodes();
         Optional<Node> taskCardNode = nodes.stream()
                 .filter(n -> new FloatingTaskCardHandle(guiRobot, primaryStage, n).isSameTask(task)).findFirst();
@@ -190,3 +191,4 @@ public class FloatingListPanelHandle extends GuiHandle {
         return getFloatingListView().getItems().size();
     }
 }
+*/

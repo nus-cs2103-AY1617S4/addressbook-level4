@@ -72,7 +72,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        TaskManagerStorage taskManagerStorage = new XmlTaskManagerStorage(Config.getTaskManagerFilePath());
+        TaskManagerStorage taskManagerStorage = new XmlTaskManagerStorage(config.getTaskManagerFilePath());
         storage = new StorageManager(taskManagerStorage, userPrefsStorage);
 
         initLogging(config);
@@ -138,7 +138,7 @@ public class MainApp extends Application {
         LogsCenter.init(config);
     }
 
-    protected Config initConfig(String configFilePath) throws Exception {
+    protected Config initConfig(String configFilePath) {
         Config initializedConfig;
         String configFilePathUsed;
 
