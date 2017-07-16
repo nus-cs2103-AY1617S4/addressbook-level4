@@ -37,14 +37,14 @@ public class StorageCommand extends Command {
     public CommandResult execute() throws CommandException {
 
         try {
-            
+
             Config config = new Config();
             config.setTickTaskFilePath(file.toString());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
             XmlTickTaskStorage.setTickTaskFilePath(file.toString());
             model.saveTickTask();
             return new CommandResult(String.format(MESSAGE_SUCCESS, file));
-            
+
         } catch (Config.DuplicateTickTaskFilePathException dtmfpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TICK_TASK_FILE_PATH);
         } catch (IOException ioe) {

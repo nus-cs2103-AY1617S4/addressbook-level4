@@ -103,28 +103,26 @@ public class EditCommand extends Command {
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
-        
-        final String EDIT_TASK_DESCRIPTOR_TYPE_FLOATING = "Optional[floating]";
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         TaskType updatedTaskType = editTaskDescriptor.getTaskType().orElse(taskToEdit.getTaskType());
         DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
-       
-        //author A0139819N
-        if (editTaskDescriptor.getTaskType().toString().equals(EDIT_TASK_DESCRIPTOR_TYPE_FLOATING)){
 
-            if(taskToEdit.getTaskType().getValue().equals("floating")){
+        //author A0139819N
+        if (editTaskDescriptor.getTaskType().toString().equals("Optional[floating]")) {
+
+            if (taskToEdit.getTaskType().getValue().equals("floating")) {
                 throw new ParseException("Task is already floating!");
-            }else{
+            } else {
                 updatedTime = new DueTime("");
-                updatedDate = new DueDate("");  
+                updatedDate = new DueDate("");
             }
         }
         //author
@@ -212,8 +210,7 @@ public class EditCommand extends Command {
         public void setDate(DueDate date) {
             if (date.toString().equals("") || date.toString().equals(" ")) {
                 this.date = null;
-            }
-            else {
+            } else {
                 this.date = date;
             }
         }

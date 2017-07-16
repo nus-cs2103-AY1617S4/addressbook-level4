@@ -47,7 +47,7 @@ public class CompleteCommand extends Command {
             assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, taskCompleted ));
+        return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, taskCompleted));
     }
 }
 //@@author

@@ -18,7 +18,6 @@ public class ConfirmCommand extends Command {
     public static final String MESSAGE_USAGE = "";
 
     public static final String MESSAGE_COMPLETE_TASK_SUCCESS = "Confirmed task: %1$s";
-    
     public static final String COMMAND_WORD = "yes";
     public static final String COMMAND_WORD1 = "no";
 
@@ -31,7 +30,6 @@ public class ConfirmCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException, WarningException {
-       
         return new CommandResult("");
     }
 }
