@@ -251,7 +251,6 @@ public class BasicTask implements BasicTaskFeatures {
         return false;
     }
 
-    //author A0154987J
     @Override
     public String getTaskDetails() {
         StringBuilder details = new StringBuilder();

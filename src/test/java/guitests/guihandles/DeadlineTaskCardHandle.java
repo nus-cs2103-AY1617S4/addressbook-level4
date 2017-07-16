@@ -1,4 +1,4 @@
-package guitests.guihandles;
+/*package guitests.guihandles;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.whatsnext.model.tag.UniqueTagList;
-import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 
-/**
+*//**
  * Provides a handle to a task card in the task list panel.
- */
+ *//*
 public class DeadlineTaskCardHandle extends GuiHandle {
     private static final String TASKNAME_FIELD_ID = "#taskName";
     private static final String DUEDATETIME_FIELD_ID = "#dueDateTime";
@@ -69,12 +69,11 @@ public class DeadlineTaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(CATEGORIES_FIELD_ID).query();
     }
 
-    public boolean isSameTask(BasicTaskFeatures task) {
-        return task != null || this == task && getTaskName().equals(task.getName().toString())
-                && getEndDate().equals(task.getEndDateTime().toString())
-                && getEndTime().equals(task.getEndDateTime().toString())
-                && getIsMarkedAsCompleted().equals(task.getStatusString())
-                && getTags().equals(getTags());
+    public boolean isSameTask(ReadOnlyTask task) {
+        return task != null || this == task && getTaskName().equals(task.getTaskName())
+                && getEndDate().equals(task.getEndDate()) && getEndTime().equals(task.getEndTime())
+                && getIsMarkedAsCompleted().equals(task.getIsMarkedAsComplete())
+                && getTags().equals(getTags(task.getTags()));
     }
 
     @Override
@@ -94,3 +93,4 @@ public class DeadlineTaskCardHandle extends GuiHandle {
         return getTaskName() + " " + getEndDate() + " " + getEndTime();
     }
 }
+*/

@@ -205,7 +205,7 @@ public class LogicManagerTest {
     @Test
     public void execute_add_invalidTaskData() {
         //String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        String invalidNameErrorMessage = TaskName.MESSAGE_NAME_CONSTRAINTS;
+        String invalidNameErrorMessage = TaskName.MESSAGE_NAME_CONSTRAINTS + "\n" + AddCommand.MESSAGE_USAGE;
         String inputNameInvalid = AddCommand.COMMAND_WORD + " Invalid Name with **SPECIAL CHARACTERS**!!!@@#  "
                 + PREFIX_MESSAGE + "Valid Description";
 
@@ -213,7 +213,8 @@ public class LogicManagerTest {
 
         String inputDescriptionInvalid = AddCommand.COMMAND_WORD + " Valid Name "
                 + PREFIX_MESSAGE + "invalid description with **SPECIAL CHARACTERS**!!!@@# ";
-        String invalidDescriptionErrorMessage = TaskDescription.MESSAGE_NAME_CONSTRAINTS;
+        String invalidDescriptionErrorMessage = TaskDescription.MESSAGE_NAME_CONSTRAINTS
+                + "\n" + AddCommand.MESSAGE_USAGE;
 
         assertParseException(inputDescriptionInvalid, invalidDescriptionErrorMessage);
 
