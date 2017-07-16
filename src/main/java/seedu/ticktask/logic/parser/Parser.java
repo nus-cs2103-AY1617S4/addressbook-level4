@@ -20,6 +20,7 @@ import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.RedoCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
+import seedu.ticktask.logic.commands.StorageCommand;
 import seedu.ticktask.logic.commands.UndoCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
@@ -76,10 +77,14 @@ public class Parser {
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
-
+            
+        //@@author A0138471A
         case ListCommand.COMMAND_WORD:
         	return new ListCommandParser().parse(arguments);
-
+        	
+        case StorageCommand.COMMAND_WORD:
+            return new StorageCommandParser().parse(arguments);
+        //@@author
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
