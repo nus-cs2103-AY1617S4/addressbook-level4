@@ -66,9 +66,10 @@ public class ListCommandTest {
      * - the result message matches {@code expectedMessage} <br>
      * - the TickTask and the filtered task list in the {@code model} matches that of {@code expectedModel}
      * @throws WarningException 
+     * @throws IllegalValueException 
      */
     public static void assertCommandSuccess(Command command, Model model, String expectedMessage, Model expectedModel)
-            throws CommandException, WarningException {
+            throws CommandException, WarningException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);

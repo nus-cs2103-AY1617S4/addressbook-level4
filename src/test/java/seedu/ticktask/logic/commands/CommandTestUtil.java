@@ -25,9 +25,10 @@ public class CommandTestUtil {
      * - the result message matches {@code expectedMessage} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      * @throws WarningException 
+     * @throws IllegalValueException 
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) throws CommandException, WarningException {
+            Model expectedModel) throws CommandException, WarningException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, actualModel);
@@ -56,6 +57,8 @@ public class CommandTestUtil {
             assertEquals(expectedTickTask, actualModel.getTickTask());
             assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
             assertEquals(expectedFilteredCompletedList, actualModel.getFilteredCompletedTaskList());
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
         } 
         
     }
