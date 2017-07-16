@@ -18,24 +18,28 @@ import seedu.whatsnext.testutil.TypicalTasks;
 
 public class ClearCommandTest {
 
+    //@@author A0149894H
     @Test
     public void execute_emptyTaskManager_success() {
         Model model = new ModelManager();
         assertCommandSuccess(model);
     }
 
+    //@@author A0149894H
     @Test
     public void execute_nonEmptyTaskManager_success() {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         assertCommandSuccess(model);
     }
 
+    //@@author A0149894H
     @Test
     public void execute_clearIncompletedTasks_success() throws DuplicateTaskException {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         assertIncompleteCommandSuccess(model);
     }
 
+    //@@author A0149894H
     @Test
     public void execute_completedTasks_success() throws DuplicateTaskException {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
@@ -47,6 +51,7 @@ public class ClearCommandTest {
      * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
      * - the address book and filtered person list in {@code model} is empty <br>
      */
+    //@@author A0149894H
     private void assertCommandSuccess(Model model) {
         ClearCommand command = new ClearCommand(PREFIX_ALL.toString());
         command.setData(model, new CommandHistory());
@@ -55,7 +60,7 @@ public class ClearCommandTest {
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
         assertEquals(new ModelManager(), model);
     }
-
+    //@@author A0149894H
     private void assertIncompleteCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerIncomplete = new TaskManager();
         //insert loop here to add shit into taskManagerIncomplete
@@ -75,7 +80,7 @@ public class ClearCommandTest {
 
 
     }
-
+    //@@author A0149894H
     private void assertCompletedCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerComplete = new TaskManager(); //creates empty task manager
         //insert loop here to add shit into taskManagerIncomplete
