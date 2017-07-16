@@ -6,6 +6,8 @@ import java.util.Set;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -24,8 +26,10 @@ public interface Model {
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
 
-    /** Adds the given task */
-    void addTask(ReadOnlyTask task) throws DuplicateTaskException;
+    /** Adds the given task 
+     * @throws PastTaskException 
+     * @throws EventClashException */
+    void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException;
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -33,9 +37,11 @@ public interface Model {
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
+     * @throws PastTaskException 
+     * @throws EventClashException 
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException;
+            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();

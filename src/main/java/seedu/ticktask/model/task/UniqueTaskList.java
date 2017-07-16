@@ -14,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -41,8 +43,9 @@ public class UniqueTaskList implements Iterable<Task> {
      * Adds a task to the list.
      *
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
+     * @throws EventClashException 
      */
-    public void add(ReadOnlyTask toAdd) throws DuplicateTaskException {
+    public void add(ReadOnlyTask toAdd) throws DuplicateTaskException, PastTaskException, EventClashException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
@@ -50,12 +53,12 @@ public class UniqueTaskList implements Iterable<Task> {
         
         //@@author A0147928N
         if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd, null)) {
-          throw new DuplicateTaskException();
+          throw new EventClashException();
         }
         //@@author
-      
+        
         if(!isChornological(toAdd)){
-            throw new DuplicateTaskException();
+            throw new PastTaskException();
         }
         
         toAdd.resetTaskType();
@@ -125,9 +128,11 @@ public class UniqueTaskList implements Iterable<Task> {
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
+     * @throws PastTaskException 
+     * @throws EventClashException 
      */
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException {
+            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
         requireNonNull(editedTask);
 
         int index = internalList.indexOf(target);
@@ -143,14 +148,14 @@ public class UniqueTaskList implements Iterable<Task> {
         
         //@@author A0147928N
         if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, target)) {
-          throw new DuplicateTaskException();
+          throw new EventClashException();
         }
         //@@author
         
         
         //@@author A0139964M
         if(!isChornological(editedTask)){
-            throw new DuplicateTaskException();
+            throw new PastTaskException();
         }
         //@@author
          
@@ -182,7 +187,7 @@ public class UniqueTaskList implements Iterable<Task> {
         this.internalList.setAll(replacement.internalList);
     }
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException, PastTaskException, EventClashException {
         final UniqueTaskList replacement = new UniqueTaskList();
         for (final ReadOnlyTask task : tasks) {
             replacement.add(new Task(task));

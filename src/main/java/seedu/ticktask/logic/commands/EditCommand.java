@@ -14,6 +14,7 @@ import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
@@ -22,6 +23,8 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -45,6 +48,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
+    public static final String MESSAGE_PAST_TASK = "This task is already passed the current date/time";
+    public static final String MESSAGE_EVENT_CLASH = "There is another task going on within the same time frame";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -62,7 +67,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute() throws CommandException, WarningException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -78,7 +83,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
-        }
+        } catch (PastTaskException e) {
+            throw new CommandException(MESSAGE_PAST_TASK);
+        } catch (EventClashException e) {
+            throw new CommandException(MESSAGE_EVENT_CLASH);
+        } 
         model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }

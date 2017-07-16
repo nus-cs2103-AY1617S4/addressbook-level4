@@ -14,7 +14,11 @@ import seedu.ticktask.logic.Logic;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import seedu.ticktask.logic.commands.CommandResult;
+import seedu.ticktask.logic.commands.CompleteCommand;
+import seedu.ticktask.logic.commands.ConfirmCommand;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.logic.commands.exceptions.WarningException;
+import seedu.ticktask.logic.parser.ConfirmCommandParser;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 public class CommandBox extends UiPart<Region> {
@@ -78,8 +82,9 @@ public class CommandBox extends UiPart<Region> {
     
     @FXML
     private void handleCommandInputChanged() throws IllegalValueException {
+        String commandText = new String();
         try {
-            String commandText = commandTextField.getText();
+            commandText = commandTextField.getText();
             currentShownCommand = commandText;
             CommandResult commandResult = logic.execute(commandText);
 
@@ -95,12 +100,18 @@ public class CommandBox extends UiPart<Region> {
             logger.info("Result: " + commandResult.feedbackToUser);
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
+        } catch (WarningException e) {
+            setStyleToIndicateCommandFailure();
+            raise(new NewResultAvailableEvent(e.getMessage()));
+            //String responseText = commandTextField.getText();
+            //boolean response = new ConfirmCommandParser().parse(responseText);
+            
         } catch (CommandException | ParseException e) {
             // handle command failure
             setStyleToIndicateCommandFailure();
             logger.info("Invalid command: " + commandTextField.getText());
             raise(new NewResultAvailableEvent(e.getMessage()));
-        }
+        } 
     }
 
 

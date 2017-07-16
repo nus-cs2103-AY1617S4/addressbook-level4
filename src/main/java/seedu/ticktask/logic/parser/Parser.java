@@ -11,6 +11,7 @@ import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CompleteCommand;
+import seedu.ticktask.logic.commands.ConfirmCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.ExitCommand;
@@ -60,7 +61,13 @@ public class Parser {
 
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
-
+        
+        case ConfirmCommand.COMMAND_WORD:
+            return new ConfirmCommandParser().parse(commandWord);
+        
+        case ConfirmCommand.COMMAND_WORD1:
+            return new ConfirmCommandParser().parse(commandWord);
+            
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 

@@ -18,6 +18,8 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.UniqueTaskList;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
+import seedu.ticktask.model.task.exceptions.EventClashException;
+import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -58,7 +60,7 @@ public class TickTask implements ReadOnlyTickTask {
     //// list overwrite operations
 
     public void setTasks(List<? extends ReadOnlyTask> tasks,
-            List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
+            List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException, PastTaskException, EventClashException {
         this.tasks.setTasks(tasks);
         this.completedTasks.setTasks(completedTasks);
     }
@@ -73,6 +75,11 @@ public class TickTask implements ReadOnlyTickTask {
             setTasks(newData.getTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "The TickTask program should not have duplicate tasks";
+        } catch (PastTaskException e) {
+            assert false : "The TickTask program should nto contain tasks in the past";
+        }
+        catch (EventClashException e) {
+            assert false : "Some events in the program occur concurrently";
         }
         try {
             setTags(newData.getTagList());
@@ -90,8 +97,10 @@ public class TickTask implements ReadOnlyTickTask {
      * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
      * @throws DuplicateTaskException if an equivalent task already exists.
+     * @throws PastTaskException 
+     * @throws EventClashException 
      */
-    public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
+    public void addTask(ReadOnlyTask p) throws DuplicateTaskException, PastTaskException, EventClashException {
         Task newTask = new Task(p);
         newTask.resetTaskType();
         syncMasterTagListWith(newTask);
@@ -105,11 +114,13 @@ public class TickTask implements ReadOnlyTickTask {
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
+     * @throws PastTaskException 
+     * @throws EventClashException 
      *
      * @see #syncMasterTagListWith(Task)
      */
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedReadOnlyTask)
-            throws DuplicateTaskException, TaskNotFoundException {
+            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
         requireNonNull(editedReadOnlyTask);
 
         Task editedTask = new Task(editedReadOnlyTask);
