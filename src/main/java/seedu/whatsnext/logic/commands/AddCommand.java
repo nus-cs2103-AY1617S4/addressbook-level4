@@ -13,7 +13,6 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
-
 /**
  * Adds a task to the task manager.
  */
