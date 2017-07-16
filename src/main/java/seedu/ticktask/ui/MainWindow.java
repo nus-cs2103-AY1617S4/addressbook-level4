@@ -121,12 +121,14 @@ public class MainWindow extends UiPart<Region> {
     void fillInnerParts() {
         //@@author A0147928N
     	browserPanel = new BrowserPanel();
-        browserPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         completedTaskListPanel = new TaskListPanel(logic.getFilteredCompletedTaskList());
+        browserPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
+
         //@@author
 
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -46,25 +46,11 @@ public class UndoCommandTest {
         filledStackForTestingFuture.push(new TickTaskBuilder().build());
         
         assertEquals(emptyStackForTestingPrev, modelStub.previousProgramInstances);
-        assertEquals(filledStackForTestingFuture, modelStub.futureProgramInstances);
+       
         
     }
     
 
-    @Test
-    public void noPreviousInstances_throwsEmptyStackException() throws EmptyStackException{
-        Throwable caught = null;
-        ModelStubThrowingEmptyStackException modelStub = new ModelStubThrowingEmptyStackException();
-        try{
-            modelStub.undoPreviousCommand();
-        } catch(EmptyStackException ese){
-            caught = ese;
-        }
-        exception.expect(EmptyStackException.class);
-        assertNotNull(caught);
-        assertSame(EmptyStackException.class, caught.getClass());
-    }
-    
     /**
      * Generates a new UndoCommand object 
      */
