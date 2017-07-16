@@ -34,10 +34,6 @@ public class ListCommandTest {
     public void setUp() {
         model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
-//        Set<String> commandSet = new HashSet<String>();
-//        commandSet.add(ListCommand.LIST_ALL);
-//        listCommand = new ListCommand(commandSet);
-//        listCommand.setData(model, new CommandHistory());
     }
 
 
@@ -59,7 +55,7 @@ public class ListCommandTest {
         listCommand.setData(model, new CommandHistory());
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
-    
+
     @Test
     public void execute_listIsNotFiltered_showsIncompleteList() throws Exception {
         Set<String> commandSet = new HashSet<String>();
@@ -69,8 +65,8 @@ public class ListCommandTest {
         boolean isCompleted = false;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
-    }    
-    
+    }
+
     @Test
     public void execute_listIsFiltered_showsIncompleteList() throws Exception {
         showFirstTaskOnly(model);
@@ -82,7 +78,7 @@ public class ListCommandTest {
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
     }
-    
+
     @Test
     public void execute_listIsNotFiltered_showsList() throws Exception {
         Set<String> commandSet = new HashSet<String>();
@@ -92,7 +88,7 @@ public class ListCommandTest {
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
     }
-    
+
     @Test
     public void execute_listIsFiltered_showsList() throws Exception {
         showFirstTaskOnly(model);
@@ -103,7 +99,7 @@ public class ListCommandTest {
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
     }
-    
+
     @Test
     public void execute_listIsNotFiltered_showsCompletedList() throws Exception {
         Set<String> commandSet = new HashSet<String>();
@@ -120,7 +116,7 @@ public class ListCommandTest {
         showFirstTaskOnly(model);
         Set<String> commandSet = new HashSet<String>();
         commandSet.add(ListCommand.LIST_COMPLETED);
-        listCommand = new ListCommand(commandSet);    
+        listCommand = new ListCommand(commandSet);
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = true;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
