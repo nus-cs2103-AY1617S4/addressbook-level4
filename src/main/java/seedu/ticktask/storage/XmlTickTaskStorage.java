@@ -20,7 +20,7 @@ public class XmlTickTaskStorage implements TickTaskStorage {
 
     private static final Logger logger = LogsCenter.getLogger(XmlTickTaskStorage.class);
 
-    private String filePath;
+    private static String filePath;
 
     public XmlTickTaskStorage(String filePath) {
         this.filePath = filePath;
@@ -29,7 +29,16 @@ public class XmlTickTaskStorage implements TickTaskStorage {
     public String getTickTaskFilePath() {
         return filePath;
     }
-
+    
+    //@@author A0138471A
+    public static String newTickTaskFilePath(){
+    	return filePath;
+    }
+    
+    public static void setTickTaskFilePath(String newFilePath){
+    	filePath = newFilePath;
+    }
+    //@@author
     @Override
     public Optional<ReadOnlyTickTask> readTickTask() throws DataConversionException, IOException {
         return readTickTask(filePath);
