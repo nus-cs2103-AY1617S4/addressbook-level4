@@ -37,7 +37,7 @@ import seedu.whatsnext.testutil.TypicalTasks;
  */
 public abstract class TaskManagerGuiTest {
 
-    // @@author A0141102H
+    // @@author A0154987J
     /*
      * The TestName Rule makes the current test name available inside test
      * methods
