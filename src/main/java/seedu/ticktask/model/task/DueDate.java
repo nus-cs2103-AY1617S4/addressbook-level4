@@ -3,7 +3,7 @@ package seedu.ticktask.model.task;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
-import edu.emory.mathcs.backport.java.util.Collections;
+import java.util.Collections;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
