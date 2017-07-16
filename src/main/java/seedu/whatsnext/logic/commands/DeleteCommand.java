@@ -30,7 +30,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
 
-
         UnmodifiableObservableList<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -38,7 +37,6 @@ public class DeleteCommand extends Command {
         }
 
         BasicTaskFeatures taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-
         try {
 
             model.deleteTask(taskToDelete);

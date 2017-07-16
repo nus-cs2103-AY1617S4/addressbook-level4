@@ -47,6 +47,9 @@ public class SampleDataUtil {
     }
 
     //@@author A0156106M
+    /**
+     * Returns an array of 50 BasicTask sample tasks
+     * */
     public static BasicTask[] getSampleData() throws IllegalValueException {
         BasicTask[] sampleData = {
             // Floating Tasks

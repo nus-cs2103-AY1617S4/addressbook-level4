@@ -29,13 +29,6 @@ public class BasicTask implements BasicTaskFeatures {
     private boolean isCompleted;
     private UniqueTagList tags;
 
-
-    /**
-     * Constructor for Floating
-     * Deadline consists of Name, End Date, End Time and tags
-     * @throws IllegalValueException
-     * */
-
     /**
      * Constructor for Floating
      * @throws IllegalValueException
@@ -95,6 +88,10 @@ public class BasicTask implements BasicTaskFeatures {
                 source.getStartDateTime(), source.getEndDateTime(), source.getTags());
     }
 
+    //@@author A0156106M
+    /**
+     * Sets the taskType of a BasicTask based on the value of startDateTime and endDateTime
+     * */
     public void setTaskType() {
         if (this.startDateTime.isEmpty() && this.endDateTime.isEmpty()) {
             taskType = TASK_TYPE_FLOATING;
