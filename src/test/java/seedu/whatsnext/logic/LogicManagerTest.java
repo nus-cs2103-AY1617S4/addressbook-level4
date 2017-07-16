@@ -242,24 +242,49 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_add_successful() throws Exception {
+    public void execute_addEvent_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        BasicTask toBeAdded = helper.sampleTask();
+        BasicTask toBeAdded = helper.sampleEventTask();
         Model expectedModel = new ModelManager();
         expectedModel.addTask(toBeAdded);
 
         // execute command and verify result
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
+    }
 
+    @Test
+    public void execute_addDeadline_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        BasicTask toBeAdded = helper.sampleDeadlineTask();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+
+        // execute command and verify result
+        assertCommandSuccess(helper.generateAddCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
+    }
+
+    @Test
+    public void execute_addFloating_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        BasicTask toBeAdded = helper.sampleFloatingTask();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+
+        // execute command and verify result
+        assertCommandSuccess(helper.generateAddCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
     }
 
     @Test
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        BasicTask toBeAdded = helper.sampleTask();
+        BasicTask toBeAdded = helper.sampleEventTask();
         // setup starting state
         model.addTask(toBeAdded); // person already in internal task manager
         // execute command and verify result
@@ -467,16 +492,32 @@ public class LogicManagerTest {
      * A utility class to generate test data.
      */
     class TestDataHelper {
-        BasicTask sampleTask() throws Exception {
-            TaskName taskName = new TaskName("Sample Task");
-            TaskDescription taskDescription = new TaskDescription("More information on Sample Task");
+        BasicTask sampleEventTask() throws Exception {
+            TaskName taskName = new TaskName("Sample Event Task");
+            TaskDescription taskDescription = new TaskDescription("More information on Sample Event Task");
             boolean isCompleted = false;
             DateTime startDateTime = new DateTime("25th September 2017");
             DateTime startEndDate = new DateTime("27th September 2017");
             Set<Tag> tags = getTagSet("high", "event");
             return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
-
-
+        }
+        BasicTask sampleFloatingTask() throws Exception {
+            TaskName taskName = new TaskName("Sample Floating Task");
+            TaskDescription taskDescription = new TaskDescription("More information on Sample Floating Task");
+            boolean isCompleted = false;
+            DateTime startDateTime = new DateTime();
+            DateTime startEndDate = new DateTime();
+            Set<Tag> tags = getTagSet("high");
+            return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
+        }
+        BasicTask sampleDeadlineTask() throws Exception {
+            TaskName taskName = new TaskName("Sample Deadline Task");
+            TaskDescription taskDescription = new TaskDescription("More information on Sample Deadline Task");
+            boolean isCompleted = false;
+            DateTime startDateTime = new DateTime();
+            DateTime startEndDate = new DateTime("27th September 2017");
+            Set<Tag> tags = getTagSet("high", "event");
+            return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
         }
 
         /**
@@ -508,9 +549,12 @@ public class LogicManagerTest {
 
             cmd.append(" " + basicTask.getName());
             cmd.append(" " + PREFIX_MESSAGE.getPrefix()).append(basicTask.getDescription());
-            cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime().displayDateTime());
-            cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime().displayDateTime());
-
+            if (basicTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)) {
+                cmd.append(" " + PREFIX_START_DATETIME.getPrefix()).append(basicTask.getStartDateTime().displayDateTime());
+            }
+            if (basicTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT) || basicTask.getTaskType().equals(BasicTask.TASK_TYPE_DEADLINE)) {
+                cmd.append(" " + PREFIX_END_DATETIME.getPrefix()).append(basicTask.getEndDateTime().displayDateTime());
+            }
             Set<Tag> tags = basicTask.getTags();
             for (Tag t: tags) {
                 cmd.append(" " + PREFIX_TAG_CLI.getPrefix()).append(t.tagName);
