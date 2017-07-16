@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
+//import static java.util.Objects.requireNonNull;
 import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 /**
@@ -18,7 +17,7 @@ public class FilePathCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        requireNonNull(model);
+        //requireNonNull(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Config.getTaskManagerFilePath()));
 
     }
