@@ -56,8 +56,13 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-    public EditTaskDescriptorBuilder withTags(String... tags) throws IllegalValueException {
+    public EditTaskDescriptorBuilder withNewTags(String... tags) throws IllegalValueException {
         descriptor.setNewTags(ParserUtil.parseTags(Arrays.asList(tags)));
+        return this;
+    }
+
+    public EditTaskDescriptorBuilder withRemoveTags(String... tags) throws IllegalValueException {
+        descriptor.setRemoveTags(ParserUtil.parseTags(Arrays.asList(tags)));
         return this;
     }
 
