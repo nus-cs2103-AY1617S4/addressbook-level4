@@ -17,8 +17,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() throws Exception {
-        TaskManager taskManager = new TaskManagerBuilder().withPerson(typicalTasks.completeCS2103Assignment)
-                .withPerson(typicalTasks.meetJohnForDinner).build();
+        TaskManager taskManager = new TaskManagerBuilder().withTask(typicalTasks.completeCS2103Assignment)
+                .withTask(typicalTasks.meetJohnForDinner).build();
         TaskManager differentTaskManager = new TaskManager();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -36,7 +36,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different taskmanager -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentTaskManager, userPrefs)));
 
         // different filteredList -> returns false
