@@ -43,7 +43,6 @@ public class HelpCommand extends Command {
 
     /**
      * Returns respective MESSAGE_USAGE based on input commands
-     *
      * */
     public String showMessageUsage(String args) {
         String messageUsage;
