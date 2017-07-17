@@ -227,18 +227,10 @@ public class BasicTask implements BasicTaskFeatures {
         return taskDescription;
     }
 
-    /*
-    public static int getOverlapTaskIndex(BasicTaskFeatures taskToEdit,
-            UnmodifiableObservableList<BasicTaskFeatures> taskList) {
-        int index = 0;
-        for (BasicTaskFeatures task : taskList) {
-            if (taskToEdit.eventTaskOverlap(task) && (!taskToEdit.equals(task))) {
-                return index;
-            }
-        }
-        return -1;
-    }*/
-
+    /**
+     * Checks if basicTask is overlapping any other BasicTasks with taskType "event"
+     * @return true if event task overlaps another task
+     * */
     public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
         for (BasicTaskFeatures task : taskList) {
             if (this.eventTaskOverlap(task) && (!this.equals(task))) {

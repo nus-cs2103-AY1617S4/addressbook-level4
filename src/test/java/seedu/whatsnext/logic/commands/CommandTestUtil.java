@@ -10,6 +10,7 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.TaskManager;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 
@@ -47,12 +48,23 @@ public class CommandTestUtil {
         TaskManager expectedTaskManager = new TaskManager(actualModel.getTaskManager());
         List<BasicTaskFeatures> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
 
+        assertEquals(expectedTaskManager, actualModel.getTaskManager());
         try {
             command.execute();
             fail("The expected CommandException was not thrown.");
         } catch (CommandException e) {
+            ArrayList<Tag> tagList = new ArrayList<>();
+            // Removes overlap tag
+            for (Tag tag : actualModel.getTaskManager().getTagList()) {;
+                if (!tag.tagName.equals(Tag.RESERVED_TAG_OVERLAP)) {
+                    tagList.add(tag);
+                }
+            }
+
+            TaskManager actualTaskManager = new TaskManager(actualModel.getTaskManager());
+            actualTaskManager.setTags(tagList);
             assertEquals(expectedMessage, e.getMessage());
-            assertEquals(expectedTaskManager, actualModel.getTaskManager());
+            assertEquals(expectedTaskManager, actualTaskManager);
             assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
         }
     }
