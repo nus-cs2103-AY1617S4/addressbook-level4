@@ -17,15 +17,15 @@ import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TypicalTasks;
 
-//@@A0147928N
+//@@author A0147928N
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code CompleteCommand}.
  */
 public class CompleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-    ReadOnlyTask taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-    CompleteCommand firstCommand = prepareIndexCommand(model, INDEX_FIRST_TASK);
+    private ReadOnlyTask taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+    private CompleteCommand firstCommand = prepareIndexCommand(model, INDEX_FIRST_TASK);
     
     //UNIT TESTS
     
@@ -33,7 +33,7 @@ public class CompleteCommandTest {
      * Tests whether the correct CommandResult is returned during execute()
      * @throws CommandException
      */
-    @Test
+    @Test 
     public void testExecuteMessage() throws CommandException {
        
         String expectedMessage = String.format(firstCommand.MESSAGE_COMPLETE_TASK_SUCCESS, taskToComplete);

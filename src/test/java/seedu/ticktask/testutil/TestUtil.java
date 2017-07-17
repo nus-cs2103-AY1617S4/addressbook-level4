@@ -35,7 +35,7 @@ public class TestUtil {
     public static final Task[] SAMPLE_TASK_DATa = getSAMPLE_TASK_DATa();
 
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
-        try {
+        try { 
             executable.run();
         } catch (Throwable actualException) {
             if (actualException.getClass().isAssignableFrom(expected)) {

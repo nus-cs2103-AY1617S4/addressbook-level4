@@ -20,7 +20,6 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Wash dog";
     public static final String DEFAULT_TIME = "0000";
     public static final String DEFAULT_TASK_TYPE = "deadline";
-
     public static final String DEFAULT_DATE = "01/01/2020";
     public static final String DEFAULT_TAGS = "cleaning";
 
