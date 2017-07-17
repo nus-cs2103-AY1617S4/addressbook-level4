@@ -12,6 +12,7 @@ import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.ticktask.testutil.EditCommandTestUtil.*;
 
+//@@author A0139964M
 public class parseEditCommandTest {
     
     private static final String NAME_DESC_MEETING = " " + PREFIX_NAME + VALID_NAME_MEETING;
@@ -55,3 +56,4 @@ public class parseEditCommandTest {
         }
     }
 }
+//@@author
