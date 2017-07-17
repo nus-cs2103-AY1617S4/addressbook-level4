@@ -183,6 +183,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public Stack<TickTask> getPreviousProgramInstances() {
         return previousProgramInstances;
+    }
     
     public void setPreviousProgramInstances(Stack<TickTask> previousProgramInstances) {
         this.previousProgramInstances = previousProgramInstances;

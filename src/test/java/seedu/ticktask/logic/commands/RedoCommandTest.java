@@ -16,42 +16,33 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.testutil.TickTaskBuilder;;;
-
+//author A0139819N
 public class RedoCommandTest {
-    
-    
-    @Test (expected = EmptyStackException.class)
-    public void redoCommandFailNoUndoneTasks() throws EmptyStackException, CommandException{
-        ModelManager modelStub = new ModelManager();
-        RedoCommand redoCommand = new RedoCommand();
-        try{
-                redoCommand.setData(modelStub, new CommandHistory());
-                redoCommand.execute();
-            } catch (EmptyStackException ese){
-                assertEquals(ese.getMessage(), RedoCommand.MESSAGE_FAILURE);
-            }
-    }
     
     @Test
     public void redoCommandSuccess() throws CommandException, IllegalValueException {
         
-        TickTask tickTaskStub1 = new TickTask();
-        TickTask tickTaskStub2 = new TickTask();
         ModelStubAcceptRedo modelStubAcceptRedo = new ModelStubAcceptRedo();
-        
         modelStubAcceptRedo.redoUndoneCommand();
-        //assertEquals(RedoCommand.MESSAGE_SUCCESS, )
         
         assertTrue(modelStubAcceptRedo.getFutureProgramInstances().isEmpty());
+        
         Stack<TickTask> filledStackForTestingPreviousInstances = new Stack<TickTask>();
-        filledStackForTestingPreviousInstances.push(tickTaskStub2);
-        filledStackForTestingPreviousInstances.push(tickTaskStub1);
+        filledStackForTestingPreviousInstances.push(new TickTask());
         assertEquals(filledStackForTestingPreviousInstances, modelStubAcceptRedo.getPreviousProgramInstances());
     }
     
+    @Test (expected = CommandException.class)
+    public void redoCommandFailNoUndoneTasks() throws EmptyStackException, CommandException{
+        ModelManager modelStub = new ModelManager();
+        RedoCommand redoCommand = new RedoCommand();
+
+        redoCommand.setData(modelStub, new CommandHistory());
+        redoCommand.execute();
+
+    }
     
-    
-    
+   
 
     /**
      * A Model stub that always accepts the redo command.
@@ -68,3 +59,4 @@ public class RedoCommandTest {
 
 
 }
+//author

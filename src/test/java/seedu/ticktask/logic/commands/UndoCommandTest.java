@@ -5,17 +5,14 @@ import static org.junit.Assert.*;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.testutil.TickTaskBuilder;;;
+import seedu.ticktask.testutil.TickTaskBuilder;
 
 //author A0139819N
 
