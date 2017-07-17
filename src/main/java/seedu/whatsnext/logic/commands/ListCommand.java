@@ -1,7 +1,5 @@
 package seedu.whatsnext.logic.commands;
 
-import java.util.Set;
-
 //@@author A0154986L
 //@@author A0142675B
 /**
@@ -24,25 +22,40 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all complete tasks";
     public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
 
-    private final Set<String> keywords;
+    private final String argument;
 
-    public ListCommand(Set<String> keywords) {
-        this.keywords = keywords;
+    public ListCommand(String argument) {
+        this.argument = argument;
     }
 
     @Override
     public CommandResult execute() {
-        if (keywords.isEmpty() || keywords.contains(LIST_INCOMPLETE)) {
+        if (argument.isEmpty() || argument.equals(LIST_INCOMPLETE)) {
             boolean isComplete = false;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_INCOMPLETE);
-        } else if (keywords.contains(LIST_COMPLETED)) {
+        } else if (argument.equals(LIST_COMPLETED)) {
             boolean isComplete = true;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_COMPLETED);
-        } else /*if (keywords.contains(LIST_ALL))*/ {
+        } else {
             model.updateFilteredListToShowAll();
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        ListCommand e = (ListCommand) other;
+        return e.argument.equals(this.argument);
     }
 }
