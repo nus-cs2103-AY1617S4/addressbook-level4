@@ -80,8 +80,12 @@ public class HelpCommandParserTest {
 
         expectedCommand = new HelpCommand(HistoryCommand.COMMAND_WORD);
         assertParseSuccess(HistoryCommand.COMMAND_WORD, expectedCommand);
+
+        expectedCommand = new HelpCommand(HelpCommand.COMMAND_WORD);
+        assertParseSuccess(HelpCommand.COMMAND_WORD, expectedCommand);
     }
 
+    @Test
     public void parse_invalidArgs_throwException() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
         assertParseFailure(INVALID_INPUT, expectedMessage);
