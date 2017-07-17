@@ -36,6 +36,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
+    //@@author A0139964M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified"
             + "by the index number used in the last task listing."
             + "Existing values will be overwritten by the input values.\n"
@@ -47,7 +48,7 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Final report submission "
             + PREFIX_DATE + "08/26/17";
-
+    //@@author
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
