@@ -141,6 +141,9 @@ public class ModelManager extends ComponentManager implements Model {
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.completeTask(task);
+        updateFilteredListToShowAll();
+        indicateTickTaskModelChanged();
+
     }
     //@@author
 

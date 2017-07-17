@@ -35,7 +35,8 @@ public class CommandBox extends UiPart<Region> {
 	private AutoCompletionBinding<String> autoCompletionBinding;
 
 	Set listOfCommands = new HashSet<>();
-	String[] commands = { "add", "delete", "edit", "clear", "help", "undo", "redo", "find", "exit", "delete" };
+	String[] commands = { "add", "delete", "edit", "clear", "help", "undo", "redo", "find", "exit",
+		                "list","complete", "save" };
 
 	@FXML
 	private TextField commandTextField;
