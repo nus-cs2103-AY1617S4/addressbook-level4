@@ -12,6 +12,7 @@ import seedu.whatsnext.model.util.SampleDataUtil;
 import seedu.whatsnext.testutil.TestUtil;
 
 public class SampleDataTest extends TaskManagerGuiTest {
+    //@@author A0154987J
     @Override
     protected TaskManager getInitialData() {
         //return null to force test app to load data from file only
@@ -25,7 +26,7 @@ public class SampleDataTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
+    public void taskManager_dataFileDoesNotExist_loadSampleData() throws Exception {
         BasicTask[] expectedList = SampleDataUtil.getSampleTasks();
         assertTrue(eventListPanel.isListMatching(expectedList));
         assertTrue(deadlineListPanel.isListMatching(expectedList));

@@ -1,56 +1,77 @@
-//package guitests;
-//
-//import static org.junit.Assert.assertTrue;
-//
-//import org.junit.Test;
-//
-//import guitests.guihandles.PersonCardHandle;
-//import seedu.whatsnext.commons.core.Messages;
-//import seedu.whatsnext.logic.commands.AddCommand;
-//import seedu.whatsnext.logic.commands.ClearCommand;
-//import seedu.whatsnext.model.task.Person;
-//import seedu.whatsnext.testutil.BasicTaskUtil;
-//import seedu.whatsnext.testutil.TestUtil;
-//
-//public class AddCommandTest extends AddressBookGuiTest {
-//
-//    @Test
-//    public void add() {
-//        //add one person
-//        Person[] currentList = td.getTypicalPersons();
-//        Person personToAdd = td.hoon;
-//        assertAddSuccess(personToAdd, currentList);
-//        currentList = TestUtil.addPersonsToList(currentList, personToAdd);
-//
-//        //add another person
-//        personToAdd = td.ida;
-//        assertAddSuccess(personToAdd, currentList);
-//        currentList = TestUtil.addPersonsToList(currentList, personToAdd);
-//
-//        //add duplicate person
-//        commandBox.runCommand(BasicTaskUtil.getAddCommand(td.hoon));
-//        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-//        assertTrue(personListPanel.isListMatching(currentList));
-//
-//        //add to empty list
-//        commandBox.runCommand(ClearCommand.COMMAND_WORD);
-//        assertAddSuccess(td.alice);
-//
-//        //invalid command
-//        commandBox.runCommand("adds Johnny");
-//        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
-//    }
-//
-//    private void assertAddSuccess(Person personToAdd, Person... currentList) {
-//        commandBox.runCommand(BasicTaskUtil.getAddCommand(personToAdd));
-//
-//        //confirm the new card contains the right data
-//        PersonCardHandle addedCard = personListPanel.navigateToPerson(personToAdd.getName().fullName);
-//        assertMatching(personToAdd, addedCard);
-//
-//        //confirm the list now contains all previous persons plus the new person
-//        Person[] expectedList = TestUtil.addPersonsToList(currentList, personToAdd);
-//        assertTrue(personListPanel.isListMatching(expectedList));
-//    }
-//
-//}
+package guitests;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Test;
+
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
+import seedu.whatsnext.logic.commands.AddCommand;
+import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.BasicTaskFeatures;
+import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
+import seedu.whatsnext.model.task.TaskName;
+
+public class AddCommandTest extends TaskManagerGuiTest {
+
+    // @@author A0154987J
+    @Test
+    public void add() throws IllegalValueException {
+
+        //add floating task
+        commandBox.runCommand("add Buy a country m/to rule");
+        BasicTask floatToAdd = new BasicTask(new TaskName("Buy a country"),
+                new TaskDescription("to rule"), getTagSet());
+        assertResultMessage(floatToAdd.getTaskDetails());
+        BasicTaskFeatures selectedFloatingTask = floatingListPanel.getSelectedTasks().get(0).getKey();
+        assertEquals(floatToAdd, selectedFloatingTask);
+        //add duplicate floating task
+        commandBox.runCommand("add Buy a country m/to rule");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
+
+        //add deadline task
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/gf");
+        BasicTask deadlineToAdd = new BasicTask(new TaskName("Buy Present For Gf"),
+                new TaskDescription("What She Likes"),
+                new DateTime("next Monday"), getTagSet("gf"));
+        assertResultMessage(deadlineToAdd.getTaskDetails());
+        BasicTaskFeatures selectedDeadlineTask = deadlineListPanel.getSelectedTasks().get(0).getKey();
+        assertEquals(deadlineToAdd, selectedDeadlineTask);
+        //add duplicate deadline task
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/gf");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
+
+        //add event task
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/high");
+        BasicTask eventToAdd = new BasicTask(new TaskName("Watch Csgo Major"), new TaskDescription("Fun stuffs"),
+                new DateTime("4 september"), new DateTime("5 september"), getTagSet("high"));
+        assertResultMessage(eventToAdd.getTaskDetails());
+        BasicTaskFeatures selectedEventTask = eventListPanel.getSelectedTasks().get(0).getKey();
+        assertEquals(eventToAdd, selectedEventTask);
+        //add duplicate event task
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/high");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
+    }
+
+
+
+    public static Set<Tag> getTagSet(String... strings) throws IllegalValueException {
+        HashSet<Tag> tags = new HashSet<>();
+        for (String s : strings) {
+            tags.add(new Tag(s));
+        }
+
+        return tags;
+    }
+}

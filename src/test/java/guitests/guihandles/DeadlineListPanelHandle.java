@@ -138,7 +138,6 @@ public class DeadlineListPanelHandle extends GuiHandle {
                 return false;
             }
         }
-
         return true;
     }
 

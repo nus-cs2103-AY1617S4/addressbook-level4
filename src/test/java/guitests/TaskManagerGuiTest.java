@@ -146,6 +146,8 @@ public abstract class TaskManagerGuiTest {
       * string.
       */
     protected void assertResultMessage(String expected) {
+        System.out.println(expected);
+        System.out.println(resultDisplay.getText());
         assertEquals(expected, resultDisplay.getText());
     }
 
