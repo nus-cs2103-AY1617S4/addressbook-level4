@@ -12,9 +12,11 @@ import org.junit.rules.ExpectedException;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
+import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.UserPrefs;
+import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.TickTaskBuilder;;;
 //@@author A0139819N
 public class RedoCommandTest {
@@ -23,25 +25,49 @@ public class RedoCommandTest {
     public void redoCommandSuccess() throws CommandException, IllegalValueException {
         
         ModelStubAcceptRedo modelStubAcceptRedo = new ModelStubAcceptRedo();
-        modelStubAcceptRedo.redoUndoneCommand();
+        RedoCommand redoCommandObj = getRedoCommandForModel(modelStubAcceptRedo);
+        CommandResult redoResult = redoCommandObj.execute();
         
         assertTrue(modelStubAcceptRedo.getFutureProgramInstances().isEmpty());
-        
+        assertEquals(RedoCommand.MESSAGE_SUCCESS, redoResult.feedbackToUser);
         Stack<TickTask> filledStackForTestingPreviousInstances = new Stack<TickTask>();
         filledStackForTestingPreviousInstances.push(new TickTask());
         assertEquals(filledStackForTestingPreviousInstances, modelStubAcceptRedo.getPreviousProgramInstances());
     }
     
-    @Test (expected = CommandException.class)
+    @Test
     public void redoCommandFailNoUndoneTasks() throws EmptyStackException, CommandException{
         ModelManager modelStub = new ModelManager();
         RedoCommand redoCommand = new RedoCommand();
 
         redoCommand.setData(modelStub, new CommandHistory());
-        redoCommand.execute();
+        try{
+            redoCommand.execute();
+        } catch( CommandException ce){
+            assertEquals(ce.getMessage(), RedoCommand.MESSAGE_FAILURE);
+        }
 
     }
     
+    @Test (expected = CommandException.class)
+    public void redoCommandFailCmdException() throws EmptyStackException, CommandException{
+        ModelManager modelStub = new ModelManager();
+        RedoCommand redoCommand = new RedoCommand();
+
+        redoCommand.setData(modelStub, new CommandHistory());
+        
+            redoCommand.execute();       
+
+    }
+    
+    /**
+     * Generates a new RedoCommand object based on the Model Stub
+     */
+    private RedoCommand getRedoCommandForModel(Model model) {
+        RedoCommand command = new RedoCommand();
+        command.setData(model, new CommandHistory());
+        return command;
+    }
    
 
     /**

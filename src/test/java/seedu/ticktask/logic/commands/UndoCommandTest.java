@@ -35,7 +35,7 @@ public class UndoCommandTest {
     }
     
     @Test (expected = CommandException.class)
-    public void undoCommandFailNoPreviousTasks() throws EmptyStackException, CommandException{
+    public void undoCommandFailCmdException() throws EmptyStackException, CommandException{
         
             ModelManager modelStub = new ModelManager();
             UndoCommand undoCommand = new UndoCommand();
@@ -44,6 +44,19 @@ public class UndoCommandTest {
             
     }
     
+    @Test
+    public void undoCommandFailNoPreviousTasks() throws EmptyStackException, CommandException{
+        
+            ModelManager modelStub = new ModelManager();
+            UndoCommand undoCommand = new UndoCommand();
+            undoCommand.setData(modelStub, new CommandHistory());
+            try{
+                undoCommand.execute();
+            } catch( CommandException ce){
+                assertEquals(ce.getMessage(), UndoCommand.MESSAGE_FAILURE);
+            }
+            
+    }
 
     /**
      * A Model stub that always accepts a undo command.
