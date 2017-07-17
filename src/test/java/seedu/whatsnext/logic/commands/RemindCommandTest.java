@@ -47,9 +47,9 @@ public class RemindCommandTest {
         remindCommand.setData(actualModel, new CommandHistory());
 
         CommandResult result = remindCommand.execute();
-        
+
         String expectedMessage = String.format(RemindCommand.MESSAGE_SUCCESS) + VALID_REMINDER_SETTING;
-        
+
         Model expectedModel = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         expectedModel.setReminderSetting(VALID_REMINDER_SETTING);
 
