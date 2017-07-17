@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.logic.LogicManagerTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:14" hostname="Cherry-Goh" time="0.134">
+  <properties/>
+  <testcase name="execute_delete_removesCorrectPerson" classname="seedu.ticktask.logic.LogicManagerTest" time="0.03"/>
+  <testcase name="execute_invalid" classname="seedu.ticktask.logic.LogicManagerTest" time="0.002"/>
+  <testcase name="execute_help" classname="seedu.ticktask.logic.LogicManagerTest" time="0.005"/>
+  <testcase name="execute_find_isNotCaseSensitive" classname="seedu.ticktask.logic.LogicManagerTest" time="0.012"/>
+  <testcase name="execute_select_jumpsToCorrectPerson" classname="seedu.ticktask.logic.LogicManagerTest" time="0.009"/>
+  <testcase name="execute_selectInvalidArgsFormat_errorMessageShown" classname="seedu.ticktask.logic.LogicManagerTest" time="0.005"/>
+  <testcase name="execute_add_invalidArgsFormat" classname="seedu.ticktask.logic.LogicManagerTest" time="0.002"/>
+  <testcase name="execute_list_showsAllTasks" classname="seedu.ticktask.logic.LogicManagerTest" time="0.01"/>
+  <testcase name="execute_selectIndexNotFound_errorMessageShown" classname="seedu.ticktask.logic.LogicManagerTest" time="0.009"/>
+  <testcase name="execute_find_invalidArgsFormat" classname="seedu.ticktask.logic.LogicManagerTest" time="0.002"/>
+  <testcase name="execute_find_onlyMatchesFullWordsInNames" classname="seedu.ticktask.logic.LogicManagerTest" time="0.01"/>
+  <testcase name="execute_unknownCommandWord" classname="seedu.ticktask.logic.LogicManagerTest" time="0.004"/>
+  <testcase name="execute_clear" classname="seedu.ticktask.logic.LogicManagerTest" time="0.01"/>
+  <testcase name="execute_deleteIndexNotFound_errorMessageShown" classname="seedu.ticktask.logic.LogicManagerTest" time="0.008"/>
+  <testcase name="execute_find_matchesIfAnyKeywordPresent" classname="seedu.ticktask.logic.LogicManagerTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 4
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 4
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 2]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 4
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][       ]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][help]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.ui.ShowHelpRequestEvent: ShowHelpRequestEvent
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 4, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][find KEY]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 4
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select 2]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.ui.JumpToListRequestEvent: JumpToListRequestEvent
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select +1]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select -1]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select 0]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select not_a_number]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][addd test]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 0, number of tags 0
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][select 3]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][find ]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 4, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][find KEY]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 4
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][clear]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 0, number of tags 0
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 0, number of tags 0
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 2
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 3
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 3]
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 1, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 2, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 3, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.commons.core.EventsCenter post
+INFO: ------[Event Posted] seedu.ticktask.commons.events.model.TickTaskChangedEvent: number of Tasks 4, number of tags 1
+Jul 17, 2017 3:33:14 PM seedu.ticktask.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][find key rAnDoM]
+]]></system-err>
+</testsuite>

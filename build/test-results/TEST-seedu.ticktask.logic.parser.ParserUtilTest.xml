@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.logic.parser.ParserUtilTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:15" hostname="Cherry-Goh" time="0.218">
+  <properties/>
+  <testcase name="parseTime_validValue_returnsDueTime" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.003"/>
+  <testcase name="parseTime_null_throwsNullPointerException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.002"/>
+  <testcase name="parseName_validValue_returnsName" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseName_null_throwsNullPointerException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseTags_collectionWithValidTags_returnsTagSet" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseDate_validValue_returnsDueDate" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.202"/>
+  <testcase name="parseIndex_validInput_success" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseName_optionalEmpty_returnsOptionalEmpty" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseDate_null_throwsNullPointerException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseTags_null_throwsNullPointerException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseName_invalidValue_throwsIllegalValueException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseIndex_outOfRangeInput_throwsIllegalValueException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseTaskType_validValue_returnsTaskType" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseTags_collectionWithInvalidTags_throwsIllegalValueException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseIndex_invalidInput_throwsIllegalValueException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseTags_emptyCollection_returnsEmptySet" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseTaskType_null_throwsNullPointerException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseTaskType_invalidValue_throwsIllegalValueException" classname="seedu.ticktask.logic.parser.ParserUtilTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

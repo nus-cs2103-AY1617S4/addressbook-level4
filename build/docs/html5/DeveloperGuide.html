@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>TickTask - Developer Guide</title>
+<link rel="stylesheet" href="stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>TickTask - Developer Guide</h1>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>By: <code>T01-T1</code>      Since: <code>Jun 2017</code>      Licence: <code>MIT</code></p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#setting-up">1. Setting up</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites">1.1. Prerequisites</a></li>
+<li><a href="#importing-the-project-into-eclipse">1.2. Importing the project into Eclipse</a></li>
+<li><a href="#configuring-checkstyle">1.3. Configuring Checkstyle</a></li>
+<li><a href="#troubleshooting-project-setup">1.4. Troubleshooting project setup</a></li>
+<li><a href="#updating-documentation">1.5. Updating documentation</a></li>
+<li><a href="#coding-style">1.6. Coding style</a></li>
+</ul>
+</li>
+<li><a href="#design">2. Design</a>
+<ul class="sectlevel2">
+<li><a href="#architecture">2.1. Architecture</a></li>
+<li><a href="#ui-component">2.2. UI component</a></li>
+<li><a href="#logic-component">2.3. Logic component</a></li>
+<li><a href="#model-component">2.4. Model component</a></li>
+<li><a href="#storage-component">2.5. Storage component</a></li>
+<li><a href="#common-classes">2.6. Common classes</a></li>
+</ul>
+</li>
+<li><a href="#implementation">3. Implementation</a>
+<ul class="sectlevel2">
+<li><a href="#logging">3.1. Logging</a></li>
+<li><a href="#configuration">3.2. Configuration</a></li>
+</ul>
+</li>
+<li><a href="#testing">4. Testing</a>
+<ul class="sectlevel2">
+<li><a href="#headless-gui-testing">4.1. Headless GUI Testing</a></li>
+<li><a href="#troubleshooting-tests">4.2. Troubleshooting tests</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">5. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">5.1. Build Automation</a></li>
+<li><a href="#continuous-integration">5.2. Continuous Integration</a></li>
+<li><a href="#publishing-documentation">5.3. Publishing Documentation</a></li>
+<li><a href="#making-a-release">5.4. Making a Release</a></li>
+<li><a href="#converting-documentation-to-pdf-format">5.5. Converting Documentation to PDF format</a></li>
+<li><a href="#managing-dependencies">5.6. Managing Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#user-stories">Appendix A: User Stories</a></li>
+<li><a href="#use-cases">Appendix B: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix D: Glossary</a></li>
+<li><a href="#product-survey">Appendix E: Product Survey</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="link" href="#prerequisites">1.1. Prerequisites</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>JDK <code>1.8.0_60</code></strong> or later</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Having any Java 8 version is not enough.<br>
+This app will not work with earlier versions of Java 8.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>Eclipse</strong> IDE</p>
+</li>
+<li>
+<p><strong>e(fx)clipse</strong> plugin for Eclipse (Do the steps 2 onwards given in <a href="http://www.eclipse.org/efxclipse/install.html#for-the-ambitious">this page</a>)</p>
+</li>
+<li>
+<p><strong>Buildship Gradle Integration</strong> plugin from the Eclipse Marketplace</p>
+</li>
+<li>
+<p><strong>Checkstyle Plug-in</strong> plugin from the Eclipse Marketplace</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-the-project-into-eclipse"><a class="link" href="#importing-the-project-into-eclipse">1.2. Importing the project into Eclipse</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fork this repo, and clone the fork to your computer</p>
+</li>
+<li>
+<p>Open Eclipse (Note: Ensure you have installed the <strong>e(fx)clipse</strong> and <strong>buildship</strong> plugins as given in the prerequisites above)</p>
+</li>
+<li>
+<p>Click <code>File</code> &gt; <code>Import</code></p>
+</li>
+<li>
+<p>Click <code>Gradle</code> &gt; <code>Gradle Project</code> &gt; <code>Next</code> &gt; <code>Next</code></p>
+</li>
+<li>
+<p>Click <code>Browse</code>, then locate the project&#8217;s directory</p>
+</li>
+<li>
+<p>Click <code>Finish</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If you are asked whether to 'keep' or 'overwrite' config files, choose to 'keep'.</p>
+</li>
+<li>
+<p>Depending on your connection speed and server load, it can even take up to 30 minutes for the set up to finish (This is because Gradle downloads library files from servers during the project set up process).</p>
+</li>
+<li>
+<p>If Eclipse auto-changed any settings files during the import process, you can discard those changes.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-checkstyle"><a class="link" href="#configuring-checkstyle">1.3. Configuring Checkstyle</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click <code>Project</code> &#8594; <code>Properties</code> &#8594; <code>Checkstyle</code> &#8594; <code>Local Check Configurations</code> &#8594; <code>New&#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Choose <code>External Configuration File</code> under <code>Type</code></p>
+</li>
+<li>
+<p>Enter an arbitrary configuration name e.g. TickTask</p>
+</li>
+<li>
+<p>Import checkstyle configuration file found at <code>config/checkstyle/checkstyle.xml</code></p>
+</li>
+<li>
+<p>Click OK once, go to the <code>Main</code> tab, use the newly imported check configuration.</p>
+</li>
+<li>
+<p>Tick and select <code>files from packages</code>, click <code>Change&#8230;&#8203;</code>, and select the <code>resources</code> package</p>
+</li>
+<li>
+<p>Click OK twice. Rebuild project if prompted</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Click on the <code>files from packages</code> text after ticking in order to enable the <code>Change&#8230;&#8203;</code> button
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting-project-setup"><a class="link" href="#troubleshooting-project-setup">1.4. Troubleshooting project setup</a></h3>
+<div class="paragraph">
+<p><strong>Problem: Eclipse reports compile errors after new commits are pulled from Git</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reason: Eclipse fails to recognize new files that appeared due to the Git pull.</p>
+</li>
+<li>
+<p>Solution: Refresh the project in Eclipse: Right click on the project (in Eclipse package explorer), choose <code>Gradle</code> &#8594; <code>Refresh Gradle Project</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Problem: Eclipse reports some required libraries missing</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reason: Required libraries may not have been downloaded during the project import.</p>
+</li>
+<li>
+<p>Solution: <a href="UsingGradle.html">Run tests using Gradle</a> once (to refresh the libraries).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-documentation"><a class="link" href="#updating-documentation">1.5. Updating documentation</a></h3>
+<div class="paragraph">
+<p>After forking the repo, links in the documentation will link to the wrong repo. You should replace the URL in the variable <code>repoURL</code> in DeveloperGuide.adoc with the URL of your fork.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coding-style"><a class="link" href="#coding-style">1.6. Coding style</a></h3>
+<div class="paragraph">
+<p>We follow <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="architecture"><a class="link" href="#architecture">2.1. Architecture</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/Architecture.png" alt="Architecture" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1.1 : Architecture Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/ui/Ui.java"><code>MainApp</code></a>. It is responsible for,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</p>
+</li>
+<li>
+<p>At shut down: Shuts down the components and invokes cleanup method where necessary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+</li>
+<li>
+<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The rest of the App consists of four components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The UI of the App.</p>
+</li>
+<li>
+<p><a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor.</p>
+</li>
+<li>
+<p><a href="#model-component"><strong><code>Model</code></strong></a> : Holds the data of the App in-memory.</p>
+</li>
+<li>
+<p><a href="#storage-component"><strong><code>Storage</code></strong></a> : Reads data from, and writes data to, the hard disk.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of the four components</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+</li>
+<li>
+<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1.2 : Class Diagram of the Logic Component</em></p>
+</div>
+<h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
+<div class="paragraph">
+<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeleteTickTask.png" alt="SDforDeleteTickTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1.3a : Component interactions for <code>delete 1</code> command (part 1)</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the <code>Model</code> simply raises a <code>TickTaskChangedEvent</code> when the Tick Task data is changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeleteTaskEventHandling.png" alt="SDforDeleteTaskEventHandling" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1.3b : Component interactions for <code>delete 1</code> command (part 2)</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The sections below give more details of each component.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ui-component"><a class="link" href="#ui-component">2.2. UI component</a></h3>
+<div class="paragraph">
+<p>Author: Richard Goh</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>TaskListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
+</li>
+<li>
+<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logic-component"><a class="link" href="#logic-component">2.3. Logic component</a></h3>
+<div class="paragraph">
+<p>Author: Herman Wong</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.3.1 : Structure of the Logic Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> :
+<a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/logic/Logic.java"><code>Logic.java</code></a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Logic</code> uses the <code>Parser</code> class to parse the user command.</p>
+</li>
+<li>
+<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+</li>
+<li>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a task) and/or raise events.</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteTaskSdForLogic.png" alt="DeleteTaskSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.3.1 : Interactions Inside the Logic Component for the <code>delete 1</code> Command</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="model-component"><a class="link" href="#model-component">2.4. Model component</a></h3>
+<div class="paragraph">
+<p>Author: Rahumathmarini</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.4.1 : Structure of the Model Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Tick Task data.</p>
+</li>
+<li>
+<p>exposes a <code>UnmodifiableObservableList&lt;ReadOnlyTask&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="storage-component"><a class="link" href="#storage-component">2.5. Storage component</a></h3>
+<div class="paragraph">
+<p>Author: Cherry Goh</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.5.1 : Structure of the Storage Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3/src/main/java/seedu/ticktask/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save the Tick Task data in xml format and read it back.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="common-classes"><a class="link" href="#common-classes">2.6. Common classes</a></h3>
+<div class="paragraph">
+<p>Classes used by multiple components are in the <code>seedu.TickTask.commons</code> package.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.1. Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>)</p>
+</li>
+<li>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+</li>
+<li>
+<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Logging Levels</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+</li>
+<li>
+<p><code>WARNING</code> : Can continue, but with caution</p>
+</li>
+<li>
+<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+</li>
+<li>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">3.2. Configuration</a></h3>
+<div class="paragraph">
+<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="testing"><a class="link" href="#testing">4. Testing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tests can be found in the <code>./src/test/java</code> folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>In Eclipse</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run as</code> &gt; <code>JUnit Test</code></p>
+</li>
+<li>
+<p>To run a subset of tests, you can right-click on a test package, test class, or a test and choose to run as a JUnit test.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Using Gradle</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>See <a href="UsingGradle.html">UsingGradle.adoc</a> for how to run tests using Gradle.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We have two types of tests:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>GUI Tests</strong> - These are <em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>guitests</code> package.</p>
+</li>
+<li>
+<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include,</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><em>Unit tests</em> targeting the lowest level methods/classes.<br>
+e.g. <code>seedu.task.commons.StringUtilTest</code></p>
+</li>
+<li>
+<p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
+e.g. <code>seedu.task.storage.StorageManagerTest</code></p>
+</li>
+<li>
+<p>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
+e.g. <code>seedu.task.logic.LogicManagerTest</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="headless-gui-testing"><a class="link" href="#headless-gui-testing">4.1. Headless GUI Testing</a></h3>
+<div class="paragraph">
+<p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running. See <a href="UsingGradle.html#running-tests">UsingGradle.adoc</a> to learn how to run tests in headless mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting-tests"><a class="link" href="#troubleshooting-tests">4.2. Troubleshooting tests</a></h3>
+<div class="paragraph">
+<p><strong>Problem: Tests fail because NullPointException when AssertionError is expected</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reason: Assertions are not enabled for JUnit tests. This can happen if you are not using a recent Eclipse version (i.e. <em>Neon</em> or later)</p>
+</li>
+<li>
+<p>Solution: Enable assertions in JUnit tests as described <a href="http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option">here</a>. Delete run configurations created when you ran tests earlier.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dev-ops"><a class="link" href="#dev-ops">5. Dev Ops</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="build-automation"><a class="link" href="#build-automation">5.1. Build Automation</a></h3>
+<div class="paragraph">
+<p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">5.2. Continuous Integration</a></h3>
+<div class="paragraph">
+<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.3. Publishing Documentation</a></h3>
+<div class="paragraph">
+<p>See <a href="UsingGithubPages.html">UsingGithubPages.adoc</a> to learn how to use GitHub Pages to publish documentation to the project site.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="making-a-release"><a class="link" href="#making-a-release">5.4. Making a Release</a></h3>
+<div class="paragraph">
+<p>Here are the steps to create a new release.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
+</li>
+<li>
+<p>Tag the repo with the version number. e.g. <code>v0.1</code></p>
+</li>
+<li>
+<p><a href="https://help.github.com/articles/creating-releases/">Create a new release using GitHub</a> and upload the JAR file you created.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.5. Converting Documentation to PDF format</a></h3>
+<div class="paragraph">
+<p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
+</div>
+<div class="paragraph">
+<p>Here are the steps to convert the project documentation files to PDF format.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you have set up GitHub Pages as described in <a href="UsingGithubPages.html#setting-up">UsingGithubPages.adoc</a>.</p>
+</li>
+<li>
+<p>Using Chrome, go to the <a href="UsingGithubPages.html#viewing-the-project-site">GitHub Pages version</a> of the documentation file. e.g. For <a href="UserGuide.html">UserGuide.adoc</a>, the URL will be <code>https://&lt;your-username-or-organization-name&gt;.github.io/ticktask/docs/UserGuide.html</code>.</p>
+</li>
+<li>
+<p>Click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
+</li>
+<li>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5.4.1 : Saving documentation as PDF files in Chrome</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">5.6. Managing Dependencies</a></h3>
+<div class="paragraph">
+<p>A project often depends on third-party libraries. For example, Tick Task depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
+a. Include those libraries in the repo (this bloats the repo size)<br>
+b. Require developers to download those libraries manually (this creates extra work for developers)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix A: User Stories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">As a</th>
+<th class="tableblock halign-left valign-top">I want to&#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find the appropriate commands to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a task without any time or date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of floating tasks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a task with a start and end time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of events</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a task with an end date and time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of deadlines</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit a task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update the task if the task details change</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove tasks that are no longer relevant</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark a task as being complete/ incomplete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of which tasks I still need to do</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list out all the tasks I have added</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view all my tasks simultaneously</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undo and redo my actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily correct an incorrect action</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search for a task using keywords</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily locate the details of a particular task</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">specify the folder and file to use for storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">determine the optimal location to store my data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set a task to repeat in the future</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily manage recurring tasks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filter tasks based on tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organise my tasks into categories</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set reminders for tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remember to complete it before the deadline</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display my task in calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my tasks in a chronological format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use shortcuts to perform certain functions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">navigate the program with ease and speed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">colour code my tasks according to tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my task categories more easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add priorities to the task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">determine which task to complete first</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">block out more than one time slot for a task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reserve time slots if the task details are not yet final</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">push back all my tasks for the day by a certain amount of time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit my tasks if unexpected events disrupt my day</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my tasks within a specified duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manage my tasks within different time frames</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input commands using natural language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">perform commands easily and intuitively</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sync my task manager across devices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manage my tasks from anywhere</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">customise my GUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optimise the GUI for my own needs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select my notification method (e.g. SMS, email, etc.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select the most effective method</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add comments, pictures and files to each task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attach relevant details to my tasks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add my own shortcuts to use</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">customise my shortcuts based on my own preferences</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">import a set of tasks into my manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily receive details about tasks from other people (e.g. boss, colleagues, etc.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have my commands be auto-completed for me</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">insert commands more quickly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort my tasks according to a particular attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organise my tasks more easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort my tasks according to a particular attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organise my tasks more easily</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix B: Use Cases</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(For all use cases below, the <strong>System</strong> is the <code>TickTask</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<div class="paragraph">
+<p><strong>Software system : task manager</strong><br>
+<strong>User case: User add/ edits task</strong></p>
+</div>
+<div class="paragraph">
+<p>Actors: User<br>
+1.  User launches program<br>
+2.  Task manager displays the current pending tasks<br>
+3.  User types command to add a task<br>
+4.  Task manager previews updated details and displays prompt to confirm action<br>
+5.  User confirms action<br>
+6.  Task manager displays list of updated pending tasks</p>
+</div>
+<div class="paragraph">
+<p><strong>Software system : task manager</strong><br>
+<strong>User case: User searches for task</strong></p>
+</div>
+<div class="paragraph">
+<p>Actors: User<br>
+1.  User launches program<br>
+2.  Task manager displays the current pending tasks<br>
+3.  User types in keyword to search for a task<br>
+4.  Task manager displays list of tasks matching the keyword<br>
+5.  User selects the task they desire<br>
+6.  Task manager displays details of the task</p>
+</div>
+<div class="paragraph">
+<p><strong>Software system : task manager</strong><br>
+<strong>User case: User specifies storage folder</strong></p>
+</div>
+<div class="paragraph">
+<p>Actors: User<br>
+1.  User launches program<br>
+2.  Task manager displays the current pending tasks<br>
+3.  User inputs command to specify storage folder<br>
+4.  Task manager displays a prompt for user to confirm the new storage path<br>
+5.  User confirms action<br>
+6.  Task manager displays confirmation message</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Software should be operational if Java 1.8.0_60 is installed in conventional OS.</p>
+</li>
+<li>
+<p>Software’s data should be able to be ported over to other devices without conflicts.</p>
+</li>
+<li>
+<p>Software should be able to keep track of 1000 tasks without any observable delay in performance.</p>
+</li>
+<li>
+<p>Software should be able to perform each command without any observable delay.</p>
+</li>
+<li>
+<p>Software should run without any crash or error &gt;98% of the time.</p>
+</li>
+<li>
+<p>Software should run without an installer</p>
+</li>
+<li>
+<p>Software should be able to sustain stored data without any loss or corruption.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Appendix D: Glossary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Conventional OS: Mac OS X, Windows, Linux</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix E: Product Survey</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Product</th>
+<th class="tableblock halign-left valign-top">Strengths</th>
+<th class="tableblock halign-left valign-top">Weaknesses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Quick add in natural language<br>
+2.  Can search through the calendar using keywords<br>
+3.  View day, week, month<br>
+4.  Can add other calendars</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Does not support performing actions using keyboard shortcuts.<br>
+2.  Needs to be accessed online - which implies additional step for Jim.<br>
+3.  Tasks cannot be easily categorized into different priorities such as “cannot do”</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HiTask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Jim would find the  calendar view at the left-hand side &amp; a team window on the right to be helpful.<br>
+2.  Jim would find the synchronization with google calender help.<br>
+3.  Jim would find the sorting/filtering function to search for his task helpful.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Jim will find that there are too many tabs to setup a todo-item  vs a ‘one-shot’ approach<br>
+2.  Jim will not require the drag and drop features for events delegation ..</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calender</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Has a calendar view<br>
+2.  Has a quick add feature to create new events/ tasks<br>
+3.  UI allows for color coding<br>
+4.  Synchronization across Apple devices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Does not offer an option to display current tasks<br>
+2.  Tasks cannot be added/ edited/ deleted by command line.<br>
+3.  Tasks cannot be prioritized according to categories such as “cannot do”, etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trello</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  UI makes it so all tasks can be viewed simultaneously.<br>
+2.  Tasks can be labelled - will be useful for categorisation/ prioritisation.<br>
+3.  Calendar view is available.<br>
+4.  Tasks can be shared with other trello members - could be helpful for Jim in the workplace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.  Too much dependency on UI to create/ add/ edit/ delete tasks.Will affect Jim’s ability to add tasks quickly. <br>
+2.  Needs to be access online. Will affect Jim’s speed.<br>
+3.  Does not offer natural language processing.<br>
+4.  Too many features - will just serve as clutter for Jim.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-07-16 14:10:08 +08:00
+</div>
+</div>
+</body>
+</html>

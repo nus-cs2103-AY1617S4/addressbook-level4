@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.storage.XmlTickTaskStorageTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:15" hostname="Cherry-Goh" time="0.059">
+  <properties/>
+  <testcase name="read_missingFile_emptyResult" classname="seedu.ticktask.storage.XmlTickTaskStorageTest" time="0.001"/>
+  <testcase name="saveTickTask_nullFilePath_throwsNullPointerException" classname="seedu.ticktask.storage.XmlTickTaskStorageTest" time="0.001"/>
+  <testcase name="readTickTask_nullFilePath_throwsNullPointerException" classname="seedu.ticktask.storage.XmlTickTaskStorageTest" time="0.0"/>
+  <testcase name="readAndSaveTickTask_allInOrder_success" classname="seedu.ticktask.storage.XmlTickTaskStorageTest" time="0.056"/>
+  <testcase name="saveTickTask_nullTickTask_throwsNullPointerException" classname="seedu.ticktask.storage.XmlTickTaskStorageTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Jul 17, 2017 3:33:15 PM seedu.ticktask.storage.XmlTickTaskStorage readTickTask
+INFO: TickTask file ./src/test/data/XmlTickTaskStorageTest/NonExistentFile.xml not found
+]]></system-err>
+</testsuite>

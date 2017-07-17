@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.model.task.DueTimeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:15" hostname="Cherry-Goh" time="0.0">
+  <properties/>
+  <testcase name="isVlaidTimeReturnsTrue" classname="seedu.ticktask.model.task.DueTimeTest" time="0.0"/>
+  <testcase name="isValidTimeReturnsFalse" classname="seedu.ticktask.model.task.DueTimeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

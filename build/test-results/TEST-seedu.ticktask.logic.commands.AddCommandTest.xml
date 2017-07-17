@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.logic.commands.AddCommandTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:14" hostname="Cherry-Goh" time="0.008">
+  <properties/>
+  <testcase name="execute_taskAcceptedByModel_addSuccessful" classname="seedu.ticktask.logic.commands.AddCommandTest" time="0.003"/>
+  <testcase name="execute_duplicateTask_throwsCommandException" classname="seedu.ticktask.logic.commands.AddCommandTest" time="0.004"/>
+  <testcase name="constructor_nullTask_throwsNullPointerException" classname="seedu.ticktask.logic.commands.AddCommandTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="seedu.ticktask.model.UnmodifiableObservableListTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-07-17T07:33:15" hostname="Cherry-Goh" time="0.029">
+  <properties/>
+  <testcase name="mutatingMethods_disabled" classname="seedu.ticktask.model.UnmodifiableObservableListTest" time="0.019"/>
+  <testcase name="transformationListGenerators_correctBackingList" classname="seedu.ticktask.model.UnmodifiableObservableListTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
