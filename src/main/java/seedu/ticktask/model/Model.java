@@ -8,8 +8,6 @@ import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -39,7 +37,7 @@ public interface Model {
     /** Adds the given task 
      * @throws PastTaskException 
      * @throws EventClashException */
-    void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException;
+    void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -51,7 +49,7 @@ public interface Model {
      * @throws EventClashException 
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException;
+            throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
@@ -90,4 +88,8 @@ public interface Model {
 
     /**Redo a previously undone action on the TickTask program*/
     void redoUndoneCommand() throws EmptyStackException;
+    
+    boolean isChornological(ReadOnlyTask t);
+    
+    String eventClash(ReadOnlyTask t);
 }

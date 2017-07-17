@@ -17,8 +17,6 @@ import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 
 /**
@@ -28,7 +26,7 @@ public class CompleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
     
-    public CompleteCommandTest() throws PastTaskException, EventClashException {    
+    public CompleteCommandTest() {    
     }
     
 //    @Test

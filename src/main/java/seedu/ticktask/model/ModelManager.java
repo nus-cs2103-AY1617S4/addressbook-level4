@@ -17,8 +17,6 @@ import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -139,7 +137,7 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     @Override
-    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException{
+    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
         saveInstance();
         currentProgramInstance.addTask(task);
         updateFilteredListToShowAll();
@@ -159,11 +157,19 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
+            throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedTask);
         saveInstance();
         currentProgramInstance.updateTask(target, editedTask);
         indicateTickTaskModelChanged();
+    }
+    
+    public boolean isChornological(ReadOnlyTask t) {
+        return currentProgramInstance.isChornological(t);
+    }
+    
+    public String eventClash(ReadOnlyTask t) {
+        return currentProgramInstance.eventClash(t);
     }
 
     //=========== Filtered Task List Accessors =============================================================

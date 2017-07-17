@@ -5,8 +5,6 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 
 /**
  *
@@ -21,17 +19,17 @@ public class TypicalTasks {
 
     public TypicalTasks(){
         try {
-            washdog = new TaskBuilder().withName("wash dog")
-                    .withDate("01/01/2020").withType("deadline")
-                    .withTime("2200")
+            washdog = new TaskBuilder().withName("Wash dog")
+                    .withDate("01/01/2018 - 01/01/2019").withType("event")
+                    .withTime("0800")
                     .withTags("cleaning").build();
 
-            dotutorial = new TaskBuilder().withName("do tutorial").withDate("03/22/19")
+            dotutorial = new TaskBuilder().withName("Do tutorial").withDate("03/22/19")
 
                     .withType("deadline").withTime("2300")
                     .withTags("school", "homework").build();
-            meetgirlfriend = new TaskBuilder().withName("meet girlfriend").withTime("0800")
-                    .withType("deadline").withDate("02/23/2023").build();
+            meetgirlfriend = new TaskBuilder().withName("Meet girlfriend").withTime("")
+                    .withType("floating").withDate("").build();
 
             
           
@@ -40,7 +38,7 @@ public class TypicalTasks {
         }
     }
 
-    public static void loadTickTaskWithSampleData(TickTask ab) throws PastTaskException, EventClashException {
+    public static void loadTickTaskWithSampleData(TickTask ab) {
         for (Task task : new TypicalTasks().getTypicalTasks()) {
             try {
                 ab.addTask(new Task(task));
@@ -54,14 +52,9 @@ public class TypicalTasks {
         return new Task[]{washdog, dotutorial, meetgirlfriend};
     }
 
-    public TickTask getTypicalTickTask() throws PastTaskException {
+    public TickTask getTypicalTickTask() {
         TickTask ab = new TickTask();
-        try {
-            loadTickTaskWithSampleData(ab);
-        } catch (EventClashException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        loadTickTaskWithSampleData(ab);
         return ab;
     }
 }
