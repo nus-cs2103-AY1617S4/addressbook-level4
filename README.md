@@ -1,7 +1,7 @@
 # WHATSNEXT
 
 [![Build Status](https://travis-ci.org/CS2103JUN2017-T4/main.svg?branch=master)](https://travis-ci.org/CS2103JUN2017-T4/main)
-
+[![Coverage Status](https://coveralls.io/repos/github/CS2103JUN2017-T4/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103JUN2017-T4/main?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/293bb6c5af064a5f851765c0f9d2d3b4)](https://www.codacy.com/app/luishengjie/main/dashboard)
 
 <br>
