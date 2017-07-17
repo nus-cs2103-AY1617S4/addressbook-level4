@@ -35,7 +35,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
                   assert listIndicatorPrefix.equals(PREFIX_COMPLETE);
                   listToDeleteFrom = model.getFilteredCompletedTaskList();
             }
-
+            
             if (targetIndex.getZeroBased() >= listToDeleteFrom.size()) {
                   throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }

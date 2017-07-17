@@ -48,7 +48,7 @@ public class TickTask implements ReadOnlyTickTask {
     }
 
     public TickTask() {}
-
+    
     /**
      * Creates an TickTask list using the Tasks and Tags in the {@code toBeCopied}
      */
