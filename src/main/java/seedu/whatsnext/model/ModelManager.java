@@ -94,6 +94,15 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     // @@author A0154986L
+    /** Resets previous task manager instance. */
+    @Override
+    public void resetPrevTaskManager() {
+        undoTaskManager();
+        redoTaskManager.clear();
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
     /** Returns current reminder setting. */
     @Override
     public String getReminderSetting() {
