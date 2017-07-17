@@ -193,9 +193,12 @@ public class DueDate {
         }
         else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
-            value = getStartDate() + " - " + getEndDate();
             end_date = end_date2;
-
+            if (end_date != null){
+                value = getStartDate() + " - " + getEndDate();
+            }else{
+                value = getStartDate();
+            }
         }
 
     }
@@ -207,10 +210,12 @@ public class DueDate {
         }
         else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
-            value = getStartDate() + " - " + getEndDate();
             start_date = start_date2;
-
-
+            if (end_date != null){
+                value = getStartDate() + " - " + getEndDate();
+            }else{
+                value = getStartDate();
+            }
         }
 
     }
