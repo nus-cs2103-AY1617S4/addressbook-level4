@@ -201,6 +201,11 @@ public class AddCommandTest {
         public void setReminderSetting(String newReminderSetting) {
             fail("This method should not be called.");
         }
+
+        @Override
+        public void resetPrevTaskManager() {
+            fail("This method should not be called.");            
+        }
     }
 
     //@@author A0156106M
