@@ -108,6 +108,14 @@ public class EditCommand extends Command {
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
         }
+        int counter = 0;
+        for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
+            if (taskToEdit.equals(model.getFilteredTaskList().get(i))) {
+                counter = i;
+                break;
+            }
+        }
+        Index index = new Index(counter);
         EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
