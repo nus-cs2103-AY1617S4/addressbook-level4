@@ -3,82 +3,68 @@ package seedu.ticktask.logic.commands;
 import static org.junit.Assert.*;
 
 import java.util.EmptyStackException;
-import java.util.Set;
 import java.util.Stack;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import junit.framework.Assert;
-import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
-import seedu.ticktask.model.ReadOnlyTickTask;
 import seedu.ticktask.model.TickTask;
-import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
+import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.testutil.TickTaskBuilder;;;
 
 public class RedoCommandTest {
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
+    
+    
+    @Test (expected = EmptyStackException.class)
+    public void redoCommandFailNoUndoneTasks() throws EmptyStackException, CommandException{
+        ModelManager modelStub = new ModelManager();
+        RedoCommand redoCommand = new RedoCommand();
+        try{
+                redoCommand.setData(modelStub, new CommandHistory());
+                redoCommand.execute();
+            } catch (EmptyStackException ese){
+                assertEquals(ese.getMessage(), RedoCommand.MESSAGE_FAILURE);
+            }
+    }
     
     @Test
-    public void undoCommandSuccess() throws CommandException, IllegalValueException {
+    public void redoCommandSuccess() throws CommandException, IllegalValueException {
         
-        ModelStubAcceptUndo modelStubAcceptUndo = new ModelStubAcceptUndo();
+        TickTask tickTaskStub1 = new TickTask();
+        TickTask tickTaskStub2 = new TickTask();
+        ModelStubAcceptRedo modelStubAcceptRedo = new ModelStubAcceptRedo();
         
-        modelStubAcceptUndo.undoPreviousCommand();
+        modelStubAcceptRedo.redoUndoneCommand();
+        //assertEquals(RedoCommand.MESSAGE_SUCCESS, )
         
-        Stack<TickTask> emptyStackForTestingPrev = new Stack<TickTask>();
-        assertEquals(emptyStackForTestingPrev, modelStubAcceptUndo.getPreviousProgramInstances());
-        Stack<TickTask> filledStackForTestingFuture = new Stack<TickTask>();
-        filledStackForTestingFuture.push(new TickTaskBuilder().build());
-        assertEquals(filledStackForTestingFuture, modelStubAcceptUndo.getFutureProgramInstances());
-        assertEquals(new TickTaskBuilder().build(), modelStubAcceptUndo.getCurrentProgramInstance());
-        
+        assertTrue(modelStubAcceptRedo.getFutureProgramInstances().isEmpty());
+        Stack<TickTask> filledStackForTestingPreviousInstances = new Stack<TickTask>();
+        filledStackForTestingPreviousInstances.push(tickTaskStub2);
+        filledStackForTestingPreviousInstances.push(tickTaskStub1);
+        assertEquals(filledStackForTestingPreviousInstances, modelStubAcceptRedo.getPreviousProgramInstances());
     }
     
-    @Test(expected = CommandException.class)
-    public void undoCommandFailNoPreviousTasks() throws EmptyStackException, CommandException{
-        
-            ModelManager modelStub = new ModelManager();
-            UndoCommand undoCommand = new UndoCommand();
-            undoCommand.setData(modelStub, new CommandHistory());
-            undoCommand.execute();
-            
-    }
+    
+    
     
 
     /**
-     * A Model stub that always accepts the undo command.
+     * A Model stub that always accepts the redo command.
      */
-    public class ModelStubAcceptUndo extends ModelManager {
+    public class ModelStubAcceptRedo extends ModelManager {
             
-        public ModelStubAcceptUndo(){
-            super();
-            TickTask tickTaskInstanceStub = new TickTask();
-            this.previousProgramInstances.push(tickTaskInstanceStub);
+        public ModelStubAcceptRedo(){
+            super(new TickTask(), new UserPrefs());
+            TickTask tickTaskStub = new TickTask(); 
+            this.futureProgramInstances.push(tickTaskStub);
         }
-
+        
     }
-    
-    
-    /**
-     * A Model stub that always throw a Stack when trying to add a task.
-     
-    private class ModelStubThrowingEmptyStackException extends ModelStub {
-        @Override
-        public void undoPreviousCommand() throws EmptyStackException {
-            throw new EmptyStackException();
-        }
-    }
-    */
 
 
 }
