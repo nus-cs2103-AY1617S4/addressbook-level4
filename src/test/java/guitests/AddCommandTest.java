@@ -22,6 +22,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     @Test
     public void add() throws IllegalValueException {
 
+        commandBox.pressEnter();
         //add floating task
         commandBox.runCommand("add Buy a country m/to rule");
         BasicTask floatToAdd = new BasicTask(new TaskName("Buy a country"),
@@ -32,7 +33,6 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //add duplicate floating task
         commandBox.runCommand("add Buy a country m/to rule");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-        commandBox.runCommand("undo");
         commandBox.runCommand("undo");
         commandBox.runCommand("undo");
 
@@ -51,14 +51,14 @@ public class AddCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("undo");
 
         //add event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/high");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/overlapping");
         BasicTask eventToAdd = new BasicTask(new TaskName("Watch Csgo Major"), new TaskDescription("Fun stuffs"),
-                new DateTime("4 september"), new DateTime("5 september"), getTagSet("high"));
+                new DateTime("4 september"), new DateTime("5 september"), getTagSet("overlapping"));
         assertResultMessage(eventToAdd.getTaskDetails());
         BasicTaskFeatures selectedEventTask = eventListPanel.getSelectedTasks().get(0).getKey();
         assertEquals(eventToAdd, selectedEventTask);
         //add duplicate event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/high");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/overlapping");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         commandBox.runCommand("undo");
         commandBox.runCommand("undo");

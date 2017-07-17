@@ -57,7 +57,7 @@ public class UiManager extends ComponentManager implements Ui {
         try {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
-            //showBs();
+            showReminderAlert();
             mainWindow.fillInnerParts();
 
         } catch (Throwable e) {
@@ -66,15 +66,15 @@ public class UiManager extends ComponentManager implements Ui {
         }
     }
 
-    public static void showBs() {
+    public static void showReminderAlert() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Reminder");
         alert.setHeaderText("The following tasks are nearing deadline");
-        alert.setContentText(everyTaskName());
+        alert.setContentText(everyReminderTasks());
         alert.show();
     }
 
-    public static String everyTaskName() {
+    public static String everyReminderTasks() {
         StringBuilder allText = new StringBuilder("Events:\n");
         int index = 0;
         for (int i = 0; i < logic.getReminderList().size(); i++) {
