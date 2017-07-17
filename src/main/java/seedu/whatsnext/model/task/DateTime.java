@@ -67,9 +67,10 @@ public class DateTime {
      * */
     private void validateDateTime() throws IllegalValueException {
         Date today = new Date();
+        /*
         if (isBefore(today)) {
             throw new IllegalValueException(MESSAGE_DATE_INVALID);
-        }
+        }*/
         if (timeFormat.format(today).equals(getTime())) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dateValue);

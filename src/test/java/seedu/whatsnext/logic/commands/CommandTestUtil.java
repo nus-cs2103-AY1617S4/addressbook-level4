@@ -33,6 +33,7 @@ public class CommandTestUtil {
         assertEquals(expectedModel, actualModel);
     }
 
+    //@@author A0156106M
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
@@ -55,7 +56,7 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             ArrayList<Tag> tagList = new ArrayList<>();
             // Removes overlap tag
-            for (Tag tag : actualModel.getTaskManager().getTagList()) {;
+            for (Tag tag : actualModel.getTaskManager().getTagList()) {
                 if (!tag.tagName.equals(Tag.RESERVED_TAG_OVERLAP)) {
                     tagList.add(tag);
                 }
