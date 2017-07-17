@@ -86,8 +86,11 @@ public class EditCommand extends Command {
             model.updateTask(taskToEdit, editedTask);
             model.updateFilteredListToShowAll();
 
-            
-            if (!model.isChornological(taskToEdit)) return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            //@@author A0139964M
+            if (!model.isChornological(taskToEdit)) {
+                return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            }
+            //@@author
             if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
                     return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
             }
