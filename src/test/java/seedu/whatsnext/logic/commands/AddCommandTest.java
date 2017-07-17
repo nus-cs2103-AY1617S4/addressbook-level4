@@ -204,7 +204,7 @@ public class AddCommandTest {
 
         @Override
         public void resetPrevTaskManager() {
-            fail("This method should not be called.");            
+            fail("This method should not be called.");
         }
     }
 
