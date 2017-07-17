@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 
@@ -21,7 +20,7 @@ public interface Logic {
      * @throws IllegalValueException
      * @throws WarningException
      */
-    CommandResult execute(String commandText) throws CommandException, IllegalValueException, WarningException;
+    CommandResult execute(String commandText) throws CommandException, IllegalValueException;
 
     /** Returns the filtered list of tasks */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
