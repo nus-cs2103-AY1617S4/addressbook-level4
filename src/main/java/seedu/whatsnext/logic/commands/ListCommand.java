@@ -46,15 +46,6 @@ public class ListCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof ListCommand)) {
-            return false;
-        }
-
         ListCommand e = (ListCommand) other;
         return e.argument.equals(this.argument);
     }
