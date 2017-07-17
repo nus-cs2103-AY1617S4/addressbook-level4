@@ -99,7 +99,7 @@ public class HelpCommand extends Command {
 
         return messageUsage;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
