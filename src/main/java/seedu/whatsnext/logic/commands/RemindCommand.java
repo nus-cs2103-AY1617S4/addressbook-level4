@@ -44,4 +44,9 @@ public class RemindCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        RemindCommand e = (RemindCommand) other;
+        return e.reminderString.equals(this.reminderString);
+    }
 }
