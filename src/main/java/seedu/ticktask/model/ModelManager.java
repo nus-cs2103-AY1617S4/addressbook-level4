@@ -90,7 +90,8 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-
+    
+    //@@author A0139819N
     /**Saves the current instance of the TickTask program before any data is modified
      * so that the program can return to previous instances if desired
      */
@@ -98,6 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(new TickTask(currentProgramInstance));
         futureProgramInstances.clear();
     }
+    //@@author
 
     //@@author A0131884B
     @Override
@@ -196,7 +198,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void setFutureProgramInstances(Stack<TickTask> futureProgramInstances) {
         this.futureProgramInstances = futureProgramInstances;
     }
-    //author
+    //@@author
     
     //=========== Filtered Task List Accessors =============================================================
 

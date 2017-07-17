@@ -41,7 +41,7 @@ public class DueDate {
     //@@author A0139819N
     public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
     public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
-    //author
+    //@@author
 
     private final Parser parser = new Parser();
     //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");

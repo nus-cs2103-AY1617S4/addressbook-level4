@@ -131,7 +131,7 @@ public class EditCommand extends Command {
                 updatedDate = new DueDate("");
             }
         }
-        //author
+        //@@author
         return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 
