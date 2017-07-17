@@ -20,16 +20,15 @@ public class TypicalTasks {
     public TypicalTasks(){
         try {
             washdog = new TaskBuilder().withName("Wash dog")
-                    .withDate("01/01/2018 - 01/01/2019").withType("event")
+                    .withDate("01/01/2018").withType("deadline")
                     .withTime("0800")
                     .withTags("cleaning").build();
 
             dotutorial = new TaskBuilder().withName("Do tutorial").withDate("03/22/19")
-
                     .withType("deadline").withTime("2300")
                     .withTags("school", "homework").build();
-            meetgirlfriend = new TaskBuilder().withName("Meet girlfriend").withTime("")
-                    .withType("floating").withDate("").build();
+            meetgirlfriend = new TaskBuilder().withName("Meet girlfriend").withTime("2300")
+                    .withType("deadline").withDate("01/01/2020").build();
 
             
           
