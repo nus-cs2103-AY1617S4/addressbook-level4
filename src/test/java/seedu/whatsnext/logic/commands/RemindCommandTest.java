@@ -16,48 +16,45 @@ public class RemindCommandTest {
     private static final String DEFAULT_REMINDER_SETTING = "3 day";
     private static final String VALID_REMINDER_SETTING = "1 week";
 
-    private Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+    /***
+     * Tests updating reminder setting results in no change.
+     */
+    @Test
+    public void execute_noChangeInReminderSetting() throws Exception {
+        Model actualModel = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+        RemindCommand remindCommand = new RemindCommand(DEFAULT_REMINDER_SETTING);
+        remindCommand.setData(actualModel, new CommandHistory());
 
+        CommandResult result = remindCommand.execute();
+
+        String expectedMessage = String.format(RemindCommand.MESSAGE_NO_CHANGE_IN_REMINDER_SETTING)
+                + DEFAULT_REMINDER_SETTING;
+
+        Model expectedModel = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+        expectedModel.setReminderSetting(DEFAULT_REMINDER_SETTING);
+
+        assertEquals(expectedMessage, result.feedbackToUser);
+        assertEquals(expectedModel, actualModel);
+    }
 
     /***
      * Tests updating a new reminder setting success.
      */
     @Test
     public void execute_setNewReminderSetting_success() {
+        Model actualModel = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
         RemindCommand remindCommand = new RemindCommand(VALID_REMINDER_SETTING);
-        remindCommand.setData(model, new CommandHistory());
+        remindCommand.setData(actualModel, new CommandHistory());
 
         CommandResult result = remindCommand.execute();
-        result = remindCommand.execute();
-
-        String expectedMessage = String.format(RemindCommand.MESSAGE_SUCCESS, VALID_REMINDER_SETTING);
-
-        ModelManager expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
-        model.setReminderSetting(VALID_REMINDER_SETTING);
-
-        assertEquals(expectedMessage, result.feedbackToUser);
-        assertEquals(expectedModel, model);
-    }
-
-    /***
-     * Tests updating reminder setting results in no change.
-     */
-    @Test
-    public void execute_noChangeInReminderSetting() throws Exception {
-        RemindCommand remindCommand = new RemindCommand(DEFAULT_REMINDER_SETTING);
-        remindCommand.setData(model, new CommandHistory());
-
-        CommandResult result = remindCommand.execute();
-        result = remindCommand.execute();
-
-        String expectedMessage = String.format(RemindCommand.MESSAGE_NO_CHANGE_IN_REMINDER_SETTING,
-                DEFAULT_REMINDER_SETTING);
-
-        ModelManager expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
-        model.setReminderSetting(DEFAULT_REMINDER_SETTING);
+        
+        String expectedMessage = String.format(RemindCommand.MESSAGE_SUCCESS) + VALID_REMINDER_SETTING;
+        
+        Model expectedModel = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+        expectedModel.setReminderSetting(VALID_REMINDER_SETTING);
 
         assertEquals(expectedMessage, result.feedbackToUser);
-        assertEquals(expectedModel, model);
+        assertEquals(expectedModel, actualModel);
     }
 
 }
