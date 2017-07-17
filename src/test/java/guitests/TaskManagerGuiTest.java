@@ -1,7 +1,7 @@
 package guitests;
 
  import static org.junit.Assert.assertEquals;
- import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeoutException;
 
@@ -37,7 +37,6 @@ import seedu.whatsnext.testutil.TypicalTasks;
   */
 public abstract class TaskManagerGuiTest {
 
-    // @@author A0141102H
     /*
       * The TestName Rule makes the current test name available inside test
       * methods
