@@ -219,6 +219,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetPrevTaskManager() {}
+
+        @Override
         public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
             final ArrayList<BasicTask> tasksAdded = new ArrayList<>();
             ObservableList<BasicTask> observableList = FXCollections.observableArrayList(tasksAdded);
