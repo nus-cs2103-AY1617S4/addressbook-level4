@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,9 +38,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() throws Exception {
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_ALL);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_ALL);
         listCommand.setData(model, new CommandHistory());
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
@@ -49,18 +46,14 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() throws Exception {
         showFirstTaskOnly(model);
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_ALL);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_ALL);
         listCommand.setData(model, new CommandHistory());
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
     @Test
     public void execute_listIsNotFiltered_showsIncompleteList() throws Exception {
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_INCOMPLETE);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_INCOMPLETE);
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = false;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
@@ -70,9 +63,7 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsIncompleteList() throws Exception {
         showFirstTaskOnly(model);
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_INCOMPLETE);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_INCOMPLETE);
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = false;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
@@ -81,8 +72,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsList() throws Exception {
-        Set<String> commandSet = new HashSet<String>();
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = false;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
@@ -92,8 +82,7 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsList() throws Exception {
         showFirstTaskOnly(model);
-        Set<String> commandSet = new HashSet<String>();
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = false;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
@@ -102,9 +91,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsCompletedList() throws Exception {
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_COMPLETED);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_COMPLETED);
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = true;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
@@ -114,9 +101,7 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsCompletedList() throws Exception {
         showFirstTaskOnly(model);
-        Set<String> commandSet = new HashSet<String>();
-        commandSet.add(ListCommand.LIST_COMPLETED);
-        listCommand = new ListCommand(commandSet);
+        listCommand = new ListCommand(ListCommand.LIST_COMPLETED);
         listCommand.setData(model, new CommandHistory());
         boolean isCompleted = true;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);

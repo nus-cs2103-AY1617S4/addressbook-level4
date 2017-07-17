@@ -99,4 +99,20 @@ public class HelpCommand extends Command {
 
         return messageUsage;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof HelpCommand)) {
+            return false;
+        }
+
+        HelpCommand e = (HelpCommand) other;
+        return e.displayWindow == this.displayWindow
+                && e.helpMessage.equals(this.helpMessage);
+    }
 }
