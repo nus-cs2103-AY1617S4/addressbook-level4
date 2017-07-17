@@ -18,7 +18,7 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
  */
 public class ListCommandParser {
 
-    private static final String ARGUMENT_COMPLETED = "[complete]";
+    private static final String ARGUMENT_COMPLETED = "[completed]";
     private static final String ARGUMENT_INCOMPLETE = "[incomplete]";
     private static final String ARGUMENT_ALL = "[all]";
 
