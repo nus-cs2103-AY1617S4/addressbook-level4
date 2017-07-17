@@ -56,7 +56,7 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             ArrayList<Tag> tagList = new ArrayList<>();
             // Removes overlap tag
-            for (Tag tag : actualModel.getTaskManager().getTagList()) {;
+            for (Tag tag : actualModel.getTaskManager().getTagList()) {
                 if (!tag.tagName.equals(Tag.RESERVED_TAG_OVERLAP)) {
                     tagList.add(tag);
                 }
