@@ -21,7 +21,7 @@ import seedu.ticktask.testutil.TypicalTasks;
 
 public class XmlTickTaskStorageTest {
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlTickTaskStorageTest/");
-
+    
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -62,7 +62,7 @@ public class XmlTickTaskStorageTest {
         assertEquals(original, new TickTask(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.removeTask(new Task(td.dotutorial));
+        original.removeIndexActiveTask(new Task(td.dotutorial));
         xmlTickTaskStorage.saveTickTask(original, filePath);
         readBack = xmlTickTaskStorage.readTickTask(filePath).get();
         assertEquals(original, new TickTask(readBack));

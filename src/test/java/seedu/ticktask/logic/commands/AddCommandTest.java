@@ -65,7 +65,7 @@ public class AddCommandTest {
         command.setData(model, new CommandHistory());
         return command;
     }
-
+    
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -91,10 +91,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
-
+        
+        @Override
+        public void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException {
+            fail("This method should not be called.");
+        }
+        
         @Override
         public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
                 throws DuplicateTaskException {
@@ -124,7 +129,7 @@ public class AddCommandTest {
 		}
 
 		@Override
-		public void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+		public void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
 			fail("This method should not be called.");
 			
 		}

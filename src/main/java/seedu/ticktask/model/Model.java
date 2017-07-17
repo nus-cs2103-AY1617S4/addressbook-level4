@@ -4,6 +4,8 @@ import java.util.EmptyStackException;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
+import seedu.ticktask.logic.commands.Command;
+import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.EventClashException;
@@ -20,8 +22,16 @@ public interface Model {
     /** Returns the TickTask */
     ReadOnlyTickTask getTickTask();
 
-    /** Deletes the given task. */
-    void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
+    //@@author A0131884B
+    /** Deletes the given task using find task name method. */
+    void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Deletes the given complete task using find task index method. */
+    void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Deletes the given active task using find task index method. */
+    void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+    //@@author
 
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
@@ -69,8 +79,6 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
-
-    void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
 
     /** Undo a previously completed action on the TickTask program*/
     void undoPreviousCommand() throws EmptyStackException;

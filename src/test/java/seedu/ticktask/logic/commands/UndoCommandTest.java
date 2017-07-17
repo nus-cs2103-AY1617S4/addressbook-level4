@@ -85,7 +85,7 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
 
@@ -118,7 +118,12 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException {
+            fail("This method should not be called.");
+        }
+        
+        @Override
+        public void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
 
