@@ -75,8 +75,13 @@ public interface Model {
     public void saveTickTask();
     //@@author
     
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
+    /** Updates the filter of the filtered task list if it contains the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+
+    //@@author A0131884B
+    /** Updates the filter of the filtered task list if it matches the given keywords*/
+    void updateMatchedTaskList(Set<String> keywords);
+    //@@author
 
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
 

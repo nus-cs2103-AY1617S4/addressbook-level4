@@ -102,6 +102,16 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0131884B
+    @Override
+    public void updateMatchedTaskList(Set<String> keywords) {
+        updateMatchedTaskList(new PredicateExpression(new NameQualifier(keywords)));
+
+    }
+
+    private void updateMatchedTaskList(Expression expression) {
+        filteredActiveTasks.setPredicate(expression::matches);
+        filteredCompletedTasks.setPredicate(expression::matches);
+    }
 
     @Override
 
@@ -269,6 +279,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
+    //@@author A0131884B
+        boolean matches(ReadOnlyTask task);
+    //@@author
         String toString();
     }
 
@@ -285,6 +298,12 @@ public class ModelManager extends ComponentManager implements Model {
             return qualifier.run(task);
         }
 
+    //@@author A0131884B
+        @Override
+        public boolean matches(ReadOnlyTask task) {
+            return qualifier.match(task);
+        }
+    //@@author
         @Override
         public String toString() {
             return qualifier.toString();
@@ -293,6 +312,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
+    //@@author A0131884B
+        boolean match(ReadOnlyTask task);
+    //@@author
         String toString();
     }
 
@@ -310,7 +332,15 @@ public class ModelManager extends ComponentManager implements Model {
                     .findAny()
                     .isPresent();
         }
-
+    //@@author A0131884B
+        @Override
+        public boolean match(ReadOnlyTask task) {
+            return nameKeyWords.stream()
+                    .filter(keyword -> StringUtil.matchesStringIgnoreCase(task.getName().fullName, keyword))
+                    .findAny()
+                    .isPresent();
+        }
+    //@@author
         @Override
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);
