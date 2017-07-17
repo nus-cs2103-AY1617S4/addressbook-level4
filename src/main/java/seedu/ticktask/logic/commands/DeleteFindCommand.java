@@ -18,13 +18,13 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
     */
     public class DeleteFindCommand extends DeleteCommand {
         public static final String MESSAGE_NO_TASKS = "No tasks found! Please try again "
-                 + "with different keywords.";
+                 + "with different keywords. \nUse 'list' command to go back";
 
         public static final String MESSAGE_MULTIPLE_TASKS = "More than one task found! \n"
                  + "Use " + COMMAND_WORD + " [ "
-                 + PREFIX_COMPLETE + " ]" + " or" + COMMAND_WORD + " [ "
+                 + PREFIX_COMPLETE + " ]" + " or " + COMMAND_WORD + " [ "
                  + PREFIX_ACTIVE + " ]"
-                 + " INDEX to specify which entry to delete.";
+                 + " INDEX to specify which task to delete. \nUse 'list' command to go back after finishing deletion.";
 
         private Set<String> keywords;
 
@@ -37,7 +37,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
         /*
         * update all 2 lists with new keywords.
         */
-            model.updateFilteredTaskList(keywords);
+            model.updateMatchedTaskList(keywords);
 
             // find out whether only 1 task is found.
             List<ReadOnlyTask> tempList = new ArrayList<>();

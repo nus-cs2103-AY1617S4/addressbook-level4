@@ -12,13 +12,10 @@ import org.junit.Test;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 
 /**
@@ -31,7 +28,7 @@ public class ListCommandTest {
     private ListCommand listCommand;
 
     @Before
-    public void setUp() throws PastTaskException, EventClashException {
+    public void setUp() {
         model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
@@ -69,7 +66,7 @@ public class ListCommandTest {
      * @throws IllegalValueException 
      */
     public static void assertCommandSuccess(Command command, Model model, String expectedMessage, Model expectedModel)
-            throws CommandException, WarningException, IllegalValueException {
+            throws CommandException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);

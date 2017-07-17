@@ -5,8 +5,6 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -32,14 +30,14 @@ public class TypicalTasksCompleted {
             meetgirlfriend = new TaskBuilder().withName("meet girlfriend").withTime("0800")
                     .withType("deadline").withDate("02/23/2023").build();
 
-            
-          
+
+
         } catch (IllegalValueException e) {
             throw new AssertionError("Sample data cannot be invalid", e);
         }
     }
 
-    public static void loadTickTaskWithSampleData(TickTask ab) throws PastTaskException, EventClashException {
+    public static void loadTickTaskWithSampleData(TickTask ab) {
         for (Task task : new TypicalTasksCompleted().getTypicalTasks()) {
             try {
                 Task t = new Task(task);
@@ -57,14 +55,9 @@ public class TypicalTasksCompleted {
         return new Task[]{washdog, dotutorial, meetgirlfriend};
     }
 
-    public TickTask getTypicalTickTask() throws PastTaskException {
+    public TickTask getTypicalTickTask(){
         TickTask ab = new TickTask();
-        try {
-            loadTickTaskWithSampleData(ab);
-        } catch (EventClashException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        loadTickTaskWithSampleData(ab);
         return ab;
     }
 }

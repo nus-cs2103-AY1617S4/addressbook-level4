@@ -1,24 +1,28 @@
 package seedu.ticktask.logic.parser;
 
 import org.junit.Test;
+import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
+import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
+import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.ticktask.logic.parser.CliSyntax.*;
 import static seedu.ticktask.testutil.EditCommandTestUtil.*;
+import static seedu.ticktask.testutil.TypicalTasksCompleted.INDEX_SECOND_TASK;
 
 //@@author A0139964M
 public class parseEditCommandTest {
     
     private static final String NAME_DESC_MEETING = " " + PREFIX_NAME + VALID_NAME_MEETING;
-    private static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_EVENT;
-    private static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    private static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    private static final String NAME_DESC_EVENT = " " + PREFIX_NAME + VALID_NAME_EVENT;
+    private static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_HOMEWORK;
+    private static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_TODO;
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     
     private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + ""; // empty names not allowed
@@ -57,6 +61,36 @@ public class parseEditCommandTest {
         assertParseFailure("1 i/ string", MESSAGE_INVALID_FORMAT);
     
     }
+    
+    @Test
+    public void parse_byIndexAllFieldsSpecified_success() throws Exception {
+        Index targetIndex = INDEX_SECOND_TASK;
+        String userInput = "2 " + PREFIX_NAME + VALID_NAME_EVENT  + PREFIX_DATE_EDIT + VALID_DATE_5_DEC
+                           + PREFIX_TIME_EDIT + VALID_TIME_5PM + PREFIX_TAG + VALID_TAG_TODO;
+        EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_MEETING).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex,descriptor);
+        assertParseSuccess(userInput, expectedCommand);
+    }
+    
+    @Test
+    public void parse_byIndexSomeFieldsSpecified_success() throws Exception {
+        Index targetIndex = INDEX_SECOND_TASK;
+        String userInput = "2 " + PREFIX_NAME + VALID_NAME_EVENT  + PREFIX_DATE_EDIT + VALID_DATE_5_DEC;
+        EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_MEETING).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex,descriptor);
+        assertParseSuccess(userInput, expectedCommand);
+    }
+    
+    
+    
+    /**
+     * Asserts the parsing of {@code userInput} is successful and the result matches {@code expectedCommand}
+     */
+    private void assertParseSuccess(String userInput, EditCommand expectedCommand) throws Exception {
+        EditCommand command = parser.parse(userInput);
+        assertTrue(expectedCommand instanceof EditCommand);
+    }
+    
         /**
          * Asserts the parsing of {@code userInput} is unsuccessful and the error message
          * equals to {@code expectedMessage}

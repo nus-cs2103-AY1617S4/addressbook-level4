@@ -17,7 +17,6 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
@@ -26,8 +25,6 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -36,6 +33,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
+    //@@author A0139964M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified"
             + "by the index number used in the last task listing."
             + "Existing values will be overwritten by the input values.\n"
@@ -47,13 +45,13 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Final report submission "
             + PREFIX_DATE + "08/26/17";
-
+    //@@author
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
 
-    public static final String MESSAGE_PAST_TASK = "This task is already passed the current date/time";
-    public static final String MESSAGE_EVENT_CLASH = "There is another task going on within the same time frame";
+    public static final String MESSAGE_PAST_TASK = "Warning: This task is already passed the current date/time";
+    public static final String MESSAGE_EVENT_CLASH = "Warning: There is another task going on within the same time frame: %1$s";
 
 
     private final Index index;
@@ -73,7 +71,7 @@ public class EditCommand extends Command {
 
     @Override
 
-    public CommandResult execute() throws CommandException, WarningException, IllegalValueException {
+    public CommandResult execute() throws CommandException, IllegalValueException {
 
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
@@ -86,18 +84,23 @@ public class EditCommand extends Command {
 
         try {
             model.updateTask(taskToEdit, editedTask);
+            model.updateFilteredListToShowAll();
+
+            
+            if (!model.isChornological(taskToEdit)) return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
+                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
+            }
+            
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+            
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
-        } catch (PastTaskException e) {
-            throw new CommandException(MESSAGE_PAST_TASK);
-        } catch (EventClashException e) {
-            throw new CommandException(MESSAGE_EVENT_CLASH);
-        }
+        } 
 
-        model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+        
     }
 
     /**
