@@ -28,11 +28,24 @@ public class EditTaskDescriptorBuilder {
         public EditTaskDescriptorBuilder(ReadOnlyTask task) throws IllegalValueException {
             descriptor = new EditCommand.EditTaskDescriptor();
             descriptor.setName(task.getName());
+            descriptor.setDate(task.getDate());
+            descriptor.setTime(task.getTime());
             descriptor.setTags(task.getTags());
         }
         
+        
         public EditTaskDescriptorBuilder withName(String name) throws IllegalValueException {
             ParserUtil.parseName(Optional.of(name)).ifPresent(descriptor::setName);
+            return this;
+        }
+    
+        public EditTaskDescriptorBuilder withDate(String date) throws IllegalValueException {
+            ParserUtil.parseDate(Optional.of(date)).ifPresent(descriptor::setDate);
+            return this;
+        }
+    
+        public EditTaskDescriptorBuilder withTime(String time) throws IllegalValueException {
+            ParserUtil.parseTime(Optional.of(time)).ifPresent(descriptor::setTime);
             return this;
         }
         

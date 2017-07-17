@@ -10,8 +10,6 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 
 public class ClearCommandTest {
@@ -23,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyTickTask_success() throws PastTaskException, EventClashException {
+    public void execute_nonEmptyTickTask_success() {
         Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         assertCommandSuccess(model);
     }

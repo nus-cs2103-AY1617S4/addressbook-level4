@@ -99,8 +99,12 @@ public class DueTime {
         }
         else {
             end_time_string = end_time2.format(TIME_FORMAT).toString();
-            value = getStartTime() + " - " + getEndTime();
             end_time = end_time2;
+            if (end_time != null){
+                value = getStartTime() + " - " + getEndTime();
+            }else{
+                value = getStartTime();
+            }            
 
         }
     }
@@ -114,9 +118,12 @@ public class DueTime {
         }
         else {
             start_time_string = start_time2.format(TIME_FORMAT).toString();
-            value = getStartTime() + " - " + getEndTime();
             start_time = start_time2;
-
+            if (end_time != null){
+                value = getStartTime() + " - " + getEndTime();
+            }else{
+                value = getStartTime();
+            }
         }
     }
 

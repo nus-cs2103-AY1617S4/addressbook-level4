@@ -27,9 +27,6 @@ import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
-import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.testutil.TypicalTasks;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
@@ -40,7 +37,7 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
     
-    public DeleteCommandTest() throws PastTaskException, EventClashException {    
+    public DeleteCommandTest() {    
     }
 // @@author A0131884B
     @Test

@@ -5,7 +5,6 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.task.ReadOnlyTask;
 /**
@@ -32,7 +31,7 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     //@@author A0131884B
-    public abstract CommandResult execute() throws CommandException, WarningException, IllegalValueException, DuplicateTaskException;;
+    public abstract CommandResult execute() throws CommandException, IllegalValueException, DuplicateTaskException;;
     //@@author
     /**
      * Provides any needed dependencies to the command.
