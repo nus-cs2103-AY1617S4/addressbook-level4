@@ -50,6 +50,9 @@ public class parseEditCommand {
 		Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
 		Optional<String> type = Optional.ofNullable(matcher.group("type"));
 
+		if(!name.isPresent() && !time.isPresent() && !date.isPresent() && !tags.isPresent() && !type.isPresent()){
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 		EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
 		try {
 			ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
@@ -97,8 +100,12 @@ public class parseEditCommand {
 		} catch (IllegalValueException ive) {
 			throw new ParseException(ive.getMessage(), ive);
 		}
-		Index index1 = Index.fromOneBased(index);
-		return new EditCommand(index1, editTaskDescriptor);
+		try {
+			Index index1 = Index.fromOneBased(index);
+			return new EditCommand(index1, editTaskDescriptor);
+		} catch (IndexOutOfBoundsException iobe){
+			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+		}
 	}
 
 	public Set<Tag> createTagList(Optional<String> parsetag) throws IllegalValueException {

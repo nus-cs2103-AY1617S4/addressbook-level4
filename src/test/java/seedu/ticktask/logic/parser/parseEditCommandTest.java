@@ -42,11 +42,25 @@ public class parseEditCommandTest {
         assertParseFailure(VALID_NAME_MEETING, MESSAGE_INVALID_FORMAT);
     }
     
- 
-    /**
-     * Asserts the parsing of {@code userInput} is unsuccessful and the error message
-     * equals to {@code expectedMessage}
-     */
+    @Test
+    public void parse_invalidPreamble_failure() throws IllegalValueException {
+        // negative index
+        assertParseFailure("-5" + NAME_DESC_MEETING, MESSAGE_INVALID_FORMAT);
+    
+        // zero index
+        assertParseFailure("0" + NAME_DESC_MEETING, MESSAGE_INVALID_FORMAT);
+    
+        // invalid arguments being parsed as preamble
+        assertParseFailure("1 some random string", MESSAGE_INVALID_FORMAT);
+    
+        // invalid prefix being parsed as preamble
+        assertParseFailure("1 i/ string", MESSAGE_INVALID_FORMAT);
+    
+    }
+        /**
+         * Asserts the parsing of {@code userInput} is unsuccessful and the error message
+         * equals to {@code expectedMessage}
+         */
     private void assertParseFailure(String userInput, String expectedMessage) throws IllegalValueException, IndexOutOfBoundsException {
         try {
             parser.parse(userInput);
