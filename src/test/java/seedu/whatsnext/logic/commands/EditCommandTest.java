@@ -83,6 +83,7 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }*/
 
+    /*
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() throws Exception {
         EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
@@ -93,7 +94,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+    }*/
 
     /*
     @Test
@@ -113,6 +114,7 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }*/
 
+
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() throws Exception {
         BasicTask firstTask = new BasicTask(model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()));
@@ -122,10 +124,10 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
+    //@@author A0156106M
     @Test
     public void execute_duplicateTaskFilteredList_failure() throws Exception {
         showFirstTaskOnly();
-
         // edit task in filtered list into a duplicate in task manager
         BasicTaskFeatures taskInList = model.getTaskManager().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK,

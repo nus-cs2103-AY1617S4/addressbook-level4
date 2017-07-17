@@ -92,15 +92,12 @@ public class EditCommand extends Command {
         UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
 
         try {
-
-            // Check overlapping tasks still exist
-            /*
-            int overlapTaskIndex = BasicTask.getOverlapTaskIndex(editedTask, taskList);
-            if (BasicTask.eventTaskOverlap(overlapTaskIndex)) {
+            if (editedTask.isOverlapTask(taskList)) {
                 editedTask = EditCommand.createOverlapTask(editedTask);
             } else {
-                // REMOVE OVERLAP TAG
-            }*/
+                editedTask = EditCommand.createNonOverlapTask(editedTask);
+            }
+
             model.updateTask(taskToEdit, editedTask);
 
         } catch (DuplicateTaskException dpe) {
@@ -120,7 +117,6 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
-    //@@author
     /**
     * Checks the new editedTask created to ensure that the edited task value(s) is/are valid
     * @throws CommandException if edited task is invalid
@@ -180,6 +176,32 @@ public class EditCommand extends Command {
         return new BasicTask(updatedName, updatedDescription,
                 updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
+
+    static BasicTask createNonOverlapTask(BasicTaskFeatures taskToMark) {
+        assert taskToMark != null;
+        BasicTask toCopy = new BasicTask(taskToMark);
+        TaskName updatedName = toCopy.getName();
+        TaskDescription updatedDescription = toCopy.getDescription();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> copyTags = toCopy.getTags();
+        Set<Tag> updatedTags = new HashSet<Tag>();
+        for(Tag tag : copyTags) {
+            if (!tag.tagName.equals(Tag.RESERVED_TAG_OVERLAP)) {
+                try {
+                    updatedTags.add(new Tag(tag.tagName));
+                } catch (IllegalValueException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return new BasicTask(updatedName, updatedDescription,
+                updateIsComplete, startDateTime, endDateTime, updatedTags);
+    }
+
+
 
     //@@author A0142675B
     /**
