@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<taskManager>
-    <tasks>
-        <name>shit</name>
-        <isCompleted>false</isCompleted>
-        <taskType>floating</taskType>
-        <taskDescription>Empty</taskDescription>
-    </tasks>
-</taskManager>

@@ -1,7 +1,6 @@
 package seedu.whatsnext;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -65,8 +64,6 @@ public class MainApp extends Application {
 
         config = initConfig(getApplicationParameter("config"));
 
-        setUpFilePath();
-
         initFilePath(path);
 
 
@@ -87,18 +84,6 @@ public class MainApp extends Application {
     }
 
     //@@author A0149894H
-    private void setUpFilePath() {
-        File f = new File("test.txt");
-        path = f.getAbsolutePath();
-        int texttxtSize = 8;
-        int size = path.length() - texttxtSize;
-        path = path.substring(0, size);
-        path = path.replace("\\", "/");
-        path = String.format(path).concat("filepath");
-    }
-
-    //@@author A0149894H
-    //@@author A0156106M
     public void initFilePath(String path) throws IOException {
         InputStream resourceStream = this.getClass().getResourceAsStream("/filepath/filepath");
         InputStreamReader streamReader = new InputStreamReader(resourceStream);
@@ -111,7 +96,6 @@ public class MainApp extends Application {
         } catch (RepeatTaskManagerFilePathException e) {
             e.printStackTrace();
         }
-
     }
 
     private String getApplicationParameter(String parameterName) {
