@@ -2,6 +2,8 @@ package seedu.whatsnext.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -29,6 +31,8 @@ public class EventTaskCard extends UiPart<Region> {
     private Label to;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView notice;
 
     public EventTaskCard(BasicTaskFeatures task, int displayedIndex) {
         super(FXML);
@@ -39,6 +43,10 @@ public class EventTaskCard extends UiPart<Region> {
         to.setText("To: " + task.getEndDateTime().displayDateTime());
         setPriorityColors(task);
         initTags(task);
+        notice.setImage(new Image("/images/notice_icon.png"));
+        if (!task.getAllTags().contains("OVERLAPPING")) {
+            notice.setVisible(false);
+        }
     }
 
     private void initTags(BasicTaskFeatures task) {

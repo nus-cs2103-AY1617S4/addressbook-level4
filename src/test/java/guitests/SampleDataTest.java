@@ -1,5 +1,7 @@
 package guitests;
 
+import static org.junit.Assert.assertTrue;
+
 //import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -10,6 +12,7 @@ import seedu.whatsnext.model.util.SampleDataUtil;
 import seedu.whatsnext.testutil.TestUtil;
 
 public class SampleDataTest extends TaskManagerGuiTest {
+    //@@author A0154987J
     @Override
     protected TaskManager getInitialData() {
         //return null to force test app to load data from file only
@@ -23,10 +26,11 @@ public class SampleDataTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
+    public void taskManager_dataFileDoesNotExist_loadSampleData() throws Exception {
+        commandBox.pressEnter();
         BasicTask[] expectedList = SampleDataUtil.getSampleTasks();
-        //assertTrue(eventListPanel.isListMatching(expectedList));
-        //assertTrue(deadlineListPanel.isListMatching(expectedList));
-        //assertTrue(floatingListPanel.isListMatching(expectedList));
+        assertTrue(eventListPanel.isListMatching(expectedList));
+        assertTrue(deadlineListPanel.isListMatching(expectedList));
+        assertTrue(floatingListPanel.isListMatching(expectedList));
     }
 }

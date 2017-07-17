@@ -6,7 +6,10 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
+import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
+import seedu.whatsnext.commons.core.index.Index;
+import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTask;
@@ -52,8 +55,18 @@ public class AddCommand extends Command {
         }
         try {
             model.addTask(toAdd);
+            int counter = 0;
+            for (int i = 0; i < model.getFilteredTaskList().size(); i++) {
+                if (toAdd.equals(model.getFilteredTaskList().get(i))) {
+                    counter = i;
+                    break;
+                }
+            }
+            Index index = new Index(counter);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
+            model.resetPrevTaskManager();
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }

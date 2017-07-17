@@ -27,6 +27,10 @@ public interface Model {
     void redoTaskManager();
 
     // @@author A0154986L
+    /** Resets previous task manager instance. */
+    void resetPrevTaskManager();
+
+    // @@author A0154986L
     /** Returns current reminder setting. */
     String getReminderSetting();
 
