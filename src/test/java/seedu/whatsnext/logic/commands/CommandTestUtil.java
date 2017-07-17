@@ -33,6 +33,7 @@ public class CommandTestUtil {
         assertEquals(expectedModel, actualModel);
     }
 
+    //@@author A0156106M
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>

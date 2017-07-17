@@ -187,7 +187,7 @@ public class EditCommand extends Command {
         boolean updateIsComplete = toCopy.getIsCompleted();
         Set<Tag> copyTags = toCopy.getTags();
         Set<Tag> updatedTags = new HashSet<Tag>();
-        for(Tag tag : copyTags) {
+        for (Tag tag : copyTags) {
             if (!tag.tagName.equals(Tag.RESERVED_TAG_OVERLAP)) {
                 try {
                     updatedTags.add(new Tag(tag.tagName));
