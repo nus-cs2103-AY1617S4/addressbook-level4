@@ -8,14 +8,19 @@ import static seedu.ticktask.testutil.EditCommandTestUtil.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 //@@author A0139964M
 public class parseAddCommandTest {
     
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                         AddCommand.MESSAGE_USAGE);
+            
     private parseAddCommand parser = new parseAddCommand();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -52,6 +57,23 @@ public class parseAddCommandTest {
         Command command = parser.parse("a13v!" + PREFIX_DATE + VALID_DATE_5_DEC);
         assertTrue(command instanceof AddCommand);
     }
+    
+    @Test
+    public void parse_invalidArgsFollowedByValidArg2s_returnsAddCommand() throws Exception {
+        assertParseFailure("", MESSAGE_INVALID_FORMAT);
+    }
+    
+    private void assertParseFailure(String userInput, String expectedMessage) throws IllegalValueException, IndexOutOfBoundsException {
+        try {
+            parser.parse(userInput);
+
+            fail("An exception should have been thrown.");
+        } catch (ParseException pe) {
+            assertEquals(expectedMessage, pe.getMessage());
+        }
+    }
 }
+
+
 
 //@@author
