@@ -172,7 +172,7 @@ public class ModelManager extends ComponentManager implements Model {
         return currentProgramInstance.eventClash(t);
     }
   
-    //author A0139819N
+    //@@author A0139819N
     public TickTask getCurrentProgramInstance() {
         return currentProgramInstance;
     }

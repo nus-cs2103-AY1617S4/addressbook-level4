@@ -121,7 +121,7 @@ public class EditCommand extends Command {
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        //author A0139819N
+        //@@author A0139819N
         if (editTaskDescriptor.getTaskType().toString().equals("Optional[floating]")) {
 
             if (taskToEdit.getTaskType().getValue().equals("floating")) {

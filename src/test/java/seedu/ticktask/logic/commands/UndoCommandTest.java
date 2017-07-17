@@ -14,7 +14,7 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.testutil.TickTaskBuilder;
 
-//author A0139819N
+//@@author A0139819N
 
 public class UndoCommandTest {
     
