@@ -219,7 +219,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetPrevTaskManager() {}
+        public void resetPrevTaskManager() {
+            return;
+        }
 
         @Override
         public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
