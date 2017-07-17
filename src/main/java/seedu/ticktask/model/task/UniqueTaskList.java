@@ -116,11 +116,8 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public boolean isChornological(ReadOnlyTask task) {
         LocalDate currDate = LocalDate.now();
-        //System.out.println("localDate: " + currDate);
-        //System.out.println("TaskDate: " + taskDate);
         
         if(task.getDate().getLocalStartDate() == null){
-            //No date either means today or no time, if no time or time is chornological just add
             if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
                 return true;
             }
@@ -128,14 +125,13 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         LocalDate taskDate = task.getDate().getLocalStartDate();
         //Check if task's is today.
-        if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
+        if(taskDate.isEqual(currDate)){
             if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
                 return true;
             } else {
                 return false;
             }
         }
-        //If date exist, but it is in the future, i dont need to check the time.
         if(isDateChornological(task)){
             return true;
         } else{

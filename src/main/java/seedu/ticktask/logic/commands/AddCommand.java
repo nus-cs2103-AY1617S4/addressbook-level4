@@ -40,8 +40,11 @@ public class AddCommand extends Command {
         requireNonNull(model);
         try {
             model.addTask(toAdd);
-
-            if (!model.isChornological(toAdd)) return new CommandResult(String.format(MESSAGE_PAST_TASK, toAdd));
+            //@@author A0139964M
+            if (!model.isChornological(toAdd)){
+                return new CommandResult(String.format(MESSAGE_PAST_TASK, toAdd));
+            }
+            //@@author
             if (toAdd.getTaskType().toString().equals("event") && model.eventClash(toAdd) != null) {
                     return new CommandResult(String.format(MESSAGE_EVENT_CLASH, toAdd));
             }
