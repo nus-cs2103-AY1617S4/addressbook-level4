@@ -22,50 +22,66 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 public class CommandBox extends UiPart<Region> {
-
-	public static final String ERROR_STYLE_CLASS = "error";
-	private static final String FXML = "CommandBox.fxml";
-	private Stack<String>prevCommandsHistory = new Stack<String>();
-	private Stack<String>nextCommandsHistory = new Stack<String>();
-	private String lastPrev = "";
-	private final Logger logger = LogsCenter.getLogger(CommandBox.class);
-	private final Logic logic;
-	private AutoCompletionBinding<String> autoCompletionBinding;
-
-	Set listOfCommands = new HashSet<>();
-	String[] commands = { "add", "delete", "edit", "clear", "help", "undo", "redo", "find", "exit",
-		                "list","complete", "save" };
-
-	@FXML
-	private TextField commandTextField;
-
-	public CommandBox(Logic logic) {
-		super(FXML);
-		this.logic = logic;
-		autoComplete();
-	}
-
-	//@@author A0139964M
-	/**
-	 * Method that handles arrow up and down to cycle between commands
-	 * @param event
-	 */
-	@FXML
-	private void handleKeyPress(KeyEvent event){
-		KeyCode key = event.getCode();
-		switch (key) {
-		case UP:
-			String prevCommand = getPrevCommand(lastPrev);
-			lastPrev = prevCommand;
-			commandTextField.setText(prevCommand);
-			return;
-		case DOWN:
-			String nextCommand = getNextCommand();
-			commandTextField.setText(nextCommand);
-			return;
+    
+    public static final String ERROR_STYLE_CLASS = "error";
+    private static final String FXML = "CommandBox.fxml";
+    private Stack<String> prevCommandsHistory = new Stack<String>();
+    private Stack<String> nextCommandsHistory = new Stack<String>();
+    private String lastPrev = "";
+    private final Logger logger = LogsCenter.getLogger(CommandBox.class);
+    private final Logic logic;
+    //@@author A0139964M
+    private AutoCompletionBinding<String> autoCompletionBinding;
+    Set listOfCommands = new HashSet<>();
+    String[] commands = {"add", "delete", "edit", "list", "complete", "help", "undo", "redo", "find", "exit",
+                        "save","clear"};
+    
+    //@@author
+    @FXML
+    private TextField commandTextField;
+    
+    public CommandBox(Logic logic) {
+        super(FXML);
+        this.logic = logic;
+        autoComplete();
+    }
+    
+    //@@author A0139964M
+    
+    /**
+     * Method that handles arrow up and down to cycle between commands
+     *
+     * @param event
+     */
+    @FXML
+    private void handleKeyPress(KeyEvent event) {
+        KeyCode key = event.getCode();
+        switch (key) {
+            case UP:
+                String prevCommand = getPrevCommand(lastPrev);
+                lastPrev = prevCommand;
+                commandTextField.setText(prevCommand);
+                return;
+            case DOWN:
+                String nextCommand = getNextCommand();
+                commandTextField.setText(nextCommand);
+                return;
+            case ENTER:
+                addSenteceToAutoComplete(commandTextField.getText());
+                return;
+        }
+    }
+    
+	public void addSenteceToAutoComplete(String text){
+		listOfCommands.add(text);
+		if (autoCompletionBinding != null) {
+			autoCompletionBinding.dispose();
 		}
+		
+		autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
+        autoCompletionBinding.setVisibleRowCount(1);
 	}
-
+    
 	public String getPrevCommand(String lastPrev){
 		if(!prevCommandsHistory.isEmpty()) {
 			String prevCommand = prevCommandsHistory.pop();
