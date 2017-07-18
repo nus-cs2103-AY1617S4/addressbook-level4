@@ -42,7 +42,7 @@ public class SampleDataUtil {
     }
     //@@author
 
-    public static ReadOnlyTickTask getSampleTickTask() throws DuplicateTaskException {
+    public static ReadOnlyTickTask getSampleTickTask() {
         try {
             TickTask sampleAb = new TickTask();
             for (Task sampleTask : getSampleTasks()) {
