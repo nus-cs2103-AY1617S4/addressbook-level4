@@ -19,7 +19,6 @@ import seedu.ticktask.logic.commands.HelpCommand;
 import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.RedoCommand;
-import seedu.ticktask.logic.commands.RestoreCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
 import seedu.ticktask.logic.commands.StorageCommand;
 import seedu.ticktask.logic.commands.UndoCommand;
@@ -92,11 +91,6 @@ public class Parser {
         //@@author
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
-            
-        //@@author A0147928N    
-        case RestoreCommand.COMMAND_WORD:
-            return new RestoreCommandParser().parse(arguments);
-        //@@author
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
