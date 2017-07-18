@@ -26,7 +26,7 @@ public interface Logic {
     CommandResult execute(String commandText)
             throws CommandException, ParseException, TagNotFoundException, IllegalValueException;
 
-    /** Returns the filtered list of persons */
+    /** Returns the filtered list of tasks */
 
     ObservableList<BasicTaskFeatures> getFilteredTaskList();
 

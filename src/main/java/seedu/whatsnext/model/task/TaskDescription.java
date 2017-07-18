@@ -40,7 +40,7 @@ public class TaskDescription {
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task name.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(TASK_DESCRIPTION_VALIDATION_REGEX);

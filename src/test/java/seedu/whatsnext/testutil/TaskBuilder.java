@@ -12,7 +12,7 @@ import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 

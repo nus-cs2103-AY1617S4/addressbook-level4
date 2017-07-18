@@ -15,7 +15,7 @@ import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
 /**
- * JAXB-friendly version of the Person.
+ * JAXB-friendly version of the BasicTask.
  */
 public class XmlAdaptedTask {
 
@@ -67,7 +67,7 @@ public class XmlAdaptedTask {
 
     //@@author A0156106M
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Task object.
+     * Converts this jaxb-friendly adapted BasicTask object into the model's Task object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task
      */
