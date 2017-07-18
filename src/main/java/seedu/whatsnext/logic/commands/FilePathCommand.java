@@ -1,4 +1,3 @@
-
 package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
