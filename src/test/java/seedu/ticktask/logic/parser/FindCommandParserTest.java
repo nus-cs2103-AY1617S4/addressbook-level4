@@ -3,6 +3,7 @@ package seedu.ticktask.logic.parser;
 import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
+import seedu.ticktask.logic.commands.FindActiveCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
@@ -25,7 +26,7 @@ public class FindCommandParserTest {
     
     @Test
     public void testValidParse() throws ParseException {
-        String validFindKeywords = "active wash";
+        String validFindKeywords = "wash";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(validFindKeywords);
         
@@ -45,7 +46,7 @@ public class FindCommandParserTest {
     
     @Test
     public void testInvalidParse() throws ParseException {
-        String invalidFindKeywords = "active wish";
+        String invalidFindKeywords = "wish";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(invalidFindKeywords);
         
