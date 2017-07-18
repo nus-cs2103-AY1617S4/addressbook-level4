@@ -1,6 +1,7 @@
 package seedu.ticktask.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -33,6 +34,8 @@ public class TaskCard extends UiPart<Region> {
     private Label taskType;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button button;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
@@ -51,8 +54,13 @@ public class TaskCard extends UiPart<Region> {
         taskType.setText(task.getTaskType().value.toUpperCase());
         if (task.getTaskType().getValue().equals("event")){
             cardPane.setStyle("-fx-background-color: #ffe3b5;-fx-font-size: 9pt;-fx-text-fill: #010504;");
+
         } else if (task.getTaskType().getValue().equals("deadline")){
             cardPane.setStyle("-fx-background-color: #deffc4;-fx-font-size: 9pt;-fx-text-fill: #010504;");
+            if(task.isDue()){
+                button.setText("IT HAPPENED");
+                button.getStyleClass().add("tag-overdue");
+            }
         } else if (task.getTaskType().getValue().equals("floating")){
             cardPane.setStyle("-fx-background-color: #ccecff; -fx-font-size: 9pt;-fx-text-fill: #0083d1;");
         }

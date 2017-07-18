@@ -16,6 +16,7 @@ public interface ReadOnlyTask {
     TaskType getTaskType();
     void resetTaskType();
     DueDate getDate();
+    boolean isDue();
     boolean getCompleted();
     void setCompleted(boolean s);
     Set<Tag> getTags();

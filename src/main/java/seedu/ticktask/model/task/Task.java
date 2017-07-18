@@ -3,9 +3,12 @@ package seedu.ticktask.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.ticktask.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -158,6 +161,27 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
+    }
+
+    public boolean isDue(){
+        LocalDate now = LocalDate.now();
+        LocalDate taskDate = date.getLocalStartDate();
+        if (getTaskType().toString().equals("deadline") && now.isAfter(taskDate)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Duration getDueDuration(){
+            LocalTime now = LocalTime.now();
+            LocalTime startTime = time.getLocalStartTime();
+            LocalTime  difference = now.until(startTime);
+
+            return Duration.of(differencel, ChronoUnit.MILLIS);
+        }else{
+            return null;
+        }
     }
 
 }
