@@ -16,7 +16,7 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.testutil.TypicalTasks;
+import seedu.ticktask.testutil.TypicalTasksCompleted;
 
 //@@author A0147928N
 /**
@@ -24,8 +24,8 @@ import seedu.ticktask.testutil.TypicalTasks;
  */
 public class RestoreCommandTest {
 
-    private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-    private ReadOnlyTask taskToRestore = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+    private Model model = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
+    private ReadOnlyTask taskToRestore = model.getFilteredCompletedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
     private RestoreCommand firstCommand = prepareIndexCommand(model, INDEX_FIRST_TASK);
     
     //UNIT TESTS
@@ -54,7 +54,7 @@ public class RestoreCommandTest {
     public void testTaskListUpdatedCorrectly() throws CommandException, DuplicateTaskException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredTaskList();
-        assertFalse(currentTaskList.contains(taskToRestore));
+        assertTrue(currentTaskList.contains(taskToRestore));
     }
     
     /**
@@ -66,7 +66,7 @@ public class RestoreCommandTest {
     public void testCompletedTaskListUpdatedCorrectly() throws CommandException, DuplicateTaskException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentRestoredTaskList = model.getFilteredCompletedTaskList();
-        assertTrue(currentRestoredTaskList.contains(taskToRestore));
+        assertFalse(currentRestoredTaskList.contains(taskToRestore));
     }
     
     //METHODS FOR TESTING
