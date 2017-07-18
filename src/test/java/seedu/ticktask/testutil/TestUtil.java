@@ -32,7 +32,7 @@ public class TestUtil {
      */
     public static final String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Task[] SAMPLE_TASK_DATa = getSAMPLE_TASK_DATa();
+    public static final Task[] SAMPLE_TASK_DATA = getSampleTaskData();
 
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
         try { 
@@ -49,15 +49,27 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
-    private static Task[] getSAMPLE_TASK_DATa() {
+    //@@author A0139819N
+    /**
+     * @Returns a Task array of 10 sample tasks
+     * @return
+     */
+    private static Task[] getSampleTaskData() {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-              
-                new Task(new Name("wash dog"), new DueTime("2200"), new TaskType("deadline"), new DueDate("22/08"), getTagSet()),
-                new Task(new Name("do tutorial"), new DueTime("2300"), new TaskType("deadline"), new DueDate("21/03/18"), getTagSet()),
-                new Task(new Name("meet girlfriend"), new DueTime("1200"), new TaskType("deadline"), new DueDate("Christmas"), getTagSet()),
-         
+                    new Task(new Name("Buy eggs and milk"), new DueTime(""), new TaskType("floating"), new DueDate(""), getTagSet()),
+                    new Task(new Name("Research on book reviews on Shoe Dog"), new DueTime(""), new TaskType("floating"), new DueDate(""), getTagSet()),
+                    new Task(new Name("Final report submission"), new DueTime(""), new TaskType("deadline"), new DueDate("1 august"), getTagSet()),
+                    new Task(new Name("Final presentation rehearsal 1"), new DueTime("12pm to 2pm"), new TaskType("event"), new DueDate("2 august"), getTagSet()),
+                    new Task(new Name("Final presentation rehearsal 2"), new DueTime("12pm to 2pm"), new TaskType("event"), new DueDate("12 august"), getTagSet()),
+                    new Task(new Name("Final presentation"), new DueTime("2pm to 4pm"), new TaskType("event"), new DueDate("22 august"), getTagSet()),
+                    new Task(new Name("End of semester"), new DueTime(""), new TaskType("deadline"), new DueDate("08/23"), getTagSet()),
+                    new Task(new Name("Arrange meetup with friends"), new DueTime(""), new TaskType("floating"), new DueDate(""), getTagSet()),
+                    new Task(new Name("Plan for overseas relaxation trip"), new DueTime(""), new TaskType("floating"), new DueDate(""), getTagSet()),
+                    new Task(new Name("University hostel checkout deadline"), new DueTime("1700"), new TaskType("deadline"), new DueDate("08/25"), getTagSet()),
+                    new Task(new Name("Pack belongings to move out"), new DueTime("12pm-3pm"), new TaskType("event"), new DueDate("08/25"), getTagSet()),
+                    new Task(new Name("Dinner with Rachel"), new DueTime("1900-2200"), new TaskType("event"), new DueDate("08/025"), getTagSet()),
 
             };
             //CHECKSTYLE.ON: LineLength
@@ -67,9 +79,11 @@ public class TestUtil {
             return null;
         }
     }
+    
+    //@@author
 
     public static List<Task> generateSampleTaskData() {
-        return Arrays.asList(SAMPLE_TASK_DATa);
+        return Arrays.asList(SAMPLE_TASK_DATA);
     }
 
     /**
