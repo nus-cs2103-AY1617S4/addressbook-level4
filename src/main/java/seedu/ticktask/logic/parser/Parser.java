@@ -53,7 +53,7 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new parseAddCommand().parse(arguments);
+            return new ParseAddCommand().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -69,7 +69,7 @@ public class Parser {
         //@@author
             
         case EditCommand.COMMAND_WORD:
-            return new parseEditCommand().parse(arguments);
+            return new ParseEditCommand().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
 
