@@ -38,15 +38,10 @@ public class Task implements ReadOnlyTask {
         this.type = type;
         this.date = date;
         this.completed = false;
-        
-        //resetTaskType();
-        
+                
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
-    
-    
-    
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
