@@ -217,9 +217,6 @@ public class ModelManagerTest {
     public void testUpdateFilteredListToShowDeadline() {
         modelManager.updateFilteredListToShowDeadline();
         assertTrue(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
-        
-        modelManager = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
-        assertTrue(modelManager.getFilteredCompletedTaskList().equals(modelManagerCopy.getFilteredCompletedTaskList()));     
     }
     
     @Test
