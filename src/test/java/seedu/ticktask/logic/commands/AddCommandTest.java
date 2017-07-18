@@ -48,7 +48,7 @@ public class AddCommandTest {
     }
     //@@author A0139964M
     @Test
-    public void execute_PasttaskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_PastTaskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().withDate("01/01/2001").build();
 
@@ -57,7 +57,7 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
-    //@@author 
+    //@@author
 
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
