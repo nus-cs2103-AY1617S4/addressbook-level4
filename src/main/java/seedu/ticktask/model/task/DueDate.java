@@ -38,10 +38,10 @@ public class DueDate {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
-    //author A0139819N
+    //@@author A0139819N
     public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
     public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
-    //author
+    //@@author
 
     private final Parser parser = new Parser();
     //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -73,9 +73,7 @@ public class DueDate {
         requireNonNull(date);
 
         String trimmedDate = date.trim();
-        //author A0139819N
-        //trimmedDate = convertDateFormat(trimmedDate);
-        //author
+        
           
         if (((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))) {
             List<DateGroup> dateGroups = parser.parse(trimmedDate);

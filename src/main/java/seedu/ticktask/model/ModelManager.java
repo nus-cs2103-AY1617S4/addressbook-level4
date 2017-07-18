@@ -26,9 +26,9 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/uuuu");
-    private TickTask currentProgramInstance;
-    private Stack<TickTask> previousProgramInstances;
-    private Stack<TickTask> futureProgramInstances;
+    protected TickTask currentProgramInstance;
+    protected Stack<TickTask> previousProgramInstances;
+    protected Stack<TickTask> futureProgramInstances;
     private final FilteredList<ReadOnlyTask> filteredActiveTasks;
     private final FilteredList<ReadOnlyTask> filteredCompletedTasks;
 
@@ -90,7 +90,8 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-
+    
+    //@@author A0139819N
     /**Saves the current instance of the TickTask program before any data is modified
      * so that the program can return to previous instances if desired
      */
@@ -98,6 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(new TickTask(currentProgramInstance));
         futureProgramInstances.clear();
     }
+    //@@author
 
     //@@author A0131884B
     @Override
@@ -164,14 +166,36 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTickTaskModelChanged();
     }
     
-    public boolean isChornological(ReadOnlyTask t) {
-        return currentProgramInstance.isChornological(t);
-    }
-    
     public String eventClash(ReadOnlyTask t) {
         return currentProgramInstance.eventClash(t);
     }
+  
+    //@@author A0139819N
+    public TickTask getCurrentProgramInstance() {
+        return currentProgramInstance;
+    }
 
+    public void setCurrentProgramInstance(TickTask currentProgramInstance) {
+        this.currentProgramInstance = currentProgramInstance;
+    }
+    
+    public Stack<TickTask> getPreviousProgramInstances() {
+        return previousProgramInstances;
+    }
+    
+    public void setPreviousProgramInstances(Stack<TickTask> previousProgramInstances) {
+        this.previousProgramInstances = previousProgramInstances;
+    }
+
+    public Stack<TickTask> getFutureProgramInstances() {
+        return futureProgramInstances;
+    }
+
+    public void setFutureProgramInstances(Stack<TickTask> futureProgramInstances) {
+        this.futureProgramInstances = futureProgramInstances;
+    }
+    //@@author
+    
     //=========== Filtered Task List Accessors =============================================================
 
     /**

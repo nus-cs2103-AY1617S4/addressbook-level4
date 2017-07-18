@@ -1,6 +1,7 @@
 package seedu.ticktask.logic.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -10,33 +11,32 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
+import seedu.ticktask.testutil.TickTaskBuilder;
 import seedu.ticktask.testutil.TypicalTasks;
 
+//@@author A0147928N
+
 public class ClearCommandTest {
-
+    
+    private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
+    private Model emptyModel = new ModelManager(new TickTaskBuilder().build(), new UserPrefs());
+    
     @Test
-    public void execute_emptyTickTask_success() {
-        Model model = new ModelManager();
-        assertCommandSuccess(model);
+    public void testExecute() {
+        
+        assertFalse(model.equals(emptyModel));
+        
+        ClearCommand clearCommand = prepareClearCommand();
+        clearCommand.execute();
+        
+        assertEquals(model, emptyModel);
     }
-
-    @Test
-    public void execute_nonEmptyTickTask_success() {
-        Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-        assertCommandSuccess(model);
-    }
-
-    /**
-     * Executes {@code ClearCommand} on the given {@code model}, confirms that <br>
-     * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
-     * - the TickTask and filtered task list in {@code model} is empty <br>
-     */
-    private void assertCommandSuccess(Model model) {
+    
+    public ClearCommand prepareClearCommand() {
         ClearCommand command = new ClearCommand();
-        command.setData(model, new CommandHistory());
-        CommandResult result = command.execute();
-
-        assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertEquals(new ModelManager(), model);
+        command.setData(model, new CommandHistory());  
+        return command;
     }
+    
 }
+//@@author

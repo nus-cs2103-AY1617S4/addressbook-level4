@@ -86,8 +86,11 @@ public class EditCommand extends Command {
             model.updateTask(taskToEdit, editedTask);
             model.updateFilteredListToShowAll();
 
-            
-            if (!model.isChornological(taskToEdit)) return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            //@@author A0139964M
+            if (!isChornological(taskToEdit)) {
+                return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            }
+            //@@author
             if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
                     return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
             }
@@ -118,7 +121,7 @@ public class EditCommand extends Command {
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        //author A0139819N
+        //@@author A0139819N
         if (editTaskDescriptor.getTaskType().toString().equals("Optional[floating]")) {
 
             if (taskToEdit.getTaskType().getValue().equals("floating")) {
@@ -128,7 +131,7 @@ public class EditCommand extends Command {
                 updatedDate = new DueDate("");
             }
         }
-        //author
+        //@@author
         return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 

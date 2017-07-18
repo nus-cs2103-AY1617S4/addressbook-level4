@@ -108,61 +108,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
     //@author
     
-    //@@author A0139964M
-    /**
-     * Checks if the task added is in the past.
-     * @param task
-     * @return boolean
-     */
-    public boolean isChornological(ReadOnlyTask task) {
-        LocalDate currDate = LocalDate.now();
-        //System.out.println("localDate: " + currDate);
-        //System.out.println("TaskDate: " + taskDate);
-        
-        if(task.getDate().getLocalStartDate() == null){
-            //No date either means today or no time, if no time or time is chornological just add
-            if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
-                return true;
-            }
-            else return false;
-        }
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        //Check if task's is today.
-        if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
-            if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
-                return true;
-            } else {
-                return false;
-            }
-        }
-        //If date exist, but it is in the future, i dont need to check the time.
-        if(isDateChornological(task)){
-            return true;
-        } else{
-            return false;
-        }
-    }
-    
-    public boolean isTimeChornological(ReadOnlyTask task) {
-        LocalTime currTime = LocalTime.now();
-        LocalTime taskTime = task.getTime().getLocalStartTime();
-        if (taskTime.isBefore(currTime)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    public boolean isDateChornological(ReadOnlyTask task){
-        LocalDate currDate = LocalDate.now();
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        if(taskDate.isBefore(currDate)){
-            return false;
-        } else {
-            return true;
-        }
-    }
-    //@@author
+
 
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.

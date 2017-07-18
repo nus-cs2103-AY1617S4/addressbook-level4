@@ -82,14 +82,13 @@ public interface Model {
     //@@author
 
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
-
+    //@@author A0139819N
     /** Undo a previously completed action on the TickTask program*/
     void undoPreviousCommand() throws EmptyStackException;
 
     /**Redo a previously undone action on the TickTask program*/
     void redoUndoneCommand() throws EmptyStackException;
-    
-    boolean isChornological(ReadOnlyTask t);
-    
+    //@@author
+
     String eventClash(ReadOnlyTask t);
 }

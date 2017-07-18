@@ -260,10 +260,6 @@ public class TickTask implements ReadOnlyTickTask {
         return Objects.hash(tasks, tags);
     }
     
-    public boolean isChornological(ReadOnlyTask t) {
-        return tasks.isChornological(t);
-    }
-    
     public String eventClash(ReadOnlyTask t) {
         return tasks.eventClash(t);
     }

@@ -46,7 +46,7 @@ public class Task implements ReadOnlyTask {
 
     
     
-    //author
+    
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
