@@ -97,4 +97,6 @@ public interface Model {
     //@@author
 
     String eventClash(ReadOnlyTask t);
+
+    void updateFilteredCompletedTaskList(Set<String> keywords);
 }

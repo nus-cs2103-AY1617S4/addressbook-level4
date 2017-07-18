@@ -25,11 +25,11 @@ public class FindCommandParserTest {
     
     @Test
     public void testValidParse() throws ParseException {
-        String validFindKeywords = "wash";
+        String validFindKeywords = "active wash";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(validFindKeywords);
         
-        FindCommand commandReturned = findCommandParser.parse(validFindKeywords);        
+        FindCommand commandReturned = (FindCommand) findCommandParser.parse(validFindKeywords);        
         FindCommand commandExpected = new FindCommand(keywordsSet);
                 
         commandReturned.setData(model, new CommandHistory());
@@ -45,13 +45,13 @@ public class FindCommandParserTest {
     
     @Test
     public void testInvalidParse() throws ParseException {
-        String invalidFindKeywords = "wish";
+        String invalidFindKeywords = "active wish";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(invalidFindKeywords);
         
         findCommandParser.parse(invalidFindKeywords);
         
-        FindCommand commandReturned = findCommandParser.parse(invalidFindKeywords);        
+        FindCommand commandReturned = (FindCommand) findCommandParser.parse(invalidFindKeywords);        
         commandReturned.setData(model, new CommandHistory());
         commandReturned.execute();
         
