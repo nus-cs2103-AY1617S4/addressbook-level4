@@ -23,7 +23,6 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
 //@@author A0156106M
 /**
  * Parses input arguments and creates a new HelpCommand object
- *
  * */
 public class HelpCommandParser {
 
@@ -47,20 +46,13 @@ public class HelpCommandParser {
      * */
     public boolean isValid(String args) {
         if (args.equals(AddCommand.COMMAND_WORD)
-                || args.equals(EditCommand.COMMAND_WORD)
-                || args.equals(SelectCommand.COMMAND_WORD)
-                || args.equals(DeleteCommand.COMMAND_WORD)
-                || args.equals(ChangePathCommand.COMMAND_WORD)
-                || args.equals(FilePathCommand.COMMAND_WORD)
-                || args.equals(MarkCommand.COMMAND_WORD)
-                || args.equals(UnmarkCommand.COMMAND_WORD)
-                || args.equals(ClearCommand.COMMAND_WORD)
-                || args.equals(FindCommand.COMMAND_WORD)
-                || args.equals(ListCommand.COMMAND_WORD)
-                || args.equals(UndoCommand.COMMAND_WORD)
-                || args.equals(RedoCommand.COMMAND_WORD)
-                || args.equals(RemindCommand.COMMAND_WORD)
-                || args.equals(HistoryCommand.COMMAND_WORD)
+                || args.equals(EditCommand.COMMAND_WORD) || args.equals(SelectCommand.COMMAND_WORD)
+                || args.equals(DeleteCommand.COMMAND_WORD) || args.equals(ChangePathCommand.COMMAND_WORD)
+                || args.equals(FilePathCommand.COMMAND_WORD) || args.equals(MarkCommand.COMMAND_WORD)
+                || args.equals(UnmarkCommand.COMMAND_WORD) || args.equals(ClearCommand.COMMAND_WORD)
+                || args.equals(FindCommand.COMMAND_WORD) || args.equals(ListCommand.COMMAND_WORD)
+                || args.equals(UndoCommand.COMMAND_WORD) || args.equals(RedoCommand.COMMAND_WORD)
+                || args.equals(RemindCommand.COMMAND_WORD) || args.equals(HistoryCommand.COMMAND_WORD)
                 || args.equals(HelpCommand.COMMAND_WORD)) {
             return true;
         }

@@ -27,7 +27,6 @@ public class TaskDescription {
 
     /**
      * Validates given Description.
-     *
      * @throws IllegalValueException if given name string is invalid.
      */
     public TaskDescription(String description) throws IllegalValueException {

@@ -29,16 +29,13 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-
         try {
-
             if (args.contains(PREFIX_START_DATETIME.toString()) || args.contains(PREFIX_END_DATETIME.toString())
                     || args.contains(PREFIX_MESSAGE.toString()) || args.contains(PREFIX_TAG_CLI.toString())) {
                 return parseCommandByPrefix(args);
             } else {
                 return parseCommandByComma(args);
             }
-
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
