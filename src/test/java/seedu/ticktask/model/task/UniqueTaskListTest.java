@@ -37,6 +37,11 @@ public class UniqueTaskListTest {
         
         ReadOnlyTask nonClashingTask = new TaskBuilder().withDate("12/25/2022 - 2/25/2023").withType("event").build();
         assertTrue(list.eventClash(nonClashingTask) == null);
+        
+        task = new TaskBuilder().withDate("12/25/2019 - 2/25/2020").withType("event").withTime("22:00 - 23:00").build();
+        clashingTask = new TaskBuilder().withDate("12/25/2018 - 12/25/2019").withType("event").withTime("22:00 - 23:00").build();
+        assertEquals(list.eventClash(clashingTask), task.getName().toString());
+
     }
     
     @Test
@@ -55,7 +60,7 @@ public class UniqueTaskListTest {
     }
     
     @Test
-    public void testUpdateTask() throws IllegalValueException, TaskNotFoundException {
+    public void testUpdateTask() throws TaskNotFoundException, IllegalValueException {
         ReadOnlyTask task = new TaskBuilder().withDate("12/25/2019 - 2/25/2020").withType("event").build();
         
         list.add(task);
