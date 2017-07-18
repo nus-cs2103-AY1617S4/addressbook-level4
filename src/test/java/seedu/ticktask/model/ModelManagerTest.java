@@ -202,5 +202,23 @@ public class ModelManagerTest {
     public void testGetFilteredCompletedTaskList() {
         assertEquals(modelManager.getFilteredCompletedTaskList(), modelManagerCopy.getFilteredCompletedTaskList());
     }
+    
+    @Test
+    public void testUpdateFilteredListToShowEvent() {
+        modelManager.updateFilteredListToShowEvent();
+        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+    }
+    
+    @Test
+    public void testUpdateFilteredListToShowDeadline() {
+        modelManager.updateFilteredListToShowDeadline();
+        assertTrue(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+    }
+    
+    @Test
+    public void testUpdateFilteredListToShowToday() {
+        modelManager.updateFilteredListToShowToday();
+        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+    }
 }
 //@@author
