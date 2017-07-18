@@ -109,7 +109,7 @@ public class DueDate {
     }
 
 
-    private void extractDate(String trimmedDate) {
+    void extractDate(String trimmedDate) {
         List<DateGroup> dateGroups = parser.parse(trimmedDate);
         /* if(dateGroups.isEmpty()){
          * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
