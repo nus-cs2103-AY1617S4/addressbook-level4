@@ -17,6 +17,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.ticktask.logic.parser.ArgumentMultimap;
+import seedu.ticktask.logic.parser.ArgumentTokenizer;
+import seedu.ticktask.logic.parser.CliSyntax;
+import seedu.ticktask.logic.parser.ParserUtil;
+import seedu.ticktask.logic.parser.Prefix;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.TaskType;
@@ -36,7 +41,10 @@ public class ParserUtilTest {
     private static final String VALID_DATE = "christmas";
     private static final String VALID_TASK_TYPE = "deadline";
     private static final String VALID_TAG_1 = "chore";
-
+  //@@author A0131884B
+    private static final Prefix VALID_PREFIX_TAG = CliSyntax.PREFIX_TAG;
+    private static final Prefix VALID_PREFIX_LIST = CliSyntax.PREFIX_ACTIVE;
+  //@@author 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 
@@ -160,4 +168,34 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+    
+    //@@author A0131884B 
+    @Test
+    public void getPrefix_preconditionFailed_throwsAssertionError() throws Exception {
+        String argString = " task with tag and type";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argString, VALID_PREFIX_TAG,
+        							   VALID_PREFIX_LIST);
+        thrown.expect(AssertionError.class);
+        ParserUtil.getPrefix(argMultimap, VALID_PREFIX_TAG, VALID_PREFIX_LIST);
+    }
+    
+    @Test
+    public void areAllPrefixesPresent_notAllPrefixFound_returnFalse() {
+        /**
+         * Only 1 prefix
+         */
+        String argString = " task with tag and typed";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argString, VALID_PREFIX_TAG,
+                                                                  VALID_PREFIX_LIST);
+        assertFalse(ParserUtil.areAllPrefixesPresent(argMultimap, VALID_PREFIX_TAG, VALID_PREFIX_LIST));
+
+        /**
+         * No prefix
+         */
+        argString = " task without tag and type";
+        argMultimap = ArgumentTokenizer.tokenize(argString, VALID_PREFIX_TAG, VALID_PREFIX_LIST);
+        assertFalse(ParserUtil.areAllPrefixesPresent(argMultimap, VALID_PREFIX_TAG, VALID_PREFIX_LIST));
+    }
+
+    //@@author
 }

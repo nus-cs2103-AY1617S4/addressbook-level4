@@ -25,4 +25,3 @@ public abstract class DeleteCommand extends Command {
             + Messages.MESSAGE_TASK_DESCRIPTION + "%1$s";
     protected ReadOnlyTask taskToDelete;
 }
-//@@author

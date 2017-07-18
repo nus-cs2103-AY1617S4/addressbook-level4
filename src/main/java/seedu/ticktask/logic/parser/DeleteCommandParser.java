@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.ticktask.logic.parser.ArgumentMultimap;
+import seedu.ticktask.logic.parser.ParserUtil;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.DeleteFindCommand;
@@ -44,25 +46,37 @@ public class DeleteCommandParser {
         * delete by index
         */
         if (hasIndexFlag(argMultimap)) {
-              try {
-                  Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  PREFIX_COMPLETE, PREFIX_ACTIVE);
-                  Index index = ParserUtil.parseIndex(argMultimap.getValue(listIndicatorPrefix).get());
-                  return new DeleteIndexCommand(index, listIndicatorPrefix);
-              } catch (IllegalValueException ive) {
-                  throw new ParseException(ive.getMessage(), ive);
-              }
+        	if (hasInvalidPrefixCombination(argMultimap)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                       DeleteCommand.MESSAGE_USAGE));
+        	}
+            try {
+                Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  PREFIX_COMPLETE, PREFIX_ACTIVE);
+                Index index = ParserUtil.parseIndex(argMultimap.getValue(listIndicatorPrefix).get());
+                return new DeleteIndexCommand(index, listIndicatorPrefix);
+            } catch (IllegalValueException ive) {
+                throw new ParseException(ive.getMessage(), ive);
+            }
         /**
         * delete by task name
         */
         } else {
-              String trimmedArgs = argMultimap.getPreamble();
-              final String[] keywords = new String[]{""};
-              keywords [0] = trimmedArgs;
-              final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-              return new DeleteFindCommand(keywordSet);
+            String trimmedArgs = argMultimap.getPreamble();
+            final String[] keywords = new String[]{""};
+            keywords [0] = trimmedArgs;
+            final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+            return new DeleteFindCommand(keywordSet);
         }
     }
 
+        /**
+         * A method that returns true if flags are given in an illogical manner for deleting commands.
+         * illogical := any 2 of /float, /deadline, /event used together.
+         */
+        private boolean hasInvalidPrefixCombination(ArgumentMultimap argMultimap) {
+            assert argMultimap != null;
+            return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE);                  
+        }
        /**
           * A method that returns true if flags in given ArgumentMultimap has at least one index-indicating
           * Prefix mapped to some arguments.
@@ -74,6 +88,5 @@ public class DeleteCommandParser {
     }
 }
 
- //@@author
 
 
