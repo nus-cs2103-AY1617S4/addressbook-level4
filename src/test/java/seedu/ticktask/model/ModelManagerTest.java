@@ -142,5 +142,14 @@ public class ModelManagerTest {
         modelManager.setCurrentProgramInstance(otherCurrentProgramInstance);
         assertEquals(modelManager.getCurrentProgramInstance(), modelManagerCopy.getCurrentProgramInstance());
     }
+    
+    @Test
+    public void testGetPreviousProgramInstance() throws DuplicateTaskException, IllegalValueException {
+        modelManager.addTask(new TaskBuilder().withName("Random").build());
+        
+        TickTask previousProgramInstance = modelManager.getPreviousProgramInstances().pop();
+        
+        assertEquals(modelManagerCopy.getCurrentProgramInstance(), previousProgramInstance);
+    }
 }
 //@@author
