@@ -37,9 +37,11 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
         /*
         * update all 2 lists with new keywords.
         */
-            model.updateMatchedTaskList(keywords);
 
-            // find out whether only 1 task is found.
+            model.updateMatchedTaskList(keywords);
+            /*
+            * find out whether only 1 task is found.
+            */
             List<ReadOnlyTask> tempList = new ArrayList<>();
             tempList.addAll(model.getFilteredTaskList());
             tempList.addAll(model.getFilteredCompletedTaskList());

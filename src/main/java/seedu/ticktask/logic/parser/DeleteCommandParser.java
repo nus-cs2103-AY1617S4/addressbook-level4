@@ -51,9 +51,13 @@ public class DeleteCommandParser {
               } catch (IllegalValueException ive) {
                   throw new ParseException(ive.getMessage(), ive);
               }
+        /**
+        * delete by task name
+        */
         } else {
               String trimmedArgs = argMultimap.getPreamble();
-              final String[] keywords = trimmedArgs.split("\\s+");
+              final String[] keywords = new String[]{""};
+              keywords [0] = trimmedArgs;
               final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
               return new DeleteFindCommand(keywordSet);
         }

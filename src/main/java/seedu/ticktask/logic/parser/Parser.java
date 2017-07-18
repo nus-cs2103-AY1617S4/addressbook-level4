@@ -61,7 +61,9 @@ public class Parser {
         //@@author A0147928N
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
-            
+        //@@author
+
+        //@@author A0147928N
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         //@@author

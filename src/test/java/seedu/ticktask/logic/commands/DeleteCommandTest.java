@@ -40,21 +40,21 @@ public class DeleteCommandTest {
     public DeleteCommandTest() {    
     }
 // @@author A0131884B
-    /*
+    
     @Test
     public void execute_validFindUnfilteredList_success() throws Exception {
         ReadOnlyTask taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
-        String searchString = taskToDelete.getName().fullName.replaceAll("\\\\", "");
-        HashSet<String> keywords = new HashSet<>(Arrays.asList(searchString.split("\\s+")));
+        String searchString = taskToDelete.getName().fullName;
+        HashSet<String> keywords = new HashSet<>(Arrays.asList(searchString));
 
         DeleteCommand deleteFindCommand = prepareFindCommand(model, keywords);
         String expectedMessage = String.format(DeleteFindCommand.MESSAGE_SUCCESS, taskToDelete);
-        ModelManager expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
+      //  ModelManager expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 
         CommandResult result = deleteFindCommand.execute();
         assertEquals(result.feedbackToUser, expectedMessage);
-    }*/
+    }
     
     @Test
     public void execute_validIndexActiveUnfilteredList_success() throws Exception {

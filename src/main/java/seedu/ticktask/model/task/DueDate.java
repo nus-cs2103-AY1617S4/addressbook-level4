@@ -109,7 +109,7 @@ public class DueDate {
     }
 
 
-    private void extractDate(String trimmedDate) {
+    void extractDate(String trimmedDate) {
         List<DateGroup> dateGroups = parser.parse(trimmedDate);
         /* if(dateGroups.isEmpty()){
          * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -149,6 +149,8 @@ public class DueDate {
     /*
      * Method used to convert date input by user f
      */
+    
+    /*
     private String convertDateFormat(String trimmedDate) {
         
         System.out.println("OLD Trimmed date string: " + trimmedDate);
@@ -170,6 +172,7 @@ public class DueDate {
         return trimmedDate;
     }
     //@@author
+    */
     
     public String getValue() {
         return value;

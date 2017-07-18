@@ -14,8 +14,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE_EDIT = new Prefix("date ");
     public static final Prefix PREFIX_TIME_EDIT = new Prefix("time ");
  //@@author A0131884B
-    public static final Prefix PREFIX_COMPLETE = new Prefix("/complete");
-    public static final Prefix PREFIX_ACTIVE = new Prefix("/active");
+    public static final Prefix PREFIX_COMPLETE = new Prefix("complete");
+    public static final Prefix PREFIX_ACTIVE = new Prefix("active");
  //@@author
 
 }

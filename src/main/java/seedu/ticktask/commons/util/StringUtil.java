@@ -55,14 +55,8 @@ public class StringUtil {
     public static boolean matchesStringIgnoreCase(String sentence, String string) {
         requireNonNull(sentence);
         requireNonNull(string);
-        System.out.println(sentence);
-        System.out.println(string);
         String preppedWord = string.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        //String preppedSentence = sentence.replaceAll("\\s", "");
-
         if (sentence.toLowerCase().equals(preppedWord)) {
             return true;
         }
