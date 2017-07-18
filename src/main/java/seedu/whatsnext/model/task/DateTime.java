@@ -40,7 +40,6 @@ public class DateTime {
 
     /**
      * Initializes the dateValue object variable base on its input parameters
-     *
      * */
     private void initDateValue(String dateInputTrim) throws IllegalValueException {
         if (dateInputTrim.equals(INIT_DATETIME_VALUE)) {

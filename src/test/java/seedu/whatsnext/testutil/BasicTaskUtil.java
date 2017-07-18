@@ -9,19 +9,19 @@ import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.model.task.BasicTask;
 
 /**
- * A utility class for Person.
+ * A utility class for Task.
  */
 public class BasicTaskUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code task}.
      */
     public static String getAddCommand(BasicTask task) {
         return AddCommand.COMMAND_WORD + " " + getTaskDetails(task);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code task}'s details.
      */
     private static String getTaskDetails(BasicTask task) {
         StringBuilder sb = new StringBuilder();

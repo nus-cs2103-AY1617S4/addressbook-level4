@@ -10,7 +10,8 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 /**
  * A utility class to help with building TaskManager objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new TaskManagerBuilder().withPerson("John", "Doe").withTag("Friend").build();}
+ *     {@code TaskManager tm = new TaskManagerBuilder()
+ *                             .withTask("Project Meeting", "Final Exam").withTag("Study").build();}
  */
 public class TaskManagerBuilder {
 
@@ -20,8 +21,8 @@ public class TaskManagerBuilder {
         taskManger = new TaskManager();
     }
 
-    public TaskManagerBuilder(TaskManager addressBook) {
-        this.taskManger = addressBook;
+    public TaskManagerBuilder(TaskManager taskManager) {
+        this.taskManger = taskManager;
     }
 
     public TaskManagerBuilder withTask(BasicTask task) throws DuplicateTaskException {

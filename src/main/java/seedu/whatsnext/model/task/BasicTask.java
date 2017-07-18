@@ -18,6 +18,8 @@ import seedu.whatsnext.model.tag.UniqueTagList;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class BasicTask implements BasicTaskFeatures {
+    public static final String TASK_COMPLETED = "Completed";
+    public static final String TASK_INCOMPLETE = "Incomplete";
     public static final String TASK_TYPE_FLOATING = "floating";
     public static final String TASK_TYPE_DEADLINE = "deadline";
     public static final String TASK_TYPE_EVENT = "event";
@@ -204,9 +206,9 @@ public class BasicTask implements BasicTaskFeatures {
     @Override
     public String getStatusString() {
         if (getIsCompleted()) {
-            return "Completed";
+            return TASK_COMPLETED;
         } else {
-            return "Incomplete";
+            return TASK_INCOMPLETE;
         }
     }
 

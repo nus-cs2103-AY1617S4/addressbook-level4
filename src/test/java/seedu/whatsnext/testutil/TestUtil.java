@@ -133,8 +133,8 @@ public class TestUtil {
 
     /**
      * Appends tasks to the array of tasks.
-     * @param tasks A array of persons.
-     * @param tasksToAdd The persons that are to be appended behind the original array.
+     * @param tasks A array of Tasks.
+     * @param tasksToAdd The Tasks that are to be appended behind the original array.
      * @return The modified array of tasks.
      */
     public static BasicTask[] addTasksToList(final BasicTask[] tasks, BasicTask... tasksToAdd) {

@@ -27,7 +27,7 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Task Manager data.
  * All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
@@ -117,6 +117,20 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void setReminderSetting(String newReminderSetting) {
         userPrefs.updateLastUsedReminderSetting(newReminderSetting);
+    }
+
+    // @@author A0149894H
+    /** Sets new task manager file path. */
+    @Override
+    public void setTaskManagerFilePath(String newFilePath) {
+        userPrefs.setTaskManagerFilePath(newFilePath);
+    }
+
+    //@@author A0149894H
+    /** Returns current task manager file path. */
+    @Override
+    public String getTaskManagerFilePath() {
+        return userPrefs.getTaskManagerFilePath();
     }
 
     @Override

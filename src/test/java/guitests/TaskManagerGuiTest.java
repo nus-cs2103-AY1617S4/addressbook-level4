@@ -48,7 +48,6 @@ public abstract class TaskManagerGuiTest {
       * Handles to GUI elements present at the start up are created in advance
       * for easy access from child classes.
       */
-    protected TestApp testApp;
     protected TypicalTasks td = new TypicalTasks();
     protected MainGuiHandle mainGui;
     protected MainMenuHandle mainMenu;
@@ -82,10 +81,9 @@ public abstract class TaskManagerGuiTest {
             this.stage = stage;
         });
         EventsCenter.clearSubscribers();
-        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
+        FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
         FxToolkit.showStage();
-        while (!stage.isShowing())
-             ;
+        while (!stage.isShowing());
         mainGui.focusOnMainApp();
     }
 
@@ -146,8 +144,6 @@ public abstract class TaskManagerGuiTest {
       * string.
       */
     protected void assertResultMessage(String expected) {
-        System.out.println(expected);
-        System.out.println(resultDisplay.getText());
         assertEquals(expected, resultDisplay.getText());
     }
 
