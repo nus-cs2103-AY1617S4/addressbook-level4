@@ -2,7 +2,6 @@ package seedu.whatsnext.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
@@ -23,11 +22,6 @@ import seedu.whatsnext.testutil.TypicalTasks;
 public class FilePathCommandTest {
     //private Model model;
 
-//    @Before 
-//    public void setUp(){
-//        
-//    }
-
     @Test
     public void execute_filePath_showFilePath() throws Exception, TagNotFoundException, IllegalValueException {
         Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
@@ -39,12 +33,13 @@ public class FilePathCommandTest {
      * Executes {@code FilePathCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code FilePathCommand.MESSAGE_SUCCESS} <br>
      * - file path remains the same {@code model} is empty <br>
-     * @throws IllegalValueException 
-     * @throws TagNotFoundException 
+     * @throws IllegalValueException
+     * @throws TagNotFoundException
      * @throws CommandException
      */
-    
-    public static void assertCommandSuccess(Command command, String expectedMessage, Model model) throws CommandException, TagNotFoundException, IllegalValueException{
+
+    public static void assertCommandSuccess(Command command, String expectedMessage, Model model)
+            throws CommandException, TagNotFoundException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
     }
