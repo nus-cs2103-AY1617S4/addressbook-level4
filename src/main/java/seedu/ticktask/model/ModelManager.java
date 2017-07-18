@@ -166,10 +166,6 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTickTaskModelChanged();
     }
     
-    public boolean isChornological(ReadOnlyTask t) {
-        return currentProgramInstance.isChornological(t);
-    }
-    
     public String eventClash(ReadOnlyTask t) {
         return currentProgramInstance.eventClash(t);
     }

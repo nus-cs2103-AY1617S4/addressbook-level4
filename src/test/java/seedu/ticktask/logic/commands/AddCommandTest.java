@@ -35,6 +35,7 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
+
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
@@ -45,6 +46,18 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
+    //@@author A0139964M
+    @Test
+    public void execute_PasttaskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate("01/01/2001").build();
+
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+    //@@author 
 
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
@@ -122,7 +135,12 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
-		@Override
+        @Override
+        public void updateMatchedTaskList(Set<String> keywords) {
+
+        }
+
+        @Override
 		public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
             fail("This method should not be called.");
             return null;
@@ -146,7 +164,12 @@ public class AddCommandTest {
 			
 		}
 
-		@Override
+        @Override
+        public String eventClash(ReadOnlyTask t) {
+            return null;
+        }
+
+        @Override
 		public void updateFilteredListToShowEvent() {
 			// TODO Auto-generated method stub
 			

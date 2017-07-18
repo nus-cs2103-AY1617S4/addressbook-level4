@@ -41,7 +41,7 @@ public class AddCommand extends Command {
         try {
             model.addTask(toAdd);
             //@@author A0139964M
-            if (!model.isChornological(toAdd)){
+            if (!isChornological(toAdd)){
                 return new CommandResult(String.format(MESSAGE_PAST_TASK, toAdd));
             }
             //@@author

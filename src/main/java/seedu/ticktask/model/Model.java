@@ -89,7 +89,6 @@ public interface Model {
     /**Redo a previously undone action on the TickTask program*/
     void redoUndoneCommand() throws EmptyStackException;
     //@@author
-    boolean isChornological(ReadOnlyTask t);
-    
+
     String eventClash(ReadOnlyTask t);
 }
