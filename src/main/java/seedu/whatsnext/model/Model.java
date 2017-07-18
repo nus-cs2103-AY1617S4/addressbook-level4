@@ -76,6 +76,12 @@ public interface Model {
 
     // @@author A0154986L
     /**
+     * Updates the filter of the filtered task list to filter by upcoming tasks.
+     */
+    void updateFilteredTaskListToShowUpcomingTasks();
+
+    // @@author A0154986L
+    /**
      * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     void updateFilteredTaskListForReminder();

@@ -1,6 +1,9 @@
 package seedu.whatsnext.model;
 
 import static seedu.whatsnext.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.whatsnext.model.task.BasicTask.TASK_TYPE_DEADLINE;
+import static seedu.whatsnext.model.task.BasicTask.TASK_TYPE_EVENT;
+import static seedu.whatsnext.model.task.BasicTask.TASK_TYPE_FLOATING;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -189,9 +192,22 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     // @@author A0154986L
+    /**
+     * Updates the filter of the filtered task list to filter by task completion
+     */
     @Override
     public void updateFilteredTaskListToShowByCompletion(boolean isComplete) {
         updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(isComplete)));
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
+    /**
+     * Updates the filter of the filtered task list to filter by upcoming tasks.
+     */
+    @Override
+    public void updateFilteredTaskListToShowUpcomingTasks() {
+        updateFilteredTaskList(new PredicateExpression(new UpcomingTasksQualifier()));
         indicateTaskManagerChanged();
     }
 
@@ -283,6 +299,35 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /*
+     * Finds non-expired, upcoming tasks.
+     */
+    private class UpcomingTasksQualifier implements Qualifier {
+        private boolean isComplete = false;
+        private Date currentTime = new Date();
+        private Calendar cal = Calendar.getInstance();
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            cal.setTime(currentTime);
+            currentTime = cal.getTime();
+            return ((basicTaskFeatures.getIsCompleted() == isComplete
+                    && ((basicTaskFeatures.getTaskType().equals(TASK_TYPE_EVENT)
+                            && !basicTaskFeatures.getStartDateTime().isBefore(currentTime))
+                            || (basicTaskFeatures.getTaskType().equals(TASK_TYPE_DEADLINE)
+                                    && !basicTaskFeatures.getEndDateTime().isBefore(currentTime)))))
+                    || basicTaskFeatures.getTaskType().equals(TASK_TYPE_FLOATING);
+        }
+
+        @Override
+        public String toString() {
+            cal.setTime(currentTime);
+            currentTime = cal.getTime();
+            return currentTime.toString();
+        }
+    }
+
+    // @@author A0154986L
+    /*
      * Finds the tasks for reminder pop up window.
      */
     private class ReminderQualifier implements Qualifier {
@@ -323,10 +368,10 @@ public class ModelManager extends ComponentManager implements Model {
                 }
             }
 
-            return (basicTaskFeatures.getTaskType().equals("event")
+            return (basicTaskFeatures.getTaskType().equals(TASK_TYPE_EVENT)
                     && !basicTaskFeatures.getStartDateTime().isBefore(remindStart)
                     && basicTaskFeatures.getStartDateTime().isBefore(remindEnd))
-                    || (basicTaskFeatures.getTaskType().equals("deadline")
+                    || (basicTaskFeatures.getTaskType().equals(TASK_TYPE_DEADLINE)
                             && !basicTaskFeatures.getEndDateTime().isBefore(remindStart)
                             && basicTaskFeatures.getEndDateTime().isBefore(remindEnd));
         }
