@@ -36,6 +36,20 @@ public class DueDateTest {
     }
     
     @Test
+    public void testDueDateStartConstructor() throws IllegalValueException {
+        DueDate date = new DueDate("start date 03/22/2019");
+        
+        assertEquals(date.getStartDate(), "03/22/2019");
+    }
+    
+    @Test
+    public void testDueDateEndConstructor() throws IllegalValueException {
+        DueDate date = new DueDate("end date 03/22/2019");
+        
+        assertEquals(date.getEndDate(), "03/22/2019");
+    }
+    
+    @Test
     public void testSetFloating() throws IllegalValueException {
         DueDate date = new DueDate("");
         date.setFloating();
