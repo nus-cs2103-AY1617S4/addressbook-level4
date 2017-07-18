@@ -11,15 +11,17 @@ public class UserPrefs {
 
     private GuiSettings guiSettings;
     private String reminderSetting;
+    private String taskManagerFilePath;
 
-    private String taskManagerFilePath = "data/whatsnext.xml";
     private String taskManagerName = "MyTaskManager";
 
     private final String defaultReminderSetting = "3 day";
+    private final String defaultTaskManagerFilePath = "data/whatsnext.xml";
 
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
         this.setReminderSetting(defaultReminderSetting);
+        this.setTaskManagerFilePath(defaultTaskManagerFilePath);
     }
 
     public GuiSettings getGuiSettings() {
@@ -48,11 +50,11 @@ public class UserPrefs {
     public void setReminderSetting(String newReminderSetting) {
         this.reminderSetting = newReminderSetting;
     }
-
+    //@@author A0149894H
     public String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
-
+    //@@author A0149894H
     public void setTaskManagerFilePath(String taskManagerFilePath) {
         this.taskManagerFilePath = taskManagerFilePath;
     }

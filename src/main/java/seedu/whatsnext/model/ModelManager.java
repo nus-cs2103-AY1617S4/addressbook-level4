@@ -116,6 +116,20 @@ public class ModelManager extends ComponentManager implements Model {
         userPrefs.updateLastUsedReminderSetting(newReminderSetting);
     }
 
+    // @@author A0149894H
+    /** Sets new task manager file path. */
+    @Override
+    public void setTaskManagerFilePath(String newFilePath) {
+        userPrefs.setTaskManagerFilePath(newFilePath);
+    }
+
+    //@@author A0149894H
+    /** Returns current task manager file path. */
+    @Override
+    public String getTaskManagerFilePath() {
+        return userPrefs.getTaskManagerFilePath();
+    }
+
     @Override
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
