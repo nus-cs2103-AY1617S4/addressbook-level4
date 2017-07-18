@@ -1,3 +1,4 @@
+
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -30,3 +31,4 @@ public class SampleDataTest extends TaskManagerGuiTest {
         assertTrue(floatingListPanel.isListMatching(expectedList));
     }
 }
+

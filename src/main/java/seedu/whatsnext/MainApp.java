@@ -1,9 +1,6 @@
 package seedu.whatsnext;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -14,7 +11,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.whatsnext.commons.core.Config;
-import seedu.whatsnext.commons.core.Config.RepeatTaskManagerFilePathException;
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Version;
@@ -47,7 +43,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(1, 0, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-    private static String path;
+    //private static String path;
 
     protected Ui ui;
     protected Logic logic;
@@ -64,8 +60,6 @@ public class MainApp extends Application {
 
         config = initConfig(getApplicationParameter("config"));
 
-        initFilePath(path);
-
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
@@ -81,21 +75,6 @@ public class MainApp extends Application {
         ui = new UiManager(logic, config, userPrefs);
 
         initEventsCenter();
-    }
-
-    //@@author A0149894H
-    public void initFilePath(String path) throws IOException {
-        InputStream resourceStream = this.getClass().getResourceAsStream("/filepath/filepath");
-        InputStreamReader streamReader = new InputStreamReader(resourceStream);
-
-        BufferedReader in = new BufferedReader(streamReader);
-        String filepath = in.readLine();
-
-        try {
-            config.setTaskManagerFilePath(filepath);
-        } catch (RepeatTaskManagerFilePathException e) {
-            e.printStackTrace();
-        }
     }
 
     private String getApplicationParameter(String parameterName) {

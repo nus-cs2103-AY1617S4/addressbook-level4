@@ -1,14 +1,9 @@
 package seedu.whatsnext.logic.commands;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.logging.Logger;
 
-import seedu.whatsnext.commons.core.Config;
 import seedu.whatsnext.commons.core.LogsCenter;
-import seedu.whatsnext.commons.util.ConfigUtil;
-import seedu.whatsnext.commons.util.StringUtil;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.storage.XmlTaskManagerStorage;
 
@@ -39,55 +34,40 @@ public class ChangePathCommand extends Command {
         toSave = filePath;
     }
 
-    @Override
-    public CommandResult execute() throws CommandException {
-        try {
-            //delete
-            deleteOldFile();
-
-            //overwrite filepath
-            String stringLocation = overwriteFilePath();
-
-            //set new file path in config
-            Config config = new Config();
-            config.setTaskManagerFilePath(stringLocation);
-            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
-
-
-            XmlTaskManagerStorage.changeTaskManagerFilePath(stringLocation);
-            model.saveTaskManager();
-
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toSave));
-        } catch (Config.RepeatTaskManagerFilePathException dtmfpe) {
-            throw new CommandException(MESSAGE_REPEAT_TASK_MANAGER_FILE_PATH);
-        } catch (IOException ioe) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(ioe));
-            throw new CommandException(MESSAGE_CREATED_NEW_CONFIG_FILE);
-        }
-
-    }
-
-    private String overwriteFilePath() throws IOException {
-        File myFoo = new File("filepath");
-        FileWriter fooWriter = new FileWriter(myFoo, false);
-
-        String stringLocation = toSave.toString();
-        fooWriter.write(stringLocation);
-        fooWriter.close();
-        return stringLocation;
-    }
-
+    /**
+     * Deletes old file at previous location
+     */
+    //@@author A0149894H
     private void deleteOldFile() {
         File f = new File("test.txt");
         String string = f.getAbsolutePath();
         int texttxtSize = 8;
         int size = string.length() - texttxtSize;
         string = string.substring(0, size);
-        String deleteLocation = String.format(string).concat(Config.getTaskManagerFilePath());
+        String deleteLocation = String.format(string).concat(model.getTaskManagerFilePath());
         deleteLocation = deleteLocation.replace("\\", "/");
         File toDeleteFilePath = new File(deleteLocation);
         toDeleteFilePath.delete();
     }
+
+    //@@author A0149894H
+    @Override
+    public CommandResult execute() throws CommandException {
+        deleteOldFile();
+
+        //overwrite file path
+        model.setTaskManagerFilePath(toSave.toString());
+
+
+        XmlTaskManagerStorage.changeTaskManagerFilePath(toSave.toString());
+        model.saveTaskManager();
+
+        logger.fine(MESSAGE_SUCCESS + toSave.toString());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toSave));
+
+    }
+
+
 
 
 }
