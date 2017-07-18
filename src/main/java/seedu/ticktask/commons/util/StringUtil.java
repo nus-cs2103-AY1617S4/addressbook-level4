@@ -26,7 +26,8 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(string);
 
-        //@@author A0147928N (power search)
+        //@@author A0147928N 
+        //(power search)
         String preppedWord = string.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
