@@ -54,7 +54,7 @@ public class AddCommandParser {
                 BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
                         startDateTimeValue, endDateTimeValue, tagList);
                 return new AddCommand(task);
-            }else {
+            } else {
                 SplitCommaParser splitCommandParser = new SplitCommaParser();
                 splitCommandParser.tokenize(args);
 

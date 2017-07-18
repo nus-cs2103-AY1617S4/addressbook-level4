@@ -14,20 +14,18 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 
 public class SplitCommaParser {
-    public static String TASK_NAME = "name";
-    public static String TASK_DESCRIPTION = "description";
-    public static String TASK_START_DATE = "start";
-    public static String TASK_END_DATE = "end";
-    public static String TASK_DATETIME = "end";
-    public static String TASK_TAG = "tag";
+    private static final String TASK_NAME = "name";
+    private static final String TASK_DESCRIPTION = "description";
+    private static final String TASK_DATETIME = "end";
+    private static final String TASK_TAG = "tag";
 
-    HashMap<String, List<String>> parserMap = new HashMap<>();
-    ArrayList<String> nameList = new ArrayList<>();
-    ArrayList<String> descriptionList = new ArrayList<>();
-    ArrayList<String> dateTimeList = new ArrayList<>();
-    ArrayList<String> tagList = new ArrayList<>();
+    private HashMap<String, List<String>> parserMap = new HashMap<>();
+    private ArrayList<String> nameList = new ArrayList<>();
+    private ArrayList<String> descriptionList = new ArrayList<>();
+    private ArrayList<String> dateTimeList = new ArrayList<>();
+    private ArrayList<String> tagList = new ArrayList<>();
 
-    public HashMap<String, List<String>> tokenize(String inputValue){
+    public HashMap<String, List<String>> tokenize(String inputValue) {
 
         String[] splitInputValue = inputValue.split(",");
 
@@ -35,7 +33,7 @@ public class SplitCommaParser {
         parserMap.put(TASK_NAME, nameList);
 
         for (String value : splitInputValue) {
-            if (isValidDescription(value)){
+            if (isValidDescription(value)) {
                 descriptionList.add(value);
             } else if (isValidDateTime(value)) {
                 System.out.println("DATE" + value);
@@ -56,15 +54,17 @@ public class SplitCommaParser {
     }
 
     public Optional<String> getDescription() {
-        if (parserMap.get(TASK_DESCRIPTION).isEmpty())
+        if (parserMap.get(TASK_DESCRIPTION).isEmpty()) {
             return Optional.empty();
+        }
 
         return Optional.of(parserMap.get(TASK_DESCRIPTION).get(0));
     }
 
     public Optional<String> getStartDateTime() {
-        if (parserMap.get(TASK_DATETIME).isEmpty())
+        if (parserMap.get(TASK_DATETIME).isEmpty()) {
             return Optional.empty();
+        }
 
         return Optional.of(parserMap.get(TASK_DATETIME).get(0));
     }
@@ -81,7 +81,7 @@ public class SplitCommaParser {
         return inputValue.startsWith("\"") && inputValue.endsWith("\"");
     }
 
-    private boolean isValidDateTime(String args){
+    private boolean isValidDateTime(String args) {
         List<Date> dateInputList = new PrettyTimeParser().parse(args);
         if (dateInputList.isEmpty()) {
             return false;
@@ -91,20 +91,20 @@ public class SplitCommaParser {
 
     Set<Tag> parseTags() throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
-        for(String tagName : tagList){
+        for (String tagName : tagList) {
             tagName = tagName.trim();
             tagSet.add(new Tag(tagName));
         }
         return tagSet;
     }
 
-    private boolean isValidTag(String args){
+    private boolean isValidTag(String args) {
         String inputValue = args.trim();
         if (inputValue.length() < 5) {
             return false;
         }
-        String tagKey = inputValue.substring(0,5);
-        if(tagKey.equals("tags:")) {
+        String tagKey = inputValue.substring(0, 5);
+        if (tagKey.equals("tags:")) {
             return true;
         }
         return false;
@@ -113,8 +113,8 @@ public class SplitCommaParser {
     private ArrayList<String> getTags(String args) {
         String inputValue = args.substring(6);
         ArrayList<String> splitTagList = new ArrayList<>();
-        for(String value : inputValue.split(" ")){
-            if (!value.isEmpty()){
+        for (String value : inputValue.split(" ")) {
+            if (!value.isEmpty()) {
                 splitTagList.add(value.trim());
             }
         }
