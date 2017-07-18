@@ -4,7 +4,7 @@ import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of persons
+ * Indicates a request to jump to the list of tasks
  */
 public class JumpToListRequestEvent extends BaseEvent {
 

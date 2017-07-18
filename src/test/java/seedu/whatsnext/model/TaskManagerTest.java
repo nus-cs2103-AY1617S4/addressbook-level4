@@ -45,13 +45,13 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsAssertionError() {
+    public void resetData_withDuplicateTasks_throwsAssertionError() {
         TypicalTasks td = new TypicalTasks();
         // Repeat td.alice twice
-        List<BasicTask> newPersons = Arrays.asList(new BasicTask(td.completeCS2103Assignment),
+        List<BasicTask> newTasks = Arrays.asList(new BasicTask(td.completeCS2103Assignment),
                 new BasicTask(td.completeCS2103Assignment));
         List<Tag> newTags = new ArrayList<>(td.completeCS2103Assignment.getTags());
-        TaskManagerStub newData = new TaskManagerStub(newPersons, newTags);
+        TaskManagerStub newData = new TaskManagerStub(newTasks, newTags);
 
         thrown.expect(AssertionError.class);
         taskManager.resetData(newData);
@@ -71,7 +71,7 @@ public class TaskManagerTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons and tags lists can violate interface constraints.
+     * A stub ReadOnlyTaskManager whose tasks and tags lists can violate interface constraints.
      */
     private static class TaskManagerStub implements ReadOnlyTaskManager {
         private final ObservableList<BasicTask> tasks = FXCollections.observableArrayList();

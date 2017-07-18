@@ -22,7 +22,7 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the Task Manager level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class TaskManager implements ReadOnlyTaskManager {
@@ -52,7 +52,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
     public UniqueTaskList getTasks() {
         return tasks;
     }
@@ -80,7 +80,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(tasks);
     }
 
-    //// task-level operations
+    // task-level operations
 
     /**
      * Adds a task to the task manager.
@@ -112,9 +112,6 @@ public class TaskManager implements ReadOnlyTaskManager {
 
         BasicTask editedTask = new BasicTask(editedReadOnlyTask);
         syncMasterTagListWith(editedTask);
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any task
-        // in the task list.
         tasks.updateTask(target, editedTask);
         tasks.sort();
     }
@@ -159,19 +156,18 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
 
-    //// tag-level operations
+    // tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException, IllegalValueException {
         tags.add(t);
     }
 
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {
         return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags";
-        // TODO: refine later
     }
 
     @Override

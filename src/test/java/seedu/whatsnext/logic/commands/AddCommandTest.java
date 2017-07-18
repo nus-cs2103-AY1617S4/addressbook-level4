@@ -106,7 +106,7 @@ public class AddCommandTest {
     }
 
     /**
-     * Generates a new AddCommand with the details of the given person.
+     * Generates a new AddCommand with the details of the given task.
      */
     private AddCommand getAddCommandForTask(BasicTask task, Model model) throws IllegalValueException {
         AddCommand command = new AddCommand(task);
@@ -140,7 +140,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedPerson)
+        public void updateTask(BasicTaskFeatures target, BasicTaskFeatures editedTask)
                 throws DuplicateTaskException {
             fail("This method should not be called.");
         }
@@ -210,7 +210,7 @@ public class AddCommandTest {
 
     //@@author A0156106M
     /**
-     * A Model stub that always throw a DuplicatePersonException when trying to add a person.
+     * A Model stub that always throw a DuplicateTaskException when trying to add a Task.
      */
     private class ModelStubThrowingDuplicateTaskException extends ModelStub {
         @Override
@@ -235,7 +235,7 @@ public class AddCommandTest {
 
     //@@author A0156106M
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the Task being added.
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<BasicTask> tasksAdded = new ArrayList<>();

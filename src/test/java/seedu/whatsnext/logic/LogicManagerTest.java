@@ -288,7 +288,7 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         BasicTask toBeAdded = helper.sampleEventTask();
         // setup starting state
-        model.addTask(toBeAdded); // person already in internal task manager
+        model.addTask(toBeAdded); // task already in internal task manager
         // execute command and verify result
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
@@ -320,8 +320,8 @@ public class LogicManagerTest {
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage)
@@ -336,8 +336,8 @@ public class LogicManagerTest {
     //@@author
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
@@ -345,7 +345,7 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         List<BasicTask> basicTaskList = helper.generateTaskList(2);
 
-        // set AB state to 2 persons
+        // set TM state to 2 tasks
         model.resetData(new TaskManager());
         for (BasicTask basicTask : basicTaskList) {
             model.addTask(basicTask);
@@ -393,7 +393,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_delete_removesCorrectPerson() throws Exception {
+    public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<BasicTask> threeTasks = helper.generateTaskList(3);
 
@@ -420,10 +420,10 @@ public class LogicManagerTest {
         BasicTask p1 = new TaskBuilder().withName("KE Y").build();
         BasicTask p2 = new TaskBuilder().withName("KEYKEYKEY sduauo").build();
 
-        List<BasicTask> fourPersons = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
+        List<BasicTask> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourTasks), new UserPrefs());
         expectedModel.updateFilteredTaskList(new HashSet<>(Collections.singletonList("KEY")));
-        helper.addToModel(model, fourPersons);
+        helper.addToModel(model, fourTasks);
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
                 Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
                 expectedModel);
@@ -437,9 +437,9 @@ public class LogicManagerTest {
         BasicTask p3 = new TaskBuilder().withName("key key").build();
         BasicTask p4 = new TaskBuilder().withName("KEy sduauo").build();
 
-        List<BasicTask> fourPersons = helper.generateTaskList(p3, p1, p4, p2);
-        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
-        helper.addToModel(model, fourPersons);
+        List<BasicTask> fourTasks = helper.generateTaskList(p3, p1, p4, p2);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourTasks), new UserPrefs());
+        helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
                 Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
@@ -454,10 +454,10 @@ public class LogicManagerTest {
         BasicTask pTarget3 = new TaskBuilder().withName("key key").build();
         BasicTask p1 = new TaskBuilder().withName("sduauo").build();
 
-        List<BasicTask> fourPersons = helper.generateTaskList(pTarget1, p1, pTarget2, pTarget3);
-        Model expectedModel = new ModelManager(helper.generateTaskManger(fourPersons), new UserPrefs());
+        List<BasicTask> fourTasks = helper.generateTaskList(pTarget1, p1, pTarget2, pTarget3);
+        Model expectedModel = new ModelManager(helper.generateTaskManger(fourTasks), new UserPrefs());
         expectedModel.updateFilteredTaskList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
-        helper.addToModel(model, fourPersons);
+        helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " key rAnDoM",
                 Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
@@ -526,12 +526,12 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a valid person using the given seed.
+         * Generates a valid task using the given seed.
          * Running this function with the same parameter values
-         * guarantees the returned person will have the same state.
+         * guarantees the returned task will have the same state.
          * Each unique seed will generate a unique BasicTask object.
          *
-         * @param seed used to generate the person data field values
+         * @param seed used to generate the task data field values
          */
         BasicTask generateTask(int seed) throws Exception {
             // to ensure that phone numbers are at least 3 digits long, when seed is less than 3 digits
@@ -546,7 +546,7 @@ public class LogicManagerTest {
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
 
-        /** Generates the correct add command based on the person given */
+        /** Generates the correct add command based on the task given */
         String generateAddCommand(BasicTask basicTask) {
             StringBuffer cmd = new StringBuffer();
 
@@ -588,8 +588,8 @@ public class LogicManagerTest {
         }
 
         /**
-         * Adds auto-generated BasicTask objects to the given AddressBook
-         * @param taskManager The AddressBook to which the Persons will be added
+         * Adds auto-generated BasicTask objects to the given TaskManager
+         * @param taskManager The TaskManager to which the Tasks will be added
          */
         void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
             addToTaskManager(taskManager, generateTaskList(numGenerated));
@@ -598,9 +598,9 @@ public class LogicManagerTest {
         /**
          * Adds the given list of BasicTask to the given TaskManager
          */
-        void addToTaskManager(TaskManager addressBook, List<BasicTask> taskToAdd) throws Exception {
+        void addToTaskManager(TaskManager taskManager, List<BasicTask> taskToAdd) throws Exception {
             for (BasicTask task: taskToAdd) {
-                addressBook.addTask(task);
+                taskManager.addTask(task);
             }
         }
 
@@ -613,7 +613,7 @@ public class LogicManagerTest {
         }
 
         /**
-         * Adds the given list of Persons to the given model
+         * Adds the given list of Tasks to the given model
          */
         void addToModel(Model model, List<BasicTask> tasksToAdd) throws Exception {
             for (BasicTask task: tasksToAdd) {

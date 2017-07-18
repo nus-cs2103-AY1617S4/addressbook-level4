@@ -71,7 +71,7 @@ public class MarkCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the first person from the address book.
+     * Updates {@code model}'s filtered list to show only the first tasks from the TaskManager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getFilteredTaskList().get(0);
