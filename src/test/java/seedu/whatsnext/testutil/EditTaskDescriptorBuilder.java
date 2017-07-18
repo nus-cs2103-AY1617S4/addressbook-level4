@@ -25,7 +25,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditTaskDescriptor} with fields containing {@code Task}'s details
      */
     public EditTaskDescriptorBuilder(BasicTaskFeatures task) throws IllegalValueException {
         descriptor = new EditTaskDescriptor();

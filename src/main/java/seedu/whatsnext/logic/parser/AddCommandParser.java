@@ -29,30 +29,58 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
-                        PREFIX_END_DATETIME, PREFIX_TAG_CLI);
-
-        // First argument would always be for name
-        /*
-        if (!arePrefixesPresent(argMultimap)) {
-            System.out.println("ARGUMENT = " + args);
-            throw new ParseException(String.format("testing", AddCommand.MESSAGE_USAGE));
-        }*/
-
         try {
-            TaskName taskName = new TaskName(argMultimap.getPreamble());
-            Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
-            Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
-            Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_CLI));
-
-            BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
-                    startDateTimeValue, endDateTimeValue, tagList);
-            return new AddCommand(task);
+            if (args.contains(PREFIX_START_DATETIME.toString()) || args.contains(PREFIX_END_DATETIME.toString())
+                    || args.contains(PREFIX_MESSAGE.toString()) || args.contains(PREFIX_TAG_CLI.toString())) {
+                return parseCommandByPrefix(args);
+            } else {
+                return parseCommandByComma(args);
+            }
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
+    }
+
+    /**
+     * Parses the argument based on Prefix
+     * @return AddCommand Object based on tokenized Prefix
+     * */
+    private AddCommand parseCommandByPrefix(String args) throws IllegalValueException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
+                        PREFIX_END_DATETIME, PREFIX_TAG_CLI);
+        TaskName taskName = new TaskName(argMultimap.getPreamble());
+        Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
+        Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
+        Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_CLI));
+
+        BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
+                startDateTimeValue, endDateTimeValue, tagList);
+        return new AddCommand(task);
+    }
+
+    /**
+     * Parses the argument based on Comma
+     * @return AddCommand Object based on tokenized values
+     * */
+    private AddCommand parseCommandByComma(String args) throws IllegalValueException {
+        SplitCommaParser splitCommandParser = new SplitCommaParser();
+        splitCommandParser.tokenize(args);
+
+        TaskName taskName = new TaskName(splitCommandParser.getTaskName());
+        Optional<String> startDateTimeValue = splitCommandParser.getStartDateTime();
+        Optional<String> endDateTimeValue = splitCommandParser.getEndDateTime();
+        Optional<String> taskDescriptionValue = splitCommandParser.getDescription();
+        if (startDateTimeValue.isPresent() && !endDateTimeValue.isPresent()) {
+            endDateTimeValue = startDateTimeValue;
+            startDateTimeValue = Optional.empty();
+        }
+        Set<Tag> tagList = splitCommandParser.parseTags();
+
+        BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
+                startDateTimeValue, endDateTimeValue, tagList);
+        return new AddCommand(task);
     }
 
     /**
@@ -74,13 +102,16 @@ public class AddCommandParser {
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
             validateStartEndDateTime(startDateTime, endDateTime);
             task = new BasicTask(taskName, taskDescription, false, startDateTime, endDateTime, tagList);
+
         // Create Deadline Task
         } else if (endDateTimeValue.isPresent()) {
             DateTime endDateTime = new DateTime(endDateTimeValue.get());
             task = new BasicTask(taskName, taskDescription, false, endDateTime, tagList);
+
         // Invalid Task
         } else if (startDateTimeValue.isPresent() && !endDateTimeValue.isPresent()) {
             throw new IllegalValueException(AddCommand.INVALID_TASK_CREATED);
+
         // Create Floating Task
         } else {
             task = new BasicTask(taskName, taskDescription, false, tagList);
@@ -98,13 +129,5 @@ public class AddCommandParser {
         }
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    /*
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }*/
 
 }

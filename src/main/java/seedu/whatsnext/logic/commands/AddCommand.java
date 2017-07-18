@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     private BasicTask toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code ReadOnlyPerson}
+     * Creates an AddCommand to add the specified {@code BasicTaskFeatures}
      */
     public AddCommand(BasicTaskFeatures task) {
         toAdd = new BasicTask(task);

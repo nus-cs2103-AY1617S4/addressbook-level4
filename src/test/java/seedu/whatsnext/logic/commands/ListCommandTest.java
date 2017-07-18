@@ -109,7 +109,7 @@ public class ListCommandTest {
     }
 
     /**
-     * Updates the filtered list to show only the first person in the {@code model}'s task manager.
+     * Updates the filtered list to show only the first task in the {@code model}'s task manager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
@@ -122,7 +122,7 @@ public class ListCommandTest {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the result message matches {@code expectedMessage} <br>
-     * - the address book and the filtered person list in the {@code model} matches that of {@code expectedModel}
+     * - the TaskManager and the filtered task list in the {@code model} matches that of {@code expectedModel}
      * @throws IllegalValueException
      * @throws TagNotFoundException
      */

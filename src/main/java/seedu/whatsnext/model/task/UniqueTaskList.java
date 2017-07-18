@@ -69,16 +69,13 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         }
 
         taskToUpdate.resetData(editedTask);
-        // TODO: The code below is just a workaround to notify observers of the updated task.
-        // The right way is to implement observable properties in the Task class.
-        // Then, TaskCard should then bind its text labels to those observable properties.
         internalList.set(index, taskToUpdate);
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Removes the equivalent task from the list.
      *
-     * @throws TaskNotFoundException if no such person could be found in the list.
+     * @throws TaskNotFoundException if no such task could be found in the list.
      */
     public boolean remove(BasicTaskFeatures toRemove) throws TaskNotFoundException {
         requireNonNull(toRemove);
