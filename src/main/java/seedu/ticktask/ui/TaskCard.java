@@ -56,7 +56,6 @@ public class TaskCard extends UiPart<Region> {
         if (task.getTaskType().getValue().equals("event")){
             cardPane.setStyle("-fx-background-color: #ffe3b5;-fx-font-size: 9pt;-fx-text-fill: #010504;");
             if(!task.getCompleted()) {
-
                 initializeEstimatedTimeForEvent(task);
             }
             else{
@@ -75,7 +74,7 @@ public class TaskCard extends UiPart<Region> {
 
         } else if (task.getTaskType().getValue().equals("floating")){
             cardPane.setStyle("-fx-background-color: #ccecff; -fx-font-size: 9pt;-fx-text-fill: #0083d1;");
-            button.setText("");
+            button.setStyle("visibility: hidden;");
         }
         initTags(task);
     }
@@ -87,14 +86,15 @@ public class TaskCard extends UiPart<Region> {
 
     public void initializeEstimatedTimeForEvent(ReadOnlyTask task){
         if(task.isHappening()){
-            button.setText("HAPPENING");
+            button.setText("Happening");
         } else if(task.isDateDue() || task.isTimeDue()){
             button.setText("Over due");
         } else if(task.getDueDateDuration() >= 1){
             button.setText("Starting in: " + task.getDueDateDuration() + " days");
         }
         else{
-            button.setText("Starting in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(), true, true));
+            button.setText("Starting in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+                    true, true));
         }
     }
 
@@ -102,9 +102,10 @@ public class TaskCard extends UiPart<Region> {
         if (task.isDateDue() || task.isTimeDue()) {
             button.setText("Over Due");
         } else if (task.getDueDateDuration() >= 1) {
-            button.setText("DUE IN: " + task.getDueDateDuration() + " days");
+            button.setText("Due in: " + task.getDueDateDuration() + " days");
         } else {
-            button.setText("DUE IN " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(), true, true));
+            button.setText("Due in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+                           true, true));
         }
     }
 }
