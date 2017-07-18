@@ -18,6 +18,7 @@ public class ListCommand extends Command {
             + "To list completed tasks : list completed\n"
             + "To list all tasks : list all";
 
+    public static final String MESSAGE_SUCCESS = "Listed all upcoming incomplete tasks";
     public static final String MESSAGE_SUCCESS_INCOMPLETE = "Listed all incomplete tasks";
     public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all complete tasks";
     public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
@@ -30,7 +31,10 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (argument.isEmpty() || argument.equals(LIST_INCOMPLETE)) {
+        if (argument.isEmpty()) {
+            model.updateFilteredTaskListToShowUpcomingTasks();
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else if (argument.equals(LIST_INCOMPLETE)) {
             boolean isComplete = false;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_INCOMPLETE);

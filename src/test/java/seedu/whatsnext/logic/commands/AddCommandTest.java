@@ -216,6 +216,12 @@ public class AddCommandTest {
         public void resetPrevTaskManager() {
             fail("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredTaskListToShowUpcomingTasks() {
+            fail("This method should not be called.");
+        }
+
     }
 
     //@@author A0156106M

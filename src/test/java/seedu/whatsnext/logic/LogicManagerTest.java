@@ -308,12 +308,12 @@ public class LogicManagerTest {
         //ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
 
         // Command: "list" - list all incomplete tasks
-        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS, expectedModel);
         // Command: "list all" - to list incomplete tasks
         assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_ALL,
                 ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
         // Command: "list incomplete" - to list all incomplete tasks
-        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS, expectedModel);
 
     }
 

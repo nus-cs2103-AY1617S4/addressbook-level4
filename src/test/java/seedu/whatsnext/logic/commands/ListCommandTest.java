@@ -74,9 +74,8 @@ public class ListCommandTest {
     public void execute_listIsNotFiltered_showsList() throws Exception {
         listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
-        boolean isCompleted = false;
-        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
-        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+        expectedModel.updateFilteredTaskListToShowUpcomingTasks();
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -84,9 +83,8 @@ public class ListCommandTest {
         showFirstTaskOnly(model);
         listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
-        boolean isCompleted = false;
-        expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
-        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+        expectedModel.updateFilteredTaskListToShowUpcomingTasks();
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
