@@ -65,7 +65,6 @@ import seedu.ticktask.testutil.TaskBuilder;
 
 //@@author A0138471A
 public class LogicManagerTest {
-
     /**
      * See https://github.com/junit-team/junit4/wiki/rules#temporaryfolder-rule
      */
@@ -317,23 +316,25 @@ public class LogicManagerTest {
         assertEquals(INDEX_SECOND_TASK, targetedJumpIndex);
         assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
     }
-
-
-   /* @Test
-    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand(DeleteCommand.COMMAND_WORD , expectedMessage);
-    }*/
+  //@@author 
     
 
-   /* @Test
-    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
-        assertIndexNotFoundBehaviorForCommand(DeleteCommand.COMMAND_WORD + " /active 5");
-    }*/
+
+//    @Test
+//    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
+//        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+//        assertIncorrectIndexFormatBehaviorForCommand(DeleteCommand.COMMAND_WORD , expectedMessage);
+//    }
     
-    /*
+  //@@author A0131884B
     @Test
-    public void execute_delete_removesCorrectPerson() throws Exception {
+    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand(DeleteCommand.COMMAND_WORD + " active ");
+    }
+    
+    
+    @Test
+    public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Task> threeTasks = helper.generateTaskList(3);
 
@@ -341,11 +342,12 @@ public class LogicManagerTest {
         expectedModel.deleteIndexActiveTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
-        assertCommandSuccess(DeleteCommand.COMMAND_WORD + " /active 2",
+        assertCommandSuccess(DeleteCommand.COMMAND_WORD + " active 2",
                 String.format(DeleteCommand.MESSAGE_SUCCESS, threeTasks.get(1)), expectedModel);
-    }*/
+    }
 
-
+    //@@author 
+    //@@author A0138471A
     @Test
     public void execute_find_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
@@ -548,3 +550,4 @@ public class LogicManagerTest {
         }
     }
 }
+//@@author
