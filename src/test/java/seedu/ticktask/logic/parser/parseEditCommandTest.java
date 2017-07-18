@@ -14,6 +14,7 @@ import static org.junit.Assert.fail;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.*;
 import static seedu.ticktask.testutil.EditCommandTestUtil.*;
+import static seedu.ticktask.testutil.TypicalTasksCompleted.INDEX_FIRST_TASK;
 import static seedu.ticktask.testutil.TypicalTasksCompleted.INDEX_SECOND_TASK;
 
 //@@author A0139964M
@@ -59,9 +60,14 @@ public class parseEditCommandTest {
     
         // invalid prefix being parsed as preamble
         assertParseFailure("1 i/ string", MESSAGE_INVALID_FORMAT);
-    
     }
-    
+
+    @Test
+    public void parse_invalidName_failure() throws IllegalValueException {
+        assertParseFailure("" + INDEX_FIRST_TASK + PREFIX_NAME + "@", MESSAGE_INVALID_FORMAT);
+    }
+
+
     @Test
     public void parse_byIndexAllFieldsSpecified_success() throws Exception {
         Index targetIndex = INDEX_SECOND_TASK;
