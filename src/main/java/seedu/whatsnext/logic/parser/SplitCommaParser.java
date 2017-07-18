@@ -45,15 +45,14 @@ public class SplitCommaParser {
     public HashMap<String, List<String>> tokenize(String inputValue) {
 
         String[] splitInputValue = inputValue.split(",");
-
         nameList.add(splitInputValue[0]);
         parserMap.put(TASK_NAME, nameList);
 
-        for (String value : splitInputValue) {
+        for (int i = 1; i < splitInputValue.length; i++) {
+            String value = splitInputValue[i];
             if (isValidDescription(value)) {
                 descriptionList.add(value);
             } else if (isValidDateTime(value)) {
-                System.out.println("DATE" + value);
                 dateTimeList.add(value);
             } else if (isValidTag(value)) {
                 tagList = getTags(value);
@@ -80,8 +79,11 @@ public class SplitCommaParser {
         if (parserMap.get(TASK_DESCRIPTION).isEmpty()) {
             return Optional.empty();
         }
-
-        return Optional.of(parserMap.get(TASK_DESCRIPTION).get(0));
+        String descriptionValue = parserMap.get(TASK_DESCRIPTION).get(0);
+        descriptionValue = descriptionValue.trim();
+        descriptionValue = descriptionValue.substring(1);
+        descriptionValue = descriptionValue.substring(0, descriptionValue.length() - 1);
+        return Optional.of(descriptionValue);
     }
 
     /**
