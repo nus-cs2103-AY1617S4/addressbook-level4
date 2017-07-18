@@ -166,38 +166,44 @@ public class AddCommandTest {
 
         @Override
         public String eventClash(ReadOnlyTask t) {
+            fail("This method should not be called.");
             return null;
         }
 
         @Override
 		public void updateFilteredListToShowEvent() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowDeadline() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowFloating() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowToday() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void saveTickTask() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
+
+        public boolean isChornological(ReadOnlyTask t) {
+            fail("This method should not be called.");
+            return false;
+        }
     }
 
     /**

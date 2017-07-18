@@ -49,7 +49,6 @@ import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
@@ -166,7 +165,7 @@ public class LogicManagerTest {
             CommandResult result = logic.execute(inputCommand);
             assertEquals(expectedException, null);
             assertEquals(expectedMessage, result.feedbackToUser);
-        } catch (CommandException | IllegalValueException | WarningException e) {
+        } catch (CommandException | IllegalValueException e) {
             assertEquals(expectedException, e.getClass());
             assertEquals(expectedMessage, e.getMessage());
         }
