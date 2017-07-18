@@ -83,4 +83,25 @@ public class DueTimeTest {
         dueTime.setEndTime(LocalTime.parse("23:00"));
         assertEquals(dueTime.getStartTime(), "22:00");
     }
+    
+    @Test
+    public void testSetFloating() throws IllegalValueException {
+        DueTime time = new DueTime("");
+        time.setFloating();
+        assertTrue(time.isFloating());
+    }
+    
+    @Test
+    public void testSetDeadline() throws IllegalValueException {
+        DueTime time = new DueTime("03/22/2019");
+        time.setDeadline();
+        assertTrue(time.isDeadline());
+    }
+    
+    @Test
+    public void testSetRange() throws IllegalValueException {
+        DueTime time = new DueTime("03/22/2019 - 03/22/2020");
+        time.setRange();
+        assertTrue(time.isRange());
+    }
 }
