@@ -80,4 +80,12 @@ public interface Model {
      */
     void updateFilteredTaskListForReminder();
 
+    // @@author A0149894H
+    /** Returns current task manager file path. */
+    String getTaskManagerFilePath();
+
+    // @@author A0149894H
+    /** Sets new task manager file path. */
+    void setTaskManagerFilePath(String newFilePath);
+
 }
