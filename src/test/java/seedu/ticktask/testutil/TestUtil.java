@@ -70,6 +70,7 @@ public class TestUtil {
                     new Task(new Name("University hostel checkout deadline"), new DueTime("1700"), new TaskType("deadline"), new DueDate("08/25"), getTagSet()),
                     new Task(new Name("Pack belongings to move out"), new DueTime("12pm-3pm"), new TaskType("event"), new DueDate("08/25"), getTagSet()),
                     new Task(new Name("Dinner with Rachel"), new DueTime("1900-2200"), new TaskType("event"), new DueDate("08/025"), getTagSet()),
+
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
