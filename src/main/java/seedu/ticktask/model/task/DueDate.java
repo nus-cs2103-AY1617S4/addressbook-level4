@@ -17,13 +17,19 @@ import java.util.regex.Pattern;
 
 import static java.util.Objects.requireNonNull;
 
-//@@author A0138471A
+
 /**
  * Represents a Task's date in the TickTask.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
+
 public class DueDate {
 
+    //@@author A0139819N
+    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
+    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
+    //@@author
+    //@@author A0138471A
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Enter a valid date";
 
@@ -38,13 +44,9 @@ public class DueDate {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
-    //@@author A0139819N
-    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
-    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
-    //@@author
+
 
     private final Parser parser = new Parser();
-    //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 
     private String value;
     
@@ -61,9 +63,6 @@ public class DueDate {
     private boolean isRange = false;
     private boolean isDeadline = false;
     
-    
-    
-
     /**
      * Validates given due date.
      *
@@ -143,36 +142,6 @@ public class DueDate {
         }
 
     }
-
-
-    //@@author A0139819N
-    /*
-     * Method used to convert date input by user f
-     */
-    
-    /*
-    private String convertDateFormat(String trimmedDate) {
-        
-        System.out.println("OLD Trimmed date string: " + trimmedDate);
-        
-        DateTimeFormatter internationalDateParser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter americanDateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        //LocalDate inDate = LocalDate.parse(trimmedDate, internationalDateParser);
-
-        if(trimmedDate.matches(DATE_REGEX_SINGLE)){
-            trimmedDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate));
-        }else if (trimmedDate.matches(DATE_REGEX_RANGE)){
-            String startDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(0,10)));
-            String endDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(11,21)));
-            System.out.println("START: " + startDate + "END: " + endDate);
-            trimmedDate = startDate + " " + endDate;
-        }
-        System.out.println("NEW trimmed date string: " + trimmedDate);
-
-        return trimmedDate;
-    }
-    //@@author
-    */
     
     public String getValue() {
         return value;
@@ -308,3 +277,4 @@ public class DueDate {
     }
 
 }
+//@@author
