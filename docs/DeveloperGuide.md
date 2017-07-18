@@ -48,7 +48,7 @@ By: T01-T4	&nbsp;&nbsp;&nbsp;&nbsp;	Since: Jun 2017	&nbsp;&nbsp;&nbsp;&nbsp;	Lic
 ### 1.3. Configuring Checkstyle
 1. Click `Project` -> `Properties` -> `Checkstyle` -> `Local Check Configurations` -> `New...`
 2. Choose `External Configuration File` under `Type`
-3. Enter an arbitrary configuration name e.g. addressbook
+3. Enter an arbitrary configuration name e.g. whatsnext
 4. Import checkstyle configuration file found at `config/checkstyle/checkstyle.xml`
 5. Click OK once, go to the `Main` tab, use the newly imported check configuration.
 6. Tick and select `files from packages`, click `Change...`, and select the `resources` package
@@ -88,7 +88,7 @@ Given below is a quick overview of each component.
 > Tip: The `.pptx` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder.
 > To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
-[**`Main`**] consists of a single class called [`MainApp`](../src/main/java/seedu/address/MainApp.java) which is responsible for,
+[**`Main`**] consists of a single class called [`MainApp`](../src/main/java/seedu/whatsnext/MainApp.java) which is responsible for,
 
 1. At app launch: Initializes the `Ui`, `Logic`, `Storage`, `Model`, `Config` and `UserPrefs` components in the correct sequence, and connects them up with each other. It also ensures that prefs file is updated in the case where it is missing or when there are new/unused fields.
 2. At shut down: Shuts down the components, saves the `UserPrefs` and invokes cleanup method where necessary.
@@ -146,13 +146,13 @@ Author: Aung Swumm Htet Pyi Aye
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
-**API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](../src/main/java/seedu/whatsnext/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. The three panels, `EventListPanel`, `DeadlineListPanel` and `FloatingListPanel`, hosts their own respective cards, `EventTaskCard`, `DeadlineTaskCard` and `FloatingTaskCard` listviews. 'All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
- For example, the layout of the [`MainWindow`](../src/main/java/seedu/address/ui/MainWindow.java) is specified in
+ For example, the layout of the [`MainWindow`](../src/main/java/seedu/whatsnext/ui/MainWindow.java) is specified in
  [`MainWindow.fxml`](../src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -168,7 +168,7 @@ Author: Tay Chi Shien
 <img src="images/LogicClassDiagram.png" width="800"><br>
 _Figure 2.3.1 : Structure of the Logic Component_
 
-**API** : [`Logic.java`](../src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](../src/main/java/seedu/whatsnext/logic/Logic.java)
 
 1. `Logic` uses the `Parser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
@@ -182,7 +182,7 @@ _Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Comma
 
 The Command section of the Logic component utilises the Open-Closed Principle whereby one can create other new types of command easily without the need to modify current codes via the Parent Abstract class [`Command`](../src/main/java/seedu/whatsnext/logic/commands/Command.java). Thus, the Command section illustrates the principle whereby it is "open for extensions but closed for modification".
 
-<img src="images/OpenCloseDiagram.jpg" width="800"><br>
+<img src="images/OpenCloseDiagram.png" width="800"><br>
 _Figure 2.3.3 : Open-Closed Principle within the Logic Component under Command section_
 
 ### 2.4. Model component
@@ -192,7 +192,7 @@ Author: Li Shicheng
 <img src="images/ModelClassDiagram.png" width="800"><br>
 _Figure 2.4.1 : Structure of the Model Component_
 
-**API** : [`Model.java`](../src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](../src/main/java/seedu/whatsnext/model/Model.java)
 
 The `Model`,
 
@@ -205,7 +205,14 @@ The `Model`,
 **Undo/Redo functions** <br>
 Undo and Redo functions are implemented using two stacks: `undoTaskManager` and `redoTaskManager`.<br>
 
-`UndoTaskManagers` stores the instances of TaskManager data when data changes are made. Before the data-mutating commands, namely `add`, `edit`, `clear`, `delete`, `mark`/`unmark`, take effect, the current instance of TaskManager data is pushed into UndoTaskManagers stack. It enables user to undo multiple data-mutating commands by restoring the instances of the data in the stack. Non-data-mutating commands, such as `list`, `find`, will not lead to any actions in the undoTaskManager stack.  As the stack is initialized as empty when the app starts to run, it will only undo the changes in the current session. <br>
+<img src="images/UndoCommandSequenceDiagram.png" width="800"><br>
+_Figure 2.4.2 : Sequence of Undo Command_
+
+`UndoTaskManagers` stores the instances of TaskManager data when data changes are made. It enables user to undo multiple data-mutating commands by restoring the instances of the data in the stack. As the stack is initialized as empty when the app starts to run, it will only undo the changes in the current session. <br>
+
+<img src="images/RedoCommandSequenceDiagram.png" width="800"><br>
+_Figure 2.4.3 : Sequence of Redo Command_
+
 `RedoTaskManagers` also stores instances of TaskManager data, but only when undo commands are called. Functioning in the same way as undoTaskManager, it restores previous instances of data before the undo commands. It is an empty stack during initialization and will only redo the undo commands in the current session. <br>
 
 **Reserved Tags** <br>
@@ -218,7 +225,7 @@ Author: Lim Dao Han
 <img src="images/StorageClassDiagram.png" width="800"><br>
 _Figure 2.5.1 : Structure of the Storage Component_
 
-**API** : [`Storage.java`](../src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](../src/main/java/seedu/whatsnext/storage/Storage.java)
 
 The `Storage` component,
 
@@ -277,13 +284,13 @@ We have two types of tests:
 
 2. **Non-GUI Tests** - These are tests not involving the GUI. They include,
    1. _Unit tests_ targeting the lowest level methods/classes. <br>
-      e.g. `seedu.address.commons.UrlUtilTest`
+      e.g. `seedu.whatsnext.commons.UrlUtilTest`
    2. _Integration tests_ that are checking the integration of multiple code units
      (those code units are assumed to be working).<br>
-      e.g. `seedu.address.storage.StorageManagerTest`
+      e.g. `seedu.whatsnext.storage.StorageManagerTest`
    3. Hybrids of unit and integration tests. These test are checking multiple code units as well as
       how the are connected together.<br>
-      e.g. `seedu.address.logic.LogicManagerTest`
+      e.g. `seedu.whatsnext.logic.LogicManagerTest`
 
 #### Headless GUI Testing
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
