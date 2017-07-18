@@ -50,5 +50,7 @@ public class StorageCommand extends Command {
         } catch (IOException ioe) {
             throw new CommandException(MESSAGE_CREATED_NEW_CONFIG_FILE);
         }
-    }
+    }   
 }
+
+//@@author
