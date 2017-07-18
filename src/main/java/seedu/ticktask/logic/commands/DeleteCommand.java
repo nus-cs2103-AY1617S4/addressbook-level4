@@ -18,7 +18,7 @@ public abstract class DeleteCommand extends Command {
             + " task list.\n" + "Format: " + COMMAND_WORD
             + " [task name]\n" + "Example: " + COMMAND_WORD + " wash clothes\n"
             + "or " + COMMAND_WORD + " " + PREFIX_ACTIVE + " INDEX (must be a positive integer)"
-            + "or " + COMMAND_WORD + " " + PREFIX_COMPLETE + " INDEX (must be a positive integer)\n"
+            + " or " + COMMAND_WORD + " " + PREFIX_COMPLETE + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPLETE + " 1";
     public static final String MESSAGE_SUCCESS = "Task deleted:" + "\n"
