@@ -19,7 +19,7 @@ public class EditCommandTestUtil {
     public static final String VALID_TIME_1600 = "1600 ";
 
     
-    public static final EditTaskDescriptorBuilder DESC_MEETING;
+    public static final EditCommand.EditTaskDescriptor DESC_MEETING;
     public static final EditCommand.EditTaskDescriptor DESC_EVENT;
     
     static {

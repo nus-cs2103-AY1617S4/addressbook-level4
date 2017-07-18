@@ -13,6 +13,8 @@ import seedu.ticktask.model.task.Task;
 import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
 import seedu.ticktask.testutil.TaskBuilder;
 
+import static seedu.ticktask.testutil.EditCommandTestUtil.DESC_EVENT;
+import static seedu.ticktask.testutil.EditCommandTestUtil.DESC_MEETING;
 import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_NAME_MEETING;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import seedu.ticktask.testutil.TypicalTasks;
@@ -58,6 +60,32 @@ public class EditCommandTest {
         editCommand.setData(model, new CommandHistory());
         return editCommand;
     }
+
+    @Test
+    public void equals() {
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_MEETING);
+
+        // same values -> returns true
+        EditCommand.EditTaskDescriptor copyDescriptor = new EditCommand.EditTaskDescriptor(DESC_MEETING);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TASK, copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_EVENT)));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK,  DESC_EVENT)));
+    }
+
 
 }
 
