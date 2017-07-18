@@ -29,9 +29,7 @@ public class AddCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
-                        PREFIX_END_DATETIME, PREFIX_TAG_CLI);
+
 
         // First argument would always be for name
         /*
@@ -41,15 +39,40 @@ public class AddCommandParser {
         }*/
 
         try {
-            TaskName taskName = new TaskName(argMultimap.getPreamble());
-            Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
-            Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
-            Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_CLI));
+            if (args.contains(PREFIX_START_DATETIME.toString()) || args.contains(PREFIX_END_DATETIME.toString())
+                    || args.contains(PREFIX_MESSAGE.toString()) || args.contains(PREFIX_TAG_CLI.toString())) {
 
-            BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
-                    startDateTimeValue, endDateTimeValue, tagList);
-            return new AddCommand(task);
+                ArgumentMultimap argMultimap =
+                        ArgumentTokenizer.tokenize(args, PREFIX_MESSAGE, PREFIX_START_DATETIME,
+                                PREFIX_END_DATETIME, PREFIX_TAG_CLI);
+                TaskName taskName = new TaskName(argMultimap.getPreamble());
+                Optional<String> startDateTimeValue = argMultimap.getValue(PREFIX_START_DATETIME);
+                Optional<String> endDateTimeValue = argMultimap.getValue(PREFIX_END_DATETIME);
+                Optional<String> taskDescriptionValue = argMultimap.getValue(PREFIX_MESSAGE);
+                Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_CLI));
+
+                BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
+                        startDateTimeValue, endDateTimeValue, tagList);
+                return new AddCommand(task);
+            }else {
+                SplitCommaParser splitCommandParser = new SplitCommaParser();
+                splitCommandParser.tokenize(args);
+
+                TaskName taskName = new TaskName(splitCommandParser.getTaskName());
+                Optional<String> startDateTimeValue = splitCommandParser.getStartDateTime();
+                Optional<String> endDateTimeValue = splitCommandParser.getEndDateTime();
+                Optional<String> taskDescriptionValue = splitCommandParser.getDescription();
+                if (startDateTimeValue.isPresent() && !endDateTimeValue.isPresent()) {
+                    endDateTimeValue = startDateTimeValue;
+                    startDateTimeValue = Optional.empty();
+                }
+                Set<Tag> tagList = splitCommandParser.parseTags();
+
+                BasicTask task = createBasicTaskBasedOnInputs(taskName, taskDescriptionValue,
+                        startDateTimeValue, endDateTimeValue, tagList);
+                return new AddCommand(task);
+            }
+
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage() + "\n" + AddCommand.MESSAGE_USAGE, ive);
         }
