@@ -20,6 +20,8 @@ public class parseAddCommandTest {
     
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                          AddCommand.MESSAGE_USAGE);
+    private static final String NAME_INVALID_NONALPHANUMERIC = "abc!";
+    private static final String NAME_INVALID_EMPTY = "";
             
     private parseAddCommand parser = new parseAddCommand();
     @Rule
@@ -54,13 +56,14 @@ public class parseAddCommandTest {
     
     @Test
     public void parse_invalidArgsFollowedByValidArgs_returnsAddCommand() throws Exception {
-        Command command = parser.parse("a13v!" + PREFIX_DATE + VALID_DATE_5_DEC);
+        Command command = parser.parse(NAME_INVALID_NONALPHANUMERIC + PREFIX_DATE + VALID_DATE_5_DEC);
         assertTrue(command instanceof AddCommand);
     }
     
     @Test
-    public void parse_invalidArgsFollowedByValidArg2s_returnsAddCommand() throws Exception {
-        assertParseFailure("", MESSAGE_INVALID_FORMAT);
+    //Add blankspace floating task  
+    public void parse_invalidBlankName_returnsAddCommand() throws Exception {
+        assertParseFailure(NAME_INVALID_EMPTY, MESSAGE_INVALID_FORMAT);
     }
     
     private void assertParseFailure(String userInput, String expectedMessage) throws IllegalValueException, IndexOutOfBoundsException {
