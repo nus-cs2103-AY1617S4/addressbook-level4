@@ -15,6 +15,7 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 import seedu.ticktask.testutil.TaskBuilder;
 import seedu.ticktask.testutil.TypicalTasks;
+import seedu.ticktask.testutil.TypicalTasksCompleted;
 
 //@@author A0147928N
 public class ModelManagerTest {
@@ -201,6 +202,30 @@ public class ModelManagerTest {
     @Test
     public void testGetFilteredCompletedTaskList() {
         assertEquals(modelManager.getFilteredCompletedTaskList(), modelManagerCopy.getFilteredCompletedTaskList());
+    }
+    
+    @Test
+    public void testUpdateFilteredListToShowEvent() {
+        modelManager.updateFilteredListToShowEvent();
+        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+        
+        modelManager = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
+        assertFalse(modelManager.getFilteredCompletedTaskList().equals(modelManagerCopy.getFilteredCompletedTaskList()));
+    }
+    
+    @Test
+    public void testUpdateFilteredListToShowDeadline() {
+        modelManager.updateFilteredListToShowDeadline();
+        assertTrue(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+    }
+    
+    @Test
+    public void testUpdateFilteredListToShowToday() {
+        modelManager.updateFilteredListToShowToday();
+        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+        
+        modelManager = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
+        assertFalse(modelManager.getFilteredCompletedTaskList().equals(modelManagerCopy.getFilteredCompletedTaskList()));
     }
 }
 //@@author
