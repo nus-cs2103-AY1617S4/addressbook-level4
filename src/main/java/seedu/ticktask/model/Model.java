@@ -30,9 +30,15 @@ public interface Model {
     /** Deletes the given active task using find task index method. */
     void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
     //@@author
-
+    
+    //@@author A0147928N
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
+    
+    /** Restores the given task from archive. 
+     * @throws DuplicateTaskException */
+    void restoreTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+    //@@author
 
     /** Adds the given task 
      * @throws PastTaskException 

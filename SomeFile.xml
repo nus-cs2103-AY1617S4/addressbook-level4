@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ticktask>
     <tasks>
-        <name>Person 1</name>
+        <name>Study CS2103</name>
         <time>12:30</time>
         <type>deadline</type>
-        <dueDate>12/12/2017</dueDate>
+        <dueDate>10/10/2017</dueDate>
         <tagged>tag1</tagged>
-        <tagged>tag2</tagged>
-    </tasks>
-    <tasks>
-        <name>Person 3</name>
-        <time>12:30</time>
-        <type>deadline</type>
-        <dueDate>12/12/2017</dueDate>
-        <tagged>tag4</tagged>
-        <tagged>tag3</tagged>
     </tasks>
     <tags>tag1</tags>
-    <tags>tag2</tags>
-    <tags>tag3</tags>
-    <tags>tag4</tags>
 </ticktask>

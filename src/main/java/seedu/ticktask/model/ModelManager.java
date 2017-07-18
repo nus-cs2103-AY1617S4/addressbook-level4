@@ -155,6 +155,15 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTickTaskModelChanged();
 
     }
+
+    @Override
+    public synchronized void restoreTask(ReadOnlyTask task) throws TaskNotFoundException, DuplicateTaskException {
+        saveInstance();
+        currentProgramInstance.restoreTask(task);
+        updateFilteredListToShowAll();
+        indicateTickTaskModelChanged();
+
+    }
     //@@author
 
     @Override

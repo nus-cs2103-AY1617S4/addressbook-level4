@@ -231,6 +231,11 @@ public class AddCommandTest {
             fail("This method should not be called.");
             return false;
         }
+
+        @Override
+        public void restoreTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
+            fail("This method should not be called.");   
+        }
     }
 
     /**
