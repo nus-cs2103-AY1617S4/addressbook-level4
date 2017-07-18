@@ -112,5 +112,35 @@ public class ModelManagerTest {
         modelManager.updateTask(taskToEdit, editedTask);
         assertFalse(modelManager.equals(modelManagerCopy));      
     }  
+    
+    @Test
+    public void testEventClash() throws IllegalValueException, TaskNotFoundException {
+        ReadOnlyTask taskToEdit = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+    
+        ReadOnlyTask editedTask = new TaskBuilder().withName("Random").build();
+        
+        assertTrue(modelManager.eventClash(editedTask) == null);
+    }
+    
+    @Test
+    public void testGetCurrentProgramInstance() throws DuplicateTaskException, IllegalValueException {
+        TickTask currentProgramInstance = modelManager.getCurrentProgramInstance();
+        TickTask otherCurrentProgramInstance = modelManagerCopy.getCurrentProgramInstance();
+        assertEquals(currentProgramInstance, otherCurrentProgramInstance);
+        
+        currentProgramInstance.addTask(new TaskBuilder().withName("Random").build());
+        
+        assertFalse(currentProgramInstance.equals(otherCurrentProgramInstance));
+    }
+    
+    @Test
+    public void testSetCurrentProgramInstance() throws DuplicateTaskException, IllegalValueException {
+        TickTask currentProgramInstance = modelManager.getCurrentProgramInstance();
+        TickTask otherCurrentProgramInstance = modelManagerCopy.getCurrentProgramInstance();
+        currentProgramInstance.addTask(new TaskBuilder().withName("Random").build());
+        
+        modelManager.setCurrentProgramInstance(otherCurrentProgramInstance);
+        assertEquals(modelManager.getCurrentProgramInstance(), modelManagerCopy.getCurrentProgramInstance());
+    }
 }
 //@@author
