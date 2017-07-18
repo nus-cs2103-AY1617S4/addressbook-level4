@@ -9,7 +9,7 @@ import seedu.whatsnext.logic.commands.AddCommand;
 import seedu.whatsnext.model.task.BasicTask;
 
 /**
- * A utility class for Person.
+ * A utility class for Task.
  */
 public class BasicTaskUtil {
 
