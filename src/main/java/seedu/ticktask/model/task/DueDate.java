@@ -149,6 +149,8 @@ public class DueDate {
     /*
      * Method used to convert date input by user f
      */
+    
+    /*
     private String convertDateFormat(String trimmedDate) {
         
         System.out.println("OLD Trimmed date string: " + trimmedDate);
@@ -170,6 +172,7 @@ public class DueDate {
         return trimmedDate;
     }
     //@@author
+    */
     
     public String getValue() {
         return value;
