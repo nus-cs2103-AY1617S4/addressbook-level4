@@ -330,7 +330,8 @@ public class LogicManagerTest {
     public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
         assertIndexNotFoundBehaviorForCommand(DeleteCommand.COMMAND_WORD + " /active 5");
     }*/
-
+    
+    /*
     @Test
     public void execute_delete_removesCorrectPerson() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -342,7 +343,7 @@ public class LogicManagerTest {
 
         assertCommandSuccess(DeleteCommand.COMMAND_WORD + " /active 2",
                 String.format(DeleteCommand.MESSAGE_SUCCESS, threeTasks.get(1)), expectedModel);
-    }
+    }*/
 
 
     @Test
