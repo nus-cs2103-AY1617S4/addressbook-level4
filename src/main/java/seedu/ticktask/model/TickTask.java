@@ -93,7 +93,7 @@ public class TickTask implements ReadOnlyTickTask {
         }
         syncMasterTagListWith(tasks);
     }
-
+    ///////////////////////////////////////////////////////////////////////////////////
     public void resetActiveData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
@@ -123,7 +123,7 @@ public class TickTask implements ReadOnlyTickTask {
         }
         syncMasterTagListWith(tasks);
     }
-
+///////////////////////////////////////////////////////////////////////////////////
     //// task-level operations
 
     /**

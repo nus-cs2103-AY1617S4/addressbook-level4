@@ -28,12 +28,16 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         requireNonNull(model);
+        System.out.println("Run\n");
         if (listIndicatorPrefix.toString().equals(PREFIX_ACTIVE))
         {
         	model.resetActiveData(new TickTask());
+        	System.out.println("Active\n");
         }
-        else
-        	model.resetCompleteData(new TickTask());
+        else {
+            model.resetCompleteData(new TickTask());
+            System.out.println("Complete\n");
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
