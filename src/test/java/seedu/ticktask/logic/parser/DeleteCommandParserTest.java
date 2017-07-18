@@ -45,4 +45,31 @@ public class DeleteCommandParserTest {
         assertTrue(command instanceof DeleteCommand);
     }
     //@@author
+
+    //@@author A0139964M
+    @Test
+    public void delete_byActiveIndexSpecified_success() throws Exception {
+        DeleteCommand command = deleteCommandParser.parse("delete active 1");
+        assertTrue(command instanceof  DeleteCommand);
+    }
+
+    @Test
+    public void delete_byCompleteIndexSpecified_success() throws Exception {
+        DeleteCommand command = deleteCommandParser.parse("delete complete 1");
+        assertTrue(command instanceof  DeleteCommand);
+    }
+
+
+    @Test
+    public void delete_byNameIndexSpecified_success() throws Exception {
+        DeleteCommand command = deleteCommandParser.parse("delete wash dog");
+        assertTrue(command instanceof  DeleteCommand);
+    }
+    //@@author 
+
+
+
+
+
+
 }
