@@ -76,13 +76,13 @@ public class LogicManagerTest {
     private Logic logic;
 
     //These are for checking the correctness of the events raised
-    private ReadOnlyTickTask latestSavedAddressBook;
+    private ReadOnlyTickTask latestSavedTickTask;
     private boolean helpShown;
     private Index targetedJumpIndex;
 
     @Subscribe
     private void handleLocalModelChangedEvent(TickTaskChangedEvent abce) {
-        latestSavedAddressBook = new TickTask(abce.data);
+        latestSavedTickTask = new TickTask(abce.data);
     }
 
     @Subscribe
@@ -101,7 +101,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model);
         EventsCenter.getInstance().registerHandler(this);
 
-        latestSavedAddressBook = new TickTask(model.getTickTask()); // last saved assumed to be up to date
+        latestSavedTickTask = new TickTask(model.getTickTask()); // last saved assumed to be up to date
         helpShown = false;
         targetedJumpIndex = null;
     }
@@ -173,7 +173,7 @@ public class LogicManagerTest {
         }
 
         assertEquals(expectedModel, model);
-        assertEquals(expectedModel.getTickTask(), latestSavedAddressBook);
+        assertEquals(expectedModel.getTickTask(), latestSavedTickTask);
     }
 
     @Test

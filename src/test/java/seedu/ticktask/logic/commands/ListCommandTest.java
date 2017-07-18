@@ -1,8 +1,8 @@
 package seedu.ticktask.logic.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -17,7 +17,7 @@ import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.testutil.TypicalTasks;
-
+//@@author A013847A
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
@@ -26,6 +26,7 @@ public class ListCommandTest {
     private Model model;
     private Model expectedModel;
     private ListCommand listCommand;
+    private ListCommand listCommandFloat;
 
     @Before
     public void setUp() {
@@ -34,6 +35,21 @@ public class ListCommandTest {
 
         listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
+        
+        listCommandFloat = new ListCommand("floating");
+        listCommandFloat.setData(model, new CommandHistory());
+    }
+    
+    @Test
+    public void isValidCommandReturnsTrue(){
+        assertTrue(ListCommand.isValidCommand("floating"));
+        assertTrue(ListCommand.isValidCommand("deadline"));
+        assertTrue(ListCommand.isValidCommand("event"));
+        assertTrue(ListCommand.isValidCommand("today"));
+    }
+    @Test
+    public void isValidCommandReturnsFalse(){
+        assertFalse(ListCommand.isValidCommand("randomname"));
     }
 
     @Test
@@ -46,6 +62,8 @@ public class ListCommandTest {
         showFirstTaskOnly(model);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
+    
+    
 
     /**
      * Updates the filtered list to show only the first task in the {@code model}'s TickTask.
@@ -56,7 +74,23 @@ public class ListCommandTest {
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
         assertTrue(model.getFilteredTaskList().size() == 1);
+        
     }
+    
+    /**
+     * Updates the filtered list to show only the first task in the {@code model}'s TickTask.
+     */
+    private void showFloatTaskOnly(Model model) {
+        ReadOnlyTask task = model.getTickTask().getTaskList().get(0);
+        final String[] splitName = task.getName().fullName.split("\\s+");
+        model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
+        //if(task.getTaskType().equals("floating")){
+            assertTrue(model.getFilteredTaskList().size() == 1);
+       // }
+        
+        
+    }
+    
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -71,4 +105,5 @@ public class ListCommandTest {
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);
     }
+    
 }
