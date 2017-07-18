@@ -1,24 +1,42 @@
 //package guitests;
 //
+//import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
 //import static seedu.whatsnext.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
-//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_PERSON;
+//import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 //
 //import org.junit.Test;
 //
 //import seedu.whatsnext.commons.core.index.Index;
+//import seedu.whatsnext.logic.commands.AddCommand;
 //import seedu.whatsnext.logic.commands.DeleteCommand;
-//import seedu.whatsnext.model.task.Person;
+//import seedu.whatsnext.model.task.BasicTask;
+//import seedu.whatsnext.model.task.BasicTaskFeatures;
+//import seedu.whatsnext.model.task.TaskDescription;
+//import seedu.whatsnext.model.task.TaskName;
 //import seedu.whatsnext.testutil.TestUtil;
 //
-//public class DeleteCommandTest extends AddressBookGuiTest {
+//public class DeleteCommandTest extends TaskManagerGuiTest {
 //
 //    @Test
 //    public void delete() {
 //
+//        commandBox.pressEnter();
+//        commandBox.runCommand("add Buy a country m/to rule");
+//        BasicTask floatToAdd = new BasicTask(new TaskName("Buy a country"),
+//                new TaskDescription("to rule"), getTagSet());
+//        assertResultMessage(floatToAdd.getTaskDetails());
+//        BasicTaskFeatures selectedFloatingTask = floatingListPanel.getSelectedTasks().get(0).getKey();
+//        assertEquals(floatToAdd, selectedFloatingTask);
+//        //add duplicate floating task
+//        commandBox.runCommand("add Buy a country m/to rule");
+//        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+//        commandBox.runCommand("undo");
+//        commandBox.runCommand("undo");
+//
 //        //delete the first in the list
-//        Person[] currentList = td.getTypicalPersons();
-//        Index targetIndex = INDEX_FIRST_PERSON;
+//        BasicTask[] currentList = td.getTypicalTasks();
+//        Index targetIndex = INDEX_FIRST_TASK;
 //        assertDeleteSuccess(targetIndex, currentList);
 //
 //        //delete the last in the list
@@ -38,17 +56,17 @@
 //    }
 //
 //    /**
-//     * Runs the delete command to delete the person at {@code index} and confirms the result is correct.
-//     * @param currentList A copy of the current list of persons (before deletion).
+//     * Runs the delete command to delete the task at {@code index} and confirms the result is correct.
+//     * @param currentList A copy of the current list of tasks (before deletion).
 //     */
-//    private void assertDeleteSuccess(Index index, final Person[] currentList) {
-//        Person personToDelete = currentList[index.getZeroBased()];
-//        Person[] expectedRemainder = TestUtil.removePersonFromList(currentList, index);
+//    private void assertDeleteSuccess(Index index, final BasicTask[] currentList) {
+//        BasicTask taskToDelete = currentList[index.getZeroBased()];
+//        BasicTask[] expectedRemainder = TestUtil.removeTasksFromList(currentList, index);
 //
 //        commandBox.runCommand(DeleteCommand.COMMAND_WORD + " " + index.getOneBased());
 //
 //        //confirm the list now contains all previous persons except the deleted person
-//        assertTrue(personListPanel.isListMatching(expectedRemainder));
+//        assertTrue(taskListPanel.isListMatching(expectedRemainder));
 //
 //        //confirm the result message is correct
 //        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, personToDelete));
