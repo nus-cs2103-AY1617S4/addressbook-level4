@@ -28,6 +28,35 @@ public class DueDateTest {
     
     //@@author A0147928N
     @Test
+    public void testDueDateConstructor() throws IllegalValueException {        
+        String dateString = "03/22/2019 - 03/22/2020";
+        DueDate date = new DueDate(dateString);
+        
+        assertEquals(dateString, date.toString());
+    }
+    
+    @Test
+    public void testSetFloating() throws IllegalValueException {
+        DueDate date = new DueDate("");
+        date.setFloating();
+        assertTrue(date.isFloating());
+    }
+    
+    @Test
+    public void testSetDeadline() throws IllegalValueException {
+        DueDate date = new DueDate("03/22/2019");
+        date.setDeadline();
+        assertTrue(date.isDeadline());
+    }
+    
+    @Test
+    public void testSetRange() throws IllegalValueException {
+        DueDate date = new DueDate("03/22/2019 - 03/22/2020");
+        date.setRange();
+        assertTrue(date.isRange());
+    }
+    
+    @Test
     public void testExtractDate() throws IllegalValueException {
         DueDate date = new DueDate("");
         DueDate dateCopy = new DueDate("");

@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_TASK;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
@@ -163,6 +165,32 @@ public class ModelManagerTest {
         modelManagerCopy.undoPreviousCommand();
         
         assertFalse(modelManagerCopy.getFutureProgramInstances().pop().equals(futureProgramInstance));
+    }
+    
+    @Test
+    public void testSetPreviousProgramInstance() throws DuplicateTaskException, IllegalValueException {
+        modelManager.addTask(new TaskBuilder().withName("Random").build());
+        modelManager.addTask(new TaskBuilder().withName("Random1").build());
+        
+        assertFalse(modelManagerCopy.getPreviousProgramInstances().containsAll(modelManager.getPreviousProgramInstances()));
+        
+        modelManagerCopy.setPreviousProgramInstances(modelManager.getPreviousProgramInstances());
+        
+        assertTrue(modelManagerCopy.getPreviousProgramInstances().containsAll(modelManager.getPreviousProgramInstances()));
+    }
+    
+    @Test
+    public void testSetFutureProgramInstance() throws DuplicateTaskException, IllegalValueException {
+        modelManager.addTask(new TaskBuilder().withName("Random").build());
+        modelManager.addTask(new TaskBuilder().withName("Random1").build());
+        modelManager.undoPreviousCommand();
+        modelManager.undoPreviousCommand();
+        
+        assertFalse(modelManagerCopy.getFutureProgramInstances().containsAll(modelManager.getFutureProgramInstances()));
+        
+        modelManagerCopy.setFutureProgramInstances(modelManager.getFutureProgramInstances());
+        
+        assertTrue(modelManagerCopy.getFutureProgramInstances().containsAll(modelManager.getFutureProgramInstances()));
     }
     
     @Test
