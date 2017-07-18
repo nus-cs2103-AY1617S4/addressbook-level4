@@ -79,21 +79,27 @@ Floating task do not have date or time. <br>
 
 #### 2.2.1 Adding a event <br>
 Format: <br>
-* `add TASK_NAME s/ START_DATE_TIME to e/ END_DATE_TIME [t/ TAG1 t/ TAG2...]` <br>
+* `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]` <br>
+* `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]` <br>
 Examples: <br>
 * `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
+* `add project, "CS2103 project", July 10 5pm, July 10 6pm` <br>
 
 #### 2.2.2 Adding a deadline <br>
 Format: <br>
 * `add TASK_NAME e/ DATETIME [t/ TAG1 t/ TAG2...]` <br>
+* `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` <br>
 Examples:<br>
 * `add project e/ July 10 6pm t/ meeting` <br>
+* `add project, "CS2103 project", July 10 6pm, tags: meeting` <br>
 
 #### 2.2.3 Adding a floating <br>
 Format: <br>
-* `add TASK_NAME [t/ TAG1 t/ TAG2...]` <br>
+* `add TASK_NAME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]` <br>
+* `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` <br>
 Examples:<br>
 * `add project t/ meeting`
+* `add project, "CS2103 project", tags: meeting`
 
 ##### Note:
 > Tasks can have any number of tags (including 0) <br>
