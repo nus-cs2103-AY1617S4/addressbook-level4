@@ -106,7 +106,7 @@ public class Task implements ReadOnlyTask {
     }
     
     public boolean getCompleted() {
-    	return completed;
+    	return this.completed;
     }
     
     public void setCompleted(boolean newStatus) {
