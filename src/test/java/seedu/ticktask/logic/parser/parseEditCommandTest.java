@@ -3,7 +3,6 @@ package seedu.ticktask.logic.parser;
 import org.junit.Test;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.testutil.EditTaskDescriptorBuilder;
@@ -33,7 +32,7 @@ public class parseEditCommandTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE);
     
-    private parseEditCommand parser = new parseEditCommand();
+    private ParseEditCommand parser = new ParseEditCommand();
     
     @Test
     public void parse_missingParts_failure() throws IllegalValueException {

@@ -13,17 +13,13 @@ import java.util.regex.Pattern;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 //@@author A0139964M
-public class parseEditCommand {
+public class ParseEditCommand {
 
 	public static final String COMMAND_ARGUMENTS_REGEX = "(?=(?<index>\\d+))"
-			+ "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|start|end|date|time))?))?"
-			+ "(?:(?=.*type (?:(?<type>.+?)(?:,|$|\\R|start|end|date|time))?))?"
-			+ "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|start|end|time))?))?"
-			+ "(?:(?=.*start date(?:(?<startDate>.+?)(?:,|$|\\R|end|time|start))?))?"
-			+ "(?:(?=.*end date(?:(?<endDate>.+?)(?:,|$|\\R|time|start|end))?))?"
-			+ "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R|start|end))?))?"
-			+ "(?:(?=.*start time(?:(?<startTime>.+?)(?:,|$|\\R|end))?))?"
-			+ "(?:(?=.*end time(?:(?<endTime>.+?)(?:,|$|\\R|start|end))?))?"
+			+ "(?:(?=.*name (?:(?<name>.+?)(?:,|$|\\R|date|time))?))?"
+			+ "(?:(?=.*type (?:(?<type>.+?)(?:,|$|\\R|date|time))?))?"
+			+ "(?:(?=.*date(?:(?<date>.+?)(?:,|$|\\R|time))?))?"
+			+ "(?:(?=.*time(?:(?<time>.+?)(?:,|$|\\R|date))?))?"
 			+ "((?=.*#(?<tags>.+)))?"
 			+ ".+";
 
@@ -42,11 +38,7 @@ public class parseEditCommand {
 
 		Optional<String> name = Optional.ofNullable(matcher.group("name"));
 		Optional<String> time = Optional.ofNullable(matcher.group("time"));
-		Optional<String> startTime = Optional.ofNullable(matcher.group("startTime"));
-		Optional<String> endTime = Optional.ofNullable(matcher.group("endTime"));
 		Optional<String> date = Optional.ofNullable(matcher.group("date"));
-		Optional<String> startDate = Optional.ofNullable(matcher.group("startDate"));
-		Optional<String> endDate = Optional.ofNullable(matcher.group("endDate"));
 		Optional<String> tags = Optional.ofNullable(matcher.group("tags"));
 		Optional<String> type = Optional.ofNullable(matcher.group("type"));
 
@@ -57,46 +49,10 @@ public class parseEditCommand {
 		try {
 			ParserUtil.parseName(name).ifPresent(editTaskDescriptor::setName);
 			ParserUtil.parseTaskType(type).ifPresent(editTaskDescriptor::setTaskType);
-
-			if (startTime.isPresent() || endTime.isPresent()) {
-				if (startTime.isPresent()) {
-					startTime = Optional.of("start time " + startTime);
-					ParserUtil.parseTime(startTime).ifPresent(editTaskDescriptor::setTime);
-					System.out.println("Start time is edited to: " + startTime);
-				}
-				if (endTime.isPresent()) {
-					endTime = Optional.of("end time " + endTime);
-					ParserUtil.parseTime(endTime).ifPresent(editTaskDescriptor::setTime);
-					System.out.println("End time is edited to: " + endTime);
-				}
-			}
-			else if (time.isPresent()) {
-				ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
-				System.out.println("TIME is edited to: " + time);
-			}
-
-
-			if (startDate.isPresent() || endDate.isPresent()) {
-
-				if (startDate.isPresent()) {
-					startDate = Optional.of("start date " + startDate);
-					ParserUtil.parseDate(startDate).ifPresent(editTaskDescriptor::setDate);
-					System.out.println("Start date is edited to: " + startDate);
-				}
-				if (endDate.isPresent()) {
-					endDate = Optional.of("end date " + endDate);
-					ParserUtil.parseDate(endDate).ifPresent(editTaskDescriptor::setDate);
-					System.out.println("End date is edited to: " + endDate);
-				}
-			}
-			else if (date.isPresent()) {
-				ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
-				System.out.println("SDATE is edited to: " + date);
-			}
-
+			ParserUtil.parseTime(time).ifPresent(editTaskDescriptor::setTime);
+			ParserUtil.parseDate(date).ifPresent(editTaskDescriptor::setDate);
 			tagList = createTagList(tags);
 			editTaskDescriptor.setTags(tagList);
-
 		} catch (IllegalValueException ive) {
 			throw new ParseException(ive.getMessage(), ive);
 		}
