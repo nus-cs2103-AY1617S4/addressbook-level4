@@ -176,8 +176,7 @@ public class Task implements ReadOnlyTask {
     public Duration getDueDuration(){
             LocalTime now = LocalTime.now();
             LocalTime startTime = time.getLocalStartTime();
-            LocalTime  difference = now.until(startTime);
-
+            long hours = ChronoUnit.MINUTES.between(now,startTime);
             return Duration.of(differencel, ChronoUnit.MILLIS);
         }else{
             return null;
