@@ -29,7 +29,7 @@ public class StorageCommandTest {
         final File tempFolder = folder.newFolder("newLocation");
         StorageCommand command1 = new StorageCommand(tempFolder);
         command1.setData(model, new CommandHistory());
-        command1.execute();
+        //command1.execute();
     }
     
     @Test
