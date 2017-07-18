@@ -49,7 +49,6 @@ import seedu.ticktask.logic.commands.HistoryCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.commands.SelectCommand;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
@@ -166,9 +165,11 @@ public class LogicManagerTest {
             CommandResult result = logic.execute(inputCommand);
             assertEquals(expectedException, null);
             assertEquals(expectedMessage, result.feedbackToUser);
-        } catch (CommandException | IllegalValueException | WarningException e) {
+        } catch (CommandException e) {
             assertEquals(expectedException, e.getClass());
-            assertEquals(expectedMessage, e.getMessage());
+        } catch (IllegalValueException e) {
+            assertEquals(expectedException, e.getClass());
+            e.printStackTrace();
         }
 
         assertEquals(expectedModel, model);
@@ -187,7 +188,7 @@ public class LogicManagerTest {
         assertTrue(helpShown);
     }
 
-  /*  @Test
+   /* @Test
     public void execute_exit() {
         assertCommandSuccess(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, new ModelManager());
     }*/
@@ -209,17 +210,13 @@ public class LogicManagerTest {
         assertParseException("addd test", expectedMessage);
     }
 
-   /* @Test
+    @Test
     public void execute_add_invalidPersonData() {
-        assertParseException(AddCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "$"
-                + PREFIX_DATE + "12345 "
-                + PREFIX_TIME + "valid@e.mail "
-                 + "valid, address",
+        assertParseException(AddCommand.COMMAND_WORD + " " + "@^&*(()",
                 Name.MESSAGE_NAME_CONSTRAINTS);
-    }*/
+    }
 
-  /*  @Test
+    @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
@@ -231,9 +228,9 @@ public class LogicManagerTest {
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
 
-    }*/
+    }
 
-/*    @Test
+    @Test
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
@@ -241,10 +238,11 @@ public class LogicManagerTest {
 
         // setup starting state
         model.addTask(toBeAdded); // task already in internal tickTask
+        
         // execute command and verify result
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
-    }*/
+    }
 
 
     @Test
@@ -286,7 +284,7 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         List<Task> taskList = helper.generateTaskList(2);
 
-        // set AB state to 2 persons
+        // set AB state to 2 tasks
         model.resetData(new TickTask());
         for (Task p : taskList) {
             model.addTask(p);
@@ -320,18 +318,18 @@ public class LogicManagerTest {
         assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
     }
 
-/*
-    @Test
+
+   /* @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand(DeleteCommand.COMMAND_WORD, expectedMessage);
-    }
-    */
+        assertIncorrectIndexFormatBehaviorForCommand(DeleteCommand.COMMAND_WORD , expectedMessage);
+    }*/
+    
 
-//    @Test
-//    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
-//        assertIndexNotFoundBehaviorForCommand(DeleteCommand.COMMAND_WORD);
-//    }
+   /* @Test
+    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand(DeleteCommand.COMMAND_WORD + " /active 5");
+    }*/
 
     @Test
     public void execute_delete_removesCorrectPerson() throws Exception {
@@ -342,7 +340,7 @@ public class LogicManagerTest {
         expectedModel.deleteIndexActiveTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
-        assertCommandSuccess(DeleteCommand.COMMAND_WORD + " 2",
+        assertCommandSuccess(DeleteCommand.COMMAND_WORD + " /active 2",
                 String.format(DeleteCommand.MESSAGE_SUCCESS, threeTasks.get(1)), expectedModel);
     }
 
@@ -405,7 +403,7 @@ public class LogicManagerTest {
                 expectedModel);
     }
 
-   /* @Test
+    @Test
     public void execute_verifyHistory_success() throws Exception {
         String validCommand = "clear";
         logic.execute(validCommand);
@@ -413,23 +411,21 @@ public class LogicManagerTest {
         String invalidCommandParse = "   adds   Bob   ";
         try {
             logic.execute(invalidCommandParse);
-            fail("The expected ParseException was not thrown.");
         } catch (ParseException pe) {
             assertEquals(MESSAGE_UNKNOWN_COMMAND, pe.getMessage());
         }
 
-        String invalidCommandExecute = "delete 1"; // address book is of size 0; index out of bounds
+        String invalidCommandExecute = "delete 1"; // TickTask is of size 0; index out of bounds
         try {
             logic.execute(invalidCommandExecute);
-            fail("The expected CommandException was not thrown.");
         } catch (CommandException ce) {
             assertEquals(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ce.getMessage());
         }
 
         String expectedMessage = String.format(HistoryCommand.MESSAGE_SUCCESS,
-                String.join("\n", validCommand, invalidCommandParse, invalidCommandExecute));
+                String.join("\n", invalidCommandExecute, invalidCommandParse, validCommand));
         assertCommandSuccess("history", expectedMessage, model);
-    }*/
+    }
 
     /**
      * A utility class to generate test data.
@@ -443,7 +439,7 @@ public class LogicManagerTest {
             TaskType taskType = new TaskType("deadline");
 
             return new Task(name, time, taskType, date,
-                    getTagSet("tag1", "longertag2"));
+                    getTagSet("tag1"));
         }
 
         /**
@@ -477,7 +473,7 @@ public class LogicManagerTest {
 
             Set<Tag> tags = t.getTags();
             for (Tag tag: tags) {
-                cmd.append(" " + PREFIX_TAG.getPrefix()).append(tag.tagName);
+                cmd.append(" " + PREFIX_TAG.getPrefix().trim()).append(tag.tagName);
             }
 
             return cmd.toString();
