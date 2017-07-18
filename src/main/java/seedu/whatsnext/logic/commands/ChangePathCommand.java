@@ -19,7 +19,7 @@ public class ChangePathCommand extends Command {
             + ": Changes where task manager is stored. Takes in new file location";
     public static final String MESSAGE_CREATED_NEW_CONFIG_FILE = "TEST";
     public static final String MESSAGE_REPEAT_TASK_MANAGER_FILE_PATH = "This file is already saved at this location";
-    public static final String MESSAGE_SUCCESS = "Save location changed to: %1$s";
+    public static final String MESSAGE_SUCCESS = "Save location changed to: ";
 
     private static final Logger logger = LogsCenter.getLogger(ChangePathCommand.class);
 
@@ -63,7 +63,7 @@ public class ChangePathCommand extends Command {
         model.saveTaskManager();
 
         logger.fine(MESSAGE_SUCCESS + toSave.toString());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toSave));
+        return new CommandResult(MESSAGE_SUCCESS + toSave.toString());
 
     }
 
