@@ -3,6 +3,8 @@ package seedu.ticktask.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -57,8 +59,33 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
-    //@@author
 
+    @Test
+    public void execute_PastTask_CurrTimeNullDate_AcceptedByModel_addSuccessful() throws Exception {
+        LocalTime localTime = LocalTime.now();
+        LocalDate currDate = LocalDate.now();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate("").withTime(localTime.toString()).build();
+
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    @Test
+    public void execute_PastTask_CurrDateCurrTimeAcceptedByModel_addSuccessful() throws Exception {
+        LocalTime localTime = LocalTime.now();
+        LocalDate currDate = LocalDate.now();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate(currDate.toString()).withTime(localTime.toString()).build();
+
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        //@@author
+    }
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
         ModelStub modelStub = new ModelStubThrowingDuplicateTaskException();
@@ -78,7 +105,7 @@ public class AddCommandTest {
         command.setData(model, new CommandHistory());
         return command;
     }
-    
+
     /**
      * A default model stub that have all of the methods failing.
      */
