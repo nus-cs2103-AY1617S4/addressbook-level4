@@ -56,14 +56,14 @@ public class Parser {
             return new ParseAddCommand().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
         
         //@@author A0147928N
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
         //@@author
 
-        //@@author A0147928N
+        //@@author A0131884B
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         //@@author
@@ -97,7 +97,7 @@ public class Parser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-
+        	
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
