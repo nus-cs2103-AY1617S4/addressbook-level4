@@ -25,7 +25,7 @@ import seedu.ticktask.model.task.TaskType;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class parseAddCommand {
+public class ParseAddCommand {
 
 	public static final Pattern ADD_COMMAND_FORMAT =
 			Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|#|\\bat\\b))+)" 

@@ -11,7 +11,6 @@ import org.junit.rules.ExpectedException;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -23,7 +22,7 @@ public class parseAddCommandTest {
     private static final String NAME_INVALID_NONALPHANUMERIC = "abc!";
     private static final String NAME_INVALID_EMPTY = "";
             
-    private parseAddCommand parser = new parseAddCommand();
+    private ParseAddCommand parser = new ParseAddCommand();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     
