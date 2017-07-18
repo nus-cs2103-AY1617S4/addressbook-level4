@@ -215,18 +215,46 @@ public class EditCommand extends Command {
 
         boolean hasNewPriorityTag = false;
 
+        hasNewPriorityTag = checkNewPriorityTag(editTaskDescriptor, updatedTags, hasNewPriorityTag);
+
+        retainExistingTags(updatedTags, existingTags, hasNewPriorityTag);
+
+        removeTags(editTaskDescriptor, updatedTags);
+
+
+        addNewTags(editTaskDescriptor, updatedTags);
+
+        return updatedTags;
+    }
+
+    public static void addNewTags(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags) {
         if (editTaskDescriptor.newTags != null) {
             Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeAdded = tag.next();
-                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
+                if (!tagToBeAdded.isPriorityTag()) {
                     updatedTags.add(tagToBeAdded);
-                    hasNewPriorityTag = true;
-                    break;
                 }
             }
         }
+    }
 
+    public static void removeTags(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags)
+            throws TagNotFoundException {
+        if (editTaskDescriptor.removeTags != null) {
+            Iterator<Tag> tag = editTaskDescriptor.removeTags.iterator();
+            while (tag.hasNext()) {
+                Tag tagToBeRemoved = tag.next();
+                if (updatedTags.contains(tagToBeRemoved)) {
+                    updatedTags.remove(tagToBeRemoved);
+                } else {
+                    throw new TagNotFoundException();
+                }
+            }
+        }
+    }
+
+    public static void retainExistingTags(Set<Tag> updatedTags, Set<Tag> existingTags, boolean hasNewPriorityTag) {
         if (existingTags != null) {
             Iterator<Tag> tag = existingTags.iterator();
             while (tag.hasNext()) {
@@ -239,31 +267,22 @@ public class EditCommand extends Command {
 
             }
         }
+    }
 
-        if (editTaskDescriptor.removeTags != null) {
-            Iterator<Tag> tag = editTaskDescriptor.removeTags.iterator();
-            while (tag.hasNext()) {
-                Tag tagToBeRemoved = tag.next();
-                if (updatedTags.contains(tagToBeRemoved)) {
-                    updatedTags.remove(tagToBeRemoved);
-                } else {
-                    throw new TagNotFoundException();
-                }
-            }
-        }
-
-
+    public static boolean checkNewPriorityTag(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags,
+            boolean hasNewPriorityTag) {
         if (editTaskDescriptor.newTags != null) {
             Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
             while (tag.hasNext()) {
                 Tag tagToBeAdded = tag.next();
-                if (!tagToBeAdded.isPriorityTag()) {
+                if (tagToBeAdded.isPriorityTag() && (!hasNewPriorityTag)) {
                     updatedTags.add(tagToBeAdded);
+                    hasNewPriorityTag = true;
+                    break;
                 }
             }
         }
-
-        return updatedTags;
+        return hasNewPriorityTag;
     }
 
     @Override
