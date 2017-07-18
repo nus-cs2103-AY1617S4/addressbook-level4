@@ -1,10 +1,12 @@
 package seedu.ticktask.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import org.apache.commons.lang.time.DurationFormatUtils;
 import seedu.ticktask.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
@@ -33,6 +35,8 @@ public class TaskCard extends UiPart<Region> {
     private Label taskType;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button button;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
@@ -46,21 +50,63 @@ public class TaskCard extends UiPart<Region> {
         }
 
         date.setText(task.getDate().toString());
-        
+
 
         taskType.setText(task.getTaskType().value.toUpperCase());
         if (task.getTaskType().getValue().equals("event")){
             cardPane.setStyle("-fx-background-color: #ffe3b5;-fx-font-size: 9pt;-fx-text-fill: #010504;");
+            if(!task.getCompleted()) {
+                initializeEstimatedTimeForEvent(task);
+            }
+            else{
+                System.out.println("This happened");
+                button.setText("");
+            }
+
         } else if (task.getTaskType().getValue().equals("deadline")){
             cardPane.setStyle("-fx-background-color: #deffc4;-fx-font-size: 9pt;-fx-text-fill: #010504;");
+            if(!task.getCompleted()) {
+                initializeEstimatedTimeForDeadline(task);
+            }
+            else {
+                button.setText("");
+            }
+
         } else if (task.getTaskType().getValue().equals("floating")){
             cardPane.setStyle("-fx-background-color: #ccecff; -fx-font-size: 9pt;-fx-text-fill: #0083d1;");
+            button.setStyle("visibility: hidden;");
         }
-        
         initTags(task);
     }
 
+    //@@author A0139964M
     private void initTags(ReadOnlyTask task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    public void initializeEstimatedTimeForEvent(ReadOnlyTask task){
+        if(task.isHappening()){
+            button.setText("Happening");
+        } else if(task.isDateDue() || task.isTimeDue()){
+            button.setText("Over due");
+        } else if(task.getDueDateDuration() >= 1){
+            button.setText("Starting in: " + task.getDueDateDuration() + " days");
+        }
+        else{
+            button.setText("Starting in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+                    true, true));
+        }
+    }
+
+    public void initializeEstimatedTimeForDeadline(ReadOnlyTask task) {
+        if (task.isDateDue() || task.isTimeDue()) {
+            button.setText("Over Due");
+        } else if (task.getDueDateDuration() >= 1) {
+            button.setText("Due in: " + task.getDueDateDuration() + " days");
+        } else {
+            button.setText("Due in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+                           true, true));
+        }
+    }
 }
+//@@author
