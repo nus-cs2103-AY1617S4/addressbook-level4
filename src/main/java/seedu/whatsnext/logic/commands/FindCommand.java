@@ -3,8 +3,8 @@ package seedu.whatsnext.logic.commands;
 import java.util.Set;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Finds and lists all tasks in TaskManager whose name or tags contain any of the argument keywords.
+ * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 

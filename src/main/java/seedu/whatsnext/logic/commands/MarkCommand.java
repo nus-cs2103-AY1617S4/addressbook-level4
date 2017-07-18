@@ -28,8 +28,6 @@ public class MarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
     public final Index targetIndex;
 

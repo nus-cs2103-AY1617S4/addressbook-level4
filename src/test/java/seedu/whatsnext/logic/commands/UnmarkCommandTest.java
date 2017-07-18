@@ -41,14 +41,14 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Index lastPersonIndex = Index.fromOneBased(model.getFilteredTaskList().size());
+        Index lastTaskIndex = Index.fromOneBased(model.getFilteredTaskList().size());
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
         assertUnmarkedSuccess(INDEX_FIRST_TASK);
         assertExecutionSuccess(INDEX_THIRD_TASK);
         assertUnmarkedSuccess(INDEX_SECOND_TASK);
-        assertExecutionSuccess(lastPersonIndex);
-        assertUnmarkedSuccess(lastPersonIndex);
+        assertExecutionSuccess(lastTaskIndex);
+        assertUnmarkedSuccess(lastTaskIndex);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class UnmarkCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the first person from the address book.
+     * Updates {@code model}'s filtered list to show only the first task from the TaskManager.
      */
     private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getFilteredTaskList().get(0);
