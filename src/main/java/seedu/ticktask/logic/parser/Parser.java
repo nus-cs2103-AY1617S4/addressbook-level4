@@ -7,21 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.AddCommand;
-import seedu.ticktask.logic.commands.ClearCommand;
-import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.CompleteCommand;
-import seedu.ticktask.logic.commands.DeleteCommand;
-import seedu.ticktask.logic.commands.EditCommand;
-import seedu.ticktask.logic.commands.ExitCommand;
-import seedu.ticktask.logic.commands.FindCommand;
-import seedu.ticktask.logic.commands.HelpCommand;
-import seedu.ticktask.logic.commands.HistoryCommand;
-import seedu.ticktask.logic.commands.ListCommand;
-import seedu.ticktask.logic.commands.RedoCommand;
-import seedu.ticktask.logic.commands.SelectCommand;
-import seedu.ticktask.logic.commands.StorageCommand;
-import seedu.ticktask.logic.commands.UndoCommand;
+import seedu.ticktask.logic.commands.*;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 /**
@@ -91,6 +77,9 @@ public class Parser {
         //@@author
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+            case RestoreCommand.COMMAND_WORD:
+                return new RestoreCommandParser().parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
