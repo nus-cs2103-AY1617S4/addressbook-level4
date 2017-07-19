@@ -281,7 +281,7 @@ public class TickTask implements ReadOnlyTickTask {
      */
     public boolean restoreTask(ReadOnlyTask key) throws TaskNotFoundException, DuplicateTaskException {
         if (completedTasks.contains(key)) {
-            tasks.add(key);
+            tasks.unarchive(key);
             completedTasks.remove(key);
             return true;
         } else {

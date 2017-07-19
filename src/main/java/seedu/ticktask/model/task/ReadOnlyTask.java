@@ -1,5 +1,6 @@
 package seedu.ticktask.model.task;
 
+import java.time.Duration;
 import java.util.Set;
 
 import seedu.ticktask.model.tag.Tag;
@@ -16,10 +17,15 @@ public interface ReadOnlyTask {
     TaskType getTaskType();
     void resetTaskType();
     DueDate getDate();
+    boolean isDateDue();
     boolean getCompleted();
+    Duration getDueDurationTime();
+    long getDueDateDuration();
+    boolean isHappening();
+    boolean isTimeDue();
     void setCompleted(boolean s);
     Set<Tag> getTags();
-
+    boolean isChornological();
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */

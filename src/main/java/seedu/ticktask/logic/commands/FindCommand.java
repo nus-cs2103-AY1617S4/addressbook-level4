@@ -2,18 +2,18 @@ package seedu.ticktask.logic.commands;
 
 import java.util.Set;
 
+//@@author A0147928N
 /**
- * Finds and lists all tasks in TickTask which contain any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Performs power search on all tasks within TickTask.
+ * Keyword matching is not case sensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks which contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Performs power search on all tasks. Ignores case."
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " tutorial";
 
     private final Set<String> keywords;
 
@@ -24,7 +24,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskList(keywords);
-        return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
+        model.updateFilteredCompletedTaskList(keywords);
+        return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size() + model.getFilteredCompletedTaskList().size()));
     }
-
 }

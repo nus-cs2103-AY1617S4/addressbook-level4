@@ -301,11 +301,20 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
 
     }
+    
+    @Override
+    public void updateFilteredCompletedTaskList(Set<String> keywords) {
+        updateFilteredCompletedTaskList(new PredicateExpression(new NameQualifier(keywords)));
+
+    }
 
     private void updateFilteredTaskList(Expression expression) {
         filteredActiveTasks.setPredicate(expression::satisfies);
-        filteredCompletedTasks.setPredicate(expression::satisfies);
     }
+    
+    private void updateFilteredCompletedTaskList(Expression expression) {
+        filteredCompletedTasks.setPredicate(expression::satisfies);
+    } 
 
     @Override
     public boolean equals(Object obj) {

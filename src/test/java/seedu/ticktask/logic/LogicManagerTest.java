@@ -42,6 +42,7 @@ import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.DeleteCommand;
+import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.ExitCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.commands.HelpCommand;
@@ -62,6 +63,7 @@ import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.TaskBuilder;
+import seedu.ticktask.testutil.TypicalTasks;
 
 //@@author A0138471A
 public class LogicManagerTest {
@@ -174,7 +176,7 @@ public class LogicManagerTest {
         assertEquals(expectedModel, model);
         assertEquals(expectedModel.getTickTask(), latestSavedTickTask);
     }
-
+    //TEST COMMAND WORDS//
     @Test
     public void execute_unknownCommandWord() {
         String unknownCommand = "uicfhmowqewca";
@@ -187,7 +189,7 @@ public class LogicManagerTest {
         assertTrue(helpShown);
     }
 
-   /* @Test
+    /*@Test
     public void execute_exit() {
         assertCommandSuccess(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, new ModelManager());
     }*/
@@ -202,7 +204,7 @@ public class LogicManagerTest {
         assertCommandSuccess(ClearCommand.COMMAND_WORD + " active", ClearCommand.MESSAGE_SUCCESS, new ModelManager());
     }
 
-
+    //ADD//
     @Test
     public void execute_add_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_UNKNOWN_COMMAND, AddCommand.MESSAGE_USAGE);
@@ -210,7 +212,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_add_invalidPersonData() {
+    public void execute_add_invalidTaskData() {
         assertParseException(AddCommand.COMMAND_WORD + " " + "@^&*(()",
                 Name.MESSAGE_NAME_CONSTRAINTS);
     }
@@ -242,25 +244,66 @@ public class LogicManagerTest {
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
+    //EDIT//
+    @Test
+    public void execute_edit_invalidArgsFormat() {
+        String expectedMessage = String.format(MESSAGE_UNKNOWN_COMMAND, EditCommand.MESSAGE_USAGE);
+        assertParseException("edittt test", expectedMessage);
+    }
+    
+    @Test
+    public void execute_edit_invalidIndex() {
+        assertParseException(EditCommand.COMMAND_WORD + " " + "@^&*(()",
+                EditCommand.MESSAGE_USAGE);
+    }
+    
+  /*  @Test
+    public void execute_edit_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.test_study_task();
+        Task toBeEdited = helper.test_dont_study_task();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+        expectedModel.updateTask(toBeAdded, toBeEdited);
 
+        // execute command and verify result
+        assertCommandSuccess(helper.generateEditCommand(toBeEdited),
+                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, toBeEdited), expectedModel);
 
+    }*/
+    
+    
+    //LIST//
     @Test
     public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         Model expectedModel = new ModelManager(helper.generateTickTask(2), new UserPrefs());
 
-        // prepare address book state
+        // prepare ticktask state
         helper.addToModel(model, 2);
 
         assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_VIEW_ALL_TASKS, expectedModel);
     }
+    
+    /*@Test
+    public void execute_list_showsDeadlines() throws Exception {
+        Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
+        // prepare expectations
+        expectedModel.updateFilteredListToShowToday();
+
+        // prepare ticktask state
+
+        assertCommandSuccess("list deadline", ListCommand.MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS, expectedModel);
+    }*/
 
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage)
@@ -274,8 +317,8 @@ public class LogicManagerTest {
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
@@ -444,20 +487,30 @@ public class LogicManagerTest {
             return new Task(name, time, taskType, date,
                     getTagSet("tag1"));
         }
+        
+        Task test_dont_study_task() throws Exception {
+            Name name = new Name("Dont Study CS2103");
+            DueDate date = new DueDate("11/11/2017");
+            DueTime time = new DueTime("12:30");
+            TaskType taskType = new TaskType("deadline");
+
+            return new Task(name, time, taskType, date,
+                    getTagSet("tag1"));
+        }
 
         /**
-         * Generates a valid person using the given seed.
-         * Running this function with the same parameter values guarantees the returned person will have the same state.
-         * Each unique seed will generate a unique Person object.
+         * Generates a valid task using the given seed.
+         * Running this function with the same parameter values guarantees the returned task will have the same state.
+         * Each unique seed will generate a unique Task object.
          *
-         * @param seed used to generate the person data field values
+         * @param seed used to generate the task data field values
          */
         Task generateTask(int seed) throws Exception {
             // to ensure that phone numbers are at least 3 digits long, when seed is less than 3 digits
             String phoneNumber = String.join("", Collections.nCopies(3, String.valueOf(Math.abs(seed))));
 
             return new Task(
-                    new Name("Person " + seed),
+                    new Name("Task " + seed),
                     new DueTime("12:30"),
                     new TaskType("deadline"),
                     new DueDate("12/12/2017"),
@@ -481,9 +534,27 @@ public class LogicManagerTest {
 
             return cmd.toString();
         }
+        
+        /** Generates the correct add command based on the task given */
+        String generateEditCommand(Task t) {
+            StringBuffer cmd = new StringBuffer();
+
+            cmd.append(EditCommand.COMMAND_WORD);
+
+            cmd.append(" " + t.getName());
+            cmd.append(" at " + t.getTime());
+            cmd.append(" by " + t.getDate());
+
+            Set<Tag> tags = t.getTags();
+            for (Tag tag: tags) {
+                cmd.append(" " + PREFIX_TAG.getPrefix().trim()).append(tag.tagName);
+            }
+
+            return cmd.toString();
+        }
 
         /**
-         * Generates an AddressBook with auto-generated persons.
+         * Generates an TickTask with auto-generated tasks.
          */
         TickTask generateTickTask(int numGenerated) throws Exception {
             TickTask tickTask = new TickTask();
@@ -492,7 +563,7 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates an AddressBook based on the list of Persons given.
+         * Generates an TickTasks based on the list of tasks given.
          */
         TickTask generateTickTask(List<Task> tasks) throws Exception {
             TickTask tickTask = new TickTask();
@@ -501,15 +572,15 @@ public class LogicManagerTest {
         }
 
         /**
-         * Adds auto-generated Person objects to the given AddressBook
-         * @param tickTask The AddressBook to which the Persons will be added
+         * Adds auto-generated Task objects to the given TickTask
+         * @param tickTask The TickTask to which the Tasks will be added
          */
         void addToTickTask(TickTask tickTask, int numGenerated) throws Exception {
             addToTickTask(tickTask, generateTaskList(numGenerated));
         }
 
         /**
-         * Adds the given list of Persons to the given AddressBook
+         * Adds the given list of Tasks to the given TickTask
          */
         void addToTickTask(TickTask tickTask, List<Task> tasksToAdd) throws Exception {
             for (Task p: tasksToAdd) {
@@ -518,15 +589,15 @@ public class LogicManagerTest {
         }
 
         /**
-         * Adds auto-generated Person objects to the given model
-         * @param model The model to which the Persons will be added
+         * Adds auto-generated Task objects to the given model
+         * @param model The model to which the Tasks will be added
          */
         void addToModel(Model model, int numGenerated) throws Exception {
             addToModel(model, generateTaskList(numGenerated));
         }
 
         /**
-         * Adds the given list of Persons to the given model
+         * Adds the given list of Tasks to the given model
          */
         void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
             for (Task p: tasksToAdd) {
@@ -535,7 +606,7 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a list of Persons based on the flags.
+         * Generates a list of Tasks based on the flags.
          */
         List<Task> generateTaskList(int numGenerated) throws Exception {
             List<Task> tasks = new ArrayList<>();
