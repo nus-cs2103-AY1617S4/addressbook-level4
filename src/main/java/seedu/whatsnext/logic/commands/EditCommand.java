@@ -147,8 +147,9 @@ public class EditCommand extends Command {
         DateTime updatedStartDateTime = editTaskDescriptor.getStartDateTime().orElse(taskToEdit.getStartDateTime());
         DateTime updatedEndDateTime = editTaskDescriptor.getEndDateTime().orElse(taskToEdit.getEndDateTime());
         Set<Tag> updatedTags = consolidateTags(taskToEdit, editTaskDescriptor);
+        Boolean isCompleted = taskToEdit.getIsCompleted();
 
-        return new BasicTask(updatedName, updateDescription, false,
+        return new BasicTask(updatedName, updateDescription, isCompleted,
                 updatedStartDateTime, updatedEndDateTime, updatedTags);
     }
 

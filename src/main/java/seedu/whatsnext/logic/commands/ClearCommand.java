@@ -2,10 +2,14 @@ package seedu.whatsnext.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javafx.collections.ObservableList;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
@@ -18,6 +22,9 @@ public class ClearCommand extends Command {
     public static final String CLEAR_COMPLETED = "completed";
     public static final String CLEAR_ALL = "all";
     public static final String MESSAGE_SUCCESS = "Task List has been cleared!";
+    public static final String MESSAGE_SUCCESS_CLEAR_INCOMPLETE = "Incomplete tasks have been cleared!";
+    public static final String MESSAGE_SUCCESS_CLEAR_COMPLETED = "Completed tasks have been cleared!";
+    public static final String MESSAGE_SUCCESS_CLEAR_EXPIRED = "Expired tasks have been cleared!";
     public static final String MESSAGE_USAGE = "To clear incomplete tasks: clear incomplete\n"
             + "To clear completed tasks: clear completed\n"
             + "To clear all tasks: clear all\n";
@@ -39,8 +46,10 @@ public class ClearCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS);
         } else if (clearArgument.equals(CLEAR_COMPLETED)) {
             return clearCompletedOrIncomplete(COMPLETED_TASKS);
-        } else {
+        } else if (clearArgument.equals(CLEAR_INCOMPLETE)) {
             return clearCompletedOrIncomplete(INCOMPLETE_TASKS);
+        } else {
+            return clearExpired();
         }
     }
 
@@ -65,7 +74,39 @@ public class ClearCommand extends Command {
 
         taskManager.syncMasterTagListWith(taskManager.getTasks());
         model.resetData(taskManager);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (isCompletedOrIncomplete) {
+            return new CommandResult(MESSAGE_SUCCESS_CLEAR_INCOMPLETE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS_CLEAR_COMPLETED);
+        }
+    }
 
+    //@@author A0142675B
+    /**
+     * Clear Expired tasks based on the endDateTime
+     * @return MESSAGE_SUCCESS_CLEAR_EXPIRED
+     */
+    private CommandResult clearExpired() {
+        ReadOnlyTaskManager readOnlyTaskManager = model.getTaskManager();
+        ObservableList<BasicTask> taskList = readOnlyTaskManager.getTaskList();
+        TaskManager taskManager = new TaskManager();
+        Date currentTime = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentTime);
+        currentTime = cal.getTime();
+        for (BasicTask basicTask: taskList) {
+            if (basicTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)
+                || !basicTask.getEndDateTime().isBefore(currentTime)) {
+                try {
+                    taskManager.addTask(basicTask);
+                } catch (DuplicateTaskException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        taskManager.syncMasterTagListWith(taskManager.getTasks());
+        model.resetData(taskManager);
+        return new CommandResult(MESSAGE_SUCCESS_CLEAR_EXPIRED);
     }
 }
