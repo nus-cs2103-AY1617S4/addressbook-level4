@@ -25,7 +25,7 @@ public class ChangePathCommand extends Command {
 
 
 
-    private static File toSave;
+    private File toSave;
 
 
 
