@@ -16,9 +16,11 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "The TickTask program has been cleared!";
-    public static final String MESSAGE_USAGE = "";
-    
+    public static final String MESSAGE_SUCCESS = "The targeted list has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Delete active tasks or delete completed tasks."
+            + " Example: " + COMMAND_WORD + " active\n"
+            + " Example: " + COMMAND_WORD + " complete\n";
+    public static final String MESSAGE_NOT_SUCCESS = "The clear command should be either 'clear active' or 'clear complete'.";
     private Prefix listIndicatorPrefix;
 
     public ClearCommand(Prefix listIndicatorPrefix) {
@@ -28,16 +30,17 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         requireNonNull(model);
-        System.out.println("Run\n");
-        if (listIndicatorPrefix.toString().equals(PREFIX_ACTIVE))
+        if (listIndicatorPrefix.toString().equals(PREFIX_ACTIVE.toString()))
         {
         	model.resetActiveData(new TickTask());
-        	System.out.println("Active\n");
+            return new CommandResult(MESSAGE_SUCCESS);
         }
-        else {
+        else if (listIndicatorPrefix.toString().equals(PREFIX_COMPLETE.toString())) {
             model.resetCompleteData(new TickTask());
-            System.out.println("Complete\n");
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            return new CommandResult(MESSAGE_NOT_SUCCESS);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+
     }
 }
