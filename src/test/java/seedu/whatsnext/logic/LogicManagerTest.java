@@ -307,19 +307,22 @@ public class LogicManagerTest {
 
         // Command: "list" - list all upcoming incomplete tasks
         assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
+
         // Command: "list completed" - to list all completed tasks
-//        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_COMPLETED,
-//                ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+        //assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_COMPLETED,
+        //ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+
         // Command: "list incomplete" - to list all incomplete tasks
         assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_INCOMPLETE,
                 ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+
         // Command: "list expired" - to list all expired tasks
-//        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_EXPIRED,
-//                ListCommand.MESSAGE_SUCCESS_EXPIRED, expectedModel);
+        //assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_EXPIRED,
+        //ListCommand.MESSAGE_SUCCESS_EXPIRED, expectedModel);
+
         // Command: "list all" - to list all tasks
         assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_ALL,
                 ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
-
     }
 
     //@@author
