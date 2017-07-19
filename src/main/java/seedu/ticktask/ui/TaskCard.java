@@ -88,13 +88,7 @@ public class TaskCard extends UiPart<Region> {
         date.setText(task.getDate().toString());
   
  
-       
-            
-          
-      if(!task.isChornological())
-            setTextColor(id,name,time,date,taskType,Color.RED); 
-            
-
+        
         //@@author A0139964M
         taskType.setText(task.getTaskType().value.toUpperCase());
         if (task.getTaskType().getValue().equals(TASKTYPE_EVENT)){
@@ -146,6 +140,7 @@ public class TaskCard extends UiPart<Region> {
             button.setText(MESSAGE_DISPLAY_HAPPENING);
         } else if(task.isDateDue() || task.isTimeDue()){
             button.setId("buttonOverDue");
+            setTextColor(id,name,time,date,taskType,Color.RED);
             button.setText(MESSAGE_DISPLAY_PASSED);
         } else if(task.getDueDateDuration() >= 1){
             button.setText(MESSAGE_DISPLAY_STARTING_IN + task.getDueDateDuration() + " days");
@@ -159,6 +154,7 @@ public class TaskCard extends UiPart<Region> {
     public void initializeEstimatedTimeForDeadline(ReadOnlyTask task) {
         if (task.isDateDue() || task.isTimeDue()) {
             button.setId("buttonOverDue");
+            setTextColor(id,name,time,date,taskType,Color.RED);
             button.setText(MESSAGE_DISPLAY_OVER_DUE);
         } else if (task.getDueDateDuration() >= 1) {
             button.setText(MESSAGE_DISPLAY_DUE_IN + task.getDueDateDuration() + " days");
