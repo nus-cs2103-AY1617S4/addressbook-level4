@@ -239,7 +239,7 @@ Format: `remind TIMEPERIOD`
 > The time unit must be sigular, i.e. "week" instead of "weeks"
 Examples:
 
-* `remind 3 days`<br>
+* `remind 3 day`<br>
   Display all deadlines and events within 3 days upon startup.
 * `remind 2 week`<br>
   Display all deadlines and events within 2 weeks upon startup.
