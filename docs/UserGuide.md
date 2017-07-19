@@ -282,8 +282,9 @@ Get Help infomation | `help` |
 Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]` | `add Project metting s/ July 5 18 e/ July 5 19`<br> `add project, "CS2103 project", July 10 5pm, July 10 6pm`
 Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` | `add Project submission e/ July 5 20`<br> `add project, "CS2103 project", July 10 6pm, tags: meeting`
 Add a floating | `add TASK_NAME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` | `add CS2103 exam t/ HIGH`<br> `add project, "CS2103 project", tags: meeting`
+List upcominng incomplete tasks | `list` |
 List all tasks | `list all` |
-List incomplete tasks | `list incomplete` |
+List all incomplete tasks | `list incomplete` |
 List complete tasks | `list complete` |
 Clear all tasks | `clear all` |
 Clear incomplete tasks | `clear incomplete` |
