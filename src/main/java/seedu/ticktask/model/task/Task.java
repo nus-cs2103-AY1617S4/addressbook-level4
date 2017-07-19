@@ -289,5 +289,18 @@ public class Task implements ReadOnlyTask {
             return false;
         }
     }
+    /**
+     * Check if date is equals today date
+     *Applies to only events and deadlines
+     */
+    public boolean isToday(){
+        LocalDate nowDate = LocalDate.now();
+        LocalDate startDate = date.getLocalStartDate();
+        if(nowDate.isEqual(startDate)){
+            return true;
+        } else{
+            return  false;
+        }
+    }
 }
 //@@author

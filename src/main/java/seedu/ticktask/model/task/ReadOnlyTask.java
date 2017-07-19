@@ -23,6 +23,7 @@ public interface ReadOnlyTask {
     long getDueDateDuration();
     boolean isHappening();
     boolean isTimeDue();
+    boolean isToday();
     void setCompleted(boolean s);
     Set<Tag> getTags();
     boolean isChornological();

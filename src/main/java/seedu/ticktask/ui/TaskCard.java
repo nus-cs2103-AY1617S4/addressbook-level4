@@ -138,7 +138,7 @@ public class TaskCard extends UiPart<Region> {
         if(task.isHappening()){
             button.setId("buttonHappening");
             button.setText(MESSAGE_DISPLAY_HAPPENING);
-        } else if(task.isDateDue() || task.isTimeDue()){
+        } else if(task.isDateDue() ||(task.isToday() && task.isTimeDue())){
             button.setId("buttonOverDue");
             setTextColor(id,name,time,date,taskType,Color.RED);
             button.setText(MESSAGE_DISPLAY_PASSED);
@@ -152,7 +152,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     public void initializeEstimatedTimeForDeadline(ReadOnlyTask task) {
-        if (task.isDateDue() || task.isTimeDue()) {
+        if (task.isDateDue() ||(task.isToday() && task.isTimeDue())){
             button.setId("buttonOverDue");
             setTextColor(id,name,time,date,taskType,Color.RED);
             button.setText(MESSAGE_DISPLAY_OVER_DUE);
