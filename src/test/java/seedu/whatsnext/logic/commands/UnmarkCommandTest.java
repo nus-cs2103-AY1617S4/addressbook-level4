@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
-import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_TASK;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,19 +35,15 @@ public class UnmarkCommandTest {
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
-        model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+        model = new ModelManager(new TypicalTasks().getTypicalMarkTaskManager(), new UserPrefs());
     }
 
     @Test
+
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Index lastTaskIndex = Index.fromOneBased(model.getFilteredTaskList().size());
 
         assertExecutionSuccess(INDEX_FIRST_TASK);
         assertUnmarkedSuccess(INDEX_FIRST_TASK);
-        assertExecutionSuccess(INDEX_THIRD_TASK);
-        assertUnmarkedSuccess(INDEX_SECOND_TASK);
-        assertExecutionSuccess(lastTaskIndex);
-        assertUnmarkedSuccess(lastTaskIndex);
     }
 
     @Test
@@ -98,6 +93,10 @@ public class UnmarkCommandTest {
      */
     private void assertExecutionSuccess(Index index) throws Exception {
         BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
+        for (BasicTaskFeatures b : model.getFilteredTaskList()){
+            System.out.println(b.getName());
+        }
+        System.out.println("TASKY " + task.getName() +task.getIsCompleted());
         UnmarkCommand unmarkCommand = prepareCommand(index);
         CommandResult commandResult = unmarkCommand.execute();
         assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, task),
