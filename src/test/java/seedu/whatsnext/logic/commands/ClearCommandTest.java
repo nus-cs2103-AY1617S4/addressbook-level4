@@ -3,7 +3,11 @@ package seedu.whatsnext.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_COMPLETED;
+import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_EXPIRED;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_INCOMPLETE;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -13,6 +17,7 @@ import seedu.whatsnext.model.ModelManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.testutil.TypicalTasks;
 
@@ -46,6 +51,14 @@ public class ClearCommandTest {
         assertCompletedCommandSuccess(model);
     }
 
+    //@@author A0142675B
+    @Test
+    public void execute_expiredTasks_success() throws DuplicateTaskException {
+        Model model = new ModelManager(new TypicalTasks().getTypicalTaskManager(), new UserPrefs());
+        assertExpiredCommandSuccess(model);
+    }
+
+
     /**
      * Executes {@code ClearCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code ClearCommand.MESSAGE_SUCCESS} <br>
@@ -74,7 +87,7 @@ public class ClearCommandTest {
         command.setData(model, new CommandHistory());
         CommandResult result = command.execute();
 
-        assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
+        assertEquals(ClearCommand.MESSAGE_SUCCESS_CLEAR_INCOMPLETE, result.feedbackToUser);
         assertEquals(modelIncomplete, model);
 
 
@@ -93,9 +106,33 @@ public class ClearCommandTest {
         command.setData(model, new CommandHistory());
         CommandResult result = command.execute();
 
-        assertEquals(ClearCommand.MESSAGE_SUCCESS, result.feedbackToUser);
+        assertEquals(ClearCommand.MESSAGE_SUCCESS_CLEAR_COMPLETED, result.feedbackToUser);
         assertEquals(modelComplete, model);
 
+    }
+
+
+    private void assertExpiredCommandSuccess(Model model) throws DuplicateTaskException {
+        TaskManager taskManagerNotExpired = new TaskManager();
+        Date currentTime = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentTime);
+        currentTime = cal.getTime();
+        for (BasicTask task:model.getTaskManager().getTaskList()) {
+            if (task.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE)
+                    || !task.getEndDateTime().isBefore(currentTime)) {
+                taskManagerNotExpired.addTask(task);
+            }
+        }
+
+        Model modelNotExpired = new ModelManager(taskManagerNotExpired, new UserPrefs());
+
+        ClearCommand command = new ClearCommand(PREFIX_EXPIRED.toString());
+        command.setData(model, new CommandHistory());
+        CommandResult result = command.execute();
+
+        assertEquals(ClearCommand.MESSAGE_SUCCESS_CLEAR_EXPIRED, result.feedbackToUser);
+        assertEquals(modelNotExpired, model);
     }
 
 }
