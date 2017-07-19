@@ -159,6 +159,8 @@ public class DueDate {
     public void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
+            end_date = end_date2;
+            value = getStartDate();
 
         }
         else {
@@ -176,7 +178,8 @@ public class DueDate {
     public void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
-
+            start_date = start_date2;
+            value = getStartDate();
         }
         else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
