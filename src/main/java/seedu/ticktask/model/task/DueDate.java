@@ -180,6 +180,8 @@ public class DueDate {
             start_date_string =  "";
             start_date = start_date2;
             value = getStartDate();
+            
+
 
         }
         else {

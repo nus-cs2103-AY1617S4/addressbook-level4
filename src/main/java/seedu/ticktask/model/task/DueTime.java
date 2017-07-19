@@ -118,8 +118,7 @@ public class DueTime {
             start_time_string =  "";
             start_time = start_time2;
             value = getStartTime();
-
-
+            
         }
         else {
             start_time_string = start_time2.format(TIME_FORMAT).toString();
