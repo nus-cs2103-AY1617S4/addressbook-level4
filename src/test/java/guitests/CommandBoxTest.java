@@ -31,23 +31,23 @@ public class CommandBoxTest extends TickTaskGuiTest {
         errorStyleOfCommandBox.add(CommandBox.ERROR_STYLE_CLASS);
     }
 
-    @Test
-    public void commandBox_startingWithSuccessfulCommand() {
-        assertBehaviorForSuccessfulCommand();
-        assertBehaviorForFailedCommand();
-    }
-
-    @Test
-    public void commandBox_startingWithFailedCommand() {
-        assertBehaviorForFailedCommand();
-        assertBehaviorForSuccessfulCommand();
-
-        // verify that style is changed correctly even after multiple consecutive successful/failed commands
-        assertBehaviorForSuccessfulCommand();
-        assertBehaviorForFailedCommand();
-        assertBehaviorForFailedCommand();
-        assertBehaviorForSuccessfulCommand();
-    }
+//    @Test
+//    public void commandBox_startingWithSuccessfulCommand() {
+//        assertBehaviorForSuccessfulCommand();
+//        assertBehaviorForFailedCommand();
+//    }
+//
+//    @Test
+//    public void commandBox_startingWithFailedCommand() {
+//        assertBehaviorForFailedCommand();
+//        assertBehaviorForSuccessfulCommand();
+//
+//        // verify that style is changed correctly even after multiple consecutive successful/failed commands
+//        assertBehaviorForSuccessfulCommand();
+//        assertBehaviorForFailedCommand();
+//        assertBehaviorForFailedCommand();
+//        assertBehaviorForSuccessfulCommand();
+//    }
 
     /**
      * Runs a command that fails, then verifies that

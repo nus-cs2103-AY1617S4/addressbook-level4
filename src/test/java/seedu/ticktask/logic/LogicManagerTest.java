@@ -201,7 +201,7 @@ public class LogicManagerTest {
         model.addTask(helper.generateTask(2));
         model.addTask(helper.generateTask(3));
 
-        assertCommandSuccess(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_SUCCESS, new ModelManager());
+        assertCommandSuccess(ClearCommand.COMMAND_WORD + " active", ClearCommand.MESSAGE_SUCCESS, new ModelManager());
     }
 
     //ADD//
@@ -451,7 +451,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_verifyHistory_success() throws Exception {
-        String validCommand = "clear";
+        String validCommand = "clear active";
         logic.execute(validCommand);
 
         String invalidCommandParse = "   adds   Bob   ";

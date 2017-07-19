@@ -59,7 +59,7 @@ public class TaskTypeTest {
         assertFalse(standardTaskType.equals(null));
 
         // different types -> returns false
-        assertFalse(standardTaskType.equals(new ClearCommand()));
+        assertFalse(standardTaskType.equals(new ClearCommand(null)));
 
         // different type -> returns false
         assertFalse(standardTaskType.equals(taskWithDifferentValue));

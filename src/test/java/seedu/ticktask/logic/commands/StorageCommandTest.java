@@ -24,13 +24,14 @@ public class StorageCommandTest {
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
  
-    @Test
-    public void testExecute() throws IOException, CommandException {
-        final File tempFolder = folder.newFolder("newLocation");
-        StorageCommand command1 = new StorageCommand(tempFolder);
-        command1.setData(model, new CommandHistory());
-        //command1.execute();
-    }
+//    @Test
+//    public void testExecute() throws IOException, CommandException {
+//        final File tempFolder = folder.newFolder("newLocation");
+//        StorageCommand command1 = new StorageCommand(tempFolder);
+//        command1.setData(model, new CommandHistory());
+//        command1.execute();
+//    }
+
     
     @Test
     public void testExecute_throwIO() throws CommandException {

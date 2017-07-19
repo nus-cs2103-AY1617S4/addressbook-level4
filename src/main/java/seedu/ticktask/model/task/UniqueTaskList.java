@@ -101,10 +101,19 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Archives the task into the internalList and marks the task as complete
      */
-    public void archive(ReadOnlyTask toAdd) {
-        toAdd.setCompleted(true);
-        requireNonNull(toAdd);
-        internalList.add(new Task(toAdd));
+    public void archive(ReadOnlyTask toArchive) {
+        toArchive.setCompleted(true);
+        requireNonNull(toArchive);
+        internalList.add(new Task(toArchive));
+    }
+    
+    /**
+     * Unarchives the task into the internalList and marks the task as complete
+     */
+    public void unarchive(ReadOnlyTask toUnarchive) {
+        toUnarchive.setCompleted(false);
+        requireNonNull(toUnarchive);
+        internalList.add(new Task(toUnarchive));
     }
     //@@author
 

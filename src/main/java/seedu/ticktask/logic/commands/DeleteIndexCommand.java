@@ -43,11 +43,11 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
             taskToDelete = listToDeleteFrom.get(targetIndex.getZeroBased());
                   try {
                          if (listIndicatorPrefix.equals(PREFIX_COMPLETE))
-                         model.deleteIndexCompleteTask(taskToDelete);
+                             model.deleteIndexCompleteTask(taskToDelete);
                          else
-                         model.deleteIndexActiveTask(taskToDelete);
+                             model.deleteIndexActiveTask(taskToDelete);
                   } catch (TaskNotFoundException enfe) {
-                         assert false : "The target entry cannot be missing";
+                         assert false : "The target list cannot be missing";
                   }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
