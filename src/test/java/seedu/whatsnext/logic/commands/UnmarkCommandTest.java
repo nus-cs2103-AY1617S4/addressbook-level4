@@ -93,10 +93,6 @@ public class UnmarkCommandTest {
      */
     private void assertExecutionSuccess(Index index) throws Exception {
         BasicTaskFeatures task = model.getFilteredTaskList().get(index.getZeroBased());
-        for (BasicTaskFeatures b : model.getFilteredTaskList()){
-            System.out.println(b.getName());
-        }
-        System.out.println("TASKY " + task.getName() +task.getIsCompleted());
         UnmarkCommand unmarkCommand = prepareCommand(index);
         CommandResult commandResult = unmarkCommand.execute();
         assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, task),
