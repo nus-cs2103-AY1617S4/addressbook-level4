@@ -1,7 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
 //@@author A0154986L
-//@@author A0142675B
 /**
  * Lists all uncompleted/ completed/ all tasks in the task manager to the user.
  * It can also list tasks by type only.
@@ -47,7 +46,6 @@ public class ListCommand extends Command {
             model.updateFilteredTaskListToShowByCompletion(isComplete);
             return new CommandResult(MESSAGE_SUCCESS_COMPLETED);
         } else if (argument.equals(LIST_EXPIRED)) {
-            boolean isComplete = true;
             model.updateFilteredTaskListToShowByExpiry();
             return new CommandResult(MESSAGE_SUCCESS_EXPIRED);
         } else {
@@ -56,6 +54,7 @@ public class ListCommand extends Command {
         }
     }
 
+    //@@author A0142675B
     @Override
     public boolean equals(Object other) {
         ListCommand e = (ListCommand) other;

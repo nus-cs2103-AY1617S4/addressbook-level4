@@ -67,14 +67,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Save a copy of task manager before data is changed. */
     private void saveInstance() {
         undoTaskManager.push(new TaskManager(taskManager));
         redoTaskManager.clear();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Undo previous action of task manager. */
     @Override
     public void undoTaskManager() {
@@ -85,7 +85,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Redo previous action of task manager. */
     @Override
     public void redoTaskManager() {
@@ -96,7 +96,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Resets previous task manager instance. */
     @Override
     public void resetPrevTaskManager() {
@@ -105,14 +105,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Returns current reminder setting. */
     @Override
     public String getReminderSetting() {
         return userPrefs.getReminderSetting();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Sets new reminder setting. */
     @Override
     public void setReminderSetting(String newReminderSetting) {
@@ -205,7 +205,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new CompletedQualifier(false)));
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter by task completion
      */
@@ -215,7 +215,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter by upcoming tasks.
      */
@@ -225,7 +225,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter by expired tasks.
      */
@@ -235,7 +235,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
@@ -244,6 +244,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new ReminderQualifier()));
     }
 
+    //@@author
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -295,7 +296,7 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /*
      * Finds tasks by completion status.
      */
@@ -321,7 +322,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /*
      * Finds non-expired, upcoming tasks.
      */
@@ -350,7 +351,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /*
      * Finds expired tasks.
      */
@@ -376,7 +377,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /*
      * Finds the tasks for reminder pop up window.
      */

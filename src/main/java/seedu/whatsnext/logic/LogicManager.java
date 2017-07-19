@@ -55,7 +55,7 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredTaskList();
     }
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Returns the filtered task list for reminder pop up window.
      */

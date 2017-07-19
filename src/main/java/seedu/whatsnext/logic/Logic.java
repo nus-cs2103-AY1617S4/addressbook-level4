@@ -32,7 +32,7 @@ public interface Logic {
 
     ObservableList<BasicTaskFeatures> getInitialFilteredTaskList();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Returns the filtered task list for reminder pop up window.
      */
