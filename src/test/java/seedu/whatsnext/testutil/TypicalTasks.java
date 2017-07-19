@@ -1,9 +1,15 @@
 package seedu.whatsnext.testutil;
 
+import java.util.Set;
+
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.TaskManager;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
+import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 //@@author A0142675B
@@ -15,6 +21,7 @@ public class TypicalTasks {
     public static final Index INDEX_FIRST_TASK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_TASK = Index.fromOneBased(3);
+    public static final Index INDEX_LAST_TASK = Index.fromOneBased(10);
 
     public final BasicTask completeCS2103Assignment, meetJohnForDinner, meetTomForLunch, camping,
                            cs2010ProblemSet, fypSelection, tester, readaBook;
@@ -40,6 +47,8 @@ public class TypicalTasks {
                            .withEndDateTime("Friday")
                            .withTags("HIGH").build();
             readaBook = new TaskBuilder().withName("Read a Book").build();
+
+            // Tasks used to test Unmark Command
             tester = new TaskBuilder().withName("Tester")
                     .withStatus(true).build();
 
@@ -60,6 +69,30 @@ public class TypicalTasks {
         }
     }
 
+    public static void loadTaskManagerWithSampleMarkedData(TaskManager ab) {
+        for (BasicTask task : new TypicalTasks().getTypicalTasks()) {
+            try {
+                ab.addTask(createMarkedTask(task));
+            } catch (DuplicateTaskException e) {
+                assert false : "not possible";
+            }
+        }
+    }
+
+    private static BasicTask createMarkedTask(BasicTask taskToMark) {
+        assert taskToMark != null;
+        BasicTask toCopy = new BasicTask(taskToMark);
+        TaskName updatedName = toCopy.getName();
+        TaskDescription updatedDescription = toCopy.getDescription();
+        DateTime startDateTime = toCopy.getStartDateTime();
+        DateTime endDateTime = toCopy.getEndDateTime();
+        toCopy.setCompleted();
+        boolean updateIsComplete = toCopy.getIsCompleted();
+        Set<Tag> updatedTags = toCopy.getTags();
+        return new BasicTask(updatedName, updatedDescription,
+                updateIsComplete, startDateTime, endDateTime, updatedTags);
+    }
+
     public BasicTask[] getTypicalTasks() {
         return new BasicTask[]{cs2010ProblemSet, meetJohnForDinner, completeCS2103Assignment,
                                meetTomForLunch, camping, fypSelection, tester};
@@ -70,4 +103,12 @@ public class TypicalTasks {
         loadTaskManagerWithSampleData(tm);
         return tm;
     }
+
+    public TaskManager getTypicalMarkTaskManager() {
+        TaskManager tm = new TaskManager();
+        loadTaskManagerWithSampleMarkedData(tm);
+        return tm;
+    }
+
+
 }

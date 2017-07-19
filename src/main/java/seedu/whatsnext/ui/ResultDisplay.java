@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.ui.NewResultAvailableEvent;
+import seedu.whatsnext.logic.commands.HelpCommand;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
@@ -20,8 +21,11 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
+    private static final String DISPLAY_MESSAGE = "Welcome to WhatsNext\n"
+            + "View our UserGuide through the 'help' command:\n"
+            + HelpCommand.MESSAGE_USAGE;
 
-    private static final StringProperty displayed = new SimpleStringProperty("Hello!");
+    private static final StringProperty displayed = new SimpleStringProperty(DISPLAY_MESSAGE);
 
     @FXML
     private TextArea resultDisplay;
