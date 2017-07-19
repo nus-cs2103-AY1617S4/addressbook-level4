@@ -7,7 +7,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -26,11 +28,24 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <AnchorPane >
+        <Rectangle fx:id="ticksymbol" arcHeight="100.0" arcWidth="100.0" height="35.0"   width="35.0" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets top="50" right="50" bottom="50" left="50" />
+         </HBox.margin>
+      </Rectangle>
+      </AnchorPane>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="taskType" styleClass="cell_small_label" text="\$taskType" />
+      
+
     </VBox>
+                
   </GridPane>
+  
+
 </HBox>
+ 
