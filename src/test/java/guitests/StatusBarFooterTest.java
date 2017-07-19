@@ -48,10 +48,10 @@ public class StatusBarFooterTest extends TickTaskGuiTest {
         assertEquals(SYNC_STATUS_INITIAL, statusBarFooter.getSyncStatus());
     }
 
-    @Test
-    public void syncStatus_commandFails_syncStatusRemainsUnchanged() {
-        assertFalse(commandBox.runCommand("invalid command")); // invalid command fails
-        assertEquals(SYNC_STATUS_INITIAL, statusBarFooter.getSyncStatus());
-    }
+//    @Test
+//    public void syncStatus_commandFails_syncStatusRemainsUnchanged() {
+//        assertFalse(commandBox.runCommand("invalid command")); // invalid command fails
+//        assertEquals(SYNC_STATUS_INITIAL, statusBarFooter.getSyncStatus());
+//    }
 
 }
