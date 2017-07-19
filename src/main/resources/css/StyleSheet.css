@@ -104,5 +104,35 @@
     -fx-cursor: pointer;
 }
 
+
+#buttonOverDue{
+    -fx-background-color: rgba(244, 98, 66, 0.5);
+    -fx-border-radius: 5px;
+    -fx-border: #4286f4;
+    -fx-color: black;
+    -fx-padding: 2px 5px;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 10pt;
+    -fx-margin: 2px 2px;
+    -fx-cursor: pointer;
+}
+
+#buttonHappening{
+    -fx-background-color: rgba(91, 244, 65,0.5);
+    -fx-border-radius: 5px;
+    -fx-border: #4286f4;
+    -fx-color: black;
+    -fx-padding: 2px 5px;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 10pt;
+    -fx-margin: 2px 2px;
+    -fx-cursor: pointer;
+}
+
+
 /*@@author*/
 

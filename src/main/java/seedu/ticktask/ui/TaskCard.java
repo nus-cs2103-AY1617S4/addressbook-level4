@@ -97,8 +97,10 @@ public class TaskCard extends UiPart<Region> {
 
     public void initializeEstimatedTimeForEvent(ReadOnlyTask task){
         if(task.isHappening()){
+            button.setId("buttonHappening");
             button.setText(MESSAGE_DISPLAY_HAPPENING);
         } else if(task.isDateDue() || task.isTimeDue()){
+            button.setId("buttonOverDue");
             button.setText(MESSAGE_DISPLAY_PASSED);
         } else if(task.getDueDateDuration() >= 1){
             button.setText(MESSAGE_DISPLAY_STARTING_IN + task.getDueDateDuration() + " days");
@@ -111,6 +113,7 @@ public class TaskCard extends UiPart<Region> {
 
     public void initializeEstimatedTimeForDeadline(ReadOnlyTask task) {
         if (task.isDateDue() || task.isTimeDue()) {
+            button.setId("buttonOverDue");
             button.setText(MESSAGE_DISPLAY_OVER_DUE);
         } else if (task.getDueDateDuration() >= 1) {
             button.setText(MESSAGE_DISPLAY_DUE_IN + task.getDueDateDuration() + " days");
