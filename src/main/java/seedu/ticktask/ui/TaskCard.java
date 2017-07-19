@@ -12,6 +12,16 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    //@@author A0139964M
+    private static String MESSAGE_DISPLAY_DUE_IN = "Due in: ";
+    private static String MESSAGE_DISPLAY_HAPPENING= "Happening";
+    private static String MESSAGE_DISPLAY_OVER_DUE = "Over Due";
+    private static String MESSAGE_DISPLAY_STARTING_IN = "Starting in: ";
+    private static String TASKTYPE_EVENT ="event";
+    private static String TASKTYPE_DEADLINE ="deadline";
+    private static String TASKTYPE_FLOATING ="floating";
+    //@@author
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -43,7 +53,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         if(task.getTime().isRange()){
-        	time.setText(task.getTime().toString());
+            time.setText(task.getTime().toString());
         }
         else{
             time.setText(task.getTime().toString());
@@ -51,33 +61,33 @@ public class TaskCard extends UiPart<Region> {
 
         date.setText(task.getDate().toString());
 
-
+        //@@author A0139964M
         taskType.setText(task.getTaskType().value.toUpperCase());
-        if (task.getTaskType().getValue().equals("event")){
+        if (task.getTaskType().getValue().equals(TASKTYPE_EVENT)){
             cardPane.setStyle("-fx-background-color: #ffe3b5;-fx-font-size: 9pt;-fx-text-fill: #010504;");
             if(!task.getCompleted()) {
                 initializeEstimatedTimeForEvent(task);
             }
             else{
-                System.out.println("This happened");
-                button.setText("");
+                button.setStyle("visibility: hidden;");
             }
 
-        } else if (task.getTaskType().getValue().equals("deadline")){
+        } else if (task.getTaskType().getValue().equals(TASKTYPE_DEADLINE)){
             cardPane.setStyle("-fx-background-color: #deffc4;-fx-font-size: 9pt;-fx-text-fill: #010504;");
             if(!task.getCompleted()) {
                 initializeEstimatedTimeForDeadline(task);
             }
             else {
-                button.setText("");
+                button.setStyle("visibility: hidden;");
             }
 
-        } else if (task.getTaskType().getValue().equals("floating")){
+        } else if (task.getTaskType().getValue().equals(TASKTYPE_FLOATING)){
             cardPane.setStyle("-fx-background-color: #ccecff; -fx-font-size: 9pt;-fx-text-fill: #0083d1;");
             button.setStyle("visibility: hidden;");
         }
         initTags(task);
     }
+    //@@author
 
     //@@author A0139964M
     private void initTags(ReadOnlyTask task) {
@@ -86,26 +96,26 @@ public class TaskCard extends UiPart<Region> {
 
     public void initializeEstimatedTimeForEvent(ReadOnlyTask task){
         if(task.isHappening()){
-            button.setText("Happening");
+            button.setText(MESSAGE_DISPLAY_HAPPENING);
         } else if(task.isDateDue() || task.isTimeDue()){
-            button.setText("Over due");
+            button.setText(MESSAGE_DISPLAY_OVER_DUE);
         } else if(task.getDueDateDuration() >= 1){
-            button.setText("Starting in: " + task.getDueDateDuration() + " days");
+            button.setText(MESSAGE_DISPLAY_STARTING_IN + task.getDueDateDuration() + " days");
         }
         else{
-            button.setText("Starting in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+            button.setText(MESSAGE_DISPLAY_STARTING_IN + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
                     true, true));
         }
     }
 
     public void initializeEstimatedTimeForDeadline(ReadOnlyTask task) {
         if (task.isDateDue() || task.isTimeDue()) {
-            button.setText("Over Due");
+            button.setText(MESSAGE_DISPLAY_OVER_DUE);
         } else if (task.getDueDateDuration() >= 1) {
-            button.setText("Due in: " + task.getDueDateDuration() + " days");
+            button.setText(MESSAGE_DISPLAY_DUE_IN + task.getDueDateDuration() + " days");
         } else {
-            button.setText("Due in " + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
-                           true, true));
+            button.setText(MESSAGE_DISPLAY_DUE_IN + DurationFormatUtils.formatDurationWords(task.getDueDurationTime().toMillis(),
+                    true, true));
         }
     }
 }

@@ -87,7 +87,9 @@
 .radio-button:pressed > .radio {
 	-fx-background-color: #50c0e2;
 }
+/*@@author*/
 
+/*@@author A0139964M*/
 .button{
     -fx-background-color: rgba(51, 153, 255, 0.5);
     -fx-border-radius: 5px;
@@ -101,4 +103,6 @@
     -fx-margin: 2px 2px;
     -fx-cursor: pointer;
 }
+
+/*@@author*/
 
