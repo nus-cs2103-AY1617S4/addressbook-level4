@@ -65,16 +65,7 @@ public class TickTask implements ReadOnlyTickTask {
         this.tasks.setTasks(tasks);
         this.completedTasks.setTasks(completedTasks);
     }
-///////////////////////////////////////////////////////////////////////////////////
-    
-    public void setCompleteData(List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
-        this.completedTasks.setTasks(completedTasks);
-    }
-    
-    public void setActiveData(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
-        this.tasks.setTasks(tasks);
-    }
-///////////////////////////////////////////////////////////////////////////////////
+
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
     }
@@ -93,37 +84,7 @@ public class TickTask implements ReadOnlyTickTask {
         }
         syncMasterTagListWith(tasks);
     }
-    ///////////////////////////////////////////////////////////////////////////////////
-    public void resetActiveData(ReadOnlyTickTask newData) {
-        requireNonNull(newData);
-        try {
-            setActiveData(newData.getTaskList());
-        } catch (DuplicateTaskException e) {
-            assert false : "The TickTask program should not have duplicate tasks";
-        }
-        try {
-            setTags(newData.getTagList());
-        } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "The TickTask program should not have duplicate tags";
-        }
-        syncMasterTagListWith(tasks);
-    }
 
-    public void resetCompleteData(ReadOnlyTickTask newData) {
-        requireNonNull(newData);
-        try {
-            setCompleteData(newData.getCompletedTaskList());
-        } catch (DuplicateTaskException e) {
-            assert false : "The TickTask program should not have duplicate tasks";
-        }
-        try {
-            setTags(newData.getTagList());
-        } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "The TickTask program should not have duplicate tags";
-        }
-        syncMasterTagListWith(tasks);
-    }
-///////////////////////////////////////////////////////////////////////////////////
     //// task-level operations
 
     /**
@@ -198,6 +159,64 @@ public class TickTask implements ReadOnlyTickTask {
     }
 
     //@@author A0131884B
+   /**
+    * Clear complete list
+    * @param completedTasks is of type ReadOnlyTask
+    * @return boolean
+    */
+
+    public void setCompleteData(List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
+        this.completedTasks.setTasks(completedTasks);
+    }
+
+    /**
+     * Clear active list
+     * @param tasks is of type ReadOnlyTask
+     * @return boolean
+     */
+    public void setActiveData(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Mark complete list to be cleared
+     * @param newData is of type ReadOnlyTickTask
+     * @return boolean
+     */
+    public void resetCompleteData(ReadOnlyTickTask newData) {
+        requireNonNull(newData);
+        try {
+            setCompleteData(newData.getCompletedTaskList());
+        } catch (DuplicateTaskException e) {
+            assert false : "The TickTask program should not have duplicate tasks";
+        }
+        try {
+            setTags(newData.getTagList());
+        } catch (UniqueTagList.DuplicateTagException e) {
+            assert false : "The TickTask program should not have duplicate tags";
+        }
+        syncMasterTagListWith(tasks);
+    }
+
+    /**
+     * Mark active list to be cleared
+     * @param newData is of type ReadOnlyTickTask
+     * @return boolean
+     */
+    public void resetActiveData(ReadOnlyTickTask newData) {
+        requireNonNull(newData);
+        try {
+            setActiveData(newData.getTaskList());
+        } catch (DuplicateTaskException e) {
+            assert false : "The TickTask program should not have duplicate tasks";
+        }
+        try {
+            setTags(newData.getTagList());
+        } catch (UniqueTagList.DuplicateTagException e) {
+            assert false : "The TickTask program should not have duplicate tags";
+        }
+        syncMasterTagListWith(tasks);
+    }
 
     /**
      * Removes an task from the task list using find task name method

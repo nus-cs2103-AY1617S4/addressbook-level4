@@ -17,9 +17,9 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "The targeted list has been cleared!";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Delete active tasks or delete completed tasks."
-            + " Example: " + COMMAND_WORD + " active\n"
-            + " Example: " + COMMAND_WORD + " complete\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Clear active tasks or clear completed tasks.\n"
+            + "Example: " + COMMAND_WORD + " active\n"
+            + "Example: " + COMMAND_WORD + " complete\n";
     public static final String MESSAGE_NOT_SUCCESS = "The clear command should be either 'clear active' or 'clear complete'.";
     private Prefix listIndicatorPrefix;
 

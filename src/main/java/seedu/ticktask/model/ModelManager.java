@@ -58,21 +58,6 @@ public class ModelManager extends ComponentManager implements Model {
         currentProgramInstance.resetData(newData);
         indicateTickTaskModelChanged();
     }
- //////////////////////////////////////////////////////////////////////////////////////////   
-    @Override
-    public void resetActiveData(ReadOnlyTickTask newData) {
-        saveInstance();
-        currentProgramInstance.resetActiveData(newData);
-        indicateTickTaskModelChanged();
-    }
-    
-    @Override
-    public void resetCompleteData(ReadOnlyTickTask newData) {
-        saveInstance();
-        currentProgramInstance.resetCompleteData(newData);
-        indicateTickTaskModelChanged();
-    }
-//////////////////////////////////////////////////////////////////////////////////////////   
 
     @Override
     public ReadOnlyTickTask getTickTask() {
@@ -149,6 +134,20 @@ public class ModelManager extends ComponentManager implements Model {
     public synchronized void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.removeIndexCompleteTask(target);
+        indicateTickTaskModelChanged();
+    }
+
+    @Override
+    public void resetActiveData(ReadOnlyTickTask newData) {
+        saveInstance();
+        currentProgramInstance.resetActiveData(newData);
+        indicateTickTaskModelChanged();
+    }
+
+    @Override
+    public void resetCompleteData(ReadOnlyTickTask newData) {
+        saveInstance();
+        currentProgramInstance.resetCompleteData(newData);
         indicateTickTaskModelChanged();
     }
     //@@author

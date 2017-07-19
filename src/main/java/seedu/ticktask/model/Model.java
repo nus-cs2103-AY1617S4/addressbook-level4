@@ -16,11 +16,6 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyTickTask newData);
-//////////////////////////////////////////////////////////////////////
-    public void resetActiveData(ReadOnlyTickTask newData);
-    
-    public void resetCompleteData(ReadOnlyTickTask newData);
-//////////////////////////////////////////////////////////////////////
 
     /** Returns the TickTask */
     ReadOnlyTickTask getTickTask();
@@ -34,6 +29,12 @@ public interface Model {
 
     /** Deletes the given active task using find task index method. */
     void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Clear active list. */
+    void resetActiveData(ReadOnlyTickTask newData);
+
+    /** clear complete list. */
+    void resetCompleteData(ReadOnlyTickTask newData);
     //@@author
     
     //@@author A0147928N
