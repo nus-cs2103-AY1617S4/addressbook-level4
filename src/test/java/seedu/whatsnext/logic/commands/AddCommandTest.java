@@ -39,7 +39,6 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
-    @Test
     public void execute_floatingTaskAcceptedByModel_parseSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask floatingTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
@@ -51,15 +50,14 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(command), commandResult);
     }
 
-    @Test
     public void execute_deadlineTaskAcceptedByModel_parseSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask deadlineTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
-        String validFloatingCommand = AddCommand.COMMAND_WORD + " " + deadlineTask.getName()
+        String validDeadlineCommand = AddCommand.COMMAND_WORD + " " + deadlineTask.getName()
                 + " " + PREFIX_MESSAGE + deadlineTask.getDescription() + " " + PREFIX_END_DATETIME
                 + deadlineTask.getEndDateTime();
         AddCommandParser parser = new AddCommandParser();
-        AddCommand command = parser.parse(validFloatingCommand);
+        AddCommand command = parser.parse(validDeadlineCommand);
         AddCommand commandResult = getAddCommandForTask(deadlineTask, modelStub);
         assertEquals(Arrays.asList(command), commandResult);
     }

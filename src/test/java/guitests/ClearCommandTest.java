@@ -65,12 +65,12 @@ public class ClearCommandTest extends TaskManagerGuiTest {
     private void assertClearIncompleteCommandSuccess() {
         commandBox.runCommand(ClearCommand.COMMAND_WORD + " incomplete");
         assertListSize(0);
-        assertResultMessage("Task List has been cleared!");
+        assertResultMessage("Incomplete tasks have been cleared!");
     }
 
     private void assertClearCompletedCommandSuccess() {
         commandBox.runCommand(ClearCommand.COMMAND_WORD + " completed");
         assertListSize(0);
-        assertResultMessage("Task List has been cleared!");
+        assertResultMessage("Completed tasks have been cleared!");
     }
 }
