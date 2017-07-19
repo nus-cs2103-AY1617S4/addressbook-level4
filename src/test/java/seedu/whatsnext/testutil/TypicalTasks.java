@@ -14,7 +14,7 @@ import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 //@@author A0142675B
 /**
- *
+ * Object use for testing.
  */
 public class TypicalTasks {
 
@@ -69,6 +69,10 @@ public class TypicalTasks {
         }
     }
 
+    //@@author A0156106M
+    /**
+     * Loads the TaskManager with sample Marked BasicTask data
+     * */
     public static void loadTaskManagerWithSampleMarkedData(TaskManager ab) {
         for (BasicTask task : new TypicalTasks().getTypicalTasks()) {
             try {
@@ -79,6 +83,10 @@ public class TypicalTasks {
         }
     }
 
+    //@@author A0156106M
+    /**
+     * Returns a marked BasicTask
+     * */
     private static BasicTask createMarkedTask(BasicTask taskToMark) {
         assert taskToMark != null;
         BasicTask toCopy = new BasicTask(taskToMark);
@@ -93,6 +101,7 @@ public class TypicalTasks {
                 updateIsComplete, startDateTime, endDateTime, updatedTags);
     }
 
+    //@@author A0142675B
     public BasicTask[] getTypicalTasks() {
         return new BasicTask[]{cs2010ProblemSet, meetJohnForDinner, completeCS2103Assignment,
                                meetTomForLunch, camping, fypSelection, tester};
@@ -104,6 +113,7 @@ public class TypicalTasks {
         return tm;
     }
 
+    //@@author A0156106M
     public TaskManager getTypicalMarkTaskManager() {
         TaskManager tm = new TaskManager();
         loadTaskManagerWithSampleMarkedData(tm);
