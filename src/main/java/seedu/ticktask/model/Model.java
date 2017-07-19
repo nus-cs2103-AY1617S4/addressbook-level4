@@ -29,6 +29,12 @@ public interface Model {
 
     /** Deletes the given active task using find task index method. */
     void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Clear active list. */
+    void resetActiveData(ReadOnlyTickTask newData);
+
+    /** clear complete list. */
+    void resetCompleteData(ReadOnlyTickTask newData);
     //@@author
     
     //@@author A0147928N

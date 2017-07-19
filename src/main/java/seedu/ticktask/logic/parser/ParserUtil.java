@@ -92,7 +92,8 @@ public class ParserUtil {
     */
     public static Prefix getListPrefix(ArgumentMultimap argMultimap, Prefix... prefixes) {
          List<Prefix> temp = Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
-            assert (temp.size() <= 1) : "invalid flag combination not catched beforehand or no Prefixes found!";return temp.get(0);
+            assert (temp.size() <= 1) : "invalid flag combination not catched beforehand or no Prefixes found!";
+            return temp.get(0);
     }
 
    /**
