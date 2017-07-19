@@ -38,30 +38,30 @@ public class MainAppTest {
         
     }
     
-    @Test 
-    public void testinitConfigFromSpecifiedFilePathSuccess() throws Exception {
-        //String 
-        TestAppStub mainAppStub = new TestAppStub();
-        
-        Config config = mainAppStub.initConfig(getTypicalConfigFilePathUsed());
-        config.setAppTitle("Typical App Title");
-        System.out.println(config.toString());
-        assertEquals(config, getTypicalConfig());
-        
-    }
+//    @Test 
+//    public void testinitConfigFromSpecifiedFilePathSuccess() throws Exception {
+//        //String 
+//        TestAppStub mainAppStub = new TestAppStub();
+//        
+//        Config config = mainAppStub.initConfig(getTypicalConfigFilePathUsed());
+//        config.setAppTitle("Typical App Title");
+//        System.out.println(config.toString());
+//        assertEquals(config, getTypicalConfig());
+//        
+//    }
     
-    @Test 
-    public void testinitConfigFromWrongPathFail_WrongFileFormat() throws Exception {
-        TestAppStub mainAppStub = new TestAppStub();
-        String wrongConfigFilePathUsed = "wrongpath";
-        try{
-            Config config = mainAppStub.initConfig(wrongConfigFilePathUsed);
-            config.setAppTitle("Typical App Title");
-            assertEquals(config.toString(), getTypicalConfig().toString());
-        }catch(DataConversionException dce){
-            
-        }
-    }
+//    @Test 
+//    public void testinitConfigFromWrongPathFail_WrongFileFormat() throws Exception {
+//        TestAppStub mainAppStub = new TestAppStub();
+//        String wrongConfigFilePathUsed = "wrongpath";
+//        try{
+//            Config config = mainAppStub.initConfig(wrongConfigFilePathUsed);
+//            config.setAppTitle("Typical App Title");
+//            assertEquals(config.toString(), getTypicalConfig().toString());
+//        }catch(DataConversionException dce){
+//            
+//        }
+//    }
     
     /*
     @Test 

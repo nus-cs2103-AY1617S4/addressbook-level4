@@ -119,6 +119,16 @@ public class AddCommandTest {
         public void resetData(ReadOnlyTickTask newData) {
             fail("This method should not be called.");
         }
+        
+        @Override
+        public void resetActiveData(ReadOnlyTickTask newData) {
+            fail("This method should not be called.");
+        }
+        
+        @Override
+        public void resetCompleteData(ReadOnlyTickTask newData) {
+            fail("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyTickTask getTickTask() {

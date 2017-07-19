@@ -13,6 +13,8 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
 /**
  * Clears the TickTask program.
  */
+//@@author A0131884B
+
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";

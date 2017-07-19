@@ -8,6 +8,7 @@ import org.junit.Test;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.CommandResult;
+import seedu.ticktask.logic.parser.Prefix;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
 import seedu.ticktask.model.UserPrefs;
@@ -33,7 +34,8 @@ public class ClearCommandTest {
     }
     
     public ClearCommand prepareClearCommand() {
-        ClearCommand command = new ClearCommand();
+    	Prefix PREFIX_ACTIVE = new Prefix("active");
+        ClearCommand command = new ClearCommand(PREFIX_ACTIVE);
         command.setData(model, new CommandHistory());  
         return command;
     }
