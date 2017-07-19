@@ -165,6 +165,58 @@ public class Task implements ReadOnlyTask {
     public String toString() {
         return getAsText();
     }
+    
+  //@@author A0139964M
+    /**
+     * Checks if the task added is in the past.
+     * @param task
+     * @return boolean
+     */
+    public boolean isChornological() {
+        LocalDate currDate = LocalDate.now();
+
+        if(this.getDate().getLocalStartDate() == null){
+            if(this.getTime().getLocalStartTime() == null || isTimeChornological()){
+                return true;
+            }
+            else return false;
+        }
+        LocalDate taskDate = this.getDate().getLocalStartDate();
+        //Check if task's is today.
+        if(taskDate.isEqual(currDate)){
+            if(this.getTime().getLocalStartTime() == null|| isTimeChornological()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if(isDateChornological()){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public boolean isTimeChornological() {
+        LocalTime currTime = LocalTime.now();
+        LocalTime taskTime = this.getTime().getLocalStartTime();
+        if (taskTime.isBefore(currTime)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean isDateChornological(){
+        LocalDate currDate = LocalDate.now();
+        LocalDate taskDate = this.getDate().getLocalStartDate();
+        if(taskDate.isBefore(currDate)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    //@@author
 
     //@@author A0139964M
     /**

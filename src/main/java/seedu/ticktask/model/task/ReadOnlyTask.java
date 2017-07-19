@@ -25,7 +25,7 @@ public interface ReadOnlyTask {
     boolean isTimeDue();
     void setCompleted(boolean s);
     Set<Tag> getTags();
-
+    boolean isChornological();
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
