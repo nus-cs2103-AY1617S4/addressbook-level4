@@ -250,7 +250,7 @@ View data file directory path. <br>
 Format: `filepath`
 > View the directory where the data file is saved <br>
 
-### 2.14. Change data file path : `changepath`
+### 2.15. Change data file path : `changepath`
 
 Updates data file directory. : `changepath`<br>
 Format: `changepath [Path Directory]`
