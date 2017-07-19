@@ -112,9 +112,10 @@ Examples:<br>
 
 ### 2.3. Listing tasks : `list`
 
-Shows a list of (1) incomplete, (2) complete, (3) all tasks of the particular type in the task manager.<br>
+Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) all tasks of the particular type in the task manager.<br>
 Format:  <br>
-* List by default or list incomplete tasks: `list` <br>
+* List upcoming incomplete tasks: `list` <br>
+* List all incomplete tasks: `list incomplete` <br>
 * List completed tasks: `list completed` <br>
 * List all tasks: `list all` <br>
 
