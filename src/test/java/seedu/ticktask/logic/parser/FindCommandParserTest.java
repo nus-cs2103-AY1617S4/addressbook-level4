@@ -3,6 +3,7 @@ package seedu.ticktask.logic.parser;
 import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
+import seedu.ticktask.logic.commands.FindActiveCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
@@ -29,7 +30,7 @@ public class FindCommandParserTest {
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(validFindKeywords);
         
-        FindCommand commandReturned = findCommandParser.parse(validFindKeywords);        
+        FindCommand commandReturned = (FindCommand) findCommandParser.parse(validFindKeywords);        
         FindCommand commandExpected = new FindCommand(keywordsSet);
                 
         commandReturned.setData(model, new CommandHistory());
@@ -51,7 +52,7 @@ public class FindCommandParserTest {
         
         findCommandParser.parse(invalidFindKeywords);
         
-        FindCommand commandReturned = findCommandParser.parse(invalidFindKeywords);        
+        FindCommand commandReturned = (FindCommand) findCommandParser.parse(invalidFindKeywords);        
         commandReturned.setData(model, new CommandHistory());
         commandReturned.execute();
         
