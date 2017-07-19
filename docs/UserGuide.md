@@ -171,7 +171,7 @@ Examples:
   `delete 2`<br>
   Deletes the 2nd incomplete task in the task manager.
 * `find CS2103`<br>
-  `delete TASK_TYPE 1`<br>
+  `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
 ### 2.7. View in detail : `select`
