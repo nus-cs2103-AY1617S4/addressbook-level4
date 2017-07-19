@@ -27,4 +27,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_END_DATETIME = new Prefix("e/");
     public static final Prefix PREFIX_TAG_CLI = new Prefix("t/");
     public static final Prefix PREFIX_MESSAGE = new Prefix("m/");
+    public static final Prefix PREFIX_EXPIRED = new Prefix("expired");
 }

@@ -26,6 +26,6 @@ public class ClearCommandParser {
     }
 
     private boolean isArgumentValidPrefixesPresent(String clearArgument) {
-        return clearArgument.matches(".*\\b(completed|incomplete|all)\\b.*");
+        return clearArgument.matches(".*\\b(completed|incomplete|all|expired)\\b.*");
     }
 }
