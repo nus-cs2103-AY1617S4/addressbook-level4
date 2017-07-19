@@ -82,6 +82,12 @@ public interface Model {
 
     // @@author A0154986L
     /**
+     * Updates the filter of the filtered task list to filter by expired tasks.
+     */
+    void updateFilteredTaskListToShowByExpiry();
+
+    // @@author A0154986L
+    /**
      * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     void updateFilteredTaskListForReminder();

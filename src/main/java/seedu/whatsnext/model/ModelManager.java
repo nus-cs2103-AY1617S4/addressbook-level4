@@ -227,6 +227,16 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0154986L
     /**
+     * Updates the filter of the filtered task list to filter by expired tasks.
+     */
+    @Override
+    public void updateFilteredTaskListToShowByExpiry() {
+        updateFilteredTaskList(new PredicateExpression(new ExpiredTasksQualifier()));
+        indicateTaskManagerChanged();
+    }
+
+    // @@author A0154986L
+    /**
      * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     @Override
@@ -330,6 +340,32 @@ public class ModelManager extends ComponentManager implements Model {
                             || (basicTaskFeatures.getTaskType().equals(TASK_TYPE_DEADLINE)
                                     && !basicTaskFeatures.getEndDateTime().isBefore(currentTime)))))
                     || basicTaskFeatures.getTaskType().equals(TASK_TYPE_FLOATING);
+        }
+
+        @Override
+        public String toString() {
+            cal.setTime(currentTime);
+            currentTime = cal.getTime();
+            return currentTime.toString();
+        }
+    }
+
+    // @@author A0154986L
+    /*
+     * Finds expired tasks.
+     */
+    private class ExpiredTasksQualifier implements Qualifier {
+        private Date currentTime = new Date();
+        private Calendar cal = Calendar.getInstance();
+
+        @Override
+        public boolean run(BasicTaskFeatures basicTaskFeatures) {
+            cal.setTime(currentTime);
+            currentTime = cal.getTime();
+            return (basicTaskFeatures.getTaskType().equals(TASK_TYPE_EVENT)
+                            && basicTaskFeatures.getEndDateTime().isBefore(currentTime))
+                            || (basicTaskFeatures.getTaskType().equals(TASK_TYPE_DEADLINE)
+                                    && basicTaskFeatures.getEndDateTime().isBefore(currentTime));
         }
 
         @Override
