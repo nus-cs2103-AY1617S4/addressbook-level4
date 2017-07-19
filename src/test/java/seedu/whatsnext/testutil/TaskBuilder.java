@@ -100,7 +100,12 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withStatus(boolean status) throws IllegalValueException {
-        this.task.setCompleted();
+        if (status) {
+            this.task.setCompleted();
+        } else {
+            this.task.setIncomplete();
+        }
+
         return this;
     }
 
