@@ -95,6 +95,8 @@ public class DueTime {
             //end_time_string =  localtime.format(TIME_FORMAT).toString();
             LocalTime localtime = LocalTime.MAX;
             end_time_string =  "";
+            end_time = end_time2;
+            value = getStartTime();
 
         }
         else {
@@ -114,6 +116,9 @@ public class DueTime {
             //LocalTime localtime = LocalTime.MAX;
             //start_time_string =  localtime.format(TIME_FORMAT).toString();
             start_time_string =  "";
+            start_time = start_time2;
+            value = getStartTime();
+
 
         }
         else {

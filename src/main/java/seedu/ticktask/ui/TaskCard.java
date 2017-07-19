@@ -88,7 +88,7 @@ public class TaskCard extends UiPart<Region> {
         date.setText(task.getDate().toString());
   
  
-        
+
         //@@author A0139964M
         taskType.setText(task.getTaskType().value.toUpperCase());
         if (task.getTaskType().getValue().equals(TASKTYPE_EVENT)){

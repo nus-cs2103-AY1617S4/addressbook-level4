@@ -93,6 +93,8 @@ public class Task implements ReadOnlyTask {
             type.setValue(TaskType.TASK_TYPE_DEADLINE);
             if (time.getStartTime().equals("")) time.setStartTime(LocalTime.parse("23:59"));
             if (date.getStartDate().equals("")) date.setStartDate(LocalDate.now());
+            if (!time.getEndTime().equals("")) time.setEndTime(null);
+            if (!date.getEndDate().equals("")) date.setEndDate(null);
         }
     }
     //@@author A0139819N
