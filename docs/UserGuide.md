@@ -112,9 +112,10 @@ Examples:<br>
 
 ### 2.3. Listing tasks : `list`
 
-Shows a list of (1) incomplete, (2) complete, (3) all tasks of the particular type in the task manager.<br>
+Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) all tasks of the particular type in the task manager.<br>
 Format:  <br>
-* List by default or list incomplete tasks: `list` <br>
+* List upcoming incomplete tasks: `list` <br>
+* List all incomplete tasks: `list incomplete` <br>
 * List completed tasks: `list completed` <br>
 * List all tasks: `list all` <br>
 
@@ -170,7 +171,7 @@ Examples:
   `delete 2`<br>
   Deletes the 2nd incomplete task in the task manager.
 * `find CS2103`<br>
-  `delete TASK_TYPE 1`<br>
+  `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
 ### 2.7. View in detail : `select`
@@ -239,7 +240,7 @@ Format: `remind TIMEPERIOD`
 > The time unit must be sigular, i.e. "week" instead of "weeks"
 Examples:
 
-* `remind 3 days`<br>
+* `remind 3 day`<br>
   Display all deadlines and events within 3 days upon startup.
 * `remind 2 week`<br>
   Display all deadlines and events within 2 weeks upon startup.
@@ -250,7 +251,7 @@ View data file directory path. <br>
 Format: `filepath`
 > View the directory where the data file is saved <br>
 
-### 2.14. Change data file path : `changepath`
+### 2.15. Change data file path : `changepath`
 
 Updates data file directory. : `changepath`<br>
 Format: `changepath [Path Directory]`
@@ -278,11 +279,12 @@ Format: `exit`
 Function | Format | Examples
 -------- | ------ | --------
 Get Help infomation | `help` |
-Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]` | `add Project metting s/ July 5 18 e/ July 5 19`
-Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]` | `add Project submission e/ July 5 20`
-Add a floating | `add TASK_NAME [t/ TAG...]` | `add CS2103 exam t/ HIGH`
+Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]` | `add Project metting s/ July 5 18 e/ July 5 19`<br> `add project, "CS2103 project", July 10 5pm, July 10 6pm`
+Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` | `add Project submission e/ July 5 20`<br> `add project, "CS2103 project", July 10 6pm, tags: meeting`
+Add a floating | `add TASK_NAME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` | `add CS2103 exam t/ HIGH`<br> `add project, "CS2103 project", tags: meeting`
+List upcominng incomplete tasks | `list` |
 List all tasks | `list all` |
-List incomplete tasks | `list incomplete` |
+List all incomplete tasks | `list incomplete` |
 List complete tasks | `list complete` |
 Clear all tasks | `clear all` |
 Clear incomplete tasks | `clear incomplete` |
