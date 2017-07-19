@@ -39,6 +39,7 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
+    @Test
     public void execute_floatingTaskAcceptedByModel_parseSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask floatingTask = new TaskBuilder(BasicTask.TASK_TYPE_FLOATING).build();
@@ -50,6 +51,7 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(command), commandResult);
     }
 
+    @Test
     public void execute_deadlineTaskAcceptedByModel_parseSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         BasicTask deadlineTask = new TaskBuilder(BasicTask.TASK_TYPE_DEADLINE).build();
