@@ -16,6 +16,7 @@ public class TaskCard extends UiPart<Region> {
     private static String MESSAGE_DISPLAY_DUE_IN = "Due in: ";
     private static String MESSAGE_DISPLAY_HAPPENING= "Happening";
     private static String MESSAGE_DISPLAY_OVER_DUE = "Over Due";
+    private static String MESSAGE_DISPLAY_PASSED = "Passed";
     private static String MESSAGE_DISPLAY_STARTING_IN = "Starting in: ";
     private static String TASKTYPE_EVENT ="event";
     private static String TASKTYPE_DEADLINE ="deadline";
@@ -98,7 +99,7 @@ public class TaskCard extends UiPart<Region> {
         if(task.isHappening()){
             button.setText(MESSAGE_DISPLAY_HAPPENING);
         } else if(task.isDateDue() || task.isTimeDue()){
-            button.setText(MESSAGE_DISPLAY_OVER_DUE);
+            button.setText(MESSAGE_DISPLAY_PASSED);
         } else if(task.getDueDateDuration() >= 1){
             button.setText(MESSAGE_DISPLAY_STARTING_IN + task.getDueDateDuration() + " days");
         }
