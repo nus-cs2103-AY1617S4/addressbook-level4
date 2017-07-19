@@ -28,6 +28,7 @@ public class MarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
+    public static final String MESSAGE_TASK_MARKED = "Selected task is already completed";
 
     public final Index targetIndex;
 
@@ -43,6 +44,10 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        if (taskToMark.getIsCompleted()) {
+            throw new CommandException(MESSAGE_TASK_MARKED);
+        }
+
         BasicTask markedTask = createMarkedTask(taskToMark);
         try {
             model.updateTask(taskToMark, markedTask);
