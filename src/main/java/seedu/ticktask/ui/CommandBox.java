@@ -79,7 +79,7 @@ public class CommandBox extends UiPart<Region> {
 		}
 		
 		autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
-        autoCompletionBinding.setVisibleRowCount(1);
+		autoCompletionBinding.setPrefWidth(700);
 	}
     
 	public String getPrevCommand(String lastPrev){
@@ -110,8 +110,8 @@ public class CommandBox extends UiPart<Region> {
 	public void autoComplete(){
 		buildCommandsIntoHashSet();
 		autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
-		autoCompletionBinding.setPrefWidth(300);
-		autoCompletionBinding.setVisibleRowCount(1);
+		autoCompletionBinding.setPrefWidth(700);
+		autoCompletionBinding.setVisibleRowCount(13);
 		autoCompletionBinding.setHideOnEscape(true);
 	}
 
