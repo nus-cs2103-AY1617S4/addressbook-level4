@@ -56,7 +56,7 @@ public abstract class TaskManagerGuiTest {
     protected FloatingListPanelHandle floatingListPanel;
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
-    private Stage stage;
+    protected Stage stage;
 
     @BeforeClass
      public static void setupSpec() {
