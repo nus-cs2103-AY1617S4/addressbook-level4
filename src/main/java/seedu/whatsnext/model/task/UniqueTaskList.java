@@ -216,6 +216,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
         }
     }
 
+    //@@author
     public UnmodifiableObservableList<BasicTask> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }

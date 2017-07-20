@@ -50,10 +50,12 @@ public class UserPrefs {
     public void setReminderSetting(String newReminderSetting) {
         this.reminderSetting = newReminderSetting;
     }
+
     //@@author A0149894H
     public String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
+
     //@@author A0149894H
     public void setTaskManagerFilePath(String taskManagerFilePath) {
         this.taskManagerFilePath = taskManagerFilePath;

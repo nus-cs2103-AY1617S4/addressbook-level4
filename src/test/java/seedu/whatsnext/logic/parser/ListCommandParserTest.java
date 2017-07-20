@@ -11,6 +11,7 @@ import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 //@@author A0142675B
+//@@author A0154986L
 public class ListCommandParserTest {
 
     private static final String INVALID_INPUT = ListCommand.COMMAND_WORD + "blah blah blah";
@@ -27,6 +28,9 @@ public class ListCommandParserTest {
 
         expectedCommand = new ListCommand(ListCommand.LIST_INCOMPLETE);
         assertParseSuccess(ListCommand.LIST_INCOMPLETE, expectedCommand);
+
+        expectedCommand = new ListCommand(ListCommand.LIST_EXPIRED);
+        assertParseSuccess(ListCommand.LIST_EXPIRED, expectedCommand);
 
         expectedCommand = new ListCommand(ListCommand.LIST_ALL);
         assertParseSuccess(ListCommand.LIST_ALL, expectedCommand);
