@@ -1,6 +1,5 @@
 package guitests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -24,24 +23,13 @@ public class HelpWindowTest extends TaskManagerGuiTest {
 
         deadlineListPanel.clickOnListView();
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
-
+        
         floatingListPanel.clickOnListView();
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
-
-        //use menu button
-        assertHelpWindowNotOpen(mainMenu.openHelpWindowUsingMenu());
-
-        //use command
-        assertHelpWindowNotOpen(commandBox.runHelpCommand());
     }
 
     private void assertHelpWindowOpen(HelpWindowHandle helpWindowHandle) {
         assertTrue(helpWindowHandle.isWindowOpen());
         helpWindowHandle.closeWindow();
     }
-
-    private void assertHelpWindowNotOpen(HelpWindowHandle helpWindowHandle) {
-        assertFalse(helpWindowHandle.isWindowOpen());
-    }
-
 }
