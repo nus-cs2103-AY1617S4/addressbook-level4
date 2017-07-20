@@ -33,7 +33,7 @@ public class ClearCommandParser {
          */
         
         public ClearCommand parse(String args) throws ParseException, IllegalValueException {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPLETE, PREFIX_ACTIVE);
+            argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
             if (args.trim().isEmpty()) {
             	throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             			ClearCommand.MESSAGE_USAGE));
@@ -42,7 +42,7 @@ public class ClearCommandParser {
             if (haveInvalidPrefixCombination(argMultimap)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         	} 
-            Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  PREFIX_COMPLETE, PREFIX_ACTIVE);
+            Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
 			return new ClearCommand(listIndicatorPrefix);
         }   
             

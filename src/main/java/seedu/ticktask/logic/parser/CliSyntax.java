@@ -16,6 +16,7 @@ public class CliSyntax {
  //@@author A0131884B
     public static final Prefix PREFIX_COMPLETE = new Prefix("complete");
     public static final Prefix PREFIX_ACTIVE = new Prefix("active");
+    public static final Prefix PREFIX_ALL = new Prefix("all");
  //@@author
 
 }
