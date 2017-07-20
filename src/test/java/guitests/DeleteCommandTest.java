@@ -4,16 +4,14 @@
 //import static org.junit.Assert.assertTrue;
 //import static seedu.whatsnext.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 //import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
+//import static seedu.whatsnext.model.task.BasicTask.TASK_TYPE_FLOATING;
 //
 //import org.junit.Test;
 //
 //import seedu.whatsnext.commons.core.index.Index;
-//import seedu.whatsnext.logic.commands.AddCommand;
 //import seedu.whatsnext.logic.commands.DeleteCommand;
 //import seedu.whatsnext.model.task.BasicTask;
-//import seedu.whatsnext.model.task.BasicTaskFeatures;
-//import seedu.whatsnext.model.task.TaskDescription;
-//import seedu.whatsnext.model.task.TaskName;
+//
 //import seedu.whatsnext.testutil.TestUtil;
 //
 //public class DeleteCommandTest extends TaskManagerGuiTest {
@@ -22,32 +20,24 @@
 //    public void delete() {
 //
 //        commandBox.pressEnter();
-//        commandBox.runCommand("add Buy a country m/to rule");
-//        BasicTask floatToAdd = new BasicTask(new TaskName("Buy a country"),
-//                new TaskDescription("to rule"), getTagSet());
-//        assertResultMessage(floatToAdd.getTaskDetails());
-//        BasicTaskFeatures selectedFloatingTask = floatingListPanel.getSelectedTasks().get(0).getKey();
-//        assertEquals(floatToAdd, selectedFloatingTask);
-//        //add duplicate floating task
-//        commandBox.runCommand("add Buy a country m/to rule");
-//        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-//        commandBox.runCommand("undo");
-//        commandBox.runCommand("undo");
 //
 //        //delete the first in the list
 //        BasicTask[] currentList = td.getTypicalTasks();
 //        Index targetIndex = INDEX_FIRST_TASK;
 //        assertDeleteSuccess(targetIndex, currentList);
+//        commandBox.runCommand("undo");
 //
 //        //delete the last in the list
-//        currentList = TestUtil.removePersonFromList(currentList, targetIndex);
+//        currentList = TestUtil.removeTasksFromList(currentList, targetIndex);
 //        targetIndex = Index.fromOneBased(currentList.length);
 //        assertDeleteSuccess(targetIndex, currentList);
+//        commandBox.runCommand("undo");
 //
 //        //delete from the middle of the list
-//        currentList = TestUtil.removePersonFromList(currentList, targetIndex);
+//        currentList = TestUtil.removeTasksFromList(currentList, targetIndex);
 //        targetIndex = Index.fromOneBased(currentList.length / 2);
 //        assertDeleteSuccess(targetIndex, currentList);
+//        commandBox.runCommand("undo");
 //
 //        //invalid index
 //        commandBox.runCommand(DeleteCommand.COMMAND_WORD + " " + currentList.length + 1);
@@ -61,15 +51,27 @@
 //     */
 //    private void assertDeleteSuccess(Index index, final BasicTask[] currentList) {
 //        BasicTask taskToDelete = currentList[index.getZeroBased()];
+//        //have to sort the expectedRemainder in order first... :(((((((
 //        BasicTask[] expectedRemainder = TestUtil.removeTasksFromList(currentList, index);
 //
 //        commandBox.runCommand(DeleteCommand.COMMAND_WORD + " " + index.getOneBased());
 //
+//        BasicTask[] floatingList = new BasicTask[10];
+//        int j = 0;
+//
+//        for (int i = 0; i < expectedRemainder.length; i++) {
+//            if (expectedRemainder[i].getIsCompleted() == false) {
+//                floatingList[j++] = expectedRemainder[i];
+//            }
+//        }
+//        for (int i = 0; i < floatingList.length; i++) {
+//            System.out.println(floatingList[i].getName().toString());
+//        }
 //        //confirm the list now contains all previous persons except the deleted person
-//        assertTrue(taskListPanel.isListMatching(expectedRemainder));
+//        assertTrue(floatingListPanel.isListMatching(floatingList));
 //
 //        //confirm the result message is correct
-//        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, personToDelete));
+//        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
 //    }
 //
 //}

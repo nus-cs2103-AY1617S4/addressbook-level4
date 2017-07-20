@@ -337,7 +337,7 @@ public class ModelManager extends ComponentManager implements Model {
             currentTime = cal.getTime();
             return ((basicTaskFeatures.getIsCompleted() == isComplete
                     && ((basicTaskFeatures.getTaskType().equals(TASK_TYPE_EVENT)
-                            && !basicTaskFeatures.getStartDateTime().isBefore(currentTime))
+                            && !basicTaskFeatures.getEndDateTime().isBefore(currentTime))
                             || (basicTaskFeatures.getTaskType().equals(TASK_TYPE_DEADLINE)
                                     && !basicTaskFeatures.getEndDateTime().isBefore(currentTime)))))
                     || basicTaskFeatures.getTaskType().equals(TASK_TYPE_FLOATING);
