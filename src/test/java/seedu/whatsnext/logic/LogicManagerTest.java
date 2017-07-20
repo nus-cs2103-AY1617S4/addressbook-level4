@@ -13,9 +13,12 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 import static seedu.whatsnext.model.util.SampleDataUtil.getTagSet;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_THIRD_TASK;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -307,29 +310,42 @@ public class LogicManagerTest {
     }
 
     //@@author
+    //@@author A0154986L
     @Test
     public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
-        Model expectedModel = new ModelManager(helper.generateTaskManager(2), new UserPrefs());
+        Model expectedModel = new ModelManager(helper.generateTaskManager(7), new UserPrefs());
 
         // prepare task manager state
-        helper.addToModel(model, 2);
+        helper.addToModel(model, 7);
 
-        //assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_COMPLETED,
-        //ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+        // Command: "list" - list all upcoming incomplete tasks
+        expectedModel.updateFilteredTaskListToShowUpcomingTasks();
+        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
 
-        // Command: "list" - list all incomplete tasks
-        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS, expectedModel);
-        // Command: "list all" - to list incomplete tasks
+        // Command: "list completed" - to list all completed tasks
+        expectedModel.updateFilteredTaskListToShowByCompletion(true);
+        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_COMPLETED,
+                ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+
+        // Command: "list incomplete" - to list all incomplete tasks
+        expectedModel.updateFilteredTaskListToShowByCompletion(false);
+        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_INCOMPLETE,
+                ListCommand.MESSAGE_SUCCESS_INCOMPLETE, expectedModel);
+
+        // Command: "list expired" - to list all expired tasks
+        expectedModel.updateFilteredTaskListToShowByExpiry();
+        assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_EXPIRED,
+                ListCommand.MESSAGE_SUCCESS_EXPIRED, expectedModel);
+
+        // Command: "list all" - to list all tasks
+        expectedModel.updateFilteredListToShowAll();
         assertCommandSuccess(ListCommand.COMMAND_WORD + " " + ListCommand.LIST_ALL,
                 ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
-        // Command: "list incomplete" - to list all incomplete tasks
-        assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS, expectedModel);
-
     }
 
-
+    //@@author
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
      * targeting a single task in the shown list, using visible index.
@@ -345,7 +361,6 @@ public class LogicManagerTest {
         assertParseException(commandWord + " not_a_number", expectedMessage);
     }
 
-    //@@author
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
      * targeting a single task in the shown list, using visible index.
@@ -537,6 +552,7 @@ public class LogicManagerTest {
             return new BasicTask(taskName, taskDescription, isCompleted, startDateTime, startEndDate, tags);
         }
 
+        //@@author A0154986L
         /**
          * Generates a valid task using the given seed.
          * Running this function with the same parameter values
@@ -546,18 +562,34 @@ public class LogicManagerTest {
          * @param seed used to generate the task data field values
          */
         BasicTask generateTask(int seed) throws Exception {
-            // to ensure that phone numbers are at least 3 digits long, when seed is less than 3 digits
-            String phoneNumber = String.join("", Collections.nCopies(3, String.valueOf(Math.abs(seed))));
+            // to ensure that task descriptions are at least 3 digits long, when seed is less than 3 digits
+            String taskDescription = String.join("", Collections.nCopies(3, String.valueOf(Math.abs(seed))));
+            boolean isComplete = (seed % 2) > 0;
+            Date date = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            cal.add(Calendar.DATE, -2 + seed);
+            date = cal.getTime();
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMM d");
+
+            String startDate = dateFormatter.format(date);
+
+            cal.add(Calendar.DATE, seed);
+            date = cal.getTime();
+            String endDate = dateFormatter.format(date);
+
+            System.out.println(isComplete + " " + startDate + endDate);
 
             return new BasicTask(
                     new TaskName("BasicTask " + seed),
-                    new TaskDescription(phoneNumber),
-                    false,
-                    new DateTime("Next Monday"),
-                    new DateTime("Next Friday"),
+                    new TaskDescription(taskDescription),
+                    isComplete,
+                    new DateTime(startDate),
+                    new DateTime(endDate),
                     getTagSet("tag" + Math.abs(seed), "tag" + Math.abs(seed + 1)));
         }
 
+        //@@author
         /** Generates the correct add command based on the task given */
         String generateAddCommand(BasicTask basicTask) {
             StringBuffer cmd = new StringBuffer();

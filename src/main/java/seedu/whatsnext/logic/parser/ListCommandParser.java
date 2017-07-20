@@ -22,8 +22,9 @@ public class ListCommandParser {
         }
 
         if (!(args.trim().equals(ListCommand.LIST_COMPLETED)
-            || args.trim().equals(ListCommand.LIST_INCOMPLETE)
-            || args.trim().equals(ListCommand.LIST_ALL))) {
+                || args.trim().equals(ListCommand.LIST_INCOMPLETE)
+                || args.trim().equals(ListCommand.LIST_EXPIRED)
+                || args.trim().equals(ListCommand.LIST_ALL))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
         return new ListCommand(args.trim());

@@ -18,26 +18,27 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Undo previous action of task manager. */
     void undoTaskManager();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Redo previous action of task manager. */
     void redoTaskManager();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Resets previous task manager instance. */
     void resetPrevTaskManager();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Returns current reminder setting. */
     String getReminderSetting();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /** Sets new reminder setting. */
     void setReminderSetting(String newReminderSetting);
 
+    //@@author
     /** Re-saves data when file path is changed. */
     void saveTaskManager();
 
@@ -68,29 +69,35 @@ public interface Model {
 
     void updateFilteredTaskListForInitialView();
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter by task completion
      */
     void updateFilteredTaskListToShowByCompletion(boolean isComplete);
 
-    // @@author A0154986L
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter by upcoming tasks.
      */
     void updateFilteredTaskListToShowUpcomingTasks();
 
-    // @@author A0154986L
+    //@@author A0154986L
+    /**
+     * Updates the filter of the filtered task list to filter by expired tasks.
+     */
+    void updateFilteredTaskListToShowByExpiry();
+
+    //@@author A0154986L
     /**
      * Updates the filter of the filtered task list to filter for reminder pop up window.
      */
     void updateFilteredTaskListForReminder();
 
-    // @@author A0149894H
+    //@@author A0149894H
     /** Returns current task manager file path. */
     String getTaskManagerFilePath();
 
-    // @@author A0149894H
+    //@@author A0149894H
     /** Sets new task manager file path. */
     void setTaskManagerFilePath(String newFilePath);
 

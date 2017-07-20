@@ -197,6 +197,11 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        @Override
+        public void updateFilteredTaskListToShowByExpiry() {
+            fail("This method should not be called.");
+        }
+
     }
 
     //@@author A0156106M

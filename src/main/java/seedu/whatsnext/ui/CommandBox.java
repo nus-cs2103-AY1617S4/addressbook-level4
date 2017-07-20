@@ -37,7 +37,6 @@ public class CommandBox extends UiPart<Region> {
                     if ((logic.getHistory().size() - (i + 1)) >= 0) {
                         i++;
                         commandTextField.setText(logic.getHistory().get(logic.getHistory().size() - i));
-                        commandTextField.end();
                     }
                     break;
 
@@ -57,6 +56,7 @@ public class CommandBox extends UiPart<Region> {
 
                 default:
                 }
+                setStyleToIndicateCommandSuccess();
             }
         );
     }

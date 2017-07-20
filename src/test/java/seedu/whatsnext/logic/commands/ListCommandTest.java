@@ -20,6 +20,7 @@ import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 //@@author A0142675B
+//@@author A0154986L
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
@@ -71,20 +72,20 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsList() throws Exception {
+    public void execute_listIsNotFiltered_showsUpcomingList() throws Exception {
         listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
         expectedModel.updateFilteredTaskListToShowUpcomingTasks();
-        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsList() throws Exception {
+    public void execute_listIsFiltered_showsUpcomingList() throws Exception {
         showFirstTaskOnly(model);
         listCommand = new ListCommand("");
         listCommand.setData(model, new CommandHistory());
         expectedModel.updateFilteredTaskListToShowUpcomingTasks();
-        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
     }
 
     @Test
@@ -94,6 +95,23 @@ public class ListCommandTest {
         boolean isCompleted = true;
         expectedModel.updateFilteredTaskListToShowByCompletion(isCompleted);
         assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_COMPLETED, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsExpiredList() throws Exception {
+        showFirstTaskOnly(model);
+        listCommand = new ListCommand(ListCommand.LIST_EXPIRED);
+        listCommand.setData(model, new CommandHistory());
+        expectedModel.updateFilteredTaskListToShowByExpiry();
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_EXPIRED, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsExpiredList() throws Exception {
+        listCommand = new ListCommand(ListCommand.LIST_EXPIRED);
+        listCommand.setData(model, new CommandHistory());
+        expectedModel.updateFilteredTaskListToShowByExpiry();
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS_EXPIRED, expectedModel);
     }
 
     @Test

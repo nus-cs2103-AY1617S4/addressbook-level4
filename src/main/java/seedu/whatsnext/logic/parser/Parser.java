@@ -105,6 +105,7 @@ public class Parser {
         case RemindCommand.COMMAND_WORD:
             return new RemindCommandParser().parse(arguments);
 
+        //@@author
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
 
