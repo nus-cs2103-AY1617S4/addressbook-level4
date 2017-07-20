@@ -37,8 +37,8 @@ public class TypicalTasks {
             meetTomForLunch = new TaskBuilder().withName("Meet Tom for lunch")
                               .withTags("LUNCH").build();
             camping = new TaskBuilder().withName("Camping")
-                      .withStartDateTime("10 Dec 2017 6pm")
-                      .withEndDateTime("13 Dec 12pm")
+                      .withStartDateTime("20 Dec 2017 6pm")
+                      .withEndDateTime("25 Dec 12pm")
                       .withTags("CAMPING").build();
             cs2010ProblemSet = new TaskBuilder().withName("CS2010 Problem Set")
                                .withEndDateTime("next thursday")

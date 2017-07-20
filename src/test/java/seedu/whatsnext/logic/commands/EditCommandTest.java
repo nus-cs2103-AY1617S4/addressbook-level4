@@ -12,11 +12,15 @@ import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_READBORNAC
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_STARTDATETIME_PROJECTMEETING;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_LOW;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -28,6 +32,7 @@ import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ModelManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.UserPrefs;
+import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
@@ -61,15 +66,29 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
+
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() throws Exception {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         BasicTaskFeatures lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Set<Tag> existingTag = lastTask.getTags();
+        Iterator<Tag> tag = existingTag.iterator();
+        String[] tagStrings = new String[existingTag.size() + 1];
+        tagStrings[existingTag.size()] = VALID_TAG_LOW;
+        int i = 0;
+        while (tag.hasNext()) {
+            String tagString = tag.next().toString();
+            if (!(tagString.equals(VALID_TAG_LOW)
+                || tagString.equals(VALID_TAG_MEDIUM)
+                || tagString.equals(VALID_TAG_HIGH))) {
+                tagStrings[i] = tagString.replace('[', ' ').replace(']', ' ').trim();
+                i++;
+            }
+        }
         BasicTask editedTask = taskInList.withName(VALID_NAME_READBORNACRIME)
-                .withTags(VALID_TAG_LOW).build();
+                .withTags(tagStrings).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_READBORNACRIME)
                 .withNewTags(VALID_TAG_LOW).build();
@@ -81,9 +100,9 @@ public class EditCommandTest {
         expectedModel.updateTask(lastTask, editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
-    /*
+
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() throws Exception {
         EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
@@ -94,7 +113,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     /*
     @Test
@@ -110,6 +129,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
         expectedModel.updateTask(model.getFilteredTaskList().get(0), editedTask);
+        showFirstTaskOnly(expectedModel);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }*/
@@ -200,6 +220,17 @@ public class EditCommandTest {
      * Updates the filtered list to show only the first task in the {@code model}'s task manager.
      */
     private void showFirstTaskOnly() {
+        BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
+        final String[] splitName = task.getName().fullTaskName.split("\\s+");
+        model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
+
+        assertTrue(model.getFilteredTaskList().size() == 1);
+    }
+
+    /**
+     * Updates the filtered list to show only the first task in the {@code model}'s task manager.
+     */
+    private void showFirstTaskOnly(Model model) {
         BasicTaskFeatures task = model.getTaskManager().getTaskList().get(0);
         final String[] splitName = task.getName().fullTaskName.split("\\s+");
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));

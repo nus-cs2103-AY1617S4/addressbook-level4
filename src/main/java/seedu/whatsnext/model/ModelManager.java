@@ -42,7 +42,7 @@ public class ModelManager extends ComponentManager implements Model {
     private UserPrefs userPrefs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskManager and userPrefs.
      */
     public ModelManager(ReadOnlyTaskManager taskManager, UserPrefs userPrefs) {
         super();

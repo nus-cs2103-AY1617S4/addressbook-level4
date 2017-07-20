@@ -242,6 +242,18 @@ public class BasicTask implements BasicTaskFeatures {
         return false;
     }
 
+    public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList, int index)
+                                throws IllegalValueException {
+        int i = 0;
+        for (BasicTaskFeatures task : taskList) {
+            if ((i != index) && this.eventTaskOverlap(task) && (!this.equals(task))) {
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
     @Override
     public String getTaskDetails() {
         StringBuilder details = new StringBuilder();

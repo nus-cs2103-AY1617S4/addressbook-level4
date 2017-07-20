@@ -92,7 +92,7 @@ public class EditCommand extends Command {
         UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
 
         try {
-            if (editedTask.isOverlapTask(taskList)) {
+            if (editedTask.isOverlapTask(taskList, index.getZeroBased())) {
                 editedTask = EditCommand.createOverlapTask(editedTask);
             } else {
                 editedTask = EditCommand.createNonOverlapTask(editedTask);
