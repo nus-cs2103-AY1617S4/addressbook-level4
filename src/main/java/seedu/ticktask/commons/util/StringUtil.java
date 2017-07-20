@@ -15,9 +15,9 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsStringIgnoreCase("ABc def", "abc") == true
+     *       containsStringIgnoreCase("ABc def", "DEF") == true
+     *       containsStringIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param string cannot be null, cannot be empty, must be a single word
@@ -26,7 +26,8 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(string);
 
-        //@@author A0147928N (power search)
+        //@@author A0147928N 
+        //(power search)
         String preppedWord = string.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
@@ -39,6 +40,31 @@ public class StringUtil {
         //@@author
         return false;
     }
+
+    //@@author A0131884B
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsStringIgnoreCase("ABc def", "abc") == false
+     *       containsStringIgnoreCase("def", "DEF") == true
+     *       containsStringIgnoreCase("ABC", "AB") == false //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param string cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean matchesStringIgnoreCase(String sentence, String string) {
+        requireNonNull(sentence);
+        requireNonNull(string);
+        String preppedWord = string.trim().toLowerCase();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        if (sentence.toLowerCase().equals(preppedWord)) {
+            return true;
+        }
+
+        return false;
+    }
+    //@@author
 
     /**
      * Returns a detailed message of the t, including the stack trace.

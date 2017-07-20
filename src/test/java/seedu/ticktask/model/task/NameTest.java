@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import seedu.ticktask.model.task.Name;
 
+//@@author A0147928N
 public class NameTest {
 
     @Test
@@ -19,9 +20,9 @@ public class NameTest {
 
         // valid name
         assertTrue(Name.isValidName("wash dog")); // alphabets only
-        assertTrue(Name.isValidName("tutorial")); // numbers only
+        assertTrue(Name.isValidName("2200")); // numbers only
         assertTrue(Name.isValidName("22nd birthday party")); // alphanumeric characters
-        assertTrue(Name.isValidName("PARTAY")); // with capital letters
+        assertTrue(Name.isValidName("PaRTAY")); // with capital letters
         assertTrue(Name.isValidName("meeting with the executive board")); // long names
     }
 }

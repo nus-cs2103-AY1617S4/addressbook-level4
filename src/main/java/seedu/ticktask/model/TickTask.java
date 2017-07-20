@@ -2,6 +2,8 @@ package seedu.ticktask.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +13,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.tag.UniqueTagList;
@@ -18,8 +21,6 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.UniqueTaskList;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -48,7 +49,7 @@ public class TickTask implements ReadOnlyTickTask {
     }
 
     public TickTask() {}
-
+    
     /**
      * Creates an TickTask list using the Tasks and Tags in the {@code toBeCopied}
      */
@@ -60,7 +61,7 @@ public class TickTask implements ReadOnlyTickTask {
     //// list overwrite operations
 
     public void setTasks(List<? extends ReadOnlyTask> tasks,
-            List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException, PastTaskException, EventClashException {
+            List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
         this.tasks.setTasks(tasks);
         this.completedTasks.setTasks(completedTasks);
     }
@@ -75,11 +76,6 @@ public class TickTask implements ReadOnlyTickTask {
             setTasks(newData.getTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "The TickTask program should not have duplicate tasks";
-        } catch (PastTaskException e) {
-            assert false : "The TickTask program should nto contain tasks in the past";
-        }
-        catch (EventClashException e) {
-            assert false : "Some events in the program occur concurrently";
         }
         try {
             setTags(newData.getTagList());
@@ -100,13 +96,13 @@ public class TickTask implements ReadOnlyTickTask {
      * @throws PastTaskException 
      * @throws EventClashException 
      */
-    public void addTask(ReadOnlyTask p) throws DuplicateTaskException, PastTaskException, EventClashException {
+    public void addTask(ReadOnlyTask p) throws DuplicateTaskException {
         Task newTask = new Task(p);
         newTask.resetTaskType();
         syncMasterTagListWith(newTask);
         tasks.add(newTask);
     }
-
+    
     /**
      * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
      * {@code TickTask}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
@@ -120,7 +116,7 @@ public class TickTask implements ReadOnlyTickTask {
      * @see #syncMasterTagListWith(Task)
      */
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedReadOnlyTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
+            throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedReadOnlyTask);
 
         Task editedTask = new Task(editedReadOnlyTask);
@@ -162,22 +158,109 @@ public class TickTask implements ReadOnlyTickTask {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removeTask(ReadOnlyTask key) throws TaskNotFoundException {
-        if (tasks.remove(key)) {
+    //@@author A0131884B
+   /**
+    * Clear complete list
+    * @param completedTasks is of type ReadOnlyTask
+    * @return boolean
+    */
+
+    public void setCompleteData(List<? extends ReadOnlyTask> completedTasks) throws DuplicateTaskException {
+        this.completedTasks.setTasks(completedTasks);
+    }
+
+    /**
+     * Clear active list
+     * @param tasks is of type ReadOnlyTask
+     * @return boolean
+     */
+    public void setActiveData(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Mark complete list to be cleared
+     * @param newData is of type ReadOnlyTickTask
+     * @return boolean
+     */
+    public void resetCompleteData(ReadOnlyTickTask newData) {
+        requireNonNull(newData);
+        try {
+            setCompleteData(newData.getCompletedTaskList());
+        } catch (DuplicateTaskException e) {
+            assert false : "The TickTask program should not have duplicate tasks";
+        }
+        try {
+            setTags(newData.getTagList());
+        } catch (UniqueTagList.DuplicateTagException e) {
+            assert false : "The TickTask program should not have duplicate tags";
+        }
+        syncMasterTagListWith(tasks);
+    }
+
+    /**
+     * Mark active list to be cleared
+     * @param newData is of type ReadOnlyTickTask
+     * @return boolean
+     */
+    public void resetActiveData(ReadOnlyTickTask newData) {
+        requireNonNull(newData);
+        try {
+            setActiveData(newData.getTaskList());
+        } catch (DuplicateTaskException e) {
+            assert false : "The TickTask program should not have duplicate tasks";
+        }
+        try {
+            setTags(newData.getTagList());
+        } catch (UniqueTagList.DuplicateTagException e) {
+            assert false : "The TickTask program should not have duplicate tags";
+        }
+        syncMasterTagListWith(tasks);
+    }
+
+    /**
+     * Removes an task from the task list using find task name method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeFindTask(ReadOnlyTask key) throws TaskNotFoundException {
+         if (completedTasks.contains(key)) {
+             return completedTasks.remove(key);
+         } else if (tasks.contains(key)) {
+             return tasks.remove(key);
+         } else {
+             throw new TaskNotFoundException();
+         }
+    }
+
+    /**
+     * Removes an task from the active task list using find task index method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeIndexActiveTask(ReadOnlyTask key) throws TaskNotFoundException {
+        if (tasks.remove(key)){
             return true;
         } else {
             throw new TaskNotFoundException();
         }
     }
 
-    public boolean removeCompletedTask(ReadOnlyTask key) throws TaskNotFoundException {
-        if (completedTasks.remove(key)) {
+    /**
+     * Removes an task from the complete task list using find task index method
+     * @param key is of type ReadOnlyTask
+     * @return boolean
+     */
+    public boolean removeIndexCompleteTask(ReadOnlyTask key) throws TaskNotFoundException {
+                if (completedTasks.remove(key)){
             return true;
         } else {
             throw new TaskNotFoundException();
         }
     }
-    
+
+    //@@author
+
     //@@author A0147928N
     /**
      * Adds the task to the list of completed tasks and removes it from the tasks list.
@@ -186,6 +269,20 @@ public class TickTask implements ReadOnlyTickTask {
         if (tasks.contains(key)) {
             completedTasks.archive(key);
             tasks.remove(key);
+            return true;
+        } else {
+            throw new TaskNotFoundException();
+        }
+    }
+    
+    /**
+     * Restores the task from the list of completed tasks and adds it back into the tasks list.
+     * @throws DuplicateTaskException 
+     */
+    public boolean restoreTask(ReadOnlyTask key) throws TaskNotFoundException, DuplicateTaskException {
+        if (completedTasks.contains(key)) {
+            tasks.unarchive(key);
+            completedTasks.remove(key);
             return true;
         } else {
             throw new TaskNotFoundException();
@@ -234,4 +331,9 @@ public class TickTask implements ReadOnlyTickTask {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
+    
+    public String eventClash(ReadOnlyTask t) {
+        return tasks.eventClash(t);
+    }
+
 }

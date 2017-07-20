@@ -6,7 +6,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.List;
 
+import seedu.ticktask.logic.parser.ArgumentMultimap;
+import seedu.ticktask.logic.parser.Prefix;
 import seedu.ticktask.commons.core.index.Index;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.StringUtil;
@@ -15,6 +18,8 @@ import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.TaskType;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes
@@ -80,6 +85,47 @@ public class ParserUtil {
         }
         return tagSet;
     }
+    
+   //@@author A0131884B
+   /**
+    * Return prefix that has arguments mapped to it, and remove prefixes that are not mapped to anything in argMultimap
+    */
+    public static Prefix getListPrefix(ArgumentMultimap argMultimap, Prefix... prefixes) {
+         List<Prefix> temp = Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
+            assert (temp.size() <= 1) : "invalid flag combination not catched beforehand or no Prefixes found!";
+            return temp.get(0);
+    }
+
+   /**
+    * Returns true if any of the prefixes contain non-empty values in argMultimap
+    */
+    public static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    
+    /**
+     * Remove Prefix's not mapped to anything in ArgumentMultimap parameter, and returns prefix that has
+     * arguments mapped to it. This means the mapping should be a one-one mapping.
+     */
+    public static Prefix getPrefix(ArgumentMultimap argMultimap, Prefix... prefixes) {
+        List<Prefix> tempList = Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent())
+                                  .collect(Collectors.toList());
+        if (tempList.size() != 1) {
+            assert false : "More than one or zero Prefixes is found";
+        }
+        return tempList.get(0);
+    }
+ //@@author
+    
+//@@author A0147928N
     public static Optional<String> setNullToString(Optional<String> data) {
         String string = " ";
         if (!data.isPresent()) {
@@ -87,4 +133,7 @@ public class ParserUtil {
         }
         return data;
     }
+    
+//@@author    
 }
+

@@ -7,22 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.AddCommand;
-import seedu.ticktask.logic.commands.ClearCommand;
-import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.CompleteCommand;
-import seedu.ticktask.logic.commands.ConfirmCommand;
-import seedu.ticktask.logic.commands.DeleteCommand;
-import seedu.ticktask.logic.commands.EditCommand;
-import seedu.ticktask.logic.commands.ExitCommand;
-import seedu.ticktask.logic.commands.FindCommand;
-import seedu.ticktask.logic.commands.HelpCommand;
-import seedu.ticktask.logic.commands.HistoryCommand;
-import seedu.ticktask.logic.commands.ListCommand;
-import seedu.ticktask.logic.commands.RedoCommand;
-import seedu.ticktask.logic.commands.SelectCommand;
-import seedu.ticktask.logic.commands.StorageCommand;
-import seedu.ticktask.logic.commands.UndoCommand;
+import seedu.ticktask.logic.commands.*;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,25 +39,23 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new parseAddCommand().parse(arguments);
+            return new ParseAddCommand().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
+            return new ClearCommandParser().parse(arguments);
+        
+        //@@author A0147928N
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
-        
-        case ConfirmCommand.COMMAND_WORD:
-            return new ConfirmCommandParser().parse(commandWord);
-        
-        case ConfirmCommand.COMMAND_WORD1:
-            return new ConfirmCommandParser().parse(commandWord);
-            
+        //@@author
+
+        //@@author A0131884B
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
+        //@@author
+            
         case EditCommand.COMMAND_WORD:
-            return new parseEditCommand().parse(arguments);
+            return new ParseEditCommand().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
 
@@ -95,12 +78,15 @@ public class Parser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
+            case RestoreCommand.COMMAND_WORD:
+                return new RestoreCommandParser().parse(arguments);
+
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-
+        	
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

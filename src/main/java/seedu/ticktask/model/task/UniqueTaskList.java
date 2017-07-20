@@ -14,8 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -45,22 +43,12 @@ public class UniqueTaskList implements Iterable<Task> {
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
      * @throws EventClashException 
      */
-    public void add(ReadOnlyTask toAdd) throws DuplicateTaskException, PastTaskException, EventClashException {
+    public void add(ReadOnlyTask toAdd) throws DuplicateTaskException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-        
-        //@@author A0147928N
-        if (toAdd.getTaskType().toString().equals("event") && eventClash(toAdd, null)) {
-          throw new EventClashException();
-        }
-        //@@author
-        
-        if(!isChornological(toAdd)){
-            throw new PastTaskException();
-        }
-        
+       
         toAdd.resetTaskType();
         internalList.add(new Task(toAdd));
     }
@@ -78,9 +66,8 @@ public class UniqueTaskList implements Iterable<Task> {
     //@@author A0147928N
     /**
      * Returns true if the list contains a task within the same time frame as the given argument.
-     * Will also prevent the creation of events with the same name
      */
-    public boolean eventClash(ReadOnlyTask toCheck, ReadOnlyTask exclude) {
+    public String eventClash(ReadOnlyTask toCheck) {
         FilteredList<Task> eventList = internalList.filtered(isEvent());
 
         LocalDate toCheckStartDate = toCheck.getDate().getLocalStartDate();
@@ -89,7 +76,7 @@ public class UniqueTaskList implements Iterable<Task> {
         LocalTime toCheckEndTime = toCheck.getTime().getLocalEndTime();
 
         for (ReadOnlyTask curr : eventList) {
-            if (curr.isSameStateAs(exclude)) continue;
+            if (curr.isSameStateAs(toCheck)) continue;
             LocalDate currStartDate = curr.getDate().getLocalStartDate();
             LocalDate currEndDate = curr.getDate().getLocalEndDate();
             LocalTime currStartTime = curr.getTime().getLocalStartTime();
@@ -102,25 +89,33 @@ public class UniqueTaskList implements Iterable<Task> {
             } else if (toCheckEndDate.equals(currStartDate) && toCheckEndTime.isBefore(currStartTime)) {
                 continue;
             } else {
-                return true;
+                return curr.getName().toString();
             }
         }
-        return false;
+        return null;
     }
     //@@author
     
-
    
     //@@author A0147928N
     /**
      * Archives the task into the internalList and marks the task as complete
      */
-    public void archive(ReadOnlyTask toAdd) {
-        toAdd.setCompleted(true);
-        requireNonNull(toAdd);
-        internalList.add(new Task(toAdd));
+    public void archive(ReadOnlyTask toArchive) {
+        toArchive.setCompleted(true);
+        requireNonNull(toArchive);
+        internalList.add(new Task(toArchive));
     }
-    //@author
+    
+    /**
+     * Unarchives the task into the internalList and marks the task as complete
+     */
+    public void unarchive(ReadOnlyTask toUnarchive) {
+        toUnarchive.setCompleted(false);
+        requireNonNull(toUnarchive);
+        internalList.add(new Task(toUnarchive));
+    }
+    //@@author
 
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
@@ -132,7 +127,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * @throws EventClashException 
      */
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
+            throws DuplicateTaskException, TaskNotFoundException {
         requireNonNull(editedTask);
 
         int index = internalList.indexOf(target);
@@ -145,22 +140,7 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
-        
-        //@@author A0147928N
-        if (editedTask.getTaskType().toString().equals("event") && eventClash(editedTask, target)) {
-          throw new EventClashException();
-        }
-        //@@author
-        
-        
-        //@@author A0139964M
-        if(!isChornological(editedTask)){
-            throw new PastTaskException();
-        }
-        //@@author
-         
-         
-    
+
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
@@ -187,7 +167,7 @@ public class UniqueTaskList implements Iterable<Task> {
         this.internalList.setAll(replacement.internalList);
     }
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException, PastTaskException, EventClashException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
         final UniqueTaskList replacement = new UniqueTaskList();
         for (final ReadOnlyTask task : tasks) {
             replacement.add(new Task(task));
@@ -216,59 +196,5 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalList.hashCode();
     }
     
-    //@@author A0139964M
-    /**
-     * Checks if the task added is in the past.
-     * @param task
-     * @return boolean
-     */
-    public boolean isChornological(ReadOnlyTask task) {
-        LocalDate currDate = LocalDate.now();
-        //System.out.println("localDate: " + currDate);
-        //System.out.println("TaskDate: " + taskDate);
-        
-        if(task.getDate().getLocalStartDate() == null){
-            //No date either means today or no time, if no time or time is chornological just add
-            if(task.getTime().getLocalStartTime() == null || isTimeChornological(task)){
-                return true;
-            }
-            else return false;
-        }
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        //Check if task's is today.
-        if(taskDate.isEqual(currDate)){ //If date is today's date, check if time is chornological
-            if(task.getTime().getLocalStartTime() == null|| isTimeChornological(task)){
-                return true;
-            } else {
-                return false;
-            }
-        }
-        //If date exist, but it is in the future, i dont need to check the time.
-        if(isDateChornological(task)){
-            return true;
-        } else{
-            return false;
-        }
-    }
-    
-    public boolean isTimeChornological(ReadOnlyTask task) {
-        LocalTime currTime = LocalTime.now();
-        LocalTime taskTime = task.getTime().getLocalStartTime();
-        if (taskTime.isBefore(currTime)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    public boolean isDateChornological(ReadOnlyTask task){
-        LocalDate currDate = LocalDate.now();
-        LocalDate taskDate = task.getDate().getLocalStartDate();
-        if(taskDate.isBefore(currDate)){
-            return false;
-        } else {
-            return true;
-        }
-    }
-    //@@author
+
 }

@@ -1,0 +1,6 @@
+{
+  "appTitle" : "TickTask App",
+  "logLevel" : "INFO",
+  "userPrefsFilePath" : "preferences.json",
+  "tickTaskFilePath" : "data/ticktask.xml"
+}

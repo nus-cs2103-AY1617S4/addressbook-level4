@@ -4,10 +4,10 @@ import java.util.EmptyStackException;
 import java.util.Set;
 
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
+import seedu.ticktask.logic.commands.Command;
+import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -20,16 +20,36 @@ public interface Model {
     /** Returns the TickTask */
     ReadOnlyTickTask getTickTask();
 
-    /** Deletes the given task. */
-    void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
+    //@@author A0131884B
+    /** Deletes the given task using find task name method. */
+    void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
 
+    /** Deletes the given complete task using find task index method. */
+    void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Deletes the given active task using find task index method. */
+    void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+
+    /** Clear active list. */
+    void resetActiveData(ReadOnlyTickTask newData);
+
+    /** clear complete list. */
+    void resetCompleteData(ReadOnlyTickTask newData);
+    //@@author
+    
+    //@@author A0147928N
     /** Marks the given task as complete and archives the task. */
     void completeTask(ReadOnlyTask target) throws TaskNotFoundException;
+    
+    /** Restores the given task from archive. 
+     * @throws DuplicateTaskException */
+    void restoreTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException;
+    //@@author
 
     /** Adds the given task 
      * @throws PastTaskException 
      * @throws EventClashException */
-    void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException;
+    void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -41,7 +61,7 @@ public interface Model {
      * @throws EventClashException 
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException;
+            throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
@@ -65,16 +85,24 @@ public interface Model {
     public void saveTickTask();
     //@@author
     
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
+    /** Updates the filter of the filtered task list if it contains the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
+    //@@author A0131884B
+    /** Updates the filter of the filtered task list if it matches the given keywords*/
+    void updateMatchedTaskList(Set<String> keywords);
+    //@@author
+
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
-
-    void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException;
-
+    //@@author A0139819N
     /** Undo a previously completed action on the TickTask program*/
     void undoPreviousCommand() throws EmptyStackException;
 
     /**Redo a previously undone action on the TickTask program*/
     void redoUndoneCommand() throws EmptyStackException;
+    //@@author
+
+    String eventClash(ReadOnlyTask t);
+
+    void updateFilteredCompletedTaskList(Set<String> keywords);
 }

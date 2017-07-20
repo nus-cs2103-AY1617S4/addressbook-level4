@@ -33,6 +33,7 @@ public class DueTime {
 
     private final Parser parser = new Parser();
     private String value;
+
     private LocalTime local_time;
 
     private ArrayList<LocalTime> timesArray = new ArrayList<LocalTime>();
@@ -94,12 +95,18 @@ public class DueTime {
             //end_time_string =  localtime.format(TIME_FORMAT).toString();
             LocalTime localtime = LocalTime.MAX;
             end_time_string =  "";
+            end_time = end_time2;
+            value = getStartTime();
 
         }
         else {
             end_time_string = end_time2.format(TIME_FORMAT).toString();
-            value = getStartTime() + " - " + getEndTime();
             end_time = end_time2;
+            if (end_time != null){
+                value = getStartTime() + " - " + getEndTime();
+            }else{
+                value = getStartTime();
+            }            
 
         }
     }
@@ -109,13 +116,18 @@ public class DueTime {
             //LocalTime localtime = LocalTime.MAX;
             //start_time_string =  localtime.format(TIME_FORMAT).toString();
             start_time_string =  "";
-
+            start_time = start_time2;
+            value = getStartTime();
+            
         }
         else {
             start_time_string = start_time2.format(TIME_FORMAT).toString();
-            value = getStartTime() + " - " + getEndTime();
             start_time = start_time2;
-
+            if (end_time != null){
+                value = getStartTime() + " - " + getEndTime();
+            }else{
+                value = getStartTime();
+            }
         }
     }
 
@@ -156,6 +168,14 @@ public class DueTime {
 
 
     }
+    
+    public String getValue(){
+        return value;
+    }
+    
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     public String getEndTime() {
 
@@ -182,12 +202,30 @@ public class DueTime {
     public boolean isFloating() {
         return isFloating;
     }
+    
+    /**
+     * Sets the time to floating
+     */
+    public void setFloating(){
+        isFloating = true;
+        isDeadline = false;
+        isRange = false;
+    }
 
     /**
      * Returns true if a given date only has a start time
      */
     public boolean isDeadline() {
         return isDeadline;
+    }
+    
+    /**
+     * Sets the time to a deadline
+     */
+    public void setDeadline(){
+        isFloating = false;
+        isDeadline = true;
+        isRange = false;
     }
 
     /**
@@ -197,6 +235,14 @@ public class DueTime {
         return isRange;
     }
 
+    /**
+     * Toggles the time to a range type
+     */
+    public void setRange(){
+        isFloating = false;
+        isDeadline = false;
+        isRange = true;
+    }
     /**
      * Returns true if a given string is a valid time format.
      */

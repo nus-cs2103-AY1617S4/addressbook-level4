@@ -6,10 +6,10 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.TickTask;
 import seedu.ticktask.model.task.ReadOnlyTask;
@@ -24,9 +24,10 @@ public class CommandTestUtil {
      * - the result message matches {@code expectedMessage} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      * @throws WarningException 
+     * @throws IllegalValueException 
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) throws CommandException, WarningException {
+            Model expectedModel) throws CommandException, IllegalValueException {
         CommandResult result = command.execute();
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, actualModel);
@@ -39,7 +40,8 @@ public class CommandTestUtil {
      * - the tick task and the filtered task list in the {@code actualModel} remain unchanged
      * @throws WarningException 
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) throws WarningException {
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage)  {
+
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TickTask expectedTickTask = new TickTask(actualModel.getTickTask());
@@ -54,6 +56,8 @@ public class CommandTestUtil {
             assertEquals(expectedTickTask, actualModel.getTickTask());
             assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
             assertEquals(expectedFilteredCompletedList, actualModel.getFilteredCompletedTaskList());
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
         } 
         
     }

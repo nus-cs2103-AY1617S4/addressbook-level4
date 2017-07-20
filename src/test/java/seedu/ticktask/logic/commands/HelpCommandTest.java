@@ -26,11 +26,13 @@ public class HelpCommandTest {
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
     }
-
+    
+    /*
     @Test
     public void execute_help_success() {
         CommandResult result = new HelpCommand().execute();
         assertEquals(SHOWING_HELP_MESSAGE, result.feedbackToUser);
         assertTrue(isEventCaught);
     }
+    */
 }

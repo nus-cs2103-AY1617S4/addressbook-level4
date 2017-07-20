@@ -3,7 +3,7 @@ package seedu.ticktask.model.task;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
-import edu.emory.mathcs.backport.java.util.Collections;
+import java.util.Collections;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
 import java.time.Instant;
@@ -17,13 +17,19 @@ import java.util.regex.Pattern;
 
 import static java.util.Objects.requireNonNull;
 
-//@@author A0138471A
+
 /**
  * Represents a Task's date in the TickTask.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
+
 public class DueDate {
 
+    //@@author A0139819N
+    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
+    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
+    //@@author
+    //@@author A0138471A
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Enter a valid date";
 
@@ -38,15 +44,13 @@ public class DueDate {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
-    //author A0139819N
-    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
-    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
-    //author
+
 
     private final Parser parser = new Parser();
-    //private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 
     private String value;
+    
+
     private LocalDate local_date;
 
     private ArrayList<LocalDate> datesArray = new ArrayList<LocalDate>();
@@ -59,9 +63,6 @@ public class DueDate {
     private boolean isRange = false;
     private boolean isDeadline = false;
     
-    
-    
-
     /**
      * Validates given due date.
      *
@@ -71,9 +72,7 @@ public class DueDate {
         requireNonNull(date);
 
         String trimmedDate = date.trim();
-        //author A0139819N
-        //trimmedDate = convertDateFormat(trimmedDate);
-        //author
+        
           
         if (((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))) {
             List<DateGroup> dateGroups = parser.parse(trimmedDate);
@@ -109,7 +108,7 @@ public class DueDate {
     }
 
 
-    private void extractDate(String trimmedDate) {
+    void extractDate(String trimmedDate) {
         List<DateGroup> dateGroups = parser.parse(trimmedDate);
         /* if(dateGroups.isEmpty()){
          * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -143,34 +142,16 @@ public class DueDate {
         }
 
     }
-
-
-    //@@author A0139819N
-    /*
-     * Method used to convert date input by user f
-     */
-    private String convertDateFormat(String trimmedDate) {
-        
-        System.out.println("OLD Trimmed date string: " + trimmedDate);
-        
-        DateTimeFormatter internationalDateParser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter americanDateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        //LocalDate inDate = LocalDate.parse(trimmedDate, internationalDateParser);
-
-        if(trimmedDate.matches(DATE_REGEX_SINGLE)){
-            trimmedDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate));
-        }else if (trimmedDate.matches(DATE_REGEX_RANGE)){
-            String startDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(0,10)));
-            String endDate = americanDateFormatter.format(internationalDateParser.parse(trimmedDate.substring(11,21)));
-            System.out.println("START: " + startDate + "END: " + endDate);
-            trimmedDate = startDate + " " + endDate;
-        }
-        System.out.println("NEW trimmed date string: " + trimmedDate);
-
-        return trimmedDate;
+    
+    public String getValue() {
+        return value;
     }
-    //@@author
 
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+    
     public String getStartDate() {
         return start_date_string;
     }
@@ -178,13 +159,18 @@ public class DueDate {
     public void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
+            end_date = end_date2;
+            value = getStartDate();
 
         }
         else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
-            value = getStartDate() + " - " + getEndDate();
             end_date = end_date2;
-
+            if (end_date != null){
+                value = getStartDate() + " - " + getEndDate();
+            }else{
+                value = getStartDate();
+            }
         }
 
     }
@@ -192,14 +178,20 @@ public class DueDate {
     public void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
+            start_date = start_date2;
+            value = getStartDate();
+            
+
 
         }
         else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
-            value = getStartDate() + " - " + getEndDate();
             start_date = start_date2;
-
-
+            if (end_date != null){
+                value = getStartDate() + " - " + getEndDate();
+            }else{
+                value = getStartDate();
+            }
         }
 
     }
@@ -223,7 +215,16 @@ public class DueDate {
     public boolean isFloating() {
         return isFloating;
     }
-
+    
+    /**
+     * Sets the date to floating
+     */
+    public void setFloating(){
+        isFloating = true;
+        isDeadline = false;
+        isRange = false;
+    }
+    
     /**
      * Returns true if a given date only has a start date
      * */
@@ -232,10 +233,29 @@ public class DueDate {
     }
 
     /**
+     * Sets the date to floating
+     */
+    public void setDeadline(){
+        isFloating = false;
+        isDeadline = true;
+        isRange = false;
+    }
+    
+    
+    /**
      * Returns true if a given date has both start and end date
      */
     public boolean isRange() {
         return isRange;
+    }
+    
+    /**
+     * Sets the date to range
+     */
+    public void setRange(){
+        isFloating = false;
+        isDeadline = false;
+        isRange = true;
     }
 
     /**
@@ -263,3 +283,4 @@ public class DueDate {
     }
 
 }
+//@@author

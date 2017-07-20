@@ -3,6 +3,8 @@ package seedu.ticktask.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -35,6 +37,7 @@ public class AddCommandTest {
         new AddCommand(null);
     }
 
+
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
@@ -45,7 +48,44 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
+    //@@author A0139964M
+    @Test
+    public void execute_PastTaskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate("01/01/2001").build();
 
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    @Test
+    public void execute_PastTask_CurrTimeNullDate_AcceptedByModel_addSuccessful() throws Exception {
+        LocalTime localTime = LocalTime.now();
+        LocalDate currDate = LocalDate.now();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate("").withTime(localTime.toString()).build();
+
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    @Test
+    public void execute_PastTask_CurrDateCurrTimeAcceptedByModel_addSuccessful() throws Exception {
+        LocalTime localTime = LocalTime.now();
+        LocalDate currDate = LocalDate.now();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().withDate(currDate.toString()).withTime(localTime.toString()).build();
+
+        CommandResult commandResult = getAddCommandForTask(validTask, modelStub).execute();
+
+        assertEquals(String.format(AddCommand.MESSAGE_PAST_TASK, validTask), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        //@@author
+    }
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
         ModelStub modelStub = new ModelStubThrowingDuplicateTaskException();
@@ -79,6 +119,16 @@ public class AddCommandTest {
         public void resetData(ReadOnlyTickTask newData) {
             fail("This method should not be called.");
         }
+        
+        @Override
+        public void resetActiveData(ReadOnlyTickTask newData) {
+            fail("This method should not be called.");
+        }
+        
+        @Override
+        public void resetCompleteData(ReadOnlyTickTask newData) {
+            fail("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyTickTask getTickTask() {
@@ -91,10 +141,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        public void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException {
             fail("This method should not be called.");
         }
-
+        
+        @Override
+        public void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException {
+            fail("This method should not be called.");
+        }
+        
         @Override
         public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
                 throws DuplicateTaskException {
@@ -117,14 +172,19 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
-		@Override
+        @Override
+        public void updateMatchedTaskList(Set<String> keywords) {
+
+        }
+
+        @Override
 		public UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList() {
             fail("This method should not be called.");
             return null;
 		}
 
 		@Override
-		public void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
+		public void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
 			fail("This method should not be called.");
 			
 		}
@@ -141,35 +201,57 @@ public class AddCommandTest {
 			
 		}
 
-		@Override
+        @Override
+        public String eventClash(ReadOnlyTask t) {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
 		public void updateFilteredListToShowEvent() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowDeadline() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowFloating() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void updateFilteredListToShowToday() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
 
 		@Override
 		public void saveTickTask() {
-			// TODO Auto-generated method stub
+            fail("This method should not be called.");
 			
 		}
+
+        public boolean isChornological(ReadOnlyTask t) {
+            fail("This method should not be called.");
+            return false;
+        }
+
+        @Override
+        public void restoreTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
+            fail("This method should not be called.");   
+        }
+
+        @Override
+        public void updateFilteredCompletedTaskList(Set<String> keywords) {
+            fail("This method should not be called.");   
+            
+        }
     }
 
     /**

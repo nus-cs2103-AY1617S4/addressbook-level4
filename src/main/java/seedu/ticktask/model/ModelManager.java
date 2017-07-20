@@ -17,8 +17,6 @@ import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.util.StringUtil;
 import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -28,10 +26,10 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/uuuu");
-    private TickTask currentProgramInstance;
-    private Stack<TickTask> previousProgramInstances;
-    private Stack<TickTask> futureProgramInstances;
-    private final FilteredList<ReadOnlyTask> filteredTasks;
+    protected TickTask currentProgramInstance;
+    protected Stack<TickTask> previousProgramInstances;
+    protected Stack<TickTask> futureProgramInstances;
+    private final FilteredList<ReadOnlyTask> filteredActiveTasks;
     private final FilteredList<ReadOnlyTask> filteredCompletedTasks;
 
     /**
@@ -44,7 +42,7 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with Tick Task program: " + tickTask + " and user prefs " + userPrefs);
 
         this.currentProgramInstance = new TickTask(tickTask);
-        filteredTasks = new FilteredList<>(this.currentProgramInstance.getTaskList());
+        filteredActiveTasks = new FilteredList<>(this.currentProgramInstance.getTaskList());
         filteredCompletedTasks = new FilteredList<>(this.currentProgramInstance.getCompletedTaskList());
         previousProgramInstances = new Stack<TickTask>();
         futureProgramInstances = new Stack<TickTask>();
@@ -92,7 +90,8 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(currentTickTaskInstance);
         indicateTickTaskModelChanged();
     }
-
+    
+    //@@author A0139819N
     /**Saves the current instance of the TickTask program before any data is modified
      * so that the program can return to previous instances if desired
      */
@@ -100,23 +99,61 @@ public class ModelManager extends ComponentManager implements Model {
         previousProgramInstances.push(new TickTask(currentProgramInstance));
         futureProgramInstances.clear();
     }
+    //@@author
 
-    //@@author A0139819N
+    //@@author A0131884B
+    @Override
+    public void updateMatchedTaskList(Set<String> keywords) {
+        updateMatchedTaskList(new PredicateExpression(new NameQualifier(keywords)));
+
+    }
+
+    private void updateMatchedTaskList(Expression expression) {
+        filteredActiveTasks.setPredicate(expression::matches);
+        filteredCompletedTasks.setPredicate(expression::matches);
+    }
 
     @Override
-    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+
+    /**Deletes the given task using find task name method.
+          */
+    public synchronized void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
         saveInstance();
-        currentProgramInstance.removeTask(target);
+        currentProgramInstance.removeFindTask(target);
+        indicateTickTaskModelChanged();
+    }
+    /**Deletes the given active task using find task index method
+          */
+    public synchronized void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
+        saveInstance();
+        currentProgramInstance.removeIndexActiveTask(target);
         indicateTickTaskModelChanged();
     }
 
-    public synchronized void deleteCompletedTask(ReadOnlyTask target) throws TaskNotFoundException {
-        currentProgramInstance.removeCompletedTask(target);
+
+    public synchronized void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        saveInstance();
+        currentProgramInstance.removeIndexCompleteTask(target);
         indicateTickTaskModelChanged();
     }
 
     @Override
-    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException, PastTaskException, EventClashException{
+    public void resetActiveData(ReadOnlyTickTask newData) {
+        saveInstance();
+        currentProgramInstance.resetActiveData(newData);
+        indicateTickTaskModelChanged();
+    }
+
+    @Override
+    public void resetCompleteData(ReadOnlyTickTask newData) {
+        saveInstance();
+        currentProgramInstance.resetCompleteData(newData);
+        indicateTickTaskModelChanged();
+    }
+    //@@author
+
+    @Override
+    public synchronized void addTask(ReadOnlyTask task) throws DuplicateTaskException {
         saveInstance();
         currentProgramInstance.addTask(task);
         updateFilteredListToShowAll();
@@ -128,18 +165,60 @@ public class ModelManager extends ComponentManager implements Model {
     public synchronized void completeTask(ReadOnlyTask task) throws TaskNotFoundException {
         saveInstance();
         currentProgramInstance.completeTask(task);
+        updateFilteredListToShowAll();
+        indicateTickTaskModelChanged();
+
+    }
+
+    @Override
+    public synchronized void restoreTask(ReadOnlyTask task) throws TaskNotFoundException, DuplicateTaskException {
+        saveInstance();
+        currentProgramInstance.restoreTask(task);
+        updateFilteredListToShowAll();
+        indicateTickTaskModelChanged();
+
     }
     //@@author
 
     @Override
     public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
-            throws DuplicateTaskException, TaskNotFoundException, PastTaskException, EventClashException {
+            throws DuplicateTaskException, TaskNotFoundException {
         requireAllNonNull(target, editedTask);
         saveInstance();
         currentProgramInstance.updateTask(target, editedTask);
         indicateTickTaskModelChanged();
     }
+    
+    public String eventClash(ReadOnlyTask t) {
+        return currentProgramInstance.eventClash(t);
+    }
+  
+    //@@author A0139819N
+    public TickTask getCurrentProgramInstance() {
+        return currentProgramInstance;
+    }
 
+    public void setCurrentProgramInstance(TickTask currentProgramInstance) {
+        this.currentProgramInstance = currentProgramInstance;
+    }
+    
+    public Stack<TickTask> getPreviousProgramInstances() {
+        return previousProgramInstances;
+    }
+    
+    public void setPreviousProgramInstances(Stack<TickTask> previousProgramInstances) {
+        this.previousProgramInstances = previousProgramInstances;
+    }
+
+    public Stack<TickTask> getFutureProgramInstances() {
+        return futureProgramInstances;
+    }
+
+    public void setFutureProgramInstances(Stack<TickTask> futureProgramInstances) {
+        this.futureProgramInstances = futureProgramInstances;
+    }
+    //@@author
+    
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -147,7 +226,7 @@ public class ModelManager extends ComponentManager implements Model {
      */
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
-        return new UnmodifiableObservableList<>(filteredTasks);
+        return new UnmodifiableObservableList<>(filteredActiveTasks);
     }
 
     @Override
@@ -157,15 +236,15 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAll() {
-        filteredTasks.setPredicate(null);
+        filteredActiveTasks.setPredicate(null);
         filteredCompletedTasks.setPredicate(null);
     }
     
     //@@author A0138471A
     @Override
-    public void updateFilteredListToShowEvent() {      
-    	
-        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+    public void updateFilteredListToShowEvent() {
+
+        filteredActiveTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
             return task.getTaskType().toString().equals("event");
         });
         filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
@@ -175,9 +254,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateFilteredListToShowDeadline() {      
-    	
-        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+    public void updateFilteredListToShowDeadline() {
+
+        filteredActiveTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
             return task.getTaskType().toString().equals("deadline");
         });
         filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
@@ -187,9 +266,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateFilteredListToShowFloating() {      
-    	
-        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+    public void updateFilteredListToShowFloating() {
+
+        filteredActiveTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
             return task.getTaskType().toString().equals("floating");
         });
         filteredCompletedTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
@@ -199,9 +278,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateFilteredListToShowToday() {      
-    	
-        filteredTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
+    public void updateFilteredListToShowToday() {
+
+        filteredActiveTasks.setPredicate((Predicate<? super ReadOnlyTask>) task -> {
             return ((task.getDate().getEndDate().equals(LocalDate.now().format(DATE_FORMAT).toString())) || 
             		(task.getDate().getStartDate().equals(LocalDate.now().format(DATE_FORMAT).toString())));
         });
@@ -222,11 +301,20 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
 
     }
+    
+    @Override
+    public void updateFilteredCompletedTaskList(Set<String> keywords) {
+        updateFilteredCompletedTaskList(new PredicateExpression(new NameQualifier(keywords)));
+
+    }
 
     private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
-        filteredCompletedTasks.setPredicate(expression::satisfies);
+        filteredActiveTasks.setPredicate(expression::satisfies);
     }
+    
+    private void updateFilteredCompletedTaskList(Expression expression) {
+        filteredCompletedTasks.setPredicate(expression::satisfies);
+    } 
 
     @Override
     public boolean equals(Object obj) {
@@ -240,16 +328,22 @@ public class ModelManager extends ComponentManager implements Model {
             return false;
         }
 
+    //@@author A0131884B
         // state check
         ModelManager other = (ModelManager) obj;
         return currentProgramInstance.equals(other.currentProgramInstance)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredActiveTasks.equals(other.filteredActiveTasks)
+                                && filteredCompletedTasks.equals(other.filteredCompletedTasks);
     }
+    //@@author
 
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
+    //@@author A0131884B
+        boolean matches(ReadOnlyTask task);
+    //@@author
         String toString();
     }
 
@@ -266,6 +360,12 @@ public class ModelManager extends ComponentManager implements Model {
             return qualifier.run(task);
         }
 
+    //@@author A0131884B
+        @Override
+        public boolean matches(ReadOnlyTask task) {
+            return qualifier.match(task);
+        }
+    //@@author
         @Override
         public String toString() {
             return qualifier.toString();
@@ -274,6 +374,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
+    //@@author A0131884B
+        boolean match(ReadOnlyTask task);
+    //@@author
         String toString();
     }
 
@@ -291,7 +394,15 @@ public class ModelManager extends ComponentManager implements Model {
                     .findAny()
                     .isPresent();
         }
-
+    //@@author A0131884B
+        @Override
+        public boolean match(ReadOnlyTask task) {
+            return nameKeyWords.stream()
+                    .filter(keyword -> StringUtil.matchesStringIgnoreCase(task.getName().fullName, keyword))
+                    .findAny()
+                    .isPresent();
+        }
+    //@@author
         @Override
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);

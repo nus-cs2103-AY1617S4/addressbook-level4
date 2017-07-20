@@ -1,6 +1,7 @@
 package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
@@ -12,9 +13,10 @@ import java.util.Set;
 
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.commons.core.index.Index;
+import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.commons.util.CollectionUtil;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
-import seedu.ticktask.logic.commands.exceptions.WarningException;
+import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.task.DueDate;
 import seedu.ticktask.model.task.DueTime;
@@ -23,8 +25,6 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.TaskType;
 import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
-import seedu.ticktask.model.task.exceptions.EventClashException;
-import seedu.ticktask.model.task.exceptions.PastTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -33,6 +33,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
+    //@@author A0139964M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified"
             + "by the index number used in the last task listing."
             + "Existing values will be overwritten by the input values.\n"
@@ -44,12 +45,14 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Final report submission "
             + PREFIX_DATE + "08/26/17";
-
+    //@@author
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the TickTask program.";
-    public static final String MESSAGE_PAST_TASK = "This task is already passed the current date/time";
-    public static final String MESSAGE_EVENT_CLASH = "There is another task going on within the same time frame";
+
+    public static final String MESSAGE_PAST_TASK = "Warning: This task is already passed the current date/time";
+    public static final String MESSAGE_EVENT_CLASH = "Warning: There is another task going on within the same time frame: %1$s";
+
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -67,7 +70,9 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException, WarningException {
+
+    public CommandResult execute() throws CommandException, IllegalValueException {
+
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -79,33 +84,54 @@ public class EditCommand extends Command {
 
         try {
             model.updateTask(taskToEdit, editedTask);
+            model.updateFilteredListToShowAll();
+
+            //@@author A0139964M
+            if (!editedTask.isChornological()) {
+                return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
+            }
+            //@@author
+            if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
+                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
+            }
+            
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+            
         } catch (DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
             throw new AssertionError("The target task cannot be missing");
-        } catch (PastTaskException e) {
-            throw new CommandException(MESSAGE_PAST_TASK);
-        } catch (EventClashException e) {
-            throw new CommandException(MESSAGE_EVENT_CLASH);
         } 
-        model.updateFilteredListToShowAll();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+
+        
     }
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
+     * @throws IllegalValueException
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-            EditTaskDescriptor editTaskDescriptor) {
+            EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         TaskType updatedTaskType = editTaskDescriptor.getTaskType().orElse(taskToEdit.getTaskType());
+        DueTime updatedTime = editTaskDescriptor.getTime().orElse(taskToEdit.getTime());
         DueDate updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
+        //@@author A0139819N
+        if (editTaskDescriptor.getTaskType().toString().equals("Optional[floating]")) {
+
+            if (taskToEdit.getTaskType().getValue().equals("floating")) {
+                throw new ParseException("Task is already floating!");
+            } else {
+                updatedTime = new DueTime("");
+                updatedDate = new DueDate("");
+            }
+        }
+        //@@author
         return new Task(updatedName, updatedTime, updatedTaskType, updatedDate, updatedTags);
     }
 
@@ -190,8 +216,7 @@ public class EditCommand extends Command {
         public void setDate(DueDate date) {
             if (date.toString().equals("") || date.toString().equals(" ")) {
                 this.date = null;
-            }
-            else {
+            } else {
                 this.date = date;
             }
         }
