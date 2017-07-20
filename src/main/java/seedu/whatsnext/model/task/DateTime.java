@@ -23,7 +23,7 @@ public class DateTime {
     public static final String MESSAGE_DATE_INVALID = "A Task cannot be created before today.";
 
     private final DateFormat dateTimeFormat = new SimpleDateFormat("yyyy/dd/MM HH:mm");
-    private final DateFormat dateTimeFormatDisplay = new SimpleDateFormat("EEE, d MMM yyyy hh:mm aaa");
+    private final DateFormat dateTimeFormatDisplay = new SimpleDateFormat("EEE d MMM yyyy hh:mm aaa");
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/dd/MM");
     private final DateFormat timeFormat = new SimpleDateFormat("HH:mm");
     private Date dateValue;
