@@ -242,6 +242,18 @@ public class LogicManagerTest {
 
     //@@author A0156106M
     @Test
+    public void execute_addEventByComma_successful() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        BasicTask toBeAdded = helper.sampleEventTask();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+        assertCommandSuccess(helper.generateAddByCommaCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
+    }
+
+
+    //@@author A0156106M
+    @Test
     public void execute_addEvent_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
@@ -567,6 +579,24 @@ public class LogicManagerTest {
                 cmd.append(" " + PREFIX_TAG_CLI.getPrefix()).append(t.tagName);
             }
             return cmd.toString();
+        }
+
+        //@@author A0156106M
+        String generateAddByCommaCommand(BasicTask basicTask) {
+            StringBuffer command = new StringBuffer();
+
+            command.append(AddCommand.COMMAND_WORD);
+            command.append(" " + basicTask.getName());
+            command.append(", " + "\"" + basicTask.getDescription() + "\"");
+            command.append(", " + basicTask.getStartDateTime().displayDateTime());
+            command.append(", " + basicTask.getEndDateTime().displayDateTime());
+            command.append(", tags: " );
+            Set<Tag> tags = basicTask.getTags();
+            for (Tag t: tags) {
+                command.append(t.tagName + " ");
+            }
+            return command.toString();
+
         }
 
         /**
