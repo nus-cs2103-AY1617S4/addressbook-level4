@@ -1,5 +1,7 @@
 package seedu.whatsnext.ui;
 
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -36,6 +38,9 @@ public class DeadlineTaskCard extends UiPart<Region> {
         dueBy.setText("Due by: " + task.getEndDateTime().displayDateTime());
         setPriorityColors(task);
         initTags(task);
+        if (task.getEndDateTime().isBefore(new Date())) {
+            cardBackground.setStyle("-fx-background-color : #ff00ff;");
+        }
     }
 
     private void initTags(BasicTaskFeatures task) {

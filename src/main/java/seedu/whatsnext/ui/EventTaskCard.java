@@ -1,5 +1,7 @@
 package seedu.whatsnext.ui;
 
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -46,6 +48,9 @@ public class EventTaskCard extends UiPart<Region> {
         notice.setImage(new Image("/images/notice_icon.png"));
         if (!task.getAllTags().contains("OVERLAP")) {
             notice.setVisible(false);
+        }
+        if (task.getStartDateTime().isBefore(new Date())) {
+            cardBackground.setStyle("-fx-background-color : #ff00ff;");
         }
     }
 
