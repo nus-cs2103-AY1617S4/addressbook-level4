@@ -66,23 +66,6 @@ public class Tag {
 
     //@@author A0142675B
     /**
-     * Returns true if the tag is a reserved Tag.
-     */
-    public boolean isReservedTag() {
-        String trimmedName = tagName.trim();
-        assert isValidTagName(trimmedName);
-
-        for (int i = 0; i < 4; i++) {
-            if (trimmedName.toUpperCase().equals(RESERVEREDTAGS[i])) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    //@@author A0142675B
-    /**
      * Returns true if the given tagName is a reserved Tag for priority.
      */
     public boolean isPriorityTag() {
