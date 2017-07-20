@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 
-//@@ author A0139819N
+//@@author A0139819N
 /**
  * Represents a TickTask's task type in the program.
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskType(String)}
