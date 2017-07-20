@@ -590,7 +590,7 @@ public class LogicManagerTest {
             command.append(", " + "\"" + basicTask.getDescription() + "\"");
             command.append(", " + basicTask.getStartDateTime().displayDateTime());
             command.append(", " + basicTask.getEndDateTime().displayDateTime());
-            command.append(", tags: " );
+            command.append(", tags: ");
             Set<Tag> tags = basicTask.getTags();
             for (Tag t: tags) {
                 command.append(t.tagName + " ");
