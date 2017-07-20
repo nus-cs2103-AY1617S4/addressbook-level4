@@ -44,7 +44,7 @@ public class EventTaskCard extends UiPart<Region> {
         setPriorityColors(task);
         initTags(task);
         notice.setImage(new Image("/images/notice_icon.png"));
-        if (!task.getAllTags().contains("OVERLAPPING")) {
+        if (!task.getAllTags().contains("OVERLAP")) {
             notice.setVisible(false);
         }
     }
