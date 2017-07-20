@@ -250,7 +250,27 @@ public class LogicManagerTest {
         BasicTask toBeAdded = helper.sampleEventTask();
         Model expectedModel = new ModelManager();
         expectedModel.addTask(toBeAdded);
-        assertCommandSuccess(helper.generateAddByCommaCommand(toBeAdded),
+        assertCommandSuccess(helper.generateAddEventByCommaCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
+    }
+
+    @Test
+    public void execute_addFloatingByComma_successful() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        BasicTask toBeAdded = helper.sampleFloatingTask();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+        assertCommandSuccess(helper.generateAddFloatingByCommaCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
+    }
+
+    @Test
+    public void execute_addDeadlineByComma_successful() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        BasicTask toBeAdded = helper.sampleDeadlineTask();
+        Model expectedModel = new ModelManager();
+        expectedModel.addTask(toBeAdded);
+        assertCommandSuccess(helper.generateAddDeadlineByCommaCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded), expectedModel);
     }
 
@@ -309,7 +329,6 @@ public class LogicManagerTest {
 
     }
 
-    //@@author
     //@@author A0154986L
     @Test
     public void execute_list_showsAllTasks() throws Exception {
@@ -614,7 +633,7 @@ public class LogicManagerTest {
         }
 
         //@@author A0156106M
-        String generateAddByCommaCommand(BasicTask basicTask) {
+        String generateAddEventByCommaCommand(BasicTask basicTask) {
             StringBuffer command = new StringBuffer();
 
             command.append(AddCommand.COMMAND_WORD);
@@ -628,7 +647,37 @@ public class LogicManagerTest {
                 command.append(t.tagName + " ");
             }
             return command.toString();
+        }
 
+        //@@author A0156106M
+        String generateAddFloatingByCommaCommand(BasicTask basicTask) {
+            StringBuffer command = new StringBuffer();
+            command.append(AddCommand.COMMAND_WORD);
+            command.append(" " + basicTask.getName());
+            command.append(", " + "\"" + basicTask.getDescription() + "\"");
+            command.append(", " + basicTask.getEndDateTime().displayDateTime());
+            command.append(", tags: ");
+            Set<Tag> tags = basicTask.getTags();
+            for (Tag t: tags) {
+                command.append(t.tagName + " ");
+            }
+            System.out.println("COMMAND:" + command.toString());
+            return command.toString();
+        }
+
+        //@@author A0156106M
+        String generateAddDeadlineByCommaCommand(BasicTask basicTask) {
+            StringBuffer command = new StringBuffer();
+
+            command.append(AddCommand.COMMAND_WORD);
+            command.append(" " + basicTask.getName());
+            command.append(", " + "\"" + basicTask.getDescription() + "\"");
+            command.append(", tags: ");
+            Set<Tag> tags = basicTask.getTags();
+            for (Tag t: tags) {
+                command.append(t.tagName + " ");
+            }
+            return command.toString();
         }
 
         /**
