@@ -24,7 +24,7 @@ public class HelpWindowTest extends TaskManagerGuiTest {
 
         deadlineListPanel.clickOnListView();
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
-        
+
         floatingListPanel.clickOnListView();
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
 

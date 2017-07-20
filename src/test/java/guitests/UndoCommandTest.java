@@ -48,7 +48,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     @Test
     public void undoEditSuccess() {
         commandBox.pressEnter();
-        String editString = EditCommand.COMMAND_WORD + " 1 n/Test task name" ;
+        String editString = EditCommand.COMMAND_WORD + " 1 n/Test task name";
         String originalName = eventListPanel.getEventTask(0).getName().toString();
         commandBox.runCommand(editString);
         assertEquals(eventListPanel.getEventTask(0).getName().toString(), "Test task name");

@@ -23,14 +23,14 @@ public class ListCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list all");
         assertListSize(td.getTypicalTasks().length);
     }
-    
+
     @Test
     public void listCompletedCommand() {
         commandBox.pressEnter();
         commandBox.runCommand("list completed");
         assertListSize(1);
     }
-    
+
     @Test
     public void listIncompleteCommand() {
         commandBox.pressEnter();
