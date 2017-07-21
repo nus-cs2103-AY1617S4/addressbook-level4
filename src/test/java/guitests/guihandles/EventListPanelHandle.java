@@ -65,7 +65,7 @@ public class EventListPanelHandle extends GuiHandle {
      *
      * @param startPosition
      *            The starting position of the sub list.
-     * @param persons
+     * @param tasks
      *            A list of task in the correct order.
      */
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
@@ -135,7 +135,7 @@ public class EventListPanelHandle extends GuiHandle {
             return false;
         }
 
-        // Return false if any of the persons doesn't match
+        // Return false if any of the tasks doesn't match
         for (int i = 0; i < taskList.size(); i++) {
             if (!tasksInList.get(startPosition + i).getKey().getName().toString()
                     .equals(taskList.get(i).getName().toString())) {
@@ -173,7 +173,7 @@ public class EventListPanelHandle extends GuiHandle {
     }
 
     /**
-     * Returns the position of the person given, {@code NOT_FOUND} if not found
+     * Returns the position of the task given, {@code NOT_FOUND} if not found
      * in the list.
      */
     public int getEventTaskIndex(BasicTaskFeatures targetTask) {
@@ -187,7 +187,7 @@ public class EventListPanelHandle extends GuiHandle {
     }
 
     /**
-     * Gets a person from the list by index
+     * Gets a task from the list by index
      */
     public BasicTaskFeatures getEventTask(int index) {
         return getEventListView().getItems().get(index).getKey();
