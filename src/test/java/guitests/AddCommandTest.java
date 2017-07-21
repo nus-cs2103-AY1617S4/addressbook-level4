@@ -18,6 +18,7 @@ import seedu.whatsnext.model.task.TaskName;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void add() throws IllegalValueException {
         commandBox.pressEnter();
@@ -34,20 +35,20 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //add one deadline task
         taskToAdd = new BasicTask(new TaskName("Buy Present For Gf"),
                 new TaskDescription("What She Likes"),
-                new DateTime("next Monday"), getTagSet("gf"));
-        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/gf");
+                new DateTime("next Monday"), getTagSet("medium"));
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
         assertAddSuccess(taskToAdd);
         //add duplicate deadline task
-        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/gf");
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 
         //add event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/overlapping");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/low");
         taskToAdd = new BasicTask(new TaskName("Watch Csgo Major"), new TaskDescription("Fun stuffs"),
-                new DateTime("4 september"), new DateTime("5 september"), getTagSet("overlapping"));
+                new DateTime("4 september"), new DateTime("5 september"), getTagSet("low"));
         assertAddSuccess(taskToAdd);
         //add duplicate event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/overlapping");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/low");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
     }
 

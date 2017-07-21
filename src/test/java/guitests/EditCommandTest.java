@@ -10,15 +10,13 @@ import seedu.whatsnext.logic.commands.EditCommand;
 
 public class EditCommandTest extends TaskManagerGuiTest {
 
-    // The list of tasks in the task list panel is expected to match this list.
-    // This list is updated with every successful call to assertEditSuccess().
-
+    //@@author A0154987J
     @Test
     public void editEventTaskMultipleFieldsSuccess() throws Exception {
         commandBox.pressEnter();
         String newName = "TestTask";
         String newDescription = "Task edited successfully";
-        String newTag = "EDITEDTASK";
+        String newTag = "MEDIUM";
         String detailsToEdit = "edit 1 n/" + newName + " m/" + newDescription
                                 + " +t/" + newTag;
 
@@ -51,7 +49,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.pressEnter();
         String newName = "TestTask";
         String newDescription = "Task edited successfully";
-        String newTag = "EDITEDTASK";
+        String newTag = "LOW";
         int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask();
         String detailsToEdit = "edit " + (index + 1) + " n/" + newName + " m/" + newDescription
                                 + " +t/" + newTag;
