@@ -35,7 +35,7 @@ public class ClearCommand extends Command {
     }
 
     /**
-     * Executes the clear command and returns the result message.
+     * Executes the clear command and returns the result message via a CommandResult Object
      *
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.

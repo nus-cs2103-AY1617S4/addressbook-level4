@@ -49,7 +49,8 @@ public class ClearCommandParser {
             
 
         /**
-         * Return true only if the command after "delete" is "all", "active" or "complete".
+         * @param The string representing the list the user intends to clear
+         * @return true only if the listtpye string after the "clear" keyword is: "all", "active" or "complete".
          */
         private boolean isValid(String listType) {
             if(listType.equals(CliSyntax.PREFIX_ALL.toString()) || listType.equals(CliSyntax.PREFIX_ACTIVE.toString()) || listType.equals(CliSyntax.PREFIX_COMPLETE.toString())){
