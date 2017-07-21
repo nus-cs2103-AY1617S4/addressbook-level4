@@ -524,6 +524,7 @@ public class LogicManagerTest {
         }
 
         String invalidCommandExecute = "delete 1"; // taskManager is of size 0; index out of bounds
+
         try {
             logic.execute(invalidCommandExecute);
             fail("The expected CommandException was not thrown.");

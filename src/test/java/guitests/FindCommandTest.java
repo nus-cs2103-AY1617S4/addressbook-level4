@@ -10,6 +10,7 @@ import seedu.whatsnext.model.task.BasicTask;
 
 public class FindCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void find_nonEmptyList() {
         commandBox.pressEnter();

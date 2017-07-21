@@ -1,57 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
-    <persons>
-        <name>Hans Muster</name>
-        <phone isPrivate="false">9482424</phone>
-        <email isPrivate="false">hans@example.com</email>
-        <address isPrivate="false">4th street</address>
-    </persons>
-    <persons>
-        <name>Ruth Mueller</name>
-        <phone isPrivate="false">87249245</phone>
-        <email isPrivate="false">ruth@example.com</email>
-        <address isPrivate="false">81th street</address>
-    </persons>
-    <persons>
-        <name>Heinz Kurz</name>
-        <phone isPrivate="false">95352563</phone>
-        <email isPrivate="false">heinz@example.com</email>
-        <address isPrivate="false">wall street</address>
-    </persons>
-    <persons>
-        <name>Cornelia Meier</name>
-        <phone isPrivate="false">87652533</phone>
-        <email isPrivate="false">cornelia@example.com</email>
-        <address isPrivate="false">10th street</address>
-    </persons>
-    <persons>
-        <name>Werner Meyer</name>
-        <phone isPrivate="false">9482224</phone>
-        <email isPrivate="false">werner@example.com</email>
-        <address isPrivate="false">michegan ave</address>
-    </persons>
-    <persons>
-        <name>Lydia Kunz</name>
-        <phone isPrivate="false">9482427</phone>
-        <email isPrivate="false">lydia@example.com</email>
-        <address isPrivate="false">little tokyo</address>
-    </persons>
-    <persons>
-        <name>Anna Best</name>
-        <phone isPrivate="false">9482442</phone>
-        <email isPrivate="false">anna@example.com</email>
-        <address isPrivate="false">4th street</address>
-    </persons>
-    <persons>
-        <name>Stefan Meier</name>
-        <phone isPrivate="false">8482424</phone>
-        <email isPrivate="false">stefan@example.com</email>
-        <address isPrivate="false">little india</address>
-    </persons>
-    <persons>
-        <name>Martin Mueller</name>
-        <phone isPrivate="false">8482131</phone>
-        <email isPrivate="false">hans@example.com</email>
-        <address isPrivate="false">chicago ave</address>
-    </persons>
-</addressbook>
+<whatsnext>
+	<tasks>
+		<name>Complete</name>
+		<isCompleted>false</isCompleted>
+		<startDateTime>Sun 10 Dec 2017 06:00 PM</startDateTime>
+		<endDateTime>Wed 13 Dec 2017 12:00 PM</endDateTime>
+		<taskType>event</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+		<tagged>CS2103</tagged>
+	</tasks>
+	<tasks>
+		<name>Camping</name>
+		<isCompleted>false</isCompleted>
+		<startDateTime>Wed 20 Dec 2017 06:00 PM</startDateTime>
+		<endDateTime>Mon 25 Dec 2017 12:00 PM</endDateTime>
+		<taskType>event</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>CAMPING</tagged>
+	</tasks>
+	<tasks>
+		<name>CS2010 Problem Set</name>
+		<isCompleted>false</isCompleted>
+		<endDateTime>Thu 27 Jul 2017 11:59 PM</endDateTime>
+		<taskType>deadline</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>CS2010</tagged>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>FYP Selection</name>
+		<isCompleted>false</isCompleted>
+		<endDateTime>Fri 28 Jul 2017 11:59 PM</endDateTime>
+		<taskType>deadline</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>Tester</name>
+		<isCompleted>true</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>Meet John for dinner</name>
+		<isCompleted>false</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>DINNER</tagged>
+	</tasks>
+	<tasks>
+		<name>Meet Tom for lunch</name>
+		<isCompleted>false</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>LUNCH</tagged>
+	</tasks>
+	<tags>CS2010</tags>
+	<tags>HIGH</tags>
+	<tags>DINNER</tags>
+	<tags>CS2103</tags>
+	<tags>LUNCH</tags>
+	<tags>CAMPING</tags>
+</whatsnext>

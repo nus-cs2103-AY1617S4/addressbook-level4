@@ -7,6 +7,7 @@ import seedu.whatsnext.logic.commands.DeleteCommand;
 
 public class ClearCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void clearAll() {
 

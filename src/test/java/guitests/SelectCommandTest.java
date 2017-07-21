@@ -8,6 +8,7 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 public class SelectCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void selectTask_nonEmptyList() {
         commandBox.pressEnter();
