@@ -3,6 +3,7 @@ package seedu.ticktask.logic.parser;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ALL;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -38,6 +39,11 @@ public class ClearCommandParser {
             	throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             			ClearCommand.MESSAGE_USAGE));
             }
+            if (!isValid(argMultimap.getPreamble().trim().toString())){
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ClearCommand.MESSAGE_USAGE));
+            }
+
             
             if (haveInvalidPrefixCombination(argMultimap)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
@@ -48,6 +54,13 @@ public class ClearCommandParser {
             
         private boolean haveInvalidPrefixCombination(ArgumentMultimap argMultimap) {
             assert argMultimap != null;
-            return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE);                  
+            return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE, PREFIX_ALL);
+        }
+
+        private boolean isValid(String listType) {
+            if(listType == PREFIX_ACTIVE.toString() || listType == PREFIX_ACTIVE.toString() || listType == PREFIX_ACTIVE.toString()){
+                return true;
+            }
+            return false;
         }
 }
