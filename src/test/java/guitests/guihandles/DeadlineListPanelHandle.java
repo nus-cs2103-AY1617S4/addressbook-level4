@@ -102,6 +102,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
             return c2.getName().toString().compareTo(c1.getName().toString());
         }
     }
+
     class EndDateTimeComparator implements Comparator<BasicTask> {
         public int compare(BasicTask c1, BasicTask c2) {
             if (c1.getEndDateTime().isBefore(c2.getEndDateTime()) == true) {
