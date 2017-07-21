@@ -66,7 +66,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
      *
      * @param startPosition
      *            The starting position of the sub list.
-     * @param persons
+     * @param tasks
      *            A list of task in the correct order.
      */
     public boolean isListMatching(int startPosition, BasicTaskFeatures... tasks) throws IllegalArgumentException {
@@ -133,7 +133,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
             return false;
         }
 
-        // Return false if any of the persons doesn't match
+        // Return false if any of the tasks doesn't match
         for (int i = 0; i < taskList.size(); i++) {
             if (!tasksInList.get(startPosition + i).getKey().getName().fullTaskName
                     .equals(taskList.get(i).getName().fullTaskName)) {
@@ -170,7 +170,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
     }
 
     /**
-     * Returns the position of the person given, {@code NOT_FOUND} if not found
+     * Returns the position of the task given, {@code NOT_FOUND} if not found
      * in the list.
      */
     public int getDeadlineTaskIndex(BasicTaskFeatures targetTask) {
@@ -184,7 +184,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
     }
 
     /**
-     * Gets a person from the list by index
+     * Gets a task from the list by index
      */
     public BasicTaskFeatures getDeadlineTask(int index) {
         return getDeadlineListView().getItems().get(index).getKey();
