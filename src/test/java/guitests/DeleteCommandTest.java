@@ -12,6 +12,7 @@ import seedu.whatsnext.logic.commands.DeleteCommand;
 import seedu.whatsnext.model.task.BasicTask;
 
 import seedu.whatsnext.testutil.TestUtil;
+
 //@@author A0154986L
 public class DeleteCommandTest extends TaskManagerGuiTest {
 
