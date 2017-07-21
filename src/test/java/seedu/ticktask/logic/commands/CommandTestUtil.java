@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.TickTask;
@@ -45,7 +43,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TickTask expectedTickTask = new TickTask(actualModel.getTickTask());
-        List<ReadOnlyTask> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
+        List<ReadOnlyTask> expectedFilteredList = new ArrayList<>(actualModel.getFilteredActiveTaskList());
         List<ReadOnlyTask> expectedFilteredCompletedList = new ArrayList<>(actualModel.getFilteredCompletedTaskList());
 
         try {
@@ -54,7 +52,7 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedTickTask, actualModel.getTickTask());
-            assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
+            assertEquals(expectedFilteredList, actualModel.getFilteredActiveTaskList());
             assertEquals(expectedFilteredCompletedList, actualModel.getFilteredCompletedTaskList());
         } catch (IllegalValueException e) {
             e.printStackTrace();

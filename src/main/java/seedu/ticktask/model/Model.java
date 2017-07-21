@@ -64,7 +64,7 @@ public interface Model {
             throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
-    UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredActiveTaskList();
 
     /** Updates the filter of the filtered task list to show all tasks*/
     void updateFilteredListToShowAll();
@@ -89,8 +89,8 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     //@@author A0131884B
-    /** Updates the filter of the filtered task list if it matches the given keywords*/
-    void updateMatchedTaskList(Set<String> keywords);
+    /** Updates the filter of the filtered task list if and only if it contain all of the given keywords*/
+    void updateMatchedTaskList(String keywords);
     //@@author
 
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
@@ -105,4 +105,5 @@ public interface Model {
     String eventClash(ReadOnlyTask t);
 
     void updateFilteredCompletedTaskList(Set<String> keywords);
+
 }

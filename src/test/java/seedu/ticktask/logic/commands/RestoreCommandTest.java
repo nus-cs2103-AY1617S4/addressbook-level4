@@ -53,7 +53,7 @@ public class RestoreCommandTest {
     @Test
     public void testTaskListUpdatedCorrectly() throws CommandException, DuplicateTaskException {
         firstCommand.execute();
-        UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredTaskList();
+        UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredActiveTaskList();
         assertTrue(currentTaskList.contains(taskToRestore));
     }
     

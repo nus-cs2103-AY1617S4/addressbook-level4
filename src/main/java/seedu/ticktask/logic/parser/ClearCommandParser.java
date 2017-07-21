@@ -3,6 +3,7 @@ package seedu.ticktask.logic.parser;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ALL;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,23 +32,24 @@ public class ClearCommandParser {
          * DeleteCommand object for execution.
          * @throws ParseException if the user input does not conform the expected format
          */
-        
         public ClearCommand parse(String args) throws ParseException, IllegalValueException {
             argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
-            if (args.trim().isEmpty()) {
-            	throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            			ClearCommand.MESSAGE_USAGE));
+
+            if (!isValid(args.trim())){
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ClearCommand.MESSAGE_USAGE));
             }
-            
-            if (haveInvalidPrefixCombination(argMultimap)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
-        	} 
+
             Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
 			return new ClearCommand(listIndicatorPrefix);
-        }   
-            
-        private boolean haveInvalidPrefixCombination(ArgumentMultimap argMultimap) {
-            assert argMultimap != null;
-            return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE);                  
+        }
+        /**
+         * Return true only if the command after "delete" is "all", "active" or "complete".
+         */
+        private boolean isValid(String listType) {
+            if(listType.equals(CliSyntax.PREFIX_ALL.toString()) || listType.equals(CliSyntax.PREFIX_ACTIVE.toString()) || listType.equals(CliSyntax.PREFIX_COMPLETE.toString())){
+                return true;
+            }
+            return false;
         }
 }

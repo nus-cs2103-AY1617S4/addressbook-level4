@@ -4,15 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_TASK;
-
-import java.util.Stack;
 
 import org.junit.Test;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.task.ReadOnlyTask;
-import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 import seedu.ticktask.testutil.TaskBuilder;
 import seedu.ticktask.testutil.TypicalTasks;
@@ -27,11 +23,11 @@ public class TickTaskTest {
     
     @Test
     public void testRemoveFindTask_success() throws TaskNotFoundException {
-        ReadOnlyTask task = tickTask.getTaskList().get(0);
+        ReadOnlyTask task = tickTask.getActiveTaskList().get(0);
         
         tickTask.removeFindTask(task);
         
-        assertFalse(tickTask.getTaskList().contains(task));
+        assertFalse(tickTask.getActiveTaskList().contains(task));
         
         ReadOnlyTask completedTask = tickTaskCompleted.getCompletedTaskList().get(0);
         
@@ -53,11 +49,11 @@ public class TickTaskTest {
     
     @Test
     public void testRemoveIndexActiveTask_success() throws TaskNotFoundException {
-        ReadOnlyTask task = tickTask.getTaskList().get(0);
+        ReadOnlyTask task = tickTask.getActiveTaskList().get(0);
         
         tickTask.removeFindTask(task);
         
-        assertFalse(tickTask.getTaskList().contains(task));
+        assertFalse(tickTask.getActiveTaskList().contains(task));
     }
     
     @Test
@@ -73,11 +69,11 @@ public class TickTaskTest {
     
     @Test
     public void testCompleteTask_success() throws IllegalValueException, TaskNotFoundException {
-        ReadOnlyTask task = tickTask.getTaskList().get(0);
+        ReadOnlyTask task = tickTask.getActiveTaskList().get(0);
         tickTask.completeTask(task);
         
         assertTrue(tickTask.getCompletedTaskList().contains(task));
-        assertFalse(tickTask.getTaskList().contains(task));
+        assertFalse(tickTask.getActiveTaskList().contains(task));
     }
     
     @Test
@@ -93,11 +89,11 @@ public class TickTaskTest {
     
     @Test
     public void testRestoreTask_success() throws IllegalValueException, TaskNotFoundException {
-        ReadOnlyTask task = tickTask.getTaskList().get(0);
+        ReadOnlyTask task = tickTask.getActiveTaskList().get(0);
         tickTask.completeTask(task);
         tickTask.restoreTask(task);
         
-        assertTrue(tickTask.getTaskList().contains(task));
+        assertTrue(tickTask.getActiveTaskList().contains(task));
         assertFalse(tickTask.getCompletedTaskList().contains(task));
     }
     

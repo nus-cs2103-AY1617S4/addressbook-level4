@@ -42,7 +42,7 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with Tick Task program: " + tickTask + " and user prefs " + userPrefs);
 
         this.currentProgramInstance = new TickTask(tickTask);
-        filteredActiveTasks = new FilteredList<>(this.currentProgramInstance.getTaskList());
+        filteredActiveTasks = new FilteredList<>(this.currentProgramInstance.getActiveTaskList());
         filteredCompletedTasks = new FilteredList<>(this.currentProgramInstance.getCompletedTaskList());
         previousProgramInstances = new Stack<TickTask>();
         futureProgramInstances = new Stack<TickTask>();
@@ -102,34 +102,22 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     //@@author A0131884B
-    @Override
-    public void updateMatchedTaskList(Set<String> keywords) {
-        updateMatchedTaskList(new PredicateExpression(new NameQualifier(keywords)));
-
-    }
-
-    private void updateMatchedTaskList(Expression expression) {
-        filteredActiveTasks.setPredicate(expression::matches);
-        filteredCompletedTasks.setPredicate(expression::matches);
-    }
 
     @Override
-
     /**Deletes the given task using find task name method.
-          */
+     */
     public synchronized void deleteFindTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
         saveInstance();
         currentProgramInstance.removeFindTask(target);
         indicateTickTaskModelChanged();
     }
     /**Deletes the given active task using find task index method
-          */
+    */
     public synchronized void deleteIndexActiveTask(ReadOnlyTask target) throws TaskNotFoundException, DuplicateTaskException {
         saveInstance();
         currentProgramInstance.removeIndexActiveTask(target);
         indicateTickTaskModelChanged();
     }
-
 
     public synchronized void deleteIndexCompleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         saveInstance();
@@ -225,7 +213,7 @@ public class ModelManager extends ComponentManager implements Model {
      * Return a list of {@code ReadOnlyTask} backed by the internal list of {@code TickTask}
      */
     @Override
-    public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
+    public UnmodifiableObservableList<ReadOnlyTask> getFilteredActiveTaskList() {
         return new UnmodifiableObservableList<>(filteredActiveTasks);
     }
 
@@ -239,7 +227,20 @@ public class ModelManager extends ComponentManager implements Model {
         filteredActiveTasks.setPredicate(null);
         filteredCompletedTasks.setPredicate(null);
     }
-    
+
+    //@@author A0131884B
+    @Override
+    public void updateMatchedTaskList(String keywords) {
+        updateMatchedTaskList(new PredicateExpression(new newNameQualifier(keywords)));
+
+    }
+
+    private void updateMatchedTaskList(Expression expression) {
+        filteredActiveTasks.setPredicate(expression::satisfies);
+        filteredCompletedTasks.setPredicate(expression::satisfies);
+    }
+    //@@author
+
     //@@author A0138471A
     @Override
     public void updateFilteredListToShowEvent() {
@@ -301,7 +302,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
 
     }
-    
+
     @Override
     public void updateFilteredCompletedTaskList(Set<String> keywords) {
         updateFilteredCompletedTaskList(new PredicateExpression(new NameQualifier(keywords)));
@@ -311,10 +312,10 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredTaskList(Expression expression) {
         filteredActiveTasks.setPredicate(expression::satisfies);
     }
-    
+
     private void updateFilteredCompletedTaskList(Expression expression) {
         filteredCompletedTasks.setPredicate(expression::satisfies);
-    } 
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -341,9 +342,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
-    //@@author A0131884B
-        boolean matches(ReadOnlyTask task);
-    //@@author
         String toString();
     }
 
@@ -360,12 +358,6 @@ public class ModelManager extends ComponentManager implements Model {
             return qualifier.run(task);
         }
 
-    //@@author A0131884B
-        @Override
-        public boolean matches(ReadOnlyTask task) {
-            return qualifier.match(task);
-        }
-    //@@author
         @Override
         public String toString() {
             return qualifier.toString();
@@ -374,9 +366,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
-    //@@author A0131884B
-        boolean match(ReadOnlyTask task);
-    //@@author
         String toString();
     }
 
@@ -394,19 +383,33 @@ public class ModelManager extends ComponentManager implements Model {
                     .findAny()
                     .isPresent();
         }
-    //@@author A0131884B
-        @Override
-        public boolean match(ReadOnlyTask task) {
-            return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.matchesStringIgnoreCase(task.getName().fullName, keyword))
-                    .findAny()
-                    .isPresent();
-        }
-    //@@author
+
         @Override
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+    //@@author A0131884B
+    private class newNameQualifier implements Qualifier {
+        private String nameKeyWord;
+
+
+        newNameQualifier(String nameKeyWord) {
+            this.nameKeyWord = nameKeyWord;
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            String taskName = task.getName().fullName;
+            return taskName.contains(nameKeyWord);
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", nameKeyWord);
+        }
+    }
+    //@@author
 
 }

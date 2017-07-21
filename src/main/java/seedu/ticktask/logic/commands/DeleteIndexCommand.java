@@ -30,7 +30,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
             UnmodifiableObservableList<ReadOnlyTask> listToDeleteFrom;
             assert listIndicatorPrefix != null;
             if (listIndicatorPrefix.equals(PREFIX_ACTIVE)) {
-                  listToDeleteFrom = model.getFilteredTaskList();
+                  listToDeleteFrom = model.getFilteredActiveTaskList();
             } else {
                   assert listIndicatorPrefix.equals(PREFIX_COMPLETE);
                   listToDeleteFrom = model.getFilteredCompletedTaskList();

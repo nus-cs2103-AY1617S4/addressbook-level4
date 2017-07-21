@@ -157,7 +157,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
+        public UnmodifiableObservableList<ReadOnlyTask> getFilteredActiveTaskList() {
             fail("This method should not be called.");
             return null;
         }
@@ -173,7 +173,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateMatchedTaskList(Set<String> keywords) {
+        public void updateMatchedTaskList(String keywords) {
 
         }
 

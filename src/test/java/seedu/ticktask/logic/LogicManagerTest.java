@@ -6,10 +6,7 @@ import static org.junit.Assert.fail;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.ticktask.model.util.SampleDataUtil.getTagSet;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_TASK;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_THIRD_TASK;
@@ -35,15 +32,12 @@ import seedu.ticktask.commons.events.model.TickTaskChangedEvent;
 import seedu.ticktask.commons.events.ui.JumpToListRequestEvent;
 import seedu.ticktask.commons.events.ui.ShowHelpRequestEvent;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-import seedu.ticktask.logic.Logic;
-import seedu.ticktask.logic.LogicManager;
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.EditCommand;
-import seedu.ticktask.logic.commands.ExitCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.commands.HelpCommand;
 import seedu.ticktask.logic.commands.HistoryCommand;
@@ -63,7 +57,6 @@ import seedu.ticktask.model.task.Name;
 import seedu.ticktask.model.task.Task;
 import seedu.ticktask.model.task.DueTime;
 import seedu.ticktask.testutil.TaskBuilder;
-import seedu.ticktask.testutil.TypicalTasks;
 
 //@@author A0138471A
 public class LogicManagerTest {
@@ -357,7 +350,7 @@ public class LogicManagerTest {
         assertCommandSuccess(SelectCommand.COMMAND_WORD + " 2",
                 String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedModel);
         assertEquals(INDEX_SECOND_TASK, targetedJumpIndex);
-        assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
+        assertEquals(model.getFilteredActiveTaskList().get(1), threeTasks.get(1));
     }
   //@@author 
     
@@ -410,7 +403,7 @@ public class LogicManagerTest {
         expectedModel.updateFilteredTaskList(new HashSet<>(Collections.singletonList("KEY")));
         helper.addToModel(model, fourTasks);
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredActiveTaskList().size()),
                 expectedModel);
     }
 
@@ -427,7 +420,7 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
-                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredActiveTaskList().size()),
                 expectedModel);
     }
 
@@ -445,7 +438,7 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess(FindCommand.COMMAND_WORD + " key rAnDoM",
-                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredTaskList().size()),
+                Command.getMessageForTaskListShownSummary(expectedModel.getFilteredActiveTaskList().size()),
                 expectedModel);
     }
 
