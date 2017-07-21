@@ -139,6 +139,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      * Sorts event tasks by end date and time first, then start date and time.
      */
     private void sortEvents(ObservableList<BasicTask> eventList) {
+        Collections.sort(eventList, new TaskNameComparator());
         Collections.sort(eventList, new EndDateTimeComparator());
         Collections.sort(eventList, new StartDateTimeComparator());
     }
@@ -148,6 +149,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
      * Sorts deadline tasks by end date and time only.
      */
     private void sortDeadlines(ObservableList<BasicTask> deadlineList) {
+        Collections.sort(deadlineList, new TaskNameComparator());
         Collections.sort(deadlineList, new EndDateTimeComparator());
     }
 
@@ -213,6 +215,16 @@ public class UniqueTaskList implements Iterable<BasicTask> {
                 return -1;
             }
             return 1;
+        }
+    }
+
+    //@@author A0154986L
+    /***
+     * Compares the task name value of the tasks.
+     */
+    class TaskNameComparator implements Comparator<BasicTask> {
+        public int compare(BasicTask c1, BasicTask c2) {
+            return c2.getName().toString().compareTo(c1.getName().toString());
         }
     }
 

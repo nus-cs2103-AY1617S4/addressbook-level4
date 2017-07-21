@@ -103,8 +103,8 @@ public class TypicalTasks {
 
     //@@author A0142675B
     public BasicTask[] getTypicalTasks() {
-        return new BasicTask[]{cs2010ProblemSet, meetJohnForDinner, completeCS2103Assignment,
-                               meetTomForLunch, camping, fypSelection, tester};
+        return new BasicTask[]{completeCS2103Assignment, camping, cs2010ProblemSet, fypSelection,
+                                  tester, meetJohnForDinner, meetTomForLunch};
     }
 
     public TaskManager getTypicalTaskManager() {
