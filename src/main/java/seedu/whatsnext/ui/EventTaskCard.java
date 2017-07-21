@@ -49,7 +49,7 @@ public class EventTaskCard extends UiPart<Region> {
         if (!task.getAllTags().contains("OVERLAP")) {
             notice.setVisible(false);
         }
-        if (task.getStartDateTime().isBefore(new Date())) {
+        if (task.getEndDateTime().isBefore(new Date())) {
             from.setStyle("-fx-background-color : #ff0000;");
             to.setStyle("-fx-background-color : #ff0000;");
         }
