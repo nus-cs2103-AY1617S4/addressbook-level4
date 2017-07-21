@@ -16,11 +16,11 @@ public class FindCommandTest extends TaskManagerGuiTest {
         commandBox.pressEnter();
         assertFindResult(FindCommand.COMMAND_WORD + " CS1020E"); // no results
         assertFindResult(FindCommand.COMMAND_WORD + " High",
-                td.completeCS2103Assignment, td.cs2010ProblemSet, td.fypSelection, td.tester); // multiple results
+                td.completeCS2103Assignment, td.cs2010ProblemSet, td.tester); // multiple results
 
         //find after deleting one result
         commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
-        assertFindResult(FindCommand.COMMAND_WORD + " High", td.cs2010ProblemSet, td.fypSelection, td.tester);
+        assertFindResult(FindCommand.COMMAND_WORD + " High", td.cs2010ProblemSet, td.tester);
     }
 
     @Test
