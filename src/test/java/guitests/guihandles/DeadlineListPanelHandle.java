@@ -128,6 +128,7 @@ public class DeadlineListPanelHandle extends GuiHandle {
 
         // Return false if the list in panel is too short to contain the given
         // list
+
         if (startPosition + taskList.size() > tasksInList.size()) {
             return false;
         }
