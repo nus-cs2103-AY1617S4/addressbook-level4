@@ -16,7 +16,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.pressEnter();
         String newName = "TestTask";
         String newDescription = "Task edited successfully";
-        String newTag = "EDITEDTASK";
+        String newTag = "MEDIUM";
         String detailsToEdit = "edit 1 n/" + newName + " m/" + newDescription
                                 + " +t/" + newTag;
 
@@ -49,7 +49,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.pressEnter();
         String newName = "TestTask";
         String newDescription = "Task edited successfully";
-        String newTag = "EDITEDTASK";
+        String newTag = "LOW";
         int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask();
         String detailsToEdit = "edit " + (index + 1) + " n/" + newName + " m/" + newDescription
                                 + " +t/" + newTag;
