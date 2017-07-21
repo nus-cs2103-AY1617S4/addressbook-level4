@@ -60,6 +60,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
+    public static final String MESSAGE_TAG_NOT_FOUND = "The given tag is not found";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -249,7 +250,7 @@ public class EditCommand extends Command {
                 if (updatedTags.contains(tagToBeRemoved)) {
                     updatedTags.remove(tagToBeRemoved);
                 } else {
-                    throw new TagNotFoundException();
+                    throw new TagNotFoundException(MESSAGE_TAG_NOT_FOUND);
                 }
             }
         }

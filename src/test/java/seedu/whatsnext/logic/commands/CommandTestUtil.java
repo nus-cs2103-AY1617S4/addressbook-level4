@@ -34,6 +34,7 @@ public class CommandTestUtil {
     }
 
     //@@author A0156106M
+    //@@author A0142675B
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
@@ -64,6 +65,11 @@ public class CommandTestUtil {
 
             TaskManager actualTaskManager = new TaskManager(actualModel.getTaskManager());
             actualTaskManager.setTags(tagList);
+            assertEquals(expectedMessage, e.getMessage());
+            assertEquals(expectedTaskManager, actualTaskManager);
+            assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
+        } catch (TagNotFoundException e) {
+            TaskManager actualTaskManager = new TaskManager(actualModel.getTaskManager());
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedTaskManager, actualTaskManager);
             assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());

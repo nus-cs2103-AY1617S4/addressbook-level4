@@ -10,6 +10,7 @@ import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTDEM
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_PROJECTMEETING;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_NAME_READBORNACRIME;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_STARTDATETIME_PROJECTMEETING;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2010;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_LOW;
@@ -101,6 +102,22 @@ public class EditCommandTest {
         expectedModel.updateTask(lastTask, editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_removeNotExistingTagUnfilteredList_failure() throws Exception {
+        BasicTask editedTask = new TaskBuilder().withName(VALID_NAME_PROJECTMEETING)
+                .withStartDateTime(VALID_STARTDATETIME_PROJECTMEETING)
+                .withEndDateTime(VALID_ENDDATETIME_PROJECTMEETING)
+                .withTags(VALID_TAG_HIGH)
+                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withNewTags(VALID_TAG_HIGH)
+                .withRemoveTags(VALID_TAG_CS2010).build();
+        EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, descriptor);
+
+        String expectedMessage = EditCommand.MESSAGE_TAG_NOT_FOUND;
+
+        CommandTestUtil.assertCommandFailure(editCommand, model, expectedMessage);
     }
 
 
