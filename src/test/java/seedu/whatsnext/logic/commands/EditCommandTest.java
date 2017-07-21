@@ -14,6 +14,7 @@ import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_CS2103;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_HIGH;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_LOW;
 import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_MEDIUM;
+import static seedu.whatsnext.testutil.EditCommandTestUtil.VALID_TAG_OVERLAP;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 
@@ -115,7 +116,7 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
+
     @Test
     public void execute_filteredList_success() throws Exception {
         showFirstTaskOnly();
@@ -128,11 +129,32 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
-        expectedModel.updateTask(model.getFilteredTaskList().get(0), editedTask);
         showFirstTaskOnly(expectedModel);
+        expectedModel.updateTask(model.getFilteredTaskList().get(0), editedTask);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
+
+    @Test
+    public void execute_editEventDateTimeUnfilteredList_success() throws Exception {
+        final String validOverlapStartDateTime = "22 Dec 10am";
+        final String validOverlapEndDateTime = "24 Dec 12pm";
+        BasicTask editedTask = new TaskBuilder().withName(VALID_NAME_PROJECTMEETING)
+                .withStartDateTime(validOverlapStartDateTime)
+                .withEndDateTime(validOverlapEndDateTime)
+                .withTags(VALID_TAG_HIGH, VALID_TAG_OVERLAP)
+                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withNewTags(VALID_TAG_HIGH)
+                .withRemoveTags(VALID_TAG_CS2103).build();
+        EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
+        expectedModel.updateTask(model.getFilteredTaskList().get(0), editedTask);
+
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
 
     //@@author A0156106M
     @Test
