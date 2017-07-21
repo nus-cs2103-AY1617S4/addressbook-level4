@@ -234,7 +234,7 @@ The `Storage` component,
 
 ### 2.6. Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.whatsnext.commons` package.
 
 ## 3. Implementation
 

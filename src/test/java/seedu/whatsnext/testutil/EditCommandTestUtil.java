@@ -20,6 +20,7 @@ public class EditCommandTestUtil {
     public static final String VALID_TAG_HIGH = "HIGH";
     public static final String VALID_TAG_MEDIUM = "MEDIUM";
     public static final String VALID_TAG_LOW = "LOW";
+    public static final String VALID_TAG_OVERLAP = "OVERLAP";
     public static final String VALID_DESCRIPTION_PROJECTMEETING = "Meet at Mac Common";
     public static final String VALID_DESCRIPTION_PROJECTDEMO = "Use Jar file instead of IDE";
     public static final String VALID_DESCRIPTION_READBORNACRIME = "By Trevor Noah";
