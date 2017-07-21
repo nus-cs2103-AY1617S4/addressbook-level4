@@ -227,7 +227,7 @@ public class UniqueTaskList implements Iterable<BasicTask> {
             return c2.getName().toString().compareTo(c1.getName().toString());
         }
     }
-    
+
     //@@author
     public UnmodifiableObservableList<BasicTask> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
