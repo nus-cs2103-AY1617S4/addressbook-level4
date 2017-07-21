@@ -6,6 +6,7 @@ import seedu.whatsnext.commons.core.Messages;
 
 public class MarkCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void markInvalidIndexFailure() {
         int beforeSize = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()
