@@ -15,11 +15,10 @@ import seedu.ticktask.logic.commands.exceptions.CommandException;
  * Clears active, complete or all tasks in the program.
  */
 //@@author A0131884B
-
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "The targeted list has been cleared!";
+    public static final String MESSAGE_SUCCESS = "The target list has been cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Clear all tasks, active tasks or completed tasks.\n"
             + "Example: " + COMMAND_WORD + " all\n"
             + "Example: " + COMMAND_WORD + " active\n"

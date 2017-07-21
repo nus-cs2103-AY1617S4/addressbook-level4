@@ -10,6 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     //@@author A0131884B
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED = "No tasks to be found";
     public static final String MESSAGE_TASK_DESCRIPTION = "Description: ";
     //@@author
 }

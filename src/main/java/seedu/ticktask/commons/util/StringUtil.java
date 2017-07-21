@@ -41,31 +41,6 @@ public class StringUtil {
         return false;
     }
 
-    //@@author A0131884B
-    /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
-     *   <br>examples:<pre>
-     *       containsStringIgnoreCase("ABc def", "abc") == false
-     *       containsStringIgnoreCase("def", "DEF") == true
-     *       containsStringIgnoreCase("ABC", "AB") == false //not a full word match
-     *       </pre>
-     * @param sentence cannot be null
-     * @param string cannot be null, cannot be empty, must be a single word
-     */
-    public static boolean matchesStringIgnoreCase(String sentence, String string) {
-        requireNonNull(sentence);
-        requireNonNull(string);
-        String preppedWord = string.trim().toLowerCase();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        if (sentence.toLowerCase().equals(preppedWord)) {
-            return true;
-        }
-
-        return false;
-    }
-    //@@author
-
     /**
      * Returns a detailed message of the t, including the stack trace.
      */

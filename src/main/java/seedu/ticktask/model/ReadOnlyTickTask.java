@@ -13,7 +13,7 @@ public interface ReadOnlyTickTask {
      * Returns an unmodifiable view of the task list.
      * This list will not contain any duplicate task.
      */
-    ObservableList<ReadOnlyTask> getTaskList();
+    ObservableList<ReadOnlyTask> getActiveTaskList();
 
     ObservableList<ReadOnlyTask> getCompletedTaskList();
 

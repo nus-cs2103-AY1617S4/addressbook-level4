@@ -26,9 +26,9 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
                  + PREFIX_ACTIVE + " ]"
                  + " INDEX to specify which task to delete. \nUse 'list' command to go back after finishing deletion.";
 
-        private Set<String> keywords;
+        private String keywords;
 
-        public DeleteFindCommand(Set<String> keywords) {
+        public DeleteFindCommand(String keywords) {
                 this.keywords = keywords;
             }
 
@@ -43,7 +43,7 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
             * find out whether only 1 task is found.
             */
             List<ReadOnlyTask> tempList = new ArrayList<>();
-            tempList.addAll(model.getFilteredTaskList());
+            tempList.addAll(model.getFilteredActiveTaskList());
             tempList.addAll(model.getFilteredCompletedTaskList());
 
             if (tempList.size() == 1) {

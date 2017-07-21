@@ -3,7 +3,6 @@ package seedu.ticktask.logic.parser;
 import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
-import seedu.ticktask.logic.commands.FindActiveCommand;
 import seedu.ticktask.logic.commands.FindCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 import seedu.ticktask.model.Model;
@@ -58,7 +57,7 @@ public class FindCommandParserTest {
         
         Model emptyModel = new ModelManager();
                 
-        assertEquals(model.getFilteredTaskList(), emptyModel.getFilteredTaskList());
+        assertEquals(model.getFilteredActiveTaskList(), emptyModel.getFilteredActiveTaskList());
         assertEquals(model.getFilteredCompletedTaskList(), emptyModel.getFilteredCompletedTaskList());
     }
 }

@@ -2,8 +2,6 @@ package seedu.ticktask.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +11,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.ticktask.commons.core.UnmodifiableObservableList;
 import seedu.ticktask.model.tag.Tag;
 import seedu.ticktask.model.tag.UniqueTagList;
@@ -73,7 +70,7 @@ public class TickTask implements ReadOnlyTickTask {
     public void resetData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
-            setTasks(newData.getTaskList(), newData.getCompletedTaskList());
+            setTasks(newData.getActiveTaskList(), newData.getCompletedTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "The TickTask program should not have duplicate tasks";
         }
@@ -206,7 +203,7 @@ public class TickTask implements ReadOnlyTickTask {
     public void resetActiveData(ReadOnlyTickTask newData) {
         requireNonNull(newData);
         try {
-            setActiveData(newData.getTaskList());
+            setActiveData(newData.getActiveTaskList());
         } catch (DuplicateTaskException e) {
             assert false : "The TickTask program should not have duplicate tasks";
         }
@@ -305,7 +302,7 @@ public class TickTask implements ReadOnlyTickTask {
     }
 
     @Override
-    public ObservableList<ReadOnlyTask> getTaskList() {
+    public ObservableList<ReadOnlyTask> getActiveTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
 
