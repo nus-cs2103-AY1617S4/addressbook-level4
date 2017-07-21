@@ -51,9 +51,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DELETE_TAG + "TAG]...\n"
             + "Example 1 : " + COMMAND_WORD + " 1 "
             + PREFIX_START_DATETIME + " 10 July 10PM"
-            + PREFIX_END_DATETIME + " 11 July 12AM"
+            + PREFIX_END_DATETIME + " 11 July 12AM\n"
             + "Example 2 : " + COMMAND_WORD + " 2 "
-            + PREFIX_NAME + "to project meeting "
+            + PREFIX_NAME + "project meeting "
             + PREFIX_NEW_TAG + "HIGH"
             + PREFIX_DELETE_TAG + "RELAX";
 
