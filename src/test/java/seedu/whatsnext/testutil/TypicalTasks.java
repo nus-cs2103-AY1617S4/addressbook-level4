@@ -29,7 +29,7 @@ public class TypicalTasks {
     public TypicalTasks() {
         try {
             meetJohnForDinner = new TaskBuilder().withName("Meet John for dinner")
-                                .withTags("DINNER").build();
+                                .withTags("DINNER", "MEDIUM").build();
             completeCS2103Assignment = new TaskBuilder().withName("Complete")
                     .withStartDateTime("10 Dec 2017 6pm")
                     .withEndDateTime("13 Dec 12pm")
@@ -41,11 +41,11 @@ public class TypicalTasks {
                       .withEndDateTime("25 Dec 12pm")
                       .withTags("CAMPING").build();
             cs2010ProblemSet = new TaskBuilder().withName("CS2010 Problem Set")
-                               .withEndDateTime("next thursday")
+                               .withEndDateTime("last thursday")
                                .withTags("HIGH", "CS2010").build();
             fypSelection = new TaskBuilder().withName("FYP Selection")
                            .withEndDateTime("Friday")
-                           .withTags("HIGH").build();
+                           .withTags("LOW").build();
             readaBook = new TaskBuilder().withName("Read a Book").build();
 
             // Tasks used to test Unmark Command
