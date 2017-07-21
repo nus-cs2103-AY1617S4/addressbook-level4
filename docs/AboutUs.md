@@ -76,15 +76,15 @@ We are a team Engineering students based in the [School of Computing, National U
 * Sorting
 
 **Code Written:**
-* [Functional Code](../collated/main/A01549886L.md)
-* [Test Code](../collated/test/A01549886L.md)
+* [Functional Code](../collated/main/A0154986L.md)
+* [Test Code](../collated/test/A0154986L.md)
 
 **Other major contributions:**
 * Debugging
 
 -----
 #### [Aung Swumm Htet Pyi Aye](https://github.com/ashpa)
-<img src="images/aung.png" width="150">
+<img src="images/aung.png" width="150"><br>
 **Role:** Developer
 
 **Components in charge of:** Ui & Ux
