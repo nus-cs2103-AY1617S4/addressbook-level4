@@ -39,7 +39,9 @@ public class ClearCommandParser {
             	throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             			ClearCommand.MESSAGE_USAGE));
             }
-            if (!isValid(argMultimap.getPreamble().trim().toString())){
+            System.out.println(args.trim());
+            //if (!isValid(argMultimap.getPreamble().trim().toString()))
+            if (!isValid(args.trim())){
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ClearCommand.MESSAGE_USAGE));
             }
