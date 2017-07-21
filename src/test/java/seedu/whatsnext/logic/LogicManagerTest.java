@@ -156,7 +156,7 @@ public class LogicManagerTest {
      * Executes the command, confirms that the result message is correct and that the expected exception is thrown,
      * and also confirms that the following two parts of the LogicManager object's state are as expected:<br>
      *      - the internal model manager data are same as those in the {@code expectedModel} <br>
-     *      - {@code expectedModel}'s address book was saved to the storage file.
+     *      - {@code expectedModel}'s task list was saved to the storage file.
      */
     private <T> void assertCommandBehavior(Class<T> expectedException, String inputCommand,
                                            String expectedMessage, Model expectedModel) {
@@ -523,7 +523,7 @@ public class LogicManagerTest {
             assertEquals(MESSAGE_UNKNOWN_COMMAND, pe.getMessage());
         }
 
-        String invalidCommandExecute = "delete 1"; // address book is of size 0; index out of bounds
+        String invalidCommandExecute = "delete 1"; // task list is of size 0; index out of bounds
         try {
             logic.execute(invalidCommandExecute);
             fail("The expected CommandException was not thrown.");

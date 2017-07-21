@@ -18,6 +18,7 @@ import seedu.whatsnext.model.task.TaskName;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void add() throws IllegalValueException {
         commandBox.pressEnter();

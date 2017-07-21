@@ -33,7 +33,7 @@ import seedu.whatsnext.testutil.TestUtil;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 /**
-  * A GUI Test class for AddressBook.
+  * A GUI Test class for TaskManager.
   */
 public abstract class TaskManagerGuiTest {
 

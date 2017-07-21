@@ -39,7 +39,7 @@ public class DeadlineTaskCard extends UiPart<Region> {
         setPriorityColors(task);
         initTags(task);
         if (task.getEndDateTime().isBefore(new Date())) {
-            cardBackground.setStyle("-fx-background-color : #ff00ff;");
+            dueBy.setStyle("-fx-background-color : #ff0000;");
         }
     }
 

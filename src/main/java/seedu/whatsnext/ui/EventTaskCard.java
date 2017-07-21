@@ -50,7 +50,8 @@ public class EventTaskCard extends UiPart<Region> {
             notice.setVisible(false);
         }
         if (task.getStartDateTime().isBefore(new Date())) {
-            cardBackground.setStyle("-fx-background-color : #ff00ff;");
+            from.setStyle("-fx-background-color : #ff0000;");
+            to.setStyle("-fx-background-color : #ff0000;");
         }
     }
 

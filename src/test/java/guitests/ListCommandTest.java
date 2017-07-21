@@ -7,6 +7,7 @@ import seedu.whatsnext.logic.commands.ListCommand;
 
 public class ListCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void listInvalidCommandFailure() {
         commandBox.pressEnter();
