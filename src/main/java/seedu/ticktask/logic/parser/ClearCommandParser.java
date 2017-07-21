@@ -17,21 +17,22 @@ import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 //@@author A0131884B
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new Clear Command object
  */
 public class ClearCommandParser {
 
     private ArgumentMultimap argMultimap;
 
-        public ArgumentMultimap getArgMultimapDelete() {
+        public ArgumentMultimap getArgMultimapClear() {
                 return argMultimap;
             }
+        
         /**
-         * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns an
-         * DeleteCommand object for execution.
+         * Parses the given {@code String} of arguments in the context of the ClearCommand and returns an
+         * ClearCommand object for execution.
+         * @param String containing keywords by user indicating list to clear: 'clear all', 'clear complete', or 'clear active'
          * @throws ParseException if the user input does not conform the expected format
          */
-        
         public ClearCommand parse(String args) throws ParseException, IllegalValueException {
             argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
             if (args.trim().isEmpty()) {
@@ -46,6 +47,12 @@ public class ClearCommandParser {
 			return new ClearCommand(listIndicatorPrefix);
         }   
             
+        
+        /**
+         * 
+         * @param argMultimap used to map prefixes to their respective string
+         * @return whether or not the given string parsed by the user contains the 'active' or 'complete' prefix
+         */
         private boolean haveInvalidPrefixCombination(ArgumentMultimap argMultimap) {
             assert argMultimap != null;
             return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE);                  
