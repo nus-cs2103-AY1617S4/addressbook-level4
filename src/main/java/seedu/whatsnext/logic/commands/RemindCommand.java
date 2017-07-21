@@ -14,7 +14,9 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " 10 minute/6 hour/3 day/...week/month/year\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sets the remind period\n"
+            + COMMAND_WORD + " 10 minute/6 hour/3 day/...week/month/year\n"
+            + "Example: " + COMMAND_WORD + " 6 hour\n"
             + "Sets reminders to be i.e. 6 hour before events and deadlines\n"
             + "NOTE: Do not put 's' behind the time unit";
 
