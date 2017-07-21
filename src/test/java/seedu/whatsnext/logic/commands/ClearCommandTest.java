@@ -20,7 +20,7 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.testutil.TypicalTasks;
-
+//@@author A0149894H
 public class ClearCommandTest {
 
     //@@author A0149894H
@@ -65,6 +65,9 @@ public class ClearCommandTest {
      * - the taskManager and filtered task list in {@code model} is empty <br>
      */
     //@@author A0149894H
+    /**
+     * Asserts that clear all command creates empty task list.
+     */
     private void assertCommandSuccess(Model model) {
         ClearCommand command = new ClearCommand(PREFIX_ALL.toString());
         command.setData(model, new CommandHistory());
@@ -74,6 +77,9 @@ public class ClearCommandTest {
         assertEquals(new ModelManager(), model);
     }
     //@@author A0149894H
+    /**
+     * Asserts that clear incomplete returns task list with only complete tasks
+     */
     private void assertIncompleteCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerIncomplete = new TaskManager();
         for (BasicTask task: model.getTaskManager().getTaskList()) {
@@ -93,6 +99,9 @@ public class ClearCommandTest {
 
     }
     //@@author A0149894H
+    /**
+     * Asserts that clear completed returns task list of only incomplete tasks
+     */
     private void assertCompletedCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerComplete = new TaskManager();
         for (BasicTask task: model.getTaskManager().getTaskList()) {
@@ -111,7 +120,10 @@ public class ClearCommandTest {
 
     }
 
-
+    //@@author A0149894H
+    /**
+     * Asserts that clear expired command returns task list of not expired tasks
+     */
     private void assertExpiredCommandSuccess(Model model) throws DuplicateTaskException {
         TaskManager taskManagerNotExpired = new TaskManager();
         Date currentTime = new Date();
