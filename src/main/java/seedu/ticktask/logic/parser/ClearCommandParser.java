@@ -58,7 +58,7 @@ public class ClearCommandParser {
         }
 
         private boolean isValid(String listType) {
-            if(listType == PREFIX_ACTIVE.toString() || listType == PREFIX_ACTIVE.toString() || listType == PREFIX_ACTIVE.toString()){
+            if(listType.equals(PREFIX_ACTIVE.toString()) || listType.equals(PREFIX_ACTIVE.toString()) || listType.equals(PREFIX_ACTIVE.toString())){
                 return true;
             }
             return false;
