@@ -3,6 +3,7 @@ package guitests;
 import org.junit.Test;
 
 import seedu.whatsnext.commons.core.Messages;
+import seedu.whatsnext.logic.commands.MarkCommand;
 
 public class MarkCommandTest extends TaskManagerGuiTest {
 
@@ -25,6 +26,20 @@ public class MarkCommandTest extends TaskManagerGuiTest {
         assertListSize(beforeSize - 1);
         commandBox.runCommand("list completed");
         assertListSize(2);
+    }
+
+    //@@author A0154986L
+    @Test
+    public void markValidIndexAlreadyMarked() {
+        commandBox.pressEnter();
+        int beforeSize = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()
+                        + floatingListPanel.getNumberOfTask();
+        commandBox.runCommand("mark 1");
+        assertListSize(beforeSize - 1);
+        commandBox.runCommand("list completed");
+        assertListSize(2);
+        commandBox.runCommand("mark 1");
+        assertResultMessage(MarkCommand.MESSAGE_TASK_MARKED);
     }
 
 }
