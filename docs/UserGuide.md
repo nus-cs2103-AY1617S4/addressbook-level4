@@ -113,7 +113,7 @@ Examples:<br>
 ### 2.3. Listing tasks : `list`
 
 Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) expired, (5) all tasks of the particular type in the task manager.<br>
-All expired tasks' DateTime will be coloured as red. 
+All expired tasks' DateTime will be coloured as red.
 Format:  <br>
 * List upcoming incomplete tasks: `list` <br>
 * List all incomplete tasks: `list incomplete` <br>
