@@ -5,8 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_TASK;
 
-import java.util.Stack;
-
 import org.junit.Test;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
@@ -70,7 +68,7 @@ public class ModelManagerTest {
     
     @Test
     public void testDeleteFindTask() throws DuplicateTaskException, TaskNotFoundException {
-        ReadOnlyTask taskToDelete = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToDelete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         modelManager.deleteFindTask(taskToDelete);
         
         assertFalse(modelManager.equals(modelManagerCopy));
@@ -78,7 +76,7 @@ public class ModelManagerTest {
     
     @Test
     public void testDeleteIndexActiveTask() throws DuplicateTaskException, TaskNotFoundException {
-        ReadOnlyTask taskToDelete = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToDelete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         modelManager.deleteIndexActiveTask(taskToDelete);
         
         assertFalse(modelManager.equals(modelManagerCopy));
@@ -86,7 +84,7 @@ public class ModelManagerTest {
     
     @Test
     public void testDeleteIndexCompleteTask() throws TaskNotFoundException {
-        ReadOnlyTask taskToComplete = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToComplete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
         modelManager.completeTask(taskToComplete);
         modelManagerCopy.completeTask(taskToComplete);
@@ -108,7 +106,7 @@ public class ModelManagerTest {
     
     @Test
     public void testUpdateTask() throws IllegalValueException, TaskNotFoundException {
-        ReadOnlyTask taskToEdit = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToEdit = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
         ReadOnlyTask editedTask = new TaskBuilder().withName("Random").build();
         
@@ -118,7 +116,7 @@ public class ModelManagerTest {
     
     @Test
     public void testEventClash() throws IllegalValueException, TaskNotFoundException {
-        ReadOnlyTask taskToEdit = modelManager.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToEdit = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
     
         ReadOnlyTask editedTask = new TaskBuilder().withName("Random").build();
         
@@ -196,7 +194,7 @@ public class ModelManagerTest {
     
     @Test
     public void testGetFilteredTaskList() {
-        assertEquals(modelManager.getFilteredTaskList(), modelManagerCopy.getFilteredTaskList());
+        assertEquals(modelManager.getFilteredActiveTaskList(), modelManagerCopy.getFilteredActiveTaskList());
     }
     
     @Test
@@ -207,7 +205,7 @@ public class ModelManagerTest {
     @Test
     public void testUpdateFilteredListToShowEvent() {
         modelManager.updateFilteredListToShowEvent();
-        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+        assertFalse(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
         
         modelManager = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
         assertFalse(modelManager.getFilteredCompletedTaskList().equals(modelManagerCopy.getFilteredCompletedTaskList()));
@@ -216,13 +214,13 @@ public class ModelManagerTest {
     @Test
     public void testUpdateFilteredListToShowDeadline() {
         modelManager.updateFilteredListToShowDeadline();
-        assertTrue(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+        assertTrue(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
     }
     
     @Test
     public void testUpdateFilteredListToShowToday() {
         modelManager.updateFilteredListToShowToday();
-        assertFalse(modelManager.getFilteredTaskList().equals(modelManagerCopy.getFilteredTaskList()));
+        assertFalse(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
         
         modelManager = new ModelManager(new TypicalTasksCompleted().getTypicalTickTask(), new UserPrefs());
         assertFalse(modelManager.getFilteredCompletedTaskList().equals(modelManagerCopy.getFilteredCompletedTaskList()));

@@ -62,10 +62,7 @@ public class DeleteCommandParser {
         */
         } else {
             String trimmedArgs = argMultimap.getPreamble();
-            final String[] keywords = new String[]{""};
-            keywords [0] = trimmedArgs;
-            final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-            return new DeleteFindCommand(keywordSet);
+            return new DeleteFindCommand(trimmedArgs);
         }
     }
 

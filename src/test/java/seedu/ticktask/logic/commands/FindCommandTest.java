@@ -30,13 +30,13 @@ public class FindCommandTest {
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
     
     @Test
@@ -47,13 +47,13 @@ public class FindCommandTest {
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
     
     @Test
@@ -64,13 +64,13 @@ public class FindCommandTest {
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
             
 }   

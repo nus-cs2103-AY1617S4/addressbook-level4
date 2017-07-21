@@ -19,7 +19,6 @@ import static seedu.ticktask.testutil.EditCommandTestUtil.VALID_NAME_MEETING;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import seedu.ticktask.testutil.TypicalTasks;
 
-import static org.junit.Assert.*;
 import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_TASK;
 
 //@@author A0139964M
@@ -29,7 +28,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
-        ReadOnlyTask targetEntry = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask targetEntry = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task validTask = new TaskBuilder().withTime("0800").withDate("01/01/2018").build();
         EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(validTask).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, descriptor);
@@ -44,7 +43,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidEntryIndexUnfilteredList_failure() throws Exception {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredActiveTaskList().size() + 1);
         EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_MEETING).build();
         EditCommand editCommand = prepareCommand(outOfBoundIndex, descriptor);
 

@@ -24,7 +24,7 @@ import seedu.ticktask.testutil.TypicalTasks;
 public class CompleteCommandTest {
 
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-    private ReadOnlyTask taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+    private ReadOnlyTask taskToComplete = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
     private CompleteCommand firstCommand = prepareIndexCommand(model, INDEX_FIRST_TASK);
     
     //UNIT TESTS
@@ -50,7 +50,7 @@ public class CompleteCommandTest {
     @Test
     public void testTaskListUpdatedCorrectly() throws CommandException {
         firstCommand.execute();
-        UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredTaskList();
+        UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredActiveTaskList();
         assertFalse(currentTaskList.contains(taskToComplete));
     }
     

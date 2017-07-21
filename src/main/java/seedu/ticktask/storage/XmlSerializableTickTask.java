@@ -44,13 +44,13 @@ public class XmlSerializableTickTask implements ReadOnlyTickTask {
      */
     public XmlSerializableTickTask(ReadOnlyTickTask src) {
         this();
-        tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(src.getActiveTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         completedTasks.addAll(src.getCompletedTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
-    public ObservableList<ReadOnlyTask> getTaskList() {
+    public ObservableList<ReadOnlyTask> getActiveTaskList() {
         final ObservableList<Task> tasks = this.tasks.stream().map(p -> {
             try {
                 return p.toModelType();
