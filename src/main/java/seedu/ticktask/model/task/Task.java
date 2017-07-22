@@ -173,7 +173,6 @@ public class Task implements ReadOnlyTask {
   //@@author A0139964M
     /**
      * Checks if the task added is in the past.
-     * @param task
      * @return boolean
      */
     public boolean isChornological() {

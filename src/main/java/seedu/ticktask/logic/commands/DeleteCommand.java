@@ -23,5 +23,9 @@ public abstract class DeleteCommand extends Command {
             + PREFIX_COMPLETE + " 1";
     public static final String MESSAGE_SUCCESS = "Task deleted:" + "\n"
             + Messages.MESSAGE_TASK_DESCRIPTION + "%1$s";
+    public static final String MESSAGE_WARNING = "The deleted task name is a substring of the stored task name.\n" +
+            "Please use 'undo' command to restore if the deletion in not desired.\n" +
+            "Task deleted:" + "\n"
+            + Messages.MESSAGE_TASK_DESCRIPTION + "%1$s";
     protected ReadOnlyTask taskToDelete;
 }

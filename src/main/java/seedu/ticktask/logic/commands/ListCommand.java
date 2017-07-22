@@ -53,11 +53,15 @@ public class ListCommand extends Command {
             case LIST_ALL:
             case LIST_ALL_FULL:
                 model.updateFilteredListToShowAll();
+                //@@author
+                //@@author A0131884B
                 if (checkEmpty()) {
                     return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
                 } else {
                     return new CommandResult(MESSAGE_SUCCESS_VIEW_ALL_TASKS);
                 }
+                //@@author
+                //@@author A0138471A
             case LIST_EVENT:
                 model.updateFilteredListToShowEvent();
                 if (checkEmpty()) {

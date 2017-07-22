@@ -31,15 +31,15 @@ public class DeleteFindCommand extends DeleteCommand {
     public DeleteFindCommand(String keywords) {
         this.keywords = keywords;
     }
+
     
     /** Executes the delete by find command and returns the result message 
      *
      * @return feedback message of the operation result for display via a CommandResult Object.
-     * @throws CommandException if no tasks containing the keywords substring is found 
      * @throws DuplicateTaskException if more than one task with the same name substring is found
      */
     @Override
-    public CommandResult execute() throws CommandException , DuplicateTaskException {
+    public CommandResult execute() throws CommandException, DuplicateTaskException {
         model.updateMatchedTaskList(keywords);
         List<ReadOnlyTask> tempList = new ArrayList<>();
         tempList.addAll(model.getFilteredActiveTaskList());
@@ -53,7 +53,12 @@ public class DeleteFindCommand extends DeleteCommand {
                 assert false : "The target task cannot be missing";
             }
             model.updateFilteredListToShowAll();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
+            if (keywords.equals(taskToDelete.getName().fullName)) {
+                return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
+            } else {
+                return new CommandResult(String.format(MESSAGE_WARNING, taskToDelete));
+            }
+
         } else {
             if (tempList.size() >= 2) {
                 return new CommandResult(MESSAGE_MULTIPLE_TASKS);
@@ -64,4 +69,5 @@ public class DeleteFindCommand extends DeleteCommand {
         }
     }
 }
+
 
