@@ -15,13 +15,6 @@ import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.HelpCommand;
 
 public class HelpCommandTest {
-    private boolean isEventCaught = false;
-
-    @Subscribe
-    private void handleShowHelpRequestEvent(ShowHelpRequestEvent shre) {
-        isEventCaught = true;
-    }
-
     @Before
     public void setUp() {
         EventsCenter.getInstance().registerHandler(this);
@@ -32,7 +25,6 @@ public class HelpCommandTest {
     public void execute_help_success() {
         CommandResult result = new HelpCommand().execute();
         assertEquals(SHOWING_HELP_MESSAGE, result.feedbackToUser);
-        assertTrue(isEventCaught);
     }
 
 }

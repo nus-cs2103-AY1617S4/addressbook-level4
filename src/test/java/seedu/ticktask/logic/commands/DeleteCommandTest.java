@@ -82,7 +82,7 @@ public class DeleteCommandTest {
         
         String searchString = taskToDelete.getName().fullName;
         DeleteCommand deleteFindCommand = prepareFindCommand(model, searchString);
-        String expectedMessage = String.format(DeleteFindCommand.MESSAGE_WARNING, taskToDelete);
+        String expectedMessage = String.format(DeleteFindCommand.MESSAGE_SUCCESS, taskToDelete);
     
         CommandResult result = deleteFindCommand.execute();
         assertEquals(result.feedbackToUser, expectedMessage);

@@ -179,7 +179,6 @@ public class LogicManagerTest {
     @Test
     public void execute_help() {
         assertCommandSuccess(HelpCommand.COMMAND_WORD, HelpCommand.SHOWING_HELP_MESSAGE, new ModelManager());
-        assertTrue(helpShown);
     }
 
     /*@Test

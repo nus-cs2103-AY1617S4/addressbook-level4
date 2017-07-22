@@ -67,28 +67,28 @@ public class ListCommand extends Command {
                 if (checkEmpty()) {
                     return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
                 } else {
-                    return new CommandResult(MESSAGE_SUCCESS_VIEW_ALL_TASKS);
+                    return new CommandResult(MESSAGE_SUCCESS_VIEW_EVENT_TASKS);
                 }
             case LIST_DEADLINE:
                 model.updateFilteredListToShowDeadline();
                 if (checkEmpty()) {
                     return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
                 } else {
-                    return new CommandResult(MESSAGE_SUCCESS_VIEW_ALL_TASKS);
+                    return new CommandResult(MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS);
                 }
             case LIST_FLOATING:
                 model.updateFilteredListToShowFloating();
                 if (checkEmpty()) {
                     return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
                 } else {
-                    return new CommandResult(MESSAGE_SUCCESS_VIEW_ALL_TASKS);
+                    return new CommandResult(MESSAGE_SUCCESS_VIEW_FLOATING_TASKS);
                 }
             case LIST_TODAY:
                 model.updateFilteredListToShowToday();
                 if (checkEmpty()) {
                     return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
                 } else {
-                    return new CommandResult(MESSAGE_SUCCESS_VIEW_ALL_TASKS);
+                    return new CommandResult(MESSAGE_SUCCESS_VIEW_TODAY_TASKS);
                 }
             default:
                 model.updateFilteredListToShowAll();
