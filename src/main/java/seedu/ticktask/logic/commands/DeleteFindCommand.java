@@ -21,9 +21,9 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
                  + "with different keywords. \nUse 'list' command to go back";
 
         public static final String MESSAGE_MULTIPLE_TASKS = "More than one task found! \n"
-                 + "Use " + COMMAND_WORD + " [ "
-                 + PREFIX_COMPLETE + " ]" + " or " + COMMAND_WORD + " [ "
-                 + PREFIX_ACTIVE + " ]"
+                 + "Use " + COMMAND_WORD + " ["
+                 + PREFIX_COMPLETE + "]" + " INDEX" + " or " + COMMAND_WORD + " ["
+                 + PREFIX_ACTIVE + "]"
                  + " INDEX to specify which task to delete. \nUse 'list' command to go back after finishing deletion.";
 
         private String keywords;
@@ -48,13 +48,17 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
             if (tempList.size() == 1) {
                 taskToDelete = tempList.get(0);
-            try {
-                model.deleteFindTask(taskToDelete);
-            } catch (TaskNotFoundException e) {
-                assert false : "The target task cannot be missing";
-            }
-            model.updateFilteredListToShowAll();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
+                try {
+                    model.deleteFindTask(taskToDelete);
+                } catch (TaskNotFoundException e) {
+                    assert false : "The target task cannot be missing";
+                }
+                model.updateFilteredListToShowAll();
+                if (keywords.equals(taskToDelete.getName().fullName)) {
+                    return new CommandResult(String.format(MESSAGE_WARNING, taskToDelete));
+                } else {
+                    return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
+                }
             } else {
                 if (tempList.size() >= 2) {
                     return new CommandResult(MESSAGE_MULTIPLE_TASKS);

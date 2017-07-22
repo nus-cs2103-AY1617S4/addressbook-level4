@@ -81,10 +81,8 @@ public class DeleteCommandTest {
         ReadOnlyTask taskToDelete = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
         String searchString = taskToDelete.getName().fullName;
-//        HashSet<String> keywords = new HashSet<>(Arrays.asList(searchString));
-
         DeleteCommand deleteFindCommand = prepareFindCommand(model, searchString);
-        String expectedMessage = String.format(DeleteFindCommand.MESSAGE_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteFindCommand.MESSAGE_WARNING, taskToDelete);
     
         CommandResult result = deleteFindCommand.execute();
         assertEquals(result.feedbackToUser, expectedMessage);
