@@ -66,6 +66,21 @@ public class TaskTest {
         assertTrue(validTask.isChornological());
     }
     @Test
+    public void isDateChornological_PastTaskDate_false() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(PAST_DATE).build();
+        assertFalse(validTask.isDateChornological());
+    }
+    @Test
+    public void isDateChornological_futureTaskDate_true() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(FUTURE_DATE).build();
+        assertTrue(validTask.isDateChornological());
+    }
+    @Test
+    public void isDateChornological_PastTaskTime_false() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(PAST_TIME).build();
+        assertFalse(validTask.isTimeChornological());
+    }
+    @Test
     public void isDateDue_pastDate_true() throws IllegalValueException {
         Task validTask = new TaskBuilder().withTime(FUTURE_DATE).build();
         assertFalse(validTask.isDateDue());

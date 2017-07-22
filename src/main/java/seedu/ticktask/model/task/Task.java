@@ -200,6 +200,9 @@ public class Task implements ReadOnlyTask {
         }
     }
     
+    /**
+     * Method to check if task's time is in the future relative to current time
+     */
     public boolean isTimeChornological() {
         LocalTime currTime = LocalTime.now();
         LocalTime taskTime = this.getTime().getLocalStartTime();
@@ -210,6 +213,9 @@ public class Task implements ReadOnlyTask {
         }
     }
     
+    /**
+     * Method to check if task's date is in the future relative to current date
+     */
     public boolean isDateChornological(){
         LocalDate currDate = LocalDate.now();
         LocalDate taskDate = this.getDate().getLocalStartDate();
