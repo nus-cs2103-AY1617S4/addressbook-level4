@@ -18,18 +18,20 @@ import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 //@@author A0131884B
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new Clear Command object
  */
 public class ClearCommandParser {
 
     private ArgumentMultimap argMultimap;
 
-        public ArgumentMultimap getArgMultimapDelete() {
+        public ArgumentMultimap getArgMultimapClear() {
                 return argMultimap;
             }
+        
         /**
-         * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns an
-         * DeleteCommand object for execution.
+         * Parses the given {@code String} of arguments in the context of the ClearCommand and returns an
+         * ClearCommand object for execution.
+         * @param String containing keywords by user indicating list to clear: 'clear all', 'clear complete', or 'clear active'
          * @throws ParseException if the user input does not conform the expected format
          */
         public ClearCommand parse(String args) throws ParseException, IllegalValueException {
@@ -42,14 +44,19 @@ public class ClearCommandParser {
 
             Prefix listIndicatorPrefix = ParserUtil.getListPrefix(argMultimap,  CliSyntax.PREFIX_COMPLETE, CliSyntax.PREFIX_ACTIVE, CliSyntax.PREFIX_ALL);
 			return new ClearCommand(listIndicatorPrefix);
-        }
+
+        }   
+            
+
         /**
-         * Return true only if the command after "delete" is "all", "active" or "complete".
+         * @param The string representing the list the user intends to clear
+         * @return true only if the listtpye string after the "clear" keyword is: "all", "active" or "complete".
          */
         private boolean isValid(String listType) {
             if(listType.equals(CliSyntax.PREFIX_ALL.toString()) || listType.equals(CliSyntax.PREFIX_ACTIVE.toString()) || listType.equals(CliSyntax.PREFIX_COMPLETE.toString())){
                 return true;
             }
             return false;
+
         }
 }

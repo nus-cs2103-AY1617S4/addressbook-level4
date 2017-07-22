@@ -8,7 +8,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 
 //@@author A0131884B
   /*
-   * Abstract class that represents what Command word and confirmation messages a delete command will be using.
+   * Abstract class that that DeleteFindCommand and DeleteIndexCommand is instantiated from 
    */
 public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
