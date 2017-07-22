@@ -155,7 +155,7 @@ public class EditCommand extends Command {
 
     //@@author A0156106M
     /**
-     * Creates a new overlapping BasicTask based on @param taskToMark
+     * Creates a new overlap BasicTask based on @param taskToMark
      * @return marked BasicTask
      * */
     static BasicTask createOverlapTask(BasicTaskFeatures taskToMark) {
