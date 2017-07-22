@@ -12,7 +12,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
     4. [Editing a task](#24-editing-a-task--edit)
     5. [Finding all tasks containing any keywords in their names or tags](#25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find)
     6. [Deleting a task](#26-deleting-a-task--delete)
-    7. [View in detail](#27-view-in-detail--select)
+    7. [Select a task to view in detail](#27-select-a-task-to-view-in-detail--select)
     8. [Undo last action](#28-undo-last-action--undo)
     9. [Redo last action](#29-redo-last-action--redo)
     10. [Clear tasks](#210-clear-tasks--clear)
@@ -42,8 +42,8 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
-   * **`list`** : lists all tasks
-   * **`add n/project meeting d/July 10 t/5-6`** adds an `Event` task to your task manager.
+   * **`list all`** : lists all tasks
+   * **`add project meeting s/10 July 5pm e/10 July 6pm`** adds an `Event` task to your task manager.
    * **`delete`**` 1` : deletes the 1st task shown in your current list
    * **`exit`** : exits the app
 6. Refer to the [Features](#2-features) section below for details of each command.<br>
@@ -112,11 +112,13 @@ Examples:<br>
 
 ### 2.3. Listing tasks : `list`
 
-Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) all tasks of the particular type in the task manager.<br>
+Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) expired, (5) all tasks of the particular type in the task manager.<br>
+All expired tasks' DateTime will be coloured as red.
 Format:  <br>
 * List upcoming incomplete tasks: `list` <br>
 * List all incomplete tasks: `list incomplete` <br>
 * List completed tasks: `list completed` <br>
+* List expired tasks: `list expired` <br>
 * List all tasks: `list all` <br>
 
 ### 2.4. Editing a task : `edit`
@@ -174,7 +176,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.7. View in detail : `select`
+### 2.7. Select a task to view in detail : `select`
 
 Select a specific task to view in detail. The details will be in command box. <br>
 Format `select INDEX` <br>
@@ -195,11 +197,12 @@ There can be more than one redo action. You may redo the actions during that sin
 Format: `redo`
 
 ### 2.10. Clear tasks : `clear`
-Clears (1) incomplete, (2) complete, (3)all tasks in the task manager.<br>
+Clears (1) incomplete, (2) complete, (3) expired, (4)all tasks in the task manager.<br>
 Clears all entries of the same type from the task manager.<br>
 Format: `clear MODIFYIER`
 * Clear incomplete tasks: `clear incomplete` <br>
-* Clear complete tasks: `clear` <br>
+* Clear complete tasks: `clear completed` <br>
+* Clear expired tasks: `clear expired` <br>
 * Clear all tasks: `clear all` <br>
 
 ### 2.11. Mark tasks : `mark`
@@ -283,10 +286,12 @@ Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]`<br
 Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` | `add Project submission e/ July 5 20`<br> `add project, "CS2103 project", July 10 6pm, tags: meeting`
 Add a floating | `add TASK_NAME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` | `add CS2103 exam t/ HIGH`<br> `add project, "CS2103 project", tags: meeting`
 List upcominng incomplete tasks | `list` |
+List expired tasks | `list expired` |
 List all tasks | `list all` |
 List all incomplete tasks | `list incomplete` |
 List complete tasks | `list complete` |
 Clear all tasks | `clear all` |
+Clear expired tasks | `clear expired` |
 Clear incomplete tasks | `clear incomplete` |
 Clear complete tasks | `clear complete` |
 Edit task | `edit INDEX [n/ TASK_NAME] [s/ START_DATE_TIME] [e/ END_DATE_TIME]  [+t/ TAG] [-t/ TAG]` | `edit 1 +t/ HIGH`

@@ -27,7 +27,8 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS_CLEAR_EXPIRED = "Expired tasks have been cleared!";
     public static final String MESSAGE_USAGE = "To clear incomplete tasks: clear incomplete\n"
             + "To clear completed tasks: clear completed\n"
-            + "To clear all tasks: clear all\n";
+            + "To clear expired tasks: clear expired\n"
+            + "To clear all tasks: clear all";
     private static final boolean COMPLETED_TASKS = false;
     private static final boolean INCOMPLETE_TASKS = true;
 
