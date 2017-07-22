@@ -219,8 +219,9 @@ public class Task implements ReadOnlyTask {
             return true;
         }
     }
+    
     /**
-     * Check if the current task's date is due. Applies to only deadline & event
+     *Check if the current task's date is due. Applies to only deadline & event
      *true if and only if current date is after start date
      */
     public boolean isDateDue() {
@@ -232,8 +233,9 @@ public class Task implements ReadOnlyTask {
             return false;
         }
     }
+    
     /**
-     * Check if the current task's time is due. Applies to only deadline & event
+     *Check if the current task's time is due. Applies to only deadline & event
      *true if and only if current time is after start time
      */
     public boolean isTimeDue() {
@@ -245,8 +247,9 @@ public class Task implements ReadOnlyTask {
             return false;
         }
     }
+    
     /**
-     * Get the time in hours if time is less than 1 day (24 hours)
+     *Get the time in hours if time is less than 1 day (24 hours)
      *Applies to only deadline and events
      */
     public Duration getDueDurationTime() {
@@ -254,8 +257,9 @@ public class Task implements ReadOnlyTask {
         LocalTime startTime = time.getLocalStartTime();
         return Duration.between(now, startTime);
     }
+    
     /**
-     * Get the time in days if days is >= 1
+     *Get the time in days if days is >= 1
      *Applies to only deadline and events
      */
     public long getDueDateDuration() {
@@ -264,8 +268,9 @@ public class Task implements ReadOnlyTask {
         long daysBetween = ChronoUnit.DAYS.between(now, startDate);
         return daysBetween;
     }
+    
     /**
-     * Check if the event is happening now.
+     *Check if the event is happening now.
      *Applies to only events
      */
     public boolean isHappening() {
@@ -285,8 +290,9 @@ public class Task implements ReadOnlyTask {
             return false;
         }
     }
+    
     /**
-     * Check if date is equals today date
+     *Check if date is equals today date
      *Applies to only events and deadlines
      */
     public boolean isToday(){

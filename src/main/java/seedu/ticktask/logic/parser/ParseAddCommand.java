@@ -34,11 +34,13 @@ public class ParseAddCommand {
 			                                         + ".*");
 	
 	private Set<Tag> tagList;
+	
 	/**
 	 * Parses the given {@code String} of arguments in the context of the AddCommand
 	 * and returns an AddCommand object for execution.
 	 * @throws ParseException if the user input does not conform the expected format
 	 */
+	
 	public AddCommand parse(String args) throws ParseException {
 		Matcher matcher = ADD_COMMAND_FORMAT.matcher(args.trim());
 		
@@ -51,6 +53,7 @@ public class ParseAddCommand {
 			Optional<String> parsetime = Optional.ofNullable((matcher.group("time")));
 			Optional<String> parsetag = Optional.ofNullable((matcher.group("tags")));
 			tagList = createTagList(parsetag);
+			
 			Name name = ParserUtil.parseName(parsename).get();
 			DueTime time = ParserUtil.parseTime(parsetime).get();
 			TaskType type = ParserUtil.parseTaskType(Optional.of(" ")).get();
