@@ -31,10 +31,11 @@ public class DeleteFindCommand extends DeleteCommand {
     public DeleteFindCommand(String keywords) {
         this.keywords = keywords;
     }
-    /**     * Executes the delete by find command and returns the result message via a CommandResult Object.
+    
+    /** Executes the delete by find command and returns the result message 
      *
-     * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
+     * @return feedback message of the operation result for display via a CommandResult Object.
+     * @throws CommandException if no tasks containing the keywords substring is found 
      * @throws DuplicateTaskException if more than one task with the same name substring is found
      */
     @Override
