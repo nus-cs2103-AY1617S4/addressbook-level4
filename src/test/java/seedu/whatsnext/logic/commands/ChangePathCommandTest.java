@@ -30,6 +30,7 @@ public class ChangePathCommandTest {
         assertCommandSuccess(command, command.MESSAGE_SUCCESS, model);
     }
 
+    //@@author A0149894Hs
     /**
      * Executes {@code ChangePathCommand} on the given {@code model}, confirms that <br>
      * - the result message matches {@code ChangePathCommand.MESSAGE_SUCCESS} <br>
