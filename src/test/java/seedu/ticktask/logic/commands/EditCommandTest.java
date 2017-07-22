@@ -24,8 +24,7 @@ import static seedu.ticktask.testutil.TypicalTasks.INDEX_SECOND_TASK;
 //@@author A0139964M
 public class EditCommandTest {
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-
-
+    
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
         ReadOnlyTask targetEntry = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
@@ -36,21 +35,21 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
         expectedModel.updateTask(targetEntry,validTask);
         CommandResult result = editCommand.execute();
-
+        
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedModel, model);
     }
-
+    
     @Test
     public void execute_invalidEntryIndexUnfilteredList_failure() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredActiveTaskList().size() + 1);
         EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_MEETING).build();
         EditCommand editCommand = prepareCommand(outOfBoundIndex, descriptor);
-
+        
         CommandTestUtil.assertCommandFailure(editCommand, model,
                 Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
-
+    
     /**
      * Returns an {@code EditCommand} with parameters {@code index} and {@code descriptor}
      */
@@ -59,33 +58,33 @@ public class EditCommandTest {
         editCommand.setData(model, new CommandHistory());
         return editCommand;
     }
-
+    
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_MEETING);
-
+        
         // same values -> returns true
         EditCommand.EditTaskDescriptor copyDescriptor = new EditCommand.EditTaskDescriptor(DESC_MEETING);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TASK, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
-
+        
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
-
+        
         // null -> returns false
         assertFalse(standardCommand.equals(null));
-
+        
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand(null)));
-
+        
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_EVENT)));
-
+        
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK,  DESC_EVENT)));
     }
-
-
+    
+    
 }
 
 //@@author

@@ -1,13 +1,17 @@
 package seedu.ticktask.model.task;
 
 import static org.junit.Assert.*;
+import static seedu.ticktask.testutil.TaskBuilder.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.TreeSet;
 
 import org.junit.Test;
 
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.model.tag.Tag;
+import seedu.ticktask.testutil.TaskBuilder;
 
 //@@author A0147928N
 public class TaskTest {
@@ -38,4 +42,43 @@ public class TaskTest {
         task.setCompleted(true);
         assertTrue(task.getCompleted());
     }
+    //@@author
+    
+    //@@author A0139964M
+    @Test
+    public void isChornological_pastTaskYear_false() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(PAST_DATE).build();
+        assertFalse(validTask.isChornological());
+    }
+    @Test
+    public void isChornological_pastTaskTime_false() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(LocalDate.now().toString()).withTime(PAST_TIME).build();
+        assertFalse(validTask.isChornological());
+    }
+    @Test
+    public void isChornological_futureTaskYear_true() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(FUTURE_DATE).build();
+        assertTrue(validTask.isChornological());
+    }
+    @Test
+    public void isChornological_futureTaskTime_true() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withTime(FUTURE_TIME).build();
+        assertTrue(validTask.isChornological());
+    }
+    @Test
+    public void isDateDue_pastDate_true() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withTime(FUTURE_DATE).build();
+        assertFalse(validTask.isDateDue());
+    }
+    @Test
+    public void isToday_taskToday_true() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(LocalDate.now().toString()).build();
+        assertTrue(validTask.isToday());
+    }
+    @Test
+    public void isToday_taskNotToday_false() throws IllegalValueException {
+        Task validTask = new TaskBuilder().withDate(PAST_DATE).build();
+        assertFalse(validTask.isToday());
+    }
 }
+//@@author
