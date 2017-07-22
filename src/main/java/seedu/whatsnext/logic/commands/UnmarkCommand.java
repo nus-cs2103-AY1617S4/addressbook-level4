@@ -29,7 +29,7 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
 
-    public static final String MESSAGE_TASK_MARKED = "Selected task is currently incomplete";
+    public static final String MESSAGE_TASK_UNMARKED = "Selected task is already unmarked";
 
     public final Index targetIndex;
 
@@ -47,7 +47,7 @@ public class UnmarkCommand extends Command {
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         BasicTask markedTask = createUnmarkedTask(taskToMark);
         if (!taskToMark.getIsCompleted()) {
-            throw new CommandException(MESSAGE_TASK_MARKED);
+            throw new CommandException(MESSAGE_TASK_UNMARKED);
         }
         try {
             model.updateTask(taskToMark, markedTask);

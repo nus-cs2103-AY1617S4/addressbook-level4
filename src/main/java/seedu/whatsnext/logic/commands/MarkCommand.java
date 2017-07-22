@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
-    public static final String MESSAGE_TASK_MARKED = "Selected task is already completed";
+    public static final String MESSAGE_TASK_MARKED = "Selected task is already marked";
 
     public final Index targetIndex;
 

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
-    <persons>
-        <id>1</id>
-        <firstName>John</firstName>
-        <lastName>Doe</lastName>
-        <githubUsername></githubUsername>
-        <street></street>
-        <postalCode></postalCode>
-        <city></city>
-    </persons>
+<whatsnext>
+    <tasks>
+		<name>Complete</name>
+		<isCompleted>false</isCompleted>
+		<startDateTime>Sun 10 Dec 2017 06:00 PM</startDateTime>
+		<endDateTime>Wed 13 Dec 2017 12:00 PM</endDateTime>
+		<taskType>event</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+		<tagged>CS2103</tagged>
+	</tasks>
     <tags>
-        <name>Friends</name>
+        <name>HIGH</name>
+        <name>CS2103</name>
     </tags>
-</addressbook>
+</whatsnext>

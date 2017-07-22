@@ -13,7 +13,7 @@ public class ListCommand extends Command {
     public static final String LIST_EXPIRED = "expired";
     public static final String LIST_ALL = "all";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "list the tasks in the task manager.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List the tasks in the task manager.\n"
             + "To list upcoming tasks : list\n"
             + "To list incomplete tasks : list incomplete\n"
             + "To list completed tasks : list completed\n"
