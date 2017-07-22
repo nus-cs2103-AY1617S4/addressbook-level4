@@ -12,7 +12,7 @@ import seedu.ticktask.model.TickTask;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 
 /**
- * Clears the TickTask program.
+ * Clears active, complete or all tasks in the program.
  */
 //@@author A0131884B
 public class ClearCommand extends Command {
@@ -26,10 +26,20 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_NOT_SUCCESS = "The clear command should be either 'clear all' or 'clear active' or 'clear complete'.";
     private Prefix listIndicatorPrefix;
 
+    /**
+    * Creates an instance of a clear command object that clears the TickTask program.
+    * @param the listIndicatorPrefix referring to either the active, complete or both lists 
+    */
     public ClearCommand(Prefix listIndicatorPrefix) {
          this.listIndicatorPrefix = listIndicatorPrefix;
     }
 
+    /**
+     * Executes the clear command and returns the result message via a CommandResult Object
+     *
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute() {
         requireNonNull(model);
@@ -37,12 +47,10 @@ public class ClearCommand extends Command {
         {
         	model.resetActiveData(new TickTask());
             return new CommandResult(MESSAGE_SUCCESS);
-        }
-        else if (listIndicatorPrefix.toString().equals(CliSyntax.PREFIX_COMPLETE.toString())) {
+        }else if (listIndicatorPrefix.toString().equals(CliSyntax.PREFIX_COMPLETE.toString())) {
             model.resetCompleteData(new TickTask());
             return new CommandResult(MESSAGE_SUCCESS);
-        }
-        else if (listIndicatorPrefix.toString().equals(CliSyntax.PREFIX_ALL.toString())){
+        }else if (listIndicatorPrefix.toString().equals(CliSyntax.PREFIX_ALL.toString())){
             model.resetData(new TickTask());
             return new CommandResult(MESSAGE_SUCCESS);
         }else {

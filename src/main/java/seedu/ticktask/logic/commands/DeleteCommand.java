@@ -8,7 +8,7 @@ import seedu.ticktask.model.task.ReadOnlyTask;
 
 //@@author A0131884B
   /*
-   * Abstract class that represents what Command word and confirmation messages a delete command will be using.
+   * Abstract class that that DeleteFindCommand and DeleteIndexCommand is instantiated from 
    */
 public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -24,7 +24,7 @@ public abstract class DeleteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Task deleted:" + "\n"
             + Messages.MESSAGE_TASK_DESCRIPTION + "%1$s";
     public static final String MESSAGE_WARNING = "The deleted task name is a substring of the stored task name.\n" +
-            "Please use 'undo' command to restore if the deleted task in not desired.\n" +
+            "Please use 'undo' command to restore if the deletion in not desired.\n" +
             "Task deleted:" + "\n"
             + Messages.MESSAGE_TASK_DESCRIPTION + "%1$s";
     protected ReadOnlyTask taskToDelete;
