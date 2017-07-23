@@ -230,7 +230,7 @@ public class BasicTask implements BasicTaskFeatures {
     }
 
     /**
-     * Checks if basicTask is overlapping any other BasicTasks with taskType "event"
+     * Checks if basicTask is overlap any other BasicTasks with taskType "event"
      * @return true if event task overlaps another task
      * */
     public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
