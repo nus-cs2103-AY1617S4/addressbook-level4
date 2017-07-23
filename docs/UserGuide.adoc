@@ -173,6 +173,16 @@ Will find all tasks that contain the substring "wash dog"
 Will find all tasks that contain the substring "tu"
 ****
 
+=== Listing Command History : `history`
+Displays history of commands since application opened. +
+
+Format: `history`
+
+Examples:
+****
+* `history` 
+****
+
 === Listing All Tasks : `list`
 Displays a type of task within task manager. +
 
@@ -203,16 +213,6 @@ Examples:
 * `redo` 
 ****
 
-=== Listing Command History : `history`
-Displays history of commands since application opened. +
-
-Format: `history`
-
-Examples:
-****
-* `history` 
-****
-
 === Restore action : `restore`
 Restores the task identified by the index number back into the active list. +
 
@@ -223,16 +223,6 @@ Examples:
 * `restore 1` 
 ****
 
-=== Select action : `select`
-Highlight a task identified by the index number in the active task list. +
-
-Format: `select [INDEX]`
-
-Examples:
-****
-* `select 1` 
-****
-
 === Save action : `save`
 Changes the location of the TickTask app xml file. +
 
@@ -241,6 +231,16 @@ Format: `save [DIRECTORY]`
 Examples:
 ****
 * `save C:\Eclipse` 
+****
+
+=== Select action : `select`
+Highlight a task identified by the index number in the active task list. +
+
+Format: `select [INDEX]`
+
+Examples:
+****
+* `select 1` 
 ****
 
 
