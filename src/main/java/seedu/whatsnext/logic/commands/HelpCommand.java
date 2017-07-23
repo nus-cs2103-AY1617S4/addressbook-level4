@@ -1,9 +1,6 @@
 package seedu.whatsnext.logic.commands;
 
-import java.util.logging.Logger;
-
 import seedu.whatsnext.commons.core.EventsCenter;
-import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
 
 //@@author A0156106M
