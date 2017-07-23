@@ -10,6 +10,10 @@ import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 //@@author A0142675B
+/**
+ * Resets a task identified using it's last displayed index from the task manager.
+ * All date and time will be reseted, and overlap will be remove if it is present.
+ */
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";

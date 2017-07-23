@@ -8,6 +8,9 @@ import seedu.whatsnext.logic.commands.ResetCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 //@@author A0142675B
+/**
+ * Parses input arguments and creates a new ResetCommand object
+ */
 public class ResetCommandParser {
 
     public ResetCommand parse(String args) throws ParseException {
