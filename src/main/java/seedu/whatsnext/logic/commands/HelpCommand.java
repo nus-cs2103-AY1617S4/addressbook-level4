@@ -94,6 +94,9 @@ public class HelpCommand extends Command {
         case HistoryCommand.COMMAND_WORD:
             messageUsage = HistoryCommand.MESSAGE_USAGE;
             break;
+        case ResetCommand.COMMAND_WORD:
+            messageUsage = ResetCommand.MESSAGE_USAGE;
+            break;
         default:
             messageUsage = HelpCommand.MESSAGE_USAGE;
         }

@@ -15,6 +15,7 @@ import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.commands.MarkCommand;
 import seedu.whatsnext.logic.commands.RedoCommand;
 import seedu.whatsnext.logic.commands.RemindCommand;
+import seedu.whatsnext.logic.commands.ResetCommand;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.logic.commands.UndoCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
@@ -53,7 +54,7 @@ public class HelpCommandParser {
                 || args.equals(FindCommand.COMMAND_WORD) || args.equals(ListCommand.COMMAND_WORD)
                 || args.equals(UndoCommand.COMMAND_WORD) || args.equals(RedoCommand.COMMAND_WORD)
                 || args.equals(RemindCommand.COMMAND_WORD) || args.equals(HistoryCommand.COMMAND_WORD)
-                || args.equals(HelpCommand.COMMAND_WORD)) {
+                || args.equals(HelpCommand.COMMAND_WORD) || args.equals(ResetCommand.COMMAND_WORD)) {
             return true;
         }
         return false;

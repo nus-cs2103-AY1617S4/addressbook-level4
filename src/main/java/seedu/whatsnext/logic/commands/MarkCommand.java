@@ -22,8 +22,8 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
  * Marks an existing task as completed in the task manager.
  */
 public class MarkCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
 
+    public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": marks the task identified by the index number used in the last task listing to 'completed'.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -32,8 +32,10 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_TASK_MARKED = "Selected task is already marked";
 
-    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+    public static final String MESSAGE_TASK_MISSING_ERROR = "The target task cannot be missing";
 
+
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
     public final Index targetIndex;
 
     public MarkCommand(Index targetIndex) {
@@ -43,11 +45,11 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException, DuplicateTaskException {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         if (taskToMark.getIsCompleted()) {
             logger.info(MESSAGE_TASK_MARKED + ": " + targetIndex.getOneBased());
@@ -58,8 +60,10 @@ public class MarkCommand extends Command {
         try {
             model.updateTask(taskToMark, markedTask);
         } catch (TaskNotFoundException e) {
+
             logger.warning("Targeted task missing!");
             throw new AssertionError("The target task cannot be missing");
+
         }
         logger.fine(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
