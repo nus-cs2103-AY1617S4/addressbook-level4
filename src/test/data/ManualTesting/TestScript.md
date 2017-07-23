@@ -38,7 +38,7 @@ Note: Use `help command_name` described in `1. Help command` to display command 
 Input: `add doing testing s/ today 1200 e/ next monday 1400` or <br>
 `add doing testing, today 1200, next monday 1400`
 
-Result:<br> 
+Result:<br>
 "Task name: doing testing <br>
 Tags: <br>
 Status: Incomplete <br>
@@ -53,7 +53,7 @@ Result: "This task already exists in the task manager"
 ### 3. Add an overlapping event
 Input: `add doing another testing s/ today 1200 e/ 1400`
 
-Result:<br> 
+Result:<br>
 "Task name: doing another testing<br>
 Tags: [OVERLAP] <br>
 Status: Incomplete<br>
@@ -85,14 +85,14 @@ Input: `add floatingTask`
 Result: "Task name: floatingTask <br>
 Tags: <br>
 Status: Incomplete <br>
-Description: Empty" 
+Description: Empty"
 
 
 ## Testing out the edit command:
 
 ### 1. Update task name
 
-Input: 
+Input:
 1. `find nus`
 2. `edit 1 n/new task name`
 
@@ -109,10 +109,10 @@ Input:
 1. `find nus`
 2. `edit 1 e/10 august 9 am`
 
-Result: <br> 
+Result: <br>
 1. 8 tasks listed!
 2. "Task name: new task name <br>
-Tags: [OVERLAP] [NUS] [CS2103] <br> 
+Tags: [OVERLAP] [NUS] [CS2103] <br>
 Status: Incomplete <br>
 From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM <br>
 Description: Project meeting for CS2103"
@@ -132,7 +132,7 @@ The tasks whose task name and tags contain the word "nus" will be shown.
 Input:
 1. `list all`
 2. `clear all`
-3. `undo`  
+3. `undo`
 
 Result:
 1. "List all tasks"
@@ -143,7 +143,7 @@ Result:
 Input:
 1. `list expired`
 2. `clear expired`
-3. `undo`  
+3. `undo`
 
 Result:
 1. "List all expired tasks"
@@ -157,10 +157,10 @@ Input:
 3. `list completed`
 4. `clear completed`
 5. `undo`
-6. `undo`  
+6. `undo`
 
 Result:
-1. "List all tasks" 
+1. "List all tasks"
 2. "Marked Task: Rest for the day Tags: [REST] "
 3. "List all completed tasks"
 4. "Completed tasks have been cleared!"
@@ -172,7 +172,7 @@ Result:
 Input:
 1. `list incomplete`
 2. `clear incomplete`
-3. `undo`  
+3. `undo`
 
 Result:
 1. "List all incomplete tasks"
@@ -182,10 +182,10 @@ Result:
 
 ## Testing out the undo command:
 Input: <br>
-1. `clear all` 
+1. `clear all`
 2. `undo`
 
-Result: 
+Result:
 1. "Task List has been cleared!"
 2. "Previous action has been undone."
 All the task has been brought back from the previous `clear all` function.
@@ -200,7 +200,7 @@ All the task has been cleared once again.
 
 ## Testing out the mark command:
 Input:
-1.`undo` 
+1.`undo`
 2.`mark 1`
 
 Result:
@@ -247,7 +247,7 @@ Input:
 
 Result <br>
 1. 8 tasks listed!
-2. "Deleted Task: new task name Tags: [OVERLAP] [NUS] [CS2103]" 
+2. "Deleted Task: new task name Tags: [OVERLAP] [NUS] [CS2103]"
 3. 7 tasks listed!
 
 ### Add tags to existing task
@@ -259,7 +259,7 @@ Input
 Result: <br>
 1. Previous action has been undone.
 2. "Task name: new task name <br>
-Tags: [NEWTAG] [OVERLAP] [NUS] [CS2103]<br> 
+Tags: [NEWTAG] [OVERLAP] [NUS] [CS2103]<br>
 Status: Incomplete<br>
 From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM<br>
 Description: Project meeting for CS2103"
@@ -270,7 +270,7 @@ Input: `edit 1 -t/ newTag`
 
 Result: <br>
 "Task name: new task name
-Tags: [OVERLAP] [NUS] [CS2103] 
+Tags: [OVERLAP] [NUS] [CS2103]
 Status: Incomplete
 From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM
 Description: Project meeting for CS2103"
@@ -278,63 +278,63 @@ Description: Project meeting for CS2103"
 
 ### Update floating task to deadline task
 
-Input: 
+Input:
 1. `find buy`
 2. `edit 2 e/9 august`
 
-Result: 
+Result:
 1. 8 tasks listed!
 2. "Task name: Buy Ice Cream
-Tags: [GROCERIES] 
+Tags: [GROCERIES]
 Status: Incomplete
 Due by: Wed 9 Aug 2017 11:59 PM
 Description: Buy 2 tubs of chocolate ice cream"
 
 ### Update floating task to event task
 
-Input: 
+Input:
 1. `find buy`
 2. `edit 3 s/8 august e/9 august`
 
-Result: 
+Result:
 1. 8 tasks listed!
 2. "Task name: Buy some beer
-Tags: [GROCERIES] 
+Tags: [GROCERIES]
 Status: Incomplete
 From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM
 Description: Empty"
 
 ### Update deadline task to event task
 
-Input: 
+Input:
 1. `find buy`
 2. `edit 3 s/8 august`
 
-Result: 
+Result:
 1. 8 tasks listed!
 2. "Task name: Buy Ice Cream
-Tags: [GROCERIES] [OVERLAP] 
+Tags: [GROCERIES] [OVERLAP]
 Status: Incomplete
 From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM
 Description: Buy 2 tubs of chocolate ice cream"
 
 ### Reset event task to floating task
 
-Input: 
+Input:
 1. `find party`
 2. `reset 1`
 
-Result: 
+Result:
 1. 2 tasks listed!
 2. "Reseted Task: John bachelor party Tags: [WEDDING] "
 
 ### Reset deadline task to floating task
 
-Input: 
+Input:
 1. `find party`
 2. `reset 1`
 
-Result: 
+Result:
 1. 2 tasks listed!
 2. "Reseted Task: Christmas Party at work Tags: [HOLIDAY] "
 
