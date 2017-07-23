@@ -271,13 +271,33 @@ Status: Incomplete
 From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM
 Description: Buy 2 tubs of chocolate ice cream"
 
+### Reset event task to floating task
 
-## Testing out the `filepath` function
+Input: 
+1. `find party`
+2. `reset 1`
+
+Result: 
+1. 2 tasks listed!
+2. "Reseted Task: John bachelor party Tags: [WEDDING] "
+
+### Reset deadline task to floating task
+
+Input: 
+1. `find party`
+2. `reset 1`
+
+Result: 
+1. 2 tasks listed!
+2. "Reseted Task: Christmas Party at work Tags: [HOLIDAY] "
+
+
+## Testing out the `filepath` command
 Input `filepath`
 
 Result: "File Path located at: data/whatsnext.xml"
 
-## Testing out the `changepath` function:
+## Testing out the `changepath` command:
 Input `changepath data/test`
 
 Result: "Save location changed to: data/test/whatsnext.xml"<br>
