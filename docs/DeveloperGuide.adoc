@@ -343,7 +343,7 @@ Priority |As a |I want to... |So that I can...
 
 
 |`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
-|`*  |user |add priorities to the task |determine which task to complete first
+|`*` |user |add priorities to the task |determine which task to complete first
 |`*` |user |add my own shortcuts to use |customise my shortcuts based on my own preferences
 |`*` |user |have my commands be auto-completed for me |insert commands more quickly
 |`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
