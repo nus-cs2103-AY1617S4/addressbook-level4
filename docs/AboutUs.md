@@ -24,7 +24,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 -----
 
-#### [Li Shi Cheng](https://github.com/Li-Shicheng)
+#### [Li ShiCheng](https://github.com/Li-Shicheng)
 <img src="images/lishicheng.png" width="150"><br>
 **Role:** Developer <br>
 
@@ -33,6 +33,7 @@ We are a team Engineering students based in the [School of Computing, National U
 **Features implemented:**
 * [Find Command](UserGuide.md#25-finding-all-tasks-containing-any-keyword-in-their-name-or-tags-find)
 * [Edit Command](UserGuide.md#24-editing-a-task--edit)
+* [Reset Command](UserGuide.md#213-reset-a-task--reset)
 * Reserve and Priority Tags
 
 **Code Written:**
@@ -41,7 +42,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Other major contributions:**
 * Refactor Test Files
-* Update UserGuid and DeveloperGuide
+* Update UserGuide and DeveloperGuide
 
 -----
 #### [Lim Dao Han](http://github.com/)
