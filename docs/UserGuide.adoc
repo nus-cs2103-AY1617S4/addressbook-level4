@@ -202,17 +202,6 @@ Examples:
 * `list event`
 ****
 
-=== Undo/Redo Actions: `undo` `redo`
-Undo or redo the latest action. +
-
-Format: `undo` or `redo`
-
-Examples:
-****
-* `undo`
-* `redo` 
-****
-
 === Restore action : `restore`
 Restores the task identified by the index number back into the active list. +
 
@@ -241,6 +230,17 @@ Format: `select [INDEX]`
 Examples:
 ****
 * `select 1` 
+****
+
+=== Undo/Redo Actions: `undo` `redo`
+Undo or redo the latest action. +
+
+Format: `undo` or `redo`
+
+Examples:
+****
+* `undo`
+* `redo` 
 ****
 
 
