@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
+/**
+ * Gui tests for the select command
+ */
 public class SelectCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

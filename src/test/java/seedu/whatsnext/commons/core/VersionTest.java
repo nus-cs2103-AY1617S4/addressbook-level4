@@ -7,6 +7,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+/**
+ * a test class for app versions.
+ */
 public class VersionTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();

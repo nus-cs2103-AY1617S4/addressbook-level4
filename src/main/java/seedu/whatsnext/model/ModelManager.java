@@ -297,7 +297,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0154986L
-    /*
+    /**
      * Finds tasks by completion status.
      */
     private class CompletedQualifier implements Qualifier {
@@ -323,7 +323,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0154986L
-    /*
+    /**
      * Finds non-expired, upcoming tasks.
      */
     private class UpcomingTasksQualifier implements Qualifier {
@@ -352,7 +352,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0154986L
-    /*
+    /**
      * Finds expired tasks.
      */
     private class ExpiredTasksQualifier implements Qualifier {
@@ -378,7 +378,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0154986L
-    /*
+    /**
      * Finds the tasks for reminder pop up window.
      */
     private class ReminderQualifier implements Qualifier {

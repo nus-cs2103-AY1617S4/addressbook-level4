@@ -3,7 +3,9 @@ package seedu.whatsnext.commons.events.model;
 import seedu.whatsnext.commons.events.BaseEvent;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 
-/** Indicates the TaskManager in the model has changed*/
+/**
+ * Indicates the TaskManager in the model has changed
+ */
 public class TaskManagerChangedEvent extends BaseEvent {
 
     public final ReadOnlyTaskManager data;

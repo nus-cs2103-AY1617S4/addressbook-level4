@@ -13,6 +13,9 @@ import seedu.whatsnext.testutil.TaskBuilder;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 //@@author A0154986L
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for RedoCommand.
+ */
 public class RedoCommandTest {
 
     /***

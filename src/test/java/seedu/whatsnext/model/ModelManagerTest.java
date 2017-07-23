@@ -11,6 +11,9 @@ import org.junit.Test;
 import seedu.whatsnext.testutil.TaskManagerBuilder;
 import seedu.whatsnext.testutil.TypicalTasks;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for the model manager.
+ */
 public class ModelManagerTest {
 
     private TypicalTasks typicalTasks = new TypicalTasks();

@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import guitests.guihandles.HelpWindowHandle;
 
+/**
+ * Gui tests for the help window
+ */
 public class HelpWindowTest extends TaskManagerGuiTest {
 
     @Test
