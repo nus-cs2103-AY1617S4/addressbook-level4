@@ -38,27 +38,35 @@ Some example commands you can try:
 
 `add complete tutorial by christmas at 2200`: adds a task named complete tutorial to the task manager
 
-`delete 1` : deletes the task at index 1 from the active(pending) task list
+`delete active 1` : deletes the task at index 1 from the active(pending) task list
 
 
 Refer to the Features section below for details of each command. +
 
 == Features
 
-
 === Viewing help : `help`
-Displays the list of commands available.
+Displays usage of the commands.
 
-Format: `help`
+Format: +
+`help` +
+`help [command name]` 
+
+Examples:
+****
+* `help`
+* `help add`
+* `help delete`
+****
 
 === Adding a task: `add`
 Adds a task to the task manager. +
 
 Format: +
-`add [task name] "by " [date] "at " [time] + "#"[tags]` +
-`add [task name] "at " [time] + "#"[tags]` +
-`add [task name]` +
-`add [task name] "from " [start date] "to " [end date]`
+`add [task name] "by" [date] "at " [time] + "#"[tags]` +
+`add [task name] "at" [time] + "#"[tags]` +
+`add [task name] "from" [start date] "to" [end date]` +
+`add [task name]` 
 
 ****
 * Only task name is mandatory when using the add command
@@ -76,23 +84,75 @@ Examples:
 * `add complete tutorial from monday to friday`
 ****
 
+=== Clearing task list(s): `clear`
+Clears task list(s) from the task manager. +
+
+Format: +
+`clear [list to delete from]` +
+
+****
+* 'list to clear from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+* 'clear all can clear both lists'
+****
+
+Examples:
+****
+* `clear all` 
+* `clear active` 
+* `clear complete` 
+****
+
+=== Completing a Task : `complete`
+Marks a task as complete in the task manager and moves it into the completed task list. +
+
+Format: `complete [index]`
+
+Examples:
+****
+* `complete 1` +
+The task at index 1 is moved to completed list.
+****
+
+=== Deleting a Task: `delete`
+Deletes a task from the task manager. +
+
+Format: +
+`delete [task name]` +
+`delete [list to delete from] [index]`
+
+****
+* The input task name must be a subset of the target task name
+* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+****
+
+Examples:
+****
+* `delete play basketball` +
+Deletes the task that contain the string "play basketball" +
+If multiple tasks are found to contain the string, please proceed to delete by using index +
+* `delete complete 1` +
+Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
+****
+
 === Editing a Task : `edit`
 Edits an existing task in the ticktask. +
 
 Format: `edit [index] [attribute to change][new value]`
 
 ****
-* The possible attributes are: "time", "date", "name", "start time", "end time" and "#"
+* The possible attributes are: "time", "date", "name" and "#"
 ****
 
 Examples:
 ****
 * `edit 1 name tutorial` +
 Edits the task name to tutorial.
-* `edit 0 end time 2200` +
-Edits the task's end time to 2200.
-* `edit 0 start time 2300 date christmas` +
-Edits the task's start time to 2300 and the date to 25/12/2017.
+* `edit 2 time 2200` +
+Edits the task's deadline to 2200.
+* `edit 3 date from Jan to Feb` +
+Edits the task's duration.
 ****
 
 === Finding a Task : `find`
@@ -113,59 +173,34 @@ Will find all tasks that contain the substring "wash dog"
 Will find all tasks that contain the substring "tu"
 ****
 
-=== Deleting a Task: `delete`
-Deletes a task from the task manager. +
+=== Listing All Tasks : `list`
+Displays a type of task within task manager. +
 
-Format: +
-`delete [index]` +
-`delete [list to delete from] [index]`
+Format: `list` +
+`list all` + 
+`list [task type]`
 
 ****
-* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+* Task types are deadline, event, floating and today
+* Supports substring search
 ****
 
 Examples:
 ****
-* `delete 1` +
-Deletes the task at index 1 +
-* `delete complete 1` +
-Deletes the task at index 1 in the completed task list
-* `delete active 1` +
-Deletes the task at index 1 in the active(pending) task list
+* `list` 
+* `list all`
+* `list event`
 ****
 
-=== Completing a Task : `complete`
-Marks a task as complete in the task manager and moves it into the completed task list. +
-
-Format: `complete [task name]`
-
-Examples:
-****
-* `complete tutorial` +
-The task tutorial is moved to completed list.
-****
-
-=== Undo/ Redo Actions: `undo` `redo`
+=== Undo/Redo Actions: `undo` `redo`
 Undo or redo the latest action. +
 
 Format: `undo` or `redo`
 
 Examples:
 ****
-* `undo` +
-Undo the previous action such as add, delete, edit or complete.
-* `redo` +
-Redo the undo action
-****
-
-=== Listing All Tasks : `list`
-Displays pending tasks within task manager. +
-
-Format: `list`
-
-Examples:
-****
-* `list` 
+* `undo`
+* `redo` 
 ****
 
 === Listing Command History : `history`
@@ -178,15 +213,36 @@ Examples:
 * `history` 
 ****
 
-=== Clear Tasks : `clear`
-Clear all tasks ever added.
+=== Restore action : `restore`
+Restores the task identified by the index number back into the active list. +
 
-Format: `clear`
+Format: `restore [INDEX]`
 
 Examples:
 ****
-* `clear`
+* `restore 1` 
 ****
+
+=== Select action : `select`
+Highlight a task identified by the index number in the active task list. +
+
+Format: `select [INDEX]`
+
+Examples:
+****
+* `select 1` 
+****
+
+=== Save action : `save`
+Changes the location of the TickTask app xml file. +
+
+Format: `save [DIRECTORY]`
+
+Examples:
+****
+* `save C:\Eclipse` 
+****
+
 
 == FAQ
 
