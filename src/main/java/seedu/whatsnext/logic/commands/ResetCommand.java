@@ -1,5 +1,8 @@
 package seedu.whatsnext.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
@@ -27,6 +30,8 @@ public class ResetCommand extends Command {
     public static final String MESSAGE_RESET_TASK_SUCCESS = "Reseted Task: %1$s";
 
     public static final String MESSAGE_RESET_FLOATING_TASK = "The task specified is already a floating task.";
+    private static final Logger logger = LogsCenter.getLogger(ResetCommand.class);
+
 
     public final Index targetIndex;
 
@@ -39,6 +44,7 @@ public class ResetCommand extends Command {
         UnmodifiableObservableList<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -58,8 +64,10 @@ public class ResetCommand extends Command {
         try {
             model.updateTask(taskToReset, resetedTask);
         } catch (TaskNotFoundException pnfe) {
+            logger.warning("Targeted task missing!");
             assert false : "The target task cannot be missing";
         }
+        logger.fine(String.format(MESSAGE_RESET_TASK_SUCCESS, taskToReset));
         return new CommandResult(String.format(MESSAGE_RESET_TASK_SUCCESS, taskToReset));
     }
 

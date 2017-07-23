@@ -1,5 +1,9 @@
 package seedu.whatsnext.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.whatsnext.commons.core.LogsCenter;
+
 //@@author A0154986L
 /**
  * Lists all uncompleted/ completed/ expired/ all tasks in the task manager to the user.
@@ -26,6 +30,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_EXPIRED = "List all expired tasks";
     public static final String MESSAGE_SUCCESS_ALL = "List all tasks";
 
+    private static final Logger logger = LogsCenter.getLogger(ListCommand.class);
+
     private final String argument;
 
     public ListCommand(String argument) {
@@ -36,20 +42,25 @@ public class ListCommand extends Command {
     public CommandResult execute() {
         if (argument.isEmpty()) {
             model.updateFilteredTaskListToShowUpcomingTasks();
+            logger.info(MESSAGE_SUCCESS_UPCOMING);
             return new CommandResult(MESSAGE_SUCCESS_UPCOMING);
         } else if (argument.equals(LIST_INCOMPLETE)) {
             boolean isComplete = false;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
+            logger.info(MESSAGE_SUCCESS_INCOMPLETE);
             return new CommandResult(MESSAGE_SUCCESS_INCOMPLETE);
         } else if (argument.equals(LIST_COMPLETED)) {
             boolean isComplete = true;
             model.updateFilteredTaskListToShowByCompletion(isComplete);
+            logger.info(MESSAGE_SUCCESS_COMPLETED);
             return new CommandResult(MESSAGE_SUCCESS_COMPLETED);
         } else if (argument.equals(LIST_EXPIRED)) {
             model.updateFilteredTaskListToShowByExpiry();
+            logger.info(MESSAGE_SUCCESS_EXPIRED);
             return new CommandResult(MESSAGE_SUCCESS_EXPIRED);
         } else {
             model.updateFilteredListToShowAll();
+            logger.info(MESSAGE_SUCCESS_ALL);
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
     }

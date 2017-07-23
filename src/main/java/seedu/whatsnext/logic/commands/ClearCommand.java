@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
 import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.task.BasicTask;
@@ -31,6 +33,8 @@ public class ClearCommand extends Command {
             + "To clear all tasks: clear all";
     private static final boolean COMPLETED_TASKS = false;
     private static final boolean INCOMPLETE_TASKS = true;
+
+    private static final Logger logger = LogsCenter.getLogger(ClearCommand.class);
 
     public final String clearArgument;
 
@@ -76,8 +80,10 @@ public class ClearCommand extends Command {
         taskManager.syncMasterTagListWith(taskManager.getTasks());
         model.resetData(taskManager);
         if (isCompletedOrIncomplete) {
+            logger.info(MESSAGE_SUCCESS_CLEAR_INCOMPLETE);
             return new CommandResult(MESSAGE_SUCCESS_CLEAR_INCOMPLETE);
         } else {
+            logger.info(MESSAGE_SUCCESS_CLEAR_COMPLETED);
             return new CommandResult(MESSAGE_SUCCESS_CLEAR_COMPLETED);
         }
     }
@@ -108,6 +114,7 @@ public class ClearCommand extends Command {
 
         taskManager.syncMasterTagListWith(taskManager.getTasks());
         model.resetData(taskManager);
+        logger.info(MESSAGE_SUCCESS_CLEAR_EXPIRED);
         return new CommandResult(MESSAGE_SUCCESS_CLEAR_EXPIRED);
     }
 }
