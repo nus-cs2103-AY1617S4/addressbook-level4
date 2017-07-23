@@ -12,7 +12,7 @@ import seedu.ticktask.commons.core.LogsCenter;
 import seedu.ticktask.commons.events.ui.NewResultAvailableEvent;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.Logic;
-import seedu.ticktask.logic.commands.CommandResult;
+import seedu.ticktask.logic.commands.*;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
 
@@ -20,6 +20,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
+
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
 
 public class CommandBox extends UiPart<Region> {
     
@@ -36,8 +39,12 @@ public class CommandBox extends UiPart<Region> {
     private AutoCompletionBinding<String> autoCompletionBinding;
     Set listOfCommands = new HashSet<>();
     // List of words for autocomplete
-    String[] commands = {"add", "delete", "edit", "list", "complete", "help", "undo", "redo", "find", "exit",
-                        "save","clear"};
+    String[] commands = {AddCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD, CompleteCommand.COMMAND_WORD,
+                         DeleteCommand.COMMAND_WORD + " " + PREFIX_ACTIVE, DeleteCommand.COMMAND_WORD + " " + PREFIX_COMPLETE,
+                         EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindActiveCommand.COMMAND_WORD,
+                         FindCommand.COMMAND_WORD, FindCompleteCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
+                         HistoryCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RedoCommand.COMMAND_WORD, RestoreCommand.COMMAND_WORD,
+                         StorageCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD};
     
     //@@author
     @FXML
@@ -83,6 +90,7 @@ public class CommandBox extends UiPart<Region> {
             autoCompletionBinding.dispose();
         }
         autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
+        autoCompletionBinding.setVisibleRowCount(5);
         autoCompletionBinding.setPrefWidth(700);
     }
     
