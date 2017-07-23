@@ -85,7 +85,7 @@ public class ParserUtil {
         return description.isPresent() ? Optional.of(new TaskDescription(description.get())) : Optional.empty();
     }
 
-    //@@author
+    //@@author A0142675B
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -124,6 +124,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //@@author A0142675B
     private static boolean isPriorityTagString(String tagName) {
         return tagName.toUpperCase().equals(HIGH)
               || tagName.toUpperCase().equals(MEDIUM)
