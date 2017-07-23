@@ -90,4 +90,15 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
+
+    //@@author A0154986L
+    @Test
+    public void editInvalidFloatingToEvent() throws Exception {
+        commandBox.pressEnter();
+        int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()
+        + floatingListPanel.getNumberOfTask();
+        commandBox.runCommand(EditCommand.COMMAND_WORD + " " + index + " s/10 dec e/9 dec");
+
+        assertResultMessage(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
+    }
 }
