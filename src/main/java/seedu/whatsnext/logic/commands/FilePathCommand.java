@@ -16,11 +16,11 @@ public class FilePathCommand extends Command {
     public static final String MESSAGE_SUCCESS = "File Path located at: ";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Locates the path where the storage xml file exists.";
 
-    //@@author A0149894H
-    private static final Logger logger = LogsCenter.getLogger(FilePathCommand.class);
 
     public FilePathCommand() {
     }
+
+    private static final Logger logger = LogsCenter.getLogger(FilePathCommand.class);
 
 
     @Override

@@ -31,6 +31,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_TASK_MARKED = "Selected task is already marked";
+
     public static final String MESSAGE_TASK_MISSING_ERROR = "The target task cannot be missing";
 
 
@@ -59,6 +60,7 @@ public class MarkCommand extends Command {
         try {
             model.updateTask(taskToMark, markedTask);
         } catch (TaskNotFoundException e) {
+
             logger.warning("Targeted task missing!");
             throw new AssertionError("The target task cannot be missing");
 
