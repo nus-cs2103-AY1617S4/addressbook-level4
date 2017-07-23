@@ -3,7 +3,7 @@
 ## Loading WhatsNext with sample data
 
 Ensure that you have the file `SampleData.xml` inside the `/src/test/data/ManualTesting` folder.
-Open the SampleData.xml file and copy the contents into the whatsnext.xml file in the `src/data folder`.
+Open the SampleData.xml file and copy the contents into the whatsnext.xml file in the `/data folder`.
 
 If the whatsnext.xml file does not exist, create a new xml file with the file name `whatsnext` and
 copy the content from SampleData.xml over.
@@ -12,9 +12,9 @@ Run the MainApp.java file as a Java application. This will prompt the applicatio
 UI will appear.
 
 If the sample data will copied over correctly, the task manager will have a total of 50 tasks inside. <br>
-Index 1 - 15 will be in the Events column. <br>
-Index 16 - 35 will be in the Deadlines column. <br>
-Index 36 - 50 will be in the Basic Task column.
+Index 1 - 14 will be in the Events column. <br>
+Index 15 - 38 will be in the Deadlines column. <br>
+Index 39 - 51 will be in the Basic Task column.
 
 
 ## Testing the help command:
@@ -97,7 +97,8 @@ Input:
 2. `edit 1 n/new task name`
 
 Result: <br>
-"Task name: new task name <br>
+1. 8 tasks listed!
+2. "Task name: new task name <br>
 Tags: [NUS] [CS2103] <br>
 Status: Incomplete<br>
 From: Thu 20 Jul 2017 08:00 AM To: Thu 20 Jul 2017 10:00 AM<br>
@@ -109,7 +110,8 @@ Input:
 2. `edit 1 e/10 august 9 am`
 
 Result: <br> 
-"Task name: new task name <br>
+1. 8 tasks listed!
+2. "Task name: new task name <br>
 Tags: [OVERLAP] [NUS] [CS2103] <br> 
 Status: Incomplete <br>
 From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM <br>
@@ -121,27 +123,66 @@ Description: Project meeting for CS2103"
 ### 1. Search by task name and tag
 Input: `find nus`
 
-Result: "9 tasks listed!" <br>
+Result: "8 tasks listed!" <br>
 The tasks whose task name and tags contain the word "nus" will be shown.
 
 
 ## Testing out the clear command:
-1. Input: `clear all`
-2. Input: `clear expired`
-3. Input: `clear completed`
-4. Input: `clear incomplete`
+### 1. Clear all tasks
+Input:
+1. `list all`
+2. `clear all`
+3. `undo`  
+
+Result:
+1. "List all tasks"
+2. "Task List has been cleared!"
+3. "Previous action has been undone."
+
+### 2. Clear expired tasks
+Input:
+1. `list expired`
+2. `clear expired`
+3. `undo`  
+
+Result:
+1. "List all expired tasks"
+2. "Expired tasks have been cleared!"
+3. "Previous action has been undone."
+
+### 3. Clear completed tasks
+Input:
+1. `list all`
+2. `mark 1`
+3. `list completed`
+4. `clear completed`
+5. `undo`
+6. `undo`  
+
+Result:
+1. "List all tasks" 
+2. "Marked Task: Rest for the day Tags: [REST] "
+3. "List all completed tasks"
+4. "Completed tasks have been cleared!"
+5. "Previous action has been undone."
+6. "Previous action has been undone."
 
 
-Result: 
-1. Task List has been cleared!
-2. Expired tasks have been cleared!
-3. Completed tasks have been cleared!
-4. Incomplete tasks have been cleared!
+### 4. Clear incomplete tasks
+Input:
+1. `list incomplete`
+2. `clear incomplete`
+3. `undo`  
+
+Result:
+1. "List all incomplete tasks"
+2. "Incomplete tasks have been cleared!"
+3. "Previous action has been undone."
 
 
 ## Testing out the undo command:
 Input: <br>
-1. `clear all` <br>
+1. `clear all` 
 2. `undo`
 
 Result: 
@@ -158,9 +199,13 @@ Result: "Previous action has been redone." <br>
 All the task has been cleared once again.
 
 ## Testing out the mark command:
-Input `mark 1`
+Input:
+1.`undo` 
+2.`mark 1`
 
-Result: "Marked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] " <br>
+Result:
+1. Previous action has been undone.
+2. "Marked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] " <br>
 
 
 ## Testing out the unmark command:
@@ -175,6 +220,8 @@ Input <br>
 1. `list`
 2. `list all`
 3. `list completed`
+// add mark command
+
 4. `list incomplete`
 5. `list expired`
 
@@ -199,9 +246,9 @@ Input:
 3. `find nus`
 
 Result <br>
-1. 9 tasks listed!
+1. 8 tasks listed!
 2. "Deleted Task: new task name Tags: [OVERLAP] [NUS] [CS2103]" 
-3. 8 tasks listed!
+3. 7 tasks listed!
 
 ### Add tags to existing task
 
@@ -236,7 +283,7 @@ Input:
 2. `edit 2 e/9 august`
 
 Result: 
-1. 10 tasks listed!
+1. 8 tasks listed!
 2. "Task name: Buy Ice Cream
 Tags: [GROCERIES] 
 Status: Incomplete
@@ -250,7 +297,7 @@ Input:
 2. `edit 3 s/8 august e/9 august`
 
 Result: 
-1. 10 tasks listed!
+1. 8 tasks listed!
 2. "Task name: Buy some beer
 Tags: [GROCERIES] 
 Status: Incomplete
@@ -264,7 +311,7 @@ Input:
 2. `edit 3 s/8 august`
 
 Result: 
-1. 10 tasks listed!
+1. 8 tasks listed!
 2. "Task name: Buy Ice Cream
 Tags: [GROCERIES] [OVERLAP] 
 Status: Incomplete

@@ -8,8 +8,6 @@ import seedu.whatsnext.logic.commands.ChangePathCommand;
 import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.WrongCommand;
 
-
-
 /**
  * Parses the given {@code String} of arguments
  * ChangePathCommandParser and returns an ChangePathCommand object

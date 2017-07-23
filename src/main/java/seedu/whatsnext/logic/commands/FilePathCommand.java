@@ -13,9 +13,9 @@ public class FilePathCommand extends Command {
     public static final String MESSAGE_SUCCESS = "File Path located at: ";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Locates the path where the storage xml file exists.";
 
-
     public FilePathCommand() {
     }
+
     //@@author A0149894H
     @Override
     public CommandResult execute() throws CommandException {
