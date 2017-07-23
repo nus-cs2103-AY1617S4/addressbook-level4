@@ -92,7 +92,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Features implemented:**
 * Ui display
-* Select Command
+* [Select Command](UserGuide.md#27-select-a-task-to-view-in-detail--select)
 * Command History Navigation
 
 **Code Written:**
@@ -101,6 +101,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Other major contributions:**
 * Refactor of GuiTest code
+* Debugging
 
 -----
 # Contributors
