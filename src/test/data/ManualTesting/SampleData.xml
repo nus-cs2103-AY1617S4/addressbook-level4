@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskManager>
+    <tasks>
+        <name>John bachelor party</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Wed 5 Jul 2017 06:00 PM</startDateTime>
+        <endDateTime>Thu 6 Jul 2017 04:00 AM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Bachelor party at some place</taskDescription>
+        <tagged>WEDDING</tagged>
+    </tasks>
+    <tasks>
+        <name>John getting married</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Thu 6 Jul 2017 12:00 PM</startDateTime>
+        <endDateTime>Thu 6 Jul 2017 01:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Wedding dinner at some hotel</taskDescription>
+        <tagged>WEDDING</tagged>
+    </tasks>
+    <tasks>
+        <name>Honeymoon trip</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Mon 10 Jul 2017 11:59 PM</startDateTime>
+        <endDateTime>Fri 14 Jul 2017 11:59 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>trip to mexico</taskDescription>
+    </tasks>
+    <tasks>
+        <name>CS2103 Project meeting</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Thu 20 Jul 2017 08:00 AM</startDateTime>
+        <endDateTime>Thu 20 Jul 2017 10:00 AM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Project meeting for CS2103</taskDescription>
+        <tagged>NUS</tagged>
+        <tagged>CS2103</tagged>
+    </tasks>
+    <tasks>
+        <name>Exam Period</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Thu 20 Jul 2017 11:59 PM</startDateTime>
+        <endDateTime>Tue 25 Jul 2017 11:59 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Final Exam Period</taskDescription>
+        <tagged>OVERLAP</tagged>
+        <tagged>NUS</tagged>
+        <tagged>EXAM</tagged>
+    </tasks>
+    <tasks>
+        <name>Rest for the day</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Fri 21 Jul 2017 11:59 PM</startDateTime>
+        <endDateTime>Sat 22 Jul 2017 11:59 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Sleep the entire day away</taskDescription>
+        <tagged>REST</tagged>
+        <tagged>OVERLAP</tagged>
+    </tasks>
+    <tasks>
+        <name>watch Netflix</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Mon 24 Jul 2017 06:00 AM</startDateTime>
+        <endDateTime>Mon 24 Jul 2017 11:59 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>OVERLAP</tagged>
+    </tasks>
+    <tasks>
+        <name>Meet some frieds</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Fri 28 Jul 2017 02:00 PM</startDateTime>
+        <endDateTime>Fri 28 Jul 2017 04:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>MEETING</tagged>
+    </tasks>
+    <tasks>
+        <name>Watch movie</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Fri 28 Jul 2017 05:00 PM</startDateTime>
+        <endDateTime>Fri 28 Jul 2017 07:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>MOVIE</tagged>
+    </tasks>
+    <tasks>
+        <name>Drinks with friends</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Fri 28 Jul 2017 11:00 PM</startDateTime>
+        <endDateTime>Sat 29 Jul 2017 02:00 AM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>MEETING</tagged>
+    </tasks>
+    <tasks>
+        <name>Meet prof</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Tue 1 Aug 2017 12:00 PM</startDateTime>
+        <endDateTime>Tue 1 Aug 2017 01:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Project stuff</taskDescription>
+        <tagged>PROJECT</tagged>
+    </tasks>
+    <tasks>
+        <name>John getting divorce</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Sat 5 Aug 2017 08:00 AM</startDateTime>
+        <endDateTime>Sat 5 Aug 2017 10:00 AM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Go to court for settlement</taskDescription>
+        <tagged>WEDDING</tagged>
+    </tasks>
+    <tasks>
+        <name>Revise for midterms</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Sun 6 Aug 2017 12:00 PM</startDateTime>
+        <endDateTime>Sat 12 Aug 2017 12:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Revision for midterms</taskDescription>
+        <tagged>MIDTERMS</tagged>
+    </tasks>
+    <tasks>
+        <name>John getting remarried</name>
+        <isCompleted>false</isCompleted>
+        <startDateTime>Sun 6 Aug 2017 06:00 PM</startDateTime>
+        <endDateTime>Sun 6 Aug 2017 09:00 PM</endDateTime>
+        <taskType>event</taskType>
+        <taskDescription>Wedding dinner at some hotel</taskDescription>
+        <tagged>OVERLAP</tagged>
+        <tagged>WEDDING</tagged>
+    </tasks>
+    <tasks>
+        <name>Meet John for Coffee</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Mon 10 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+    </tasks>
+    <tasks>
+        <name>Dodge ball competition</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Tue 11 Jul 2017 06:00 AM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+    </tasks>
+    <tasks>
+        <name>Baseball tournament</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Wed 12 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+    </tasks>
+    <tasks>
+        <name>Meet Sam for Tea</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 14 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+    </tasks>
+    <tasks>
+        <name>Dentist Appointment</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sun 23 Jul 2017 01:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Clean teeth</taskDescription>
+        <tagged>DENTAL</tagged>
+        <tagged>DOCTOR</tagged>
+    </tasks>
+    <tasks>
+        <name>Doctor Appointment</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sun 23 Jul 2017 02:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>physiotherapy</taskDescription>
+        <tagged>DOCTOR</tagged>
+    </tasks>
+    <tasks>
+        <name>Basketball tournament</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Tue 25 Jul 2017 06:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>BASKETBALL</tagged>
+    </tasks>
+    <tasks>
+        <name>Dinner with Jack</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Tue 25 Jul 2017 06:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>dinner at some restaurant with jack</taskDescription>
+        <tagged>DINNER</tagged>
+        <tagged>FOOD</tagged>
+    </tasks>
+    <tasks>
+        <name>Get Ready for School</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Wed 26 Jul 2017 12:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>NUS</tagged>
+        <tagged>CS2103</tagged>
+    </tasks>
+    <tasks>
+        <name>Project Meeting</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Wed 26 Jul 2017 06:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>CS2103 project meeting with teammates</taskDescription>
+        <tagged>NUS</tagged>
+        <tagged>CS2103</tagged>
+    </tasks>
+    <tasks>
+        <name>FYP selection</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 28 Jul 2017 12:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Select FYP project</taskDescription>
+        <tagged>FYP</tagged>
+        <tagged>NUS</tagged>
+    </tasks>
+    <tasks>
+        <name>BBQ at Jacks house</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 28 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Jacks birthday party</taskDescription>
+        <tagged>BBQ</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy beer for BBQ</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 28 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Buy beer for Jacks birthday party</taskDescription>
+        <tagged>BBQ</tagged>
+    </tasks>
+    <tasks>
+        <name>Samuel Birthday</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 28 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>BIRTHDAY</tagged>
+    </tasks>
+    <tasks>
+        <name>Wedding Anniversary</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sun 30 Jul 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>ANNIVESARY</tagged>
+    </tasks>
+    <tasks>
+        <name>Soccer competition</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Tue 1 Aug 2017 07:00 AM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>SOCCER</tagged>
+    </tasks>
+    <tasks>
+        <name>Lunch with John</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Wed 2 Aug 2017 12:00 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>lunch at some restaurant with john</taskDescription>
+        <tagged>LUNCH</tagged>
+        <tagged>FOOD</tagged>
+    </tasks>
+    <tasks>
+        <name>CS2103 assignment</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Thu 3 Aug 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Complete CS2103 assignment</taskDescription>
+        <tagged>CS2103</tagged>
+    </tasks>
+    <tasks>
+        <name>Go to the Gym</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Fri 4 Aug 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>GYM</tagged>
+    </tasks>
+    <tasks>
+        <name>Bid for modules</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sat 12 Aug 2017 08:00 AM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Module bidding</taskDescription>
+        <tagged>MODULES</tagged>
+        <tagged>NUS</tagged>
+    </tasks>
+    <tasks>
+        <name>Bid for tutorials</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sun 13 Aug 2017 08:00 AM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Tutorial bidding</taskDescription>
+        <tagged>TUTORIALS</tagged>
+        <tagged>NUS</tagged>
+    </tasks>
+    <tasks>
+        <name>Withdraw from school</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Mon 14 Aug 2017 08:00 AM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Select FYP project</taskDescription>
+        <tagged>NUS</tagged>
+    </tasks>
+    <tasks>
+        <name>Christmas Party at work</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Sat 23 Dec 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>HOLIDAY</tagged>
+    </tasks>
+    <tasks>
+        <name>Christmas</name>
+        <isCompleted>false</isCompleted>
+        <endDateTime>Mon 25 Dec 2017 11:59 PM</endDateTime>
+        <taskType>deadline</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>HOLIDAY</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy Ice Cream</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Buy 2 tubs of chocolate ice cream</taskDescription>
+        <tagged>GROCERIES</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy some beer</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>GROCERIES</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy Coffee</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Buy coffee to complete CS2103 project</taskDescription>
+        <tagged>GROCERIES</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy a new TV</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>TV</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy new Chair</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Buy a new chair from ikea</taskDescription>
+        <tagged>CHAIR</tagged>
+    </tasks>
+    <tasks>
+        <name>Build a new Chair</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Build a new Chair from scratch</taskDescription>
+        <tagged>CHAIR</tagged>
+    </tasks>
+    <tasks>
+        <name>BTO</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Build To Order</taskDescription>
+        <tagged>HOUSE</tagged>
+    </tasks>
+    <tasks>
+        <name>Try again for BTO</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>HOUSE</tagged>
+    </tasks>
+    <tasks>
+        <name>Give up on BTO</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Empty</taskDescription>
+        <tagged>HOUSE</tagged>
+    </tasks>
+    <tasks>
+        <name>Rent a house</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Rent a house for life</taskDescription>
+        <tagged>HOUSE</tagged>
+    </tasks>
+    <tasks>
+        <name>Build a house</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Build own house</taskDescription>
+        <tagged>HOUSE</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy a boat</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Get a new boat</taskDescription>
+        <tagged>BOAT</tagged>
+    </tasks>
+    <tasks>
+        <name>Buy a bicycle</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>Get a new bicycle</taskDescription>
+    </tasks>
+    <tags>GROCERIES</tags>
+    <tags>TV</tags>
+    <tags>CHAIR</tags>
+    <tags>HOUSE</tags>
+    <tags>CAR</tags>
+    <tags>BOAT</tags>
+    <tags>CS2103</tags>
+    <tags>GYM</tags>
+    <tags>BASKETBALL</tags>
+    <tags>SOCCER</tags>
+    <tags>BIRTHDAY</tags>
+    <tags>BBQ</tags>
+    <tags>ANNIVESARY</tags>
+    <tags>DENTAL</tags>
+    <tags>DOCTOR</tags>
+    <tags>LUNCH</tags>
+    <tags>FOOD</tags>
+    <tags>DINNER</tags>
+    <tags>NUS</tags>
+    <tags>FYP</tags>
+    <tags>MODULES</tags>
+    <tags>TUTORIALS</tags>
+    <tags>HOLIDAY</tags>
+    <tags>REST</tags>
+    <tags>PROJECT</tags>
+    <tags>MIDTERMS</tags>
+    <tags>WEDDING</tags>
+    <tags>EXAM</tags>
+    <tags>INTERN</tags>
+    <tags>MEETING</tags>
+    <tags>MOVIE</tags>
+    <tags>OVERLAP</tags>
+</taskManager>
