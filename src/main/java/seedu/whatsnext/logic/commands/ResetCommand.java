@@ -22,6 +22,8 @@ public class ResetCommand extends Command {
 
     public static final String MESSAGE_RESET_TASK_SUCCESS = "Reseted Task: %1$s";
 
+    public static final String MESSAGE_RESET_FLOATING_TASK = "The task specified is already a floating task.";
+
     public final Index targetIndex;
 
     public ResetCommand(Index targetIndex) {
@@ -37,6 +39,10 @@ public class ResetCommand extends Command {
         }
 
         BasicTaskFeatures taskToReset = lastShownList.get(targetIndex.getZeroBased());
+
+        if (taskToReset.getTaskType().equals("floating")) {
+            return new CommandResult(MESSAGE_RESET_FLOATING_TASK);
+        }
 
         BasicTaskFeatures resetedTask = EditCommand.createNonOverlapTask(taskToReset);
 

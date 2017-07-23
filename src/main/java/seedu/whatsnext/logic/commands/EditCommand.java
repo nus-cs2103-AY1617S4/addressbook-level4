@@ -230,7 +230,7 @@ public class EditCommand extends Command {
 
     //@@author A0142675B
     /**
-     * Add the new tags from the tagSet. 
+     * Add the new tags from the tagSet.
      * @param editTaskDescriptor
      * @param updatedTags
      */
@@ -270,7 +270,7 @@ public class EditCommand extends Command {
 
     //@@author A0142675B
     /**
-     * Retain the existing tags from the current task. 
+     * Retain the existing tags from the current task.
      * @param updatedTags
      * @param existingTags
      * @param hasNewPriorityTag
@@ -292,7 +292,7 @@ public class EditCommand extends Command {
 
     //@@author A0142675B
     /**
-     * Take in the very First PriorityTag from the new tags. 
+     * Take in the very First PriorityTag from the new tags.
      * @param editTaskDescriptor
      * @param updatedTags
      * @param hasNewPriorityTag
