@@ -19,7 +19,6 @@ public class ChangePathCommand extends Command {
     public static final String MESSAGE_CREATED_NEW_CONFIG_FILE = "TEST";
     public static final String MESSAGE_REPEAT_TASK_MANAGER_FILE_PATH = "This file is already saved at this location";
     public static final String MESSAGE_SUCCESS = "Save location changed to: ";
-
     private static final Logger logger = LogsCenter.getLogger(ChangePathCommand.class);
 
     private File toSave;

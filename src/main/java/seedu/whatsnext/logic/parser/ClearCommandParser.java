@@ -25,6 +25,10 @@ public class ClearCommandParser {
         return new ClearCommand(clearArgument);
     }
 
+    /**
+     * Checks if clear command argument is valid
+     * @return true if argument matches 'completed', 'incomplete', 'all' and 'expired'
+     * */
     private boolean isArgumentValidPrefixesPresent(String clearArgument) {
         return clearArgument.matches(".*\\b(completed|incomplete|all|expired)\\b.*");
     }

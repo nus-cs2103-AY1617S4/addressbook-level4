@@ -86,7 +86,7 @@ Examples: <br>
 * `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
 * `add project, "CS2103 project", July 10 5pm, July 10 6pm` <br>
 Note: <br>
-> Events can overlap but it will be marked with an exclamation icon and `OVERLAP` tag. 
+> Events can overlap but it will be marked with an exclamation icon and `OVERLAP` tag.
 
 #### 2.2.2 Adding a deadline <br>
 Format: <br>
@@ -237,7 +237,7 @@ Examples:
 * `find CS2103`<br>
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
-  
+
 ### 2.13. Reset a task : `reset`
 Reset a event or deadline at the specified `INDEX` to a floating task. It removes the start and end Date and Time and the overlap tag is also removed if it existed. <br>
 Format: `reset INDEX`

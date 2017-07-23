@@ -118,6 +118,7 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
         //@@author A0156106M
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments);
