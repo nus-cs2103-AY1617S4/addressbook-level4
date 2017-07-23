@@ -64,12 +64,24 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 > * Tagged task will be highlighted `RED`, `BLUE`, `GREEN`
 > * Reserved tag `OVERLAP` are used to warn you about overlapping events.
 
+> **DateTime parsing**
+>
+> * WhatsNext uses the [Pretty Time Parser](http://www.ocpsoft.org/prettytime/nlp/) to parse Strings to Date objects.
+> * The start date of a task cannot be after the end date of a task.
+> * Expired dates (task with dates before today) are highlighted red.
+
+
 ### 2.1. Viewing help : `help`
 
 Format: `help`
+* Opens a window which displays the UserGuide
 
-> Help is also shown if you enter an incorrect command e.g. `abcd` or the keyword `help`
-> Help information will be displayed in commandbox of the UI.
+Format: `help COMMAND_WORD`
+* Displays the MESSAGE_USAGE for that command
+
+Examples:
+* `help add`
+* `help edit`
 
 ### 2.2. Adding a task: `add` <br>
 
