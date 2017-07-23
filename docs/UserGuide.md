@@ -85,6 +85,8 @@ Format: <br>
 Examples: <br>
 * `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
 * `add project, "CS2103 project", July 10 5pm, July 10 6pm` <br>
+Note: <br>
+> Events can overlap but it will be marked with an exclamation icon and `OVERLAP` tag. 
 
 #### 2.2.2 Adding a deadline <br>
 Format: <br>

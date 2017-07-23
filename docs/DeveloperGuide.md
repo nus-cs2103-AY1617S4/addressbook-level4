@@ -371,6 +371,8 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | create a event | keep track of task with both start and end time
 `* * *` | user | create a deadline task | keep track of deadline I have to meet
 `* * *` | user | create a new task which does not have time constrains | keep track of tasks without particular schedule, such as reading a novel
+`* * *` | user | edit the information in the task | make sure the information is up-to-date
+`* * *` | user | change a floating into deadline or events and vice versa | track the task accordingly
 `* * *` | user | delete an existing task | no longer keep track of tasks I do not care about
 `* * *` | user | search a task by name or by tag | locate task without having to go through the entire list
 `* * *` | user | undo a recent action | remove my mistakes
@@ -380,11 +382,8 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | specify a storage folder | know where my data will be saved
 `* * *` | user | see conflicts in events | resolve them earlier
 `* * ` | user | set reminders | see all the tasks due in the period I set upon starting the app
-`* *` | user | see the calendar on command | check out the dates
 `* *` | advanced user | use shortcut commands | utilize the app faster
 `* *` | user | color code my tasks | differentiate the tasks easier
-`* *` | user | sync my tasks with Google calendar | check them on Google platform
-`* *` | user | enable/disable notifications |
 `*` | user | share notes with others | keep tasks updated among a group of people
 `*` | user | share my schedule | let others know my occupied and unoccupied timeslots
 
@@ -572,6 +571,27 @@ Use case ends.
 
 > 3a1. System shows an error message <br>
 > Use case resumes at step 2
+
+#### Use case: Reset Task
+
+**MSS**
+
+1. User requests the task list.
+2. System shows the task list.
+3. User requests to reset the specific event or deadline.
+4. System reset the specified task. <br>
+Use case ends.
+
+**Extensions**
+
+2a. The list is empty
+
+> Use case ends
+
+3a. The given task is already a floating task
+
+>3a1. System shows that the task is already a floating task<br>
+> Use case resume at step 2
 
 #### Use case: Update storage file path
 
