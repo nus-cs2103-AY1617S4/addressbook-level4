@@ -48,7 +48,7 @@ Refer to the Features section below for details of each command. +
 === Viewing help : `help`
 Displays usage of the commands.
 
-Format: 
+Format: +
 `help` +
 `help [command name]` 
 
@@ -62,7 +62,7 @@ Examples:
 === Adding a task: `add`
 Adds a task to the task manager. +
 
-Format: 
+Format: +
 `add [task name] "by" [date] "at " [time] + "#"[tags]` +
 `add [task name] "at" [time] + "#"[tags]` +
 `add [task name] "from" [start date] "to" [end date]` +
@@ -87,7 +87,7 @@ Examples:
 === Clearing task list(s): `clear`
 Clears task list(s) from the task manager. +
 
-Format: 
+Format: +
 `clear [list to delete from]` 
 
 ****
@@ -105,7 +105,7 @@ Examples:
 === Completing a Task : `complete`
 Marks a task as complete in the task manager and moves it into the completed task list. +
 
-Format: 
+Format: +
 `complete [index]`
 
 Examples:
@@ -117,7 +117,7 @@ The task at index 1 is moved to completed list.
 === Deleting a Task: `delete`
 Deletes a task from the task manager. +
 
-Format: 
+Format: +
 `delete [task name]` +
 `delete [list to delete from] [index]`
 
@@ -140,7 +140,7 @@ Deletes the task at index 1 in the active(pending) task list
 === Editing a Task : `edit`
 Edits an existing task in the ticktask. +
 
-Format: 
+Format: +
 `edit [index] [attribute to change][new value]`
 
 ****
@@ -160,7 +160,7 @@ Edits the task's duration.
 === Finding a Task : `find`
 Finds an existing task in the ticktask. +
 
-Format: 
+Format: +
 `find [keyword(s)]`
 
 ****
@@ -179,7 +179,7 @@ Will find all tasks that contain the substring "tu"
 === Listing Command History : `history`
 Displays history of commands since application opened. +
 
-Format: 
+Format: +
 `history`
 
 Examples:
@@ -190,7 +190,7 @@ Examples:
 === Listing All Tasks : `list`
 Displays a type of task within task manager. +
 
-Format: 
+Format: +
 `list` +
 `list all` + 
 `list [task type]`
@@ -210,7 +210,7 @@ Examples:
 === Restore action : `restore`
 Restores the task identified by the index number back into the active list. +
 
-Format: 
+Format: +
 `restore [INDEX]`
 
 Examples:
@@ -221,7 +221,7 @@ Examples:
 === Save action : `save`
 Changes the location of the TickTask app xml file. +
 
-Format: 
+Format: +
 `save [DIRECTORY]`
 
 Examples:
@@ -232,7 +232,7 @@ Examples:
 === Select action : `select`
 Highlight a task identified by the index number in the active task list. +
 
-Format: 
+Format: +
 `select [INDEX]`
 
 Examples:
@@ -243,7 +243,7 @@ Examples:
 === Undo/Redo Actions: `undo` `/redo`
 Undo or redo the latest action. +
 
-Format: 
+Format: +
 `undo` or `redo`
 
 Examples:
@@ -262,7 +262,7 @@ Examples:
 
 === Viewing help
 
-Format: 
+Format: +
 `help` +
 `help [command name]` 
 
@@ -275,7 +275,7 @@ Examples:
 
 === Adding a task
 
-Format: 
+Format: +
 `add [task name] "by " [date] "at " [time] + "#"[tags]` +
 `add [task name] "at " [time] + "#"[tags]` +
 `add [task name]` +
@@ -291,7 +291,7 @@ Examples:
 
 === Clearing task list(s)
 
-Format: 
+Format: +
 `clear [list to delete from]` 
 
 Examples:
@@ -303,7 +303,7 @@ Examples:
 
 === Completing a Task 
 
-Format: 
+Format: +
 `complete [index]`
 
 Examples:
@@ -313,7 +313,7 @@ Examples:
 
 === Deleting a Task
 
-Format: 
+Format: +
 `delete [task name]` +
 `delete [list to delete from] [index]`
 
@@ -326,7 +326,7 @@ Examples:
 
 === Editing a Task
 
-Format: 
+Format: +
 `edit [index] [attribute to change][new value]`
 
 Examples:
@@ -338,7 +338,7 @@ Examples:
 
 === Finding a Task
 
-Format: 
+Format: +
 `find [keyword(s)]`
 
 Examples:
@@ -349,7 +349,7 @@ Examples:
 
 === Listing Command History
 
-Format: 
+Format: +
 `history`
 
 Examples:
@@ -359,7 +359,7 @@ Examples:
 
 === Listing All Tasks
 
-Format: 
+Format: +
 `list` +
 `list all` + 
 `list [task type]`
@@ -373,7 +373,7 @@ Examples:
 
 === Restore action 
 
-Format: 
+Format: +
 `restore [INDEX]`
 
 Examples:
@@ -383,7 +383,7 @@ Examples:
 
 === Save action
 
-Format: 
+Format: +
 `save [DIRECTORY]`
 
 Examples:
@@ -393,7 +393,7 @@ Examples:
 
 === Select action 
 
-Format: 
+Format: +
 `select [INDEX]`
 
 Examples:
@@ -403,7 +403,7 @@ Examples:
 
 === Undo/ Redo Actions 
 
-Format: 
+Format:+ 
 `undo` or `redo`
 
 Examples:
