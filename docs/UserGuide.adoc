@@ -298,8 +298,7 @@ Format: `complete [index]`
 
 Examples:
 ****
-* `complete 1` +
-The task at index 1 is moved to completed list.
+* `complete 1` 
 ****
 
 === Deleting a Task
@@ -310,13 +309,9 @@ Format: +
 
 Examples:
 ****
-* `delete play basketball` +
-Deletes the task that contain the string "play basketball" +
-If multiple tasks are found to contain the string, please proceed to delete by using index +
+* `delete play basketball` 
 * `delete complete 1` +
-Deletes the task at index 1 in the completed task list
 * `delete active 1` +
-Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Editing a Task
@@ -326,11 +321,8 @@ Format: `edit [index] [attribute to change][new value]`
 Examples:
 ****
 * `edit 1 name tutorial` +
-Edits the task name to tutorial.
-* `edit 0 end time 2200` +
-Edits the task's end time to 2200.
-* `edit 0 start time 2300 date christmas` +
-Edits the task's start time to 2300 and the date to 25/12/2017.
+* `edit 2 time 2200` +
+* `edit 3 date christmas` +
 ****
 
 === Finding a Task
@@ -340,9 +332,7 @@ Format: `find [keyword(s)]`
 Examples:
 ****
 * `find wash dog` +
-Will find all tasks that contain the substring "wash dog"
 * `find tu` + 
-Will find all tasks that contain the substring "tu"
 ****
 
 === Listing Command History
@@ -401,7 +391,5 @@ Format: `undo` or `redo`
 Examples:
 ****
 * `undo` +
-Undo the previous action such as add, delete, edit or complete.
 * `redo` +
-Redo the undo action
 ****
