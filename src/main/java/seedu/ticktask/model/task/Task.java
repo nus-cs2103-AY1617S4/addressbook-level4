@@ -79,24 +79,39 @@ public class Task implements ReadOnlyTask {
     
     /**
      * Resets the task type based on the due date and due time of the task object
+     * Also sets default date and time values based on the different date and time combinations
      */
     public void resetTaskType() {
         if (time.isRange() || date.isRange()) {
             type.setValue(TaskType.TASK_TYPE_EVENT);
-            if (time.getStartTime().equals("")) time.setStartTime(LocalTime.parse("00:00"));
-            if (date.getStartDate().equals("")) date.setStartDate(LocalDate.now());
-            if (time.getEndTime().equals("")) time.setEndTime(LocalTime.parse("23:59"));
-            if (date.getEndDate().equals("")) date.setEndDate(LocalDate.now());
+            if (time.getStartTime().equals("")){
+                time.setStartTime(LocalTime.parse("00:00"));
+            }
+            if (date.getStartDate().equals("")){
+                date.setStartDate(LocalDate.now());
+            }
+            if (time.getEndTime().equals("")){
+                time.setEndTime(LocalTime.parse("23:59"));
+            }
+            
         } else if (time.isFloating() && date.isFloating()) {
             type.setValue(TaskType.TASK_TYPE_FLOATING);
         } else {
             type.setValue(TaskType.TASK_TYPE_DEADLINE);
-            if (time.getStartTime().equals("")) time.setStartTime(LocalTime.parse("23:59"));
-            if (date.getStartDate().equals("")) date.setStartDate(LocalDate.now());
-            
-            if (!date.getEndDate().equals("")) date.setEndDate(null);
-            if (!time.getEndTime().equals("")) time.setEndTime(null);
-            
+            if (time.getStartTime().equals("")){
+                time.setStartTime(LocalTime.parse("23:59"));
+            }
+            if (date.getStartDate().equals("")){
+                date.setStartDate(LocalDate.now());
+            }
+
+            if (!date.getEndDate().equals("")){
+                date.setEndDate(null);
+            }
+            if (!time.getEndTime().equals("")){
+                time.setEndTime(null);
+            }
+
         }
     }
     //@@author A0139819N
