@@ -13,6 +13,10 @@ import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 //@@author A0142675B
+/**
+ * Resets a task identified using it's last displayed index from the task manager.
+ * All date and time will be reseted, and overlap will be remove if it is present.
+ */
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
@@ -25,7 +29,9 @@ public class ResetCommand extends Command {
 
     public static final String MESSAGE_RESET_TASK_SUCCESS = "Reseted Task: %1$s";
 
+    public static final String MESSAGE_RESET_FLOATING_TASK = "The task specified is already a floating task.";
     private static final Logger logger = LogsCenter.getLogger(ResetCommand.class);
+
 
     public final Index targetIndex;
 
@@ -43,6 +49,10 @@ public class ResetCommand extends Command {
         }
 
         BasicTaskFeatures taskToReset = lastShownList.get(targetIndex.getZeroBased());
+
+        if (taskToReset.getTaskType().equals("floating")) {
+            return new CommandResult(MESSAGE_RESET_FLOATING_TASK);
+        }
 
         BasicTaskFeatures resetedTask = EditCommand.createNonOverlapTask(taskToReset);
 

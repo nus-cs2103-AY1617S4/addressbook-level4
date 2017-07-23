@@ -232,12 +232,17 @@ public class EditCommand extends Command {
 
         removeTags(editTaskDescriptor, updatedTags);
 
-
         addNewTags(editTaskDescriptor, updatedTags);
 
         return updatedTags;
     }
 
+    //@@author A0142675B
+    /**
+     * Add the new tags from the tagSet.
+     * @param editTaskDescriptor
+     * @param updatedTags
+     */
     public static void addNewTags(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags) {
         if (editTaskDescriptor.newTags != null) {
             Iterator<Tag> tag = editTaskDescriptor.newTags.iterator();
@@ -250,6 +255,13 @@ public class EditCommand extends Command {
         }
     }
 
+    //@@author A0142675B
+    /**
+     * Remove the tags from the tagSet
+     * @param editTaskDescriptor
+     * @param updatedTags
+     * @throws TagNotFoundException
+     */
     public static void removeTags(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags)
             throws TagNotFoundException {
         if (editTaskDescriptor.removeTags != null) {
@@ -265,6 +277,13 @@ public class EditCommand extends Command {
         }
     }
 
+    //@@author A0142675B
+    /**
+     * Retain the existing tags from the current task.
+     * @param updatedTags
+     * @param existingTags
+     * @param hasNewPriorityTag
+     */
     public static void retainExistingTags(Set<Tag> updatedTags, Set<Tag> existingTags, boolean hasNewPriorityTag) {
         if (existingTags != null) {
             Iterator<Tag> tag = existingTags.iterator();
@@ -280,6 +299,14 @@ public class EditCommand extends Command {
         }
     }
 
+    //@@author A0142675B
+    /**
+     * Take in the very First PriorityTag from the new tags.
+     * @param editTaskDescriptor
+     * @param updatedTags
+     * @param hasNewPriorityTag
+     * @return
+     */
     public static boolean checkNewPriorityTag(EditTaskDescriptor editTaskDescriptor, Set<Tag> updatedTags,
             boolean hasNewPriorityTag) {
         if (editTaskDescriptor.newTags != null) {

@@ -46,6 +46,27 @@ public class ResetCommandTest {
     }
 
     @Test
+    public void executeResetFloating_validIndexUnfilteredList_success() throws Exception {
+        Index lastIndex = new Index(model.getFilteredTaskList().size() - 1);
+        BasicTaskFeatures taskToReset = model.getFilteredTaskList().get(lastIndex.getZeroBased());
+        ResetCommand resetCommand = prepareCommand(lastIndex);
+
+        String expectedMessage = String.format(ResetCommand.MESSAGE_RESET_FLOATING_TASK, taskToReset);
+
+        ModelManager expectedModel = new ModelManager(model.getTaskManager(), new UserPrefs());
+        BasicTaskFeatures resetedTask = EditCommand.createNonOverlapTask(taskToReset);
+
+        DateTime initDateTime = new DateTime();
+
+        resetedTask.setStartDateTime(initDateTime);
+        resetedTask.setEndDateTime(initDateTime);
+
+        expectedModel.updateTask(taskToReset, resetedTask);
+
+        CommandTestUtil.assertCommandSuccess(resetCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         ResetCommand resetCommand = prepareCommand(outOfBoundIndex);
