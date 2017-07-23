@@ -11,7 +11,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3
 
-By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
+By: `T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Setting up
 
