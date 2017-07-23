@@ -11,7 +11,7 @@ We are a team Engineering students based in the [School of Computing, National U
 * [Mark Command](UserGuide.md#211-mark-tasks--mark)
 * [Unmark Command](UserGuide.md#212-unmark-tasks--unmark)
 * [Clear Command](UserGuide.md#210-clear-tasks--clear)
-* Parse DateTime
+* [Parse DateTime](#2-features)
 * [Help Command](UserGuide.md#21-viewing-help--help)
 
 **Code Written:**
@@ -20,7 +20,10 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Other major contributions:**
 * Refactor Initial Addressbook
-* Refactor Test Files<br>
+* Refactor Test Files
+* Code Consolidation and Review
+* [Manual Testing](../src/test/data/ManualTesting/TestScript.md)
+
 
 -----
 
