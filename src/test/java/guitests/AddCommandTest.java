@@ -27,11 +27,13 @@ public class AddCommandTest extends TaskManagerGuiTest {
     public void add() throws IllegalValueException {
         commandBox.pressEnter();
         commandBox.runCommand("list all");
+
         //add one floating task
         BasicTask taskToAdd = new BasicTask(new TaskName("Buy a country"),
                 new TaskDescription("to rule"), getTagSet());
         commandBox.runCommand("add Buy a country m/to rule");
         assertAddSuccess(taskToAdd);
+
         //add duplicate floating task
         commandBox.runCommand("add Buy a country m/to rule");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -42,17 +44,19 @@ public class AddCommandTest extends TaskManagerGuiTest {
                 new DateTime("next Monday"), getTagSet("medium"));
         commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
         assertAddSuccess(taskToAdd);
+
         //add duplicate deadline task
         commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 
         //add event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/low");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/11 dec e/12 dec t/low");
         taskToAdd = new BasicTask(new TaskName("Watch Csgo Major"), new TaskDescription("Fun stuffs"),
-                new DateTime("4 september"), new DateTime("5 september"), getTagSet("low"));
+                new DateTime("11 dec"), new DateTime("12 dec"), getTagSet("low"));
         assertAddSuccess(taskToAdd);
+
         //add duplicate event task
-        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/4 september e/5 september t/low");
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/11 dec e/12 dec t/low");
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
     }
 

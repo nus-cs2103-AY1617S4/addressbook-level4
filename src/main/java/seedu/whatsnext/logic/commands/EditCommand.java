@@ -135,7 +135,7 @@ public class EditCommand extends Command {
                 && editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))
                 || (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
                         && editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
-            logger.warning(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
+            logger.info(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
             throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
         }
     }

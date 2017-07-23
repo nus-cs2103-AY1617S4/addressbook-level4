@@ -61,6 +61,7 @@ public class UserPrefs {
         this.taskManagerFilePath = taskManagerFilePath;
     }
 
+    //@@author
     public String getTaskManagerName() {
         return taskManagerName;
     }

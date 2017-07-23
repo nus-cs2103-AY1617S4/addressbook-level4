@@ -44,10 +44,9 @@ public class DeleteCommand extends Command {
 
         BasicTaskFeatures taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         try {
-
             model.deleteTask(taskToDelete);
         } catch (TaskNotFoundException pnfe) {
-
+            logger.warning("Targeted task missing!");
             assert false : "The target task cannot be missing";
         }
 
