@@ -10,6 +10,9 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.HistoryCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
+/**
+ * Contains integration test (interaction with the Model) and unit test for parser.
+ */
 public class ParserTest {
     private final Parser parser = new Parser();
 

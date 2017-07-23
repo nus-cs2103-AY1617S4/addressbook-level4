@@ -16,6 +16,10 @@ import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
+/**
+ * Gui tests for the add command
+ */
+
 public class AddCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

@@ -6,7 +6,9 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for argument tokenizer.
+ */
 public class ArgumentTokenizerTest {
 
     private final Prefix unknownPrefix = new Prefix("--u");

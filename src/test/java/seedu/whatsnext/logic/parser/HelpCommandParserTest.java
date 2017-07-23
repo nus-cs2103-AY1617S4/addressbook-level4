@@ -25,6 +25,9 @@ import seedu.whatsnext.logic.commands.UndoCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for HelpCommand parser.
+ */
 public class HelpCommandParserTest {
 
     public static final String INVALID_INPUT = "help blah";

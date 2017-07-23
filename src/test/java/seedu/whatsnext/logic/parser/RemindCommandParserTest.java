@@ -11,6 +11,9 @@ import seedu.whatsnext.logic.commands.RemindCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 //@@author A0154986L
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for RemindCommand parser.
+ */
 public class RemindCommandParserTest {
 
     private static final String VALID_INPUT_MINUTE = "30 minute";

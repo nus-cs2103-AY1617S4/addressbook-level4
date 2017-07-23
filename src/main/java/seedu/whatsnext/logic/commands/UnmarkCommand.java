@@ -17,7 +17,7 @@ import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 
 //@@author A0156106M
 /**
- * Marks an existing task in the task manager.
+ * Marks an existing completed task as incomplete in the task manager.
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";

@@ -12,6 +12,9 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.SelectCommand;
 import seedu.whatsnext.ui.CommandBox;
 
+/**
+ * Gui tests for the commandBox
+ */
 public class CommandBoxTest extends TaskManagerGuiTest {
 
     private static final String COMMAND_THAT_SUCCEEDS = SelectCommand.COMMAND_WORD + " 1";

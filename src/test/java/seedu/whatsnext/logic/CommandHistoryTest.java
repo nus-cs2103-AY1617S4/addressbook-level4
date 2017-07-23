@@ -6,7 +6,9 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Test cases for command history
+ */
 public class CommandHistoryTest {
     private CommandHistory history;
 
