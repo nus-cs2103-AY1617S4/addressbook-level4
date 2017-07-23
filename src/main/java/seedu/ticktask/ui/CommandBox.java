@@ -48,7 +48,8 @@ public class CommandBox extends UiPart<Region> {
                          FindCommand.COMMAND_WORD, FindCompleteCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
                          HistoryCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, ListCommand.COMMAND_WORD + " " + LIST_FLOATING,
                          ListCommand.COMMAND_WORD + " " + LIST_TODAY, ListCommand.COMMAND_WORD + " " + LIST_DEADLINE,
-                         RedoCommand.COMMAND_WORD, RestoreCommand.COMMAND_WORD, StorageCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD};
+                         ListCommand.COMMAND_WORD + " " + LIST_EVENT, RedoCommand.COMMAND_WORD, RestoreCommand.COMMAND_WORD,
+                         StorageCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD};
     
     //@@author
     @FXML
