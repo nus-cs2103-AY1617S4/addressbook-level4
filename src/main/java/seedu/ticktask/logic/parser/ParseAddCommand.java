@@ -27,8 +27,8 @@ import seedu.ticktask.model.task.TaskType;
  */
 public class ParseAddCommand {
 	
-	public static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|#|\\bat\\b))+)"
-			                                         + "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
+	public static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|\\bon\\b|#|\\bat\\b))+)"
+			                                         + "(?=.*(by|from|on)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
 			                                         + "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
 			                                         + "((?=.*#(?<tags>.+)))?"
 			                                         + ".*");
