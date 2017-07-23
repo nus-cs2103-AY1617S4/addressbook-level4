@@ -10,7 +10,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 
-By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
+By: `T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Quick Start
 
