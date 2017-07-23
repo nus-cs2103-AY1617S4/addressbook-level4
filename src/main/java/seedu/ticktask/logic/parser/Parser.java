@@ -58,6 +58,7 @@ public class Parser {
             return new ParseEditCommand().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

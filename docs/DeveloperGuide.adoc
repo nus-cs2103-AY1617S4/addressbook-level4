@@ -339,6 +339,7 @@ Priority |As a |I want to... |So that I can...
 |`* *` |user |input commands using natural language |perform commands easily and intuitively
 |`* *` |user |restore a completed task |allocate a completed task from completed task list to active task list 
 |`* *` |user |set reminders for tasks |remember to complete it before the deadline or display overdue tasks
+|`* *` |user |show me the command history |view all commands that I used before
 
 |`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
 |`*` |user |add priorities to the task |determine which task to complete first
