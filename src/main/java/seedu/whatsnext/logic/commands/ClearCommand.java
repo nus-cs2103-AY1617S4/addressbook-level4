@@ -13,7 +13,7 @@ import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 
 /**
- * Clears incomplete, completed or all BasicTasks in the Task Manager.
+ * Clears incomplete, completed, expired or all BasicTasks in the Task Manager.
  */
 public class ClearCommand extends Command {
 

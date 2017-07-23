@@ -21,6 +21,9 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.TaskDescription;
 import seedu.whatsnext.model.task.TaskName;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for parser util.
+ */
 public class ParserUtilTest {
 
     private static final String INVALID_NAME = "Complete Assignment @";

@@ -12,6 +12,10 @@ import seedu.whatsnext.logic.commands.DeleteCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 /**
+ * Contains integration tests (interaction with the Model) and unit tests for DeleteCommand parser.
+ */
+
+/**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the
  * same path through the DeleteCommand, and therefore we test only one of them.

@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 //@@author A0154987J
+/**
+ * A card that shows the details of a floating task
+ */
 public class FloatingTaskCard extends UiPart<Region> {
 
     private static final String FXML = "FloatingTaskCard.fxml";
@@ -39,6 +42,9 @@ public class FloatingTaskCard extends UiPart<Region> {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Changes the border color of the task to indicate its priority
+     */
     private void setPriorityColors(BasicTaskFeatures task) {
         if (task.getAllTags().contains("HIGH")) {
             cardBackground.setStyle("-fx-border-color : #ff0000; "

@@ -8,6 +8,9 @@ import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.EditCommand;
 import seedu.whatsnext.logic.commands.UndoCommand;
 
+/**
+ * Gui tests for the undo command
+ */
 public class UndoCommandTest extends TaskManagerGuiTest {
 
     // @@author A0154987J

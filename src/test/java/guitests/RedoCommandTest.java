@@ -8,6 +8,9 @@ import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.EditCommand;
 import seedu.whatsnext.logic.commands.RedoCommand;
 
+/**
+ * Gui tests for the redo command
+ */
 public class RedoCommandTest extends TaskManagerGuiTest {
 
     // @@author A0154987J

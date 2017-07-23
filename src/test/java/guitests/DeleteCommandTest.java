@@ -13,6 +13,9 @@ import seedu.whatsnext.model.task.BasicTask;
 
 import seedu.whatsnext.testutil.TestUtil;
 
+/**
+ * Gui tests for the delete command
+ */
 //@@author A0154986L
 public class DeleteCommandTest extends TaskManagerGuiTest {
 

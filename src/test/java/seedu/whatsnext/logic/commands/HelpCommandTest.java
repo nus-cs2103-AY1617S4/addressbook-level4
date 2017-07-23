@@ -13,6 +13,9 @@ import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.events.ui.ShowHelpRequestEvent;
 
 //@@author A0156106M
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for HelpCommand.
+ */
 public class HelpCommandTest {
     private boolean isEventCaught = false;
 

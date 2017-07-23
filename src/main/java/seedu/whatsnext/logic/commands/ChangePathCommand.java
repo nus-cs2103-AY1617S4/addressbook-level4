@@ -7,8 +7,6 @@ import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.storage.XmlTaskManagerStorage;
 
-
-
 /**
  * Changes location where task manager is stored.
  */
