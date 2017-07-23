@@ -5,6 +5,9 @@ import org.junit.Test;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
 
+/**
+ * Gui tests for the unmark command
+ */
 public class UnmarkCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

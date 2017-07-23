@@ -11,7 +11,9 @@ import com.google.common.eventbus.Subscribe;
 
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.events.ui.ExitAppRequestEvent;
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ExitCommand.
+ */
 public class ExitCommandTest {
     private boolean isEventCaught = false;
 

@@ -13,7 +13,6 @@ import seedu.whatsnext.commons.exceptions.IllegalValueException;
 //@@author A0156106M
 /**
  * Represents the Date of a BasicTask
- *
  * */
 public class DateTime {
     public static final String INIT_DATETIME_VALUE = "0001/01/01 00:00";

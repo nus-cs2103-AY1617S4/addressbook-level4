@@ -15,7 +15,7 @@ import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
- * Panel containing the list of tasks.
+ * Panel containing the list of event tasks.
  */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";

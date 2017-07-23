@@ -10,6 +10,9 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.util.SampleDataUtil;
 import seedu.whatsnext.testutil.TestUtil;
 
+/**
+ * Gui tests for the sample data
+ */
 public class SampleDataTest extends TaskManagerGuiTest {
     @Override
     protected TaskManager getInitialData() {

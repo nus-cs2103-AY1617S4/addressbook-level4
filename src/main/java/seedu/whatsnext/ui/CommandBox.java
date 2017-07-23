@@ -15,6 +15,9 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 import seedu.whatsnext.model.task.exceptions.TagNotFoundException;
 
+/**
+ * A textfield box that takes in input from the user
+ */
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
@@ -30,6 +33,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(Logic logic) {
         super(FXML);
         this.logic = logic;
+        //@@author A0154987J
         commandTextField.setOnKeyPressed(
             event -> {
                 switch (event.getCode()) {

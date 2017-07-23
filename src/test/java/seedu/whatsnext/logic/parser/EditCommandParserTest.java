@@ -45,6 +45,9 @@ import seedu.whatsnext.model.task.TaskName;
 import seedu.whatsnext.testutil.EditTaskDescriptorBuilder;
 
 //@@author A0142675B
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditCommand parser.
+ */
 public class EditCommandParserTest {
 
     private static final String NAME_DESC_PROJECTMEETING = " " + PREFIX_NAME + VALID_NAME_PROJECTMEETING;

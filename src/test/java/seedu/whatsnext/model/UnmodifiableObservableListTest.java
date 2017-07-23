@@ -17,6 +17,9 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.FXCollections;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for UnmodifiableObservableList.
+ */
 public class UnmodifiableObservableListTest {
 
     @Rule

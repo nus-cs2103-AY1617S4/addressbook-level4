@@ -5,6 +5,9 @@ import org.junit.Test;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.ListCommand;
 
+/**
+ * Gui tests for the list command
+ */
 public class ListCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

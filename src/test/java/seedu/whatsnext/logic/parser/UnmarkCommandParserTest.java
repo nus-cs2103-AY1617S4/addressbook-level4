@@ -14,6 +14,10 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 //@@author A0156106M
 /**
+ * Contains integration tests (interaction with the Model) and unit tests for UnmarkCommand parser.
+ */
+
+/**
 * As we are only doing white-box testing, our test cases do not cover path variations
 * outside of the MarkCommand code. For example, inputs "1" and "1 abc" take the
 * same path through the MarkCommand, and therefore we test only one of them.

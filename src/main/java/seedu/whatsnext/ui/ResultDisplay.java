@@ -44,7 +44,9 @@ public class ResultDisplay extends UiPart<Region> {
         displayed.setValue(event.message);
     }
 
-    //displays details of selected task inside resultDisplay box
+    /**
+    *displays details of selected task inside resultDisplay box
+    */
     public static void showSelectedTask(BasicTaskFeatures task) {
         displayed.setValue(task.getTaskDetails());
     }

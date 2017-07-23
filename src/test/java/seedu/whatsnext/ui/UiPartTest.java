@@ -13,6 +13,9 @@ import org.junit.rules.TemporaryFolder;
 import javafx.fxml.FXML;
 import seedu.whatsnext.MainApp;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for UiPart.
+ */
 public class UiPartTest {
 
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";

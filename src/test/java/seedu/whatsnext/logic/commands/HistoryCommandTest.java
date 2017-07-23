@@ -9,6 +9,9 @@ import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ModelManager;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for HistoryCommand.
+ */
 public class HistoryCommandTest {
     private HistoryCommand historyCommand;
     private CommandHistory history;

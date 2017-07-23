@@ -2,7 +2,7 @@ package seedu.whatsnext.logic.commands;
 
 //@@author A0154986L
 /**
- * Lists all uncompleted/ completed/ all tasks in the task manager to the user.
+ * Lists all uncompleted/ completed/ expired/ all tasks in the task manager to the user.
  * It can also list tasks by type only.
  */
 public class ListCommand extends Command {
@@ -20,11 +20,11 @@ public class ListCommand extends Command {
             + "To list expired tasks : list expired\n"
             + "To list all tasks : list all";
 
-    public static final String MESSAGE_SUCCESS_UPCOMING = "Listed all upcoming incomplete tasks";
-    public static final String MESSAGE_SUCCESS_INCOMPLETE = "Listed all incomplete tasks";
-    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all completed tasks";
-    public static final String MESSAGE_SUCCESS_EXPIRED = "Listed all expired tasks";
-    public static final String MESSAGE_SUCCESS_ALL = "Listed all tasks";
+    public static final String MESSAGE_SUCCESS_UPCOMING = "List all upcoming incomplete tasks";
+    public static final String MESSAGE_SUCCESS_INCOMPLETE = "List all incomplete tasks";
+    public static final String MESSAGE_SUCCESS_COMPLETED = "List all completed tasks";
+    public static final String MESSAGE_SUCCESS_EXPIRED = "List all expired tasks";
+    public static final String MESSAGE_SUCCESS_ALL = "List all tasks";
 
     private final String argument;
 

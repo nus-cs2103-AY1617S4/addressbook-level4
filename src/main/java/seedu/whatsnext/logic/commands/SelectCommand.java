@@ -9,7 +9,7 @@ import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
- * Selects a task identified using it's last displayed index from the task manager.
+ * Selects a task and displays its details identified using it's last displayed index from the task manager.
  */
 public class SelectCommand extends Command {
 

@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ * Contains integration test (interaction with the Model) and unit test for the name of the Task.
+ */
 public class NameTest {
     //@@author A0156106M
     @Test

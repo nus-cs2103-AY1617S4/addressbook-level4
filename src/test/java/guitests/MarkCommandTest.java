@@ -5,6 +5,9 @@ import org.junit.Test;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.MarkCommand;
 
+/**
+ * Gui tests for the mark command
+ */
 public class MarkCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J
