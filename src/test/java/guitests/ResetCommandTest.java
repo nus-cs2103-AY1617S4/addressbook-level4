@@ -13,6 +13,7 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
  */
 public class ResetCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
     public void assertEventResetSuccess() {
         commandBox.pressEnter();
