@@ -241,10 +241,14 @@ Examples:
 ****
 
 === Undo/Redo Actions: `undo` `/redo`
-Undo or redo the latest action. +
+Undo or redo the recent actions. +
 
 Format: +
 `undo` or `redo`
+
+****
+* Undo/redo is applicable to multiple recent actions
+****
 
 Examples:
 ****
@@ -403,7 +407,7 @@ Examples:
 
 === Undo/ Redo Actions 
 
-Format:+ 
+Format: + 
 `undo` or `redo`
 
 Examples:
