@@ -1,5 +1,8 @@
 package seedu.whatsnext.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
@@ -21,6 +24,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
+
     public final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -33,6 +38,7 @@ public class DeleteCommand extends Command {
         UnmodifiableObservableList<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -45,6 +51,7 @@ public class DeleteCommand extends Command {
             assert false : "The target task cannot be missing";
         }
 
+        logger.fine(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

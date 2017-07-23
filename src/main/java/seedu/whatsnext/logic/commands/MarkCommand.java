@@ -2,7 +2,9 @@ package seedu.whatsnext.logic.commands;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -30,6 +32,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_TASK_MARKED = "Selected task is already marked";
 
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+
     public final Index targetIndex;
 
     public MarkCommand(Index targetIndex) {
@@ -41,10 +45,12 @@ public class MarkCommand extends Command {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         if (taskToMark.getIsCompleted()) {
+            logger.info(MESSAGE_TASK_MARKED + ": " + targetIndex.getOneBased());
             throw new CommandException(MESSAGE_TASK_MARKED);
         }
 
@@ -52,8 +58,10 @@ public class MarkCommand extends Command {
         try {
             model.updateTask(taskToMark, markedTask);
         } catch (TaskNotFoundException e) {
+            logger.warning("Targeted task missing!");
             throw new AssertionError("The target task cannot be missing");
         }
+        logger.fine(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
     }
 

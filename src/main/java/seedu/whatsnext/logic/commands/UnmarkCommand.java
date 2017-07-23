@@ -2,7 +2,9 @@ package seedu.whatsnext.logic.commands;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
@@ -31,6 +33,8 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_TASK_UNMARKED = "Selected task is already unmarked";
 
+    private static final Logger logger = LogsCenter.getLogger(UnmarkCommand.class);
+
     public final Index targetIndex;
 
     public UnmarkCommand(Index targetIndex) {
@@ -42,18 +46,22 @@ public class UnmarkCommand extends Command {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         BasicTaskFeatures taskToMark = lastShownList.get(targetIndex.getZeroBased());
         BasicTask markedTask = createUnmarkedTask(taskToMark);
         if (!taskToMark.getIsCompleted()) {
+            logger.info(MESSAGE_TASK_UNMARKED + ": " + targetIndex.getOneBased());
             throw new CommandException(MESSAGE_TASK_UNMARKED);
         }
         try {
             model.updateTask(taskToMark, markedTask);
         } catch (TaskNotFoundException e) {
+            logger.warning("Targeted task missing!");
             throw new AssertionError("The target task cannot be missing");
         }
+        logger.fine(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }
 

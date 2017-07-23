@@ -13,8 +13,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import seedu.whatsnext.commons.core.EventsCenter;
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
@@ -62,6 +64,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
     public static final String MESSAGE_TAG_NOT_FOUND = "The given tag is not found";
 
+    private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
+
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -83,6 +87,7 @@ public class EditCommand extends Command {
         List<BasicTaskFeatures> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.info(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX + ": " + index.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -102,8 +107,10 @@ public class EditCommand extends Command {
             model.updateTask(taskToEdit, editedTask);
 
         } catch (DuplicateTaskException dpe) {
+            logger.info(MESSAGE_DUPLICATE_TASK + " Task name: " + editedTask.getName());
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException pnfe) {
+            logger.warning("Targeted task missing!");
             throw new AssertionError("The target task cannot be missing");
         }
         int counter = 0;
@@ -115,6 +122,7 @@ public class EditCommand extends Command {
         }
         Index index = new Index(counter);
         EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
+        logger.fine(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -127,6 +135,7 @@ public class EditCommand extends Command {
                 && editedTask.getEndDateTime().toString().equals(DateTime.INIT_DATETIME_VALUE))
                 || (editedTask.getTaskType().equals(BasicTask.TASK_TYPE_EVENT)
                         && editedTask.getEndDateTime().isBefore(editedTask.getStartDateTime()))) {
+            logger.warning(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
             throw new CommandException(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
         }
     }
