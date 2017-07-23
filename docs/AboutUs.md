@@ -52,7 +52,7 @@ We are a team Engineering students based in the [School of Computing, National U
 <img src="images/limdaohan.png" width="150"><br>
 **Role:** Developer <br>
 
-**Components in charge of:** Storage & Google Calendar<br>
+**Components in charge of:** Storage<br>
 
 **Features implemented:**
 * [Filepath Command](UserGuide.md#214-view-current-data-file-path--filepath)
@@ -64,7 +64,8 @@ We are a team Engineering students based in the [School of Computing, National U
 * [Test Code](../collated/test/A0149894H.md)
 
 **Other major contributions:**
-* Debugging (config, Clear Command)
+* Debugging
+* Refactor Files
 
 -----
 #### [Tay Chi Shien](https://github.com/chishien)
