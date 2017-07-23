@@ -157,6 +157,17 @@ Edits the task's deadline to 2200.
 Edits the task's duration.
 ****
 
+=== Exiting the TickTask : `exit`
+Exits the program. +
+
+Format: +
+`exit`
+
+Examples:
+****
+* `exit` 
+****
+
 === Finding a Task : `find`
 Finds an existing task in the ticktask. +
 
@@ -338,6 +349,16 @@ Examples:
 * `edit 1 name tutorial` +
 * `edit 2 time 2200` +
 * `edit 3 date christmas` +
+****
+
+=== Exiting the TickTask
+
+Format: +
+`exit`
+
+Examples:
+****
+* `exit` 
 ****
 
 === Finding a Task
