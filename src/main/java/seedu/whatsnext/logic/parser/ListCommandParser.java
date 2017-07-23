@@ -5,9 +5,7 @@ import static seedu.whatsnext.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import seedu.whatsnext.logic.commands.ListCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
-
 //@@author A0154986L
-//@@author A0142675B
 /**
  * Parses input arguments and creates a new ListCommand object
  */

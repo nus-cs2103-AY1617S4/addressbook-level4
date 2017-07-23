@@ -74,6 +74,7 @@ We are a team Engineering students based in the [School of Computing, National U
 * [List Command](UserGuide.md#23-listing-tasks--list)
 * [Undo Command](UserGuide.md#28-undo-last-action--undo)
 * [Redo Command](UserGuide.md#29-redo-last-action--redo)
+* [Remind Command](UserGuide.md#214-set-reminder-period--remind)
 * Sorting
 
 **Code Written:**
@@ -82,6 +83,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 **Other major contributions:**
 * Debugging
+* Logging
 
 -----
 #### [Aung Swumm Htet Pyi Aye](https://github.com/ashpa)
