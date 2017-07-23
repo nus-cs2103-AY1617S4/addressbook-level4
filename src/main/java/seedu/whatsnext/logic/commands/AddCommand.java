@@ -6,7 +6,10 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
+import java.util.logging.Logger;
+
 import seedu.whatsnext.commons.core.EventsCenter;
+import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
@@ -36,6 +39,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
     public static final String INVALID_TASK_CREATED = "Invalid Task Format";
     public static final String MESSAGE_OVERLAP_TASK = "This Task causes an overlapping Event Task.";
+
+    private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
+
     private BasicTask toAdd;
 
     /**
@@ -52,6 +58,7 @@ public class AddCommand extends Command {
         UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
         if (toAdd.isOverlapTask(taskList)) {
             toAdd = EditCommand.createOverlapTask(toAdd);
+            logger.info(MESSAGE_OVERLAP_TASK + " Task name: " + toAdd.getName());
         }
         try {
             model.addTask(toAdd);
@@ -64,9 +71,11 @@ public class AddCommand extends Command {
             }
             Index index = new Index(counter);
             EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
+            logger.fine(String.format(MESSAGE_SUCCESS, toAdd));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateTaskException e) {
             model.resetPrevTaskManager();
+            logger.info(MESSAGE_DUPLICATE_TASK + " Task name: " + toAdd.getName());
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }

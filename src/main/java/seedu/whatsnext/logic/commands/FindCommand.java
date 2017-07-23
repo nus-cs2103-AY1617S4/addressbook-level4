@@ -1,6 +1,9 @@
 package seedu.whatsnext.logic.commands;
 
 import java.util.Set;
+import java.util.logging.Logger;
+
+import seedu.whatsnext.commons.core.LogsCenter;
 
 /**
  * Finds and lists all tasks in TaskManager whose name or tags contain any of the argument keywords.
@@ -15,6 +18,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " lunch tutorial school";
 
+    private static final Logger logger = LogsCenter.getLogger(FindCommand.class);
+
     private final Set<String> keywords;
 
     public FindCommand(Set<String> keywords) {
@@ -24,6 +29,8 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskList(keywords);
+        logger.info(COMMAND_WORD + ": " + keywords.toString() + " "
+                + getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
         return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 

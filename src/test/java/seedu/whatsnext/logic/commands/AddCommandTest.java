@@ -24,7 +24,9 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
 import seedu.whatsnext.testutil.TaskBuilder;
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for AddCommand.
+ */
 public class AddCommandTest {
 
     @Rule

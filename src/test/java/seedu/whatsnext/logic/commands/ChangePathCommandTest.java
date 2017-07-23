@@ -17,6 +17,9 @@ import seedu.whatsnext.testutil.TypicalTasks;
 
 
 //@@author A0149894H
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ChangePathCommand.
+ */
 public class ChangePathCommandTest {
     private static String location = "data/test";
     private static File file = new File(location);
