@@ -29,6 +29,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": List a type of specified tasks.\n"
+            + "The task types are as follows: event, deadline, floating, today and all.\n"
             + "Example: " + COMMAND_WORD + " " + LIST_DEADLINE;
 
     private static ArrayList<String> list_command_array = new ArrayList<String>(Arrays.asList(
