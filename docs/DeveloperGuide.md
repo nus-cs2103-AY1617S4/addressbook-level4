@@ -85,9 +85,6 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used.
 Given below is a quick overview of each component.
 
-> Tip: The `.pptx` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder.
-> To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
-
 [**`Main`**] consists of a single class called [`MainApp`](../src/main/java/seedu/whatsnext/MainApp.java) which is responsible for,
 
 1. At app launch: Initializes the `Ui`, `Logic`, `Storage`, `Model`, `Config` and `UserPrefs` components in the correct sequence, and connects them up with each other. It also ensures that prefs file is updated in the case where it is missing or when there are new/unused fields.
@@ -653,7 +650,7 @@ Use case ends.
 
 **Product Name**: Google Keep
 
-Author: Sheng Jie
+Author: Lui Sheng Jie
 
 Pros:
 
@@ -672,7 +669,7 @@ Cons:
 
 **Product Name**: ToDoist
 
-Author: Sheng Jie
+Author: Lui Sheng Jie
 
 Pros:
 

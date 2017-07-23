@@ -85,34 +85,45 @@ Examples:
 
 ### 2.2. Adding a task: `add` <br>
 
-Adds an (1) event, (2) deadline or (3) floating to the task manager<br>
-Event must have a date, start time and end time. Event can overlap, but it will be tagged with the reserved tag `OVERLAP` to warn you. <br>
-Deadline must have a date, but the end time could be optional. If it is specified, it will be by default 2359. <br>
-Floating task do not have date or time. <br>
+Adds an (1) event, (2) deadline or (3) floating to the task manager
+1. Event must have a date, start time and end time. Event can overlap, but it will be tagged with the reserved tag `OVERLAP` to warn you.
+2. Deadline must have a date, but the end time can be optional. If time is not specified, it will default to 23:59.
+3. Floating task do not have date or time.
+
+A task can be added using the `prefix` or `parse by comma` method
+1. Prefix: `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]`
+2. Parse By Comma: `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]`
 
 #### 2.2.1 Adding a event <br>
-Format: <br>
-* `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]` <br>
-* `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]` <br>
-Examples: <br>
-* `add project s/ July 10 5pm e/ July 10 6pm t/ meeting` <br>
-* `add project, "CS2103 project", July 10 5pm, July 10 6pm` <br>
-Note: <br>
+Format:
+* `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]`
+* `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]`
+
+Examples:
+* `add project s/ July 10 5pm e/ July 10 6pm t/ meeting`
+* `add project, "CS2103 project", July 10 5pm, July 10 6pm`
+
+Note:
 > Events can overlap but it will be marked with an exclamation icon and `OVERLAP` tag.
 
-#### 2.2.2 Adding a deadline <br>
-Format: <br>
-* `add TASK_NAME e/ DATETIME [t/ TAG1 t/ TAG2...]` <br>
-* `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` <br>
-Examples:<br>
-* `add project e/ July 10 6pm t/ meeting` <br>
-* `add project, "CS2103 project", July 10 6pm, tags: meeting` <br>
 
-#### 2.2.3 Adding a floating <br>
-Format: <br>
-* `add TASK_NAME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]` <br>
-* `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` <br>
-Examples:<br>
+#### 2.2.2 Adding a deadline <br>
+
+Format:
+* `add TASK_NAME e/ DATETIME [t/ TAG1 t/ TAG2...]`
+* `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]`
+
+Examples:
+* `add project e/ July 10 6pm t/ meeting`
+* `add project, "CS2103 project", July 10 6pm, tags: meeting`
+
+#### 2.2.3 Adding a floating
+
+Format:
+* `add TASK_NAME [m/ TASK_DESCRIPTION] [t/ TAG1 t/ TAG2...]`
+* `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]`
+
+Examples:
 * `add project t/ meeting`
 * `add project, "CS2103 project", tags: meeting`
 
@@ -123,32 +134,31 @@ Examples:<br>
 > TASK_TYPE will be determined by the application internally based on your input. Event must have starting and ending date-time. Deadline must have ending date-time and Floating should not have any date-time. <br>
 > TASK_PARAMETERS **must match task parameters of task type**
 
-
-
 ### 2.3. Listing tasks : `list`
 
 Shows a list of (1)upcoming incomplete, (2) all incomplete, (3) complete, (4) expired, (5) all tasks of the particular type in the task manager.<br>
 All expired tasks' DateTime will be coloured as red.
-Format:  <br>
-* List upcoming incomplete tasks: `list` <br>
-* List all incomplete tasks: `list incomplete` <br>
-* List completed tasks: `list completed` <br>
-* List expired tasks: `list expired` <br>
-* List all tasks: `list all` <br>
+
+Format:
+* List upcoming incomplete tasks: `list`
+* List all incomplete tasks: `list incomplete`
+* List completed tasks: `list completed`
+* List expired tasks: `list expired`
+* List all tasks: `list all`
 
 ### 2.4. Editing a task : `edit`
 
-Edits an existing task of a particular type in the task manager.<br>
+Edits an existing task in the task manager.
 Format: `edit INDEX [n/ NEW_TASK_NAME] [s/ to START_DATE_TIME] [e/ to START_DATE_TIME]  [+t/ TAG1] [-t/ TAG2]...`
 
-> * Edits a task at the specified `INDEX`.
-    The index refers to the index number shown in the last task listing.<br>
-    The index **must be a positive integer** 1, 2, 3, ...
-> * At least one of the optional fields must be provided.
-> * Option fields **must match task type** (1) event, (2) deadline or (3) floating
-> * Existing values will be updated to the input values.
-> * When editing tags, the existing tags of the task will not not be removed. But if there is already a priority tag, i.e. HIGH, MEDIUM, LOW, and the new tag is a priority tag, the original priority tag will be replace with the new one.
-> * When deleting a tag, the tag provided must be inside the existing tag list.
+* Edits a task at the specified `INDEX`.
+  The index refers to the index number shown in the last task listing.<br>
+  The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Option fields **must match task type** (1) event, (2) deadline or (3) floating
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the task will not not be removed. But if there is already a priority tag, i.e. HIGH, MEDIUM, LOW, and the new tag is a priority tag, the original priority tag will be replace with the new one.
+* When deleting a tag, the tag provided must be inside the existing tag list.
 
 Examples:
 * `edit 1 n/ midterm exam +t/ HIGH -t/ CS2010`<br>
@@ -159,12 +169,12 @@ Examples:
 Finds tasks whose names or tags contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> * The search is case insensitive. e.g `meeting` will match `Meeting`
-> * The order of the keywords does not matter. e.g. `meeting submission` will match `submission meeting`
-> * Only the name and tags are searched.
-> * Only full words will be matched e.g. `meeting` will not match `meetings`
-> * Tasks matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `meeting` will match `submission meeting`
+* The search is case insensitive. e.g `meeting` will match `Meeting`
+* The order of the keywords does not matter. e.g. `meeting submission` will match `submission meeting`
+* Only the name and tags are searched.
+* Only full words will be matched e.g. `meeting` will not match `meetings`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).<br>
+  e.g. `meeting` will match `submission meeting`
 
 Examples:
 
@@ -178,9 +188,9 @@ Examples:
 Deletes the specified task from the task manager. Irreversible.<br>
 Format: `delete INDEX`
 
-> Deletes the task at the specified `INDEX`. <br>
-> The index refers to the index number shown in the most recent listing.<br>
-> The index **must be a positive integer** 1, 2, 3, ...
+* Deletes the task at the specified `INDEX`. <br>
+* The index refers to the index number shown in the most recent listing.<br>
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 
@@ -213,21 +223,23 @@ Format: `redo`
 
 ### 2.10. Clear tasks : `clear`
 Clears (1) incomplete, (2) complete, (3) expired, (4)all tasks in the task manager.<br>
-Clears all entries of the same type from the task manager.<br>
+Clears all entries of the same type from the task manager.
+
 Format: `clear MODIFYIER`
-* Clear incomplete tasks: `clear incomplete` <br>
-* Clear complete tasks: `clear completed` <br>
-* Clear expired tasks: `clear expired` <br>
-* Clear all tasks: `clear all` <br>
+1. Clear incomplete tasks: `clear incomplete`
+2. Clear complete tasks: `clear completed`
+3. Clear expired tasks: `clear expired`
+4. Clear all tasks: `clear all`
 
 ### 2.11. Mark a task : `mark`
-Mark the task at the specified `INDEX` to complete the task. <br>
-Format: `mark INDEX`
-> mark the task at the specified `INDEX`. <br>
-> The index refers to the index number shown in the most recent listing.<br>
-> The index **must be a positive integer** 1, 2, 3, ...
-Examples:
+Mark the task at the specified `INDEX` to complete the task.
 
+Format: `mark INDEX`
+* mark the task at the specified `INDEX`.
+* Index refers to the index number shown in the most recent listing.
+* Index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
 * `list`<br>
   `mark 2`<br>
   Marks the 2nd task in the task manager.
@@ -236,11 +248,13 @@ Examples:
   Marks the 1st task in the results of the `find` command.
 
 ### 2.12. Unmark a task : `unmark`
-Unmark the task at the specified `INDEX`. <br>
+Unmark the task at the specified `INDEX`.
+
 Format: `unmark INDEX`
-> Unmark the task at the specified `INDEX`. <br>
-> The index refers to the index number shown in the most recent listing.<br>
-> The index **must be a positive integer** 1, 2, 3, ...
+* Unmark the task at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index **must be a positive integer** 1, 2, 3, ...
+
 Examples:
 
 * `list`<br>
@@ -252,9 +266,11 @@ Examples:
 
 ### 2.13. Reset a task : `reset`
 Reset a event or deadline at the specified `INDEX` to a floating task. It removes the start and end Date and Time and the overlap tag is also removed if it existed. <br>
+
 Format: `reset INDEX`
-> The index refers to the index number shown in the most recent listing.<br>
-> The index **must be a positive integer** 1, 2, 3, ...
+* The index refers to the index number shown in the most recent listing.
+* The index **must be a positive integer** 1, 2, 3, ...
+
 Examples:
 
 * `list`<br>
