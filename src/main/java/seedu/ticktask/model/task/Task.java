@@ -190,11 +190,11 @@ public class Task implements ReadOnlyTask {
      * Checks if the task that is to be added is in the past in reference to current time & date.
      * @return boolean
      */
-    public boolean isChornological() {
+    public boolean isChronological() {
         LocalDate currDate = LocalDate.now();
         
         if(this.getDate().getLocalStartDate() == null){
-            if(this.getTime().getLocalStartTime() == null || isTimeChornological()){
+            if(this.getTime().getLocalStartTime() == null || isTimeChronological()){
                 return true;
             }
             else return false;
@@ -202,13 +202,13 @@ public class Task implements ReadOnlyTask {
         LocalDate taskDate = this.getDate().getLocalStartDate();
         //Check if task's date is today.
         if(taskDate.isEqual(currDate)){
-            if(this.getTime().getLocalStartTime() == null|| isTimeChornological()){
+            if(this.getTime().getLocalStartTime() == null|| isTimeChronological()){
                 return true;
             } else {
                 return false;
             }
         }
-        if(isDateChornological()){
+        if(isDateChronological()){
             return true;
         } else{
             return false;
@@ -218,7 +218,7 @@ public class Task implements ReadOnlyTask {
     /**
      * Method to check if task's time is in the future relative to current time
      */
-    public boolean isTimeChornological() {
+    public boolean isTimeChronological() {
         LocalTime currTime = LocalTime.now();
         LocalTime taskTime = this.getTime().getLocalStartTime();
         if (taskTime.isBefore(currTime)) {
@@ -231,7 +231,7 @@ public class Task implements ReadOnlyTask {
     /**
      * Method to check if task's date is in the future relative to current date
      */
-    public boolean isDateChornological(){
+    public boolean isDateChronological(){
         LocalDate currDate = LocalDate.now();
         LocalDate taskDate = this.getDate().getLocalStartDate();
         if(taskDate.isBefore(currDate)){

@@ -46,39 +46,39 @@ public class TaskTest {
     
     //@@author A0139964M
     @Test
-    public void isChornological_pastTaskYear_false() throws IllegalValueException {
+    public void isChronological_pastTaskYear_false() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(PAST_DATE).build();
-        assertFalse(validTask.isChornological());
+        assertFalse(validTask.isChronological());
     }
     @Test
-    public void isChornological_pastTaskTime_false() throws IllegalValueException {
+    public void isChronological_pastTaskTime_false() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(LocalDate.now().toString()).withTime(PAST_TIME).build();
-        assertFalse(validTask.isChornological());
+        assertFalse(validTask.isChronological());
     }
     @Test
-    public void isChornological_futureTaskYear_true() throws IllegalValueException {
+    public void isChronological_futureTaskYear_true() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(FUTURE_DATE).build();
-        assertTrue(validTask.isChornological());
+        assertTrue(validTask.isChronological());
     }
     @Test
-    public void isChornological_futureTaskTime_true() throws IllegalValueException {
+    public void isChronological_futureTaskTime_true() throws IllegalValueException {
         Task validTask = new TaskBuilder().withTime(FUTURE_TIME).build();
-        assertTrue(validTask.isChornological());
+        assertTrue(validTask.isChronological());
     }
     @Test
-    public void isDateChornological_PastTaskDate_false() throws IllegalValueException {
+    public void isDateChronological_PastTaskDate_false() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(PAST_DATE).build();
-        assertFalse(validTask.isDateChornological());
+        assertFalse(validTask.isDateChronological());
     }
     @Test
-    public void isDateChornological_futureTaskDate_true() throws IllegalValueException {
+    public void isDateChronological_futureTaskDate_true() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(FUTURE_DATE).build();
-        assertTrue(validTask.isDateChornological());
+        assertTrue(validTask.isDateChronological());
     }
     @Test
-    public void isDateChornological_PastTaskTime_false() throws IllegalValueException {
+    public void isDateChronological_PastTaskTime_false() throws IllegalValueException {
         Task validTask = new TaskBuilder().withDate(PAST_TIME).build();
-        assertFalse(validTask.isTimeChornological());
+        assertFalse(validTask.isTimeChronological());
     }
     @Test
     public void isDateDue_pastDate_true() throws IllegalValueException {

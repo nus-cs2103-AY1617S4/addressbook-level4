@@ -237,7 +237,7 @@ public class AddCommandTest {
             
         }
         
-        public boolean isChornological(ReadOnlyTask t) {
+        public boolean isChronological(ReadOnlyTask t) {
             fail("This method should not be called.");
             return false;
         }

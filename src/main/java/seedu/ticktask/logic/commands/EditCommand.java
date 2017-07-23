@@ -86,7 +86,7 @@ public class EditCommand extends Command {
             model.updateFilteredListToShowAll();
 
             //@@author A0139964M
-            if (!editedTask.isChornological()) {
+            if (!editedTask.isChronological()) {
                 return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
             }
             //@@author
