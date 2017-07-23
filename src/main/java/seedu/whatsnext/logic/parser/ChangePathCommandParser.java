@@ -12,7 +12,7 @@ import seedu.whatsnext.logic.commands.WrongCommand;
 
 /**
  * Parses the given {@code String} of arguments
- * ChangePathCommand and returns an ChangeFilePathCommand object
+ * ChangePathCommandParser and returns an ChangePathCommand object
  * for execution.
  */
 
