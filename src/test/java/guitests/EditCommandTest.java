@@ -8,6 +8,9 @@ import org.junit.Test;
 import seedu.whatsnext.commons.core.Messages;
 import seedu.whatsnext.logic.commands.EditCommand;
 
+/**
+ * Gui tests for the edit command
+ */
 public class EditCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

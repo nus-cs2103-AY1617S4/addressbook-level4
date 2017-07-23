@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
-
-
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for Tags.
+ */
 public class TagTest {
 
     //@@author A0156106M

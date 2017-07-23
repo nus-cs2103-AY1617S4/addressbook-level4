@@ -8,6 +8,9 @@ import seedu.whatsnext.logic.commands.DeleteCommand;
 import seedu.whatsnext.logic.commands.FindCommand;
 import seedu.whatsnext.model.task.BasicTask;
 
+/**
+ * Gui tests for the find command
+ */
 public class FindCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J

@@ -21,6 +21,9 @@ import seedu.whatsnext.model.task.DateTime;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.testutil.TypicalTasks;
 //@@author A0149894H
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ClearCommand.
+ */
 public class ClearCommandTest {
 
     //@@author A0149894H

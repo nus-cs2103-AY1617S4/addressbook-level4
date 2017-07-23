@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
+/**
+ * A test class for app config.
+ */
 public class ConfigTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();

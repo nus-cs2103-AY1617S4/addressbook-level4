@@ -2,7 +2,7 @@ package seedu.whatsnext.logic.commands;
 
 //@@author A0154986L
 /**
- * Lists all uncompleted/ completed/ all tasks in the task manager to the user.
+ * Lists all uncompleted/ completed/ expired/ all tasks in the task manager to the user.
  * It can also list tasks by type only.
  */
 public class ListCommand extends Command {

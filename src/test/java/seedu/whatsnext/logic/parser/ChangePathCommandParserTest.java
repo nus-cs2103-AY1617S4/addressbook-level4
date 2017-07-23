@@ -11,7 +11,9 @@ import seedu.whatsnext.logic.commands.ChangePathCommand;
 import seedu.whatsnext.logic.commands.Command;
 import seedu.whatsnext.logic.commands.WrongCommand;
 
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ChangePathCommand parser.
+ */
 public class ChangePathCommandParserTest {
     private ChangePathCommandParser parser = new ChangePathCommandParser();
     private String nonExistentFilePath = "data/test";

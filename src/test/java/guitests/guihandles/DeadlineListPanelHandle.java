@@ -25,7 +25,7 @@ import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.testutil.TestUtil;
 
 /**
- * Provides a handle for the panel containing the task list.
+ * Provides a handle for the panel containing the deadline task list.
  */
 public class DeadlineListPanelHandle extends GuiHandle {
 

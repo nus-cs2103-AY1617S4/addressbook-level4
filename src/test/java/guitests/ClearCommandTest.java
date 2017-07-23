@@ -5,6 +5,9 @@ import org.junit.Test;
 import seedu.whatsnext.logic.commands.ClearCommand;
 import seedu.whatsnext.logic.commands.DeleteCommand;
 
+/**
+ * Gui tests for the clear command
+ */
 public class ClearCommandTest extends TaskManagerGuiTest {
 
     //@@author A0154987J
@@ -15,13 +18,13 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list all");
         assertClearCommandSuccess();
 
-        //verify other commands can work after a clear command
+        //verifies other commands can work after a clear command
         commandBox.runCommand("add Buy a country m/to rule");
         assertListSize(1);
         commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertListSize(0);
 
-        //verify clear command works when the list is empty
+        //verifies clear command works when the list is empty
         assertClearCommandSuccess();
     }
 
@@ -31,13 +34,13 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         commandBox.pressEnter();
         assertClearIncompleteCommandSuccess();
 
-        //verify other commands can work after a clear command
+        //verifies other commands can work after a clear command
         commandBox.runCommand("list completed");
         assertListSize(1);
         commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertListSize(0);
 
-        //verify clear command works when the list is empty
+        //verifies clear command works when the list is empty
         assertClearCommandSuccess();
     }
 
@@ -48,12 +51,12 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list completed");
         assertClearCompletedCommandSuccess();
 
-        //verify other commands can work after a clear command
+        //verifies other commands can work after a clear command
         assertListSize(0);
         commandBox.runCommand("list all");
         assertListSize(6);
 
-        //verify clear command works when the list is empty
+        //verifies clear command works when the list is empty
         assertClearCommandSuccess();
     }
 

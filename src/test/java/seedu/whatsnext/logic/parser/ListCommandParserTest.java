@@ -12,6 +12,9 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
 //@@author A0142675B
 //@@author A0154986L
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ListCommand parser.
+ */
 public class ListCommandParserTest {
 
     private static final String INVALID_INPUT = ListCommand.COMMAND_WORD + "blah blah blah";

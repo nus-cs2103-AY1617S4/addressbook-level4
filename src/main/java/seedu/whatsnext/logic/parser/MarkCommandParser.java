@@ -8,6 +8,9 @@ import seedu.whatsnext.logic.commands.MarkCommand;
 import seedu.whatsnext.logic.commands.UnmarkCommand;
 import seedu.whatsnext.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new MarkCommand or UnmarkCommand object
+ */
 public class MarkCommandParser {
 
     //@@author A0156106M

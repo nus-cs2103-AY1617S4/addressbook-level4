@@ -11,6 +11,9 @@ import seedu.whatsnext.model.UserPrefs;
 import seedu.whatsnext.testutil.TypicalTasks;
 
 //@@author A0154986L
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for RemindCommand.
+ */
 public class RemindCommandTest {
 
     private static final String DEFAULT_REMINDER_SETTING = "3 day";

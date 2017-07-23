@@ -18,6 +18,9 @@ import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.testutil.TypicalTasks;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for TaskManager.
+ */
 public class TaskManagerTest {
 
     @Rule

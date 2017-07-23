@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ * Contains integration test (interaction with the Model) and unit test for the description of the task.
+ */
 public class DescriptionTest {
     //@@author A0156106M
     @Test

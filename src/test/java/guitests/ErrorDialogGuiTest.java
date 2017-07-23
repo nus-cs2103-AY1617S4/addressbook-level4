@@ -9,6 +9,9 @@ import org.junit.Test;
 import guitests.guihandles.AlertDialogHandle;
 import seedu.whatsnext.commons.events.storage.DataSavingExceptionEvent;
 
+/**
+ * Gui tests for the error dialog
+ */
 public class ErrorDialogGuiTest extends TaskManagerGuiTest {
 
     @Test

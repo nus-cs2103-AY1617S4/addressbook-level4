@@ -15,7 +15,7 @@ import seedu.whatsnext.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 
 /**
- * Panel containing the list of Tasks.
+ * Panel containing the list of floating tasks.
  */
 public class FloatingListPanel extends UiPart<Region> {
     private static final String FXML = "FloatingListPanel.fxml";
@@ -36,6 +36,10 @@ public class FloatingListPanel extends UiPart<Region> {
         setEventHandlerForSelectionChangeEvent();
     }
 
+    /**
+     * @param taskList
+     * @return ObserableList containing only floating tasks with their respective index from original list
+     */
     private ObservableList<Pair<BasicTaskFeatures, Integer>> extractFloatingTasks(
             ObservableList<BasicTaskFeatures> taskList) {
         ObservableList<Pair<BasicTaskFeatures, Integer>> floatingTaskList = FXCollections.observableArrayList();

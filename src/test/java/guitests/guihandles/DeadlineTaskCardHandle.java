@@ -12,7 +12,7 @@ import seedu.whatsnext.model.tag.UniqueTagList;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 //author A0154987J
 /**
- * Provides a handle to a task card in the task list panel.
+ * Provides a handle to a deadline task card in the deadline list panel.
  */
 public class DeadlineTaskCardHandle extends GuiHandle {
     private static final String TASKNAME_FIELD_ID = "#taskName";
