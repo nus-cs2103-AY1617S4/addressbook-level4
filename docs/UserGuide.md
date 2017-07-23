@@ -16,13 +16,14 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
     8. [Undo last action](#28-undo-last-action--undo)
     9. [Redo last action](#29-redo-last-action--redo)
     10. [Clear tasks](#210-clear-tasks--clear)
-    11. [Mark tasks](#211-mark-tasks--mark)
-    12. [Unmark tasks](#212-unmark-tasks--unmark)
-    13. [Set reminder period](#213-set-reminder-period--remind)
-    14. [View current data file path](#214-view-current-data-file-path--filepath)
-    15. [Change data file path](#215-change-data-file-path--changepath)
-    16. [Save the data](#216-save-the-data)
-    17. [Exit the programme](#217-exit-the-programme--exit)
+    11. [Mark a task](#211-mark-a-task-mark)
+    12. [Unmark a task](#212-unmark-a-task--unmark)
+    13. [Reset a task](#213-reset-a-task--reset)
+    14. [Set reminder period](#214-set-reminder-period--remind)
+    15. [View current data file path](#215-view-current-data-file-path--filepath)
+    16. [Change data file path](#216-change-data-file-path--changepath)
+    17. [Save the data](#217-save-the-data)
+    18. [Exit the programme](#218-exit-the-programme--exit)
 
 3. [FAQ](#3-faq)
 4. [Command Summary](#4-command-summary)
@@ -205,7 +206,7 @@ Format: `clear MODIFYIER`
 * Clear expired tasks: `clear expired` <br>
 * Clear all tasks: `clear all` <br>
 
-### 2.11. Mark tasks : `mark`
+### 2.11. Mark a task : `mark`
 Mark the task at the specified `INDEX` to complete the task. <br>
 Format: `mark INDEX`
 > mark the task at the specified `INDEX`. <br>
@@ -220,7 +221,7 @@ Examples:
   `mark 1`<br>
   Marks the 1st task in the results of the `find` command.
 
-### 2.12. Unmark tasks : `unmark`
+### 2.12. Unmark a task : `unmark`
 Unmark the task at the specified `INDEX`. <br>
 Format: `unmark INDEX`
 > Unmark the task at the specified `INDEX`. <br>
@@ -234,8 +235,22 @@ Examples:
 * `find CS2103`<br>
   `unmark 1`<br>
   Unmarks the 1st task in the results of the `find` command.
+  
+### 2.13. Reset a task : `reset`
+Reset a event or deadline at the specified `INDEX` to a floating task. It removes the start and end Date and Time and the overlap tag is also removed if it existed. <br>
+Format: `reset INDEX`
+> The index refers to the index number shown in the most recent listing.<br>
+> The index **must be a positive integer** 1, 2, 3, ...
+Examples:
 
-### 2.13. Set reminder period : `remind`
+* `list`<br>
+  `reset 2`<br>
+  Resets the 2nd task in the task manager.
+* `find CS2103`<br>
+  `reset 1`<br>
+  Resets the 1st task in the results of the `find` command.
+
+### 2.14. Set reminder period : `remind`
 The app will automatically display all events and deadlines within the period specified by the user when the app starts. <br>
 The command allows the user to specify the time period.
 Format: `remind TIMEPERIOD`
@@ -248,25 +263,25 @@ Examples:
 * `remind 2 week`<br>
   Display all deadlines and events within 2 weeks upon startup.
 
-### 2.14. View current data file path : `filepath`
+### 2.15. View current data file path : `filepath`
 
 View data file directory path. <br>
 Format: `filepath`
 > View the directory where the data file is saved <br>
 
-### 2.15. Change data file path : `changepath`
+### 2.16. Change data file path : `changepath`
 
 Updates data file directory. : `changepath`<br>
 Format: `changepath [Path Directory]`
 > Changes the directory where the data file is saved <br>
 Task Manager data are saved in the specified path directory.<br>
 
-### 2.16. Save the data
+### 2.17. Save the data
 
 Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
-### 2.17. Exit the programme : `exit`
+### 2.18. Exit the programme : `exit`
 
 Exits the program.<br>
 Format: `exit`
@@ -301,6 +316,7 @@ Undo the last action | `undo` |
 Redo the last undo | `redo` |
 Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
+Reset a event or deadline task | `reset INDEX` | `reset 1`
 Set reminder period | `remind TIMEPERIOD` | `remind 2 day`
 Select and view tasks | `select INDEX` | `select 1`
 Check file path of the storage file | `filepath` |
