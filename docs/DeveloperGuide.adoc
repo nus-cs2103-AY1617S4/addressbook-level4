@@ -337,7 +337,7 @@ Priority |As a |I want to... |So that I can...
 |`* *` |user |customise my GUI |optimise the GUI for my own needs
 |`* *` |user |have my commands be auto-completed for me |insert commands more quickly
 |`* *` |user |input commands using natural language |perform commands easily and intuitively
-|`* *` |user |restore a completed task |allocate a completed task from completed task list to active task list 
+|`* *` |user |restore a completed task |move a completed task from completed task list to active task list 
 |`* *` |user |set reminders for tasks |remember to complete it before the deadline or display overdue tasks
 |`* *` |user |show me the command history |view all commands that I used before
 
