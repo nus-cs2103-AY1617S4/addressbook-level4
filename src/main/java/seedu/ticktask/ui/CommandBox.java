@@ -21,7 +21,9 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
 
+import static seedu.ticktask.logic.commands.ListCommand.*;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
+import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
 
 public class CommandBox extends UiPart<Region> {
@@ -39,12 +41,14 @@ public class CommandBox extends UiPart<Region> {
     private AutoCompletionBinding<String> autoCompletionBinding;
     Set listOfCommands = new HashSet<>();
     // List of words for autocomplete
-    String[] commands = {AddCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD, CompleteCommand.COMMAND_WORD,
+    String[] commands = {AddCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD + " " + PREFIX_ALL, CompleteCommand.COMMAND_WORD,
+                         ClearCommand.COMMAND_WORD + " " + PREFIX_ACTIVE, ClearCommand.COMMAND_WORD + " " + PREFIX_COMPLETE,
                          DeleteCommand.COMMAND_WORD + " " + PREFIX_ACTIVE, DeleteCommand.COMMAND_WORD + " " + PREFIX_COMPLETE,
                          EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindActiveCommand.COMMAND_WORD,
                          FindCommand.COMMAND_WORD, FindCompleteCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
-                         HistoryCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RedoCommand.COMMAND_WORD, RestoreCommand.COMMAND_WORD,
-                         StorageCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD};
+                         HistoryCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, ListCommand.COMMAND_WORD + " " + LIST_FLOATING,
+                         ListCommand.COMMAND_WORD + " " + LIST_TODAY, ListCommand.COMMAND_WORD + " " + LIST_DEADLINE,
+                         RedoCommand.COMMAND_WORD, RestoreCommand.COMMAND_WORD, StorageCommand.COMMAND_WORD, UndoCommand.COMMAND_WORD};
     
     //@@author
     @FXML
@@ -55,10 +59,10 @@ public class CommandBox extends UiPart<Region> {
         this.logic = logic;
         autoComplete();
     }
-    
     //@@author A0139964M
     /**
      * Handles KeyPresses in the commandField to cycle through commands
+     * @param event which accepts UP, DOWN and ENTER keys events.
      */
     @FXML
     private void handleKeyPress(KeyEvent event) {
@@ -132,7 +136,7 @@ public class CommandBox extends UiPart<Region> {
         buildCommandsIntoHashSet();
         autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, listOfCommands);
         autoCompletionBinding.setPrefWidth(700);
-        autoCompletionBinding.setVisibleRowCount(13);
+        autoCompletionBinding.setVisibleRowCount(5);
         autoCompletionBinding.setHideOnEscape(true);
     }
     
