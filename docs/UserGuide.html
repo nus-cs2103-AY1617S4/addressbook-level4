@@ -426,7 +426,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>T01-T1</code>      Since: <code>Jun 2017</code>      Licence: <code>MIT</code></p>
+<p>By: <code>T1</code>      Since: <code>Jun 2017</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -437,29 +437,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_viewing_help_code_help_code">2.1. Viewing help : <code>help</code></a></li>
 <li><a href="#_adding_a_task_code_add_code">2.2. Adding a task: <code>add</code></a></li>
-<li><a href="#_editing_a_task_code_edit_code">2.3. Editing a Task : <code>edit</code></a></li>
-<li><a href="#_finding_a_task_code_find_code">2.4. Finding a Task : <code>find</code></a></li>
+<li><a href="#_clearing_task_list_s_code_clear_code">2.3. Clearing task list(s): <code>clear</code></a></li>
+<li><a href="#_completing_a_task_code_complete_code">2.4. Completing a Task : <code>complete</code></a></li>
 <li><a href="#_deleting_a_task_code_delete_code">2.5. Deleting a Task: <code>delete</code></a></li>
-<li><a href="#_completing_a_task_code_complete_code">2.6. Completing a Task : <code>complete</code></a></li>
-<li><a href="#_undo_redo_actions_code_undo_code_code_redo_code">2.7. Undo/ Redo Actions: <code>undo</code> <code>redo</code></a></li>
-<li><a href="#_listing_all_tasks_code_list_code">2.8. Listing All Tasks : <code>list</code></a></li>
+<li><a href="#_editing_a_task_code_edit_code">2.6. Editing a Task : <code>edit</code></a></li>
+<li><a href="#_exiting_the_ticktask_code_exit_code">2.7. Exiting the TickTask : <code>exit</code></a></li>
+<li><a href="#_finding_a_task_code_find_code">2.8. Finding a Task : <code>find</code></a></li>
 <li><a href="#_listing_command_history_code_history_code">2.9. Listing Command History : <code>history</code></a></li>
-<li><a href="#_clear_tasks_code_clear_code">2.10. Clear Tasks : <code>clear</code></a></li>
+<li><a href="#_listing_all_tasks_code_list_code">2.10. Listing All Tasks : <code>list</code></a></li>
+<li><a href="#_restore_action_code_restore_code">2.11. Restore action : <code>restore</code></a></li>
+<li><a href="#_save_action_code_save_code">2.12. Save action : <code>save</code></a></li>
+<li><a href="#_select_action_code_select_code">2.13. Select action : <code>select</code></a></li>
+<li><a href="#_undo_redo_actions_code_undo_code_code_redo_code">2.14. Undo/Redo Actions: <code>undo</code> <code>/redo</code></a></li>
 </ul>
 </li>
-<li><a href="#_faq">3. FAQ</a></li>
-<li><a href="#_command_summary">4. Command Summary</a>
+<li><a href="#_special_features">3. Special Features</a>
 <ul class="sectlevel2">
-<li><a href="#_viewing_help">4.1. Viewing help</a></li>
-<li><a href="#_adding_a_task">4.2. Adding a task</a></li>
-<li><a href="#_editing_a_task">4.3. Editing a Task</a></li>
-<li><a href="#_finding_a_task">4.4. Finding a Task</a></li>
-<li><a href="#_deleting_a_task">4.5. Deleting a Task</a></li>
-<li><a href="#_completing_a_task">4.6. Completing a Task</a></li>
-<li><a href="#_undo_redo_actions">4.7. Undo/ Redo Actions</a></li>
-<li><a href="#_listing_all_tasks">4.8. Listing All Tasks :</a></li>
-<li><a href="#_listing_command_history">4.9. Listing Command History</a></li>
-<li><a href="#_clear_tasks">4.10. Clear Tasks</a></li>
+<li><a href="#_auto_complete">3.1. Auto Complete</a></li>
+<li><a href="#_repeating_previous_next_command">3.2. Repeating previous/next command</a></li>
+</ul>
+</li>
+<li><a href="#_faq">4. FAQ</a></li>
+<li><a href="#_command_summary">5. Command Summary</a>
+<ul class="sectlevel2">
+<li><a href="#_viewing_help">5.1. Viewing help</a></li>
+<li><a href="#_adding_a_task">5.2. Adding a task</a></li>
+<li><a href="#_clearing_task_list_s">5.3. Clearing task list(s)</a></li>
+<li><a href="#_completing_a_task">5.4. Completing a Task</a></li>
+<li><a href="#_deleting_a_task">5.5. Deleting a Task</a></li>
+<li><a href="#_editing_a_task">5.6. Editing a Task</a></li>
+<li><a href="#_exiting_the_ticktask">5.7. Exiting the TickTask</a></li>
+<li><a href="#_finding_a_task">5.8. Finding a Task</a></li>
+<li><a href="#_listing_command_history">5.9. Listing Command History</a></li>
+<li><a href="#_listing_all_tasks">5.10. Listing All Tasks</a></li>
+<li><a href="#_restore_action">5.11. Restore action</a></li>
+<li><a href="#_save_action">5.12. Save action</a></li>
+<li><a href="#_select_action">5.13. Select action</a></li>
+<li><a href="#_undo_redo_actions">5.14. Undo/ Redo Actions</a></li>
 </ul>
 </li>
 </ul>
@@ -524,7 +538,7 @@ Some example commands you can try:</p>
 <p><code>add complete tutorial by christmas at 2200</code>: adds a task named complete tutorial to the task manager</p>
 </div>
 <div class="paragraph">
-<p><code>delete 1</code> : deletes the task at index 1 from the active(pending) task list</p>
+<p><code>delete active 1</code> : deletes the task at index 1 from the active(pending) task list</p>
 </div>
 <div class="paragraph">
 <p>Refer to the Features section below for details of each command.<br></p>
@@ -537,10 +551,32 @@ Some example commands you can try:</p>
 <div class="sect2">
 <h3 id="_viewing_help_code_help_code">2.1. Viewing help : <code>help</code></h3>
 <div class="paragraph">
-<p>Displays the list of commands available.</p>
+<p>Displays usage of the commands.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>help</code></p>
+<p>Format:<br>
+<code>help</code><br>
+<code>help [command name]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>help</code></p>
+</li>
+<li>
+<p><code>help add</code></p>
+</li>
+<li>
+<p><code>help delete</code></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -550,10 +586,12 @@ Some example commands you can try:</p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>add [task name] "by " [date] "at " [time] + "<mark>"[tags]</code><br>
-<code>add [task name] "at " [time] + "</mark>"[tags]</code><br>
-<code>add [task name]</code><br>
-<code>add [task name] "from " [start date] "to " [end date]</code></p>
+<code>add [task name] "by" [date] "at " [time] + "<mark>"[tags]</code><br>
+<code>add [task name] "at " [time] + "by" [date]  "</mark>"[tags]</code><br>
+<code>add [task name] "on" [date] "at " [time] + "<mark>"[tags]</code><br>
+<code>add [task name] "at" [time] + "</mark>"[tags]</code><br>
+<code>add [task name] "from" [start date] "to" [end date]</code><br>
+<code>add [task name]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -566,7 +604,10 @@ Some example commands you can try:</p>
 <p>A tag can be added by inserting "#" before the tag</p>
 </li>
 <li>
-<p>"by" precedes date, "at" precedes time</p>
+<p>"by" or "on" precedes date, "at" precedes time</p>
+</li>
+<li>
+<p>Both date and time inputs can be swapped</p>
 </li>
 <li>
 <p>"from" and "to" can be used to add events over a range of days</p>
@@ -586,16 +627,16 @@ Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add complete tutorial by 23/02 #school</code></p>
+<p><code>add complete tutorial by July 30 #school</code></p>
 </li>
 <li>
-<p><code>add complete tutorial by 23/05/17 at 2200</code></p>
+<p><code>add Rachels birthday party on Oct 30</code></p>
 </li>
 <li>
-<p><code>add complete tutorial</code></p>
+<p><code>add Check bank balance</code></p>
 </li>
 <li>
-<p><code>add complete tutorial from monday to friday</code></p>
+<p><code>add Dragonboat competition from monday to friday</code></p>
 </li>
 </ul>
 </div>
@@ -603,19 +644,138 @@ Some example commands you can try:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_editing_a_task_code_edit_code">2.3. Editing a Task : <code>edit</code></h3>
+<h3 id="_clearing_task_list_s_code_clear_code">2.3. Clearing task list(s): <code>clear</code></h3>
 <div class="paragraph">
-<p>Edits an existing task in the ticktask.<br></p>
+<p>Clears task list(s) from the task manager.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>edit [index] [attribute to change][new value]</code></p>
+<p>Format:<br>
+<code>clear [list to delete from]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The possible attributes are: "time", "date", "name", "start time", "end time" and "#"</p>
+<p>'list to clear from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.</p>
+</li>
+<li>
+<p>'clear all can clear both lists'</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>clear all</code></p>
+</li>
+<li>
+<p><code>clear active</code></p>
+</li>
+<li>
+<p><code>clear complete</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_completing_a_task_code_complete_code">2.4. Completing a Task : <code>complete</code></h3>
+<div class="paragraph">
+<p>Marks a task as complete in the task manager and moves it into the completed task list.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>complete [index]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>complete 1</code><br>
+The task at index 1 is moved to completed list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_a_task_code_delete_code">2.5. Deleting a Task: <code>delete</code></h3>
+<div class="paragraph">
+<p>Deletes a task from the task manager.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>delete [task name]</code><br>
+<code>delete [list to delete from] [index]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The input task name must be a subset of the target task name</p>
+</li>
+<li>
+<p>'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete play basketball</code><br>
+Deletes the task that contain the string "play basketball"<br>
+If multiple tasks are found to contain the string, please proceed to delete by using index<br></p>
+</li>
+<li>
+<p><code>delete complete 1</code><br>
+Deletes the task at index 1 in the completed task list</p>
+</li>
+<li>
+<p><code>delete active 1</code><br>
+Deletes the task at index 1 in the active(pending) task list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_editing_a_task_code_edit_code">2.6. Editing a Task : <code>edit</code></h3>
+<div class="paragraph">
+<p>Edits an existing task in the ticktask.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>edit [index] [attribute to change][new value]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The possible attributes are: "time", "date", "name" and "#"</p>
 </li>
 </ul>
 </div>
@@ -633,12 +793,12 @@ Some example commands you can try:</p>
 Edits the task name to tutorial.</p>
 </li>
 <li>
-<p><code>edit 0 end time 2200</code><br>
-Edits the task&#8217;s end time to 2200.</p>
+<p><code>edit 2 time 2200</code><br>
+Edits the task&#8217;s deadline to 2200.</p>
 </li>
 <li>
-<p><code>edit 0 start time 2300 date christmas</code><br>
-Edits the task&#8217;s start time to 2300 and the date to 25/12/2017.</p>
+<p><code>edit 3 date from Jan to Feb</code><br>
+Edits the task&#8217;s duration.</p>
 </li>
 </ul>
 </div>
@@ -646,12 +806,37 @@ Edits the task&#8217;s start time to 2300 and the date to 25/12/2017.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_finding_a_task_code_find_code">2.4. Finding a Task : <code>find</code></h3>
+<h3 id="_exiting_the_ticktask_code_exit_code">2.7. Exiting the TickTask : <code>exit</code></h3>
+<div class="paragraph">
+<p>Exits the program.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>exit</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>exit</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_finding_a_task_code_find_code">2.8. Finding a Task : <code>find</code></h3>
 <div class="paragraph">
 <p>Finds an existing task in the ticktask.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>find [keyword(s)]</code></p>
+<p>Format:<br>
+<code>find [keyword(s)]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -688,132 +873,13 @@ Will find all tasks that contain the substring "tu"</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deleting_a_task_code_delete_code">2.5. Deleting a Task: <code>delete</code></h3>
-<div class="paragraph">
-<p>Deletes a task from the task manager.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>delete [index]</code><br>
-<code>delete [list to delete from] [index]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-Deletes the task at index 1<br></p>
-</li>
-<li>
-<p><code>delete complete 1</code><br>
-Deletes the task at index 1 in the completed task list</p>
-</li>
-<li>
-<p><code>delete active 1</code><br>
-Deletes the task at index 1 in the active(pending) task list</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_completing_a_task_code_complete_code">2.6. Completing a Task : <code>complete</code></h3>
-<div class="paragraph">
-<p>Marks a task as complete in the task manager and moves it into the completed task list.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>complete [task name]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>complete tutorial</code><br>
-The task tutorial is moved to completed list.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_undo_redo_actions_code_undo_code_code_redo_code">2.7. Undo/ Redo Actions: <code>undo</code> <code>redo</code></h3>
-<div class="paragraph">
-<p>Undo or redo the latest action.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>undo</code> or <code>redo</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>undo</code><br>
-Undo the previous action such as add, delete, edit or complete.</p>
-</li>
-<li>
-<p><code>redo</code><br>
-Redo the undo action</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_listing_all_tasks_code_list_code">2.8. Listing All Tasks : <code>list</code></h3>
-<div class="paragraph">
-<p>Displays pending tasks within task manager.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>list</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_listing_command_history_code_history_code">2.9. Listing Command History : <code>history</code></h3>
 <div class="paragraph">
 <p>Displays history of commands since application opened.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>history</code></p>
+<p>Format:<br>
+<code>history</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -831,12 +897,29 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_clear_tasks_code_clear_code">2.10. Clear Tasks : <code>clear</code></h3>
+<h3 id="_listing_all_tasks_code_list_code">2.10. Listing All Tasks : <code>list</code></h3>
 <div class="paragraph">
-<p>Clear all tasks ever added.</p>
+<p>Displays a type of task within task manager.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>clear</code></p>
+<p>Format:<br>
+<code>list</code><br>
+<code>list all</code><br>
+<code>list [task type]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Task types are deadline, event, floating and today</p>
+</li>
+<li>
+<p>Supports substring search</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -846,7 +929,123 @@ Redo the undo action</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>clear</code></p>
+<p><code>list</code></p>
+</li>
+<li>
+<p><code>list all</code></p>
+</li>
+<li>
+<p><code>list event</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restore_action_code_restore_code">2.11. Restore action : <code>restore</code></h3>
+<div class="paragraph">
+<p>Restores the task identified by the index number back into the active list.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>restore [INDEX]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>restore 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_action_code_save_code">2.12. Save action : <code>save</code></h3>
+<div class="paragraph">
+<p>Changes the location of the TickTask app xml file.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>save [DIRECTORY]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>save C:\Eclipse</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_select_action_code_select_code">2.13. Select action : <code>select</code></h3>
+<div class="paragraph">
+<p>Highlight a task identified by the index number in the active task list.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>select [INDEX]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>select 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_undo_redo_actions_code_undo_code_code_redo_code">2.14. Undo/Redo Actions: <code>undo</code> <code>/redo</code></h3>
+<div class="paragraph">
+<p>Undo or redo the recent actions.<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>undo</code> or <code>redo</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Undo/redo is applicable to multiple recent actions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>undo</code></p>
+</li>
+<li>
+<p><code>redo</code></p>
 </li>
 </ul>
 </div>
@@ -856,7 +1055,31 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_faq">3. FAQ</h2>
+<h2 id="_special_features">3. Special Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_auto_complete">3.1. Auto Complete</h3>
+<div class="paragraph">
+<p>Upon launching the program, TickTask&#8217;s auto complete feature is able to provide you with a list of commands available based on the letters you input. You can use the "arrow keys" to scroll down if necessary and press "Enter" to complete the sentence.</p>
+</div>
+<div class="paragraph">
+<p>TickTask is also able to "learn" the inputs you typed for easier inputting in the future.</p>
+</div>
+<div class="paragraph">
+<p>You can also press "Esc" to stop the autocompletion.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_repeating_previous_next_command">3.2. Repeating previous/next command</h3>
+<div class="paragraph">
+<p>If you are lazy to retype a similar command, or want the previous command back into the command text simply press the ↑ or ↓ key.
+You can go back to as many commands as you want.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faq">4. FAQ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -865,16 +1088,38 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_command_summary">4. Command Summary</h2>
+<h2 id="_command_summary">5. Command Summary</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_viewing_help">4.1. Viewing help</h3>
+<h3 id="_viewing_help">5.1. Viewing help</h3>
 <div class="paragraph">
-<p>Format: <code>help</code></p>
+<p>Format:<br>
+<code>help</code><br>
+<code>help [command name]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>help</code></p>
+</li>
+<li>
+<p><code>help add</code></p>
+</li>
+<li>
+<p><code>help delete</code></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_task">4.2. Adding a task</h3>
+<h3 id="_adding_a_task">5.2. Adding a task</h3>
 <div class="paragraph">
 <p>Format:<br>
 <code>add [task name] "by " [date] "at " [time] + "<mark>"[tags]</code><br>
@@ -890,10 +1135,10 @@ Redo the undo action</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add complete tutorial by 23/02 #school</code></p>
+<p><code>add complete tutorial by July 30 #school</code></p>
 </li>
 <li>
-<p><code>add complete tutorial by 23/05/17 at 2200</code></p>
+<p><code>add complete tutorial by Oct 5 at 22</code></p>
 </li>
 <li>
 <p><code>add complete tutorial</code></p>
@@ -907,64 +1152,58 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_editing_a_task">4.3. Editing a Task</h3>
-<div class="paragraph">
-<p>Format: <code>edit [index] [attribute to change][new value]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 name tutorial</code><br>
-Edits the task name to tutorial.</p>
-</li>
-<li>
-<p><code>edit 0 end time 2200</code><br>
-Edits the task&#8217;s end time to 2200.</p>
-</li>
-<li>
-<p><code>edit 0 start time 2300 date christmas</code><br>
-Edits the task&#8217;s start time to 2300 and the date to 25/12/2017.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_finding_a_task">4.4. Finding a Task</h3>
-<div class="paragraph">
-<p>Format: <code>find [keyword(s)]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>find wash dog</code><br>
-Will find all tasks that contain the substring "wash dog"</p>
-</li>
-<li>
-<p><code>find tu</code><br>
-Will find all tasks that contain the substring "tu"</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deleting_a_task">4.5. Deleting a Task</h3>
+<h3 id="_clearing_task_list_s">5.3. Clearing task list(s)</h3>
 <div class="paragraph">
 <p>Format:<br>
-<code>delete [index]</code><br>
+<code>clear [list to delete from]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>clear all</code></p>
+</li>
+<li>
+<p><code>clear active</code></p>
+</li>
+<li>
+<p><code>clear complete</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_completing_a_task">5.4. Completing a Task</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>complete [index]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>complete 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_a_task">5.5. Deleting a Task</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>delete [task name]</code><br>
 <code>delete [list to delete from] [index]</code></p>
 </div>
 <div class="paragraph">
@@ -975,16 +1214,13 @@ Will find all tasks that contain the substring "tu"</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-Deletes the task at index 1<br></p>
+<p><code>delete play basketball</code></p>
 </li>
 <li>
-<p><code>delete complete 1</code><br>
-Deletes the task at index 1 in the completed task list</p>
+<p><code>delete complete 1</code><br></p>
 </li>
 <li>
-<p><code>delete active 1</code><br>
-Deletes the task at index 1 in the active(pending) task list</p>
+<p><code>delete active 1</code><br></p>
 </li>
 </ul>
 </div>
@@ -992,9 +1228,10 @@ Deletes the task at index 1 in the active(pending) task list</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_completing_a_task">4.6. Completing a Task</h3>
+<h3 id="_editing_a_task">5.6. Editing a Task</h3>
 <div class="paragraph">
-<p>Format: <code>complete [task name]</code></p>
+<p>Format:<br>
+<code>edit [index] [attribute to change][new value]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1004,8 +1241,13 @@ Deletes the task at index 1 in the active(pending) task list</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>complete tutorial</code><br>
-The task tutorial is moved to completed list.</p>
+<p><code>edit 1 name tutorial</code><br></p>
+</li>
+<li>
+<p><code>edit 2 time 2200</code><br></p>
+</li>
+<li>
+<p><code>edit 3 date christmas</code><br></p>
 </li>
 </ul>
 </div>
@@ -1013,9 +1255,10 @@ The task tutorial is moved to completed list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_undo_redo_actions">4.7. Undo/ Redo Actions</h3>
+<h3 id="_exiting_the_ticktask">5.7. Exiting the TickTask</h3>
 <div class="paragraph">
-<p>Format: <code>undo</code> or <code>redo</code></p>
+<p>Format:<br>
+<code>exit</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1025,12 +1268,7 @@ The task tutorial is moved to completed list.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>undo</code><br>
-Undo the previous action such as add, delete, edit or complete.</p>
-</li>
-<li>
-<p><code>redo</code><br>
-Redo the undo action</p>
+<p><code>exit</code></p>
 </li>
 </ul>
 </div>
@@ -1038,9 +1276,10 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_listing_all_tasks">4.8. Listing All Tasks :</h3>
+<h3 id="_finding_a_task">5.8. Finding a Task</h3>
 <div class="paragraph">
-<p>Format: <code>list</code></p>
+<p>Format:<br>
+<code>find [keyword(s)]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1050,7 +1289,10 @@ Redo the undo action</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code></p>
+<p><code>find wash dog</code><br></p>
+</li>
+<li>
+<p><code>find tu</code><br></p>
 </li>
 </ul>
 </div>
@@ -1058,9 +1300,10 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_listing_command_history">4.9. Listing Command History</h3>
+<h3 id="_listing_command_history">5.9. Listing Command History</h3>
 <div class="paragraph">
-<p>Format: <code>history</code></p>
+<p>Format:<br>
+<code>history</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1078,9 +1321,12 @@ Redo the undo action</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_clear_tasks">4.10. Clear Tasks</h3>
+<h3 id="_listing_all_tasks">5.10. Listing All Tasks</h3>
 <div class="paragraph">
-<p>Format: <code>clear</code></p>
+<p>Format:<br>
+<code>list</code><br>
+<code>list all</code><br>
+<code>list [task type]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1090,7 +1336,100 @@ Redo the undo action</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>clear</code></p>
+<p><code>list</code></p>
+</li>
+<li>
+<p><code>list all</code></p>
+</li>
+<li>
+<p><code>list event</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restore_action">5.11. Restore action</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>restore [INDEX]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>restore 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_action">5.12. Save action</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>save [DIRECTORY]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>save C:\Eclipse</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_select_action">5.13. Select action</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>select [INDEX]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>select 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_undo_redo_actions">5.14. Undo/ Redo Actions</h3>
+<div class="paragraph">
+<p>Format:<br>
+<code>undo</code> or <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>undo</code><br></p>
+</li>
+<li>
+<p><code>redo</code><br></p>
 </li>
 </ul>
 </div>
@@ -1102,7 +1441,7 @@ Redo the undo action</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-12 15:30:46 +08
+Last updated 2017-07-24 16:32:17 +08
 </div>
 </div>
 </body>
