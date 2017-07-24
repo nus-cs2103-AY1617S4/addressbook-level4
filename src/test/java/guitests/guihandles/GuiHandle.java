@@ -10,9 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import seedu.address.TestApp;
-import seedu.address.commons.core.LogsCenter;
-
+import seedu.whatsnext.TestApp;
+import seedu.whatsnext.commons.core.LogsCenter;
+//author A0154987J
 /**
  * Base class for all GUI Handles used in testing.
  */
@@ -20,7 +20,8 @@ public class GuiHandle {
     protected final GuiRobot guiRobot;
     protected final Stage primaryStage;
     /**
-     * An optional stage that exists in the App other than the primaryStage, could be a alert dialog, popup window, etc.
+     * An optional stage that exists in the App other than the primaryStage,
+     * could be a alert dialog, popup window, etc.
      */
     protected Optional<Stage> intermediateStage = Optional.empty();
     protected final String stageTitle;
@@ -63,7 +64,7 @@ public class GuiHandle {
         guiRobot.clickOn(textFieldId);
         TextField textField = getNode(textFieldId);
         guiRobot.interact(() -> textField.setText(newText));
-        guiRobot.sleep(500); // so that the texts stays visible on the GUI for a short period
+        guiRobot.sleep(500);  //so that the texts stays visible on the GUI for a short period
     }
 
     public void pressEnter() {

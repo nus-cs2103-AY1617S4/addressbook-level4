@@ -1,156 +1,104 @@
 package guitests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.INDEX_THIRD_PERSON;
 
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.whatsnext.commons.core.Messages;
+import seedu.whatsnext.logic.commands.EditCommand;
 
-// TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
-public class EditCommandTest extends AddressBookGuiTest {
+/**
+ * Gui tests for the edit command
+ */
+public class EditCommandTest extends TaskManagerGuiTest {
 
-    // The list of persons in the person list panel is expected to match this list.
-    // This list is updated with every successful call to assertEditSuccess().
-    private Person[] expectedPersonsList = td.getTypicalPersons();
-
+    //@@author A0154987J
     @Test
-    public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = PREFIX_NAME + "Bobby " + PREFIX_PHONE + "91234567 "
-                + PREFIX_EMAIL + "bobby@example.com "
-                + PREFIX_ADDRESS + "Block 123, Bobby Street 3 "
-                + PREFIX_TAG + "husband";
-        Index addressBookIndex = INDEX_FIRST_PERSON;
+    public void editEventTaskMultipleFieldsSuccess() throws Exception {
+        commandBox.pressEnter();
+        String newName = "TestTask";
+        String newDescription = "Task edited successfully";
+        String newTag = "MEDIUM";
+        String detailsToEdit = "edit 1 n/" + newName + " m/" + newDescription
+                                + " +t/" + newTag;
 
-        Person editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
-                .withEmail("bobby@example.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
+        commandBox.runCommand(detailsToEdit);
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEquals(eventListPanel.getEventTask(0).getName().toString(), newName);
+        assertEquals(eventListPanel.getEventTask(0).getDescription().toString(), newDescription);
+        assertTrue(eventListPanel.getEventTask(0).getAllTags().contains(newTag));
     }
 
     @Test
-    public void edit_notAllFieldsSpecified_success() throws Exception {
-        String detailsToEdit = PREFIX_TAG + "sweetie "
-                + PREFIX_TAG + "bestie";
-        Index addressBookIndex = INDEX_SECOND_PERSON;
+    public void editDeadlineTaskMultipleFieldsSuccess() throws Exception {
+        commandBox.pressEnter();
+        String newName = "TestTask";
+        String newDescription = "Task edited successfully";
+        String newEndDateTime = "2017/07/25 05:00";
+        int eventListSize = eventListPanel.getNumberOfTask();
+        String detailsToEdit = "edit " + (eventListSize + 1) + " n/" + newName + " m/" + newDescription
+                                + " e/" + newEndDateTime;
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withTags("sweetie", "bestie").build();
+        commandBox.runCommand(detailsToEdit);
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEquals(deadlineListPanel.getDeadlineTask(0).getName().toString(), newName);
+        assertEquals(deadlineListPanel.getDeadlineTask(0).getDescription().toString(), newDescription);
+        assertEquals(deadlineListPanel.getDeadlineTask(0).getEndDateTime().toString(), "2017/25/07 05:00");
     }
 
     @Test
-    public void edit_clearTags_success() throws Exception {
-        String detailsToEdit = PREFIX_TAG.getPrefix();
-        Index addressBookIndex = INDEX_SECOND_PERSON;
+    public void editFloatingTaskMultipleFieldsSuccess() throws Exception {
+        commandBox.pressEnter();
+        String newName = "TestTask";
+        String newDescription = "Task edited successfully";
+        String newTag = "LOW";
+        int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask();
+        String detailsToEdit = "edit " + (index + 1) + " n/" + newName + " m/" + newDescription
+                                + " +t/" + newTag;
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withTags().build();
+        commandBox.runCommand(detailsToEdit);
 
-        assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
+        assertEquals(floatingListPanel.getFloatingTask(0).getName().toString(), newName);
+        assertEquals(floatingListPanel.getFloatingTask(0).getDescription().toString(), newDescription);
+        assertTrue(floatingListPanel.getFloatingTask(0).getAllTags().contains(newTag));
     }
 
     @Test
-    public void edit_findThenEdit_success() throws Exception {
-        commandBox.runCommand(FindCommand.COMMAND_WORD + " Carl");
+    public void editInvalidTaskFailure() throws Exception {
+        commandBox.pressEnter();
+        String newName = "TestTask";
+        String newDescription = "Task edited successfully";
+        String newTag = "EDITEDTASK";
+        int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()
+                    + floatingListPanel.getNumberOfTask();
+        String detailsToEdit = "edit " + (index + 1) + " n/" + newName + " m/" + newDescription
+                                + " +t/" + newTag;
 
-        String detailsToEdit = PREFIX_NAME + "Carrle";
-        Index addressBookIndex = INDEX_THIRD_PERSON;
+        commandBox.runCommand(detailsToEdit);
 
-        Person personToEdit = expectedPersonsList[addressBookIndex.getZeroBased()];
-        Person editedPerson = new PersonBuilder(personToEdit).withName("Carrle").build();
-
-        assertEditSuccess(INDEX_FIRST_PERSON, addressBookIndex, detailsToEdit, editedPerson);
+        assertResultMessage(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
-    public void edit_missingPersonIndex_failure() {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Bobby");
-        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+    public void editInvalidDuplicateTaskFailure() throws Exception {
+        commandBox.pressEnter();
+        String newName = eventListPanel.getEventTask(0).getName().toString();
+        String detailsToEdit = "edit 2 n/" + newName;
+
+        commandBox.runCommand(detailsToEdit);
+
+        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
+    //@@author A0154986L
     @Test
-    public void edit_invalidPersonIndex_failure() {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 8 " + PREFIX_NAME + "Bobby");
-        assertResultMessage(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
+    public void editInvalidFloatingToEvent() throws Exception {
+        commandBox.pressEnter();
+        int index = eventListPanel.getNumberOfTask() + deadlineListPanel.getNumberOfTask()
+                    + floatingListPanel.getNumberOfTask();
+        commandBox.runCommand(EditCommand.COMMAND_WORD + " " + index + " s/10 dec e/9 dec");
 
-    @Test
-    public void edit_noFieldsSpecified_failure() {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1");
-        assertResultMessage(EditCommand.MESSAGE_NOT_EDITED);
-    }
-
-    @Test
-    public void edit_invalidValues_failure() {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_NAME + "*&");
-        assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
-
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_PHONE + "abcd");
-        assertResultMessage(Phone.MESSAGE_PHONE_CONSTRAINTS);
-
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_EMAIL + "yahoo!!!");
-        assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
-
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_ADDRESS.getPrefix());
-        assertResultMessage(Address.MESSAGE_ADDRESS_CONSTRAINTS);
-
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 1 " + PREFIX_TAG + "*&");
-        assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
-    }
-
-    @Test
-    public void edit_duplicatePerson_failure() {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " 3 "
-                + PREFIX_PHONE + "85355255 "
-                + PREFIX_EMAIL + "alice@example.com "
-                + PREFIX_NAME + "Alice Pauline "
-                + PREFIX_ADDRESS + "123, Jurong West Ave 6, #08-111 "
-                + PREFIX_TAG + "friends");
-        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    /**
-     * Checks whether the edited person has the correct updated details.
-     *
-     * @param filteredPersonListIndex index of person to edit in filtered list
-     * @param addressBookIndex index of person to edit in the address book.
-     *      Must refer to the same person as {@code filteredPersonListIndex}
-     * @param detailsToEdit details to edit the person with as input to the edit command
-     * @param editedPerson the expected person after editing the person's details
-     */
-    private void assertEditSuccess(Index filteredPersonListIndex, Index addressBookIndex,
-                                    String detailsToEdit, Person editedPerson) {
-        commandBox.runCommand(EditCommand.COMMAND_WORD + " "
-                + filteredPersonListIndex.getOneBased() + " " + detailsToEdit);
-
-        // confirm the new card contains the right data
-        PersonCardHandle editedCard = personListPanel.navigateToPerson(editedPerson.getName().fullName);
-        assertMatching(editedPerson, editedCard);
-
-        // confirm the list now contains all previous persons plus the person with updated details
-        expectedPersonsList[addressBookIndex.getZeroBased()] = editedPerson;
-        assertTrue(personListPanel.isListMatching(expectedPersonsList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        assertResultMessage(Messages.MESSAGE_INVALID_FLOATING_TO_EVENT_TASK);
     }
 }

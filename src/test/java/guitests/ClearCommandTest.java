@@ -1,35 +1,80 @@
 package guitests;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.testutil.PersonUtil;
+import seedu.whatsnext.logic.commands.ClearCommand;
+import seedu.whatsnext.logic.commands.DeleteCommand;
 
-public class ClearCommandTest extends AddressBookGuiTest {
+/**
+ * Gui tests for the clear command
+ */
+public class ClearCommandTest extends TaskManagerGuiTest {
 
+    //@@author A0154987J
     @Test
-    public void clear() {
+    public void clearAll() {
 
-        //verify a non-empty list can be cleared
-        assertTrue(personListPanel.isListMatching(td.getTypicalPersons()));
+        commandBox.pressEnter();
+        commandBox.runCommand("list all");
         assertClearCommandSuccess();
 
-        //verify other commands can work after a clear command
-        commandBox.runCommand(PersonUtil.getAddCommand(td.hoon));
-        assertTrue(personListPanel.isListMatching(td.hoon));
+        //verifies other commands can work after a clear command
+        commandBox.runCommand("add Buy a country m/to rule");
+        assertListSize(1);
         commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertListSize(0);
 
-        //verify clear command works when the list is empty
+        //verifies clear command works when the list is empty
+        assertClearCommandSuccess();
+    }
+
+    @Test
+    public void clearIncomplete() {
+
+        commandBox.pressEnter();
+        assertClearIncompleteCommandSuccess();
+
+        //verifies other commands can work after a clear command
+        commandBox.runCommand("list completed");
+        assertListSize(1);
+        commandBox.runCommand(DeleteCommand.COMMAND_WORD + " 1");
+        assertListSize(0);
+
+        //verifies clear command works when the list is empty
+        assertClearCommandSuccess();
+    }
+
+    @Test
+    public void clearCompleted() {
+
+        commandBox.pressEnter();
+        commandBox.runCommand("list completed");
+        assertClearCompletedCommandSuccess();
+
+        //verifies other commands can work after a clear command
+        assertListSize(0);
+        commandBox.runCommand("list all");
+        assertListSize(6);
+
+        //verifies clear command works when the list is empty
         assertClearCommandSuccess();
     }
 
     private void assertClearCommandSuccess() {
-        commandBox.runCommand(ClearCommand.COMMAND_WORD);
+        commandBox.runCommand(ClearCommand.COMMAND_WORD + " all");
         assertListSize(0);
-        assertResultMessage("Address book has been cleared!");
+        assertResultMessage("Task List has been cleared!");
+    }
+
+    private void assertClearIncompleteCommandSuccess() {
+        commandBox.runCommand(ClearCommand.COMMAND_WORD + " incomplete");
+        assertListSize(0);
+        assertResultMessage("Incomplete tasks have been cleared!");
+    }
+
+    private void assertClearCompletedCommandSuccess() {
+        commandBox.runCommand(ClearCommand.COMMAND_WORD + " completed");
+        assertListSize(0);
+        assertResultMessage("Completed tasks have been cleared!");
     }
 }

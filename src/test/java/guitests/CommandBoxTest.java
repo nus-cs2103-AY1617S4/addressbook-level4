@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.ui.CommandBox;
+import seedu.whatsnext.logic.commands.SelectCommand;
+import seedu.whatsnext.ui.CommandBox;
 
-public class CommandBoxTest extends AddressBookGuiTest {
+/**
+ * Gui tests for the commandBox
+ */
+public class CommandBoxTest extends TaskManagerGuiTest {
 
-    private static final String COMMAND_THAT_SUCCEEDS = SelectCommand.COMMAND_WORD + " 3";
+    private static final String COMMAND_THAT_SUCCEEDS = SelectCommand.COMMAND_WORD + " 1";
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;
@@ -33,12 +36,14 @@ public class CommandBoxTest extends AddressBookGuiTest {
 
     @Test
     public void commandBox_startingWithSuccessfulCommand() {
+        commandBox.pressEnter();
         assertBehaviorForSuccessfulCommand();
         assertBehaviorForFailedCommand();
     }
 
     @Test
     public void commandBox_startingWithFailedCommand() {
+        commandBox.pressEnter();
         assertBehaviorForFailedCommand();
         assertBehaviorForSuccessfulCommand();
 

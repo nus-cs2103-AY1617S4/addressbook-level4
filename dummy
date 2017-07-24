@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskManager>
+    <tasks>
+        <name>Sample Floating Task</name>
+        <isCompleted>false</isCompleted>
+        <taskType>floating</taskType>
+        <taskDescription>More information on Sample Floating Task</taskDescription>
+        <tagged>HIGH</tagged>
+    </tasks>
+    <tags>HIGH</tags>
+</taskManager>

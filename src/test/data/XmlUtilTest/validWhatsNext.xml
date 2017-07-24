@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<whatsnext>
+	<tasks>
+		<name>Complete</name>
+		<isCompleted>false</isCompleted>
+		<startDateTime>Sun 10 Dec 2017 06:00 PM</startDateTime>
+		<endDateTime>Wed 13 Dec 2017 12:00 PM</endDateTime>
+		<taskType>event</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+		<tagged>CS2103</tagged>
+	</tasks>
+	<tasks>
+		<name>Camping</name>
+		<isCompleted>false</isCompleted>
+		<startDateTime>Wed 20 Dec 2017 06:00 PM</startDateTime>
+		<endDateTime>Mon 25 Dec 2017 12:00 PM</endDateTime>
+		<taskType>event</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>CAMPING</tagged>
+	</tasks>
+	<tasks>
+		<name>CS2010 Problem Set</name>
+		<isCompleted>false</isCompleted>
+		<endDateTime>Thu 27 Jul 2017 11:59 PM</endDateTime>
+		<taskType>deadline</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>CS2010</tagged>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>FYP Selection</name>
+		<isCompleted>false</isCompleted>
+		<endDateTime>Fri 28 Jul 2017 11:59 PM</endDateTime>
+		<taskType>deadline</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>Tester</name>
+		<isCompleted>true</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>HIGH</tagged>
+	</tasks>
+	<tasks>
+		<name>Meet John for dinner</name>
+		<isCompleted>false</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>DINNER</tagged>
+	</tasks>
+	<tasks>
+		<name>Meet Tom for lunch</name>
+		<isCompleted>false</isCompleted>
+		<taskType>floating</taskType>
+		<taskDescription>Empty</taskDescription>
+		<tagged>LUNCH</tagged>
+	</tasks>
+	<tags>CS2010</tags>
+	<tags>HIGH</tags>
+	<tags>DINNER</tags>
+	<tags>CS2103</tags>
+	<tags>LUNCH</tags>
+	<tags>CAMPING</tags>
+</whatsnext>

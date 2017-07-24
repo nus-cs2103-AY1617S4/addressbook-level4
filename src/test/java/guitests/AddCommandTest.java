@@ -1,56 +1,94 @@
 package guitests;
 
-import static org.junit.Assert.assertTrue;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TestUtil;
+import guitests.guihandles.DeadlineTaskCardHandle;
+import guitests.guihandles.EventTaskCardHandle;
+import guitests.guihandles.FloatingTaskCardHandle;
+import seedu.whatsnext.commons.exceptions.IllegalValueException;
+import seedu.whatsnext.logic.commands.AddCommand;
+import seedu.whatsnext.model.tag.Tag;
+import seedu.whatsnext.model.task.BasicTask;
+import seedu.whatsnext.model.task.DateTime;
+import seedu.whatsnext.model.task.TaskDescription;
+import seedu.whatsnext.model.task.TaskName;
 
-public class AddCommandTest extends AddressBookGuiTest {
+/**
+ * Gui tests for the add command
+ */
 
+public class AddCommandTest extends TaskManagerGuiTest {
+
+    //@@author A0154987J
     @Test
-    public void add() {
-        //add one person
-        Person[] currentList = td.getTypicalPersons();
-        Person personToAdd = td.hoon;
-        assertAddSuccess(personToAdd, currentList);
-        currentList = TestUtil.addPersonsToList(currentList, personToAdd);
+    public void add() throws IllegalValueException {
+        commandBox.pressEnter();
+        commandBox.runCommand("list all");
 
-        //add another person
-        personToAdd = td.ida;
-        assertAddSuccess(personToAdd, currentList);
-        currentList = TestUtil.addPersonsToList(currentList, personToAdd);
+        //add one floating task
+        BasicTask taskToAdd = new BasicTask(new TaskName("Buy a country"),
+                new TaskDescription("to rule"), getTagSet());
+        commandBox.runCommand("add Buy a country m/to rule");
+        assertAddSuccess(taskToAdd);
 
-        //add duplicate person
-        commandBox.runCommand(PersonUtil.getAddCommand(td.hoon));
-        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
-        assertTrue(personListPanel.isListMatching(currentList));
+        //add duplicate floating task
+        commandBox.runCommand("add Buy a country m/to rule");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 
-        //add to empty list
-        commandBox.runCommand(ClearCommand.COMMAND_WORD);
-        assertAddSuccess(td.alice);
+        //add one deadline task
+        taskToAdd = new BasicTask(new TaskName("Buy Present For Gf"),
+                new TaskDescription("What She Likes"),
+                new DateTime("next Monday"), getTagSet("medium"));
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
+        assertAddSuccess(taskToAdd);
 
-        //invalid command
-        commandBox.runCommand("adds Johnny");
-        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        //add duplicate deadline task
+        commandBox.runCommand("add Buy Present For Gf m/What She Likes e/next Monday t/medium");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+
+        //add event task
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/11 dec e/12 dec t/low");
+        taskToAdd = new BasicTask(new TaskName("Watch Csgo Major"), new TaskDescription("Fun stuffs"),
+                new DateTime("11 dec"), new DateTime("12 dec"), getTagSet("low"));
+        assertAddSuccess(taskToAdd);
+
+        //add duplicate event task
+        commandBox.runCommand("add Watch Csgo Major m/Fun stuffs s/11 dec e/12 dec t/low");
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
     }
 
-    private void assertAddSuccess(Person personToAdd, Person... currentList) {
-        commandBox.runCommand(PersonUtil.getAddCommand(personToAdd));
-
-        //confirm the new card contains the right data
-        PersonCardHandle addedCard = personListPanel.navigateToPerson(personToAdd.getName().fullName);
-        assertMatching(personToAdd, addedCard);
-
-        //confirm the list now contains all previous persons plus the new person
-        Person[] expectedList = TestUtil.addPersonsToList(currentList, personToAdd);
-        assertTrue(personListPanel.isListMatching(expectedList));
+    private void assertAddSuccess(BasicTask taskToAdd) {
+        // confirm the new card contains the right data
+        if (taskToAdd.getTaskType().equals("event")) {
+            EventTaskCardHandle addedCard = eventListPanel.navigateToEventTask(taskToAdd.getName().toString());
+            assertMatching(taskToAdd, addedCard);
+        } else {
+            if (taskToAdd.getTaskType().equals("deadline")) {
+                DeadlineTaskCardHandle addedCard = deadlineListPanel
+                        .navigateToDeadlineTask(taskToAdd.getName().toString());
+                assertMatching(taskToAdd, addedCard);
+            } else {
+                if (taskToAdd.getTaskType().equals("floating")) {
+                    FloatingTaskCardHandle addedCard = floatingListPanel
+                            .navigateToFloatingTask(taskToAdd.getName().toString());
+                    assertMatching(taskToAdd, addedCard);
+                }
+            }
+        }
     }
 
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Tag> getTagSet(String... strings) throws IllegalValueException {
+        HashSet<Tag> tags = new HashSet<>();
+        for (String s : strings) {
+            tags.add(new Tag(s));
+        }
+
+        return tags;
+    }
 }

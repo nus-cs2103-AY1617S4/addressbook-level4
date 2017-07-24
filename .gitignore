@@ -17,3 +17,10 @@ classes/
 /data/
 /bin/
 src/main/resources/docs/
+.md.html
+.DeveloperGuide.md.html
+.UserGuide.md.html
+.README.md.html
+.AboutUs.md.html
+.classpath
+.gitignore
