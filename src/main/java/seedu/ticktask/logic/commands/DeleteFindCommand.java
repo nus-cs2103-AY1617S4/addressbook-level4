@@ -43,8 +43,7 @@ public class DeleteFindCommand extends DeleteCommand {
         List<ReadOnlyTask> tempList = new ArrayList<>();
         tempList.addAll(model.getFilteredActiveTaskList());
         tempList.addAll(model.getFilteredCompletedTaskList());
-
-        /*Check if there is only one filtered task*/
+        
         if (tempList.size() == 1) {
             taskToDelete = tempList.get(0);
             try {
