@@ -82,6 +82,8 @@ We follow https://github.com/oss-generic/process/blob/master/docs/CodingStandard
 
 === Architecture
 
+Author: Herman Wong
+
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
@@ -159,7 +161,7 @@ The `UI` component,
 
 === Logic component
 
-Author: Herman Wong
+Author: Li Jiawei
 
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.3.1 : Structure of the Logic Component_
