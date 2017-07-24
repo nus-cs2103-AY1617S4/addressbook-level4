@@ -19,7 +19,7 @@
  Expected: New task added: Fix bicycle Time: 23:59 Task Type: deadline Date: 07/25/2017 Tags: "  <br>
  
  Command: `add Family chalet from friday to sunday at 2pm to 5pm`<br>
- Expected: New task added: Family chalet Time: 14:00 - 17:00 Task Type: event Date: 08/03/2017 - 08/07/2017 Tags: <br>
+ Expected: Warning: There is another task going on within the same time frame: Family chalet Time: 14:00 - 17:00 Task Type: event Date: 07/28/2017 - 07/30/2017 Tags: <br>
  
  Command: `add inv@l!d ` <br>
  Expected: Task names should only contain alphanumeric characters and spaces, and it should not be blank  <br>
@@ -27,24 +27,25 @@
 ###History Command
  Command: `history` <br>
  Expected: <br>
- add Buy flowers for Rachel #love <br>
- add Call OCBC Bank by tomorrow at 3pm <br>
- add Fix computer by tmr <br>
- add Fix bicycle by tmr <br>
- add Family chalet from friday to sunday at 2pm to 5pm <br>
- add inv@l!d<br>
+ Entered commands (from most recent to most earliest): <br>
+add inv@l!d <br>
+add Family chalet from friday to sunday at 2pm to 5pm<br>
+add Fix bicycle by tmr<br>
+add Fix computer by tmr<br>
+add Call OCBC Bank by tomorrow at 3pm<br>
+add Buy flowers for Rachel #love<br>
 
 ###Delete Command
  Command: `delete active 3` <br>
  Expected: Task deleted:
-Description: CS2103 Final Submission Deadline Time: 20:00 Task Type: deadline Date: 07/24/2017 Tags:   <br>
+Description: CS2103 Final Submission Deadline Time: 20:00 Task Type: deadline Date: 07/24/2017 Tags:  <br>
  
  Command: `delete Buy flowers for Rachel` <br>
  Expected: Task deleted:
-Description: Buy flowers for Rachel Time:  Task Type: floating Date:  Tags: [love]  <br>
+Description: Buy flowers for Rachel Time:  Task Type: floating Date:  Tags: \[love] <br>
 
  Command: `delete CALL ocbc BANK` <br>
- Expected: The deleted task name is a subset of the stored task name.
+ Expected: TThe deleted task name is a subset of the stored task name.
 Please use 'undo' command to restore if the deletion in not desired.
 Task deleted:
 Description: Call OCBC Bank Time: 15:00 Task Type: deadline Date: 07/25/2017 Tags: <br>
@@ -52,7 +53,7 @@ Description: Call OCBC Bank Time: 15:00 Task Type: deadline Date: 07/25/2017 Tag
 Command: `delete finalise` <br>
  Expected: More than one task found! 
 Use delete [ complete ] or delete [ active ] INDEX to specify which task to delete. 
-Use 'list' command to go back after finishing deletion. <br>
+Use 'list' command to go back after finishing deletion.<br>
  
  Command: `delete complete 1` <br>
  Expected: Task deleted:
