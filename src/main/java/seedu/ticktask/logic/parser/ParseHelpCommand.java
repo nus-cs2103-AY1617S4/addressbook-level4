@@ -2,7 +2,6 @@ package seedu.ticktask.logic.parser;
 
 import seedu.ticktask.logic.commands.AddCommand;
 import seedu.ticktask.logic.commands.ClearCommand;
-import seedu.ticktask.logic.commands.Command;
 import seedu.ticktask.logic.commands.CompleteCommand;
 import seedu.ticktask.logic.commands.DeleteCommand;
 import seedu.ticktask.logic.commands.EditCommand;
@@ -14,7 +13,8 @@ import seedu.ticktask.logic.commands.SelectCommand;
 import seedu.ticktask.logic.commands.StorageCommand;
 import seedu.ticktask.logic.commands.UndoCommand;
 import seedu.ticktask.logic.commands.HelpCommand;
-
+import seedu.ticktask.logic.commands.ExitCommand;
+import seedu.ticktask.logic.commands.HistoryCommand;
 //@@author A0131884B
 /**
  * Parses input arguments and creates a new HelpCommand object.
@@ -23,17 +23,15 @@ public class ParseHelpCommand {
     /**
      * Parses the given {String} of arguments in the context of the HelpCommand.
      * and returns a HelpCommand object for execution.
-     *
      * @param args The string after the command word help.
      */
     public HelpCommand parse(String args) {
         if (args == null) {
             return new HelpCommand();
         }
-        // keywords delimited by whitespace
+        
         final String commandWord = args.trim();
         final String helpMessage = parseCommand(commandWord);
-        System.out.println("\n"+commandWord+"\n");
         if (helpMessage == null) {
             return new HelpCommand();
         } else {
@@ -43,7 +41,6 @@ public class ParseHelpCommand {
     /**
      * Check for the command word in the given {String} of command
      * and returns the help message of the corresponding command.
-     *
      * @param commandWord A string which may be the command word.
      */
     private static String parseCommand(String commandWord) {
@@ -63,11 +60,17 @@ public class ParseHelpCommand {
             case EditCommand.COMMAND_WORD:
                 return EditCommand.MESSAGE_USAGE;
 
+            case ExitCommand.COMMAND_WORD:
+                return ExitCommand.MESSAGE_USAGE;
+
             case FindCommand.COMMAND_WORD:
                 return FindCommand.MESSAGE_USAGE;
 
             case HelpCommand.COMMAND_WORD:
                 return HelpCommand.MESSAGE_USAGE;
+
+            case HistoryCommand.COMMAND_WORD:
+                return HistoryCommand.MESSAGE_USAGE;
 
             case ListCommand.COMMAND_WORD:
                 return ListCommand.MESSAGE_USAGE;

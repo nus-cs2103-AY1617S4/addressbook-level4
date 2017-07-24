@@ -46,7 +46,7 @@ public class AddCommand extends Command {
             }
             //@@author
             if (toAdd.getTaskType().toString().equals("event") && model.eventClash(toAdd) != null) {
-                return new CommandResult(String.format(MESSAGE_EVENT_CLASH, toAdd));
+                return new CommandResult(String.format(MESSAGE_EVENT_CLASH, model.eventClash(toAdd)));
             }
             
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

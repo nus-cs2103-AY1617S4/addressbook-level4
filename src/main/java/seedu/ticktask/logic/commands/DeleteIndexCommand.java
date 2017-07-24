@@ -13,7 +13,7 @@ import seedu.ticktask.model.task.exceptions.DuplicateTaskException;
 import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 
 //@@author A0131884B
-/*
+/**
  * Deletes an task identified using the type of task followed by task index.
  */
 public class DeleteIndexCommand extends DeleteCommand {

@@ -91,7 +91,7 @@ public class EditCommand extends Command {
             }
             //@@author
             if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
-                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
+                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, model.eventClash(taskToEdit)));
             }
             
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
