@@ -652,7 +652,7 @@ function setDocumentScrollTop(ypos)
  <li>Input: <code>help command_name</code><br /> Example: <code>help add</code> <br /> Result: Display command description and format.</li> 
 </ol> 
 <h3> <a id="2-wrong-command" class="anchor" href="#2-wrong-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Wrong command</h3> 
-<p>Input: <code>add</code><br /> Result: &quot;Task names should only contain alphanumeric characters and spaces, and it should not be blank add: Adds a task to the task manager...&quot; <br /> Note: Use <code>help command_name</code> described in <code>1. Help command</code> to display command description and format.</p> 
+<p>Input: <code>add</code><br /> Result: &quot;Task names should only contain alphanumeric characters and spaces, and it should not be blank<br /> add: Adds a task to the task manager...&quot; <br /> Note: Use <code>help command_name</code> described in <code>1. Help command</code> to display command description and format.</p> 
 <h2> <a id="testing-the-add-command" class="anchor" href="#testing-the-add-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing the add command:</h2> 
 <h3> <a id="1-add-an-event" class="anchor" href="#1-add-an-event" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Add an event</h3> 
 <p>Input: <code>add doing testing s/ today 1200 e/ next monday 1400</code> or <br /> <code>add doing testing, today 1200, next monday 1400</code></p> 
@@ -729,7 +729,7 @@ function setDocumentScrollTop(ypos)
 <h3> <a id="3-clear-completed-tasks" class="anchor" href="#3-clear-completed-tasks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Clear completed tasks</h3> 
 <p>Input:</p> 
 <ol> 
- <li><code>list all</code></li> 
+ <li><code>find rest</code></li> 
  <li><code>mark 1</code></li> 
  <li><code>list completed</code></li> 
  <li><code>clear completed</code></li> 
@@ -738,12 +738,12 @@ function setDocumentScrollTop(ypos)
 </ol> 
 <p>Result:</p> 
 <ol> 
- <li>&quot;List all tasks&quot;</li> 
+ <li>&quot;1 tasks listed!&quot;</li> 
  <li>&quot;Marked Task: Rest for the day Tags: [REST] &quot;</li> 
  <li>&quot;List all completed tasks&quot;</li> 
  <li>&quot;Completed tasks have been cleared!&quot;</li> 
- <li>&quot;Previous action has been undone.&quot;</li> 
- <li>&quot;Previous action has been undone.&quot;</li> 
+ <li>&quot;Previous action has been undone.&quot; <br /> <code>undo</code> <code>clear completed</code> command</li> 
+ <li>&quot;Previous action has been undone.&quot; <br /> <code>undo</code> <code>mark 1</code> command</li> 
 </ol> 
 <h3> <a id="4-clear-incomplete-tasks" class="anchor" href="#4-clear-incomplete-tasks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Clear incomplete tasks</h3> 
 <p>Input:</p> 
@@ -776,11 +776,13 @@ function setDocumentScrollTop(ypos)
 <p>Input:</p> 
 <ol> 
  <li><code>undo</code></li> 
+ <li><code>list</code></li> 
  <li><code>mark 1</code></li> 
 </ol> 
 <p>Result:</p> 
 <ol> 
- <li>Previous action has been undone.</li> 
+ <li>&quot;Previous action has been undone.&quot;</li> 
+ <li>&quot;List all upcoming incomplete tasks&quot;</li> 
  <li>&quot;Marked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] &quot; <br /> </li> 
 </ol> 
 <h2> <a id="testing-out-the-unmark-command" class="anchor" href="#testing-out-the-unmark-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the unmark command:</h2> 
@@ -797,17 +799,17 @@ function setDocumentScrollTop(ypos)
 <h2> <a id="testing-out-the-list-command" class="anchor" href="#testing-out-the-list-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the list command:</h2> 
 <p>Input <br /></p> 
 <ol> 
- <li> <p><code>list</code></p> </li> 
- <li> <p><code>list all</code></p> </li> 
- <li> <p><code>list completed</code> // add mark command</p> </li> 
- <li> <p><code>list incomplete</code></p> </li> 
- <li> <p><code>list expired</code></p> </li> 
+ <li><code>list</code></li> 
+ <li><code>list all</code></li> 
+ <li><code>list completed</code></li> 
+ <li><code>list incomplete</code></li> 
+ <li><code>list expired</code></li> 
 </ol> 
 <p>Result: <br /></p> 
 <ol> 
  <li>&quot;List all upcoming incomplete tasks&quot; <br /> Notice how there is no completed task at the moment</li> 
  <li>&quot;List all tasks&quot; <br /> </li> 
- <li>&quot;List all completed tasks&quot;<br /> Notice that the previously marked task is now in the completed list</li> 
+ <li>&quot;List all completed tasks&quot;<br /> Notice that the list is empty as it has been unmarked</li> 
  <li>&quot;List all incomplete tasks&quot;</li> 
  <li>&quot;List all expired tasks&quot;<br /> Notice that all task before <code>today</code> is listed</li> 
 </ol> 
@@ -838,7 +840,7 @@ function setDocumentScrollTop(ypos)
 </ol> 
 <h3> <a id="delete-tags-in-existing-task" class="anchor" href="#delete-tags-in-existing-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Delete tags in existing task</h3> 
 <p>Input: <code>edit 1 -t/ newTag</code></p> 
-<p>Result: <br /> &quot;Task name: new task name Tags: [OVERLAP] [NUS] [CS2103] Status: Incomplete From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM Description: Project meeting for CS2103&quot;</p> 
+<p>Result: <br /> &quot;Task name: new task name<br /> Tags: [OVERLAP] [NUS] [CS2103]<br /> Status: Incomplete<br /> From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM<br /> Description: Project meeting for CS2103&quot;</p> 
 <h3> <a id="update-floating-task-to-deadline-task" class="anchor" href="#update-floating-task-to-deadline-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update floating task to deadline task</h3> 
 <p>Input:</p> 
 <ol> 
@@ -848,7 +850,7 @@ function setDocumentScrollTop(ypos)
 <p>Result:</p> 
 <ol> 
  <li>8 tasks listed!</li> 
- <li>&quot;Task name: Buy Ice Cream Tags: [GROCERIES] Status: Incomplete Due by: Wed 9 Aug 2017 11:59 PM Description: Buy 2 tubs of chocolate ice cream&quot;</li> 
+ <li>&quot;Task name: Buy Ice Cream<br /> Tags: [GROCERIES]<br /> Status: Incomplete<br /> Due by: Wed 9 Aug 2017 11:59 PM<br /> Description: Buy 2 tubs of chocolate ice cream&quot;</li> 
 </ol> 
 <h3> <a id="update-floating-task-to-event-task" class="anchor" href="#update-floating-task-to-event-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update floating task to event task</h3> 
 <p>Input:</p> 
@@ -859,7 +861,7 @@ function setDocumentScrollTop(ypos)
 <p>Result:</p> 
 <ol> 
  <li>8 tasks listed!</li> 
- <li>&quot;Task name: Buy some beer Tags: [GROCERIES] Status: Incomplete From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM Description: Empty&quot;</li> 
+ <li>&quot;Task name: Buy some beer<br /> Tags: [OVERLAP] [GROCERIES]<br /> Status: Incomplete<br /> From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM<br /> Description: Empty&quot;</li> 
 </ol> 
 <h3> <a id="update-deadline-task-to-event-task" class="anchor" href="#update-deadline-task-to-event-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update deadline task to event task</h3> 
 <p>Input:</p> 
@@ -870,7 +872,7 @@ function setDocumentScrollTop(ypos)
 <p>Result:</p> 
 <ol> 
  <li>8 tasks listed!</li> 
- <li>&quot;Task name: Buy Ice Cream Tags: [GROCERIES] [OVERLAP] Status: Incomplete From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM Description: Buy 2 tubs of chocolate ice cream&quot;</li> 
+ <li>&quot;Task name: Buy Ice Cream<br /> Tags: [GROCERIES] [OVERLAP]<br /> Status: Incomplete<br /> From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM<br /> Description: Buy 2 tubs of chocolate ice cream&quot;</li> 
 </ol> 
 <h3> <a id="reset-event-task-to-floating-task" class="anchor" href="#reset-event-task-to-floating-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reset event task to floating task</h3> 
 <p>Input:</p> 
@@ -894,6 +896,26 @@ function setDocumentScrollTop(ypos)
  <li>2 tasks listed!</li> 
  <li>&quot;Reseted Task: Christmas Party at work Tags: [HOLIDAY] &quot;</li> 
 </ol> 
+<h3> <a id="testing-out-the-priority-tags" class="anchor" href="#testing-out-the-priority-tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the <code>priority tags</code>:</h3> 
+<p>Input:</p> 
+<ol> 
+ <li><code>add very important task, tags: high</code></li> 
+</ol> 
+<p>Result:</p> 
+<ol> 
+ <li>&quot;Task name: very important task<br /> Tags: [HIGH] <br /> Status: Incomplete<br /> Description: Empty&quot;<br /> </li> 
+</ol> 
+<h3> <a id="updating-the-priority-tags" class="anchor" href="#updating-the-priority-tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Updating the <code>priority tags</code>:</h3> 
+<p>Input:</p> 
+<ol> 
+ <li><code>find very important</code></li> 
+ <li><code>edit 1 +t/low</code></li> 
+</ol> 
+<p>Result:</p> 
+<ol> 
+ <li>&quot;1 tasks listed!&quot;</li> 
+ <li>&quot;Task name: very important task<br /> Tags: [LOW] <br /> Status: Incomplete<br /> Description: Empty<br /> </li> 
+</ol> 
 <h2> <a id="testing-out-the-filepath-command" class="anchor" href="#testing-out-the-filepath-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the <code>filepath</code> command</h2> 
 <p>Input <code>filepath</code></p> 
 <p>Result: &quot;File Path located at: data/whatsnext.xml&quot;</p> 
@@ -909,10 +931,10 @@ function setDocumentScrollTop(ypos)
 <p>Result:</p> 
 <ol> 
  <li>&quot;Reminder set: 1 week&quot;</li> 
- <li>&quot;Display reminders&quot; <br /> Popup message box which displays events with starting date within the week or<br /> deadline tasks with end date within the week</li> 
+ <li>&quot;Display reminders&quot; <br /> Popup message box which displays events with starting date within the week or deadline tasks with end date within the week</li> 
 </ol> 
-<h2> <a id="testing-out-the-exit-function" class="anchor" href="#testing-out-the-exit-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the EXIT function:</h2> 
-<p>Input <code>EXIT</code></p> 
+<h2> <a id="testing-out-the-exit-function" class="anchor" href="#testing-out-the-exit-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing out the exit function:</h2> 
+<p>Input <code>exit</code></p> 
 <p>Result: WhatsNext closes.</p>
 </body>
 </html>

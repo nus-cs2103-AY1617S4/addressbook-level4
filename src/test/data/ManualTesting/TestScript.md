@@ -28,7 +28,7 @@ Result: Display command description and format.
 
 ### 2. Wrong command
 Input: `add`<br>
-Result: "Task names should only contain alphanumeric characters and spaces, and it should not be blank
+Result: "Task names should only contain alphanumeric characters and spaces, and it should not be blank<br>
 add: Adds a task to the task manager..." <br>
 Note: Use `help command_name` described in `1. Help command` to display command description and format.
 
@@ -153,7 +153,7 @@ Result:
 
 ### 3. Clear completed tasks
 Input:
-1. `list all`
+1. `find rest`
 2. `mark 1`
 3. `list completed`
 4. `clear completed`
@@ -161,12 +161,14 @@ Input:
 6. `undo`
 
 Result:
-1. "List all tasks"
+1. "1 tasks listed!"
 2. "Marked Task: Rest for the day Tags: [REST] "
 3. "List all completed tasks"
 4. "Completed tasks have been cleared!"
-5. "Previous action has been undone."
-6. "Previous action has been undone."
+5. "Previous action has been undone." <br>
+`undo` `clear completed` command
+6. "Previous action has been undone." <br>
+`undo` `mark 1` command
 
 
 ### 4. Clear incomplete tasks
@@ -202,11 +204,13 @@ All the task has been cleared once again.
 ## Testing out the mark command:
 Input:
 1. `undo`
-2. `mark 1`
+2. `list`
+3. `mark 1`
 
 Result:
-1. Previous action has been undone.
-2. "Marked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] " <br>
+1. "Previous action has been undone."
+2. "List all upcoming incomplete tasks"
+3. "Marked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] " <br>
 
 
 ## Testing out the unmark command:
@@ -225,8 +229,6 @@ Input <br>
 1. `list`
 2. `list all`
 3. `list completed`
-// add mark command
-
 4. `list incomplete`
 5. `list expired`
 
@@ -235,7 +237,7 @@ Result: <br>
 Notice how there is no completed task at the moment
 2. "List all tasks" <br>
 3. "List all completed tasks"<br>
-Notice that the previously marked task is now in the completed list
+Notice that the list is empty as it has been unmarked
 4. "List all incomplete tasks"
 5. "List all expired tasks"<br>
 Notice that all task before `today` is listed
@@ -274,10 +276,10 @@ Description: Project meeting for CS2103"
 Input: `edit 1 -t/ newTag`
 
 Result: <br>
-"Task name: new task name
-Tags: [OVERLAP] [NUS] [CS2103]
-Status: Incomplete
-From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM
+"Task name: new task name<br>
+Tags: [OVERLAP] [NUS] [CS2103]<br>
+Status: Incomplete<br>
+From: Thu 20 Jul 2017 08:00 AM To: Thu 10 Aug 2017 09:00 AM<br>
 Description: Project meeting for CS2103"
 
 
@@ -289,10 +291,10 @@ Input:
 
 Result:
 1. 8 tasks listed!
-2. "Task name: Buy Ice Cream
-Tags: [GROCERIES]
-Status: Incomplete
-Due by: Wed 9 Aug 2017 11:59 PM
+2. "Task name: Buy Ice Cream<br>
+Tags: [GROCERIES]<br>
+Status: Incomplete<br>
+Due by: Wed 9 Aug 2017 11:59 PM<br>
 Description: Buy 2 tubs of chocolate ice cream"
 
 ### Update floating task to event task
@@ -303,10 +305,10 @@ Input:
 
 Result:
 1. 8 tasks listed!
-2. "Task name: Buy some beer
-Tags: [GROCERIES]
-Status: Incomplete
-From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM
+2. "Task name: Buy some beer<br>
+Tags: [OVERLAP] [GROCERIES]<br>
+Status: Incomplete<br>
+From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM<br>
 Description: Empty"
 
 ### Update deadline task to event task
@@ -317,10 +319,10 @@ Input:
 
 Result:
 1. 8 tasks listed!
-2. "Task name: Buy Ice Cream
-Tags: [GROCERIES] [OVERLAP]
-Status: Incomplete
-From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM
+2. "Task name: Buy Ice Cream<br>
+Tags: [GROCERIES] [OVERLAP]<br>
+Status: Incomplete<br>
+From: Tue 8 Aug 2017 11:59 PM To: Wed 9 Aug 2017 11:59 PM<br>
 Description: Buy 2 tubs of chocolate ice cream"
 
 ### Reset event task to floating task
@@ -343,6 +345,27 @@ Result:
 1. 2 tasks listed!
 2. "Reseted Task: Christmas Party at work Tags: [HOLIDAY] "
 
+### Testing out the `priority tags`:
+Input:
+1. `add very important task, tags: high`
+
+Result:
+1. "Task name: very important task<br>
+Tags: [HIGH] <br>
+Status: Incomplete<br>
+Description: Empty"<br>
+
+### Updating the `priority tags`:
+Input:
+1. `find very important`
+2. `edit 1 +t/low`
+
+Result:
+1. "1 tasks listed!"
+2. "Task name: very important task<br>
+Tags: [LOW] <br>
+Status: Incomplete<br>
+Description: Empty<br>
 
 ## Testing out the `filepath` command
 Input `filepath`
@@ -363,12 +386,11 @@ Input:
 Result:
 1. "Reminder set: 1 week"
 2. "Display reminders" <br>
-  Popup message box which displays events with starting date within the week or<br>
-  deadline tasks with end date within the week
+  Popup message box which displays events with starting date within the week or deadline tasks with end date within the week
 
 
 
-## Testing out the EXIT function:
-Input `EXIT`
+## Testing out the exit function:
+Input `exit`
 
 Result: WhatsNext closes.
