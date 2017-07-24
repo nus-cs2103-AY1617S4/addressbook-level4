@@ -28,7 +28,7 @@ public class DueDateTest {
     
     //@@author A0147928N
     @Test
-    public void testDueDateConstructor() throws IllegalValueException {        
+    public void testDueDateConstructor_success() throws IllegalValueException {        
         String dateString = "03/22/2019 - 03/22/2020";
         DueDate date = new DueDate(dateString);
         
@@ -36,42 +36,42 @@ public class DueDateTest {
     }
     
     @Test
-    public void testDueDateStartConstructor() throws IllegalValueException {
+    public void testDueDateStartConstructor_success() throws IllegalValueException {
         DueDate date = new DueDate("start date 03/22/2019");
         
         assertEquals(date.getStartDate(), "03/22/2019");
     }
     
     @Test
-    public void testDueDateEndConstructor() throws IllegalValueException {
+    public void testDueDateEndConstructor_success() throws IllegalValueException {
         DueDate date = new DueDate("end date 03/22/2019");
         
         assertEquals(date.getEndDate(), "03/22/2019");
     }
     
     @Test
-    public void testSetFloating() throws IllegalValueException {
+    public void testSetFloating_success() throws IllegalValueException {
         DueDate date = new DueDate("");
         date.setFloating();
         assertTrue(date.isFloating());
     }
     
     @Test
-    public void testSetDeadline() throws IllegalValueException {
+    public void testSetDeadline_success() throws IllegalValueException {
         DueDate date = new DueDate("03/22/2019");
         date.setDeadline();
         assertTrue(date.isDeadline());
     }
     
     @Test
-    public void testSetRange() throws IllegalValueException {
+    public void testSetRange_success() throws IllegalValueException {
         DueDate date = new DueDate("03/22/2019 - 03/22/2020");
         date.setRange();
         assertTrue(date.isRange());
     }
     
     @Test
-    public void testExtractDate() throws IllegalValueException {
+    public void testExtractDate_success() throws IllegalValueException {
         DueDate date = new DueDate("");
         DueDate dateCopy = new DueDate("");
         
@@ -83,20 +83,20 @@ public class DueDateTest {
     }
     
     @Test
-    public void testGetValue() throws IllegalValueException {
+    public void testGetValue_success() throws IllegalValueException {
         DueDate date = new DueDate("03/22/2019");
         assertEquals(date.getValue(), "03/22/2019");
     }
     
     @Test
-    public void testSetValue() throws IllegalValueException {
+    public void testSetValue_success() throws IllegalValueException {
         DueDate date = new DueDate("03/22/2019");
         date.setValue("04/22/2019");
         assertEquals(date.getValue(), "04/22/2019");
     }
     
     @Test
-    public void testSetEndDate() throws IllegalValueException {
+    public void testSetEndDate_success() throws IllegalValueException {
         DueDate date = new DueDate("");
         
         LocalDate endDate = LocalDate.parse("2019-04-22");
@@ -105,7 +105,7 @@ public class DueDateTest {
     }
     
     @Test
-    public void testSetStartDate() throws IllegalValueException {
+    public void testSetStartDate_success() throws IllegalValueException {
         DueDate date = new DueDate("");
         
         LocalDate startDate = LocalDate.parse("2019-04-22");

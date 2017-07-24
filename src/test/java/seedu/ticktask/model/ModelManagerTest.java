@@ -30,7 +30,7 @@ public class ModelManagerTest {
     ModelManager modelManagerCopy = new ModelManager(otherTickTask, userPrefs);
     
     @Test
-    public void testResetData() {
+    public void testResetData_success() {
         
         //Should be true as they both contain the exact same data
         assertTrue(emptyModelManager.equals(emptyModelManagerCopy));
@@ -45,12 +45,12 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testGetTickTask() {
+    public void testGetTickTask_success() {
         assertEquals(emptyModelManager.getTickTask(), tickTask);
     }
     
     @Test
-    public void testUndoPreviousCommand() {
+    public void testUndoPreviousCommand_success() {
         emptyModelManager.resetData(otherTickTask);
         emptyModelManager.undoPreviousCommand();
         
@@ -58,7 +58,7 @@ public class ModelManagerTest {
     }
     
     @Test 
-    public void testRedoUndoneCommand() {
+    public void testRedoUndoneCommand_success() {
         emptyModelManager.resetData(otherTickTask);
         emptyModelManager.undoPreviousCommand();
         emptyModelManager.redoUndoneCommand();
@@ -67,7 +67,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testDeleteFindTask() throws DuplicateTaskException, TaskNotFoundException {
+    public void testDeleteFindTask_success() throws DuplicateTaskException, TaskNotFoundException {
         ReadOnlyTask taskToDelete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         modelManager.deleteFindTask(taskToDelete);
         
@@ -75,7 +75,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testDeleteIndexActiveTask() throws DuplicateTaskException, TaskNotFoundException {
+    public void testDeleteIndexActiveTask_success() throws DuplicateTaskException, TaskNotFoundException {
         ReadOnlyTask taskToDelete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         modelManager.deleteIndexActiveTask(taskToDelete);
         
@@ -83,7 +83,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testDeleteIndexCompleteTask() throws TaskNotFoundException {
+    public void testDeleteIndexCompleteTask_success() throws TaskNotFoundException {
         ReadOnlyTask taskToComplete = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
         modelManager.completeTask(taskToComplete);
@@ -97,7 +97,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testAddTask() throws IllegalValueException {
+    public void testAddTask_success() throws IllegalValueException {
         ReadOnlyTask taskToAdd = new TaskBuilder().build();
         
         modelManager.addTask(taskToAdd);
@@ -105,7 +105,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testUpdateTask() throws IllegalValueException, TaskNotFoundException {
+    public void testUpdateTask_success() throws IllegalValueException, TaskNotFoundException {
         ReadOnlyTask taskToEdit = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         
         ReadOnlyTask editedTask = new TaskBuilder().withName("Random").build();
@@ -115,7 +115,7 @@ public class ModelManagerTest {
     }  
     
     @Test
-    public void testEventClash() throws IllegalValueException, TaskNotFoundException {
+    public void testEventClash_success() throws IllegalValueException, TaskNotFoundException {
         ReadOnlyTask taskToEdit = modelManager.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
     
         ReadOnlyTask editedTask = new TaskBuilder().withName("Random").build();
@@ -124,7 +124,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testGetCurrentProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testGetCurrentProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         TickTask currentProgramInstance = modelManager.getCurrentProgramInstance();
         TickTask otherCurrentProgramInstance = modelManagerCopy.getCurrentProgramInstance();
         assertEquals(currentProgramInstance, otherCurrentProgramInstance);
@@ -135,7 +135,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testSetCurrentProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testSetCurrentProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         TickTask currentProgramInstance = modelManager.getCurrentProgramInstance();
         TickTask otherCurrentProgramInstance = modelManagerCopy.getCurrentProgramInstance();
         currentProgramInstance.addTask(new TaskBuilder().withName("Random").build());
@@ -145,7 +145,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testGetPreviousProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testGetPreviousProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         modelManager.addTask(new TaskBuilder().withName("Random").build());
         
         TickTask previousProgramInstance = modelManager.getPreviousProgramInstances().pop();
@@ -154,7 +154,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testGetFutureProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testGetFutureProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         modelManager.addTask(new TaskBuilder().withName("Random").build());
         modelManager.undoPreviousCommand();
         
@@ -167,7 +167,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testSetPreviousProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testSetPreviousProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         modelManager.addTask(new TaskBuilder().withName("Random").build());
         modelManager.addTask(new TaskBuilder().withName("Random1").build());
         
@@ -179,7 +179,7 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testSetFutureProgramInstance() throws DuplicateTaskException, IllegalValueException {
+    public void testSetFutureProgramInstance_success() throws DuplicateTaskException, IllegalValueException {
         modelManager.addTask(new TaskBuilder().withName("Random").build());
         modelManager.addTask(new TaskBuilder().withName("Random1").build());
         modelManager.undoPreviousCommand();
@@ -193,17 +193,17 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testGetFilteredTaskList() {
+    public void testGetFilteredTaskList_success() {
         assertEquals(modelManager.getFilteredActiveTaskList(), modelManagerCopy.getFilteredActiveTaskList());
     }
     
     @Test
-    public void testGetFilteredCompletedTaskList() {
+    public void testGetFilteredCompletedTaskList_success() {
         assertEquals(modelManager.getFilteredCompletedTaskList(), modelManagerCopy.getFilteredCompletedTaskList());
     }
     
     @Test
-    public void testUpdateFilteredListToShowEvent() {
+    public void testUpdateFilteredListToShowEvent_success() {
         modelManager.updateFilteredListToShowEvent();
         assertFalse(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
         
@@ -212,13 +212,13 @@ public class ModelManagerTest {
     }
     
     @Test
-    public void testUpdateFilteredListToShowDeadline() {
+    public void testUpdateFilteredListToShowDeadline_success() {
         modelManager.updateFilteredListToShowDeadline();
         assertTrue(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
     }
     
     @Test
-    public void testUpdateFilteredListToShowToday() {
+    public void testUpdateFilteredListToShowToday_success() {
         modelManager.updateFilteredListToShowToday();
         assertFalse(modelManager.getFilteredActiveTaskList().equals(modelManagerCopy.getFilteredActiveTaskList()));
         
