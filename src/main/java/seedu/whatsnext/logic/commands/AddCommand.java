@@ -8,9 +8,9 @@ import static seedu.whatsnext.logic.parser.CliSyntax.PREFIX_TAG_CLI;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.LogsCenter;
-import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException, IllegalValueException {
         requireNonNull(model);
-        UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
+        ObservableList<BasicTask> taskList = model.getTaskManager().getTaskList();
         if (toAdd.isOverlapTask(taskList)) {
             toAdd = EditCommand.createOverlapTask(toAdd);
             logger.info(MESSAGE_OVERLAP_TASK + " Task name: " + toAdd.getName());
