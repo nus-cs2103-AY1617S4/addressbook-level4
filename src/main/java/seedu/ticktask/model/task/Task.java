@@ -193,22 +193,22 @@ public class Task implements ReadOnlyTask {
     public boolean isChronological() {
         LocalDate currDate = LocalDate.now();
         
-        if(this.getDate().getLocalStartDate() == null){
-            if(this.getTime().getLocalStartTime() == null || isTimeChronological()){
+        if (this.getDate().getLocalStartDate() == null) {
+            if (this.getTime().getLocalStartTime() == null || isTimeChronological()) {
                 return true;
             }
             else return false;
         }
         LocalDate taskDate = this.getDate().getLocalStartDate();
         //Check if task's date is today.
-        if(taskDate.isEqual(currDate)){
-            if(this.getTime().getLocalStartTime() == null|| isTimeChronological()){
+        if (taskDate.isEqual(currDate)) {
+            if (this.getTime().getLocalStartTime() == null|| isTimeChronological()) {
                 return true;
             } else {
                 return false;
             }
         }
-        if(isDateChronological()){
+        if (isDateChronological()) {
             return true;
         } else{
             return false;
@@ -234,7 +234,7 @@ public class Task implements ReadOnlyTask {
     public boolean isDateChronological(){
         LocalDate currDate = LocalDate.now();
         LocalDate taskDate = this.getDate().getLocalStartDate();
-        if(taskDate.isBefore(currDate)){
+        if (taskDate.isBefore(currDate)) {
             return false;
         } else {
             return true;
@@ -307,7 +307,7 @@ public class Task implements ReadOnlyTask {
             } else {
                 return false;
             }
-        } else{
+        } else {
             return false;
         }
     }
@@ -319,9 +319,9 @@ public class Task implements ReadOnlyTask {
     public boolean isToday(){
         LocalDate nowDate = LocalDate.now();
         LocalDate startDate = date.getLocalStartDate();
-        if(nowDate.isEqual(startDate)){
+        if (nowDate.isEqual(startDate)) {
             return true;
-        } else{
+        } else {
             return  false;
         }
     }
