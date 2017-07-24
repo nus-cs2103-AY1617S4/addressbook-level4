@@ -92,6 +92,12 @@ public class Task implements ReadOnlyTask {
             }
             if (time.getEndTime().equals("")){
                 time.setEndTime(LocalTime.parse("23:59"));
+            }            
+            if (date.getEndDate().equals("")){
+                date.setEndDate(date.getLocalStartDate());
+            }
+            if (time.getEndTime().equals("")){
+                time.setEndTime(time.getLocalStartTime());
             }
             
         } else if (time.isFloating() && date.isFloating()) {
@@ -104,7 +110,6 @@ public class Task implements ReadOnlyTask {
             if (date.getStartDate().equals("")){
                 date.setStartDate(LocalDate.now());
             }
-
             if (!date.getEndDate().equals("")){
                 date.setEndDate(null);
             }
@@ -301,15 +306,15 @@ public class Task implements ReadOnlyTask {
         LocalTime startTime = time.getLocalStartTime();
         LocalTime endTime = time.getLocalEndTime();
         LocalDate endDate = date.getLocalEndDate();
-        if(nowTime.isAfter(startTime) && nowTime.isBefore(endTime)){
-            if(nowDate.isEqual(startDate) || (nowDate.isAfter(startDate) && nowDate.isBefore(endDate))){
-                return true;
-            } else {
-                return false;
-            }
-        } else{
+      
+        if (endDate.isBefore(nowDate) || startDate.isAfter(nowDate)) {
             return false;
-        }
+        } else if (startDate.equals(nowDate) && startTime.isAfter(nowTime)) {
+            return false;
+        } else if (endDate.equals(nowDate) && endTime.isBefore(nowTime)) {
+            return false;
+        }          
+        return true;
     }
     
     /**
