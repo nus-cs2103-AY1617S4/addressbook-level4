@@ -204,6 +204,12 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        @Override
+        public void showReminderAlert() {
+            fail("This method should not be called.");
+
+        }
+
     }
 
     //@@author A0156106M

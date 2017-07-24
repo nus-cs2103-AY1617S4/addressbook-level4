@@ -18,6 +18,7 @@ public class RemindCommandTest {
 
     private static final String DEFAULT_REMINDER_SETTING = "3 day";
     private static final String VALID_REMINDER_SETTING = "1 week";
+    private static final String VALID_EMPTY_REMINDER = "";
 
     /***
      * Tests updating reminder setting results in no change.

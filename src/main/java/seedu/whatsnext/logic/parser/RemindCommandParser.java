@@ -11,13 +11,15 @@ import seedu.whatsnext.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new RemindCommand object
  */
 public class RemindCommandParser {
-
+    public static final String BLANK_STRING = "";
     public Command parse(String args) throws ParseException {
 
         args = args.trim();
 
         if (args.matches(".*\\b(^[1-9]+[0-9]*)\\s+(minute|hour|day|week|month|year)\\b.*")) {
             return new RemindCommand(args);
+        } else if (args == null || args.isEmpty()) {
+            return new RemindCommand(BLANK_STRING);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
         }
