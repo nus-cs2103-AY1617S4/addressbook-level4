@@ -61,7 +61,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 > **Reserved Tags**
 >
 > * Reserved tag `HIGH`, `MEDIUM`, `LOW` names  are used to denote the importance of a certain task
-> * Tagged task will be highlighted `RED`, `BLUE`, `GREEN`
+> * Tagged task will be highlighted `RED`, `BLUE`, `GREEN` respectively for `HIGH`, `MEDIUM`, `LOW`
 > * Reserved tag `OVERLAP` are used to warn you about overlapping events.
 
 > **DateTime parsing**

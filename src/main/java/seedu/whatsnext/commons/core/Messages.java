@@ -11,6 +11,7 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_INVALID_LIST_COMMAND = "Invalid list command!";
     public static final String MESSAGE_INVALID_FLOATING_TO_EVENT_TASK =
-            "Invalid Edit Command. Edit Command Parameters missing/invalid.";
+            "Invalid Edit Command. Edit Command Parameters missing/invalid.\n"
+            + "Check your input and make sure the start date time is before the end date time. ";
 
 }
