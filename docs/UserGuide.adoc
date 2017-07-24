@@ -271,6 +271,15 @@ Examples:
 ****
 == Special Features
 ### Auto Complete
+Upon launching the program, TickTask's auto complete feature is able to provide you with a list of commands available based on the letters you input. You can use the "arrow keys" to scroll down if necessary and press "Enter" to complete the sentence.
+
+TickTask is also able to "learn" the inputs you typed for easier inputting in the future.
+
+You can also press "Esc" to stop the autocompletion.
+
+### Repeating previous/next command
+If you are lazy to retype a similar command, or want the previous command back into the command text simply press the ↑ or ↓ key.
+You can go back to as many commands as you want.
 
 == FAQ
 
