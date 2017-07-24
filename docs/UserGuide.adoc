@@ -64,6 +64,7 @@ Adds a task to the task manager. +
 
 Format: +
 `add [task name] "by" [date] "at " [time] + "#"[tags]` +
+`add [task name] "on" [date] "at " [time] + "#"[tags]` +
 `add [task name] "at" [time] + "#"[tags]` +
 `add [task name] "from" [start date] "to" [end date]` +
 `add [task name]` 
@@ -72,6 +73,7 @@ Format: +
 * Only task name is mandatory when using the add command
 * A tag can be added by inserting "#" before the tag
 * "by" or "on" precedes date, "at" precedes time
+* Both date and time inputs can be swapped
 * "from" and "to" can be used to add events over a range of days
 * Date and time can be inputted in natural language
 ****
