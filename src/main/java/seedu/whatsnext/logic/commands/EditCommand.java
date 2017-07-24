@@ -15,10 +15,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.core.EventsCenter;
 import seedu.whatsnext.commons.core.LogsCenter;
 import seedu.whatsnext.commons.core.Messages;
-import seedu.whatsnext.commons.core.UnmodifiableObservableList;
 import seedu.whatsnext.commons.core.index.Index;
 import seedu.whatsnext.commons.events.ui.JumpToListRequestEvent;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
@@ -95,7 +95,8 @@ public class EditCommand extends Command {
         BasicTask editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         validateEditTask(editedTask);
 
-        UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
+        //UnmodifiableObservableList<BasicTaskFeatures> taskList = model.getFilteredTaskList();
+        ObservableList<BasicTask> taskList = model.getTaskManager().getTaskList();
 
         try {
             if (editedTask.isOverlapTask(taskList, index.getZeroBased())) {

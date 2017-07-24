@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.whatsnext.commons.core.UnmodifiableObservableList;
+import javafx.collections.ObservableList;
 import seedu.whatsnext.commons.exceptions.IllegalValueException;
 import seedu.whatsnext.model.tag.Tag;
 import seedu.whatsnext.model.tag.UniqueTagList;
@@ -233,7 +233,7 @@ public class BasicTask implements BasicTaskFeatures {
      * Checks if basicTask is overlap any other BasicTasks with taskType "event"
      * @return true if event task overlaps another task
      * */
-    public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList) throws IllegalValueException  {
+    public boolean isOverlapTask(ObservableList<BasicTask> taskList) throws IllegalValueException  {
         for (BasicTaskFeatures task : taskList) {
             if (this.eventTaskOverlap(task) && (!this.equals(task))) {
                 return true;
@@ -242,7 +242,10 @@ public class BasicTask implements BasicTaskFeatures {
         return false;
     }
 
-    public boolean isOverlapTask(UnmodifiableObservableList<BasicTaskFeatures> taskList, int index)
+    /**
+     * @return true if task is on overlapped task
+     * */
+    public boolean isOverlapTask(ObservableList<BasicTask> taskList, int index)
                                 throws IllegalValueException {
         int i = 0;
         for (BasicTaskFeatures task : taskList) {
@@ -254,6 +257,9 @@ public class BasicTask implements BasicTaskFeatures {
         return false;
     }
 
+    /**
+     * Displays the task details
+     * */
     @Override
     public String getTaskDetails() {
         StringBuilder details = new StringBuilder();
