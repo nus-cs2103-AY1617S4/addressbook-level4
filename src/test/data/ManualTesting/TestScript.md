@@ -6,8 +6,8 @@
 4. Launch TickTask.jar
 
 ###Add Command
- Command: `add Buy flowers for Rachel` <br>
- Expected: New task added: Buy flowers for Rachel Time:  Task Type: floating Date:  Tags: [love][happiness] <br> 
+ Command: `add Buy flowers for Rachel #love` <br>
+ Expected: New task added: Buy flowers for Rachel Time:  Task Type: floating Date:  Tags: [love] <br> 
  
  Command: `add End of year family chalet from friday to sunday`<br>
  Expected: New task added: End of year family chalet Time: 00:00 - 23:59 Task Type: event Date: 07/28/2017 - 07/30/2017 Tags: [family]<br>

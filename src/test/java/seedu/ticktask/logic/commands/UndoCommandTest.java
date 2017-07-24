@@ -19,7 +19,7 @@ import seedu.ticktask.testutil.TickTaskBuilder;
 public class UndoCommandTest {
     
     @Test
-    public void undoCommandSuccess() throws CommandException, IllegalValueException {
+    public void undoCommand_success() throws CommandException, IllegalValueException {
         
         ModelStubAcceptUndo modelStubAcceptUndo = new ModelStubAcceptUndo();
         
@@ -35,7 +35,7 @@ public class UndoCommandTest {
     }
     
     @Test (expected = CommandException.class)
-    public void undoCommandFailCmdException() throws EmptyStackException, CommandException{
+    public void undoCommand_noPreviousInstances_throwCmdException() throws EmptyStackException, CommandException{
         
             ModelManager modelStub = new ModelManager();
             UndoCommand undoCommand = new UndoCommand();

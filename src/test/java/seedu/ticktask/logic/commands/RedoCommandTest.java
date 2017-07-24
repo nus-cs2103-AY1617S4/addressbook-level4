@@ -22,7 +22,7 @@ import seedu.ticktask.testutil.TickTaskBuilder;;;
 public class RedoCommandTest {
     
     @Test
-    public void redoCommandSuccess() throws CommandException, IllegalValueException {
+    public void redoCommand_success() throws CommandException, IllegalValueException {
         
         ModelStubAcceptRedo modelStubAcceptRedo = new ModelStubAcceptRedo();
         RedoCommand redoCommandObj = getRedoCommandForModel(modelStubAcceptRedo);
@@ -36,7 +36,7 @@ public class RedoCommandTest {
     }
     
     @Test
-    public void redoCommandFailNoUndoneTasks() throws EmptyStackException, CommandException{
+    public void redoCommand_NoUndoneTasks_throwsCommandException() throws EmptyStackException, CommandException{
         ModelManager modelStub = new ModelManager();
         RedoCommand redoCommand = new RedoCommand();
 
@@ -55,11 +55,11 @@ public class RedoCommandTest {
         RedoCommand redoCommand = new RedoCommand();
 
         redoCommand.setData(modelStub, new CommandHistory());
-        
-            redoCommand.execute();       
+
+        redoCommand.execute();       
 
     }
-    
+
     /**
      * Generates a new RedoCommand object based on the Model Stub
      */
@@ -82,7 +82,5 @@ public class RedoCommandTest {
         }
         
     }
-
-
 }
 //@@author
