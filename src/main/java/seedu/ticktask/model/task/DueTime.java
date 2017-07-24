@@ -42,7 +42,6 @@ public class DueTime {
 
     /**
      * Validates given time.
-     *
      * @throws IllegalValueException if given time string is invalid.
      */
     public DueTime(String time) throws IllegalValueException {
@@ -66,21 +65,21 @@ public class DueTime {
                 start_time = timesArray.get(INDEX_START_TIME);
                 setStartTime(start_time);
             }
-
-        }
-        else {
+        } else {
             extractTime(trimmedTime);
         }
         
         if (end_time != null){
             value = getStartTime() + " - " + getEndTime();
-        }else{
+        } else {
             value = getStartTime();
         }
         
     }
-
-
+    
+    /**
+     * sets end time
+     */
     public void setEndTime(LocalTime end_time2) {
         if (end_time2 == null) {
 
@@ -101,7 +100,10 @@ public class DueTime {
 
         }
     }
-
+    
+    /**
+     * sets start time
+     */
     public void setStartTime(LocalTime start_time2) {
         if (start_time2 == null) {
 
@@ -109,19 +111,21 @@ public class DueTime {
             start_time = start_time2;
             value = getStartTime();
             
-        }
-        else {
+        } else {
             start_time_string = start_time2.format(TIME_FORMAT).toString();
             start_time = start_time2;
             if (end_time != null){
                 value = getStartTime() + " - " + getEndTime();
-            }else{
+            } else {
                 value = getStartTime();
             }
         }
     }
-
-    public void extractTime(String time)throws IllegalValueException {
+    
+    /**
+      * Extracts date into start time and end time.
+      */
+    public void extractTime(String time) throws IllegalValueException {
         List<DateGroup> dateGroups = parser.parse(time);
  
         if (!dateGroups.isEmpty()) {
@@ -129,8 +133,7 @@ public class DueTime {
                 local_time = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
                 timesArray.add(local_time);
             }
-        }
-        else {
+        } else {
             setStartTime(null);
             setEndTime(null);
         }
@@ -140,15 +143,12 @@ public class DueTime {
             setStartTime(start_time);
             setEndTime(end_time);
             isRange = true;
-        }
-        else if (timesArray.size() == 1) {
+        } else if (timesArray.size() == 1) {
             start_time = timesArray.get(INDEX_START_TIME);
             setStartTime(start_time);
             setEndTime(null);
             isDeadline = true;
-
-        }
-        else {
+        } else {
             setStartTime(null);
             setEndTime(null);
             isFloating = true;
@@ -157,29 +157,46 @@ public class DueTime {
 
     }
     
+    /**
+      * sets value
+      */
     public String getValue(){
         return value;
     }
-    
+        
+    /**
+      * returns value
+      */
     public void setValue(String value) {
         this.value = value;
     }
-
+    
+    /**
+      * gets end time
+      */
     public String getEndTime() {
 
         return end_time_string;
 
     }
+    
+    /**
+      * gets start time
+      */
     public String getStartTime() {
-
         return start_time_string;
-
     }
     
+    /**
+      * gets local end time
+      */
     public LocalTime getLocalEndTime() {
         return end_time;
     }
     
+    /**
+     * gets local start time
+     */
     public LocalTime getLocalStartTime() {
         return start_time;
     }
@@ -194,7 +211,7 @@ public class DueTime {
     /**
      * Sets the time to floating
      */
-    public void setFloating(){
+    public void setFloating() {
         isFloating = true;
         isDeadline = false;
         isRange = false;
@@ -210,7 +227,7 @@ public class DueTime {
     /**
      * Sets the time to a deadline
      */
-    public void setDeadline(){
+    public void setDeadline() {
         isFloating = false;
         isDeadline = true;
         isRange = false;

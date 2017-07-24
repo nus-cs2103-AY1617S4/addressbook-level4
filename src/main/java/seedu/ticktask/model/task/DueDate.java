@@ -84,7 +84,7 @@ public class DueDate {
 
         if (end_date != null){
             value = getStartDate() + " - " + getEndDate();
-        }else{
+        } else {
             value = getStartDate();
         }
 
@@ -150,13 +150,12 @@ public class DueDate {
             end_date = end_date2;
             value = getStartDate();
 
-        }
-        else {
+        } else {
             end_date_string = end_date2.format(DATE_FORMAT).toString();
             end_date = end_date2;
-            if (end_date != null){
+            if (end_date != null) {
                 value = getStartDate() + " - " + getEndDate();
-            }else{
+            } else {
                 value = getStartDate();
             }
         }
@@ -171,13 +170,12 @@ public class DueDate {
             start_date = start_date2;
             value = getStartDate();
 
-        }
-        else {
+        } else {
             start_date_string = start_date2.format(DATE_FORMAT).toString();
             start_date = start_date2;
             if (end_date != null){
                 value = getStartDate() + " - " + getEndDate();
-            }else{
+            } else {
                 value = getStartDate();
             }
         }
@@ -232,7 +230,7 @@ public class DueDate {
     
     /**
      * Returns true if a given date only has a start date
-     * */
+     */
     public boolean isDeadline() {
         return isDeadline;
     }

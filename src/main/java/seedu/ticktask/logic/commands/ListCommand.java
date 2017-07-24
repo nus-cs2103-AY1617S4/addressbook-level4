@@ -103,7 +103,7 @@ public class ListCommand extends Command {
     /**
      * return true is the target list is empty
      */
-        boolean checkEmpty(){
+        boolean checkEmpty() {
             List<ReadOnlyTask> tempList = new ArrayList<>();
             tempList.addAll(model.getFilteredActiveTaskList());
             tempList.addAll(model.getFilteredCompletedTaskList());
