@@ -71,7 +71,7 @@ Format: +
 ****
 * Only task name is mandatory when using the add command
 * A tag can be added by inserting "#" before the tag
-* "by" precedes date, "at" precedes time
+* "by" or "on" precedes date, "at" precedes time
 * "from" and "to" can be used to add events over a range of days
 * Date and time can be inputted in natural language
 ****
@@ -79,9 +79,9 @@ Format: +
 Examples:
 ****
 * `add complete tutorial by July 30 #school`
-* `add complete tutorial by Oct 30 at 22`
-* `add complete tutorial`
-* `add complete tutorial from monday to friday`
+* `add Rachels birthday party on Oct 30`
+* `add Check bank balance`
+* `add Dragonboat competition from monday to friday`
 ****
 
 === Clearing task list(s): `clear`
