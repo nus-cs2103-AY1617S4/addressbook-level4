@@ -33,7 +33,7 @@
             <AnchorPane>
                <children>
                   <Label fx:id="status" layoutX="20.0" layoutY="24.0" text="Label" />
-                  <FlowPane fx:id="tags" layoutX="20.0" layoutY="75.0" prefHeight="20.0" prefWidth="110.0" />
+                  <FlowPane fx:id="tags" layoutX="19.0" layoutY="78.0" prefHeight="17.0" prefWidth="131.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="78.0" />
                   <Label fx:id="from" layoutX="20.0" layoutY="41.0" text="Label" />
                   <Label fx:id="to" layoutX="20.0" layoutY="58.0" text="Label" />
                   <ImageView fx:id="notice" fitHeight="17.0" fitWidth="17.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
