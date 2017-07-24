@@ -67,6 +67,17 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 > **DateTime parsing**
 >
 > * WhatsNext uses the [Pretty Time Parser](http://www.ocpsoft.org/prettytime/nlp/) to parse Strings to Date objects.
+> * Format Accepted by for parsing time:
+> 	1. DD MM YYYY HH:MM am/pm
+>	2. DD MM YYYY
+>	3. next DD
+>	4. last DD
+>	Example:
+>	1. 11 August 2017 6am
+>	2. 11 August 2017
+>	3. next monday
+>	4. last monday  	
+> * If date is not specified, it will default to 11.59pm.
 > * The start date of a task cannot be after the end date of a task.
 > * Expired dates (task with dates before today) are highlighted red.
 
