@@ -38,10 +38,6 @@ public class DeleteCommandTest {
     
 // @@author A0131884B
     
-    /**
-     * Unit tests for {@code DeleteIndexCommand} with integration tests (interaction with the Model class)
-     */
-    
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
         ReadOnlyTask taskToDelete = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
@@ -72,9 +68,6 @@ public class DeleteCommandTest {
 
         CommandTestUtil.assertCommandFailure(deleteCommand, model,Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
-    /**
-     * Unit tests for {@code DeleteFindCommand} with integration tests (interaction with the Model class)
-     */
     
     @Test
     public void execute_validFindUnfilteredList_success() throws Exception {

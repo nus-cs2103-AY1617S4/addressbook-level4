@@ -31,7 +31,7 @@ public class ClearCommandParser {
         /**
          * Parses the given {@code String} of arguments in the context of the ClearCommand and returns an
          * ClearCommand object for execution.
-         * @param String containing keywords by user indicating list to clear: 'clear all', 'clear complete', or 'clear active'
+         * @param args containing keywords by user indicating list to clear: 'clear all', 'clear complete', or 'clear active'
          * @throws ParseException if the user input does not conform the expected format
          */
         public ClearCommand parse(String args) throws ParseException, IllegalValueException {
@@ -49,7 +49,7 @@ public class ClearCommandParser {
             
 
         /**
-         * @param The string representing the list the user intends to clear
+         * @param listType string representing the list the user intends to clear
          * @return true only if the listtpye string after the "clear" keyword is: "all", "active" or "complete".
          */
         private boolean isValid(String listType) {

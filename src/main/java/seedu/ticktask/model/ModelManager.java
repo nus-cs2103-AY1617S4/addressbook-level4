@@ -336,8 +336,9 @@ public class ModelManager extends ComponentManager implements Model {
         return currentProgramInstance.equals(other.currentProgramInstance)
                 && filteredActiveTasks.equals(other.filteredActiveTasks)
                                 && filteredCompletedTasks.equals(other.filteredCompletedTasks);
+        //@@author
     }
-    //@@author
+
 
     //========== Inner classes/interfaces used for filtering =================================================
 

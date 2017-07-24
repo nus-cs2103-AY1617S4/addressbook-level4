@@ -47,8 +47,8 @@ public interface Model {
     //@@author
 
     /** Adds the given task 
-     * @throws PastTaskException 
-     * @throws EventClashException */
+     * @throws DuplicateTaskException
+     */
     void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
@@ -57,8 +57,6 @@ public interface Model {
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
-     * @throws PastTaskException 
-     * @throws EventClashException 
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
@@ -89,7 +87,7 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     //@@author A0131884B
-    /** Updates the filter of the filtered task list if and only if it contain all of the given keywords*/
+    /* Updates the filter of the filtered task list if and only if it contain all of the given keywords*/
     void updateMatchedTaskList(String keywords);
     //@@author
 

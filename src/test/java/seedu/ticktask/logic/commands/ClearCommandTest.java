@@ -31,7 +31,10 @@ public class ClearCommandTest {
         
         assertEquals(model, emptyModel);
     }
-    
+
+    /**
+     * prepare the clear command
+     */
     public ClearCommand prepareClearCommand() {
     	Prefix PREFIX_ACTIVE = new Prefix("active");
         ClearCommand command = new ClearCommand(PREFIX_ACTIVE);
