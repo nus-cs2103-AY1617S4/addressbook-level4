@@ -26,7 +26,7 @@ public class StorageCommandParser {
 			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StorageCommand.MESSAGE_USAGE));
 
 		}
-		// To be changed to warning instead of exception
+
 		if (!trimmedLocation.exists()) {
 			throw new ParseException(String.format(MESSAGE_INVALID_LOCATION, StorageCommand.MESSAGE_USAGE));
 		}

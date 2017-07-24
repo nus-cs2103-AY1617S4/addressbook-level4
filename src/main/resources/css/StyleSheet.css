@@ -1,5 +1,4 @@
 /*@@author A0138471A*/
-
 .root {
 	-fx-body-color : #F5F5F5;
 	-fx-outer-border : #cecece;
@@ -29,7 +28,6 @@
     -fx-opacity: 0.9;
 }
 
-
 .anchor-pane {
      -fx-font-size: 10pt;
     -fx-font-family: "Century Gothic, sans-serif";
@@ -43,7 +41,6 @@
     -fx-font-family: "Century Gothic, sans-serif";
     -fx-text-fill: black;
 }
-
 
 #resultDisplay{
 	-fx-font-size: 10pt;
@@ -62,12 +59,10 @@
     -fx-opacity: 1;
 }
 
-
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
-
 
 #tags .label {
 
@@ -104,7 +99,6 @@
     -fx-cursor: pointer;
 }
 
-
 #buttonOverDue{
     -fx-background-color: rgba(244, 98, 66, 0.5);
     -fx-border-radius: 5px;
@@ -132,7 +126,5 @@
     -fx-margin: 2px 2px;
     -fx-cursor: pointer;
 }
-
-
 /*@@author*/
 

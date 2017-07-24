@@ -37,8 +37,6 @@ public class ListCommand extends Command {
     
     private String listCommandType;
 
-
-
     public ListCommand(String list) {
         this.listCommandType = list;
     }
@@ -100,12 +98,12 @@ public class ListCommand extends Command {
                 }
         }
     }
-//@@author
+    //@@author
     //@@author A0131884B
     /**
      * return true is the target list is empty
      */
-        boolean checkEmpty(){
+        boolean checkEmpty() {
             List<ReadOnlyTask> tempList = new ArrayList<>();
             tempList.addAll(model.getFilteredActiveTaskList());
             tempList.addAll(model.getFilteredCompletedTaskList());
