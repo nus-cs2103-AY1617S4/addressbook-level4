@@ -1,6 +1,6 @@
 # WhatsNext(Task Manager Application) - Developer Guide
 
-By: T01-T4	&nbsp;&nbsp;&nbsp;&nbsp;	Since: Jun 2017	&nbsp;&nbsp;&nbsp;&nbsp;	License: MIT
+By: T01-T4  &nbsp;&nbsp;&nbsp;&nbsp;  Since: Jun 2017 &nbsp;&nbsp;&nbsp;&nbsp;  License: MIT
 
 ---
 
@@ -82,6 +82,23 @@ _Figure 2.1.1 : Architecture Diagram_
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
+protected Ui ui;
+    protected Logic logic;
+    protected Storage storage;
+    protected Model model;
+    protected Config config;
+    protected UserPrefs userPrefs;
+
+**Architecture Design of WhatsNext**
+1. Singleton Pattern: The MainApp of the program restricts the number of instantiated `Logic`, `Storage`, `Model`, `Config`, `UserPrefs` objects created.
+2. MVC pattern: The application makes use of MVC to decouple data, presentation and control logic.
+  * Model: `model`, `storage` component
+  * View: `GUI`
+  * Controller: `logic` component
+3. Observer Pattern: The application makes use of javafx ObservableList which allows listeners to track changes when they occur.
+4. Facade Pattern: Ui component of the application requires access to the startDateTime and endDateTime objects in BasicTask class.
+5. Command Pattern: Abstract class command is used to support multiple commands each performing a different tasks (e.g. `add`, `delete`, `list` commands).
+
 A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used.
 Given below is a quick overview of each component.
 
@@ -99,10 +116,12 @@ The `Commons` component contains utility code used across other components
 
 The rest of the App consists of four components.
 
-* [**`UI`**] : The UI of the App. Makes use of the data stored in `Model` to display Tasks.
-* [**`Logic`**] : The command executor. Parse the arguments and calls the respective Command objects.
-* [**`Model`**] : Holds the data of the App in-memory which is used to display the `Ui`.
-* [**`Storage`**] : Reads data from, and writes data to, the hard disk. This allows the app to retain added tasks even after the program is closed.
+1. [**`UI`**] : The UI of the App. Makes use of the data stored in `Model` to display Tasks.
+2. [**`Logic`**] : The command executor. Parse the arguments and calls the respective Command objects.
+3. [**`Model`**] :
+  * Holds the data of the App in-memory which is used to display the `Ui`.
+  * Model utilizes third party library Pretty Time Parser to parse Strings to Date objects.
+4. [**`Storage`**] : Reads data from, and writes data to, the hard disk. This allows the app to retain added tasks even after the program is closed.
 
 Each of the four components
 
@@ -393,8 +412,8 @@ Priority | As a ... | I want to ... | So that I can...
 
 **MSS**
 
-1.	User requests to create event task by specifying both start and end DateTime.
-2.	System creates the event task and list it under the event task on UI.<br>
+1.  User requests to create event task by specifying both start and end DateTime.
+2.  System creates the event task and list it under the event task on UI.<br>
 Use case ends.
 
 **Extensions**
@@ -413,8 +432,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to create event task by specifying end DateTime.
-2.	System creates the deadline task and list it under the deadline task on UI.<br>
+1.  User requests to create event task by specifying end DateTime.
+2.  System creates the deadline task and list it under the deadline task on UI.<br>
 Use case ends.
 
 **Extensions**
@@ -428,8 +447,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to create floating task by not specifying any date or time.
-2.	System creates the floating task and list it under the floating task on UI.<br>
+1.  User requests to create floating task by not specifying any date or time.
+2.  System creates the floating task and list it under the floating task on UI.<br>
 Use case ends.
 
 **Extensions**
@@ -443,10 +462,10 @@ Use case ends.
 
 **MSS**
 
-1.	User requests the whole task list or request to find tasks by names or tags.
-2.	System shows the whole task list or shows the relevant task lists.
-3.	User specifies the task to be deleted.
-4.	System deletes the task.<br>
+1.  User requests the whole task list or request to find tasks by names or tags.
+2.  System shows the whole task list or shows the relevant task lists.
+3.  User specifies the task to be deleted.
+4.  System deletes the task.<br>
 Use case ends.
 
 **Extensions**
@@ -468,8 +487,8 @@ Use case ends.
 
 **MSS**
 
-1.	User inputs query.
-2.	System shows tasks with query keywords in name or tag.<br>
+1.  User inputs query.
+2.  System shows tasks with query keywords in name or tag.<br>
 Use case ends.
 
 **Extensions**
@@ -487,10 +506,10 @@ Use case ends.
 
 **MSS**
 
-1.	User requests the task list.
-2.	System shows the task list.
-3.	User requests to mark specific task completed.
-4.	System marks the specified task completed.<br>
+1.  User requests the task list.
+2.  System shows the task list.
+3.  User requests to mark specific task completed.
+4.  System marks the specified task completed.<br>
 Use case ends.
 
 **Extensions**
@@ -508,8 +527,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to undo last action.
-2.	System reverts back to state before last action.<br>
+1.  User requests to undo last action.
+2.  System reverts back to state before last action.<br>
 Use case ends.
 
 **Extensions**
@@ -538,8 +557,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to view tasks by status (completed, incomplete or all).
-2.	System lists all tasks of the type.<br>
+1.  User requests to view tasks by status (completed, incomplete or all).
+2.  System lists all tasks of the type.<br>
 Use case ends.
 
 **Extensions**
@@ -552,10 +571,10 @@ Use case ends.
 
 **MSS**
 
-1.	User requests the task list.
-2.	System shows the task list.
-3.	User requests to edit specific task's particular field.
-4.	System edits the specified task.<br>
+1.  User requests the task list.
+2.  System shows the task list.
+3.  User requests to edit specific task's particular field.
+4.  System edits the specified task.<br>
 Use case ends.
 
 **Extensions**
@@ -609,8 +628,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to exit the application.
-2.	System exits.<br>
+1.  User requests to exit the application.
+2.  System exits.<br>
 Use case ends.
 
 
