@@ -22,7 +22,6 @@ public class Parser {
 
     /**
      * Parses user input into command for execution.
-     *
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws IllegalValueException
