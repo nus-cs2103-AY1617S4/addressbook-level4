@@ -20,15 +20,15 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "The target list has been cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Clear all tasks, active tasks or completed tasks.\n"
-            + "Example: " + COMMAND_WORD + " all\n"
-            + "Example: " + COMMAND_WORD + " active\n"
-            + "Example: " + COMMAND_WORD + " complete\n";
+                                               + "Example: " + COMMAND_WORD + " all\n"
+                                               + "Example: " + COMMAND_WORD + " active\n"
+                                               + "Example: " + COMMAND_WORD + " complete\n";
     public static final String MESSAGE_NOT_SUCCESS = "The clear command should be either 'clear all' or 'clear active' or 'clear complete'.";
     private Prefix listIndicatorPrefix;
 
     /**
     * Creates an instance of a clear command object that clears the TickTask program.
-    * @param the listIndicatorPrefix referring to either the active, complete or both lists 
+    * @param listIndicatorPrefix referring to either the active, complete or both lists
     */
     public ClearCommand(Prefix listIndicatorPrefix) {
          this.listIndicatorPrefix = listIndicatorPrefix;
@@ -41,7 +41,7 @@ public class ClearCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws CommandException {
         requireNonNull(model);
         if (listIndicatorPrefix.toString().equals(CliSyntax.PREFIX_ACTIVE.toString()))
         {
@@ -54,7 +54,7 @@ public class ClearCommand extends Command {
             model.resetData(new TickTask());
             return new CommandResult(MESSAGE_SUCCESS);
         }else {
-            return new CommandResult(MESSAGE_NOT_SUCCESS);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED);
         }
     }
 }
