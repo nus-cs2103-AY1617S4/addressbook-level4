@@ -200,8 +200,8 @@ All the task has been cleared once again.
 
 ## Testing out the mark command:
 Input:
-1.`undo`
-2.`mark 1`
+1. `undo`
+2. `mark 1`
 
 Result:
 1. Previous action has been undone.
