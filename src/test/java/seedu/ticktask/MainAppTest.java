@@ -26,6 +26,7 @@ import seedu.ticktask.storage.UserPrefsStorage;
  */
 public class MainAppTest {
     
+    /*
     
 
     @Test
@@ -63,7 +64,15 @@ public class MainAppTest {
         }
     }
     
-    
+     */
+    /*
+    @Test 
+    public void testinitSuccess() throws Exception {
+        TestAppStub testAppStub = new TestAppStub();
+        testAppStub.init();
+        
+    }
+    */
     
     @Test
     public void testinitPrefsSuccess() throws DataConversionException, IOException{
