@@ -26,5 +26,6 @@ endif::[]
 
 * Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
 _Marco Jakob_.
+*_Natty_, a natural language date parser library written in Java by _Joe Stelmach_.
 
 == Licence : link:LICENSE[MIT]
