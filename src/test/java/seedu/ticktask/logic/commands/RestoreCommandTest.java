@@ -36,7 +36,7 @@ public class RestoreCommandTest {
      * @throws DuplicateTaskException 
      */
     @Test 
-    public void testExecuteMessage() throws CommandException, DuplicateTaskException {
+    public void testExecuteMessageReturnsExpected_success() throws CommandException, DuplicateTaskException {
        
         String expectedMessage = String.format(firstCommand.MESSAGE_COMPLETE_TASK_SUCCESS, taskToRestore);
         CommandResult result = firstCommand.execute();
@@ -51,7 +51,7 @@ public class RestoreCommandTest {
      * @throws DuplicateTaskException 
      */
     @Test
-    public void testTaskListUpdatedCorrectly() throws CommandException, DuplicateTaskException {
+    public void testTaskListUpdatedCorrectly_success() throws CommandException, DuplicateTaskException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredActiveTaskList();
         assertTrue(currentTaskList.contains(taskToRestore));
@@ -63,7 +63,7 @@ public class RestoreCommandTest {
      * @throws DuplicateTaskException 
      */
     @Test
-    public void testCompletedTaskListUpdatedCorrectly() throws CommandException, DuplicateTaskException {
+    public void testCompletedTaskListUpdatedCorrectly_success() throws CommandException, DuplicateTaskException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentRestoredTaskList = model.getFilteredCompletedTaskList();
         assertFalse(currentRestoredTaskList.contains(taskToRestore));

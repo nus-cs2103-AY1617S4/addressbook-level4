@@ -26,7 +26,7 @@ public class CompleteCommandParserTest {
     private CompleteCommandParser completeCommandParser = new CompleteCommandParser();
     
     @Test
-    public void testValidParse() throws ParseException, CommandException {
+    public void testValidParse_success() throws ParseException, CommandException {
         String validCompleteCommand = "" + TASK_INDEX;
         
         CompleteCommand commandReturned = completeCommandParser.parse(validCompleteCommand);        
@@ -44,7 +44,7 @@ public class CompleteCommandParserTest {
     }
     
     @Test
-    public void testInvalidParse() {
+    public void testInvalidParse_throwsException() {
         String invalidCompleteCommand = "complete";
         
         try {

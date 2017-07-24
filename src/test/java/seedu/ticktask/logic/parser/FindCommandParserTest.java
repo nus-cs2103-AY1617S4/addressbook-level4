@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     private FindCommandParser findCommandParser = new FindCommandParser();
     
     @Test
-    public void testValidParse() throws ParseException {
+    public void testValidParse_success() throws ParseException {
         String validFindKeywords = "wash";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(validFindKeywords);
@@ -44,7 +44,7 @@ public class FindCommandParserTest {
     }
     
     @Test
-    public void testInvalidParse() throws ParseException {
+    public void testInvalidParse_success() throws ParseException {
         String invalidFindKeywords = "wish";
         TreeSet<String> keywordsSet = new TreeSet<String>();
         keywordsSet.add(invalidFindKeywords);
