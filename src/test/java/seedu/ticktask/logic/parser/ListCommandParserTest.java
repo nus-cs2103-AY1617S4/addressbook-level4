@@ -23,7 +23,7 @@ public class ListCommandParserTest {
     private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
     private Model modelCopy = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
     @Test
-    public void testForInvalidCommandFormat() {
+    public void testForInvalidCommandFormat_fail() {
         String invalidStorageCommand = "list vvsdfv";
         try {
             listCommandParser.parse(invalidStorageCommand);
@@ -36,7 +36,7 @@ public class ListCommandParserTest {
     }
     
    @Test
-   public void testForValidCommandFormat() throws DuplicateTaskException, CommandException, IllegalValueException {
+   public void testForValidCommandFormat_equals() throws DuplicateTaskException, CommandException, IllegalValueException {
         String validTypeOfList = "floating";
             Command commandReturned = listCommandParser.parse(validTypeOfList);        
             Command commandExpected = new ListCommand(validTypeOfList);
