@@ -269,7 +269,8 @@ Examples:
 * `undo`
 * `redo` 
 ****
-
+== Special Features
+###Auto Complete
 
 == FAQ
 
