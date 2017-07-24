@@ -2,14 +2,13 @@ package seedu.ticktask.logic.commands;
 
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_ACTIVE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_COMPLETE;
-
 import seedu.ticktask.commons.core.Messages;
 import seedu.ticktask.model.task.ReadOnlyTask;
 
 //@@author A0131884B
-  /*
-   * Abstract class that that DeleteFindCommand and DeleteIndexCommand is instantiated from 
-   */
+/*
+ * Abstract class that that DeleteFindCommand and DeleteIndexCommand is instantiated from 
+ */
 public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Delete the task identified by keywords"
