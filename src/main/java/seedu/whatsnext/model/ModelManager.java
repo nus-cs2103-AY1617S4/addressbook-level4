@@ -68,7 +68,8 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    public void showReminderAlert(){
+    @Override
+    public void showReminderAlert() {
         UiManager.showReminderAlert();
     }
 
