@@ -27,7 +27,7 @@ We are a team Engineering students based in the [School of Computing, National U
 
 -----
 
-#### [Li ShiCheng](https://github.com/Li-Shicheng)
+#### [Li Shicheng](https://github.com/Li-Shicheng)
 <img src="images/lishicheng.png" width="150"><br>
 **Role:** Developer <br>
 

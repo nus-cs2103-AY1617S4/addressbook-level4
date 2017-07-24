@@ -483,12 +483,20 @@ Use case ends.
 > 3a1. System shows an error message <br>
   Use case resumes at step 2
 
+#### Use case: Clear tasks by status(completed, incomplete, expired or all)
+
+**MSS**
+
+1. User request to clear task of a particular status.
+2. System clear the tasks specified by the user and display success message.
+
 #### Use case: Find task
 
 **MSS**
 
-1.  User inputs query.
-2.  System shows tasks with query keywords in name or tag.<br>
+1.	User inputs keywords.
+2.	System shows tasks with query keywords in name or tag.<br>
+
 Use case ends.
 
 **Extensions**
@@ -553,17 +561,17 @@ Use case ends.
 > 2a1. System shows a "Nothing to redo" message <br>
 > Use case ends
 
-#### Use case: List tasks by status (completed, incomplete or all)
+#### Use case: List tasks by status (upcoming incomplete, completed, incomplete, expired or all)
 
 **MSS**
 
-1.  User requests to view tasks by status (completed, incomplete or all).
-2.  System lists all tasks of the type.<br>
+1.	User requests to view tasks by status (upcoming incomplete, completed, incomplete, expired or all).
+2.	System lists all tasks of the type.<br>
 Use case ends.
 
 **Extensions**
 
-2a. The list is empty
+2a. The list of that specific type is empty
 
 > Use case ends
 
@@ -588,7 +596,7 @@ Use case ends.
 > 3a1. System shows an error message <br>
 > Use case resumes at step 2
 
-#### Use case: Reset Task
+#### Use case: Reset task
 
 **MSS**
 
@@ -609,12 +617,36 @@ Use case ends.
 >3a1. System shows that the task is already a floating task<br>
 > Use case resume at step 2
 
+#### Use case: Set reminder period
+
+**MSS**
+
+1. User requests to set the reminder period.
+2. System set and save the reminder period, and display the changed reminder period.<br>
+Use case ends.
+
+**Extensions**
+
+1a. User input of the time period is invalid.
+
+>1a1. System shows an error message and display help information.
+> Use case ends.
+
+#### Use case: Display events and deadlines within reminder period
+
+**MSS**
+
+1. User requests to display events and deadlines within reminder period.
+2. System displays events and deadlines within reminder period.<br>
+Use case ends.
+
 #### Use case: Update storage file path
 
 **MSS**
 
 1. User request the storage file to be in a new file path.
-2. System change the file path and delete the storage in the original path.
+2. System change the file path and delete the storage in the original path.<br>
+Use case ends.
 
 **Extensions**
 
