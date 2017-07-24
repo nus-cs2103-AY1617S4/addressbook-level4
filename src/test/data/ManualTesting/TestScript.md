@@ -19,7 +19,7 @@
  Expected: New task added: Fix bicycle Time: 23:59 Task Type: deadline Date: 07/25/2017 Tags: "  <br>
  
  Command: `add Family chalet from friday to sunday at 2pm to 5pm`<br>
- Expected: Warning: There is another task going on within the same time frame: Family chalet Time: 14:00 - 17:00 Task Type: event Date: 07/28/2017 - 07/30/2017 Tags: <br>
+ Expected: Warning: There is another task going on within the same time frame: CS2103 Final Paper<br>
  
  Command: `add inv@l!d ` <br>
  Expected: Task names should only contain alphanumeric characters and spaces, and it should not be blank  <br>
