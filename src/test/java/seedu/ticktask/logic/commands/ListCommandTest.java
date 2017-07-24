@@ -55,7 +55,7 @@ public class ListCommandTest {
     }
     
     @Test
-    public void isValidCommandReturnsTrue(){
+    public void isValidCommand_ReturnsTrue(){
         assertTrue(ListCommand.isValidCommand("floating"));
         assertTrue(ListCommand.isValidCommand("deadline"));
         assertTrue(ListCommand.isValidCommand("event"));
@@ -63,7 +63,7 @@ public class ListCommandTest {
     }
     
     @Test
-    public void isValidCommandReturnsFalse(){
+    public void isValidCommand_ReturnsFalse(){
         assertFalse(ListCommand.isValidCommand("randomname"));
     }
 
@@ -89,12 +89,6 @@ public class ListCommandTest {
         showEventTaskOnly(model);
         assertCommandSuccess(listCommandEvent, model, ListCommand.MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
-    
-//    @Test
-//    public void execute_listIsFiltered_showsDeadline() throws Exception {
-//        showDeadlineTaskOnly(model);
-//        assertCommandSuccess(listCommandDeadline, model, ListCommand.MESSAGE_EMPTY_TASK_LIST, expectedModel);
-//    }
     
     @Test
     public void execute_listIsFiltered_showsToday() throws Exception {

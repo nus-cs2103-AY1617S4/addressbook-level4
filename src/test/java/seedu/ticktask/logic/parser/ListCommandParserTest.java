@@ -37,9 +37,7 @@ public class ListCommandParserTest {
     
    @Test
    public void testForValidCommandFormat() throws DuplicateTaskException, CommandException, IllegalValueException {
-       // String validListCommand = "list";
         String validTypeOfList = "floating";
-          //  listCommandParser.parse(validListCommand + " " + validTypeOfList);
             Command commandReturned = listCommandParser.parse(validTypeOfList);        
             Command commandExpected = new ListCommand(validTypeOfList);
                     
@@ -52,9 +50,6 @@ public class ListCommandParserTest {
             commandExpected.execute();
             
             assertEquals(model, modelCopy);
-        
-       // fail();
-
     }
 
 }

@@ -11,7 +11,7 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 public class DueTimeTest {
 
     @Test
-    public void isValidTimeReturnsFalse() {
+    public void isValidTime_returnsFalse() {
         assertFalse(DueTime.isValidTime(""));//emptystring
         assertFalse(DueTime.isValidTime(" "));//space
         assertFalse(DueTime.isValidTime("garbage string")); //garbage string
@@ -19,7 +19,7 @@ public class DueTimeTest {
     }
     
     @Test
-    public void isVlaidTimeReturnsTrue() {
+    public void isVlaidTime_returnsTrue() {
         assertTrue(DueTime.isValidTime("start time"));//start time string without a time
         assertTrue(DueTime.isValidTime("start time with a time 12:30"));//start time with a time
     }

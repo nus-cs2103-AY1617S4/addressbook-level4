@@ -11,16 +11,16 @@ import seedu.ticktask.commons.exceptions.IllegalValueException;
 public class DueDateTest {
 
     @Test
-    public void isValidTimeReturnsFalse() {
+    public void isValidTime_returnsFalse() {
 
-        assertFalse(DueDate.isValidDate(""));//emptystring
+        assertFalse(DueDate.isValidDate(""));//empty string
         assertFalse(DueDate.isValidDate(" "));//space
         assertFalse(DueDate.isValidDate("garbage string")); //garbage string
         assertFalse(DueDate.isValidDate("garbage string with time 10/10/2017")); //garbage string with date
     }
     
     @Test
-    public void isVlaidTimeReturnsTrue() {
+    public void isValidTime_returnsTrue() {
         assertTrue(DueDate.isValidDate("start date"));//start time string without a time
         assertTrue(DueDate.isValidDate("start date with a time 10/10/2017"));//start time with a date
     }   
