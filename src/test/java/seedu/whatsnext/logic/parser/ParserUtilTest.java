@@ -107,17 +107,16 @@ public class ParserUtilTest {
     public void parseDescription_validValue_returnsName() throws Exception {
         TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
         Optional<TaskDescription> actualDescription = ParserUtil.parseDescription(Optional.of(VALID_DESCRIPTION));
-        System.out.println(actualDescription.get());
         assertEquals(expectedDescription, actualDescription.get());
     }
 
-    //@@author
     @Test
     public void parseTags_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
         ParserUtil.parseTags(null);
     }
 
+    //@@author
     @Test
     public void parseTags_collectionWithInvalidTags_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);

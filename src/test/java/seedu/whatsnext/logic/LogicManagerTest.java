@@ -223,26 +223,6 @@ public class LogicManagerTest {
 
     }
 
-    /*
-    @Test
-    public void execute_add_invalidArgsFormat() {
-        String invalidNameErrorMessage = TaskName.MESSAGE_NAME_CONSTRAINTS;
-        String inputNameInvalid = AddCommand.COMMAND_WORD + " Invalid Name with **SPECIAL CHARACTERS**!!!@@#  "
-                + PREFIX_MESSAGE + "Valid Description";
-        String invalidCommand = AddCommand.COMMAND_WORD + " " + PREFIX_NAME + "[]\\[;] "
-                + PREFIX_MESSAGE + "valid message ";
-        System.out.println(invalidCommand);
-        assertParseException(AddCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "[]\\[;] "
-                + PREFIX_MESSAGE + "valid message ",
-                TaskName.MESSAGE_NAME_CONSTRAINTS);
-        assertParseException(AddCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "Valid Name "
-                + PREFIX_MESSAGE + "not_valid_message ",
-                TaskDescription.MESSAGE_NAME_CONSTRAINTS);
-    }
-    */
-
     //@@author A0156106M
     @Test
     public void execute_addEventByComma_successful() throws Exception {
@@ -662,7 +642,7 @@ public class LogicManagerTest {
             for (Tag t: tags) {
                 command.append(t.tagName + " ");
             }
-            System.out.println("COMMAND:" + command.toString());
+
             return command.toString();
         }
 
