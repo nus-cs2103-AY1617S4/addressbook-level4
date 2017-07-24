@@ -69,7 +69,6 @@ public class LogicManagerTest {
     private Model model;
     private Logic logic;
 
-    //These are for checking the correctness of the events raised
     private ReadOnlyTickTask latestSavedTickTask;
     private boolean helpShown;
     private Index targetedJumpIndex;
@@ -169,9 +168,10 @@ public class LogicManagerTest {
         assertEquals(expectedModel, model);
         assertEquals(expectedModel.getTickTask(), latestSavedTickTask);
     }
+    
     //TEST COMMAND WORDS//
     @Test
-    public void execute_unknownCommandWord() {
+    public void execute_unknownCommandWord_ParseException() {
         String unknownCommand = "uicfhmowqewca";
         assertParseException(unknownCommand, MESSAGE_UNKNOWN_COMMAND);
     }
@@ -180,11 +180,6 @@ public class LogicManagerTest {
     public void execute_help() {
         assertCommandSuccess(HelpCommand.COMMAND_WORD, HelpCommand.SHOWING_HELP_MESSAGE, new ModelManager());
     }
-
-    /*@Test
-    public void execute_exit() {
-        assertCommandSuccess(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, new ModelManager());
-    }*/
 
     @Test
     public void execute_clear() throws Exception {
@@ -236,6 +231,7 @@ public class LogicManagerTest {
         assertCommandException(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
+    
     //EDIT//
     @Test
     public void execute_edit_invalidArgsFormat() {
@@ -249,23 +245,6 @@ public class LogicManagerTest {
                 EditCommand.MESSAGE_USAGE);
     }
     
-  /*  @Test
-    public void execute_edit_successful() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.test_study_task();
-        Task toBeEdited = helper.test_dont_study_task();
-        Model expectedModel = new ModelManager();
-        expectedModel.addTask(toBeAdded);
-        expectedModel.updateTask(toBeAdded, toBeEdited);
-
-        // execute command and verify result
-        assertCommandSuccess(helper.generateEditCommand(toBeEdited),
-                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, toBeEdited), expectedModel);
-
-    }*/
-    
-    
     //LIST//
     @Test
     public void execute_list_showsAllTasks() throws Exception {
@@ -273,23 +252,11 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         Model expectedModel = new ModelManager(helper.generateTickTask(2), new UserPrefs());
 
-        // prepare ticktask state
+        // prepare tick task state
         helper.addToModel(model, 2);
 
         assertCommandSuccess(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_SUCCESS_VIEW_ALL_TASKS, expectedModel);
     }
-    
-    /*@Test
-    public void execute_list_showsDeadlines() throws Exception {
-        Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-        Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
-        // prepare expectations
-        expectedModel.updateFilteredListToShowToday();
-
-        // prepare ticktask state
-
-        assertCommandSuccess("list deadline", ListCommand.MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS, expectedModel);
-    }*/
 
 
     /**
@@ -353,14 +320,6 @@ public class LogicManagerTest {
     }
   //@@author 
     
-
-
-//    @Test
-//    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
-//        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
-//        assertIncorrectIndexFormatBehaviorForCommand(DeleteCommand.COMMAND_WORD , expectedMessage);
-//    }
-    
   //@@author A0131884B
     @Test
     public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
@@ -380,8 +339,8 @@ public class LogicManagerTest {
         assertCommandSuccess(DeleteCommand.COMMAND_WORD + " active 2",
                 String.format(DeleteCommand.MESSAGE_SUCCESS, threeTasks.get(1)), expectedModel);
     }
-
     //@@author 
+    
     //@@author A0138471A
     @Test
     public void execute_find_invalidArgsFormat() {
@@ -409,16 +368,16 @@ public class LogicManagerTest {
     @Test
     public void execute_find_isNotCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = new TaskBuilder().withName("bla bla KEY bla").build();
-        Task p2 = new TaskBuilder().withName("bla KEY bla bceofeia").build();
-        Task p3 = new TaskBuilder().withName("key key").build();
-        Task p4 = new TaskBuilder().withName("KEy sduauo").build();
+        Task p1 = new TaskBuilder().withName("Study for CS2103").build();
+        Task p2 = new TaskBuilder().withName("Study for CS2010").build();
+        Task p3 = new TaskBuilder().withName("study study").build();
+        Task p4 = new TaskBuilder().withName("studY").build();
 
         List<Task> fourTasks = helper.generateTaskList(p3, p1, p4, p2);
         Model expectedModel = new ModelManager(helper.generateTickTask(fourTasks), new UserPrefs());
         helper.addToModel(model, fourTasks);
 
-        assertCommandSuccess(FindCommand.COMMAND_WORD + " KEY",
+        assertCommandSuccess(FindCommand.COMMAND_WORD + " STUDY",
                 Command.getMessageForTaskListShownSummary(expectedModel.getFilteredActiveTaskList().size()),
                 expectedModel);
     }
@@ -426,21 +385,21 @@ public class LogicManagerTest {
     @Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = new TaskBuilder().withName("bla bla KEY bla").build();
-        Task pTarget2 = new TaskBuilder().withName("bla rAnDoM bla bceofeia").build();
-        Task pTarget3 = new TaskBuilder().withName("key key").build();
+        Task pTarget1 = new TaskBuilder().withName("Study for CS2103").build();
+        Task pTarget2 = new TaskBuilder().withName("Study for CS2010").build();
+        Task pTarget3 = new TaskBuilder().withName("study").build();
         Task p1 = new TaskBuilder().withName("sduauo").build();
 
         List<Task> fourTasks = helper.generateTaskList(pTarget1, p1, pTarget2, pTarget3);
         Model expectedModel = new ModelManager(helper.generateTickTask(fourTasks), new UserPrefs());
-        expectedModel.updateFilteredTaskList(new HashSet<>(Arrays.asList("key", "rAnDoM")));
+        expectedModel.updateFilteredTaskList(new HashSet<>(Arrays.asList("study", "CS2103")));
         helper.addToModel(model, fourTasks);
 
-        assertCommandSuccess(FindCommand.COMMAND_WORD + " key rAnDoM",
+        assertCommandSuccess(FindCommand.COMMAND_WORD + " study CS2103",
                 Command.getMessageForTaskListShownSummary(expectedModel.getFilteredActiveTaskList().size()),
                 expectedModel);
     }
-
+    
     @Test
     public void execute_verifyHistory_success() throws Exception {
         String validCommand = "clear active";
@@ -498,7 +457,6 @@ public class LogicManagerTest {
          * @param seed used to generate the task data field values
          */
         Task generateTask(int seed) throws Exception {
-            // to ensure that phone numbers are at least 3 digits long, when seed is less than 3 digits
             String phoneNumber = String.join("", Collections.nCopies(3, String.valueOf(Math.abs(seed))));
 
             return new Task(

@@ -25,18 +25,13 @@ import seedu.ticktask.testutil.TypicalTasks;
 public class StorageCommandParserTest {
 
     final int TASK_INDEX = 1;
-    
-    private Model model = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-    private Model modelCopy = new ModelManager(new TypicalTasks().getTypicalTickTask(), new UserPrefs());
-    
     private StorageCommandParser storageCommandParser = new StorageCommandParser();
-    private String MESSAGE_INVALID_LOCATION = "Location does not exist!";
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
     
     
     @Test
-    public void validStorageCommand() throws IOException, ParseException{
+    public void storageCommand_valid() throws IOException, ParseException{
         
         final File tempFolder = folder.newFolder("newLocation");
         storageCommandParser.parse(tempFolder.getAbsolutePath());
@@ -45,7 +40,7 @@ public class StorageCommandParserTest {
     }
     
     @Test
-    public void throwsinValidCommandFormatException () {
+    public void storageCommand_throwsInvalidCommandFormatException () {
         String invalidStorageCommand = "save";
         try {
             storageCommandParser.parse(invalidStorageCommand);
@@ -58,7 +53,7 @@ public class StorageCommandParserTest {
     }
     
     @Test
-    public void throwsinValidLocationException () {
+    public void storageCommand_throwsInvalidLocationException () {
         String command_word = "save ";
         String invalid_location = "somelocation";
         try {
@@ -72,8 +67,8 @@ public class StorageCommandParserTest {
     }
     
     @Test
-    public void throwsinValidLocationEmptyException () {
-        String command_word = "save ";
+    public void storageCommand_throwsInvalidLocationEmptyException () {
+ 
         String invalid_location = "";
         try {
             storageCommandParser.parse(invalid_location);
@@ -82,10 +77,7 @@ public class StorageCommandParserTest {
             return; 
         }
         fail();
-        
     }
-    
-
 
 }
 //@@author
