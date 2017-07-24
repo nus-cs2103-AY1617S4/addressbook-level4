@@ -29,7 +29,7 @@ public class ParseHelpCommand {
         if (args == null) {
             return new HelpCommand();
         }
-        /* keywords delimited by whitespace */
+        
         final String commandWord = args.trim();
         final String helpMessage = parseCommand(commandWord);
         if (helpMessage == null) {
