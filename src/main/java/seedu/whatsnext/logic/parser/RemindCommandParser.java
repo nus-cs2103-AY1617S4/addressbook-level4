@@ -20,7 +20,7 @@ public class RemindCommandParser {
             return new RemindCommand(args);
         } else if (args == null || args.isEmpty()) {
             return new RemindCommand(BLANK_STRING);
-        }else {
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
         }
     }

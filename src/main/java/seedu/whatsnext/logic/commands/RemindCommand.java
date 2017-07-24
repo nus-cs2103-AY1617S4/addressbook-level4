@@ -33,7 +33,7 @@ public class RemindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (reminderString == null || reminderString.isEmpty()){
+        if (reminderString == null || reminderString.isEmpty()) {
             model.showReminderAlert();
             return new CommandResult(MESSAGE_POPUP);
         }
