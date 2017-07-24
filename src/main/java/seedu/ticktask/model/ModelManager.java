@@ -402,7 +402,7 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             String taskName = task.getName().fullName;
-            return taskName.contains(nameKeyWord);
+            return taskName.toLowerCase().contains(nameKeyWord.toLowerCase());
         }
 
         @Override
