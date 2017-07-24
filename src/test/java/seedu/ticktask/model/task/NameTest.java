@@ -11,13 +11,16 @@ import seedu.ticktask.model.task.Name;
 public class NameTest {
 
     @Test
-    public void isValidName() {
+    public void isValidNameReturnFalse_success() {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("wash dog*")); // contains non-alphanumeric characters
+    }
 
+    @Test
+    public void isValidNameReturnTrue_success() {
         // valid name
         assertTrue(Name.isValidName("wash dog")); // alphabets only
         assertTrue(Name.isValidName("2200")); // numbers only

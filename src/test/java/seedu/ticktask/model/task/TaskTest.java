@@ -18,7 +18,7 @@ public class TaskTest {
     Task task;
     
     @Test
-    public void testResetTaskType() throws IllegalValueException {
+    public void testResetTaskType_success() throws IllegalValueException {
         task = new Task(new Name("random"), new DueTime(""), new TaskType("deadline"), new DueDate(""), new TreeSet<Tag>());
         task.resetTaskType();
         
@@ -36,7 +36,7 @@ public class TaskTest {
     }
     
     @Test
-    public void testGetCompleted() throws IllegalValueException {
+    public void testGetCompleted_success() throws IllegalValueException {
         task = new Task(new Name("random"), new DueTime(""), new TaskType("deadline"), new DueDate(""), new TreeSet<Tag>());
 
         task.setCompleted(true);

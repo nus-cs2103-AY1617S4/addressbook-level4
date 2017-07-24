@@ -27,7 +27,7 @@ public class DueTimeTest {
     
     //@@author A0147928N
     @Test
-    public void testSetEndTime() throws IllegalValueException {
+    public void testSetEndTime_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("end time 22:00");
         DueTime dueTimeCopy = new DueTime("end time 22:00");
         
@@ -40,7 +40,7 @@ public class DueTimeTest {
     }
     
     @Test
-    public void testSetStartTime() throws IllegalValueException {
+    public void testSetStartTime_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("start time 22:00");
         DueTime dueTimeCopy = new DueTime("start time 22:00");
         
@@ -53,7 +53,7 @@ public class DueTimeTest {
     }
     
     @Test
-    public void testExtractTime() throws IllegalValueException {
+    public void testExtractTime_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("start time 22:00");
         DueTime dueTimeCopy = new DueTime("start time 22:00");
         assertEquals(dueTime, dueTimeCopy);
@@ -65,41 +65,41 @@ public class DueTimeTest {
     }
     
     @Test
-    public void testGetValue() throws IllegalValueException {
+    public void testGetValue_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("start time 22:00");
         assertEquals(dueTime.getValue(), "22:00");
     }
     
     @Test
-    public void testGetEndTime() throws IllegalValueException {
+    public void testGetEndTime_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("end time 22:00");
         dueTime.setStartTime(LocalTime.parse("21:00"));
         assertEquals(dueTime.getEndTime(), "22:00");
     }
     
     @Test
-    public void testGetStartTime() throws IllegalValueException {
+    public void testGetStartTime_success() throws IllegalValueException {
         DueTime dueTime = new DueTime("start time 22:00");
         dueTime.setEndTime(LocalTime.parse("23:00"));
         assertEquals(dueTime.getStartTime(), "22:00");
     }
     
     @Test
-    public void testSetFloating() throws IllegalValueException {
+    public void testSetFloating_success() throws IllegalValueException {
         DueTime time = new DueTime("");
         time.setFloating();
         assertTrue(time.isFloating());
     }
     
     @Test
-    public void testSetDeadline() throws IllegalValueException {
+    public void testSetDeadline_success() throws IllegalValueException {
         DueTime time = new DueTime("03/22/2019");
         time.setDeadline();
         assertTrue(time.isDeadline());
     }
     
     @Test
-    public void testSetRange() throws IllegalValueException {
+    public void testSetRange_success() throws IllegalValueException {
         DueTime time = new DueTime("03/22/2019 - 03/22/2020");
         time.setRange();
         assertTrue(time.isRange());

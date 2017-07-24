@@ -121,6 +121,9 @@ public class TaskCard extends UiPart<Region> {
     }
     //@@author
     //@@author A0138471A
+    /**
+     * Change the color of the text to red when the event has already passed
+     */
     private void setTextColor(Label id, Label name, Label time, Label date,
                               Label taskType, Color color) {
         id.setStyle("-fx-text-fill: #ff0000;");

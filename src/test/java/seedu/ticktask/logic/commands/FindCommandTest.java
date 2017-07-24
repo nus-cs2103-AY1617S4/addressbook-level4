@@ -40,7 +40,7 @@ public class FindCommandTest {
     }
     
     @Test
-    public void testExecuteSubString() {
+    public void testExecuteSubStringReturnsCorrectTask_success() {
         Set<String> keywords1 = new TreeSet<String>();
         keywords1.add("wa");
         
@@ -57,7 +57,7 @@ public class FindCommandTest {
     }
     
     @Test
-    public void testExecutePowerSearch() {
+    public void testExecutePowerSearchReturnsCorrectTask_sucessful() {
         Set<String> keywords1 = new TreeSet<String>();
         keywords1.add("hd");
         

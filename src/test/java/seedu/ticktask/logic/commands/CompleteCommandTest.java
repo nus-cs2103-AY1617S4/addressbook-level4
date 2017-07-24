@@ -34,7 +34,7 @@ public class CompleteCommandTest {
      * @throws CommandException
      */
     @Test 
-    public void testExecuteMessage() throws CommandException {
+    public void testExecuteMessageReturnExpected_success() throws CommandException {
        
         String expectedMessage = String.format(firstCommand.MESSAGE_COMPLETE_TASK_SUCCESS, taskToComplete);
         CommandResult result = firstCommand.execute();
@@ -48,7 +48,7 @@ public class CompleteCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testTaskListUpdatedCorrectly() throws CommandException {
+    public void testTaskListUpdatedCorrectly_success() throws CommandException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentTaskList = model.getFilteredActiveTaskList();
         assertFalse(currentTaskList.contains(taskToComplete));
@@ -59,7 +59,7 @@ public class CompleteCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testCompletedTaskListUpdatedCorrectly() throws CommandException {
+    public void testCompletedTaskListUpdatedCorrectly_success() throws CommandException {
         firstCommand.execute();
         UnmodifiableObservableList<ReadOnlyTask> currentCompletedTaskList = model.getFilteredCompletedTaskList();
         assertTrue(currentCompletedTaskList.contains(taskToComplete));

@@ -23,10 +23,8 @@ public class ClearCommandTest {
     private Model emptyModel = new ModelManager(new TickTaskBuilder().build(), new UserPrefs());
     
     @Test
-    public void testExecute() {
-        
-        assertFalse(model.equals(emptyModel));
-        
+    public void executeOnModelCreatesEmptyModel_successful() {
+                
         ClearCommand clearCommand = prepareClearCommand();
         clearCommand.execute();
         

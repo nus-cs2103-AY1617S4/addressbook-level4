@@ -92,6 +92,12 @@ public class Task implements ReadOnlyTask {
             }
             if (time.getEndTime().equals("")){
                 time.setEndTime(LocalTime.parse("23:59"));
+            }            
+            if (date.getEndDate().equals("")){
+                date.setEndDate(date.getLocalStartDate());
+            }
+            if (time.getEndTime().equals("")){
+                time.setEndTime(time.getLocalStartTime());
             }
             
         } else if (time.isFloating() && date.isFloating()) {
@@ -104,7 +110,6 @@ public class Task implements ReadOnlyTask {
             if (date.getStartDate().equals("")){
                 date.setStartDate(LocalDate.now());
             }
-
             if (!date.getEndDate().equals("")){
                 date.setEndDate(null);
             }
@@ -193,22 +198,22 @@ public class Task implements ReadOnlyTask {
     public boolean isChronological() {
         LocalDate currDate = LocalDate.now();
         
-        if(this.getDate().getLocalStartDate() == null){
-            if(this.getTime().getLocalStartTime() == null || isTimeChronological()){
+        if (this.getDate().getLocalStartDate() == null) {
+            if (this.getTime().getLocalStartTime() == null || isTimeChronological()) {
                 return true;
             }
             else return false;
         }
         LocalDate taskDate = this.getDate().getLocalStartDate();
         //Check if task's date is today.
-        if(taskDate.isEqual(currDate)){
-            if(this.getTime().getLocalStartTime() == null|| isTimeChronological()){
+        if (taskDate.isEqual(currDate)) {
+            if (this.getTime().getLocalStartTime() == null|| isTimeChronological()) {
                 return true;
             } else {
                 return false;
             }
         }
-        if(isDateChronological()){
+        if (isDateChronological()) {
             return true;
         } else{
             return false;
@@ -234,7 +239,7 @@ public class Task implements ReadOnlyTask {
     public boolean isDateChronological(){
         LocalDate currDate = LocalDate.now();
         LocalDate taskDate = this.getDate().getLocalStartDate();
-        if(taskDate.isBefore(currDate)){
+        if (taskDate.isBefore(currDate)) {
             return false;
         } else {
             return true;
@@ -301,15 +306,15 @@ public class Task implements ReadOnlyTask {
         LocalTime startTime = time.getLocalStartTime();
         LocalTime endTime = time.getLocalEndTime();
         LocalDate endDate = date.getLocalEndDate();
-        if(nowTime.isAfter(startTime) && nowTime.isBefore(endTime)){
-            if(nowDate.isEqual(startDate) || (nowDate.isAfter(startDate) && nowDate.isBefore(endDate))){
-                return true;
-            } else {
-                return false;
-            }
-        } else{
+      
+        if (endDate.isBefore(nowDate) || startDate.isAfter(nowDate)) {
             return false;
-        }
+        } else if (startDate.equals(nowDate) && startTime.isAfter(nowTime)) {
+            return false;
+        } else if (endDate.equals(nowDate) && endTime.isBefore(nowTime)) {
+            return false;
+        }          
+        return true;
     }
     
     /**
@@ -319,9 +324,9 @@ public class Task implements ReadOnlyTask {
     public boolean isToday(){
         LocalDate nowDate = LocalDate.now();
         LocalDate startDate = date.getLocalStartDate();
-        if(nowDate.isEqual(startDate)){
+        if (nowDate.isEqual(startDate)) {
             return true;
-        } else{
+        } else {
             return  false;
         }
     }
