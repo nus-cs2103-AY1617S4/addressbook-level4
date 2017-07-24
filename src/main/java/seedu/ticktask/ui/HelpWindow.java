@@ -19,7 +19,7 @@ public class HelpWindow extends UiPart<Region> {
     private static final String ICON = "/images/help_icon.png";
     private static final String FXML = "HelpWindow.fxml";
     private static final String TITLE = "Help";
-    private static final String USERGUIDE_FILE_PATH = "/docs/UserGuide.html";
+    private static final String USERGUIDE_FILE_PATH = "/view/UserGuide.html";
 
     @FXML
     private WebView browser;
@@ -33,7 +33,6 @@ public class HelpWindow extends UiPart<Region> {
         dialogStage = createDialogStage(TITLE, null, scene);
         dialogStage.setMaximized(true); //TODO: set a more appropriate initial size
         FxViewUtil.setStageIcon(dialogStage, ICON);
-
         String userGuideUrl = getClass().getResource(USERGUIDE_FILE_PATH).toString();
         browser.getEngine().load(userGuideUrl);
     }
