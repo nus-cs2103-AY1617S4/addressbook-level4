@@ -64,6 +64,7 @@ Adds a task to the task manager. +
 
 Format: +
 `add [task name] "by" [date] "at " [time] + "#"[tags]` +
+`add [task name] "at " [time] + "by" [date]  "#"[tags]` +
 `add [task name] "on" [date] "at " [time] + "#"[tags]` +
 `add [task name] "at" [time] + "#"[tags]` +
 `add [task name] "from" [start date] "to" [end date]` +
