@@ -12,13 +12,13 @@ public class TaskTypeTest {
     private static final String EVENT = "event";
 
     @Test
-    public void isValidTaskTypeReturnsTrue() {
+    public void isValidTaskType_returnsTrue() {
         assertTrue(TaskType.isValidTaskType("deadline"));
         assertTrue(TaskType.isValidTaskType("event"));
         assertTrue(TaskType.isValidTaskType("floating"));
     }
     @Test
-    public void isValidTaskTypeReturnsFalse() {
+    public void isValidTaskType_returnsFalse() {
         assertFalse(TaskType.isValidTaskType(""));
         assertFalse(TaskType.isValidTaskType(" "));
         assertFalse(TaskType.isValidTaskType("garbage"));
