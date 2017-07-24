@@ -20,6 +20,7 @@ import static seedu.whatsnext.testutil.TypicalTasks.INDEX_FIRST_TASK;
 import static seedu.whatsnext.testutil.TypicalTasks.INDEX_SECOND_TASK;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -173,6 +174,30 @@ public class EditCommandTest {
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_editEventDateTimeFilteredList_success() throws Exception {
+        showFirstTaskOnly();
+
+        final String validOverlapStartDateTime = "22 Dec 10am";
+        final String validOverlapEndDateTime = "24 Dec 12pm";
+        BasicTask editedTask = new TaskBuilder().withName(VALID_NAME_PROJECTMEETING)
+                .withStartDateTime(validOverlapStartDateTime)
+                .withEndDateTime(validOverlapEndDateTime)
+                .withTags(VALID_TAG_HIGH, VALID_TAG_OVERLAP)
+                .withDescription(VALID_DESCRIPTION_PROJECTMEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withNewTags(VALID_TAG_HIGH)
+                .withRemoveTags(VALID_TAG_CS2103).build();
+        EditCommand editCommand = prepareCommand(INDEX_FIRST_TASK, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new TaskManager(model.getTaskManager()), new UserPrefs());
+        expectedModel.updateTask(model.getFilteredTaskList().get(0), editedTask);
+        showNoTask(expectedModel);
+
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
     //@@author A0156106M
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() throws Exception {
@@ -276,4 +301,11 @@ public class EditCommandTest {
 
         assertTrue(model.getFilteredTaskList().size() == 1);
     }
+
+    private void showNoTask(Model model) {
+        model.updateFilteredTaskList(Collections.emptySet());
+
+        assert model.getFilteredTaskList().isEmpty();
+    }
+
 }
