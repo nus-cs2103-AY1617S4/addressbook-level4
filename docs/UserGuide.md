@@ -283,7 +283,7 @@ Examples:
 The app will automatically display all events and deadlines within the period specified by the user when the app starts. <br>
 The command allows the user to specify the time period or display the events and deadlines again without restarting the app. <br>
 Format: `remind`
-> Display all events and deadlines within the period specified. 
+> Display all events and deadlines within the period specified.
 
 Format: `remind TIMEPERIOD`
 > Set the time period for the reminder on startup.
@@ -308,7 +308,7 @@ If the folder does not exist, the folder will be created authomatically. The sav
 Format: `changepath [Path Directory]`
 > Changes the directory where the data file is saved <br>
 > Task Manager data are saved in the specified path directory.<br>
-Examples: 
+Examples:
 
 * `changepath user`
   Change the file path to user folder under the current directory.<br>

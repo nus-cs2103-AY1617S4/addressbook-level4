@@ -607,10 +607,10 @@ Use case ends.
 
 **Extensions**
 
-1a. User input of the time period is invalid. 
+1a. User input of the time period is invalid.
 
 >1a1. System shows an error message and display help information.
-> Use case ends. 
+> Use case ends.
 
 #### Use case: Display events and deadlines within reminder period
 
