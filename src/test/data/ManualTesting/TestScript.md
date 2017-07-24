@@ -44,6 +44,7 @@ Tags: <br>
 Status: Incomplete <br>
 From: Sun 23 Jul 2017 12:00 PM To: Mon 31 Jul 2017  02:00 PM <br>
 Description: Empty" <br>
+Notice: `OVERLAP` tag may appear due to the current date of testing
 
 ### 2. Add a duplicate task
 Input: `add doing testing s/ today 1200 e/ next monday 1400`
@@ -187,7 +188,7 @@ Input: <br>
 
 Result:
 1. "Task List has been cleared!"
-2. "Previous action has been undone."
+2. "Previous action has been undone."<br>
 All the task has been brought back from the previous `clear all` function.
 
 
@@ -209,9 +210,13 @@ Result:
 
 
 ## Testing out the unmark command:
-Input `unmark 1`
+Input 
+1. `list completed`
+2. `unmark 1`
 
-Result: "Unmarked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] " <br>
+Result:
+1. "List all completed tasks"
+2. "Unmarked Task: new task name Tags: [OVERLAP] [NUS] [CS2103] "
 
 
 ## Testing out the list command:
