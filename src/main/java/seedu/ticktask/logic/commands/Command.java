@@ -35,7 +35,7 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     //@@author A0131884B
-    public abstract CommandResult execute() throws CommandException, IllegalValueException, DuplicateTaskException;;
+    public abstract CommandResult execute() throws CommandException, IllegalValueException;
     //@@author
     /**
      * Provides any needed dependencies to the command.

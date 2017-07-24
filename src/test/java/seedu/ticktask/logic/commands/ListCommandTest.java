@@ -55,7 +55,7 @@ public class ListCommandTest {
     }
     
     @Test
-    public void isValidCommandReturnsTrue(){
+    public void isValidCommand_ReturnsTrue(){
         assertTrue(ListCommand.isValidCommand("floating"));
         assertTrue(ListCommand.isValidCommand("deadline"));
         assertTrue(ListCommand.isValidCommand("event"));
@@ -63,7 +63,7 @@ public class ListCommandTest {
     }
     
     @Test
-    public void isValidCommandReturnsFalse(){
+    public void isValidCommand_ReturnsFalse(){
         assertFalse(ListCommand.isValidCommand("randomname"));
     }
 
@@ -81,36 +81,30 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsFloating() throws Exception {
         showFloatingTaskOnly(model);
-        assertCommandSuccess(listCommandFloat, model, ListCommand.MESSAGE_SUCCESS_VIEW_FLOATING_TASKS, expectedModel);
+        assertCommandSuccess(listCommandFloat, model, ListCommand.MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
     
     @Test
     public void execute_listIsFiltered_showsEvent() throws Exception {
         showEventTaskOnly(model);
-        assertCommandSuccess(listCommandEvent, model, ListCommand.MESSAGE_SUCCESS_VIEW_EVENT_TASKS, expectedModel);
-    }
-    
-    @Test
-    public void execute_listIsFiltered_showsDeadline() throws Exception {
-        showDeadlineTaskOnly(model);
-        assertCommandSuccess(listCommandDeadline, model, ListCommand.MESSAGE_SUCCESS_VIEW_DEADLINE_TASKS, expectedModel);
+        assertCommandSuccess(listCommandEvent, model, ListCommand.MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
     
     @Test
     public void execute_listIsFiltered_showsToday() throws Exception {
         showTodayTaskOnly(model);
-        assertCommandSuccess(listCommandToday, model, ListCommand.MESSAGE_SUCCESS_VIEW_TODAY_TASKS, expectedModel);
+        assertCommandSuccess(listCommandToday, model, ListCommand.MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
 
     /**
      * Updates the filtered list to show only the first task in the {@code model}'s TickTask.
      */
     private void showFirstTaskOnly(Model model) {
-        ReadOnlyTask task = model.getTickTask().getTaskList().get(0);
+        ReadOnlyTask task = model.getTickTask().getActiveTaskList().get(0);
         final String[] splitName = task.getName().fullName.split("\\s+");
         model.updateFilteredTaskList(new HashSet<>(Arrays.asList(splitName)));
 
-        assertTrue(model.getFilteredTaskList().size() == 1);      
+        assertTrue(model.getFilteredActiveTaskList().size() == 1);
     }
     
     /**

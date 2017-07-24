@@ -30,47 +30,47 @@ public class FindCommandTest {
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
     
     @Test
-    public void testExecuteSubString() {
+    public void testExecuteSubStringReturnsCorrectTask_success() {
         Set<String> keywords1 = new TreeSet<String>();
         keywords1.add("wa");
         
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
     
     @Test
-    public void testExecutePowerSearch() {
+    public void testExecutePowerSearchReturnsCorrectTask_sucessful() {
         Set<String> keywords1 = new TreeSet<String>();
         keywords1.add("hd");
         
         FindCommand command1 = new FindCommand(keywords1);
         command1.setData(model, new CommandHistory());
         
-        ReadOnlyTask taskToFind = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        ReadOnlyTask taskToNotFind = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        ReadOnlyTask taskToFind = model.getFilteredActiveTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        ReadOnlyTask taskToNotFind = model.getFilteredActiveTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         
         command1.execute();
         
-        assertTrue(model.getFilteredTaskList().contains(taskToFind));
-        assertFalse(model.getFilteredTaskList().contains(taskToNotFind));
+        assertTrue(model.getFilteredActiveTaskList().contains(taskToFind));
+        assertFalse(model.getFilteredActiveTaskList().contains(taskToNotFind));
     }
             
 }   

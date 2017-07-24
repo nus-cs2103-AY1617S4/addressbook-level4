@@ -3,7 +3,6 @@ package seedu.ticktask.model.task;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-
 import java.time.Instant;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -21,8 +20,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class DueTime {
 
-    public static final String MESSAGE_TIME_CONSTRAINTS =
-            "Time is not a valid time";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Time is not a valid time";
     public static final String START_TIME_VALIDATION_REGEX = "start time.*";
     public static final String END_TIME_VALIDATION_REGEX = "end time.*";
     private static final String MESSAGE_END_TIME_CONSTRAINTS = "End time does not exist";
@@ -30,25 +28,20 @@ public class DueTime {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
-
     private final Parser parser = new Parser();
     private String value;
-
     private LocalTime local_time;
-
     private ArrayList<LocalTime> timesArray = new ArrayList<LocalTime>();
     private LocalTime start_time;
     private LocalTime end_time;
-    private String start_time_string = "",
-            end_time_string = "";
-
+    private String start_time_string = "";
+    private String end_time_string = "";
     private boolean isFloating = false;
     private boolean isRange = false;
     private boolean isDeadline = false;
 
     /**
      * Validates given time.
-     *
      * @throws IllegalValueException if given time string is invalid.
      */
     public DueTime(String time) throws IllegalValueException {
@@ -57,9 +50,7 @@ public class DueTime {
 
         if (((time.matches(END_TIME_VALIDATION_REGEX)) || (time.matches(START_TIME_VALIDATION_REGEX)))) {
             List<DateGroup> dateGroups = parser.parse(time);
-            /*if(dateGroups.isEmpty()){
-             * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-            }*/
+
             if (!dateGroups.isEmpty()) {
                 for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
                     local_time = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
@@ -74,25 +65,24 @@ public class DueTime {
                 start_time = timesArray.get(INDEX_START_TIME);
                 setStartTime(start_time);
             }
-
-        }
-        else {
+        } else {
             extractTime(trimmedTime);
         }
         
         if (end_time != null){
             value = getStartTime() + " - " + getEndTime();
-        }else{
+        } else {
             value = getStartTime();
         }
         
     }
-
-
+    
+    /**
+     * sets end time
+     */
     public void setEndTime(LocalTime end_time2) {
         if (end_time2 == null) {
-            //LocalTime localtime = LocalTime.MAX;
-            //end_time_string =  localtime.format(TIME_FORMAT).toString();
+
             LocalTime localtime = LocalTime.MAX;
             end_time_string =  "";
             end_time = end_time2;
@@ -110,39 +100,40 @@ public class DueTime {
 
         }
     }
-
+    
+    /**
+     * sets start time
+     */
     public void setStartTime(LocalTime start_time2) {
         if (start_time2 == null) {
-            //LocalTime localtime = LocalTime.MAX;
-            //start_time_string =  localtime.format(TIME_FORMAT).toString();
+
             start_time_string =  "";
             start_time = start_time2;
             value = getStartTime();
             
-        }
-        else {
+        } else {
             start_time_string = start_time2.format(TIME_FORMAT).toString();
             start_time = start_time2;
             if (end_time != null){
                 value = getStartTime() + " - " + getEndTime();
-            }else{
+            } else {
                 value = getStartTime();
             }
         }
     }
-
-    public void extractTime(String time)throws IllegalValueException {
+    
+    /**
+      * Extracts date into start time and end time.
+      */
+    public void extractTime(String time) throws IllegalValueException {
         List<DateGroup> dateGroups = parser.parse(time);
-        /* if(dateGroups.isEmpty()){
-         * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-        }*/
+ 
         if (!dateGroups.isEmpty()) {
             for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
                 local_time = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
                 timesArray.add(local_time);
             }
-        }
-        else {
+        } else {
             setStartTime(null);
             setEndTime(null);
         }
@@ -152,15 +143,12 @@ public class DueTime {
             setStartTime(start_time);
             setEndTime(end_time);
             isRange = true;
-        }
-        else if (timesArray.size() == 1) {
+        } else if (timesArray.size() == 1) {
             start_time = timesArray.get(INDEX_START_TIME);
             setStartTime(start_time);
             setEndTime(null);
             isDeadline = true;
-
-        }
-        else {
+        } else {
             setStartTime(null);
             setEndTime(null);
             isFloating = true;
@@ -169,29 +157,46 @@ public class DueTime {
 
     }
     
+    /**
+      * sets value
+      */
     public String getValue(){
         return value;
     }
-    
+        
+    /**
+      * returns value
+      */
     public void setValue(String value) {
         this.value = value;
     }
-
+    
+    /**
+      * gets end time
+      */
     public String getEndTime() {
 
         return end_time_string;
 
     }
+    
+    /**
+      * gets start time
+      */
     public String getStartTime() {
-
         return start_time_string;
-
     }
     
+    /**
+      * gets local end time
+      */
     public LocalTime getLocalEndTime() {
         return end_time;
     }
     
+    /**
+     * gets local start time
+     */
     public LocalTime getLocalStartTime() {
         return start_time;
     }
@@ -206,7 +211,7 @@ public class DueTime {
     /**
      * Sets the time to floating
      */
-    public void setFloating(){
+    public void setFloating() {
         isFloating = true;
         isDeadline = false;
         isRange = false;
@@ -222,7 +227,7 @@ public class DueTime {
     /**
      * Sets the time to a deadline
      */
-    public void setDeadline(){
+    public void setDeadline() {
         isFloating = false;
         isDeadline = true;
         isRange = false;

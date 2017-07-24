@@ -26,24 +26,24 @@ import seedu.ticktask.model.task.TaskType;
  * Parses input arguments and creates a new AddCommand object
  */
 public class ParseAddCommand {
-
-	public static final Pattern ADD_COMMAND_FORMAT =
-			Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|#|\\bat\\b))+)" 
-					+ "(?=.*(by|from)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
-					+ "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
-					+ "((?=.*#(?<tags>.+)))?"
-					+ ".*");
-
+	
+	public static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<name>(.(?!\\bby\\b|\\bfrom\\b|\\bon\\b|#|\\bat\\b))+)"
+			                                         + "(?=.*(by|from|on)\\s(?<dates>(.(?!.*'|#|\\bat\\b))+)?)?"
+			                                         + "(?=.*(at)\\s(?<time>(.(?!.*'|#))+)?)?"
+			                                         + "((?=.*#(?<tags>.+)))?"
+			                                         + ".*");
+	
 	private Set<Tag> tagList;
-
+	
 	/**
 	 * Parses the given {@code String} of arguments in the context of the AddCommand
 	 * and returns an AddCommand object for execution.
 	 * @throws ParseException if the user input does not conform the expected format
 	 */
+	
 	public AddCommand parse(String args) throws ParseException {
 		Matcher matcher = ADD_COMMAND_FORMAT.matcher(args.trim());
-
+		
 		if (!matcher.matches()) {
 			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 		}
@@ -53,20 +53,24 @@ public class ParseAddCommand {
 			Optional<String> parsetime = Optional.ofNullable((matcher.group("time")));
 			Optional<String> parsetag = Optional.ofNullable((matcher.group("tags")));
 			tagList = createTagList(parsetag);
+			
 			Name name = ParserUtil.parseName(parsename).get();
 			DueTime time = ParserUtil.parseTime(parsetime).get();
 			TaskType type = ParserUtil.parseTaskType(Optional.of(" ")).get();
 			DueDate date = ParserUtil.parseDate(parsedate).get();
-
-
 			ReadOnlyTask task = new Task(name, time, type, date, tagList);
-
+			
 			return new AddCommand(task);
 		} catch (IllegalValueException ive) {
 			throw new ParseException(ive.getMessage(), ive);
 		}
 	}
-
+	
+	/**
+	 *
+	 * Create a Set<Tag> from @param parsetag.
+	 * @throws IllegalValueException
+	 */
 	public Set<Tag> createTagList(Optional<String> parsetag) throws IllegalValueException {
 		if (parsetag.isPresent()) {
 			String[] stringArray = parsetag.get().split(" ");

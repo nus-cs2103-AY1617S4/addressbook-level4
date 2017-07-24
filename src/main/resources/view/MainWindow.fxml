@@ -38,19 +38,19 @@
             <Insets bottom="10" left="10" right="10" top="10" />
          </padding>
          <children>
-            <TextField alignment="CENTER" editable="false" style="-fx-background-color: #4f9eff; -fx-font-size: 13pt; -fx-font-weight: bold;"  text="Completed Tasks" />
-            <StackPane fx:id="browserPlaceholder" VBox.vgrow="ALWAYS" />
+            <TextField alignment="CENTER" editable="false" style="-fx-background-color: #4f9eff; -fx-font-size: 13pt; -fx-font-weight: bold;" text="Completed Tasks" />
+            <StackPane fx:id="completedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
   </SplitPane>
 
-  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
     <padding>
       <Insets bottom="5" left="10" right="10" top="5" />
     </padding>
   </StackPane>
 
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
     <padding>
       <Insets bottom="5" left="10" right="10" top="5" />
     </padding>

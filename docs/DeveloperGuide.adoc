@@ -11,7 +11,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/CS2103JUN2017-T01-T1/main/blob/v0.3
 
-By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
+By: `T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Setting up
 
@@ -147,7 +147,7 @@ _Figure 2.2.1 : Structure of the UI Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/ticktask/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter`, `CompletedTaskListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/ticktask/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -172,10 +172,10 @@ link:{repoURL}/src/main/java/seedu/ticktask/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a task) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete task name")` API call.
 
 image::DeleteTaskSdForLogic.png[width="800"]
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete task name` Command_
 
 === Model component
 
@@ -323,36 +323,33 @@ Priority |As a |I want to... |So that I can...
 |`* * *` |user |add a task without any time or date |keep track of floating tasks
 |`* * *` |user |add a task with a start and end time |keep track of events
 |`* * *` |user |add a task with an end date and time |keep track of deadlines
+|`* * *` |user |clear task list | remove a list of tasks that are no longer relevant
 |`* * *` |user |edit a task |update the task if the task details change
+|`* * *` |user |exit the TickTask |close the software
 |`* * *` |user |delete a task |remove tasks that are no longer relevant
-|`* * *` |user |mark a task as being complete/ incomplete |keep track of which tasks I still need to do
 |`* * *` |user |list out all the tasks I have added |view all my tasks simultaneously
-|`* * *` |user |undo and redo my actions |easily correct an incorrect action
+|`* * *` |user |mark a task as being complete |keep track of which tasks I still need to do
 |`* * *` |user |search for a task using keywords |easily locate the details of a particular task
 |`* * *` |user |specify the folder and file to use for storage |determine the optimal location to store my data
-|`* * *` |user |set a task to repeat in the future |easily manage recurring tasks
+|`* * *` |user |select a task | highlight a task
+|`* * *` |user |undo and redo my actions |easily correct an incorrect action
 
-|`* *` |user |filter tasks based on tags |organise my tasks into categories
-|`* *` |user |set reminders for tasks |remember to complete it before the deadline
-|`* *` |user |display my task in calendar |view my tasks in a chronological format
-|`* *` |user |use shortcuts to perform certain functions |navigate the program with ease and speed
-|`* *` |user |colour code my tasks according to tag |view my task categories more easily
-|`* *` |user |add priorities to the task |determine which task to complete first
-|`* *` |user |block out more than one time slot for a task |reserve time slots if the task details are not yet final
-|`* *` |user |push back all my tasks for the day by a certain amount of time |edit my tasks if unexpected events disrupt my day
-|`* *` |user |view my tasks within a specified duration |manage my tasks within different time frames
+|`* *` |user |customise my GUI |optimise the GUI for my own needs
+|`* *` |user |have my commands be auto-completed for me |insert commands more quickly
 |`* *` |user |input commands using natural language |perform commands easily and intuitively
+|`* *` |user |restore a completed task |move a completed task from completed task list to active task list 
+|`* *` |user |set reminders for tasks |remember to complete it before the deadline or display overdue tasks
+|`* *` |user |show me the command history |view all commands that I used before
 
-|`*` |user |sync my task manager across devices |manage my tasks from anywhere
-|`*` |user |customise my GUI |optimise the GUI for my own needs
-|`*` |user |select my notification method (e.g. SMS, email, etc.) |select the most effective method
 |`*` |user |add comments, pictures and files to each task |attach relevant details to my tasks
+|`*` |user |add priorities to the task |determine which task to complete first
 |`*` |user |add my own shortcuts to use |customise my shortcuts based on my own preferences
-|`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
 |`*` |user |have my commands be auto-completed for me |insert commands more quickly
+|`*` |user |import a set of tasks into my manager |easily receive details about tasks from other people (e.g. boss, colleagues, etc.)
+|`*` |user |select my notification method (e.g. SMS, email, etc.) |select the most effective method
 |`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
-|`*` |user |sort my tasks according to a particular attribute |organise my tasks more easily
-
+|`*` |user |sync my task manager across devices |manage my tasks from anywhere
+|`*` |user |use shortcuts to perform certain functions |navigate the program with ease and speed
 |=======================================================================
 
 [appendix]
@@ -433,7 +430,7 @@ Conventional OS: Mac OS X, Windows, Linux
 
 |HiTask
 |
-1.  Jim would find the  calendar view at the left-hand side & a team window on the right to be helpful. +
+1.  Jim would find the calendar view at the left-hand side & a team window on the right to be helpful. +
 2.  Jim would find the synchronization with google calender help. +
 3.  Jim would find the sorting/filtering function to search for his task helpful.
 |

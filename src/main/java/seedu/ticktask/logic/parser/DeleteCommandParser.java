@@ -62,26 +62,23 @@ public class DeleteCommandParser {
         */
         } else {
             String trimmedArgs = argMultimap.getPreamble();
-            final String[] keywords = new String[]{""};
-            keywords [0] = trimmedArgs;
-            final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-            return new DeleteFindCommand(keywordSet);
+            return new DeleteFindCommand(trimmedArgs);
         }
     }
 
-        /**
-         * A method that returns true if flags are given in an illogical manner for deleting commands.
-         * illogical := any 2 of /float, /deadline, /event used together.
-         */
-        private boolean hasInvalidPrefixCombination(ArgumentMultimap argMultimap) {
+    /**
+    * A method that returns true if flags are given in an illogical manner for deleting commands.
+    * illogical := any 2 of /float, /deadline, /event used together.
+    */
+    private boolean hasInvalidPrefixCombination(ArgumentMultimap argMultimap) {
             assert argMultimap != null;
             return ParserUtil.areAllPrefixesPresent(argMultimap, PREFIX_ACTIVE, PREFIX_COMPLETE);                  
         }
-       /**
-          * A method that returns true if flags in given ArgumentMultimap has at least one index-indicating
-          * Prefix mapped to some arguments.
-          * Index-indicating : /active or /complete
-          */
+    /**
+    * A method that returns true if flags in given ArgumentMultimap has at least one index-indicating
+    * Prefix mapped to some arguments.
+    * Index-indicating : /active or /complete
+    */
     private boolean hasIndexFlag(ArgumentMultimap argMultimap) {
         assert argMultimap != null;
         return ParserUtil.isPrefixPresent(argMultimap,  PREFIX_COMPLETE, PREFIX_ACTIVE);

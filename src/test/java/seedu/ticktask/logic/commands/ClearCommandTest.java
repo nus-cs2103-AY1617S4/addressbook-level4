@@ -8,6 +8,7 @@ import org.junit.Test;
 import seedu.ticktask.logic.CommandHistory;
 import seedu.ticktask.logic.commands.ClearCommand;
 import seedu.ticktask.logic.commands.CommandResult;
+import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.logic.parser.Prefix;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
@@ -23,16 +24,17 @@ public class ClearCommandTest {
     private Model emptyModel = new ModelManager(new TickTaskBuilder().build(), new UserPrefs());
     
     @Test
-    public void testExecute() {
-        
-        assertFalse(model.equals(emptyModel));
-        
+    public void executeOnModelCreatesEmptyModel_successful() throws CommandException {
+                
         ClearCommand clearCommand = prepareClearCommand();
         clearCommand.execute();
         
         assertEquals(model, emptyModel);
     }
-    
+
+    /**
+     * prepare the clear command
+     */
     public ClearCommand prepareClearCommand() {
     	Prefix PREFIX_ACTIVE = new Prefix("active");
         ClearCommand command = new ClearCommand(PREFIX_ACTIVE);

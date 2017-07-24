@@ -15,13 +15,13 @@ import seedu.ticktask.logic.parser.exceptions.ParseException;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 //@@author A0139964M
-public class parseAddCommandTest {
+public class ParseAddCommandTest {
     
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                          AddCommand.MESSAGE_USAGE);
     private static final String NAME_INVALID_NONALPHANUMERIC = "abc!";
     private static final String NAME_INVALID_EMPTY = "";
-            
+    
     private ParseAddCommand parser = new ParseAddCommand();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -49,7 +49,7 @@ public class parseAddCommandTest {
         
         //event (date & time)
         command = parser.parse(VALID_NAME_EVENT + PREFIX_DATE + VALID_DATE_16_NOV + "to " + VALID_DATE_5_DEC
-                               + PREFIX_TIME + VALID_TIME_5PM);
+                + PREFIX_TIME + VALID_TIME_5PM);
         assertTrue(command instanceof AddCommand);
     }
     
@@ -68,7 +68,7 @@ public class parseAddCommandTest {
     private void assertParseFailure(String userInput, String expectedMessage) throws IllegalValueException, IndexOutOfBoundsException {
         try {
             parser.parse(userInput);
-
+            
             fail("An exception should have been thrown.");
         } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());

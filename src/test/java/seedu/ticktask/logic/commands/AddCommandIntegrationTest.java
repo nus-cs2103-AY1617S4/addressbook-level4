@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.ticktask.logic.CommandHistory;
-import seedu.ticktask.logic.commands.AddCommand;
-import seedu.ticktask.logic.commands.CommandResult;
 import seedu.ticktask.logic.commands.exceptions.CommandException;
 import seedu.ticktask.model.Model;
 import seedu.ticktask.model.ModelManager;
@@ -44,7 +42,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() throws Exception {
-        Task taskInList = new Task(model.getTickTask().getTaskList().get(0));
+        Task taskInList = new Task(model.getTickTask().getActiveTaskList().get(0));
 
         Model expectedModel = new ModelManager(model.getTickTask(), new UserPrefs());
 

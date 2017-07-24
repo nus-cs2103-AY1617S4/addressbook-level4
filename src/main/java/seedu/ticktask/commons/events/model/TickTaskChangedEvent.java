@@ -14,6 +14,6 @@ public class TickTaskChangedEvent extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of Tasks " + data.getTaskList().size() + ", number of tags " + data.getTagList().size();
+        return "number of Tasks " + data.getActiveTaskList().size() + ", number of tags " + data.getTagList().size();
     }
 }

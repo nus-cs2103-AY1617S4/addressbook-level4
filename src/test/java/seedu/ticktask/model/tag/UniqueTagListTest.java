@@ -25,7 +25,7 @@ public class UniqueTagListTest {
     }
     
     @Test
-    public void testStringConstructor() throws DuplicateTagException, IllegalValueException {
+    public void testStringConstructor_success() throws DuplicateTagException, IllegalValueException {
         UniqueTagList tagListCopy = new UniqueTagList(tagList);
         tagList = new UniqueTagList("a b c");
         
@@ -33,7 +33,7 @@ public class UniqueTagListTest {
     }
     
     @Test
-    public void testTagConstructor() throws DuplicateTagException, IllegalValueException {
+    public void testTagConstructor_success() throws DuplicateTagException, IllegalValueException {
         UniqueTagList tagListCopy = new UniqueTagList(tagList);
 
         Tag tag1 = new Tag("a");
@@ -58,13 +58,13 @@ public class UniqueTagListTest {
     }
     
     @Test
-    public void testToSet() {
+    public void testToSet_success() {
         Set<Tag> hashSetList = tagList.toSet();
         assertFalse(hashSetList.isEmpty());
     }
     
     @Test
-    public void testSetTags() {
+    public void testSetTags_success() {
         UniqueTagList newTagList = new UniqueTagList();
         
         UniqueTagList tagListCopy = new UniqueTagList(tagList);
@@ -77,13 +77,13 @@ public class UniqueTagListTest {
     }
     
     @Test
-    public void testContains() throws IllegalValueException {
+    public void testContains_success() throws IllegalValueException {
         assertTrue(tagList.contains(new Tag("cleaning")));
         assertFalse(tagList.contains(new Tag("clean")));
     }
     
     @Test
-    public void testAdd() throws DuplicateTagException, IllegalValueException {
+    public void testAdd_success() throws DuplicateTagException, IllegalValueException {
         tagList.add(new Tag("dog"));
         assertTrue(tagList.contains(new Tag("dog")));
     }

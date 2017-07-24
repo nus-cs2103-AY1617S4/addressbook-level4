@@ -9,7 +9,7 @@ import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 //@@author A0147928N
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new RestoreCommand object
  */
 public class RestoreCommandParser {
 

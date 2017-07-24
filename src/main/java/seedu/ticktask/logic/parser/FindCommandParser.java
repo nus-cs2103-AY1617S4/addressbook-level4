@@ -44,12 +44,10 @@ public class FindCommandParser {
         if (matcherActive.matches()) {
             keywordSet.remove("active");
             return new FindActiveCommand(keywordSet);
-        }
-        else if (matcherCompleted.matches()) {
+        } else if (matcherCompleted.matches()) {
             keywordSet.remove("complete");
             return new FindCompleteCommand(keywordSet);
-        }
-        else {
+        } else {
             return new FindCommand(keywordSet);
         }       
     }

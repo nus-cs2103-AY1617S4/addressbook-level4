@@ -9,13 +9,13 @@ import seedu.ticktask.logic.parser.exceptions.ParseException;
 
 //@@author A0147928N
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new CompleteCommand object
  */
 public class CompleteCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns an DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CompleteCOmmand
+     * and returns an CompleteCOmmand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CompleteCommand parse(String args) throws ParseException {

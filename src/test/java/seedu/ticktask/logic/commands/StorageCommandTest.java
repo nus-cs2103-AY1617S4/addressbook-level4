@@ -23,16 +23,7 @@ public class StorageCommandTest {
     
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
- 
-//    @Test
-//    public void testExecute() throws IOException, CommandException {
-//        final File tempFolder = folder.newFolder("newLocation");
-//        StorageCommand command1 = new StorageCommand(tempFolder);
-//        command1.setData(model, new CommandHistory());
-//        command1.execute();
-//    }
 
-    
     @Test
     public void testExecute_throwIO() throws CommandException {
         File tempFolder;
@@ -40,7 +31,6 @@ public class StorageCommandTest {
             tempFolder = folder.newFolder("//r@nD0m");
             StorageCommand command = new StorageCommand(tempFolder);
             command.setData(model, new CommandHistory());
-            
             command.execute();
             
         } catch (IOException e) {
@@ -49,23 +39,6 @@ public class StorageCommandTest {
         
         fail();
     }
-    
-   /* @Test
-    public void testExecute_throwDuplicateFilePath() throws IOException{
-        
-        
-        try {
-            StorageCommand command = new StorageCommand(folder.newFolder("newLocation"));
-            command.setData(model, new CommandHistory());
-            StorageCommand command1 = new StorageCommand(folder.newFolder("newLocation"));
-            command1.setData(model, new CommandHistory());
-            command.execute();
-            command1.execute();
-        } catch (CommandException e) {
-            return;
-        }
-        fail();
-    }*/
     
 }
 //@@author 

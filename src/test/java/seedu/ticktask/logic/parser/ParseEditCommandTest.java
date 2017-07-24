@@ -17,7 +17,7 @@ import static seedu.ticktask.testutil.TypicalTasksCompleted.INDEX_FIRST_TASK;
 import static seedu.ticktask.testutil.TypicalTasksCompleted.INDEX_SECOND_TASK;
 
 //@@author A0139964M
-public class parseEditCommandTest {
+public class ParseEditCommandTest {
     
     private static final String NAME_DESC_MEETING = " " + PREFIX_NAME + VALID_NAME_MEETING;
     private static final String NAME_DESC_EVENT = " " + PREFIX_NAME + VALID_NAME_EVENT;
@@ -41,7 +41,7 @@ public class parseEditCommandTest {
         
         // no index and no field specified
         assertParseFailure("", MESSAGE_INVALID_FORMAT);
-    
+        
         // no index specified
         assertParseFailure(VALID_NAME_MEETING, MESSAGE_INVALID_FORMAT);
     }
@@ -50,28 +50,28 @@ public class parseEditCommandTest {
     public void parse_invalidPreamble_failure() throws IllegalValueException {
         // negative index
         assertParseFailure("-5" + NAME_DESC_MEETING, MESSAGE_INVALID_FORMAT);
-    
+        
         // zero index
         assertParseFailure("0" + NAME_DESC_MEETING, MESSAGE_INVALID_FORMAT);
-    
+        
         // invalid arguments being parsed as preamble
         assertParseFailure("1 some random string", MESSAGE_INVALID_FORMAT);
-    
+        
         // invalid prefix being parsed as preamble
         assertParseFailure("1 i/ string", MESSAGE_INVALID_FORMAT);
     }
-
+    
     @Test
     public void parse_invalidName_failure() throws IllegalValueException {
         assertParseFailure("" + INDEX_FIRST_TASK + PREFIX_NAME + "@", MESSAGE_INVALID_FORMAT);
     }
-
-
+    
+    
     @Test
     public void parse_byIndexAllFieldsSpecified_success() throws Exception {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = "2 " + PREFIX_NAME + VALID_NAME_EVENT  + PREFIX_DATE_EDIT + VALID_DATE_5_DEC
-                           + PREFIX_TIME_EDIT + VALID_TIME_5PM + PREFIX_TAG + VALID_TAG_TODO;
+                         + PREFIX_TIME_EDIT + VALID_TIME_5PM + PREFIX_TAG + VALID_TAG_TODO;
         EditCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_MEETING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex,descriptor);
         assertParseSuccess(userInput, expectedCommand);
@@ -86,8 +86,6 @@ public class parseEditCommandTest {
         assertParseSuccess(userInput, expectedCommand);
     }
     
-    
-    
     /**
      * Asserts the parsing of {@code userInput} is successful and the result matches {@code expectedCommand}
      */
@@ -96,10 +94,10 @@ public class parseEditCommandTest {
         assertTrue(expectedCommand instanceof EditCommand);
     }
     
-        /**
-         * Asserts the parsing of {@code userInput} is unsuccessful and the error message
-         * equals to {@code expectedMessage}
-         */
+    /**
+     * Asserts the parsing of {@code userInput} is unsuccessful and the error message
+     * equals to {@code expectedMessage}
+     */
     private void assertParseFailure(String userInput, String expectedMessage) throws IllegalValueException, IndexOutOfBoundsException {
         try {
             parser.parse(userInput);

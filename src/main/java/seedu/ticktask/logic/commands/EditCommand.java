@@ -1,7 +1,6 @@
 package seedu.ticktask.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.ticktask.logic.parser.CliSyntax.PREFIX_TAG;
@@ -73,7 +72,7 @@ public class EditCommand extends Command {
 
     public CommandResult execute() throws CommandException, IllegalValueException {
 
-        List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+        List<ReadOnlyTask> lastShownList = model.getFilteredActiveTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -87,12 +86,12 @@ public class EditCommand extends Command {
             model.updateFilteredListToShowAll();
 
             //@@author A0139964M
-            if (!editedTask.isChornological()) {
+            if (!editedTask.isChronological()) {
                 return new CommandResult(String.format(MESSAGE_PAST_TASK, taskToEdit));
             }
             //@@author
             if (editedTask.getTaskType().toString().equals("event") && model.eventClash(taskToEdit) != null) {
-                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, taskToEdit));
+                    return new CommandResult(String.format(MESSAGE_EVENT_CLASH, model.eventClash(taskToEdit)));
             }
             
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));

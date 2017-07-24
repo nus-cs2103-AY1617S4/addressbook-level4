@@ -33,14 +33,12 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
+    
     private TaskListPanel completedTaskListPanel;
     private TaskListPanel taskListPanel;
     private Config config;
     private UserPrefs prefs;
 
-    @FXML
-    private StackPane browserPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -120,10 +118,10 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
         //@@author A0147928N
-    	browserPanel = new BrowserPanel();
+    	
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         completedTaskListPanel = new TaskListPanel(logic.getFilteredCompletedTaskList());
-        browserPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
+        completedTaskListPanelPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
 
         //@@author
 
@@ -202,15 +200,5 @@ public class MainWindow extends UiPart<Region> {
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
     }
-    
-    
-    void loadTaskPage(ReadOnlyTask task) {
-        browserPanel.loadTaskPage(task);
-    }
-
-    void releaseResources() {
-        browserPanel.freeResources();
-    }
-    
 
 }

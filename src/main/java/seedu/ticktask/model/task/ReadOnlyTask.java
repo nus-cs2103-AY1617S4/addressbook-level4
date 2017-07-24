@@ -26,7 +26,7 @@ public interface ReadOnlyTask {
     boolean isToday();
     void setCompleted(boolean s);
     Set<Tag> getTags();
-    boolean isChornological();
+    boolean isChronological();
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */

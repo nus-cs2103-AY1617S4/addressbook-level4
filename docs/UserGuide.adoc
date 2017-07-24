@@ -10,7 +10,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 
-By: `T01-T1`      Since: `Jun 2017`      Licence: `MIT`
+By: `T1`      Since: `Jun 2017`      Licence: `MIT`
 
 == Quick Start
 
@@ -38,67 +38,144 @@ Some example commands you can try:
 
 `add complete tutorial by christmas at 2200`: adds a task named complete tutorial to the task manager
 
-`delete 1` : deletes the task at index 1 from the active(pending) task list
+`delete active 1` : deletes the task at index 1 from the active(pending) task list
 
 
 Refer to the Features section below for details of each command. +
 
 == Features
 
-
 === Viewing help : `help`
-Displays the list of commands available.
+Displays usage of the commands.
 
-Format: `help`
+Format: +
+`help` +
+`help [command name]` 
+
+Examples:
+****
+* `help`
+* `help add`
+* `help delete`
+****
 
 === Adding a task: `add`
 Adds a task to the task manager. +
 
 Format: +
-`add [task name] "by " [date] "at " [time] + "#"[tags]` +
-`add [task name] "at " [time] + "#"[tags]` +
-`add [task name]` +
-`add [task name] "from " [start date] "to " [end date]`
+`add [task name] "by" [date] "at " [time] + "#"[tags]` +
+`add [task name] "at " [time] + "by" [date]  "#"[tags]` +
+`add [task name] "on" [date] "at " [time] + "#"[tags]` +
+`add [task name] "at" [time] + "#"[tags]` +
+`add [task name] "from" [start date] "to" [end date]` +
+`add [task name]` 
 
 ****
 * Only task name is mandatory when using the add command
 * A tag can be added by inserting "#" before the tag
-* "by" precedes date, "at" precedes time
+* "by" or "on" precedes date, "at" precedes time
+* Both date and time inputs can be swapped
 * "from" and "to" can be used to add events over a range of days
 * Date and time can be inputted in natural language
 ****
 
 Examples:
 ****
-* `add complete tutorial by 23/02 #school`
-* `add complete tutorial by 23/05/17 at 2200`
-* `add complete tutorial`
-* `add complete tutorial from monday to friday`
+* `add complete tutorial by July 30 #school`
+* `add Rachels birthday party on Oct 30`
+* `add Check bank balance`
+* `add Dragonboat competition from monday to friday`
+****
+
+=== Clearing task list(s): `clear`
+Clears task list(s) from the task manager. +
+
+Format: +
+`clear [list to delete from]` 
+
+****
+* 'list to clear from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+* 'clear all can clear both lists'
+****
+
+Examples:
+****
+* `clear all` 
+* `clear active` 
+* `clear complete` 
+****
+
+=== Completing a Task : `complete`
+Marks a task as complete in the task manager and moves it into the completed task list. +
+
+Format: +
+`complete [index]`
+
+Examples:
+****
+* `complete 1` +
+The task at index 1 is moved to completed list.
+****
+
+=== Deleting a Task: `delete`
+Deletes a task from the task manager. +
+
+Format: +
+`delete [task name]` +
+`delete [list to delete from] [index]`
+
+****
+* The input task name must be a subset of the target task name
+* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
+****
+
+Examples:
+****
+* `delete play basketball` +
+Deletes the task that contain the string "play basketball" +
+If multiple tasks are found to contain the string, please proceed to delete by using index +
+* `delete complete 1` +
+Deletes the task at index 1 in the completed task list
+* `delete active 1` +
+Deletes the task at index 1 in the active(pending) task list
 ****
 
 === Editing a Task : `edit`
 Edits an existing task in the ticktask. +
 
-Format: `edit [index] [attribute to change][new value]`
+Format: +
+`edit [index] [attribute to change][new value]`
 
 ****
-* The possible attributes are: "time", "date", "name", "start time", "end time" and "#"
+* The possible attributes are: "time", "date", "name" and "#"
 ****
 
 Examples:
 ****
 * `edit 1 name tutorial` +
 Edits the task name to tutorial.
-* `edit 0 end time 2200` +
-Edits the task's end time to 2200.
-* `edit 0 start time 2300 date christmas` +
-Edits the task's start time to 2300 and the date to 25/12/2017.
+* `edit 2 time 2200` +
+Edits the task's deadline to 2200.
+* `edit 3 date from Jan to Feb` +
+Edits the task's duration.
+****
+
+=== Exiting the TickTask : `exit`
+Exits the program. +
+
+Format: +
+`exit`
+
+Examples:
+****
+* `exit` 
 ****
 
 === Finding a Task : `find`
 Finds an existing task in the ticktask. +
 
-Format: `find [keyword(s)]`
+Format: +
+`find [keyword(s)]`
 
 ****
 * There can be more than one keyword
@@ -113,80 +190,96 @@ Will find all tasks that contain the substring "wash dog"
 Will find all tasks that contain the substring "tu"
 ****
 
-=== Deleting a Task: `delete`
-Deletes a task from the task manager. +
-
-Format: +
-`delete [index]` +
-`delete [list to delete from] [index]`
-
-****
-* 'list to delete from' can be specified as either "active" or "complete" for pending tasks or completed tasks, respectively.
-****
-
-Examples:
-****
-* `delete 1` +
-Deletes the task at index 1 +
-* `delete complete 1` +
-Deletes the task at index 1 in the completed task list
-* `delete active 1` +
-Deletes the task at index 1 in the active(pending) task list
-****
-
-=== Completing a Task : `complete`
-Marks a task as complete in the task manager and moves it into the completed task list. +
-
-Format: `complete [task name]`
-
-Examples:
-****
-* `complete tutorial` +
-The task tutorial is moved to completed list.
-****
-
-=== Undo/ Redo Actions: `undo` `redo`
-Undo or redo the latest action. +
-
-Format: `undo` or `redo`
-
-Examples:
-****
-* `undo` +
-Undo the previous action such as add, delete, edit or complete.
-* `redo` +
-Redo the undo action
-****
-
-=== Listing All Tasks : `list`
-Displays pending tasks within task manager. +
-
-Format: `list`
-
-Examples:
-****
-* `list` 
-****
-
 === Listing Command History : `history`
 Displays history of commands since application opened. +
 
-Format: `history`
+Format: +
+`history`
 
 Examples:
 ****
 * `history` 
 ****
 
-=== Clear Tasks : `clear`
-Clear all tasks ever added.
+=== Listing All Tasks : `list`
+Displays a type of task within task manager. +
 
-Format: `clear`
+Format: +
+`list` +
+`list all` + 
+`list [task type]`
+
+****
+* Task types are deadline, event, floating and today
+* Supports substring search
+****
 
 Examples:
 ****
-* `clear`
+* `list` 
+* `list all`
+* `list event`
 ****
+
+=== Restore action : `restore`
+Restores the task identified by the index number back into the active list. +
+
+Format: +
+`restore [INDEX]`
+
+Examples:
+****
+* `restore 1` 
+****
+
+=== Save action : `save`
+Changes the location of the TickTask app xml file. +
+
+Format: +
+`save [DIRECTORY]`
+
+Examples:
+****
+* `save C:\Eclipse` 
+****
+
+=== Select action : `select`
+Highlight a task identified by the index number in the active task list. +
+
+Format: +
+`select [INDEX]`
+
+Examples:
+****
+* `select 1` 
+****
+
+=== Undo/Redo Actions: `undo` `/redo`
+Undo or redo the recent actions. +
+
+Format: +
+`undo` or `redo`
+
+****
+* Undo/redo is applicable to multiple recent actions
+****
+
+Examples:
+****
+* `undo`
+* `redo` 
+****
+== Special Features
+### Auto Complete
+Upon launching the program, TickTask's auto complete feature is able to provide you with a list of commands available based on the letters you input. You can use the "arrow keys" to scroll down if necessary and press "Enter" to complete the sentence.
+
+TickTask is also able to "learn" the inputs you typed for easier inputting in the future.
+
+You can also press "Esc" to stop the autocompletion.
+
+### Repeating previous/next command
+If you are lazy to retype a similar command, or want the previous command back into the command text simply press the ↑ or ↓ key.
+You can go back to as many commands as you want.
 
 == FAQ
 
@@ -197,7 +290,16 @@ Examples:
 
 === Viewing help
 
-Format: `help`
+Format: +
+`help` +
+`help [command name]` 
+
+Examples:
+****
+* `help`
+* `help add`
+* `help delete`
+****
 
 === Adding a task
 
@@ -209,99 +311,141 @@ Format: +
 
 Examples:
 ****
-* `add complete tutorial by 23/02 #school`
-* `add complete tutorial by 23/05/17 at 2200`
+* `add complete tutorial by July 30 #school`
+* `add complete tutorial by Oct 5 at 22`
 * `add complete tutorial`
 * `add complete tutorial from monday to friday`
 ****
-=== Editing a Task
 
-Format: `edit [index] [attribute to change][new value]`
+=== Clearing task list(s)
 
-Examples:
-****
-* `edit 1 name tutorial` +
-Edits the task name to tutorial.
-* `edit 0 end time 2200` +
-Edits the task's end time to 2200.
-* `edit 0 start time 2300 date christmas` +
-Edits the task's start time to 2300 and the date to 25/12/2017.
-****
-
-=== Finding a Task
-
-Format: `find [keyword(s)]`
+Format: +
+`clear [list to delete from]` 
 
 Examples:
 ****
-* `find wash dog` +
-Will find all tasks that contain the substring "wash dog"
-* `find tu` + 
-Will find all tasks that contain the substring "tu"
+* `clear all` 
+* `clear active` 
+* `clear complete` 
+****
+
+=== Completing a Task 
+
+Format: +
+`complete [index]`
+
+Examples:
+****
+* `complete 1` 
 ****
 
 === Deleting a Task
 
 Format: +
-`delete [index]` +
+`delete [task name]` +
 `delete [list to delete from] [index]`
 
 Examples:
 ****
-* `delete 1` +
-Deletes the task at index 1 +
+* `delete play basketball` 
 * `delete complete 1` +
-Deletes the task at index 1 in the completed task list
 * `delete active 1` +
-Deletes the task at index 1 in the active(pending) task list
 ****
 
-=== Completing a Task
+=== Editing a Task
 
-Format: `complete [task name]`
+Format: +
+`edit [index] [attribute to change][new value]`
 
 Examples:
 ****
-* `complete tutorial` +
-The task tutorial is moved to completed list.
+* `edit 1 name tutorial` +
+* `edit 2 time 2200` +
+* `edit 3 date christmas` +
+****
+
+=== Exiting the TickTask
+
+Format: +
+`exit`
+
+Examples:
+****
+* `exit` 
+****
+
+=== Finding a Task
+
+Format: +
+`find [keyword(s)]`
+
+Examples:
+****
+* `find wash dog` +
+* `find tu` + 
+****
+
+=== Listing Command History
+
+Format: +
+`history`
+
+Examples:
+****
+* `history` 
+****
+
+=== Listing All Tasks
+
+Format: +
+`list` +
+`list all` + 
+`list [task type]`
+
+Examples:
+****
+* `list` 
+* `list all`
+* `list event`
+****
+
+=== Restore action 
+
+Format: +
+`restore [INDEX]`
+
+Examples:
+****
+* `restore 1` 
+****
+
+=== Save action
+
+Format: +
+`save [DIRECTORY]`
+
+Examples:
+****
+* `save C:\Eclipse` 
+****
+
+=== Select action 
+
+Format: +
+`select [INDEX]`
+
+Examples:
+****
+* `select 1` 
 ****
 
 === Undo/ Redo Actions 
 
-Format: `undo` or `redo`
+Format: + 
+`undo` or `redo`
 
 Examples:
 ****
 * `undo` +
-Undo the previous action such as add, delete, edit or complete.
 * `redo` +
-Redo the undo action
 ****
-
-=== Listing All Tasks : 
-
-Format: `list`
-
-Examples:
-****
-* `list`
-****
-
-=== Listing Command History 
-
-Format: `history`
-
-Examples:
-****
-* `history`
-****
-
-=== Clear Tasks
-
-Format: `clear`
-
-Examples:
-****
-* `clear`
-****
-

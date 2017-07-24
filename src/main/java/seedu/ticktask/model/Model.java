@@ -47,8 +47,8 @@ public interface Model {
     //@@author
 
     /** Adds the given task 
-     * @throws PastTaskException 
-     * @throws EventClashException */
+     * @throws DuplicateTaskException
+     */
     void addTask(ReadOnlyTask task) throws DuplicateTaskException;
 
     /**
@@ -57,14 +57,12 @@ public interface Model {
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
      *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
-     * @throws PastTaskException 
-     * @throws EventClashException 
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
-    UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredActiveTaskList();
 
     /** Updates the filter of the filtered task list to show all tasks*/
     void updateFilteredListToShowAll();
@@ -89,8 +87,8 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     //@@author A0131884B
-    /** Updates the filter of the filtered task list if it matches the given keywords*/
-    void updateMatchedTaskList(Set<String> keywords);
+    /* Updates the filter of the filtered task list if and only if it contain all of the given keywords*/
+    void updateMatchedTaskList(String keywords);
     //@@author
 
     UnmodifiableObservableList<ReadOnlyTask> getFilteredCompletedTaskList();
@@ -105,4 +103,5 @@ public interface Model {
     String eventClash(ReadOnlyTask t);
 
     void updateFilteredCompletedTaskList(Set<String> keywords);
+
 }

@@ -12,7 +12,8 @@ import seedu.ticktask.model.task.exceptions.TaskNotFoundException;
 //@@author A0147928N
 
 /**
- * Marks a task identified using it's last displayed index as complete.
+ * Restores a task that was marked as completed back to the active tab
+ * Task is identified using it's last displayed index in the complete tab.
  */
 public class RestoreCommand extends Command {
 
@@ -40,7 +41,7 @@ public class RestoreCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
+        
         ReadOnlyTask taskCompleted = lastShownList.get(targetIndex.getZeroBased());
 
         try {
