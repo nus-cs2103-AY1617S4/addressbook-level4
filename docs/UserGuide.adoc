@@ -270,7 +270,7 @@ Examples:
 * `redo` 
 ****
 == Special Features
-###Auto Complete
+### Auto Complete
 
 == FAQ
 
