@@ -16,7 +16,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
     8. [Undo last action](#28-undo-last-action--undo)
     9. [Redo last action](#29-redo-last-action--redo)
     10. [Clear tasks](#210-clear-tasks--clear)
-    11. [Mark a task](#211-mark-a-task-mark)
+    11. [Mark a task](#211-mark-a-task--mark)
     12. [Unmark a task](#212-unmark-a-task--unmark)
     13. [Reset a task](#213-reset-a-task--reset)
     14. [Set reminder period](#214-set-reminder-period--remind)
@@ -56,7 +56,7 @@ By : `T01-T4`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2017`  &nbsp;&nbsp;&nbsp;&nb
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
-> * Parameters can be in any order.
+> * Parameters can be in any order except for task name which has be the first one for add command.
 
 > **Reserved Tags**
 >
@@ -155,7 +155,6 @@ Format: `edit INDEX [n/ NEW_TASK_NAME] [s/ to START_DATE_TIME] [e/ to START_DATE
   The index refers to the index number shown in the last task listing.<br>
   The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
-* Option fields **must match task type** (1) event, (2) deadline or (3) floating
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will not not be removed. But if there is already a priority tag, i.e. HIGH, MEDIUM, LOW, and the new tag is a priority tag, the original priority tag will be replace with the new one.
 * When deleting a tag, the tag provided must be inside the existing tag list.
@@ -282,7 +281,10 @@ Examples:
 
 ### 2.14. Set reminder period : `remind`
 The app will automatically display all events and deadlines within the period specified by the user when the app starts. <br>
-The command allows the user to specify the time period.
+The command allows the user to specify the time period or display the events and deadlines again without restarting the app. <br>
+Format: `remind`
+> Display all events and deadlines within the period specified. 
+
 Format: `remind TIMEPERIOD`
 > Set the time period for the reminder on startup.
 > The time unit must be sigular, i.e. "week" instead of "weeks"
@@ -302,9 +304,16 @@ Format: `filepath`
 ### 2.16. Change data file path : `changepath`
 
 Updates data file directory. : `changepath`<br>
+If the folder does not exist, the folder will be created authomatically. The save file at the original position will be deleted.<br>
 Format: `changepath [Path Directory]`
 > Changes the directory where the data file is saved <br>
-Task Manager data are saved in the specified path directory.<br>
+> Task Manager data are saved in the specified path directory.<br>
+Examples: 
+
+* `changepath user`
+  Change the file path to user folder under the current directory.<br>
+* `changepath C:\Users\User\Desktop`
+  Change the file path to desktop of the windows system. <br>
 
 ### 2.17. Save the data
 
@@ -326,7 +335,7 @@ Format: `exit`
 
 Function | Format | Examples
 -------- | ------ | --------
-Get Help infomation | `help` |
+Get Help infomation | `help` OR `help COMMANDWORD` | `help`<br> `help add`
 Add a event | `add TASK_NAME s/ START_DATE_TIME e/ END_DATE_TIME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], START_DATE_TIME, END_DATE_TIME, [tags: TAG1 TAG2...]` | `add Project metting s/ July 5 18 e/ July 5 19`<br> `add project, "CS2103 project", July 10 5pm, July 10 6pm`
 Add a deadline | `add TASK_NAME e/ END_DATE_TIME [t/ TAG1...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], DATETIME, [tags: TAG1 TAG2...]` | `add Project submission e/ July 5 20`<br> `add project, "CS2103 project", July 10 6pm, tags: meeting`
 Add a floating | `add TASK_NAME [t/ TAG...]`<br> `add TASK_NAME, ["TASK_DESCRIPTION"], [tags: TAG1 t/ TAG2...]` | `add CS2103 exam t/ HIGH`<br> `add project, "CS2103 project", tags: meeting`
@@ -347,8 +356,9 @@ Redo the last undo | `redo` |
 Mark incomplete tasks as completed | `mark INDEX` | `mark 1`
 Unmark completed task as incomplete | `unmark INDEX` | `unmark 1`
 Reset a event or deadline task | `reset INDEX` | `reset 1`
+Display all events and deadlines within reminder period | `remind` |
 Set reminder period | `remind TIMEPERIOD` | `remind 2 day`
 Select and view tasks | `select INDEX` | `select 1`
 Check file path of the storage file | `filepath` |
-Change the path of the storage file | `changepath [path_directory]` | `changepath \User\tasks.xml`
+Change the path of the storage file | `changepath [path_directory]` | `changepath User`<br> `changepath C:\Users\User\Desktop`
 Exit the programme | `exit` |
