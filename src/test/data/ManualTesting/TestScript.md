@@ -350,6 +350,18 @@ Input `changepath data/test`
 Result: "Save location changed to: data/test/whatsnext.xml"<br>
 File path is now changed to `data/test/whatsnext.xml`
 
+## Testing out the `remind` command:
+Input:
+1. `remind 1 week`
+2. `remind`
+
+Result:
+1. "Reminder set: 1 week"
+2. "Display reminders" <br>
+  Popup message box which displays events with starting date within the week or<br>
+  deadline tasks with end date within the week
+
+
 
 ## Testing out the EXIT function:
 Input `EXIT`
