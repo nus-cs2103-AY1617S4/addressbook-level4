@@ -171,7 +171,7 @@ public class LogicManagerTest {
     
     //TEST COMMAND WORDS//
     @Test
-    public void execute_unknownCommandWord() {
+    public void execute_unknownCommandWord_exceptionThrown() {
         String unknownCommand = "uicfhmowqewca";
         assertParseException(unknownCommand, MESSAGE_UNKNOWN_COMMAND);
     }
