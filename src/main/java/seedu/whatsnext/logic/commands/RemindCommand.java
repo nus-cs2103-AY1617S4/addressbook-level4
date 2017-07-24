@@ -1,7 +1,5 @@
 package seedu.whatsnext.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.logging.Logger;
 
 import seedu.whatsnext.commons.core.LogsCenter;
@@ -20,6 +18,7 @@ public class RemindCommand extends Command {
             + "Sets reminders to be i.e. 6 hour before events and deadlines\n"
             + "NOTE: Do not put 's' behind the time unit";
 
+    public static final String MESSAGE_POPUP = "Display reminders";
     public static final String MESSAGE_SUCCESS = "Reminder set: ";
     public static final String MESSAGE_NO_CHANGE_IN_REMINDER_SETTING = "No change in reminder setting.\n"
             + "Reminder setting: ";
@@ -34,7 +33,10 @@ public class RemindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        requireNonNull(reminderString);
+        if (reminderString == null || reminderString.isEmpty()) {
+            model.showReminderAlert();
+            return new CommandResult(MESSAGE_POPUP);
+        }
         String currentReminderSetting = model.getReminderSetting();
         if (reminderString.equals(currentReminderSetting)) {
             logger.info(MESSAGE_NO_CHANGE_IN_REMINDER_SETTING + currentReminderSetting);

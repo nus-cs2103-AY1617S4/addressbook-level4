@@ -22,8 +22,8 @@ public class RemindCommandParserTest {
     private static final String VALID_INPUT_WEEK = "2 week";
     private static final String VALID_INPUT_MONTH = "3 month";
     private static final String VALID_INPUT_YEAR = "1 year";
+    private static final String VALID_INPUT_NIL = "";
 
-    private static final String INVALID_INPUT_NIL = "";
     private static final String INVALID_INPUT_ZERO = "0 year";
     private static final String INVALID_INPUT_LESS_THAN_0 = "-3 minute";
     private static final String INVALID_INPUT_DECIMAL = "2.1 hour";
@@ -51,12 +51,14 @@ public class RemindCommandParserTest {
 
         expectedCommand = new RemindCommand(VALID_INPUT_YEAR);
         assertParseSuccess(VALID_INPUT_YEAR, expectedCommand);
+
+        expectedCommand = new RemindCommand(VALID_INPUT_NIL);
+        assertParseSuccess(VALID_INPUT_NIL, expectedCommand);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE);
-        assertParseFailure(INVALID_INPUT_NIL, expectedMessage);
         assertParseFailure(INVALID_INPUT_ZERO, expectedMessage);
         assertParseFailure(INVALID_INPUT_LESS_THAN_0, expectedMessage);
         assertParseFailure(INVALID_INPUT_DECIMAL, expectedMessage);

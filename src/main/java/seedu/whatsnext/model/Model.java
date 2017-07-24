@@ -18,6 +18,9 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
+    /** Displays the remind alert */
+    void showReminderAlert();
+
     //@@author A0154986L
     /** Undo previous action of task manager. */
     void undoTaskManager();
