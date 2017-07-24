@@ -16,8 +16,8 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Please add command keyword after help.\n"
                                                       + "The basic command words are as follows:\n"
-                                                      + "add, clear, complete, delete, edit, find, list, "
-                                                      + "redo, restore, save, select and undo.\n"
+                                                      + "add, clear, complete, delete, edit, exit, find, history, "
+                                                      + "list, redo, restore, save, select and undo.\n"
                                                       + "Example: help add";
 
     private String usageMessage;
