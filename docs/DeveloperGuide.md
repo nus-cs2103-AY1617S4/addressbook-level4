@@ -95,8 +95,8 @@ protected Ui ui;
   * Model: `model`, `storage` component
   * View: `GUI`
   * Controller: `logic` component
-3. Observer Pattern: The application makes use of javafx ObservableList which allows listeners to track changes when they occur.
-4. Facade Pattern: Ui component of the application requires access to the startDateTime and endDateTime objects in BasicTask class.
+3. Observer Pattern: The application makes use of javafx ObservableList which allows listeners to track changes when they occur. E.g. Ui updates when there is a taskManagerChangeEvent raised.
+4. Facade Pattern: `Ui` component of the application requires access to the startDateTime and endDateTime objects in BasicTask class from the `Model` component.
 5. Command Pattern: Abstract class command is used to support multiple commands each performing a different tasks (e.g. `add`, `delete`, `list` commands).
 
 A top down approach is used to design the Architecture of the app to better faciliate the Object Oriented framework used.
@@ -494,8 +494,8 @@ Use case ends.
 
 **MSS**
 
-1.	User inputs keywords.
-2.	System shows tasks with query keywords in name or tag.<br>
+1.  User inputs keywords.
+2.  System shows tasks with query keywords in name or tag.<br>
 
 Use case ends.
 
@@ -565,8 +565,8 @@ Use case ends.
 
 **MSS**
 
-1.	User requests to view tasks by status (upcoming incomplete, completed, incomplete, expired or all).
-2.	System lists all tasks of the type.<br>
+1.  User requests to view tasks by status (upcoming incomplete, completed, incomplete, expired or all).
+2.  System lists all tasks of the type.<br>
 Use case ends.
 
 **Extensions**
