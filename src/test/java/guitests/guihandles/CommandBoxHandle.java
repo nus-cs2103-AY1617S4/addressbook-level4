@@ -4,8 +4,8 @@ import guitests.GuiRobot;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.ui.CommandBox;
+import seedu.ticktask.logic.commands.HelpCommand;
+import seedu.ticktask.ui.CommandBox;
 
 /**
  * A handle to the Command Box in the GUI.

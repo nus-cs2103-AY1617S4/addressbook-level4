@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticktask>
+    <tasks>
+        <name>Study for CS2103 Finals</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Rehearse for CS2103 presentation</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2103 Final Submission Deadline</name>
+        <time>20:00</time>
+        <type>deadline</type>
+        <dueDate>07/24/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2103 Final Presentation Rehearsal</name>
+        <time>12:00 - 16:00</time>
+        <type>event</type>
+        <dueDate>07/25/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2103 Mock Paper Discussion</name>
+        <time>10:00 - 12:00</time>
+        <type>event</type>
+        <dueDate>07/26/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2103 Final Presentation</name>
+        <time>16:00 - 17:00</time>
+        <type>event</type>
+        <dueDate>07/26/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>complete Teammates peer review</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/26/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Summer exchange briefing 2</name>
+        <time>19:00</time>
+        <type>deadline</type>
+        <dueDate>07/26/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Study HARD</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Revise all major concepts for CS2103</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Print CS2103 finals cheatsheet</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Revise for CS2010 online quiz</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2010 online quiz</name>
+        <time>14:00 - 15:00</time>
+        <type>event</type>
+        <dueDate>07/27/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2010 Mock Paper Discussion</name>
+        <time>16:00 - 17:00</time>
+        <type>event</type>
+        <dueDate>07/27/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Last minute revision</name>
+        <time>23:00</time>
+        <type>deadline</type>
+        <dueDate>07/27/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2103 Final Paper</name>
+        <time>09:00 - 11:00</time>
+        <type>event</type>
+        <dueDate>07/28/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>CS2010 Final Paper</name>
+        <time>14:00 - 16:00</time>
+        <type>event</type>
+        <dueDate>07/28/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Celebratory dinner with friends</name>
+        <time>19:00 - 23:59</time>
+        <type>event</type>
+        <dueDate>07/24/2017 - 07/24/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Bring luffy to the dog beach</name>
+        <time>09:00 - 11:00</time>
+        <type>event</type>
+        <dueDate>07/29/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Start packing for exchange</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Apply for USA Visa</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Clear IPPT</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>08/23/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Research about new laptops</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </tasks>
+    <tasks>
+        <name>Settle SEP Module Mapping</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/30/2017</dueDate>
+    </tasks>
+    <tasks>
+        <name>Apply for exit permit</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/30/2017</dueDate>
+    </tasks>
+    <completedTasks>
+        <name>Research about Nike sneakers</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+        <tagged>fashion</tagged>
+    </completedTasks>
+    <completedTasks>
+        <name>Attend Rachels birthday party</name>
+        <time>14:00</time>
+        <type>deadline</type>
+        <dueDate>07/17/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Buy Rachels birthday present</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/14/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Lunch with family</name>
+        <time>12:00 - 14:00</time>
+        <type>event</type>
+        <dueDate>07/15/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Dinner with friends</name>
+        <time>19:00 - 22:00</time>
+        <type>event</type>
+        <dueDate>07/15/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Breakfast with Aunt Mary</name>
+        <time>08:00</time>
+        <type>deadline</type>
+        <dueDate>07/16/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Buy eggs and milk</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Buy baking ingredients</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Book dental appointment</name>
+        <time>16:00</time>
+        <type>deadline</type>
+        <dueDate>07/16/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Research about Golden Retrievers</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Bring Luffy out for a walk</name>
+        <time>08:00</time>
+        <type>deadline</type>
+        <dueDate>07/20/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Luffys Vet Appointment</name>
+        <time>14:00</time>
+        <type>deadline</type>
+        <dueDate>07/21/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Research about new dog food types</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Exchange program briefing</name>
+        <time>18:00 - 20:00</time>
+        <type>event</type>
+        <dueDate>07/22/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Buy winter clothing</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/22/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Uniqolo Summer Sales Ends</name>
+        <time>23:59</time>
+        <type>deadline</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>ACJC Homecoming</name>
+        <time>09:00 - 12:00</time>
+        <type>event</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Lunch with JC Friends</name>
+        <time>12:00 - 14:00</time>
+        <type>event</type>
+        <dueDate>07/23/2017</dueDate>
+        <tagged>friends</tagged>
+    </completedTasks>
+    <completedTasks>
+        <name>Bring camera to return Jay</name>
+        <time>11:00</time>
+        <type>deadline</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Finals week</name>
+        <time>00:00 - 23:59</time>
+        <type>event</type>
+        <dueDate>07/23/2017 - 07/28/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Finalise CS2103 code</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Finalise CS2103 presentation</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Finalise CS2103 documentation</name>
+        <time></time>
+        <type>floating</type>
+        <dueDate></dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Buy medicine for grandma</name>
+        <time>17:00</time>
+        <type>deadline</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Visit grandmothers house</name>
+        <time>18:00 - 22:00</time>
+        <type>event</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <completedTasks>
+        <name>Check grandma blood pressure</name>
+        <time>19:00</time>
+        <type>deadline</type>
+        <dueDate>07/23/2017</dueDate>
+    </completedTasks>
+    <tags>fashion</tags>
+    <tags>friends</tags>
+</ticktask>
