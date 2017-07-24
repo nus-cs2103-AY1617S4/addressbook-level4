@@ -1,11 +1,10 @@
 package seedu.ticktask.logic.parser;
 
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.ticktask.logic.commands.Command;
-import seedu.ticktask.logic.commands.EditCommand;
 import seedu.ticktask.logic.commands.ListCommand;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
+
 //@@author A0138471A
 /**
  * Parses input arguments for ListCommand Object

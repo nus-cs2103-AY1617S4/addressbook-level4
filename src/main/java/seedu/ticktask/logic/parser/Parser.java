@@ -2,10 +2,8 @@ package seedu.ticktask.logic.parser;
 
 import static seedu.ticktask.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ticktask.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import seedu.ticktask.commons.exceptions.IllegalValueException;
 import seedu.ticktask.logic.commands.*;
 import seedu.ticktask.logic.parser.exceptions.ParseException;
@@ -78,6 +76,7 @@ public class Parser {
         case StorageCommand.COMMAND_WORD:
             return new StorageCommandParser().parse(arguments);
         //@@author
+            
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 

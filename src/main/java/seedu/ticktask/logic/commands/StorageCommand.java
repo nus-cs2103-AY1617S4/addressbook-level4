@@ -23,7 +23,6 @@ public class StorageCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Location changed to: %1$s";
     public static final String MESSAGE_DUPLICATE_TICK_TASK_FILE_PATH = "File is already saved at this location";
     public static final String MESSAGE_CREATED_NEW_CONFIG_FILE = "IO";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the location of the Tick Task app doc.\n"
             + "Example: " + COMMAND_WORD + " doc";
 

@@ -37,8 +37,6 @@ public class ListCommand extends Command {
     
     private String listCommandType;
 
-
-
     public ListCommand(String list) {
         this.listCommandType = list;
     }
@@ -100,7 +98,7 @@ public class ListCommand extends Command {
                 }
         }
     }
-//@@author
+    //@@author
     //@@author A0131884B
     /**
      * return true is the target list is empty

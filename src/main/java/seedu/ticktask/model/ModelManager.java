@@ -292,6 +292,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     }
     
+    @Override
     public void saveTickTask(){
     	indicateTickTaskModelChanged();
     }

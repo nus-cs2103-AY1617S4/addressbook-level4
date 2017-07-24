@@ -2,10 +2,8 @@ package seedu.ticktask.model.task;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
-
 import java.util.Collections;
 import seedu.ticktask.commons.exceptions.IllegalValueException;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -17,7 +15,7 @@ import java.util.regex.Pattern;
 
 import static java.util.Objects.requireNonNull;
 
-
+//@@author A0138471A
 /**
  * Represents a Task's date in the TickTask.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -25,18 +23,7 @@ import static java.util.Objects.requireNonNull;
 
 public class DueDate {
 
-    //@@author A0139819N
-    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
-    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
-    //@@author
-    //@@author A0138471A
-    public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Enter a valid date";
-
-    /*
-     * The first character of the date must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Enter a valid date";
     public static final String START_DATE_VALIDATION_REGEX = "start date.*";
     public static final String END_DATE_VALIDATION_REGEX = "end date.*";
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(START_DATE_VALIDATION_REGEX);
@@ -44,21 +31,20 @@ public class DueDate {
     private static final int FIRST_INDEX_OF_ARRAY = 0;
     private static final int INDEX_START_DATE = 0;
     private static final int INDEX_END_DATE = 1;
-
-
+    //@@author
+    //@@author A0139819N
+    public static final String DATE_REGEX_SINGLE = "\\d{2}?/\\d{2}?/\\d{4}?";
+    public static final String DATE_REGEX_RANGE = "\\d{2}?/\\d{2}?/\\d{4}?\\-\\d{2}?/\\d{2}?/\\d{4}?";
+    //@@author
+    //@@author A0138471A
     private final Parser parser = new Parser();
-
     private String value;
-    
-
     private LocalDate local_date;
-
     private ArrayList<LocalDate> datesArray = new ArrayList<LocalDate>();
     private LocalDate start_date;
     private LocalDate end_date;
-    private String start_date_string = "",
-            end_date_string = "";
-
+    private String start_date_string = "";
+    private String end_date_string = "";
     private boolean isFloating = false;
     private boolean isRange = false;
     private boolean isDeadline = false;
@@ -76,9 +62,7 @@ public class DueDate {
           
         if (((date.matches(END_DATE_VALIDATION_REGEX)) || (date.matches(START_DATE_VALIDATION_REGEX)))) {
             List<DateGroup> dateGroups = parser.parse(trimmedDate);
-            /*if(dateGroups.isEmpty()){
-             * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-            }*/
+
             if (!dateGroups.isEmpty()) {
                 for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
                     local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -104,15 +88,14 @@ public class DueDate {
             value = getStartDate();
         }
 
-
     }
 
-
+    /**
+     * Extracts date into start date and end date.
+     */
     void extractDate(String trimmedDate) {
         List<DateGroup> dateGroups = parser.parse(trimmedDate);
-        /* if(dateGroups.isEmpty()){
-         * throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-         * */
+
         if (!dateGroups.isEmpty()) {
             for (Date dates : dateGroups.get(FIRST_INDEX_OF_ARRAY).getDates()) {
                 local_date = Instant.ofEpochMilli(dates.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -129,6 +112,7 @@ public class DueDate {
             setStartDate(start_date);
             setEndDate(end_date);
             isRange = true;
+            
         } else if (datesArray.size() == 1) {
             start_date = datesArray.get(INDEX_START_DATE);
             setStartDate(start_date);
@@ -143,19 +127,23 @@ public class DueDate {
 
     }
     
+    /**
+     * Sets value
+     */
     public String getValue() {
         return value;
     }
 
-
+    /**
+     * returns value
+     */
     public void setValue(String value) {
         this.value = value;
     }
-    
-    public String getStartDate() {
-        return start_date_string;
-    }
 
+    /**
+     * Sets end date in the LocalDate form
+     */
     public void setEndDate(LocalDate end_date2) {
         if (end_date2 == null) {
             end_date_string =  "";
@@ -172,16 +160,16 @@ public class DueDate {
                 value = getStartDate();
             }
         }
-
     }
 
+    /**
+     * Sets start date in the LocalDate form
+     */
     public void setStartDate(LocalDate start_date2) {
         if (start_date2 == null) {
             start_date_string =  "";
             start_date = start_date2;
             value = getStartDate();
-            
-
 
         }
         else {
@@ -196,15 +184,32 @@ public class DueDate {
 
     }
 
+    /**
+     * Returns end date in String
+     */
     public String getEndDate() {
 
         return end_date_string;
     }
     
+    /**
+     * Returns start date in String
+     */
+    public String getStartDate() {
+        
+        return start_date_string;
+    }
+    
+    /**
+     * Returns start date in LocalDate form
+     */
     public LocalDate getLocalStartDate() {
         return start_date;
     }
     
+    /**
+     * Returns end date in LocalDate form
+     */
     public LocalDate getLocalEndDate() {
         return end_date;
     }
