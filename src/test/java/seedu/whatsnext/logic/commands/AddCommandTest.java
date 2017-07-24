@@ -19,6 +19,7 @@ import seedu.whatsnext.logic.CommandHistory;
 import seedu.whatsnext.logic.commands.exceptions.CommandException;
 import seedu.whatsnext.model.Model;
 import seedu.whatsnext.model.ReadOnlyTaskManager;
+import seedu.whatsnext.model.TaskManager;
 import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
@@ -106,8 +107,7 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyTaskManager getTaskManager() {
-            fail("This method should not be called.");
-            return null;
+            return new TaskManager();
         }
 
         @Override
@@ -253,6 +253,11 @@ public class AddCommandTest {
         public UnmodifiableObservableList<BasicTaskFeatures> getFilteredTaskList() {
             ObservableList<BasicTask> observableList = FXCollections.observableArrayList(tasksAdded);
             return new UnmodifiableObservableList<BasicTaskFeatures>(observableList);
+        }
+
+        @Override
+        public ReadOnlyTaskManager getTaskManager() {
+            return new TaskManager();
         }
 
 
