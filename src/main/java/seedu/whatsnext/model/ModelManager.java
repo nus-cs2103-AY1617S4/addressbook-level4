@@ -25,6 +25,7 @@ import seedu.whatsnext.model.task.BasicTask;
 import seedu.whatsnext.model.task.BasicTaskFeatures;
 import seedu.whatsnext.model.task.exceptions.DuplicateTaskException;
 import seedu.whatsnext.model.task.exceptions.TaskNotFoundException;
+import seedu.whatsnext.ui.UiManager;
 
 /**
  * Represents the in-memory model of the Task Manager data.
@@ -65,6 +66,10 @@ public class ModelManager extends ComponentManager implements Model {
         saveInstance();
         taskManager.resetData(newData);
         indicateTaskManagerChanged();
+    }
+
+    public void showReminderAlert(){
+        UiManager.showReminderAlert();
     }
 
     //@@author A0154986L
