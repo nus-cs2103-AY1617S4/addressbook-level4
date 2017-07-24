@@ -37,7 +37,7 @@ public class DeleteCommandParser {
     */
     public DeleteCommand parse(String args) throws ParseException {
                 argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPLETE, PREFIX_ACTIVE);
-        if (args.trim().isEmpty() || (!args.trim().contains("complete") && (!args.trim().contains("active")))) {
+        if (args.trim().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteCommand.MESSAGE_USAGE));
          }
